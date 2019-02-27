@@ -15,6 +15,13 @@
 		8D58D4C62226355B00803985 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D58D4C52226355B00803985 /* main.m */; };
 		8D58D4D02226355B00803985 /* BeehiveTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D58D4CF2226355B00803985 /* BeehiveTests.m */; };
 		8D58D4DB2226355B00803985 /* BeehiveUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D58D4DA2226355B00803985 /* BeehiveUITests.m */; };
+		8D79E4D2222672A20019A1BE /* LLTabBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D79E4D1222672A20019A1BE /* LLTabBarViewController.m */; };
+		8D79E4D5222672CA0019A1BE /* LLNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D79E4D4222672CA0019A1BE /* LLNavigationController.m */; };
+		8D79E4D82226748D0019A1BE /* LLBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D79E4D72226748D0019A1BE /* LLBaseViewController.m */; };
+		8D79E4DC222676E20019A1BE /* LLBeeHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D79E4DA222676E20019A1BE /* LLBeeHomeViewController.m */; };
+		8D79E4DD222676E20019A1BE /* LLBeeHomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D79E4DB222676E20019A1BE /* LLBeeHomeViewController.xib */; };
+		8D79E4E1222676FC0019A1BE /* LLBeeMineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D79E4DF222676FC0019A1BE /* LLBeeMineViewController.m */; };
+		8D79E4E2222676FC0019A1BE /* LLBeeMineViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D79E4E0222676FC0019A1BE /* LLBeeMineViewController.xib */; };
 		A78A3C5E8FBF200497ED12F0 /* Pods_BeehiveTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A98A37B880E16C6C709CB88A /* Pods_BeehiveTests.framework */; };
 		BE3EF924D54032F1DFDF5383 /* Pods_BeehiveUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0DB97A8E569F793FB5ABD125 /* Pods_BeehiveUITests.framework */; };
 		E0E531C080DEB8E8705299CF /* Pods_Beehive.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA9C64AC55444CFD230537D9 /* Pods_Beehive.framework */; };
@@ -59,6 +66,18 @@
 		8D58D4D62226355B00803985 /* BeehiveUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BeehiveUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8D58D4DA2226355B00803985 /* BeehiveUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BeehiveUITests.m; sourceTree = "<group>"; };
 		8D58D4DC2226355B00803985 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8D79E4D0222672A20019A1BE /* LLTabBarViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLTabBarViewController.h; sourceTree = "<group>"; };
+		8D79E4D1222672A20019A1BE /* LLTabBarViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLTabBarViewController.m; sourceTree = "<group>"; };
+		8D79E4D3222672CA0019A1BE /* LLNavigationController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLNavigationController.h; sourceTree = "<group>"; };
+		8D79E4D4222672CA0019A1BE /* LLNavigationController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLNavigationController.m; sourceTree = "<group>"; };
+		8D79E4D62226748D0019A1BE /* LLBaseViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLBaseViewController.h; sourceTree = "<group>"; };
+		8D79E4D72226748D0019A1BE /* LLBaseViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLBaseViewController.m; sourceTree = "<group>"; };
+		8D79E4D9222676E20019A1BE /* LLBeeHomeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLBeeHomeViewController.h; sourceTree = "<group>"; };
+		8D79E4DA222676E20019A1BE /* LLBeeHomeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLBeeHomeViewController.m; sourceTree = "<group>"; };
+		8D79E4DB222676E20019A1BE /* LLBeeHomeViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LLBeeHomeViewController.xib; sourceTree = "<group>"; };
+		8D79E4DE222676FC0019A1BE /* LLBeeMineViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLBeeMineViewController.h; sourceTree = "<group>"; };
+		8D79E4DF222676FC0019A1BE /* LLBeeMineViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLBeeMineViewController.m; sourceTree = "<group>"; };
+		8D79E4E0222676FC0019A1BE /* LLBeeMineViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LLBeeMineViewController.xib; sourceTree = "<group>"; };
 		A64954C5C3CAB5F3221F123D /* Pods-BeehiveTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BeehiveTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BeehiveTests/Pods-BeehiveTests.debug.xcconfig"; sourceTree = "<group>"; };
 		A98A37B880E16C6C709CB88A /* Pods_BeehiveTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BeehiveTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BA9C64AC55444CFD230537D9 /* Pods_Beehive.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Beehive.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -128,12 +147,12 @@
 		8D58D4B52226355900803985 /* Beehive */ = {
 			isa = PBXGroup;
 			children = (
-				8D58D4B62226355900803985 /* AppDelegate.h */,
-				8D58D4B72226355900803985 /* AppDelegate.m */,
+				8D79E4C822266ECC0019A1BE /* AppDelegate */,
+				8D79E4CA22266F4A0019A1BE /* Classes */,
+				8D79E4C922266EDD0019A1BE /* Resources */,
 				8D58D4B92226355900803985 /* ViewController.h */,
 				8D58D4BA2226355900803985 /* ViewController.m */,
 				8D58D4BC2226355900803985 /* Main.storyboard */,
-				8D58D4BF2226355B00803985 /* Assets.xcassets */,
 				8D58D4C12226355B00803985 /* LaunchScreen.storyboard */,
 				8D58D4C42226355B00803985 /* Info.plist */,
 				8D58D4C52226355B00803985 /* main.m */,
@@ -157,6 +176,82 @@
 				8D58D4DC2226355B00803985 /* Info.plist */,
 			);
 			path = BeehiveUITests;
+			sourceTree = "<group>";
+		};
+		8D79E4C822266ECC0019A1BE /* AppDelegate */ = {
+			isa = PBXGroup;
+			children = (
+				8D58D4B62226355900803985 /* AppDelegate.h */,
+				8D58D4B72226355900803985 /* AppDelegate.m */,
+			);
+			path = AppDelegate;
+			sourceTree = "<group>";
+		};
+		8D79E4C922266EDD0019A1BE /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				8D58D4BF2226355B00803985 /* Assets.xcassets */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		8D79E4CA22266F4A0019A1BE /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				8D79E4CB222670090019A1BE /* Modules */,
+				8D79E4CC222670200019A1BE /* Common */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		8D79E4CB222670090019A1BE /* Modules */ = {
+			isa = PBXGroup;
+			children = (
+				8D79E4CD222670400019A1BE /* Home */,
+				8D79E4CE2226704C0019A1BE /* Mine */,
+			);
+			path = Modules;
+			sourceTree = "<group>";
+		};
+		8D79E4CC222670200019A1BE /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				8D79E4CF222672130019A1BE /* Base */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		8D79E4CD222670400019A1BE /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				8D79E4D9222676E20019A1BE /* LLBeeHomeViewController.h */,
+				8D79E4DA222676E20019A1BE /* LLBeeHomeViewController.m */,
+				8D79E4DB222676E20019A1BE /* LLBeeHomeViewController.xib */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		8D79E4CE2226704C0019A1BE /* Mine */ = {
+			isa = PBXGroup;
+			children = (
+				8D79E4DE222676FC0019A1BE /* LLBeeMineViewController.h */,
+				8D79E4DF222676FC0019A1BE /* LLBeeMineViewController.m */,
+				8D79E4E0222676FC0019A1BE /* LLBeeMineViewController.xib */,
+			);
+			path = Mine;
+			sourceTree = "<group>";
+		};
+		8D79E4CF222672130019A1BE /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				8D79E4D0222672A20019A1BE /* LLTabBarViewController.h */,
+				8D79E4D1222672A20019A1BE /* LLTabBarViewController.m */,
+				8D79E4D3222672CA0019A1BE /* LLNavigationController.h */,
+				8D79E4D4222672CA0019A1BE /* LLNavigationController.m */,
+				8D79E4D62226748D0019A1BE /* LLBaseViewController.h */,
+				8D79E4D72226748D0019A1BE /* LLBaseViewController.m */,
+			);
+			path = Base;
 			sourceTree = "<group>";
 		};
 		C56CAB9DFE086D770962AA2C /* Pods */ = {
@@ -279,9 +374,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8D79E4DD222676E20019A1BE /* LLBeeHomeViewController.xib in Resources */,
 				8D58D4C32226355B00803985 /* LaunchScreen.storyboard in Resources */,
 				8D58D4C02226355B00803985 /* Assets.xcassets in Resources */,
 				8D58D4BE2226355900803985 /* Main.storyboard in Resources */,
+				8D79E4E2222676FC0019A1BE /* LLBeeMineViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -397,8 +494,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8D79E4E1222676FC0019A1BE /* LLBeeMineViewController.m in Sources */,
+				8D79E4DC222676E20019A1BE /* LLBeeHomeViewController.m in Sources */,
 				8D58D4BB2226355900803985 /* ViewController.m in Sources */,
 				8D58D4C62226355B00803985 /* main.m in Sources */,
+				8D79E4D5222672CA0019A1BE /* LLNavigationController.m in Sources */,
+				8D79E4D82226748D0019A1BE /* LLBaseViewController.m in Sources */,
+				8D79E4D2222672A20019A1BE /* LLTabBarViewController.m in Sources */,
 				8D58D4B82226355900803985 /* AppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -572,7 +674,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = GZ42KLGZ8K;
+				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = Beehive/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -591,7 +694,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = GZ42KLGZ8K;
+				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = Beehive/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
