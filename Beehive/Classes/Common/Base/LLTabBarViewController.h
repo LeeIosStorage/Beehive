@@ -7,10 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CYLTabBarController.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface LLTabBarViewController : UITabBarController
+@interface LLTabBarViewController : CYLTabBarController
 
 @end
 

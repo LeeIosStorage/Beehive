@@ -8,11 +8,14 @@
 
 #import "AppDelegate.h"
 #import "LLTabBarViewController.h"
+#import "LLPlusButton.h"
 #import "LLNavigationController.h"
 #import "LLBeeHomeViewController.h"
 #import "LLBeeMineViewController.h"
 
 @interface AppDelegate ()
+
+@property (nonatomic, strong) LLTabBarViewController *tabBarController;
 
 @end
 
@@ -61,40 +64,18 @@
 
 #pragma mark - init
 - (void)initRootVc {
-    LLTabBarViewController *tabBar = [[LLTabBarViewController alloc] init];
-    tabBar.viewControllers = [self tabbarControllers];
-    self.window.rootViewController = tabBar;
-    
-    [UITabBarItem appearance].titlePositionAdjustment = UIOffsetMake(0, -3);
-    [[UITabBarItem appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor redColor]} forState:UIControlStateSelected];
-    [[UITabBarItem appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor blackColor]} forState:UIControlStateNormal];
-    NSArray *tabBarItems = tabBar.tabBar.items;
-    NSMutableArray *tabs = [NSMutableArray array];
-    [tabs addObject:@{@"title":@"首页", @"nIcon":@"", @"sIcon":@""}];
-    [tabs addObject:@{@"title":@"我的", @"nIcon":@"", @"sIcon":@""}];
-    for (int i = 0; i < tabs.count; i++) {
-        UITabBarItem *item = (UITabBarItem *)tabBarItems[i];
-        NSDictionary *infoDic = tabs[i];
-        item.title = infoDic[@"title"];
-        item.image = [[UIImage imageNamed:infoDic[@"nIcon"]] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-        item.selectedImage = [[UIImage imageNamed:infoDic[@"sIcon"]] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-    }
+    [LLPlusButton registerPlusButton];
+    LLTabBarViewController *tabBarController = [[LLTabBarViewController alloc] init];
+    [tabBarController hideTabBadgeBackgroundSeparator];
+    tabBarController.delegate = self;
+    self.tabBarController = tabBarController;
+    self.window.rootViewController = tabBarController;
 }
 
 - (void)initLoginVc {
     LLBeeMineViewController *vc = [[LLBeeMineViewController alloc] init];
     LLNavigationController *loginNav = [[LLNavigationController alloc] initWithRootViewController:vc];
     self.window.rootViewController = loginNav;
-}
-
-- (NSArray *)tabbarControllers {
-    NSMutableArray *tabs = [NSMutableArray array];
-    
-    LLNavigationController *homeNav = [[LLNavigationController alloc] initWithRootViewController:[[LLBeeHomeViewController alloc] init]];
-    LLNavigationController *mineNav = [[LLNavigationController alloc] initWithRootViewController:[[LLBeeMineViewController alloc] init]];
-    [tabs addObject:homeNav];
-    [tabs addObject:mineNav];
-    return tabs;
 }
 
 @end

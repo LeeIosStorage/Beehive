@@ -14,17 +14,21 @@ PODS:
   - AFNetworking/Serialization (3.2.1)
   - AFNetworking/UIKit (3.2.1):
     - AFNetworking/NSURLSession
+  - CYLTabBarController (1.17.23)
 
 DEPENDENCIES:
   - AFNetworking (~> 3.2.0)
+  - CYLTabBarController (~> 1.17.22)
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - AFNetworking
+    - CYLTabBarController
 
 SPEC CHECKSUMS:
   AFNetworking: b6f891fdfaed196b46c7a83cf209e09697b94057
+  CYLTabBarController: 73889c1ccc7685221d85ac2dbf188900543f17d0
 
-PODFILE CHECKSUM: ddd9351b5f89950888fd338021065498bc59b09a
+PODFILE CHECKSUM: 0b94cb9856f94dd5dea247faa61e5d4335475aeb
 
 COCOAPODS: 1.5.3

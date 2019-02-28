@@ -6,6 +6,7 @@ source 'https://github.com/CocoaPods/Specs.git'
 
 def shared_pods
   pod 'AFNetworking', '~> 3.2.0'
+  pod 'CYLTabBarController', '~> 1.17.22'
 end
 
 target 'Beehive' do

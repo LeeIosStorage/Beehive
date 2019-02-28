@@ -7,6 +7,7 @@
 //
 
 #import "LLNavigationController.h"
+#import "Beehive-Swift.h"
 
 @interface LLNavigationController ()
 
@@ -17,16 +18,20 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    self.navigationBar.tintColor = UIColor.blackColor;
+    self.navigationBar.barTintColor = UIColor.whiteColor;
+    self.navigationBar.translucent = false;
+    self.navigationBar.barStyle = UIBarStyleDefault;
+    self.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName: UIColor.blackColor, NSFontAttributeName: [FontConst PingFangSCMediumWithSize:17]};
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (void)pushViewController:(UIViewController *)viewController animated:(BOOL)animated {
+    if (self.viewControllers.count > 0) {
+        viewController.hidesBottomBarWhenPushed = YES;
+    } else {
+        viewController.hidesBottomBarWhenPushed = NO;
+    }
+    [super pushViewController:viewController animated:animated];
 }
-*/
 
 @end
