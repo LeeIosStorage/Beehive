@@ -94,6 +94,7 @@
 		8DE588612227AD82002C1576 /* LLPlusButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLPlusButton.m; sourceTree = "<group>"; };
 		8DE588652227C76E002C1576 /* Beehive-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Beehive-Bridging-Header.h"; sourceTree = "<group>"; };
 		8DE588662227C76F002C1576 /* FontConst.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontConst.swift; sourceTree = "<group>"; };
+		8DE588682227EC97002C1576 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		A64954C5C3CAB5F3221F123D /* Pods-BeehiveTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BeehiveTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BeehiveTests/Pods-BeehiveTests.debug.xcconfig"; sourceTree = "<group>"; };
 		A98A37B880E16C6C709CB88A /* Pods_BeehiveTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BeehiveTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BA9C64AC55444CFD230537D9 /* Pods_Beehive.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Beehive.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -173,6 +174,7 @@
 				8D58D4C12226355B00803985 /* LaunchScreen.storyboard */,
 				8D58D4C42226355B00803985 /* Info.plist */,
 				8D58D4C52226355B00803985 /* main.m */,
+				8DE588682227EC97002C1576 /* PrefixHeader.pch */,
 			);
 			path = Beehive;
 			sourceTree = "<group>";
@@ -746,6 +748,7 @@
 				DEVELOPMENT_TEAM = GZ42KLGZ8K;
 				EMBED_ASSET_PACKS_IN_PRODUCT_BUNDLE = NO;
 				ENABLE_BITCODE = NO;
+				GCC_PREFIX_HEADER = Beehive/PrefixHeader.pch;
 				INFOPLIST_FILE = Beehive/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -773,6 +776,7 @@
 				DEVELOPMENT_TEAM = GZ42KLGZ8K;
 				EMBED_ASSET_PACKS_IN_PRODUCT_BUNDLE = NO;
 				ENABLE_BITCODE = NO;
+				GCC_PREFIX_HEADER = Beehive/PrefixHeader.pch;
 				INFOPLIST_FILE = Beehive/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (

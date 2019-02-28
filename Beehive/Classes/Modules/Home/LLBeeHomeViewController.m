@@ -22,12 +22,11 @@
 }
 
 - (void)setup {
-    self.navigationItem.title = @"首页是吧";
+    self.navigationItem.title = @"首页";
 }
 
 - (IBAction)testClickAction:(id)sender {
     LLBeeMineViewController *mineVc = [[LLBeeMineViewController alloc] init];
-    mineVc.hidesBottomBarWhenPushed = true;
     [self.navigationController pushViewController:mineVc animated:true];
 }
 

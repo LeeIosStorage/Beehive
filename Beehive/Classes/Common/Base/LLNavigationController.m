@@ -7,7 +7,6 @@
 //
 
 #import "LLNavigationController.h"
-#import "Beehive-Swift.h"
 
 @interface LLNavigationController ()
 

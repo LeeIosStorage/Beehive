@@ -21,7 +21,7 @@
 }
 
 - (void)setup {
-    self.navigationItem.title = @"我的哈哈哈";
+    self.navigationItem.title = @"我的";
     self.view.backgroundColor = UIColor.yellowColor;
 }
 
