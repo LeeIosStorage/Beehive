@@ -8,6 +8,7 @@
 
 #import "LLBeeHomeViewController.h"
 #import "LLBeeMineViewController.h"
+#import "UIViewController+LLNavigationBar.h"
 
 @interface LLBeeHomeViewController ()
 
@@ -23,6 +24,7 @@
 
 - (void)setup {
     self.navigationItem.title = @"首页";
+    [self createBarButtonItemAtPosition:LLNavigationBarPositionRight normalImage:nil highlightImage:nil text:@"发布" action:@selector(testClickAction:)];
 }
 
 - (IBAction)testClickAction:(id)sender {

@@ -26,7 +26,7 @@
     UIEdgeInsets imageInsets = UIEdgeInsetsZero;//UIEdgeInsetsMake(4.5, 0, -4.5, 0);
     UIOffset titlePositionAdjustment = UIOffsetZero;
     CYLTabBarController *tabBarController = [CYLTabBarController tabBarControllerWithViewControllers:self.viewControllers tabBarItemsAttributes:self.tabBarItemsAttributesForController imageInsets:imageInsets titlePositionAdjustment:titlePositionAdjustment context:nil];
-    tabBarController.tabBarHeight = 49;
+//    tabBarController.tabBarHeight = 70;
     [self customizeTabBarAppearance:tabBarController];
     return (self = (LLTabBarViewController *)tabBarController);
 }

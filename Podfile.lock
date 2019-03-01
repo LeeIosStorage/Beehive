@@ -15,20 +15,40 @@ PODS:
   - AFNetworking/UIKit (3.2.1):
     - AFNetworking/NSURLSession
   - CYLTabBarController (1.17.23)
+  - Masonry (1.0.2)
+  - SDWebImage (3.8.2):
+    - SDWebImage/Core (= 3.8.2)
+  - SDWebImage/Core (3.8.2)
+  - SVProgressHUD (2.0.4)
+  - YYKit (1.0.9):
+    - YYKit/no-arc (= 1.0.9)
+  - YYKit/no-arc (1.0.9)
 
 DEPENDENCIES:
   - AFNetworking (~> 3.2.0)
   - CYLTabBarController (~> 1.17.22)
+  - Masonry (~> 1.0.1)
+  - SDWebImage (~> 3.8.0)
+  - SVProgressHUD (~> 2.0.3)
+  - YYKit (~> 1.0.6)
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - AFNetworking
     - CYLTabBarController
+    - Masonry
+    - SDWebImage
+    - SVProgressHUD
+    - YYKit
 
 SPEC CHECKSUMS:
   AFNetworking: b6f891fdfaed196b46c7a83cf209e09697b94057
   CYLTabBarController: 73889c1ccc7685221d85ac2dbf188900543f17d0
+  Masonry: 7c429b56da9d4ee0bbb3ed77a5ea710d6a5df39e
+  SDWebImage: 098e97e6176540799c27e804c96653ee0833d13c
+  SVProgressHUD: bfde85ed6c573ea802b9cb37894ed9b629034f1b
+  YYKit: 7cda43304a8dc3696c449041e2cb3107b4e236e7
 
-PODFILE CHECKSUM: 0b94cb9856f94dd5dea247faa61e5d4335475aeb
+PODFILE CHECKSUM: 684de770c1112611096ed65c218c2995cdea43bc
 
 COCOAPODS: 1.5.3
