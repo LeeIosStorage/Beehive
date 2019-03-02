@@ -27,6 +27,7 @@ UIGestureRecognizerDelegate
     self.navigationBar.translucent = false;
     self.navigationBar.barStyle = UIBarStyleDefault;
     self.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName: UIColor.blackColor, NSFontAttributeName: [FontConst PingFangSCMediumWithSize:17]};
+    self.navigationBar.shadowImage = [UIImage imageWithColor:HitoColorFromRGB(0Xd9d9d9) size:CGSizeMake(SCREEN_WIDTH, 0.5)];
     
     self.delegate = self;
     self.interactivePopGestureRecognizer.delegate = self;
