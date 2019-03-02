@@ -201,12 +201,12 @@
 #define HitoRedColor [UIColor redColor]
 
 //主题颜色
-#define kAppThemeColor [UIColor colorWithHexString:@"ff4b41"]
+#define kAppThemeColor [UIColor colorWithHexString:@"FFAF02"]
 //主背景颜色
 #define kAppBackgroundColor [UIColor colorWithHexString:@"f1f1f1"]
 //主标题颜色
-#define kAppTitleColor [UIColor blackColor]
-//主标题颜色
+#define kAppTitleColor [UIColor colorWithHexString:@"111111"]
+//副标题颜色
 #define kAppSubTitleColor [UIColor colorWithHexString:@"999999"]
 
 //蒙层黑色
