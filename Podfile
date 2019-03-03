@@ -21,6 +21,9 @@ def shared_pods
     pod 'MBProgressHUD'
     #####
     pod 'Masonry', '~> 1.0.1'
+    pod 'AMap3DMap' #3D地图SDK
+    pod 'AMapSearch' #地图SDK搜索功能
+    pod 'AMapLocation' #定位SDK
 end
 
 target 'Beehive' do

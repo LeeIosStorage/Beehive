@@ -12,6 +12,7 @@
 #import "LLNavigationController.h"
 #import "LLBeeHomeViewController.h"
 #import "LLBeeMineViewController.h"
+#import <AMapFoundationKit/AMapFoundationKit.h>
 
 @interface AppDelegate ()
 
@@ -29,6 +30,9 @@
     //热重载
     [[NSBundle bundleWithPath:@"/Applications/InjectionX.app/Contents/Resources/iOSInjection.bundle"] load];
 #endif
+    
+    [AMapServices sharedServices].apiKey = AMapKey;
+    
     self.window = [[UIWindow alloc] initWithFrame:UIScreen.mainScreen.bounds];
     [self initRootVc];
     [self.window makeKeyAndVisible];

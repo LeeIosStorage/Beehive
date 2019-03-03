@@ -39,5 +39,18 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSAllowsArbitraryLoads</key>
+		<true/>
+	</dict>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>App需要您的同意，否则无法正常使用地图功能</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>App需要您的同意，否则无法正常使用地图功能</string>
+	<key>NSLocationUsageDescription</key>
+	<string>App需要您的同意，否则无法正常使用地图功能</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>App需要您的同意，否则无法正常使用地图功能</string>
 </dict>
 </plist>

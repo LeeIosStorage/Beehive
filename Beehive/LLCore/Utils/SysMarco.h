@@ -33,6 +33,8 @@
 #define kBuglyAppID  @"e26d4b0928"
 #define kGrowingIOAppID  @"8f00a97b58a86872"
 
+//高德地图key
+#define AMapKey @"11c9b34acc16cd7a3aed4e4d0bf556d8"
 
 #define MAX_WX_IMAGE_SIZE 32*1024
 #define WY_IMAGE_COMPRESSION_QUALITY 0.4
