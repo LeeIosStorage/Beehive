@@ -9,8 +9,12 @@
 #import "LLBeeHomeViewController.h"
 #import "LLBeeMineViewController.h"
 #import "UIViewController+LLNavigationBar.h"
+#import "LLRedRuleViewController.h"
+#import "LLCityOptionHeaderView.h"
 
 @interface LLBeeHomeViewController ()
+
+@property (nonatomic, strong) LLCityOptionHeaderView *cityOptionHeaderView;
 
 @end
 
@@ -22,14 +26,36 @@
     [self setup];
 }
 
-- (void)setup {
-    self.navigationItem.title = @"首页";
-    [self createBarButtonItemAtPosition:LLNavigationBarPositionRight normalImage:nil highlightImage:nil text:@"发布" action:@selector(testClickAction:)];
+- (void)injected {
 }
 
-- (IBAction)testClickAction:(id)sender {
-    LLBeeMineViewController *mineVc = [[LLBeeMineViewController alloc] init];
-    [self.navigationController pushViewController:mineVc animated:true];
+#pragma mark -
+#pragma mark - Methods
+- (void)setup {
+    
+    [self createBarButtonItemAtPosition:LLNavigationBarPositionRight normalImage:[UIImage imageNamed:@"home_nav_help"] highlightImage:nil text:@"" action:@selector(ruleClickAction:)];
+    
+    [self.view addSubview:self.cityOptionHeaderView];
+    [self.cityOptionHeaderView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.top.right.equalTo(self.view);
+        make.height.mas_equalTo(65);
+    }];
+}
+
+#pragma mark -
+#pragma mark - Action
+- (void)ruleClickAction:(id)sender {
+    LLRedRuleViewController *vc = [[LLRedRuleViewController alloc] init];
+    [self.navigationController pushViewController:vc animated:true];
+}
+
+#pragma mark -
+#pragma mark - SettingAndGetting
+- (LLCityOptionHeaderView *)cityOptionHeaderView {
+    if (!_cityOptionHeaderView) {
+        _cityOptionHeaderView = [[LLCityOptionHeaderView alloc] init];
+    }
+    return _cityOptionHeaderView;
 }
 
 @end
