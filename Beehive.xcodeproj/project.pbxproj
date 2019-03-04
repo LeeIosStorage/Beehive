@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8D4C611E222D058C00024840 /* LLUserInputView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D4C611D222D058C00024840 /* LLUserInputView.m */; };
 		8D542A5F222A5BC2008B90B0 /* LESuperTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D542A0D222A5BC1008B90B0 /* LESuperTableViewController.m */; };
 		8D542A61222A5BC2008B90B0 /* WYNetWorkExceptionHandling.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D542A13222A5BC2008B90B0 /* WYNetWorkExceptionHandling.m */; };
 		8D542A62222A5BC2008B90B0 /* WYNetWorkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D542A14222A5BC2008B90B0 /* WYNetWorkManager.m */; };
@@ -102,6 +103,8 @@
 		3E0B5B249A57781EFB56EA11 /* Pods-Beehive.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Beehive.release.xcconfig"; path = "Pods/Target Support Files/Pods-Beehive/Pods-Beehive.release.xcconfig"; sourceTree = "<group>"; };
 		4D6CFC789F3E2147740EF3C7 /* Pods-BeehiveTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BeehiveTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-BeehiveTests/Pods-BeehiveTests.release.xcconfig"; sourceTree = "<group>"; };
 		86AFFE00E0BD8677E897D9D1 /* Pods-Beehive.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Beehive.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Beehive/Pods-Beehive.debug.xcconfig"; sourceTree = "<group>"; };
+		8D4C611C222D058C00024840 /* LLUserInputView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLUserInputView.h; sourceTree = "<group>"; };
+		8D4C611D222D058C00024840 /* LLUserInputView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLUserInputView.m; sourceTree = "<group>"; };
 		8D542A0D222A5BC1008B90B0 /* LESuperTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LESuperTableViewController.m; sourceTree = "<group>"; };
 		8D542A10222A5BC1008B90B0 /* LESuperTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LESuperTableViewController.h; sourceTree = "<group>"; };
 		8D542A13222A5BC2008B90B0 /* WYNetWorkExceptionHandling.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYNetWorkExceptionHandling.m; sourceTree = "<group>"; };
@@ -273,6 +276,15 @@
 				0DB97A8E569F793FB5ABD125 /* Pods_BeehiveUITests.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		8D4C611B222CFF3900024840 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				8D4C611C222D058C00024840 /* LLUserInputView.h */,
+				8D4C611D222D058C00024840 /* LLUserInputView.m */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		8D542A0B222A5BC1008B90B0 /* Base */ = {
@@ -483,6 +495,7 @@
 		8D542A80222A6602008B90B0 /* Info */ = {
 			isa = PBXGroup;
 			children = (
+				8D4C611B222CFF3900024840 /* View */,
 				8D542A81222A662B008B90B0 /* Controller */,
 			);
 			path = Info;
@@ -1069,6 +1082,7 @@
 				8D542A6F222A5BC2008B90B0 /* LERefreshFooter.m in Sources */,
 				8DCC9ABF222B814D00AC3128 /* LLTableView.m in Sources */,
 				8D58D4B82226355900803985 /* AppDelegate.m in Sources */,
+				8D4C611E222D058C00024840 /* LLUserInputView.m in Sources */,
 				8D542A72222A5BC2008B90B0 /* LELoginModel.m in Sources */,
 				8D542A6C222A5BC2008B90B0 /* LEShareWindow.m in Sources */,
 				8D542A5F222A5BC2008B90B0 /* LESuperTableViewController.m in Sources */,

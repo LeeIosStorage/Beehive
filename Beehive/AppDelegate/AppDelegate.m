@@ -13,6 +13,7 @@
 #import "LLBeeHomeViewController.h"
 #import "LLBeeMineViewController.h"
 #import <AMapFoundationKit/AMapFoundationKit.h>
+#import "LLLoginViewController.h"
 
 @interface AppDelegate ()
 
@@ -34,7 +35,8 @@
     [AMapServices sharedServices].apiKey = AMapKey;
     
     self.window = [[UIWindow alloc] initWithFrame:UIScreen.mainScreen.bounds];
-    [self initRootVc];
+//    [self initRootVc];
+    [self initLoginVc];
     [self.window makeKeyAndVisible];
     return YES;
 }
@@ -77,7 +79,7 @@
 }
 
 - (void)initLoginVc {
-    LLBeeMineViewController *vc = [[LLBeeMineViewController alloc] init];
+    LLLoginViewController *vc = [[LLLoginViewController alloc] init];
     LLNavigationController *loginNav = [[LLNavigationController alloc] initWithRootViewController:vc];
     self.window.rootViewController = loginNav;
 }

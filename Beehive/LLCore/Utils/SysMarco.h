@@ -206,6 +206,8 @@
 #define kAppThemeColor [UIColor colorWithHexString:@"FFAF02"]
 //主背景颜色
 #define kAppBackgroundColor [UIColor colorWithHexString:@"FFFFFF"]//f1f1f1
+//标注背景色
+#define kAppMaskBackgroundColor [UIColor colorWithHexString:@"F6F6F6"]
 //主标题颜色
 #define kAppTitleColor [UIColor colorWithHexString:@"111111"]
 //副标题颜色
@@ -218,7 +220,6 @@
 #define kAppLoadingPlaceholderImageColor [UIColor colorWithHexString:@"bfbfbf"]
 
 ///颜色 a代表透明度,1为不透明,0为透明
-
 #define HitoRGBA(r,g,b,a) [UIColor colorWithRed:r/255.0f green:g/255.0f blue:b/255.0f alpha:a]
 
 // rgb颜色转换（16进制->10进制）
