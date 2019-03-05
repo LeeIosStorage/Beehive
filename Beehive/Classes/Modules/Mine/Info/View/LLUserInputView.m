@@ -10,6 +10,8 @@
 
 @interface LLUserInputView ()
 
+@property (nonatomic, strong) UILabel *inviteCodeTipLabel;
+
 @end
 
 @implementation LLUserInputView
@@ -68,7 +70,19 @@
             make.right.equalTo(self.smsCodeView.mas_left).offset(-5);
         }];
     } else if (inputViewType == LLUserInputViewTypeInviteCode) {
-        
+        [self addSubview:self.inviteCodeTipLabel];
+        [self.inviteCodeTipLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.right.bottom.equalTo(self);
+            make.width.mas_equalTo(60);
+        }];
+        [self.textField mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.left.equalTo(self.typeImageView.mas_right).offset(8);
+            make.top.equalTo(self).offset(5);
+            make.bottom.equalTo(self).offset(-5);
+            make.right.equalTo(self.inviteCodeTipLabel.mas_left).offset(0);
+        }];
+    } else if (inputViewType == LLUserInputViewTypeSetPassword) {
+        self.textField.secureTextEntry = true;
     }
 }
 
@@ -92,6 +106,7 @@
     if (!_textField) {
         _textField = [[UITextField alloc] init];
         _textField.borderStyle = UITextBorderStyleNone;
+        _textField.textColor = kAppTitleColor;
     }
     return _textField;
 }
@@ -101,7 +116,7 @@
         _smsCodeView = [[UIView alloc] init];
         
         UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-        [button setTitle:@"发送验证码" forState:UIControlStateNormal];
+        [button setTitle:@"获取验证码" forState:UIControlStateNormal];
         [button setTitleColor:kAppThemeColor forState:UIControlStateNormal];
         [button setTitleColor:kAppSubTitleColor forState:UIControlStateDisabled];
         [button.titleLabel setFont:[FontConst PingFangSCRegularWithSize:14]];
@@ -120,7 +135,7 @@
             make.left.mas_equalTo(0);
             make.top.mas_equalTo(8);
             make.bottom.mas_equalTo(-8);
-            make.width.mas_equalTo(1);
+            make.width.mas_equalTo(0.5);
         }];
         
     }
@@ -134,6 +149,16 @@
         [_secretButton addTarget:self action:@selector(secretAction:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _secretButton;
+}
+
+- (UILabel *)inviteCodeTipLabel {
+    if (!_inviteCodeTipLabel) {
+        _inviteCodeTipLabel = [[UILabel alloc] init];
+        _inviteCodeTipLabel.textColor = [UIColor colorWithHexString:@"a9a9aa"];
+        _inviteCodeTipLabel.font = [FontConst PingFangSCRegularWithSize:14];
+        _inviteCodeTipLabel.text = @"（选填）";
+    }
+    return _inviteCodeTipLabel;
 }
 
 @end

@@ -8,6 +8,9 @@
 
 #import "LLLoginViewController.h"
 #import "LLUserInputView.h"
+#import "LLRegisterViewController.h"
+#import "LLForgotPasswordViewController.h"
+#import "AppDelegate.h"
 
 @interface LLLoginViewController ()
 
@@ -39,19 +42,24 @@
     self.loginButton.backgroundColor = kAppThemeColor;
     self.loginButton.layer.cornerRadius = 5;
     self.loginButton.layer.masksToBounds = true;
+    
+    [self needTapGestureRecognizer];
 }
 
 #pragma mark - Action
 - (IBAction)loginAction:(id)sender {
-    
+    AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    [appDelegate initRootVc];
 }
 
 - (IBAction)registereAction:(id)sender {
-    
+    LLRegisterViewController *vc = [[LLRegisterViewController alloc] init];
+    [self.navigationController pushViewController:vc animated:true];
 }
 
 - (IBAction)forgotAction:(id)sender {
-    
+    LLForgotPasswordViewController *vc = [[LLForgotPasswordViewController alloc] init];
+    [self.navigationController pushViewController:vc animated:true];
 }
 
 - (IBAction)wxLoginAction:(id)sender {

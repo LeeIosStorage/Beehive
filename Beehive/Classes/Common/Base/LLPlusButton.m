@@ -7,6 +7,9 @@
 //
 
 #import "LLPlusButton.h"
+#import "LEPublishMenuView.h"
+#import "LLRedRuleViewController.h"
+#import "LELoginManager.h"
 
 @implementation LLPlusButton
 
@@ -44,14 +47,18 @@
 #pragma mark - Event Response
 - (void)clickPublish {
     CYLTabBarController *tabBarController = [self cyl_tabBarController];
-    UIViewController *viewController = tabBarController.selectedViewController;
+    UINavigationController *viewController = tabBarController.selectedViewController;
     
-    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil
-                                                             delegate:nil
-                                                    cancelButtonTitle:@"取消"
-                                               destructiveButtonTitle:nil
-                                                    otherButtonTitles:@"拍照", @"从相册选取", @"淘宝一键转卖", nil];
-    [actionSheet showInView:viewController.view];
+//    __weak UINavigationController *weakVc = viewController;
+    LEPublishMenuView *publishMenuView = [[LEPublishMenuView alloc] initWithActionBlock:^(NSInteger index) {
+        if (index == 0) {
+            LLRedRuleViewController *vc = [[LLRedRuleViewController alloc] init];
+            [viewController pushViewController:vc animated:true];
+        } else if (index == 1) {
+            [[LELoginManager sharedInstance] needUserLogin:tabBarController];
+        }
+    }];
+    [publishMenuView showInView:tabBarController.view];
 }
 
 #pragma mark - CYLPlusButtonSubclassing

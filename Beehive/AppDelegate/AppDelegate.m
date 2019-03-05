@@ -35,8 +35,8 @@
     [AMapServices sharedServices].apiKey = AMapKey;
     
     self.window = [[UIWindow alloc] initWithFrame:UIScreen.mainScreen.bounds];
-//    [self initRootVc];
-    [self initLoginVc];
+    [self initRootVc];
+//    [self initLoginVc];
     [self.window makeKeyAndVisible];
     return YES;
 }
@@ -74,6 +74,7 @@
     LLTabBarViewController *tabBarController = [[LLTabBarViewController alloc] init];
     [tabBarController hideTabBadgeBackgroundSeparator];
     tabBarController.delegate = self;
+//    tabBarController.selectedIndex = 1;
     self.tabBarController = tabBarController;
     self.window.rootViewController = tabBarController;
 }

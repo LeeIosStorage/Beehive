@@ -8,6 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		8D4C611E222D058C00024840 /* LLUserInputView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D4C611D222D058C00024840 /* LLUserInputView.m */; };
+		8D4C6122222D553A00024840 /* LLForgotPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D4C6120222D553A00024840 /* LLForgotPasswordViewController.m */; };
+		8D4C6123222D553A00024840 /* LLForgotPasswordViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D4C6121222D553A00024840 /* LLForgotPasswordViewController.xib */; };
+		8D4C6127222D555800024840 /* LLRegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D4C6125222D555800024840 /* LLRegisterViewController.m */; };
+		8D4C6128222D555800024840 /* LLRegisterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D4C6126222D555800024840 /* LLRegisterViewController.xib */; };
+		8D4C612D222D77E800024840 /* LEPublishMenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D4C612C222D77E800024840 /* LEPublishMenuView.m */; };
 		8D542A5F222A5BC2008B90B0 /* LESuperTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D542A0D222A5BC1008B90B0 /* LESuperTableViewController.m */; };
 		8D542A61222A5BC2008B90B0 /* WYNetWorkExceptionHandling.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D542A13222A5BC2008B90B0 /* WYNetWorkExceptionHandling.m */; };
 		8D542A62222A5BC2008B90B0 /* WYNetWorkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D542A14222A5BC2008B90B0 /* WYNetWorkManager.m */; };
@@ -105,6 +110,14 @@
 		86AFFE00E0BD8677E897D9D1 /* Pods-Beehive.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Beehive.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Beehive/Pods-Beehive.debug.xcconfig"; sourceTree = "<group>"; };
 		8D4C611C222D058C00024840 /* LLUserInputView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLUserInputView.h; sourceTree = "<group>"; };
 		8D4C611D222D058C00024840 /* LLUserInputView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLUserInputView.m; sourceTree = "<group>"; };
+		8D4C611F222D553A00024840 /* LLForgotPasswordViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLForgotPasswordViewController.h; sourceTree = "<group>"; };
+		8D4C6120222D553A00024840 /* LLForgotPasswordViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLForgotPasswordViewController.m; sourceTree = "<group>"; };
+		8D4C6121222D553A00024840 /* LLForgotPasswordViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LLForgotPasswordViewController.xib; sourceTree = "<group>"; };
+		8D4C6124222D555800024840 /* LLRegisterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLRegisterViewController.h; sourceTree = "<group>"; };
+		8D4C6125222D555800024840 /* LLRegisterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLRegisterViewController.m; sourceTree = "<group>"; };
+		8D4C6126222D555800024840 /* LLRegisterViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LLRegisterViewController.xib; sourceTree = "<group>"; };
+		8D4C612B222D77E800024840 /* LEPublishMenuView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LEPublishMenuView.h; sourceTree = "<group>"; };
+		8D4C612C222D77E800024840 /* LEPublishMenuView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LEPublishMenuView.m; sourceTree = "<group>"; };
 		8D542A0D222A5BC1008B90B0 /* LESuperTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LESuperTableViewController.m; sourceTree = "<group>"; };
 		8D542A10222A5BC1008B90B0 /* LESuperTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LESuperTableViewController.h; sourceTree = "<group>"; };
 		8D542A13222A5BC2008B90B0 /* WYNetWorkExceptionHandling.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYNetWorkExceptionHandling.m; sourceTree = "<group>"; };
@@ -287,6 +300,23 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		8D4C6129222D774E00024840 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Views;
+			path = "New Group";
+			sourceTree = "<group>";
+		};
+		8D4C612A222D77B000024840 /* LEPublishMenuView */ = {
+			isa = PBXGroup;
+			children = (
+				8D4C612B222D77E800024840 /* LEPublishMenuView.h */,
+				8D4C612C222D77E800024840 /* LEPublishMenuView.m */,
+			);
+			path = LEPublishMenuView;
+			sourceTree = "<group>";
+		};
 		8D542A0B222A5BC1008B90B0 /* Base */ = {
 			isa = PBXGroup;
 			children = (
@@ -342,6 +372,7 @@
 		8D542A1D222A5BC2008B90B0 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				8D4C612A222D77B000024840 /* LEPublishMenuView */,
 				8D542A1E222A5BC2008B90B0 /* LEButton */,
 				8D542A21222A5BC2008B90B0 /* WYActionSheetWithBlock */,
 				8D542A26222A5BC2008B90B0 /* LEMenuView */,
@@ -365,9 +396,9 @@
 		8D542A21222A5BC2008B90B0 /* WYActionSheetWithBlock */ = {
 			isa = PBXGroup;
 			children = (
+				8D542A24222A5BC2008B90B0 /* WYActionSheet.h */,
 				8D542A22222A5BC2008B90B0 /* WYActionSheet.m */,
 				8D542A23222A5BC2008B90B0 /* WYCustomActionSheet.h */,
-				8D542A24222A5BC2008B90B0 /* WYActionSheet.h */,
 				8D542A25222A5BC2008B90B0 /* WYCustomActionSheet.m */,
 			);
 			path = WYActionSheetWithBlock;
@@ -376,8 +407,8 @@
 		8D542A26222A5BC2008B90B0 /* LEMenuView */ = {
 			isa = PBXGroup;
 			children = (
-				8D542A27222A5BC2008B90B0 /* LEMenuView.m */,
 				8D542A28222A5BC2008B90B0 /* LEMenuView.h */,
+				8D542A27222A5BC2008B90B0 /* LEMenuView.m */,
 			);
 			path = LEMenuView;
 			sourceTree = "<group>";
@@ -394,8 +425,8 @@
 		8D542A2C222A5BC2008B90B0 /* LEWebView */ = {
 			isa = PBXGroup;
 			children = (
-				8D542A2D222A5BC2008B90B0 /* LEWebViewController.m */,
 				8D542A2E222A5BC2008B90B0 /* LEWebViewController.h */,
+				8D542A2D222A5BC2008B90B0 /* LEWebViewController.m */,
 			);
 			path = LEWebView;
 			sourceTree = "<group>";
@@ -507,6 +538,12 @@
 				8D542A82222A66A5008B90B0 /* LLLoginViewController.h */,
 				8D542A83222A66A5008B90B0 /* LLLoginViewController.m */,
 				8D542A84222A66A5008B90B0 /* LLLoginViewController.xib */,
+				8D4C6124222D555800024840 /* LLRegisterViewController.h */,
+				8D4C6125222D555800024840 /* LLRegisterViewController.m */,
+				8D4C6126222D555800024840 /* LLRegisterViewController.xib */,
+				8D4C611F222D553A00024840 /* LLForgotPasswordViewController.h */,
+				8D4C6120222D553A00024840 /* LLForgotPasswordViewController.m */,
+				8D4C6121222D553A00024840 /* LLForgotPasswordViewController.xib */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -610,6 +647,7 @@
 		8D79E4CC222670200019A1BE /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				8D4C6129222D774E00024840 /* Views */,
 				8D79E4CF222672130019A1BE /* Base */,
 			);
 			path = Common;
@@ -861,10 +899,12 @@
 			files = (
 				8D79E4DD222676E20019A1BE /* LLBeeHomeViewController.xib in Resources */,
 				8DE5885F2227A4CC002C1576 /* LLBeeRankingViewController.xib in Resources */,
+				8D4C6123222D553A00024840 /* LLForgotPasswordViewController.xib in Resources */,
 				8D542A63222A5BC2008B90B0 /* NetWorkConfig.json in Resources */,
 				8DE5885A2227A4B3002C1576 /* LLBeeMessageViewController.xib in Resources */,
 				8D542A86222A66A5008B90B0 /* LLLoginViewController.xib in Resources */,
 				8D58D4C32226355B00803985 /* LaunchScreen.storyboard in Resources */,
+				8D4C6128222D555800024840 /* LLRegisterViewController.xib in Resources */,
 				8DCC9AAF222B71F200AC3128 /* LLRedRuleViewController.xib in Resources */,
 				8D58D4C02226355B00803985 /* Assets.xcassets in Resources */,
 				8D58D4BE2226355900803985 /* Main.storyboard in Resources */,
@@ -1049,6 +1089,7 @@
 				8D79E4D5222672CA0019A1BE /* LLNavigationController.m in Sources */,
 				8DCC9AC2222B815E00AC3128 /* LLTableViewCell.m in Sources */,
 				8D542A64222A5BC2008B90B0 /* WYAPIGenerate.m in Sources */,
+				8D4C612D222D77E800024840 /* LEPublishMenuView.m in Sources */,
 				8DCC9ABC222B812E00AC3128 /* LLCollectionViewCell.m in Sources */,
 				8D542A66222A5BC2008B90B0 /* WYActionSheet.m in Sources */,
 				8DE588592227A4B3002C1576 /* LLBeeMessageViewController.m in Sources */,
@@ -1059,6 +1100,7 @@
 				8D542A69222A5BC2008B90B0 /* LESearchBar.m in Sources */,
 				8DCC9AC5222B835000AC3128 /* LLCityOptionHeaderView.m in Sources */,
 				8DE588622227AD82002C1576 /* LLPlusButton.m in Sources */,
+				8D4C6122222D553A00024840 /* LLForgotPasswordViewController.m in Sources */,
 				8D542A7D222A5BC2008B90B0 /* LELinkerHandler.m in Sources */,
 				8D79E4D2222672A20019A1BE /* LLTabBarViewController.m in Sources */,
 				8D542A61222A5BC2008B90B0 /* WYNetWorkExceptionHandling.m in Sources */,
@@ -1070,6 +1112,7 @@
 				8D542A65222A5BC2008B90B0 /* HotUpButton.m in Sources */,
 				8D542A73222A5BC2008B90B0 /* SVProgressHUD+LETools.m in Sources */,
 				8D542A77222A5BC2008B90B0 /* YTCache.m in Sources */,
+				8D4C6127222D555800024840 /* LLRegisterViewController.m in Sources */,
 				8D542A85222A66A5008B90B0 /* LLLoginViewController.m in Sources */,
 				8D542A67222A5BC2008B90B0 /* WYCustomActionSheet.m in Sources */,
 				8D542A78222A5BC2008B90B0 /* MBProgressHUD+LETools.m in Sources */,

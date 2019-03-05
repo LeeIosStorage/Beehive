@@ -14,6 +14,7 @@ typedef NS_ENUM(NSInteger, LLUserInputViewType) {
     LLUserInputViewTypeNomal,
     LLUserInputViewTypePhone,
     LLUserInputViewTypePassword,
+    LLUserInputViewTypeSetPassword,
     LLUserInputViewTypeSMS,
     LLUserInputViewTypeInviteCode
 };

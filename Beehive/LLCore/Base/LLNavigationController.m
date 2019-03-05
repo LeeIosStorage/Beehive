@@ -26,7 +26,7 @@ UIGestureRecognizerDelegate
     self.navigationBar.barTintColor = UIColor.whiteColor;
     self.navigationBar.translucent = false;
     self.navigationBar.barStyle = UIBarStyleDefault;
-    self.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName: UIColor.blackColor, NSFontAttributeName: [FontConst PingFangSCMediumWithSize:17]};
+    self.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName: UIColor.blackColor, NSFontAttributeName: [FontConst PingFangSCRegularWithSize:17]};
     self.navigationBar.shadowImage = [UIImage imageWithColor:LineColor size:CGSizeMake(SCREEN_WIDTH, 0.5)];
     
     self.delegate = self;

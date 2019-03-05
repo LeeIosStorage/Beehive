@@ -12,6 +12,10 @@
 
 #pragma mark -
 #pragma mark - Lifecycle
+- (void)dealloc{
+    LELog(@"%@ dealloc!!!",NSStringFromClass([self class]));
+}
+
 - (instancetype)init {
     self = [super init];
     if (self) {
