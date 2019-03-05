@@ -18,7 +18,7 @@
     
     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
 //    [button setFrame:CGRectMake(0, 0, 64, 44)];
-    [button setTitleColor:[UIColor colorWithHexString:@"#2bc329"] forState:UIControlStateNormal];
+    [button setTitleColor:kAppTitleColor forState:UIControlStateNormal];
     [button setTitleColor:[UIColor colorWithHexString:@"#808080"] forState:UIControlStateHighlighted];
     UIEdgeInsets imageInsets = UIEdgeInsetsZero;
     UIEdgeInsets titleInsets = UIEdgeInsetsZero;

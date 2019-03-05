@@ -206,6 +206,8 @@
 #define kAppThemeColor [UIColor colorWithHexString:@"FFAF02"]
 //主背景颜色
 #define kAppBackgroundColor [UIColor colorWithHexString:@"FFFFFF"]//f1f1f1
+//区部颜色
+#define kAppSectionBackgroundColor [UIColor colorWithHexString:@"F5F5F5"]
 //标注背景色
 #define kAppMaskBackgroundColor [UIColor colorWithHexString:@"F6F6F6"]
 //主标题颜色

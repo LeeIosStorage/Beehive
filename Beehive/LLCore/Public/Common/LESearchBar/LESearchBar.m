@@ -23,9 +23,9 @@
             if ([view isKindOfClass:NSClassFromString(@"UISearchBarTextField")]) {
                 searchField = view;
             }
-//            else if ([view isKindOfClass:NSClassFromString(@"UISearchBarBackground")]) {
-//                [view removeFromSuperview];
-//            }
+            else if ([view isKindOfClass:NSClassFromString(@"UISearchBarBackground")]) {
+                [view removeFromSuperview];
+            }
         }
     }
     
@@ -34,12 +34,14 @@
         searchField.attributedPlaceholder = _attributedPlaceholder;
         
 //        searchField.background = nil;
-//        searchField.backgroundColor = [UIColor greenColor];
+        searchField.backgroundColor = kAppSectionBackgroundColor;
 //        searchField.borderStyle = UITextBorderStyleNone;
+//        searchField.layer.cornerRadius = 13;
+//        searchField.layer.masksToBounds = true;
     }
 //
-//    [self setBackgroundColor:[UIColor blueColor]];
-//    self.tintColor = [UIColor redColor];
+//    [self setBackgroundColor:kAppSectionBackgroundColor];
+    self.tintColor = kAppThemeColor;
 }
 
 - (void)setAttributedPlaceholder:(NSAttributedString *)attributedPlaceholder{

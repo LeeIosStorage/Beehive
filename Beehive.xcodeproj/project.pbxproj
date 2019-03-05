@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7E1E8A5F222EB2F5002766AD /* LLSegmentedHeadView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E1E8A5E222EB2F5002766AD /* LLSegmentedHeadView.m */; };
+		7E1E8A64222ED0E6002766AD /* LLMessageTimeLineViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E1E8A62222ED0E6002766AD /* LLMessageTimeLineViewCell.m */; };
+		7E1E8A65222ED0E6002766AD /* LLMessageTimeLineViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7E1E8A63222ED0E6002766AD /* LLMessageTimeLineViewCell.xib */; };
 		8D4C611E222D058C00024840 /* LLUserInputView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D4C611D222D058C00024840 /* LLUserInputView.m */; };
 		8D4C6122222D553A00024840 /* LLForgotPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D4C6120222D553A00024840 /* LLForgotPasswordViewController.m */; };
 		8D4C6123222D553A00024840 /* LLForgotPasswordViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D4C6121222D553A00024840 /* LLForgotPasswordViewController.xib */; };
@@ -107,6 +110,11 @@
 		20C25563243C0C0C3470C450 /* Pods-BeehiveUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BeehiveUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BeehiveUITests/Pods-BeehiveUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		3E0B5B249A57781EFB56EA11 /* Pods-Beehive.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Beehive.release.xcconfig"; path = "Pods/Target Support Files/Pods-Beehive/Pods-Beehive.release.xcconfig"; sourceTree = "<group>"; };
 		4D6CFC789F3E2147740EF3C7 /* Pods-BeehiveTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BeehiveTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-BeehiveTests/Pods-BeehiveTests.release.xcconfig"; sourceTree = "<group>"; };
+		7E1E8A5D222EB2F5002766AD /* LLSegmentedHeadView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLSegmentedHeadView.h; sourceTree = "<group>"; };
+		7E1E8A5E222EB2F5002766AD /* LLSegmentedHeadView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLSegmentedHeadView.m; sourceTree = "<group>"; };
+		7E1E8A61222ED0E6002766AD /* LLMessageTimeLineViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLMessageTimeLineViewCell.h; sourceTree = "<group>"; };
+		7E1E8A62222ED0E6002766AD /* LLMessageTimeLineViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLMessageTimeLineViewCell.m; sourceTree = "<group>"; };
+		7E1E8A63222ED0E6002766AD /* LLMessageTimeLineViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LLMessageTimeLineViewCell.xib; sourceTree = "<group>"; };
 		86AFFE00E0BD8677E897D9D1 /* Pods-Beehive.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Beehive.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Beehive/Pods-Beehive.debug.xcconfig"; sourceTree = "<group>"; };
 		8D4C611C222D058C00024840 /* LLUserInputView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLUserInputView.h; sourceTree = "<group>"; };
 		8D4C611D222D058C00024840 /* LLUserInputView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLUserInputView.m; sourceTree = "<group>"; };
@@ -291,6 +299,25 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		7E1E8A5C222EB238002766AD /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				7E1E8A5D222EB2F5002766AD /* LLSegmentedHeadView.h */,
+				7E1E8A5E222EB2F5002766AD /* LLSegmentedHeadView.m */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		7E1E8A60222ED09F002766AD /* View */ = {
+			isa = PBXGroup;
+			children = (
+				7E1E8A61222ED0E6002766AD /* LLMessageTimeLineViewCell.h */,
+				7E1E8A62222ED0E6002766AD /* LLMessageTimeLineViewCell.m */,
+				7E1E8A63222ED0E6002766AD /* LLMessageTimeLineViewCell.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		8D4C611B222CFF3900024840 /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -298,14 +325,6 @@
 				8D4C611D222D058C00024840 /* LLUserInputView.m */,
 			);
 			path = View;
-			sourceTree = "<group>";
-		};
-		8D4C6129222D774E00024840 /* Views */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Views;
-			path = "New Group";
 			sourceTree = "<group>";
 		};
 		8D4C612A222D77B000024840 /* LEPublishMenuView */ = {
@@ -647,7 +666,7 @@
 		8D79E4CC222670200019A1BE /* Common */ = {
 			isa = PBXGroup;
 			children = (
-				8D4C6129222D774E00024840 /* Views */,
+				7E1E8A5C222EB238002766AD /* Views */,
 				8D79E4CF222672130019A1BE /* Base */,
 			);
 			path = Common;
@@ -745,6 +764,7 @@
 		8DE588542227A45C002C1576 /* Message */ = {
 			isa = PBXGroup;
 			children = (
+				7E1E8A60222ED09F002766AD /* View */,
 				8DE588562227A4B3002C1576 /* LLBeeMessageViewController.h */,
 				8DE588572227A4B3002C1576 /* LLBeeMessageViewController.m */,
 				8DE588582227A4B3002C1576 /* LLBeeMessageViewController.xib */,
@@ -908,6 +928,7 @@
 				8DCC9AAF222B71F200AC3128 /* LLRedRuleViewController.xib in Resources */,
 				8D58D4C02226355B00803985 /* Assets.xcassets in Resources */,
 				8D58D4BE2226355900803985 /* Main.storyboard in Resources */,
+				7E1E8A65222ED0E6002766AD /* LLMessageTimeLineViewCell.xib in Resources */,
 				8DCC9ACA222BF81A00AC3128 /* LLCityOptionCollectionViewCell.xib in Resources */,
 				8D79E4E2222676FC0019A1BE /* LLBeeMineViewController.xib in Resources */,
 			);
@@ -1072,6 +1093,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8D542A68222A5BC2008B90B0 /* LEMenuView.m in Sources */,
+				7E1E8A64222ED0E6002766AD /* LLMessageTimeLineViewCell.m in Sources */,
 				8D542A70222A5BC2008B90B0 /* LELoginUserManager.m in Sources */,
 				8DCC9AAE222B71F200AC3128 /* LLRedRuleViewController.m in Sources */,
 				8D542A71222A5BC2008B90B0 /* LELoginManager.m in Sources */,
@@ -1122,6 +1144,7 @@
 				8D542A7A222A5BC2008B90B0 /* LEBaseModel.m in Sources */,
 				8D542A75222A5BC2008B90B0 /* WYCommonUtils.m in Sources */,
 				8DD290E22229442D00E4338D /* NSObject+LLRuntime.m in Sources */,
+				7E1E8A5F222EB2F5002766AD /* LLSegmentedHeadView.m in Sources */,
 				8D542A6F222A5BC2008B90B0 /* LERefreshFooter.m in Sources */,
 				8DCC9ABF222B814D00AC3128 /* LLTableView.m in Sources */,
 				8D58D4B82226355900803985 /* AppDelegate.m in Sources */,

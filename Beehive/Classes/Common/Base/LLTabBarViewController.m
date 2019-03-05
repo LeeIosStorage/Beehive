@@ -55,7 +55,7 @@
                                 CYLTabBarItemImage : @"tab_home_normal",
                                 CYLTabBarItemSelectedImage : @"tab_home_highlight"
                                 };
-    NSDictionary *secondItem = @{CYLTabBarItemTitle : @"消息",
+    NSDictionary *secondItem = @{CYLTabBarItemTitle : @"信息",
                                 CYLTabBarItemImage : @"tab_message_normal",
                                 CYLTabBarItemSelectedImage : @"tab_message_highlight"
                                 };
