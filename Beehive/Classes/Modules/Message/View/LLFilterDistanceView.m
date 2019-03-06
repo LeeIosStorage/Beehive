@@ -33,31 +33,30 @@ UITableViewDataSource
         make.edges.equalTo(self);
     }];
     [self addSubview:self.tableView];
-    [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.top.right.equalTo(self);
-        make.height.mas_equalTo(0);
-    }];
+    self.tableView.frame = CGRectMake(0, 0, SCREEN_WIDTH, 0);
+    
     self.dataList = [NSMutableArray arrayWithObjects:@{@"title":@"1千米", @"id":@"1"}, @{@"title":@"3千米", @"id":@"2"}, @{@"title":@"5千米", @"id":@"3"}, @{@"title":@"10千米以上", @"id":@"4"}, nil];
     [self.tableView reloadData];
 }
 
 - (void)show {
-    self.markImageView.alpha = 1.0;
-    [self.tableView mas_updateConstraints:^(MASConstraintMaker *make) {
-        make.height.mas_equalTo(33*4);
-    }];
     
-//    [UIView animateWithDuration:0.35 animations:^{
-//
-//    } completion:^(BOOL finished) {
-//
-//    }];
+    [self setHidden:false];
+    [UIView animateWithDuration:0.3 animations:^{
+        self.tableView.frame = CGRectMake(0, 0, SCREEN_WIDTH, 40*4);
+        self.markImageView.alpha = 1.0;
+    } completion:^(BOOL finished) {
+        
+    }];
 }
 
 - (void)dismiss {
-    self.markImageView.alpha = 0.0;
-    [self.tableView mas_updateConstraints:^(MASConstraintMaker *make) {
-        make.height.mas_equalTo(0);
+    [UIView animateWithDuration:0.3 animations:^{
+        self.tableView.frame = CGRectMake(0, 0, SCREEN_WIDTH, 0);
+        self.markImageView.alpha = 0.0;
+    } completion:^(BOOL finished) {
+        [self setHidden:true];
+        [self removeFromSuperview];
     }];
 }
 
@@ -100,7 +99,7 @@ UITableViewDataSource
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 33;
+    return 40;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath

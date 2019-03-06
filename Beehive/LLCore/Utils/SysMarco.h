@@ -211,9 +211,11 @@
 //标注背景色
 #define kAppMaskBackgroundColor [UIColor colorWithHexString:@"F6F6F6"]
 //主标题颜色
-#define kAppTitleColor [UIColor colorWithHexString:@"111111"]
+#define kAppTitleColor [UIColor colorWithHexString:@"333333"] //font 13
 //副标题颜色
-#define kAppSubTitleColor [UIColor colorWithHexString:@"999999"]
+#define kAppSubTitleColor [UIColor colorWithHexString:@"666666"] //font 12
+//二级副标题
+#define kAppLightTitleColor [UIColor colorWithHexString:@"aaaaaa"] //font 11
 
 //蒙层黑色
 #define kAppMaskOpaqueBlackColor HitoRGBA(0,0,0,0.4)

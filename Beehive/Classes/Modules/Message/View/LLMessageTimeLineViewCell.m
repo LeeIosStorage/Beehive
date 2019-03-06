@@ -43,6 +43,7 @@ UICollectionViewDataSource
     // Initialization code
     self.backgroundColor = UIColor.whiteColor;
     self.contentView.backgroundColor = self.backgroundColor;
+    self.selectionStyle = UITableViewCellSelectionStyleNone;
     self.avatarImageView.layer.cornerRadius = 20;
     self.avatarImageView.layer.masksToBounds = true;
     

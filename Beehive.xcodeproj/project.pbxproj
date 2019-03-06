@@ -10,6 +10,10 @@
 		7E1E8A5F222EB2F5002766AD /* LLSegmentedHeadView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E1E8A5E222EB2F5002766AD /* LLSegmentedHeadView.m */; };
 		7E1E8A64222ED0E6002766AD /* LLMessageTimeLineViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E1E8A62222ED0E6002766AD /* LLMessageTimeLineViewCell.m */; };
 		7E1E8A65222ED0E6002766AD /* LLMessageTimeLineViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7E1E8A63222ED0E6002766AD /* LLMessageTimeLineViewCell.xib */; };
+		7E1E8A6922301162002766AD /* LLMessageDetailsHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E1E8A6822301162002766AD /* LLMessageDetailsHeaderView.m */; };
+		7E1E8A6B22301172002766AD /* LLMessageDetailsHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7E1E8A6A22301171002766AD /* LLMessageDetailsHeaderView.xib */; };
+		7E1E8A6F22301AF2002766AD /* LLMessageCommentViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E1E8A6D22301AF2002766AD /* LLMessageCommentViewCell.m */; };
+		7E1E8A7022301AF2002766AD /* LLMessageCommentViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7E1E8A6E22301AF2002766AD /* LLMessageCommentViewCell.xib */; };
 		8D3F2149222F65020066F5EB /* LLHandleStatusView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D3F2148222F65020066F5EB /* LLHandleStatusView.m */; };
 		8D3F214D222FB4FF0066F5EB /* LLImageItemViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D3F214B222FB4FF0066F5EB /* LLImageItemViewCell.m */; };
 		8D3F214E222FB4FF0066F5EB /* LLImageItemViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D3F214C222FB4FF0066F5EB /* LLImageItemViewCell.xib */; };
@@ -121,6 +125,12 @@
 		7E1E8A61222ED0E6002766AD /* LLMessageTimeLineViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLMessageTimeLineViewCell.h; sourceTree = "<group>"; };
 		7E1E8A62222ED0E6002766AD /* LLMessageTimeLineViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLMessageTimeLineViewCell.m; sourceTree = "<group>"; };
 		7E1E8A63222ED0E6002766AD /* LLMessageTimeLineViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LLMessageTimeLineViewCell.xib; sourceTree = "<group>"; };
+		7E1E8A6722301162002766AD /* LLMessageDetailsHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLMessageDetailsHeaderView.h; sourceTree = "<group>"; };
+		7E1E8A6822301162002766AD /* LLMessageDetailsHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLMessageDetailsHeaderView.m; sourceTree = "<group>"; };
+		7E1E8A6A22301171002766AD /* LLMessageDetailsHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LLMessageDetailsHeaderView.xib; sourceTree = "<group>"; };
+		7E1E8A6C22301AF2002766AD /* LLMessageCommentViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLMessageCommentViewCell.h; sourceTree = "<group>"; };
+		7E1E8A6D22301AF2002766AD /* LLMessageCommentViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLMessageCommentViewCell.m; sourceTree = "<group>"; };
+		7E1E8A6E22301AF2002766AD /* LLMessageCommentViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LLMessageCommentViewCell.xib; sourceTree = "<group>"; };
 		86AFFE00E0BD8677E897D9D1 /* Pods-Beehive.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Beehive.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Beehive/Pods-Beehive.debug.xcconfig"; sourceTree = "<group>"; };
 		8D3F2147222F65020066F5EB /* LLHandleStatusView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLHandleStatusView.h; sourceTree = "<group>"; };
 		8D3F2148222F65020066F5EB /* LLHandleStatusView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLHandleStatusView.m; sourceTree = "<group>"; };
@@ -341,9 +351,23 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		7E1E8A662230112D002766AD /* View */ = {
+			isa = PBXGroup;
+			children = (
+				7E1E8A6722301162002766AD /* LLMessageDetailsHeaderView.h */,
+				7E1E8A6822301162002766AD /* LLMessageDetailsHeaderView.m */,
+				7E1E8A6A22301171002766AD /* LLMessageDetailsHeaderView.xib */,
+				7E1E8A6C22301AF2002766AD /* LLMessageCommentViewCell.h */,
+				7E1E8A6D22301AF2002766AD /* LLMessageCommentViewCell.m */,
+				7E1E8A6E22301AF2002766AD /* LLMessageCommentViewCell.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		8D3F214F222FC8790066F5EB /* Details */ = {
 			isa = PBXGroup;
 			children = (
+				7E1E8A662230112D002766AD /* View */,
 				8D3F2150222FCB050066F5EB /* LLMessageDetailsViewController.h */,
 				8D3F2151222FCB050066F5EB /* LLMessageDetailsViewController.m */,
 				8D3F2152222FCB050066F5EB /* LLMessageDetailsViewController.xib */,
@@ -966,6 +990,8 @@
 				7E1E8A65222ED0E6002766AD /* LLMessageTimeLineViewCell.xib in Resources */,
 				8DCC9ACA222BF81A00AC3128 /* LLCityOptionCollectionViewCell.xib in Resources */,
 				8D3F214E222FB4FF0066F5EB /* LLImageItemViewCell.xib in Resources */,
+				7E1E8A6B22301172002766AD /* LLMessageDetailsHeaderView.xib in Resources */,
+				7E1E8A7022301AF2002766AD /* LLMessageCommentViewCell.xib in Resources */,
 				8D79E4E2222676FC0019A1BE /* LLBeeMineViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1167,8 +1193,10 @@
 				8D542A7B222A5BC2008B90B0 /* WYShareManager.m in Sources */,
 				8D3F2149222F65020066F5EB /* LLHandleStatusView.m in Sources */,
 				8DCC9AB9222B810900AC3128 /* LLCollectionView.m in Sources */,
+				7E1E8A6922301162002766AD /* LLMessageDetailsHeaderView.m in Sources */,
 				8D542A62222A5BC2008B90B0 /* WYNetWorkManager.m in Sources */,
 				8D542A76222A5BC2008B90B0 /* UIImage+LEAdd.m in Sources */,
+				7E1E8A6F22301AF2002766AD /* LLMessageCommentViewCell.m in Sources */,
 				8D542A7E222A5BC2008B90B0 /* LEDataStoreManager.m in Sources */,
 				8D542A65222A5BC2008B90B0 /* HotUpButton.m in Sources */,
 				8D542A73222A5BC2008B90B0 /* SVProgressHUD+LETools.m in Sources */,

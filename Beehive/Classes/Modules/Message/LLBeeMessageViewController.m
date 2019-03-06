@@ -52,8 +52,8 @@ UITableViewDataSource
     
     self.navigationItem.titleView = self.customTitleView;
     
-    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(searchBarResign)];
-    [self.view addGestureRecognizer:tap];
+//    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(searchBarResign)];
+//    [self.view addGestureRecognizer:tap];
     
     [self.view addSubview:self.segmentedHeadView];
     [self.segmentedHeadView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -69,20 +69,31 @@ UITableViewDataSource
 
     [self.tableView reloadData];
     
+    
+}
+
+- (void)showFilterDistanceView {
+    if (self.filterDistanceView.superview) {
+        [self.filterDistanceView dismiss];
+        return;
+    }
     CYLTabBarController *tabBarController = [self cyl_tabBarController];
     [tabBarController.view addSubview:self.filterDistanceView];
     [self.filterDistanceView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.bottom.equalTo(tabBarController.view);
-        make.top.mas_equalTo(40 + HitoTabBarHeight);
+        make.top.mas_equalTo(40 + HitoTopHeight);
     }];
+    [self.filterDistanceView show];
 }
 
+#pragma mark - Action
 - (void)searchBarResign {
     [self.searchBar resignFirstResponder];
 }
 
 - (void)searchAction:(id)sender {
-    
+    [self searchBarResign];
+//    [SVProgressHUD showCustomWithStatus:@"搜索中"];
 }
 
 #pragma mark - SetAndGet
@@ -109,10 +120,11 @@ UITableViewDataSource
         WEAKSELF
         _segmentedHeadView.clickBlock = ^(NSInteger index) {
             if (index == 0) {
-                
-            } else if (index == 1){
-                [weakSelf.filterDistanceView setHidden:false];
-                [weakSelf.filterDistanceView show];
+                if (weakSelf.filterDistanceView.superview) {
+                    [weakSelf.filterDistanceView dismiss];
+                }
+            } else if (index == 1) {
+                [weakSelf showFilterDistanceView];
             }
         };
     }
@@ -169,10 +181,16 @@ UITableViewDataSource
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSIndexPath* selIndexPath = [tableView indexPathForSelectedRow];
-    [tableView deselectRowAtIndexPath:selIndexPath animated:YES];
+//    NSIndexPath* selIndexPath = [tableView indexPathForSelectedRow];
+//    [tableView deselectRowAtIndexPath:selIndexPath animated:YES];
     LLMessageDetailsViewController *vc = [[LLMessageDetailsViewController alloc] init];
     [self.navigationController pushViewController:vc animated:true];
+}
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    if (scrollView == self.tableView) {
+        [self searchBarResign];
+    }
 }
 
 @end

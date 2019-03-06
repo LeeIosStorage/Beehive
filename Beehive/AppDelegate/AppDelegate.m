@@ -32,6 +32,7 @@
     [[NSBundle bundleWithPath:@"/Applications/InjectionX.app/Contents/Resources/iOSInjection.bundle"] load];
 #endif
     
+    [SVProgressHUD setCurrentDefaultStyle];
     [AMapServices sharedServices].apiKey = AMapKey;
     
     self.window = [[UIWindow alloc] initWithFrame:UIScreen.mainScreen.bounds];

@@ -53,7 +53,7 @@
     if (!_readButton) {
         _readButton = [UIButton buttonWithType:UIButtonTypeCustom];
         [_readButton setImage:[UIImage imageNamed:@"message_read_icon"] forState:UIControlStateNormal];
-        [_readButton setTitleColor:kAppSubTitleColor forState:UIControlStateNormal];
+        [_readButton setTitleColor:kAppLightTitleColor forState:UIControlStateNormal];
         [_readButton.titleLabel setFont:[FontConst PingFangSCRegularWithSize:11]];
         _readButton.contentMode = UIViewContentModeLeft;
         
@@ -65,7 +65,7 @@
     if (!_commentButton) {
         _commentButton = [UIButton buttonWithType:UIButtonTypeCustom];
         [_commentButton setImage:[UIImage imageNamed:@"message_comment_icon"] forState:UIControlStateNormal];
-        [_commentButton setTitleColor:kAppSubTitleColor forState:UIControlStateNormal];
+        [_commentButton setTitleColor:kAppLightTitleColor forState:UIControlStateNormal];
         [_commentButton.titleLabel setFont:[FontConst PingFangSCRegularWithSize:11]];
     }
     return _commentButton;
@@ -75,7 +75,7 @@
     if (!_favourButton) {
         _favourButton = [UIButton buttonWithType:UIButtonTypeCustom];
         [_favourButton setImage:[UIImage imageNamed:@"message_like_n_icon"] forState:UIControlStateNormal];
-        [_favourButton setTitleColor:kAppSubTitleColor forState:UIControlStateNormal];
+        [_favourButton setTitleColor:kAppLightTitleColor forState:UIControlStateNormal];
         [_favourButton.titleLabel setFont:[FontConst PingFangSCRegularWithSize:11]];
         _favourButton.contentMode = UIViewContentModeRight;
     }

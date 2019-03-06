@@ -49,7 +49,7 @@
         [button setTitle:dic[kllSegmentedTitle] forState:UIControlStateNormal];
         [button setTitleColor:kAppTitleColor forState:UIControlStateNormal];
         [button setTitleColor:kAppThemeColor forState:UIControlStateSelected];
-        [button.titleLabel setFont:[FontConst PingFangSCRegularWithSize:15]];
+        [button.titleLabel setFont:[FontConst PingFangSCRegularWithSize:13]];
         [button setSelected:false];
         if (self.selectIndex == i) {
             [button setSelected:true];
