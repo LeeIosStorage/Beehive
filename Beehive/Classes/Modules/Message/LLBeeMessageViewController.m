@@ -11,6 +11,9 @@
 #import "LESearchBar.h"
 #import "LLSegmentedHeadView.h"
 #import "LLMessageTimeLineViewCell.h"
+#import "LLMessageDetailsViewController.h"
+#import "LLFilterDistanceView.h"
+#import "CYLTabBarController.h"
 
 @interface LLBeeMessageViewController ()
 <
@@ -21,6 +24,8 @@ UITableViewDataSource
 @property (nonatomic, strong) LESearchBar *searchBar;
 
 @property (nonatomic, strong) LLSegmentedHeadView *segmentedHeadView;
+
+@property (nonatomic, strong) LLFilterDistanceView *filterDistanceView;
 
 @property (nonatomic, strong) UITableView *tableView;
 
@@ -39,6 +44,8 @@ UITableViewDataSource
 - (void)setup {
 //    self.navigationItem.title = @"信息";
     self.view.backgroundColor = kAppSectionBackgroundColor;
+    self.automaticallyAdjustsScrollViewInsets = NO;
+    
     self.messageLists = [NSMutableArray array];
     
     [self createBarButtonItemAtPosition:LLNavigationBarPositionRight normalImage:nil highlightImage:nil text:@"搜索" action:@selector(searchAction:)];
@@ -61,6 +68,13 @@ UITableViewDataSource
     }];
 
     [self.tableView reloadData];
+    
+    CYLTabBarController *tabBarController = [self cyl_tabBarController];
+    [tabBarController.view addSubview:self.filterDistanceView];
+    [self.filterDistanceView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.bottom.equalTo(tabBarController.view);
+        make.top.mas_equalTo(40 + HitoTabBarHeight);
+    }];
 }
 
 - (void)searchBarResign {
@@ -92,6 +106,15 @@ UITableViewDataSource
     if (!_segmentedHeadView) {
         _segmentedHeadView = [[LLSegmentedHeadView alloc] init];
         [_segmentedHeadView setItems:@[@{kllSegmentedTitle:@"附近信息",kllSegmentedType:@(0)},@{kllSegmentedTitle:@"附近距离",kllSegmentedType:@(1)}]];
+        WEAKSELF
+        _segmentedHeadView.clickBlock = ^(NSInteger index) {
+            if (index == 0) {
+                
+            } else if (index == 1){
+                [weakSelf.filterDistanceView setHidden:false];
+                [weakSelf.filterDistanceView show];
+            }
+        };
     }
     return _segmentedHeadView;
 }
@@ -99,11 +122,22 @@ UITableViewDataSource
 - (UITableView *)tableView {
     if (!_tableView) {
         _tableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
+        _tableView.backgroundColor = self.view.backgroundColor;
         _tableView.delegate = self;
         _tableView.dataSource = self;
-//        _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+        _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+        _tableView.estimatedRowHeight = 100;
+        _tableView.rowHeight = UITableViewAutomaticDimension;
     }
     return _tableView;
+}
+
+- (LLFilterDistanceView *)filterDistanceView {
+    if (!_filterDistanceView) {
+        _filterDistanceView = [[LLFilterDistanceView alloc] init];
+        [_filterDistanceView setHidden:true];
+    }
+    return _filterDistanceView;
 }
 
 #pragma mark - Table view data source
@@ -116,10 +150,10 @@ UITableViewDataSource
     return 20;
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    return 44;
-}
+//- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+//{
+//    return 100;
+//}
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -129,7 +163,7 @@ UITableViewDataSource
         NSArray* cells = [[NSBundle mainBundle] loadNibNamed:cellIdentifier owner:nil options:nil];
         cell = [cells objectAtIndex:0];
     }
-    cell.textLabel.text = [NSString stringWithFormat:@"%d",indexPath.row];
+    [cell updateCellWithData:nil];
     return cell;
 }
 
@@ -137,6 +171,8 @@ UITableViewDataSource
 {
     NSIndexPath* selIndexPath = [tableView indexPathForSelectedRow];
     [tableView deselectRowAtIndexPath:selIndexPath animated:YES];
+    LLMessageDetailsViewController *vc = [[LLMessageDetailsViewController alloc] init];
+    [self.navigationController pushViewController:vc animated:true];
 }
 
 @end

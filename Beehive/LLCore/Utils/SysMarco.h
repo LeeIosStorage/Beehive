@@ -228,7 +228,7 @@
 #define HitoColorFromRGB(rgbValue) [UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 green:((float)((rgbValue & 0xFF00) >> 8))/255.0 blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
 
 //分割线颜色
-#define LineColor [UIColor colorWithRed:217/255.0 green:217/255.0 blue:217/255.0 alpha:0.7]
+#define LineColor [UIColor colorWithHexString:@"E1E1E1"]//[UIColor colorWithRed:217/255.0 green:217/255.0 blue:217/255.0 alpha:0.7]
 
 //加粗
 #define HitoBoldSystemFontOfSize(FONTSIZE) [UIFont boldSystemFontOfSize:FONTSIZE]
@@ -301,5 +301,6 @@
 
 #define HitoDataFileCatalog @"LEData"
 
+#define kLLAppTestHttpURL @"http://img.bimg.126.net/photo/31kQlCGP44-34Q5yxvoqmw==/5770237022569104952.jpg"
 
 #endif /* SysMarco_h */

@@ -74,7 +74,7 @@
     LLTabBarViewController *tabBarController = [[LLTabBarViewController alloc] init];
     [tabBarController hideTabBadgeBackgroundSeparator];
     tabBarController.delegate = self;
-//    tabBarController.selectedIndex = 1;
+    tabBarController.selectedIndex = 1;
     self.tabBarController = tabBarController;
     self.window.rootViewController = tabBarController;
 }
