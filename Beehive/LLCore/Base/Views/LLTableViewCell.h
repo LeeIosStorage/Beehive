@@ -12,6 +12,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface LLTableViewCell : UITableViewCell
 
+@property (nonatomic, strong) NSIndexPath *indexPath;
+
 @property (nonatomic, strong) id node;
 
 - (void)updateCellWithData:(id)node;
