@@ -11,7 +11,7 @@ def shared_pods
     pod 'AFNetworking', '~> 3.2.0'
     pod 'SVProgressHUD', '~> 2.0.3'
     pod 'YYKit', '~> 1.0.6'
-    pod 'SDWebImage', '~> 3.8.0'
+    pod 'SDWebImage', '~> 4.4.0'
     pod 'JSONModel', '~> 1.7.0'
     pod 'UMengUShare/Social/WeChat'
     pod 'UMengUShare/Social/QQ'
@@ -24,6 +24,7 @@ def shared_pods
     pod 'AMap3DMap' #3D地图SDK
     pod 'AMapSearch' #地图SDK搜索功能
     pod 'AMapLocation' #定位SDK
+    pod 'SDCycleScrollView', '~> 1.75' #轮播
 end
 
 target 'Beehive' do

@@ -12,6 +12,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface LLMessageDetailsHeaderView : LLView
 
+- (void)updateCellWithData:(id)node;
+
 @end
 
 NS_ASSUME_NONNULL_END

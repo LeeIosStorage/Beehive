@@ -275,7 +275,7 @@ static bool dateFormatterOFUSInvalid;
     if (![url isEqual:[NSNull null]]) {
         
         __block BOOL isBig = NO;
-        [imageView sd_setImageWithURL:url placeholderImage:bitmapImage options:SDWebImageRetryFailed  progress:^(NSInteger receivedSize, NSInteger expectedSize) {
+        [imageView sd_setImageWithURL:url placeholderImage:bitmapImage options:SDWebImageRetryFailed  progress:^(NSInteger receivedSize, NSInteger expectedSize, NSURL * _Nullable targetURL) {
             
             if(expectedSize / 1024 > 400) {
                 //如果图片过大,处理一下
