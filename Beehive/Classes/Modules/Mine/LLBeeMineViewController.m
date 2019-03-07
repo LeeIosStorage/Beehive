@@ -9,8 +9,11 @@
 #import "LLBeeMineViewController.h"
 #import "LLMessageDetailsViewController.h"
 #import "LLMineCollectionViewCell.h"
+#import "LLMineCollectionHeaderView.h"
+#import "LLMineNode.h"
 
 static NSString *const kLLMineCollectionViewCell = @"LLMineCollectionViewCell";
+static NSString *const kLLMineCollectionHeaderView = @"LLMineCollectionHeaderView";
 
 @interface LLBeeMineViewController ()
 <
@@ -31,11 +34,6 @@ UICollectionViewDataSource
     [self.navigationController setNavigationBarHidden:true animated:true];
 }
 
-- (void)viewWillDisappear:(BOOL)animated {
-    [super viewWillDisappear:animated];
-    [self.navigationController setNavigationBarHidden:false animated:true];
-}
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
@@ -52,17 +50,36 @@ UICollectionViewDataSource
     flowLayout.minimumLineSpacing = 0;
     flowLayout.minimumInteritemSpacing = 0;
     [flowLayout setScrollDirection:UICollectionViewScrollDirectionVertical];
+    flowLayout.headerReferenceSize = CGSizeMake(SCREEN_WIDTH, 245);
     self.collectionView.collectionViewLayout = flowLayout;
     self.collectionView.delegate = self;
     self.collectionView.dataSource = self;
     self.collectionView.showsHorizontalScrollIndicator = false;
-//    self.collectionView.showsVerticalScrollIndicator = false;
+    self.collectionView.alwaysBounceVertical = true;
+    UIEdgeInsets insets = self.collectionView.contentInset;
+    insets.top = -HitoStatusBarHeight;
+    self.collectionView.contentInset = insets;
+    
     [self.collectionView registerNib:[UINib nibWithNibName:kLLMineCollectionViewCell bundle:nil] forCellWithReuseIdentifier:kLLMineCollectionViewCell];
+    [self.collectionView registerNib:[UINib nibWithNibName:kLLMineCollectionHeaderView bundle:nil] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:kLLMineCollectionHeaderView];
+    
     
     self.dataSource = [NSMutableArray array];
-    [self.dataSource addObject:@""];
-    [self.dataSource addObject:@""];
-    [self.dataSource addObject:@""];
+    for (int i = 0; i < 11; i ++) {
+        LLMineNode *node = [[LLMineNode alloc] init];
+        if (i == 0) { node.title = @"钱包"; node.icon = @"5_0.7"; node.vcType = i;}
+        if (i == 1) {node.title = @"蜂群"; node.icon = @"5_0.8"; node.vcType = i;}
+        if (i == 2) {node.title = @"蜂王大厅"; node.icon = @"5_0.9"; node.vcType = i;}
+        if (i == 3) {node.title = @"蜂巢任务"; node.icon = @"5_0.10"; node.vcType = i;}
+        if (i == 4) {node.title = @"邀请码"; node.icon = @"5_0.11"; node.vcType = i;}
+        if (i == 5) {node.title = @"兑换订单"; node.icon = @"5_0.12"; node.vcType = i;}
+        if (i == 6) {node.title = @"系统公告"; node.icon = @"5_0.13"; node.vcType = i;}
+        if (i == 7) {node.title = @"帮助中心"; node.icon = @"5_0.14"; node.vcType = i;}
+        if (i == 8) {node.title = @"更多设置"; node.icon = @"5_0.15"; node.vcType = i;}
+        if (i == 9) {node.title = @"徽章VIP"; node.icon = @"5_0.16"; node.vcType = i;}
+        if (i == 10) {node.title = @"推广专员"; node.icon = @"5_0.17"; node.vcType = i;}
+        [self.dataSource addObject:node];
+    }
     
     [self.collectionView reloadData];
 }
@@ -81,6 +98,15 @@ UICollectionViewDataSource
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
     return self.dataSource.count;
+}
+
+- (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath {
+    if (kind == UICollectionElementKindSectionHeader) {
+        LLMineCollectionHeaderView *header = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:kLLMineCollectionHeaderView forIndexPath:indexPath];
+        [header updateHeadViewWithData:nil];
+        return header;
+    }
+    return nil;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath

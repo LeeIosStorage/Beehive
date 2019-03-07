@@ -14,6 +14,9 @@
 		7E1E8A6B22301172002766AD /* LLMessageDetailsHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7E1E8A6A22301171002766AD /* LLMessageDetailsHeaderView.xib */; };
 		7E1E8A6F22301AF2002766AD /* LLMessageCommentViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E1E8A6D22301AF2002766AD /* LLMessageCommentViewCell.m */; };
 		7E1E8A7022301AF2002766AD /* LLMessageCommentViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7E1E8A6E22301AF2002766AD /* LLMessageCommentViewCell.xib */; };
+		7E1E8A7422315672002766AD /* LLMineCollectionHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E1E8A7222315672002766AD /* LLMineCollectionHeaderView.m */; };
+		7E1E8A7522315672002766AD /* LLMineCollectionHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7E1E8A7322315672002766AD /* LLMineCollectionHeaderView.xib */; };
+		7E1E8A7922317338002766AD /* LLMineNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E1E8A7822317338002766AD /* LLMineNode.m */; };
 		8D3F2149222F65020066F5EB /* LLHandleStatusView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D3F2148222F65020066F5EB /* LLHandleStatusView.m */; };
 		8D3F214D222FB4FF0066F5EB /* LLImageItemViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D3F214B222FB4FF0066F5EB /* LLImageItemViewCell.m */; };
 		8D3F214E222FB4FF0066F5EB /* LLImageItemViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D3F214C222FB4FF0066F5EB /* LLImageItemViewCell.xib */; };
@@ -136,6 +139,11 @@
 		7E1E8A6C22301AF2002766AD /* LLMessageCommentViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLMessageCommentViewCell.h; sourceTree = "<group>"; };
 		7E1E8A6D22301AF2002766AD /* LLMessageCommentViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLMessageCommentViewCell.m; sourceTree = "<group>"; };
 		7E1E8A6E22301AF2002766AD /* LLMessageCommentViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LLMessageCommentViewCell.xib; sourceTree = "<group>"; };
+		7E1E8A7122315672002766AD /* LLMineCollectionHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLMineCollectionHeaderView.h; sourceTree = "<group>"; };
+		7E1E8A7222315672002766AD /* LLMineCollectionHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLMineCollectionHeaderView.m; sourceTree = "<group>"; };
+		7E1E8A7322315672002766AD /* LLMineCollectionHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LLMineCollectionHeaderView.xib; sourceTree = "<group>"; };
+		7E1E8A7722317338002766AD /* LLMineNode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLMineNode.h; sourceTree = "<group>"; };
+		7E1E8A7822317338002766AD /* LLMineNode.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLMineNode.m; sourceTree = "<group>"; };
 		86AFFE00E0BD8677E897D9D1 /* Pods-Beehive.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Beehive.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Beehive/Pods-Beehive.debug.xcconfig"; sourceTree = "<group>"; };
 		8D3F2147222F65020066F5EB /* LLHandleStatusView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLHandleStatusView.h; sourceTree = "<group>"; };
 		8D3F2148222F65020066F5EB /* LLHandleStatusView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLHandleStatusView.m; sourceTree = "<group>"; };
@@ -377,6 +385,15 @@
 				8DC02D492230E4F6000CAE9C /* LLCommentBottomView.m */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		7E1E8A7622317319002766AD /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				7E1E8A7722317338002766AD /* LLMineNode.h */,
+				7E1E8A7822317338002766AD /* LLMineNode.m */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		8D3F214F222FC8790066F5EB /* Details */ = {
@@ -760,6 +777,7 @@
 		8D79E4CE2226704C0019A1BE /* Mine */ = {
 			isa = PBXGroup;
 			children = (
+				7E1E8A7622317319002766AD /* Model */,
 				8DC02D51223136EE000CAE9C /* View */,
 				8D542A80222A6602008B90B0 /* Info */,
 				8D79E4DE222676FC0019A1BE /* LLBeeMineViewController.h */,
@@ -796,6 +814,9 @@
 				8DC02D5222313731000CAE9C /* LLMineCollectionViewCell.h */,
 				8DC02D5322313731000CAE9C /* LLMineCollectionViewCell.m */,
 				8DC02D5422313731000CAE9C /* LLMineCollectionViewCell.xib */,
+				7E1E8A7122315672002766AD /* LLMineCollectionHeaderView.h */,
+				7E1E8A7222315672002766AD /* LLMineCollectionHeaderView.m */,
+				7E1E8A7322315672002766AD /* LLMineCollectionHeaderView.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1029,6 +1050,7 @@
 				8DCC9ACA222BF81A00AC3128 /* LLCityOptionCollectionViewCell.xib in Resources */,
 				8D3F214E222FB4FF0066F5EB /* LLImageItemViewCell.xib in Resources */,
 				7E1E8A6B22301172002766AD /* LLMessageDetailsHeaderView.xib in Resources */,
+				7E1E8A7522315672002766AD /* LLMineCollectionHeaderView.xib in Resources */,
 				8DC02D5622313731000CAE9C /* LLMineCollectionViewCell.xib in Resources */,
 				7E1E8A7022301AF2002766AD /* LLMessageCommentViewCell.xib in Resources */,
 				8D79E4E2222676FC0019A1BE /* LLBeeMineViewController.xib in Resources */,
@@ -1205,10 +1227,12 @@
 				8D542A6D222A5BC2008B90B0 /* LEShareSheetView.m in Sources */,
 				8DD290E52229450D00E4338D /* UINavigationBar+LLFixSpace.m in Sources */,
 				8DE5885E2227A4CC002C1576 /* LLBeeRankingViewController.m in Sources */,
+				7E1E8A7422315672002766AD /* LLMineCollectionHeaderView.m in Sources */,
 				8D79E4E1222676FC0019A1BE /* LLBeeMineViewController.m in Sources */,
 				8D542A6A222A5BC2008B90B0 /* LEWebViewController.m in Sources */,
 				8D542A6B222A5BC2008B90B0 /* LEShareModel.m in Sources */,
 				8D79E4DC222676E20019A1BE /* LLBeeHomeViewController.m in Sources */,
+				7E1E8A7922317338002766AD /* LLMineNode.m in Sources */,
 				8D542A6E222A5BC2008B90B0 /* LERefreshHeader.m in Sources */,
 				8DCC9AC9222BF81A00AC3128 /* LLCityOptionCollectionViewCell.m in Sources */,
 				8D58D4BB2226355900803985 /* ViewController.m in Sources */,
