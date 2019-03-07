@@ -77,6 +77,8 @@
 		8DC02D4A2230E4F6000CAE9C /* LLCommentBottomView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DC02D492230E4F6000CAE9C /* LLCommentBottomView.m */; };
 		8DC02D4F22311443000CAE9C /* LLRankTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DC02D4D22311443000CAE9C /* LLRankTableViewCell.m */; };
 		8DC02D5022311443000CAE9C /* LLRankTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8DC02D4E22311443000CAE9C /* LLRankTableViewCell.xib */; };
+		8DC02D5522313731000CAE9C /* LLMineCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DC02D5322313731000CAE9C /* LLMineCollectionViewCell.m */; };
+		8DC02D5622313731000CAE9C /* LLMineCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8DC02D5422313731000CAE9C /* LLMineCollectionViewCell.xib */; };
 		8DCC9AAE222B71F200AC3128 /* LLRedRuleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DCC9AAC222B71F200AC3128 /* LLRedRuleViewController.m */; };
 		8DCC9AAF222B71F200AC3128 /* LLRedRuleViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8DCC9AAD222B71F200AC3128 /* LLRedRuleViewController.xib */; };
 		8DCC9AB6222B7D5700AC3128 /* LLView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DCC9AB5222B7D5700AC3128 /* LLView.m */; };
@@ -254,6 +256,9 @@
 		8DC02D4C22311443000CAE9C /* LLRankTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLRankTableViewCell.h; sourceTree = "<group>"; };
 		8DC02D4D22311443000CAE9C /* LLRankTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLRankTableViewCell.m; sourceTree = "<group>"; };
 		8DC02D4E22311443000CAE9C /* LLRankTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LLRankTableViewCell.xib; sourceTree = "<group>"; };
+		8DC02D5222313731000CAE9C /* LLMineCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLMineCollectionViewCell.h; sourceTree = "<group>"; };
+		8DC02D5322313731000CAE9C /* LLMineCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLMineCollectionViewCell.m; sourceTree = "<group>"; };
+		8DC02D5422313731000CAE9C /* LLMineCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LLMineCollectionViewCell.xib; sourceTree = "<group>"; };
 		8DCC9AAB222B71F200AC3128 /* LLRedRuleViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLRedRuleViewController.h; sourceTree = "<group>"; };
 		8DCC9AAC222B71F200AC3128 /* LLRedRuleViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLRedRuleViewController.m; sourceTree = "<group>"; };
 		8DCC9AAD222B71F200AC3128 /* LLRedRuleViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LLRedRuleViewController.xib; sourceTree = "<group>"; };
@@ -755,6 +760,7 @@
 		8D79E4CE2226704C0019A1BE /* Mine */ = {
 			isa = PBXGroup;
 			children = (
+				8DC02D51223136EE000CAE9C /* View */,
 				8D542A80222A6602008B90B0 /* Info */,
 				8D79E4DE222676FC0019A1BE /* LLBeeMineViewController.h */,
 				8D79E4DF222676FC0019A1BE /* LLBeeMineViewController.m */,
@@ -780,6 +786,16 @@
 				8DC02D4C22311443000CAE9C /* LLRankTableViewCell.h */,
 				8DC02D4D22311443000CAE9C /* LLRankTableViewCell.m */,
 				8DC02D4E22311443000CAE9C /* LLRankTableViewCell.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		8DC02D51223136EE000CAE9C /* View */ = {
+			isa = PBXGroup;
+			children = (
+				8DC02D5222313731000CAE9C /* LLMineCollectionViewCell.h */,
+				8DC02D5322313731000CAE9C /* LLMineCollectionViewCell.m */,
+				8DC02D5422313731000CAE9C /* LLMineCollectionViewCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1013,6 +1029,7 @@
 				8DCC9ACA222BF81A00AC3128 /* LLCityOptionCollectionViewCell.xib in Resources */,
 				8D3F214E222FB4FF0066F5EB /* LLImageItemViewCell.xib in Resources */,
 				7E1E8A6B22301172002766AD /* LLMessageDetailsHeaderView.xib in Resources */,
+				8DC02D5622313731000CAE9C /* LLMineCollectionViewCell.xib in Resources */,
 				7E1E8A7022301AF2002766AD /* LLMessageCommentViewCell.xib in Resources */,
 				8D79E4E2222676FC0019A1BE /* LLBeeMineViewController.xib in Resources */,
 			);
@@ -1224,6 +1241,7 @@
 				8D542A76222A5BC2008B90B0 /* UIImage+LEAdd.m in Sources */,
 				7E1E8A6F22301AF2002766AD /* LLMessageCommentViewCell.m in Sources */,
 				8D542A7E222A5BC2008B90B0 /* LEDataStoreManager.m in Sources */,
+				8DC02D5522313731000CAE9C /* LLMineCollectionViewCell.m in Sources */,
 				8D542A65222A5BC2008B90B0 /* HotUpButton.m in Sources */,
 				8D542A73222A5BC2008B90B0 /* SVProgressHUD+LETools.m in Sources */,
 				8D542A77222A5BC2008B90B0 /* YTCache.m in Sources */,
