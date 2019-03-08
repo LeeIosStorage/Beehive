@@ -10,7 +10,11 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+typedef void (^LLPublishImageViewCellUpdateHeightBlock) (void);
+
 @interface LLPublishImageViewCell : LLTableViewCell
+
+@property (nonatomic, strong) LLPublishImageViewCellUpdateHeightBlock cellUpdateHeightBlock;
 
 @end
 

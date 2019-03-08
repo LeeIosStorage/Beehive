@@ -35,13 +35,6 @@
                         <color key="textColor" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="M5m-Zn-MaT" customClass="HXPhotoView">
-                        <rect key="frame" x="10" y="35" width="300" height="69"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="69" id="V61-hW-BHk"/>
-                        </constraints>
-                    </view>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="b58-mU-re1">
                         <rect key="frame" x="0.0" y="134" width="320" height="0.5"/>
                         <color key="backgroundColor" red="0.88235294119999996" green="0.88235294119999996" blue="0.88235294119999996" alpha="1" colorSpace="calibratedRGB"/>
@@ -51,24 +44,18 @@
                     </imageView>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="b58-mU-re1" firstAttribute="top" secondItem="M5m-Zn-MaT" secondAttribute="bottom" constant="30" id="3Ks-7g-D4f"/>
                     <constraint firstItem="b58-mU-re1" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="5Ul-0K-QNr"/>
                     <constraint firstAttribute="bottom" secondItem="b58-mU-re1" secondAttribute="bottom" id="IKW-cN-OTj"/>
                     <constraint firstItem="w5I-R2-bbv" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="Wul-eU-CDL"/>
-                    <constraint firstItem="M5m-Zn-MaT" firstAttribute="top" secondItem="w5I-R2-bbv" secondAttribute="bottom" id="aOG-pK-ckR"/>
                     <constraint firstItem="w5I-R2-bbv" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="dId-CJ-Jqu"/>
                     <constraint firstItem="b58-mU-re1" firstAttribute="top" secondItem="3Nl-dm-2Le" secondAttribute="bottom" constant="10" id="elt-wZ-pIV"/>
-                    <constraint firstAttribute="trailing" secondItem="M5m-Zn-MaT" secondAttribute="trailing" constant="10" id="k3A-UC-qnF"/>
                     <constraint firstItem="3Nl-dm-2Le" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="24" id="soT-zi-eWb"/>
-                    <constraint firstItem="M5m-Zn-MaT" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="uZ0-QO-mjs"/>
                     <constraint firstAttribute="trailing" secondItem="b58-mU-re1" secondAttribute="trailing" id="zvX-8Y-DRT"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
             <connections>
                 <outlet property="labTitle" destination="w5I-R2-bbv" id="YPZ-aT-Fvg"/>
-                <outlet property="photoView" destination="M5m-Zn-MaT" id="frT-jv-Fem"/>
-                <outlet property="photoViewConstraintH" destination="V61-hW-BHk" id="Z0L-Yh-3ME"/>
             </connections>
             <point key="canvasLocation" x="156.80000000000001" y="102.99850074962519"/>
         </tableViewCell>

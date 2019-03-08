@@ -10,7 +10,9 @@
 #import "LLPublishCellNode.h"
 
 @interface LLPublishInputViewCell ()
-
+<
+UITextViewDelegate
+>
 @property (nonatomic, weak) IBOutlet UILabel *labTitle;
 @property (nonatomic, weak) IBOutlet UIView *viewInputContainer;
 @property (nonatomic, weak) IBOutlet UILabel *labPlaceholder;
@@ -27,6 +29,8 @@
     
     self.viewInputContainer.layer.cornerRadius = 2;
     self.viewInputContainer.layer.masksToBounds = true;
+    
+    self.textView.delegate = self;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
@@ -42,6 +46,13 @@
     self.labPlaceholder.text = cellNode.placeholder;
     self.textView.text = cellNode.inputText;
     
+    self.labPlaceholder.hidden = (cellNode.inputText.length > 0);
+}
+
+#pragma mark - UITextViewDelegate
+- (void)textViewDidChange:(UITextView *)textView {
+    LLPublishCellNode *cellNode = (LLPublishCellNode *)self.node;
+    cellNode.inputText = textView.text;
     self.labPlaceholder.hidden = (cellNode.inputText.length > 0);
 }
 

@@ -17,8 +17,7 @@ HXPhotoViewDelegate
 
 @property (nonatomic, weak) IBOutlet UILabel *labTitle;
 
-@property (nonatomic, weak) IBOutlet HXPhotoView *photoView;
-@property (nonatomic, weak) IBOutlet NSLayoutConstraint *photoViewConstraintH;
+@property (nonatomic, strong) HXPhotoView *photoView;
 @property (nonatomic, strong) HXPhotoManager *photoManager;
 @property (nonatomic, strong) HXDatePhotoToolManager *toolManager;
 
@@ -32,13 +31,14 @@ HXPhotoViewDelegate
     // Initialization code
     self.selectionStyle = UITableViewCellSelectionStyleNone;
     
-    self.photoView = [HXPhotoView photoManager:self.photoManager];
-    self.photoView.manager = self.photoManager;
-    self.photoView.delegate = self;
-    self.photoView.outerCamera = YES;
-    self.photoView.previewShowDeleteButton = YES;
-    self.photoView.showAddCell = YES;
-    [self.photoView.collectionView reloadData];
+    [self.contentView addSubview:self.photoView];
+    [self.photoView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.contentView).offset(10);
+        make.right.equalTo(self.contentView).offset(-10);
+        make.top.equalTo(self.labTitle.mas_bottom);
+        make.bottom.equalTo(self.contentView).offset(-30);
+        make.height.mas_equalTo(65);
+    }];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
@@ -51,6 +51,14 @@ HXPhotoViewDelegate
     LLPublishCellNode *cellNode = (LLPublishCellNode *)node;
     self.node = cellNode;
     self.labTitle.text = cellNode.title;
+}
+
+#pragma mark - SetGet
+- (HXDatePhotoToolManager *)toolManager {
+    if (!_toolManager) {
+        _toolManager = [[HXDatePhotoToolManager alloc] init];
+    }
+    return _toolManager;
 }
 
 - (HXPhotoManager *)photoManager {
@@ -73,6 +81,22 @@ HXPhotoViewDelegate
     return _photoManager;
 }
 
+- (HXPhotoView *)photoView{
+    if (!_photoView) {
+        _photoView = [HXPhotoView photoManager:self.photoManager];
+        _photoView.delegate = self;
+        _photoView.outerCamera = YES;
+        _photoView.previewShowDeleteButton = YES;
+        _photoView.showAddCell = YES;
+        _photoView.editEnabled = NO;
+        _photoView.spacing = 5;
+        int lineCount = (SCREEN_WIDTH-10*2)/(65+5);
+        _photoView.lineCount = lineCount;
+        [_photoView.collectionView reloadData];
+    }
+    return _photoView;
+}
+
 #pragma mark -
 #pragma mark - HXPhotoViewDelegate
 
@@ -80,14 +104,21 @@ HXPhotoViewDelegate
     
     LLPublishCellNode *cellNode = (LLPublishCellNode *)self.node;
     cellNode.uploadImageDatas = [NSMutableArray array];
+    
+    if (self.cellUpdateHeightBlock) {
+        self.cellUpdateHeightBlock();
+    }
 //    WEAKSELF
     if (photos.count > 0) {
         // 获取图片
         [self.toolManager getSelectedImageList:allList requestType:HXDatePhotoToolManagerRequestTypeOriginal success:^(NSArray<UIImage *> *imageList) {
-            for (UIImage *image in imageList) {
-                NSData *imageData = UIImageJPEGRepresentation(image, WY_IMAGE_COMPRESSION_QUALITY);
+            [imageList enumerateObjectsUsingBlock:^(UIImage * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                NSData *imageData = UIImageJPEGRepresentation(obj, WY_IMAGE_COMPRESSION_QUALITY);
                 [cellNode.uploadImageDatas addObject:imageData];
-            }
+                if (idx == imageList.count - 1) {
+                    
+                }
+            }];
         } failed:^{
             
         }];
@@ -95,7 +126,7 @@ HXPhotoViewDelegate
 }
 
 - (void)photoView:(HXPhotoView *)photoView imageChangeComplete:(NSArray<UIImage *> *)imageList {
-    NSSLog(@"%@",imageList);
+    NSSLog(@"imageList: %@",imageList);
 }
 
 - (void)photoView:(HXPhotoView *)photoView deleteNetworkPhoto:(NSString *)networkPhotoUrl {
@@ -106,7 +137,10 @@ HXPhotoViewDelegate
     
     //    self.scrollView.contentSize = CGSizeMake(self.scrollView.frame.size.width, CGRectGetMaxY(frame) + 106 + 50 + kPhotoViewMargin*2 + 140);
     //    [self updateViewConstraints];
-    self.photoViewConstraintH.constant = CGRectGetHeight(frame);
+    LELog(@"高度更新了！！！！！！");
+    [self.photoView mas_updateConstraints:^(MASConstraintMaker *make) {
+        make.height.mas_equalTo(CGRectGetHeight(frame));
+    }];
 }
 
 - (void)photoView:(HXPhotoView *)photoView currentDeleteModel:(HXPhotoModel *)model currentIndex:(NSInteger)index {
@@ -114,7 +148,7 @@ HXPhotoViewDelegate
 }
 
 - (BOOL)photoViewShouldDeleteCurrentMoveItem:(HXPhotoView *)photoView {
-    return YES;
+    return NO;
 }
 - (void)photoView:(HXPhotoView *)photoView gestureRecognizerBegan:(UILongPressGestureRecognizer *)longPgr indexPath:(NSIndexPath *)indexPath {
     //    [UIView animateWithDuration:0.25 animations:^{

@@ -10,7 +10,9 @@
 #import "LLPublishCellNode.h"
 
 @interface LLPublishNormalViewCell ()
-
+<
+UITextFieldDelegate
+>
 @property (nonatomic, weak) IBOutlet UILabel *labTitle;
 @property (nonatomic, weak) IBOutlet UILabel *labDes;
 @property (nonatomic, weak) IBOutlet UIImageView *imgRight;
@@ -24,6 +26,7 @@
     [super awakeFromNib];
     // Initialization code
     self.selectionStyle = UITableViewCellSelectionStyleNone;
+    self.tfDes.delegate = self;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
@@ -42,6 +45,10 @@
         self.imgRight.hidden = false;
         self.tfDes.hidden = true;
         self.imgRight.image = [UIImage imageNamed:@"app_cell_right_icon"];
+        self.labDes.textColor = kAppLightTitleColor;
+        if (cellNode.inputText.length > 0) {
+            self.labDes.textColor = kAppTitleColor;
+        }
         if (cellNode.cellType == LLPublishCellTypeMore) {
             self.imgRight.image = [UIImage imageNamed:@"3_1_1.2"];
         }
@@ -52,15 +59,29 @@
         self.tfDes.hidden = false;
         self.tfDes.text = cellNode.inputText;
         
-        self.tfDes.attributedText = [WYCommonUtils stringToColorAndFontAttributeString:cellNode.placeholder range:NSMakeRange(0, cellNode.placeholder.length) font:[FontConst PingFangSCRegularWithSize:13] color:kAppSubTitleColor];
+        self.tfDes.attributedPlaceholder = [WYCommonUtils stringToColorAndFontAttributeString:cellNode.placeholder range:NSMakeRange(0, cellNode.placeholder.length) font:[FontConst PingFangSCRegularWithSize:13] color:kAppLightTitleColor];
     }
 }
 
 #pragma mark - UITextFieldDelegate
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
     
+    if ([string isEqualToString:@"\n"]) {
+        return false;
+    }
+    if (!string.length && range.length > 0) {
+        return true;
+    }
+    NSString *oldString = [textField.text copy];
+    NSString *newString = [oldString stringByReplacingCharactersInRange:range withString:string];
     LLPublishCellNode *cellNode = (LLPublishCellNode *)self.node;
-    cellNode.inputText = textField.text;
+    cellNode.inputText = newString;
+    
+    if (textField == self.tfDes && textField.markedTextRange == nil) {
+//        if (newString.length > 20 && textField.text.length >= 20) {
+//            return NO;
+//        }
+    }
     return true;
 }
 

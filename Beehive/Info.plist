@@ -52,5 +52,9 @@
 	<string>App需要您的同意，否则无法正常使用地图功能</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>App需要您的同意，否则无法正常使用地图功能</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>App需要您的同意，否则无法使用发布等功能</string>
+	<key>NSCameraUsageDescription</key>
+	<string>App需要您的同意，否则无法使用拍照发布等功能</string>
 </dict>
 </plist>

@@ -17,7 +17,13 @@ typedef NS_ENUM(NSInteger, LLPublishCellType) {
     LLPublishCellTypeLocation,       //选择位置
     LLPublishCellTypeRedAmount,      //红包金额
     LLPublishCellTypeRedCount,       //红包个数
-    LLPublishCellTypeMore            //展示更多
+    LLPublishCellTypePubDate,        //发布时间
+    LLPublishCellTypeVisible,        //可见用户
+    LLPublishCellTypeMore,           //展示更多
+    LLPublishCellTypeAge,
+    LLPublishCellTypeSex,
+    LLPublishCellTypeHobbies,        //兴趣爱好
+    LLPublishCellTypeIntro           //输入介绍
 };
 
 typedef NS_ENUM(NSInteger, LLPublishInputType) {
