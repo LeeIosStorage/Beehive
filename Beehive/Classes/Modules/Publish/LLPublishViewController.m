@@ -11,18 +11,22 @@
 #import "LLPublishNormalViewCell.h"
 #import "LLPublishInputViewCell.h"
 #import "LLPublishImageViewCell.h"
+#import "ZJUsefulPickerView.h"
 
 @interface LLPublishViewController ()
 <
 UITableViewDelegate,
 UITableViewDataSource
 >
+
 @property (nonatomic, strong) NSMutableArray *dataSource;
 @property (nonatomic, strong) UITableView *tableView;
 
 @property (nonatomic, strong) UIButton *publishButton;
 
 @property (nonatomic, strong) LLPublishImageViewCell *publishImageViewCell;
+
+@property (nonatomic ,strong) LLPublishCellNode *currentPublishNode;
 
 @end
 
@@ -55,26 +59,91 @@ UITableViewDataSource
         make.bottom.equalTo(self.publishButton.mas_top);
     }];
     
+    self.currentPublishNode = [[LLPublishCellNode alloc] init];
+    self.currentPublishNode.redMold = 0;
+    self.currentPublishNode.taskMold = 0;
+    
+    [self refreshDataSource];
+}
+
+- (void)refreshDataSource {
+//    for (NSArray *array in self.dataSource) {
+//        for (LLPublishCellNode *node in array) {
+//            if (node.cellType == LLPublishCellTypeRedMold) {
+//                node.placeholder =
+//            }
+//        }
+//    }
+    
     self.dataSource = [NSMutableArray array];
     //配置发布信息
     LLPublishCellNode *cellNode = [[LLPublishCellNode alloc] init];
     cellNode.title = @"红包类型";
     cellNode.placeholder = @"普通红包";
+    if (self.currentPublishNode.redMold == 1) {
+        cellNode.placeholder = @"红包任务";
+    }
     cellNode.cellType = LLPublishCellTypeRedMold;
-//    cellNode.inputType = LLPublishInputTypeSelect;
     [self.dataSource addObject:[NSMutableArray arrayWithObject:cellNode]];
     
-    LLPublishCellNode *cellNode1 = [[LLPublishCellNode alloc] init];
-    cellNode1.title = @"标题";
-    cellNode1.placeholder = @"输入文字...";
-    cellNode1.cellType = LLPublishCellTypeInputTitle;
-    [self.dataSource addObject:[NSMutableArray arrayWithObject:cellNode1]];
-    
-    LLPublishCellNode *cellNode2 = [[LLPublishCellNode alloc] init];
-    cellNode2.title = @"添加照片";
-    cellNode2.placeholder = @"最多9张";
-    cellNode2.cellType = LLPublishCellTypeImage;
-    [self.dataSource addObject:[NSMutableArray arrayWithObject:cellNode2]];
+    if (self.currentPublishNode.redMold == 0) {
+        
+        LLPublishCellNode *cellNode1 = [[LLPublishCellNode alloc] init];
+        cellNode1.title = @"标题";
+        cellNode1.placeholder = @"输入文字...";
+        cellNode1.cellType = LLPublishCellTypeInputTitle;
+        [self.dataSource addObject:[NSMutableArray arrayWithObject:cellNode1]];
+        
+        LLPublishCellNode *cellNode2 = [[LLPublishCellNode alloc] init];
+        cellNode2.title = @"添加照片";
+        cellNode2.placeholder = @"最多9张";
+        cellNode2.cellType = LLPublishCellTypeImage;
+        [self.dataSource addObject:[NSMutableArray arrayWithObject:cellNode2]];
+        
+    } else if (self.currentPublishNode.redMold == 1) {
+        
+        LLPublishCellNode *cellNode = [[LLPublishCellNode alloc] init];
+        cellNode.title = @"选择类型";
+        cellNode.placeholder = @"上传图片";
+        if (self.currentPublishNode.taskMold == 1) {
+            cellNode.placeholder = @"输入链接";
+        }
+        cellNode.cellType = LLPublishCellTypeTaskMold;
+        [self.dataSource addObject:[NSMutableArray arrayWithObject:cellNode]];
+        
+        LLPublishCellNode *cellNode1 = [[LLPublishCellNode alloc] init];
+        cellNode1.title = @"任务名称";
+        cellNode1.placeholder = @"请输入";
+        cellNode1.cellType = LLPublishCellTypeTaskName;
+        cellNode1.inputType = LLPublishInputTypeInput;
+        LLPublishCellNode *cellNode2 = [[LLPublishCellNode alloc] init];
+        cellNode2.title = @"任务说明";
+        cellNode2.placeholder = @"输入文字...";
+        cellNode2.cellType = LLPublishCellTypeTaskExplain;
+        [self.dataSource addObject:[NSMutableArray arrayWithObjects:cellNode1, cellNode2, nil]];
+        
+        if (self.currentPublishNode.taskMold == 0) {
+            
+            LLPublishCellNode *cellNode1 = [[LLPublishCellNode alloc] init];
+            cellNode1.title = @"标题";
+            cellNode1.placeholder = @"输入文字...";
+            cellNode1.cellType = LLPublishCellTypeInputTitle;
+            [self.dataSource addObject:[NSMutableArray arrayWithObject:cellNode1]];
+            
+            LLPublishCellNode *cellNode2 = [[LLPublishCellNode alloc] init];
+            cellNode2.title = @"添加照片";
+            cellNode2.placeholder = @"最多9张";
+            cellNode2.cellType = LLPublishCellTypeImage;
+            [self.dataSource addObject:[NSMutableArray arrayWithObject:cellNode2]];
+            
+        } else if (self.currentPublishNode.taskMold == 1) {
+            LLPublishCellNode *cellNode2 = [[LLPublishCellNode alloc] init];
+            cellNode2.title = @"跳转链接地址";
+            cellNode2.placeholder = @"输入链接地址...";
+            cellNode2.cellType = LLPublishCellTypeLinkAddress;
+            [self.dataSource addObject:[NSMutableArray arrayWithObjects:cellNode2, nil]];
+        }
+    }
     
     LLPublishCellNode *cellNode3 = [[LLPublishCellNode alloc] init];
     cellNode3.title = @"选择位置";
@@ -134,6 +203,28 @@ UITableViewDataSource
 #pragma mark - Action
 - (void)publishAction:(id)sender {
     [self.tableView reloadData];
+}
+
+- (void)chooseRedMold {
+    WEAKSELF
+    NSArray *dataArray = @[@"普通红包", @"红包任务"];
+    [ZJUsefulPickerView showSingleColPickerWithToolBarText:@"红包类型" withData:dataArray withDefaultIndex:weakSelf.currentPublishNode.redMold withCancelHandler:^{
+        
+    } withDoneHandler:^(NSInteger selectedIndex, NSString *selectedValue) {
+        weakSelf.currentPublishNode.redMold = selectedIndex;
+        [weakSelf refreshDataSource];
+    }];
+}
+
+- (void)chooseTaskMold {
+    WEAKSELF
+    NSArray *dataArray = @[@"上传图片", @"输入链接"];
+    [ZJUsefulPickerView showSingleColPickerWithToolBarText:nil withData:dataArray withDefaultIndex:weakSelf.currentPublishNode.taskMold withCancelHandler:^{
+        
+    } withDoneHandler:^(NSInteger selectedIndex, NSString *selectedValue) {
+        weakSelf.currentPublishNode.taskMold = selectedIndex;
+        [weakSelf refreshDataSource];
+    }];
 }
 
 #pragma mark - SetGet
@@ -229,7 +320,7 @@ UITableViewDataSource
 {
     NSArray *array = self.dataSource[indexPath.section];
     LLPublishCellNode *cellNode = array[indexPath.row];
-    if (cellNode.cellType == LLPublishCellTypeInputTitle || cellNode.cellType == LLPublishCellTypeIntro) {
+    if (cellNode.cellType == LLPublishCellTypeInputTitle || cellNode.cellType == LLPublishCellTypeIntro || cellNode.cellType == LLPublishCellTypeTaskExplain || cellNode.cellType == LLPublishCellTypeLinkAddress) {
         
         static NSString *cellIdentifier = @"LLPublishInputViewCell";
         LLPublishInputViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
@@ -245,18 +336,18 @@ UITableViewDataSource
         [self.publishImageViewCell updateCellWithData:cellNode];
         return self.publishImageViewCell;
         
-        static NSString *cellIdentifier = @"LLPublishImageViewCell";
-        LLPublishImageViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-        if (!cell) {
-            NSArray* cells = [[NSBundle mainBundle] loadNibNamed:cellIdentifier owner:nil options:nil];
-            cell = [cells objectAtIndex:0];
-            WEAKSELF
-            cell.cellUpdateHeightBlock = ^{
-                [weakSelf.tableView reloadData];
-            };
-        }
-        [cell updateCellWithData:cellNode];
-        return cell;
+//        static NSString *cellIdentifier = @"LLPublishImageViewCell";
+//        LLPublishImageViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+//        if (!cell) {
+//            NSArray* cells = [[NSBundle mainBundle] loadNibNamed:cellIdentifier owner:nil options:nil];
+//            cell = [cells objectAtIndex:0];
+//            WEAKSELF
+//            cell.cellUpdateHeightBlock = ^{
+//                [weakSelf.tableView reloadData];
+//            };
+//        }
+//        [cell updateCellWithData:cellNode];
+//        return cell;
         
     } else {
         
@@ -275,7 +366,21 @@ UITableViewDataSource
 {
     NSIndexPath* selIndexPath = [tableView indexPathForSelectedRow];
     [tableView deselectRowAtIndexPath:selIndexPath animated:YES];
-    
+    NSArray *array = self.dataSource[indexPath.section];
+    LLPublishCellNode *cellNode = array[indexPath.row];
+    switch (cellNode.cellType) {
+        case LLPublishCellTypeRedMold: {
+            [self chooseRedMold];
+        }
+            break;
+        case LLPublishCellTypeTaskMold: {
+            [self chooseTaskMold];
+        }
+            break;
+            
+        default:
+            break;
+    }
 }
 
 #pragma mark -

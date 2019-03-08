@@ -70,6 +70,16 @@
 		8D58D4C62226355B00803985 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D58D4C52226355B00803985 /* main.m */; };
 		8D58D4D02226355B00803985 /* BeehiveTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D58D4CF2226355B00803985 /* BeehiveTests.m */; };
 		8D58D4DB2226355B00803985 /* BeehiveUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D58D4DA2226355B00803985 /* BeehiveUITests.m */; };
+		8D5CB6BC2232D73300527DEB /* Area.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8D5CB6AC2232D73300527DEB /* Area.plist */; };
+		8D5CB6BD2232D73300527DEB /* Province.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8D5CB6AE2232D73300527DEB /* Province.plist */; };
+		8D5CB6BE2232D73300527DEB /* ZJSelectedTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D5CB6B02232D73300527DEB /* ZJSelectedTextField.m */; };
+		8D5CB6BF2232D73300527DEB /* ZJMultipleAssociatedPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D5CB6B42232D73300527DEB /* ZJMultipleAssociatedPickerView.m */; };
+		8D5CB6C02232D73300527DEB /* ZJMultiplePickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D5CB6B52232D73300527DEB /* ZJMultiplePickerView.m */; };
+		8D5CB6C12232D73300527DEB /* City.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8D5CB6B62232D73300527DEB /* City.plist */; };
+		8D5CB6C22232D73300527DEB /* ZJDatePickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D5CB6B72232D73300527DEB /* ZJDatePickerView.m */; };
+		8D5CB6C32232D73300527DEB /* ZJUsefulPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D5CB6B82232D73300527DEB /* ZJUsefulPickerView.m */; };
+		8D5CB6C42232D73300527DEB /* ZJSinglePickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D5CB6BA2232D73300527DEB /* ZJSinglePickerView.m */; };
+		8D5CB6C52232D73300527DEB /* ZJToolBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D5CB6BB2232D73300527DEB /* ZJToolBar.m */; };
 		8D79E4D2222672A20019A1BE /* LLTabBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D79E4D1222672A20019A1BE /* LLTabBarViewController.m */; };
 		8D79E4D5222672CA0019A1BE /* LLNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D79E4D4222672CA0019A1BE /* LLNavigationController.m */; };
 		8D79E4D82226748D0019A1BE /* LLBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D79E4D72226748D0019A1BE /* LLBaseViewController.m */; };
@@ -261,6 +271,23 @@
 		8D58D4D62226355B00803985 /* BeehiveUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BeehiveUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8D58D4DA2226355B00803985 /* BeehiveUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BeehiveUITests.m; sourceTree = "<group>"; };
 		8D58D4DC2226355B00803985 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8D5CB6AB2232D73300527DEB /* ZJMultiplePickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJMultiplePickerView.h; sourceTree = "<group>"; };
+		8D5CB6AC2232D73300527DEB /* Area.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Area.plist; sourceTree = "<group>"; };
+		8D5CB6AD2232D73300527DEB /* ZJMultipleAssociatedPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJMultipleAssociatedPickerView.h; sourceTree = "<group>"; };
+		8D5CB6AE2232D73300527DEB /* Province.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Province.plist; sourceTree = "<group>"; };
+		8D5CB6AF2232D73300527DEB /* ZJDatePickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJDatePickerView.h; sourceTree = "<group>"; };
+		8D5CB6B02232D73300527DEB /* ZJSelectedTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZJSelectedTextField.m; sourceTree = "<group>"; };
+		8D5CB6B12232D73300527DEB /* ZJUsefulPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJUsefulPickerView.h; sourceTree = "<group>"; };
+		8D5CB6B22232D73300527DEB /* ZJToolBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJToolBar.h; sourceTree = "<group>"; };
+		8D5CB6B32232D73300527DEB /* ZJSinglePickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJSinglePickerView.h; sourceTree = "<group>"; };
+		8D5CB6B42232D73300527DEB /* ZJMultipleAssociatedPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZJMultipleAssociatedPickerView.m; sourceTree = "<group>"; };
+		8D5CB6B52232D73300527DEB /* ZJMultiplePickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZJMultiplePickerView.m; sourceTree = "<group>"; };
+		8D5CB6B62232D73300527DEB /* City.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = City.plist; sourceTree = "<group>"; };
+		8D5CB6B72232D73300527DEB /* ZJDatePickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZJDatePickerView.m; sourceTree = "<group>"; };
+		8D5CB6B82232D73300527DEB /* ZJUsefulPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZJUsefulPickerView.m; sourceTree = "<group>"; };
+		8D5CB6B92232D73300527DEB /* ZJSelectedTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJSelectedTextField.h; sourceTree = "<group>"; };
+		8D5CB6BA2232D73300527DEB /* ZJSinglePickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZJSinglePickerView.m; sourceTree = "<group>"; };
+		8D5CB6BB2232D73300527DEB /* ZJToolBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZJToolBar.m; sourceTree = "<group>"; };
 		8D79E4D0222672A20019A1BE /* LLTabBarViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLTabBarViewController.h; sourceTree = "<group>"; };
 		8D79E4D1222672A20019A1BE /* LLTabBarViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLTabBarViewController.m; sourceTree = "<group>"; };
 		8D79E4D3222672CA0019A1BE /* LLNavigationController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLNavigationController.h; sourceTree = "<group>"; };
@@ -507,6 +534,7 @@
 		8D542A1C222A5BC2008B90B0 /* Public */ = {
 			isa = PBXGroup;
 			children = (
+				8D5CB6A92232D70C00527DEB /* External */,
 				8D542A1D222A5BC2008B90B0 /* Common */,
 				8D542A3B222A5BC2008B90B0 /* Login */,
 			);
@@ -748,6 +776,38 @@
 				8D58D4DC2226355B00803985 /* Info.plist */,
 			);
 			path = BeehiveUITests;
+			sourceTree = "<group>";
+		};
+		8D5CB6A92232D70C00527DEB /* External */ = {
+			isa = PBXGroup;
+			children = (
+				8D5CB6AA2232D73300527DEB /* ZJUsefulPickerView */,
+			);
+			path = External;
+			sourceTree = "<group>";
+		};
+		8D5CB6AA2232D73300527DEB /* ZJUsefulPickerView */ = {
+			isa = PBXGroup;
+			children = (
+				8D5CB6AE2232D73300527DEB /* Province.plist */,
+				8D5CB6B62232D73300527DEB /* City.plist */,
+				8D5CB6AC2232D73300527DEB /* Area.plist */,
+				8D5CB6AB2232D73300527DEB /* ZJMultiplePickerView.h */,
+				8D5CB6AD2232D73300527DEB /* ZJMultipleAssociatedPickerView.h */,
+				8D5CB6AF2232D73300527DEB /* ZJDatePickerView.h */,
+				8D5CB6B02232D73300527DEB /* ZJSelectedTextField.m */,
+				8D5CB6B12232D73300527DEB /* ZJUsefulPickerView.h */,
+				8D5CB6B22232D73300527DEB /* ZJToolBar.h */,
+				8D5CB6B32232D73300527DEB /* ZJSinglePickerView.h */,
+				8D5CB6B42232D73300527DEB /* ZJMultipleAssociatedPickerView.m */,
+				8D5CB6B52232D73300527DEB /* ZJMultiplePickerView.m */,
+				8D5CB6B72232D73300527DEB /* ZJDatePickerView.m */,
+				8D5CB6B82232D73300527DEB /* ZJUsefulPickerView.m */,
+				8D5CB6B92232D73300527DEB /* ZJSelectedTextField.h */,
+				8D5CB6BA2232D73300527DEB /* ZJSinglePickerView.m */,
+				8D5CB6BB2232D73300527DEB /* ZJToolBar.m */,
+			);
+			path = ZJUsefulPickerView;
 			sourceTree = "<group>";
 		};
 		8D79E4C822266ECC0019A1BE /* AppDelegate */ = {
@@ -1132,6 +1192,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				8D79E4DD222676E20019A1BE /* LLBeeHomeViewController.xib in Resources */,
+				8D5CB6C12232D73300527DEB /* City.plist in Resources */,
+				8D5CB6BC2232D73300527DEB /* Area.plist in Resources */,
 				8DE5885F2227A4CC002C1576 /* LLBeeRankingViewController.xib in Resources */,
 				8D890B582232082800CA711A /* LLBeeQunViewController.xib in Resources */,
 				8D890B532232077D00CA711A /* LLMineWalletViewController.xib in Resources */,
@@ -1142,6 +1204,7 @@
 				8DE5885A2227A4B3002C1576 /* LLBeeMessageViewController.xib in Resources */,
 				8D890B6D2232344500CA711A /* LLPublishInputViewCell.xib in Resources */,
 				8D542A86222A66A5008B90B0 /* LLLoginViewController.xib in Resources */,
+				8D5CB6BD2232D73300527DEB /* Province.plist in Resources */,
 				8D58D4C32226355B00803985 /* LaunchScreen.storyboard in Resources */,
 				8D4C6128222D555800024840 /* LLRegisterViewController.xib in Resources */,
 				8DCC9AAF222B71F200AC3128 /* LLRedRuleViewController.xib in Resources */,
@@ -1329,6 +1392,7 @@
 				8D890B6322322C2100CA711A /* LLPublishCellNode.m in Sources */,
 				8DCC9AAE222B71F200AC3128 /* LLRedRuleViewController.m in Sources */,
 				8D890B572232082800CA711A /* LLBeeQunViewController.m in Sources */,
+				8D5CB6BE2232D73300527DEB /* ZJSelectedTextField.m in Sources */,
 				8D890B522232077D00CA711A /* LLMineWalletViewController.m in Sources */,
 				8D542A71222A5BC2008B90B0 /* LELoginManager.m in Sources */,
 				8D3F214D222FB4FF0066F5EB /* LLImageItemViewCell.m in Sources */,
@@ -1356,10 +1420,12 @@
 				8D542A66222A5BC2008B90B0 /* WYActionSheet.m in Sources */,
 				8DE588592227A4B3002C1576 /* LLBeeMessageViewController.m in Sources */,
 				8D542A7C222A5BC2008B90B0 /* LELoginAuthManager.m in Sources */,
+				8D5CB6C42232D73300527DEB /* ZJSinglePickerView.m in Sources */,
 				8D542A74222A5BC2008B90B0 /* PathHelper.m in Sources */,
 				8D79E4D82226748D0019A1BE /* LLBaseViewController.m in Sources */,
 				8D890B4C2232060100CA711A /* LLMessageViewController.m in Sources */,
 				8DE588672227C76F002C1576 /* FontConst.swift in Sources */,
+				8D5CB6C02232D73300527DEB /* ZJMultiplePickerView.m in Sources */,
 				8D542A69222A5BC2008B90B0 /* LESearchBar.m in Sources */,
 				8DCC9AC5222B835000AC3128 /* LLCityOptionHeaderView.m in Sources */,
 				8DE588622227AD82002C1576 /* LLPlusButton.m in Sources */,
@@ -1371,12 +1437,14 @@
 				8D542A7B222A5BC2008B90B0 /* WYShareManager.m in Sources */,
 				8D3F2149222F65020066F5EB /* LLHandleStatusView.m in Sources */,
 				8DCC9AB9222B810900AC3128 /* LLCollectionView.m in Sources */,
+				8D5CB6C52232D73300527DEB /* ZJToolBar.m in Sources */,
 				7E1E8A6922301162002766AD /* LLMessageDetailsHeaderView.m in Sources */,
 				8D542A62222A5BC2008B90B0 /* WYNetWorkManager.m in Sources */,
 				8D542A76222A5BC2008B90B0 /* UIImage+LEAdd.m in Sources */,
 				7E1E8A6F22301AF2002766AD /* LLMessageCommentViewCell.m in Sources */,
 				8D542A7E222A5BC2008B90B0 /* LEDataStoreManager.m in Sources */,
 				8DC02D5522313731000CAE9C /* LLMineCollectionViewCell.m in Sources */,
+				8D5CB6BF2232D73300527DEB /* ZJMultipleAssociatedPickerView.m in Sources */,
 				8D542A65222A5BC2008B90B0 /* HotUpButton.m in Sources */,
 				8D890B712232346700CA711A /* LLPublishImageViewCell.m in Sources */,
 				8D542A73222A5BC2008B90B0 /* SVProgressHUD+LETools.m in Sources */,
@@ -1389,6 +1457,7 @@
 				8DCC9AB6222B7D5700AC3128 /* LLView.m in Sources */,
 				8D542A79222A5BC2008B90B0 /* UIImage+ProportionalFill.m in Sources */,
 				8D542A7A222A5BC2008B90B0 /* LEBaseModel.m in Sources */,
+				8D5CB6C22232D73300527DEB /* ZJDatePickerView.m in Sources */,
 				8D890B6C2232344500CA711A /* LLPublishInputViewCell.m in Sources */,
 				8D3F2157222FCD8B0066F5EB /* LLFilterDistanceView.m in Sources */,
 				8D542A75222A5BC2008B90B0 /* WYCommonUtils.m in Sources */,
@@ -1399,6 +1468,7 @@
 				8D58D4B82226355900803985 /* AppDelegate.m in Sources */,
 				8D4C611E222D058C00024840 /* LLUserInputView.m in Sources */,
 				8D890B5C223212A000CA711A /* LLPublishViewController.m in Sources */,
+				8D5CB6C32232D73300527DEB /* ZJUsefulPickerView.m in Sources */,
 				8D542A72222A5BC2008B90B0 /* LELoginModel.m in Sources */,
 				8D542A6C222A5BC2008B90B0 /* LEShareWindow.m in Sources */,
 				8D542A5F222A5BC2008B90B0 /* LESuperTableViewController.m in Sources */,
