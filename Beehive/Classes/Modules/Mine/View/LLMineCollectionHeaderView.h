@@ -10,7 +10,11 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+typedef void (^LLMineCollectionHeaderViewClickBlock) (NSInteger index);
+
 @interface LLMineCollectionHeaderView : UICollectionReusableView
+
+@property (nonatomic, strong) LLMineCollectionHeaderViewClickBlock headerViewClickBlock;
 
 - (void)updateHeadViewWithData:(id)node;
 

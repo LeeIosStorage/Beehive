@@ -10,6 +10,7 @@
 #import "LEPublishMenuView.h"
 #import "LLRedRuleViewController.h"
 #import "LELoginManager.h"
+#import "LLPublishViewController.h"
 
 @implementation LLPlusButton
 
@@ -51,11 +52,24 @@
     
 //    __weak UINavigationController *weakVc = viewController;
     LEPublishMenuView *publishMenuView = [[LEPublishMenuView alloc] initWithActionBlock:^(NSInteger index) {
+        
+//        [[LELoginManager sharedInstance] needUserLogin:tabBarController];
         if (index == 0) {
-            LLRedRuleViewController *vc = [[LLRedRuleViewController alloc] init];
+            LLPublishViewController *vc = [[LLPublishViewController alloc] init];
+            vc.publishVcType = LLPublishViewcTypeRedpacket;
             [viewController pushViewController:vc animated:true];
         } else if (index == 1) {
-            [[LELoginManager sharedInstance] needUserLogin:tabBarController];
+            LLPublishViewController *vc = [[LLPublishViewController alloc] init];
+            vc.publishVcType = LLPublishViewcTypeExchange;
+            [viewController pushViewController:vc animated:true];
+        } else if (index == 2) {
+            LLPublishViewController *vc = [[LLPublishViewController alloc] init];
+            vc.publishVcType = LLPublishViewcTypeAsk;
+            [viewController pushViewController:vc animated:true];
+        } else if (index == 3) {
+            LLPublishViewController *vc = [[LLPublishViewController alloc] init];
+            vc.publishVcType = LLPublishViewcTypeConvenience;
+            [viewController pushViewController:vc animated:true];
         }
     }];
     [publishMenuView showInView:tabBarController.view];

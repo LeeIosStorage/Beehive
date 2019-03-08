@@ -25,6 +25,7 @@ def shared_pods
     pod 'AMapSearch' #地图SDK搜索功能
     pod 'AMapLocation' #定位SDK
     pod 'SDCycleScrollView', '~> 1.75' #轮播
+    pod 'HXPhotoPicker', '~> 2.1.9' #图片选择器
 end
 
 target 'Beehive' do

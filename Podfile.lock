@@ -22,6 +22,8 @@ PODS:
   - AMapSearch (6.6.0):
     - AMapFoundation (~> 1.4)
   - CYLTabBarController (1.17.23)
+  - HXPhotoPicker (2.1.9):
+    - SDWebImage (~> 4.4.1)
   - JMRoundedCorner (1.2.1)
   - JSONModel (1.7.0)
   - Masonry (1.0.2)
@@ -61,6 +63,7 @@ DEPENDENCIES:
   - AMapLocation
   - AMapSearch
   - CYLTabBarController (~> 1.17.22)
+  - HXPhotoPicker (~> 2.1.9)
   - JMRoundedCorner
   - JSONModel (~> 1.7.0)
   - Masonry (~> 1.0.1)
@@ -82,6 +85,7 @@ SPEC REPOS:
     - AMapLocation
     - AMapSearch
     - CYLTabBarController
+    - HXPhotoPicker
     - JMRoundedCorner
     - JSONModel
     - Masonry
@@ -100,6 +104,7 @@ SPEC CHECKSUMS:
   AMapLocation: cf024b53dc03663efb4ea4bcce27d4cce58bb97a
   AMapSearch: def5983c8ca1a6d7430970046dc814f6e337621d
   CYLTabBarController: 73889c1ccc7685221d85ac2dbf188900543f17d0
+  HXPhotoPicker: abe7b21f5439eea491ca5d21903b7dc384ae9f06
   JMRoundedCorner: 214e56c2a7e3a0916e8d6040c66d85519cc1be87
   JSONModel: 840bc0fcffb24b8454d2c026bf26fea454b8e98d
   Masonry: 7c429b56da9d4ee0bbb3ed77a5ea710d6a5df39e
@@ -111,6 +116,6 @@ SPEC CHECKSUMS:
   UMengUShare: 370d180101e13ee0227ae657ab119ba97243d2b3
   YYKit: 7cda43304a8dc3696c449041e2cb3107b4e236e7
 
-PODFILE CHECKSUM: aaac31bf8da0dc13a5c42945afcb90e313d28184
+PODFILE CHECKSUM: 7a77a49b1cc6a55b39e47e977d182f1739f8248d
 
 COCOAPODS: 1.5.3

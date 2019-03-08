@@ -11,6 +11,9 @@
 #import "LLMineCollectionViewCell.h"
 #import "LLMineCollectionHeaderView.h"
 #import "LLMineNode.h"
+#import "LLMessageViewController.h"
+#import "LLMineWalletViewController.h"
+#import "LLBeeQunViewController.h"
 
 static NSString *const kLLMineCollectionViewCell = @"LLMineCollectionViewCell";
 static NSString *const kLLMineCollectionHeaderView = @"LLMineCollectionHeaderView";
@@ -40,6 +43,8 @@ UICollectionViewDataSource
     [self setup];
 }
 
+#pragma mark -
+#pragma mark - Private
 - (void)setup {
     self.navigationItem.title = @"我的";
     
@@ -89,7 +94,26 @@ UICollectionViewDataSource
     return CGSizeMake(viewWidth, 80);
 }
 
-#pragma mark
+#pragma mark -
+#pragma mark - Action
+- (void)messageAction {
+    LLMessageViewController *vc = [[LLMessageViewController alloc] init];
+    [self.navigationController pushViewController:vc animated:true];
+}
+
+- (void)mineCollectAction {
+    
+}
+
+- (void)mineAttentionAction {
+    
+}
+
+- (void)historyAction {
+    
+}
+
+#pragma mark -
 #pragma mark - UICollectionViewDataSource
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
 {
@@ -103,6 +127,18 @@ UICollectionViewDataSource
 - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath {
     if (kind == UICollectionElementKindSectionHeader) {
         LLMineCollectionHeaderView *header = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:kLLMineCollectionHeaderView forIndexPath:indexPath];
+        WEAKSELF
+        header.headerViewClickBlock = ^(NSInteger index) {
+            if (index == 0) {
+                [weakSelf messageAction];
+            } else if (index == 1) {
+                [weakSelf mineCollectAction];
+            } else if (index == 2) {
+                [weakSelf mineAttentionAction];
+            } else if (index == 3) {
+                [weakSelf historyAction];
+            }
+        };
         [header updateHeadViewWithData:nil];
         return header;
     }
@@ -117,12 +153,62 @@ UICollectionViewDataSource
     return cell;
 }
 
-#pragma mark
+#pragma mark -
 #pragma mark - UICollectionViewDelegate
-
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     [collectionView deselectItemAtIndexPath:indexPath animated:YES];
+    LLMineNode *node = self.dataSource[indexPath.row];
+    switch (node.vcType) {
+        case LLMineNodeTypeWallet: {
+            LLMineWalletViewController *vc = [[LLMineWalletViewController alloc] init];
+            [self.navigationController pushViewController:vc animated:true];
+        }
+            break;
+        case LLMineNodeTypeBeeQun: {
+            LLBeeQunViewController *vc = [[LLBeeQunViewController alloc] init];
+            [self.navigationController pushViewController:vc animated:true];
+        }
+            break;
+        case LLMineNodeTypeBeeLobby: {
+            
+        }
+            break;
+        case LLMineNodeTypeBeeTask: {
+            
+        }
+            break;
+        case LLMineNodeTypeCode: {
+            
+        }
+            break;
+        case LLMineNodeTypeOrder: {
+            
+        }
+            break;
+        case LLMineNodeTypeNotice: {
+            
+        }
+            break;
+        case LLMineNodeTypeHelp: {
+            
+        }
+            break;
+        case LLMineNodeTypeSet: {
+            
+        }
+            break;
+        case LLMineNodeTypeVIP: {
+            
+        }
+            break;
+        case LLMineNodeTypeTui: {
+            
+        }
+            break;
+        default:
+            break;
+    }
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath

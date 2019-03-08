@@ -77,6 +77,20 @@
 		8D79E4DD222676E20019A1BE /* LLBeeHomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D79E4DB222676E20019A1BE /* LLBeeHomeViewController.xib */; };
 		8D79E4E1222676FC0019A1BE /* LLBeeMineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D79E4DF222676FC0019A1BE /* LLBeeMineViewController.m */; };
 		8D79E4E2222676FC0019A1BE /* LLBeeMineViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D79E4E0222676FC0019A1BE /* LLBeeMineViewController.xib */; };
+		8D890B4C2232060100CA711A /* LLMessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D890B4A2232060100CA711A /* LLMessageViewController.m */; };
+		8D890B4D2232060100CA711A /* LLMessageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D890B4B2232060100CA711A /* LLMessageViewController.xib */; };
+		8D890B522232077D00CA711A /* LLMineWalletViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D890B502232077D00CA711A /* LLMineWalletViewController.m */; };
+		8D890B532232077D00CA711A /* LLMineWalletViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D890B512232077D00CA711A /* LLMineWalletViewController.xib */; };
+		8D890B572232082800CA711A /* LLBeeQunViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D890B552232082800CA711A /* LLBeeQunViewController.m */; };
+		8D890B582232082800CA711A /* LLBeeQunViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D890B562232082800CA711A /* LLBeeQunViewController.xib */; };
+		8D890B5C223212A000CA711A /* LLPublishViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D890B5B223212A000CA711A /* LLPublishViewController.m */; };
+		8D890B6322322C2100CA711A /* LLPublishCellNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D890B6222322C2100CA711A /* LLPublishCellNode.m */; };
+		8D890B67223231BF00CA711A /* LLPublishNormalViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D890B65223231BF00CA711A /* LLPublishNormalViewCell.m */; };
+		8D890B68223231BF00CA711A /* LLPublishNormalViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D890B66223231BF00CA711A /* LLPublishNormalViewCell.xib */; };
+		8D890B6C2232344500CA711A /* LLPublishInputViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D890B6A2232344500CA711A /* LLPublishInputViewCell.m */; };
+		8D890B6D2232344500CA711A /* LLPublishInputViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D890B6B2232344500CA711A /* LLPublishInputViewCell.xib */; };
+		8D890B712232346700CA711A /* LLPublishImageViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D890B6F2232346700CA711A /* LLPublishImageViewCell.m */; };
+		8D890B722232346700CA711A /* LLPublishImageViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D890B702232346700CA711A /* LLPublishImageViewCell.xib */; };
 		8DC02D4A2230E4F6000CAE9C /* LLCommentBottomView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DC02D492230E4F6000CAE9C /* LLCommentBottomView.m */; };
 		8DC02D4F22311443000CAE9C /* LLRankTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DC02D4D22311443000CAE9C /* LLRankTableViewCell.m */; };
 		8DC02D5022311443000CAE9C /* LLRankTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8DC02D4E22311443000CAE9C /* LLRankTableViewCell.xib */; };
@@ -259,6 +273,28 @@
 		8D79E4DE222676FC0019A1BE /* LLBeeMineViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLBeeMineViewController.h; sourceTree = "<group>"; };
 		8D79E4DF222676FC0019A1BE /* LLBeeMineViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLBeeMineViewController.m; sourceTree = "<group>"; };
 		8D79E4E0222676FC0019A1BE /* LLBeeMineViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LLBeeMineViewController.xib; sourceTree = "<group>"; };
+		8D890B492232060100CA711A /* LLMessageViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLMessageViewController.h; sourceTree = "<group>"; };
+		8D890B4A2232060100CA711A /* LLMessageViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLMessageViewController.m; sourceTree = "<group>"; };
+		8D890B4B2232060100CA711A /* LLMessageViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LLMessageViewController.xib; sourceTree = "<group>"; };
+		8D890B4F2232077D00CA711A /* LLMineWalletViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLMineWalletViewController.h; sourceTree = "<group>"; };
+		8D890B502232077D00CA711A /* LLMineWalletViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLMineWalletViewController.m; sourceTree = "<group>"; };
+		8D890B512232077D00CA711A /* LLMineWalletViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LLMineWalletViewController.xib; sourceTree = "<group>"; };
+		8D890B542232082800CA711A /* LLBeeQunViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLBeeQunViewController.h; sourceTree = "<group>"; };
+		8D890B552232082800CA711A /* LLBeeQunViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLBeeQunViewController.m; sourceTree = "<group>"; };
+		8D890B562232082800CA711A /* LLBeeQunViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LLBeeQunViewController.xib; sourceTree = "<group>"; };
+		8D890B5A223212A000CA711A /* LLPublishViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLPublishViewController.h; sourceTree = "<group>"; };
+		8D890B5B223212A000CA711A /* LLPublishViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLPublishViewController.m; sourceTree = "<group>"; };
+		8D890B6122322C2100CA711A /* LLPublishCellNode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLPublishCellNode.h; sourceTree = "<group>"; };
+		8D890B6222322C2100CA711A /* LLPublishCellNode.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLPublishCellNode.m; sourceTree = "<group>"; };
+		8D890B64223231BF00CA711A /* LLPublishNormalViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLPublishNormalViewCell.h; sourceTree = "<group>"; };
+		8D890B65223231BF00CA711A /* LLPublishNormalViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLPublishNormalViewCell.m; sourceTree = "<group>"; };
+		8D890B66223231BF00CA711A /* LLPublishNormalViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LLPublishNormalViewCell.xib; sourceTree = "<group>"; };
+		8D890B692232344500CA711A /* LLPublishInputViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLPublishInputViewCell.h; sourceTree = "<group>"; };
+		8D890B6A2232344500CA711A /* LLPublishInputViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLPublishInputViewCell.m; sourceTree = "<group>"; };
+		8D890B6B2232344500CA711A /* LLPublishInputViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LLPublishInputViewCell.xib; sourceTree = "<group>"; };
+		8D890B6E2232346700CA711A /* LLPublishImageViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLPublishImageViewCell.h; sourceTree = "<group>"; };
+		8D890B6F2232346700CA711A /* LLPublishImageViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLPublishImageViewCell.m; sourceTree = "<group>"; };
+		8D890B702232346700CA711A /* LLPublishImageViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LLPublishImageViewCell.xib; sourceTree = "<group>"; };
 		8DC02D482230E4F6000CAE9C /* LLCommentBottomView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLCommentBottomView.h; sourceTree = "<group>"; };
 		8DC02D492230E4F6000CAE9C /* LLCommentBottomView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLCommentBottomView.m; sourceTree = "<group>"; };
 		8DC02D4C22311443000CAE9C /* LLRankTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLRankTableViewCell.h; sourceTree = "<group>"; };
@@ -744,6 +780,7 @@
 		8D79E4CB222670090019A1BE /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				8D890B592232125C00CA711A /* Publish */,
 				8D79E4CD222670400019A1BE /* Home */,
 				8DE588552227A476002C1576 /* Ranking */,
 				8DE588542227A45C002C1576 /* Message */,
@@ -777,9 +814,11 @@
 		8D79E4CE2226704C0019A1BE /* Mine */ = {
 			isa = PBXGroup;
 			children = (
+				8D890B48223205E200CA711A /* Message */,
+				8D542A80222A6602008B90B0 /* Info */,
+				8D890B4E2232074E00CA711A /* Controller */,
 				7E1E8A7622317319002766AD /* Model */,
 				8DC02D51223136EE000CAE9C /* View */,
-				8D542A80222A6602008B90B0 /* Info */,
 				8D79E4DE222676FC0019A1BE /* LLBeeMineViewController.h */,
 				8D79E4DF222676FC0019A1BE /* LLBeeMineViewController.m */,
 				8D79E4E0222676FC0019A1BE /* LLBeeMineViewController.xib */,
@@ -796,6 +835,65 @@
 				8DE588612227AD82002C1576 /* LLPlusButton.m */,
 			);
 			path = Base;
+			sourceTree = "<group>";
+		};
+		8D890B48223205E200CA711A /* Message */ = {
+			isa = PBXGroup;
+			children = (
+				8D890B492232060100CA711A /* LLMessageViewController.h */,
+				8D890B4A2232060100CA711A /* LLMessageViewController.m */,
+				8D890B4B2232060100CA711A /* LLMessageViewController.xib */,
+			);
+			path = Message;
+			sourceTree = "<group>";
+		};
+		8D890B4E2232074E00CA711A /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				8D890B4F2232077D00CA711A /* LLMineWalletViewController.h */,
+				8D890B502232077D00CA711A /* LLMineWalletViewController.m */,
+				8D890B512232077D00CA711A /* LLMineWalletViewController.xib */,
+				8D890B542232082800CA711A /* LLBeeQunViewController.h */,
+				8D890B552232082800CA711A /* LLBeeQunViewController.m */,
+				8D890B562232082800CA711A /* LLBeeQunViewController.xib */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		8D890B592232125C00CA711A /* Publish */ = {
+			isa = PBXGroup;
+			children = (
+				8D890B6022322BF700CA711A /* Model */,
+				8D890B5F22322BB800CA711A /* View */,
+				8D890B5A223212A000CA711A /* LLPublishViewController.h */,
+				8D890B5B223212A000CA711A /* LLPublishViewController.m */,
+			);
+			path = Publish;
+			sourceTree = "<group>";
+		};
+		8D890B5F22322BB800CA711A /* View */ = {
+			isa = PBXGroup;
+			children = (
+				8D890B64223231BF00CA711A /* LLPublishNormalViewCell.h */,
+				8D890B65223231BF00CA711A /* LLPublishNormalViewCell.m */,
+				8D890B66223231BF00CA711A /* LLPublishNormalViewCell.xib */,
+				8D890B692232344500CA711A /* LLPublishInputViewCell.h */,
+				8D890B6A2232344500CA711A /* LLPublishInputViewCell.m */,
+				8D890B6B2232344500CA711A /* LLPublishInputViewCell.xib */,
+				8D890B6E2232346700CA711A /* LLPublishImageViewCell.h */,
+				8D890B6F2232346700CA711A /* LLPublishImageViewCell.m */,
+				8D890B702232346700CA711A /* LLPublishImageViewCell.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		8D890B6022322BF700CA711A /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				8D890B6122322C2100CA711A /* LLPublishCellNode.h */,
+				8D890B6222322C2100CA711A /* LLPublishCellNode.m */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		8DC02D4B2231141C000CAE9C /* View */ = {
@@ -1035,9 +1133,14 @@
 			files = (
 				8D79E4DD222676E20019A1BE /* LLBeeHomeViewController.xib in Resources */,
 				8DE5885F2227A4CC002C1576 /* LLBeeRankingViewController.xib in Resources */,
+				8D890B582232082800CA711A /* LLBeeQunViewController.xib in Resources */,
+				8D890B532232077D00CA711A /* LLMineWalletViewController.xib in Resources */,
 				8D4C6123222D553A00024840 /* LLForgotPasswordViewController.xib in Resources */,
 				8D542A63222A5BC2008B90B0 /* NetWorkConfig.json in Resources */,
+				8D890B4D2232060100CA711A /* LLMessageViewController.xib in Resources */,
+				8D890B68223231BF00CA711A /* LLPublishNormalViewCell.xib in Resources */,
 				8DE5885A2227A4B3002C1576 /* LLBeeMessageViewController.xib in Resources */,
+				8D890B6D2232344500CA711A /* LLPublishInputViewCell.xib in Resources */,
 				8D542A86222A66A5008B90B0 /* LLLoginViewController.xib in Resources */,
 				8D58D4C32226355B00803985 /* LaunchScreen.storyboard in Resources */,
 				8D4C6128222D555800024840 /* LLRegisterViewController.xib in Resources */,
@@ -1051,6 +1154,7 @@
 				8D3F214E222FB4FF0066F5EB /* LLImageItemViewCell.xib in Resources */,
 				7E1E8A6B22301172002766AD /* LLMessageDetailsHeaderView.xib in Resources */,
 				7E1E8A7522315672002766AD /* LLMineCollectionHeaderView.xib in Resources */,
+				8D890B722232346700CA711A /* LLPublishImageViewCell.xib in Resources */,
 				8DC02D5622313731000CAE9C /* LLMineCollectionViewCell.xib in Resources */,
 				7E1E8A7022301AF2002766AD /* LLMessageCommentViewCell.xib in Resources */,
 				8D79E4E2222676FC0019A1BE /* LLBeeMineViewController.xib in Resources */,
@@ -1085,6 +1189,7 @@
 				"${SRCROOT}/Pods/Target Support Files/Pods-Beehive/Pods-Beehive-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/AFNetworking/AFNetworking.framework",
 				"${BUILT_PRODUCTS_DIR}/CYLTabBarController/CYLTabBarController.framework",
+				"${BUILT_PRODUCTS_DIR}/HXPhotoPicker/HXPhotoPicker.framework",
 				"${BUILT_PRODUCTS_DIR}/JMRoundedCorner/JMRoundedCorner.framework",
 				"${BUILT_PRODUCTS_DIR}/JSONModel/JSONModel.framework",
 				"${BUILT_PRODUCTS_DIR}/MBProgressHUD/MBProgressHUD.framework",
@@ -1101,6 +1206,7 @@
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AFNetworking.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CYLTabBarController.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/HXPhotoPicker.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JMRoundedCorner.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JSONModel.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MBProgressHUD.framework",
@@ -1220,7 +1326,10 @@
 				8D542A68222A5BC2008B90B0 /* LEMenuView.m in Sources */,
 				7E1E8A64222ED0E6002766AD /* LLMessageTimeLineViewCell.m in Sources */,
 				8D542A70222A5BC2008B90B0 /* LELoginUserManager.m in Sources */,
+				8D890B6322322C2100CA711A /* LLPublishCellNode.m in Sources */,
 				8DCC9AAE222B71F200AC3128 /* LLRedRuleViewController.m in Sources */,
+				8D890B572232082800CA711A /* LLBeeQunViewController.m in Sources */,
+				8D890B522232077D00CA711A /* LLMineWalletViewController.m in Sources */,
 				8D542A71222A5BC2008B90B0 /* LELoginManager.m in Sources */,
 				8D3F214D222FB4FF0066F5EB /* LLImageItemViewCell.m in Sources */,
 				8D3F2153222FCB050066F5EB /* LLMessageDetailsViewController.m in Sources */,
@@ -1249,6 +1358,7 @@
 				8D542A7C222A5BC2008B90B0 /* LELoginAuthManager.m in Sources */,
 				8D542A74222A5BC2008B90B0 /* PathHelper.m in Sources */,
 				8D79E4D82226748D0019A1BE /* LLBaseViewController.m in Sources */,
+				8D890B4C2232060100CA711A /* LLMessageViewController.m in Sources */,
 				8DE588672227C76F002C1576 /* FontConst.swift in Sources */,
 				8D542A69222A5BC2008B90B0 /* LESearchBar.m in Sources */,
 				8DCC9AC5222B835000AC3128 /* LLCityOptionHeaderView.m in Sources */,
@@ -1257,6 +1367,7 @@
 				8D542A7D222A5BC2008B90B0 /* LELinkerHandler.m in Sources */,
 				8D79E4D2222672A20019A1BE /* LLTabBarViewController.m in Sources */,
 				8D542A61222A5BC2008B90B0 /* WYNetWorkExceptionHandling.m in Sources */,
+				8D890B67223231BF00CA711A /* LLPublishNormalViewCell.m in Sources */,
 				8D542A7B222A5BC2008B90B0 /* WYShareManager.m in Sources */,
 				8D3F2149222F65020066F5EB /* LLHandleStatusView.m in Sources */,
 				8DCC9AB9222B810900AC3128 /* LLCollectionView.m in Sources */,
@@ -1267,6 +1378,7 @@
 				8D542A7E222A5BC2008B90B0 /* LEDataStoreManager.m in Sources */,
 				8DC02D5522313731000CAE9C /* LLMineCollectionViewCell.m in Sources */,
 				8D542A65222A5BC2008B90B0 /* HotUpButton.m in Sources */,
+				8D890B712232346700CA711A /* LLPublishImageViewCell.m in Sources */,
 				8D542A73222A5BC2008B90B0 /* SVProgressHUD+LETools.m in Sources */,
 				8D542A77222A5BC2008B90B0 /* YTCache.m in Sources */,
 				8D4C6127222D555800024840 /* LLRegisterViewController.m in Sources */,
@@ -1277,6 +1389,7 @@
 				8DCC9AB6222B7D5700AC3128 /* LLView.m in Sources */,
 				8D542A79222A5BC2008B90B0 /* UIImage+ProportionalFill.m in Sources */,
 				8D542A7A222A5BC2008B90B0 /* LEBaseModel.m in Sources */,
+				8D890B6C2232344500CA711A /* LLPublishInputViewCell.m in Sources */,
 				8D3F2157222FCD8B0066F5EB /* LLFilterDistanceView.m in Sources */,
 				8D542A75222A5BC2008B90B0 /* WYCommonUtils.m in Sources */,
 				8DD290E22229442D00E4338D /* NSObject+LLRuntime.m in Sources */,
@@ -1285,6 +1398,7 @@
 				8DCC9ABF222B814D00AC3128 /* LLTableView.m in Sources */,
 				8D58D4B82226355900803985 /* AppDelegate.m in Sources */,
 				8D4C611E222D058C00024840 /* LLUserInputView.m in Sources */,
+				8D890B5C223212A000CA711A /* LLPublishViewController.m in Sources */,
 				8D542A72222A5BC2008B90B0 /* LELoginModel.m in Sources */,
 				8D542A6C222A5BC2008B90B0 /* LEShareWindow.m in Sources */,
 				8D542A5F222A5BC2008B90B0 /* LESuperTableViewController.m in Sources */,

@@ -40,19 +40,27 @@
 }
 
 - (IBAction)messageAction:(id)sender {
-    
+    if (self.headerViewClickBlock) {
+        self.headerViewClickBlock(0);
+    }
 }
 
 - (IBAction)mineCollectAction:(id)sender {
-    
+    if (self.headerViewClickBlock) {
+        self.headerViewClickBlock(1);
+    }
 }
 
 - (IBAction)mineAttentionAction:(id)sender {
-    
+    if (self.headerViewClickBlock) {
+        self.headerViewClickBlock(2);
+    }
 }
 
 - (IBAction)historyAction:(id)sender {
-    
+    if (self.headerViewClickBlock) {
+        self.headerViewClickBlock(3);
+    }
 }
 
 @end
