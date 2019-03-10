@@ -33,6 +33,7 @@ UITableViewDataSource
 
 - (void)setup {
     self.title = @"选择行业";
+    self.tableView1.backgroundColor = kAppSectionBackgroundColor;
 }
 
 - (void)refreshData {

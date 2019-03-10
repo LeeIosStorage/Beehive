@@ -85,21 +85,13 @@ UITableViewDataSource
     self.currentPublishNode.ageMold = -1;
     self.currentPublishNode.sexMold = -1;
     self.currentPublishNode.isMore = true;
-//    self.currentPublishNode.hobbiesIndexs = [NSArray arrayWithObjects:[NSNumber numberWithInteger:0], [NSNumber numberWithInteger:1], nil];
     
     [self refreshDataSource];
 }
 
 - (void)refreshDataSource {
-//    for (NSArray *array in self.dataSource) {
-//        for (LLPublishCellNode *node in array) {
-//            if (node.cellType == LLPublishCellTypeRedMold) {
-//                node.placeholder =
-//            }
-//        }
-//    }
     
-    self.dataSource = [NSMutableArray array];
+//    self.dataSource = [NSMutableArray array];
     
     if (self.publishVcType == LLPublishViewcTypeExchange) {
         [self refreshExchangeData];
@@ -112,6 +104,7 @@ UITableViewDataSource
         return;
     }
     
+    NSMutableArray *newMutArray = [NSMutableArray array];
     //配置发布信息
     LLPublishCellNode *cellNode = [[LLPublishCellNode alloc] init];
     cellNode.title = @"红包类型";
@@ -120,7 +113,7 @@ UITableViewDataSource
         cellNode.inputText = @"红包任务";
     }
     cellNode.cellType = LLPublishCellTypeRedMold;
-    [self.dataSource addObject:[NSMutableArray arrayWithObject:cellNode]];
+    [newMutArray addObject:[NSMutableArray arrayWithObject:cellNode]];
     
     if (self.currentPublishNode.redMold == 0) {
         
@@ -129,13 +122,13 @@ UITableViewDataSource
         cellNode1.inputMaxCount = 200;
         cellNode1.placeholder = @"输入文字...";
         cellNode1.cellType = LLPublishCellTypeInputTitle;
-        [self.dataSource addObject:[NSMutableArray arrayWithObject:cellNode1]];
+        [newMutArray addObject:[NSMutableArray arrayWithObject:cellNode1]];
         
         LLPublishCellNode *cellNode2 = [[LLPublishCellNode alloc] init];
         cellNode2.title = @"添加照片";
         cellNode2.placeholder = @"最多9张";
         cellNode2.cellType = LLPublishCellTypeImage;
-        [self.dataSource addObject:[NSMutableArray arrayWithObject:cellNode2]];
+        [newMutArray addObject:[NSMutableArray arrayWithObject:cellNode2]];
         
     } else if (self.currentPublishNode.redMold == 1) {
         
@@ -146,7 +139,7 @@ UITableViewDataSource
             cellNode.inputText = @"输入链接";
         }
         cellNode.cellType = LLPublishCellTypeTaskMold;
-        [self.dataSource addObject:[NSMutableArray arrayWithObject:cellNode]];
+        [newMutArray addObject:[NSMutableArray arrayWithObject:cellNode]];
         
         LLPublishCellNode *cellNode1 = [[LLPublishCellNode alloc] init];
         cellNode1.title = @"任务名称";
@@ -157,7 +150,7 @@ UITableViewDataSource
         cellNode2.title = @"任务说明";
         cellNode2.placeholder = @"输入文字...";
         cellNode2.cellType = LLPublishCellTypeTaskExplain;
-        [self.dataSource addObject:[NSMutableArray arrayWithObjects:cellNode1, cellNode2, nil]];
+        [newMutArray addObject:[NSMutableArray arrayWithObjects:cellNode1, cellNode2, nil]];
         
         if (self.currentPublishNode.taskMold == 0) {
             
@@ -166,20 +159,20 @@ UITableViewDataSource
             cellNode1.inputMaxCount = 200;
             cellNode1.placeholder = @"输入文字...";
             cellNode1.cellType = LLPublishCellTypeInputTitle;
-            [self.dataSource addObject:[NSMutableArray arrayWithObject:cellNode1]];
+            [newMutArray addObject:[NSMutableArray arrayWithObject:cellNode1]];
             
             LLPublishCellNode *cellNode2 = [[LLPublishCellNode alloc] init];
             cellNode2.title = @"添加照片";
             cellNode2.placeholder = @"最多9张";
             cellNode2.cellType = LLPublishCellTypeImage;
-            [self.dataSource addObject:[NSMutableArray arrayWithObject:cellNode2]];
+            [newMutArray addObject:[NSMutableArray arrayWithObject:cellNode2]];
             
         } else if (self.currentPublishNode.taskMold == 1) {
             LLPublishCellNode *cellNode2 = [[LLPublishCellNode alloc] init];
             cellNode2.title = @"跳转链接地址";
             cellNode2.placeholder = @"输入链接地址...";
             cellNode2.cellType = LLPublishCellTypeLinkAddress;
-            [self.dataSource addObject:[NSMutableArray arrayWithObjects:cellNode2, nil]];
+            [newMutArray addObject:[NSMutableArray arrayWithObjects:cellNode2, nil]];
         }
     }
     
@@ -187,7 +180,7 @@ UITableViewDataSource
     cellNode3.title = @"选择位置";
     cellNode3.placeholder = @"请选择";
     cellNode3.cellType = LLPublishCellTypeLocation;
-    [self.dataSource addObject:[NSMutableArray arrayWithObject:cellNode3]];
+    [newMutArray addObject:[NSMutableArray arrayWithObject:cellNode3]];
     
     LLPublishCellNode *cellNode4 = [[LLPublishCellNode alloc] init];
     cellNode4.title = @"红包金额";
@@ -199,11 +192,11 @@ UITableViewDataSource
     cellNode5.placeholder = @"请输入";
     cellNode5.cellType = LLPublishCellTypeRedCount;
     cellNode5.inputType = LLPublishInputTypeInput;
-    [self.dataSource addObject:[NSMutableArray arrayWithObjects:cellNode4, cellNode5, nil]];
+    [newMutArray addObject:[NSMutableArray arrayWithObjects:cellNode4, cellNode5, nil]];
     
     LLPublishCellNode *cellNode6 = [self nodeForCellTypeWithType:LLPublishCellTypePubDate];
     LLPublishCellNode *cellNode7 = [self nodeForCellTypeWithType:LLPublishCellTypeVisible];
-    [self.dataSource addObject:[NSMutableArray arrayWithObjects:cellNode6, cellNode7, nil]];
+    [newMutArray addObject:[NSMutableArray arrayWithObjects:cellNode6, cellNode7, nil]];
     
     LLPublishCellNode *cellNode8 = [[LLPublishCellNode alloc] init];
     cellNode8.title = @"精准筛选";
@@ -213,51 +206,54 @@ UITableViewDataSource
     LLPublishCellNode *cellNode10 = [self nodeForCellTypeWithType:LLPublishCellTypeSex];
     LLPublishCellNode *cellNode11 = [self nodeForCellTypeWithType:LLPublishCellTypeHobbies];
     if (self.currentPublishNode.isMore) {
-        [self.dataSource addObject:[NSMutableArray arrayWithObjects:cellNode8, cellNode9, cellNode10, cellNode11, nil]];
+        [newMutArray addObject:[NSMutableArray arrayWithObjects:cellNode8, cellNode9, cellNode10, cellNode11, nil]];
     } else {
-        [self.dataSource addObject:[NSMutableArray arrayWithObjects:cellNode8, nil]];
+        [newMutArray addObject:[NSMutableArray arrayWithObjects:cellNode8, nil]];
     }
     
     LLPublishCellNode *cellNode12 = [[LLPublishCellNode alloc] init];
     cellNode12.title = @"红包任务介绍";
     cellNode12.placeholder = @"红包任务介绍...";
     cellNode12.cellType = LLPublishCellTypeIntro;
-    [self.dataSource addObject:[NSMutableArray arrayWithObject:cellNode12]];
+    [newMutArray addObject:[NSMutableArray arrayWithObject:cellNode12]];
     
+    self.dataSource = [NSMutableArray arrayWithArray:newMutArray];
     [self.tableView reloadData];
 }
 
 - (void)refreshExchangeData {
+    
+    NSMutableArray *newMutArray = [NSMutableArray array];
     
     LLPublishCellNode *cellNode1 = [[LLPublishCellNode alloc] init];
     cellNode1.title = @"标题";
     cellNode1.inputMaxCount = 200;
     cellNode1.placeholder = @"输入文字...";
     cellNode1.cellType = LLPublishCellTypeInputTitle;
-    [self.dataSource addObject:[NSMutableArray arrayWithObject:cellNode1]];
+    [newMutArray addObject:[NSMutableArray arrayWithObject:cellNode1]];
     
     LLPublishCellNode *cellNode2 = [[LLPublishCellNode alloc] init];
     cellNode2.title = @"添加照片";
     cellNode2.placeholder = @"最多9张";
     cellNode2.cellType = LLPublishCellTypeImage;
-    [self.dataSource addObject:[NSMutableArray arrayWithObject:cellNode2]];
+    [newMutArray addObject:[NSMutableArray arrayWithObject:cellNode2]];
     
     LLPublishCellNode *cellNode3 = [[LLPublishCellNode alloc] init];
     cellNode3.title = @"到点地址";
     cellNode3.placeholder = @"请添加";
     cellNode3.cellType = LLPublishCellTypeShopAddress;
-    [self.dataSource addObject:[NSMutableArray arrayWithObject:cellNode3]];
+    [newMutArray addObject:[NSMutableArray arrayWithObject:cellNode3]];
     
     LLPublishCellNode *cellNode4 = [[LLPublishCellNode alloc] init];
     cellNode4.title = @"蜂蜜兑换数";
     cellNode4.placeholder = @"请输入";
     cellNode4.cellType = LLPublishCellTypeExchangeCount;
     cellNode4.inputType = LLPublishInputTypeInput;
-    [self.dataSource addObject:[NSMutableArray arrayWithObject:cellNode4]];
+    [newMutArray addObject:[NSMutableArray arrayWithObject:cellNode4]];
     
     LLPublishCellNode *cellNode6 = [self nodeForCellTypeWithType:LLPublishCellTypePubDate];
     LLPublishCellNode *cellNode7 = [self nodeForCellTypeWithType:LLPublishCellTypeVisible];
-    [self.dataSource addObject:[NSMutableArray arrayWithObjects:cellNode6, cellNode7, nil]];
+    [newMutArray addObject:[NSMutableArray arrayWithObjects:cellNode6, cellNode7, nil]];
     
     LLPublishCellNode *cellNode8 = [[LLPublishCellNode alloc] init];
     cellNode8.title = @"设置电子券";
@@ -280,35 +276,37 @@ UITableViewDataSource
     LLPublishCellNode *cellNode11 = [self nodeForCellTypeWithType:LLPublishCellTypeCouponPrice];
     LLPublishCellNode *cellNode12 = [self nodeForCellTypeWithType:LLPublishCellTypeCouponDate];
     if (self.currentPublishNode.isMore) {
-        [self.dataSource addObject:[NSMutableArray arrayWithObjects:cellNode8, cellNode9, cellNode10, cellNode11, cellNode12, nil]];
+        [newMutArray addObject:[NSMutableArray arrayWithObjects:cellNode8, cellNode9, cellNode10, cellNode11, cellNode12, nil]];
     } else {
-        [self.dataSource addObject:[NSMutableArray arrayWithObjects:cellNode8, nil]];
+        [newMutArray addObject:[NSMutableArray arrayWithObjects:cellNode8, nil]];
     }
     
-    
+    self.dataSource = [NSMutableArray arrayWithArray:newMutArray];
     [self.tableView reloadData];
 }
 
 - (void)refreshAskData {
+    
+    NSMutableArray *newMutArray = [NSMutableArray array];
     
     LLPublishCellNode *cellNode1 = [[LLPublishCellNode alloc] init];
     cellNode1.title = @"标题";
     cellNode1.inputMaxCount = 200;
     cellNode1.placeholder = @"输入文字...";
     cellNode1.cellType = LLPublishCellTypeInputTitle;
-    [self.dataSource addObject:[NSMutableArray arrayWithObject:cellNode1]];
+    [newMutArray addObject:[NSMutableArray arrayWithObject:cellNode1]];
     
     LLPublishCellNode *cellNode2 = [[LLPublishCellNode alloc] init];
     cellNode2.title = @"添加照片";
     cellNode2.placeholder = @"最多9张";
     cellNode2.cellType = LLPublishCellTypeImage;
-    [self.dataSource addObject:[NSMutableArray arrayWithObject:cellNode2]];
+    [newMutArray addObject:[NSMutableArray arrayWithObject:cellNode2]];
     
     LLPublishCellNode *cellNode3 = [[LLPublishCellNode alloc] init];
     cellNode3.title = @"选择位置";
     cellNode3.placeholder = @"请选择";
     cellNode3.cellType = LLPublishCellTypeLocation;
-    [self.dataSource addObject:[NSMutableArray arrayWithObject:cellNode3]];
+    [newMutArray addObject:[NSMutableArray arrayWithObject:cellNode3]];
     
     LLPublishCellNode *cellNode4 = [[LLPublishCellNode alloc] init];
     cellNode4.title = @"红包金额";
@@ -320,22 +318,25 @@ UITableViewDataSource
     cellNode5.placeholder = @"请输入";
     cellNode5.cellType = LLPublishCellTypeRedCount;
     cellNode5.inputType = LLPublishInputTypeInput;
-    [self.dataSource addObject:[NSMutableArray arrayWithObjects:cellNode4, cellNode5, nil]];
+    [newMutArray addObject:[NSMutableArray arrayWithObjects:cellNode4, cellNode5, nil]];
     
     LLPublishCellNode *cellNode6 = [self nodeForCellTypeWithType:LLPublishCellTypePubDate];
     LLPublishCellNode *cellNode7 = [self nodeForCellTypeWithType:LLPublishCellTypeVisible];
-    [self.dataSource addObject:[NSMutableArray arrayWithObjects:cellNode6, cellNode7, nil]];
+    [newMutArray addObject:[NSMutableArray arrayWithObjects:cellNode6, cellNode7, nil]];
     
     LLPublishCellNode *cellNode12 = [[LLPublishCellNode alloc] init];
     cellNode12.title = @"红包任务介绍";
     cellNode12.placeholder = @"红包任务介绍...";
     cellNode12.cellType = LLPublishCellTypeIntro;
-    [self.dataSource addObject:[NSMutableArray arrayWithObject:cellNode12]];
+    [newMutArray addObject:[NSMutableArray arrayWithObject:cellNode12]];
     
+    self.dataSource = [NSMutableArray arrayWithArray:newMutArray];
     [self.tableView reloadData];
 }
 
 - (void)refreshConvenienceData {
+    
+    NSMutableArray *newMutArray = [NSMutableArray array];
     
     LLPublishCellNode *cellNode = [self nodeForCellTypeWithType:LLPublishCellTypeTradeMold];
     LLPublishCellNode *cellNode1 = [[LLPublishCellNode alloc] init];
@@ -345,34 +346,35 @@ UITableViewDataSource
         cellNode1.inputText = @"企业";
     }
     cellNode1.cellType = LLPublishCellTypeCompanyMold;
-    [self.dataSource addObject:[NSMutableArray arrayWithObjects:cellNode, cellNode1, nil]];
+    [newMutArray addObject:[NSMutableArray arrayWithObjects:cellNode, cellNode1, nil]];
     
     LLPublishCellNode *cellNode2 = [[LLPublishCellNode alloc] init];
     cellNode2.title = @"手机号";
     cellNode2.placeholder = @"请输入";
     cellNode2.cellType = LLPublishCellTypePhone;
     cellNode2.inputType = LLPublishInputTypeInput;
-    [self.dataSource addObject:[NSMutableArray arrayWithObjects:cellNode2, nil]];
+    [newMutArray addObject:[NSMutableArray arrayWithObjects:cellNode2, nil]];
     
     LLPublishCellNode *cellNode3 = [[LLPublishCellNode alloc] init];
     cellNode3.title = @"选择位置";
     cellNode3.placeholder = @"请选择";
     cellNode3.cellType = LLPublishCellTypeLocation;
-    [self.dataSource addObject:[NSMutableArray arrayWithObject:cellNode3]];
+    [newMutArray addObject:[NSMutableArray arrayWithObject:cellNode3]];
     
     LLPublishCellNode *cellNode4 = [[LLPublishCellNode alloc] init];
     cellNode4.title = @"标题";
     cellNode4.inputMaxCount = 200;
     cellNode4.placeholder = @"输入文字...";
     cellNode4.cellType = LLPublishCellTypeInputTitle;
-    [self.dataSource addObject:[NSMutableArray arrayWithObject:cellNode4]];
+    [newMutArray addObject:[NSMutableArray arrayWithObject:cellNode4]];
     
     LLPublishCellNode *cellNode5 = [[LLPublishCellNode alloc] init];
     cellNode5.title = @"身份证正反面";
     cellNode5.uploadImageDatas = [NSMutableArray array];
     cellNode5.cellType = LLPublishCellTypeIDCard;
-    [self.dataSource addObject:[NSMutableArray arrayWithObject:cellNode5]];
+    [newMutArray addObject:[NSMutableArray arrayWithObject:cellNode5]];
     
+    self.dataSource = [NSMutableArray arrayWithArray:newMutArray];
     [self.tableView reloadData];
 }
 

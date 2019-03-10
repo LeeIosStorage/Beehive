@@ -38,7 +38,10 @@ typedef NS_ENUM(NSInteger, LLPublishCellType) {
     LLPublishCellTypeCouponPrice,    //优惠价格
     LLPublishCellTypeCouponDate,     //优惠起止时间
     LLPublishCellTypeIntro,          //输入介绍
-    LLPublishCellTypeIDCard          //身份证
+    LLPublishCellTypeIDCard,         //身份证
+    LLPublishCellTypeContacts,       //联系人
+    LLPublishCellTypeShipAddress,    //收货地址
+    LLPublishCellTypeHouseNumber,    //门牌号
     
 };
 
@@ -62,6 +65,7 @@ typedef NS_ENUM(NSInteger, LLPublishInputType) {
 @property (nonatomic, assign) LLPublishInputType inputType; //输入功能类型
 
 @property (nonatomic, assign) BOOL isMore; //是否展开更多
+@property (nonatomic, assign) BOOL hiddenLine; //是否隐藏line
 
 @property (nonatomic, assign) NSInteger redMold; //红包-0普通/1任务
 @property (nonatomic, assign) NSInteger taskMold; //任务-0图片/1链接

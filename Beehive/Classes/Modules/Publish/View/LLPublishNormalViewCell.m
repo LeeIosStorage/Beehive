@@ -15,8 +15,11 @@ UITextFieldDelegate
 >
 @property (nonatomic, weak) IBOutlet UILabel *labTitle;
 @property (nonatomic, weak) IBOutlet UILabel *labDes;
+@property (nonatomic, weak) IBOutlet UIImageView *imgLabDes;
 @property (nonatomic, weak) IBOutlet UIImageView *imgRight;
 @property (nonatomic, weak) IBOutlet UITextField *tfDes;
+
+@property (nonatomic, weak) IBOutlet UIImageView *imgLine;
 
 @end
 
@@ -59,6 +62,11 @@ UITextFieldDelegate
             self.imgRight.image = [UIImage imageNamed:@"3_1_1.2"];
         }
         
+        self.imgLabDes.hidden = true;
+        if (cellNode.cellType == LLPublishCellTypeShipAddress && cellNode.inputText.length == 0) {
+            self.imgLabDes.hidden = false;
+        }
+        
     } else if (cellNode.inputType == LLPublishInputTypeInput) {
         self.labDes.hidden = true;
         self.imgRight.hidden = true;
@@ -67,6 +75,8 @@ UITextFieldDelegate
         
         self.tfDes.attributedPlaceholder = [WYCommonUtils stringToColorAndFontAttributeString:cellNode.placeholder range:NSMakeRange(0, cellNode.placeholder.length) font:[FontConst PingFangSCRegularWithSize:13] color:kAppLightTitleColor];
     }
+    
+    self.imgLine.hidden = cellNode.hiddenLine;
     
     self.labTitle.font = [FontConst PingFangSCRegularWithSize:13];
     if (cellNode.titleFont) {

@@ -90,6 +90,8 @@
 		8D5CB6DC22352C6700527DEB /* LLAddShopAddressViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D5CB6DA22352C6700527DEB /* LLAddShopAddressViewController.m */; };
 		8D5CB6DD22352C6700527DEB /* LLAddShopAddressViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D5CB6DB22352C6700527DEB /* LLAddShopAddressViewController.xib */; };
 		8D5CB6E022352F3900527DEB /* LLTradeMoldNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D5CB6DF22352F3900527DEB /* LLTradeMoldNode.m */; };
+		8D5CB6E422354C6800527DEB /* LLPublishChooseViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D5CB6E222354C6800527DEB /* LLPublishChooseViewCell.m */; };
+		8D5CB6E522354C6800527DEB /* LLPublishChooseViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D5CB6E322354C6800527DEB /* LLPublishChooseViewCell.xib */; };
 		8D79E4D2222672A20019A1BE /* LLTabBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D79E4D1222672A20019A1BE /* LLTabBarViewController.m */; };
 		8D79E4D5222672CA0019A1BE /* LLNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D79E4D4222672CA0019A1BE /* LLNavigationController.m */; };
 		8D79E4D82226748D0019A1BE /* LLBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D79E4D72226748D0019A1BE /* LLBaseViewController.m */; };
@@ -314,6 +316,9 @@
 		8D5CB6DB22352C6700527DEB /* LLAddShopAddressViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LLAddShopAddressViewController.xib; sourceTree = "<group>"; };
 		8D5CB6DE22352F3900527DEB /* LLTradeMoldNode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLTradeMoldNode.h; sourceTree = "<group>"; };
 		8D5CB6DF22352F3900527DEB /* LLTradeMoldNode.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLTradeMoldNode.m; sourceTree = "<group>"; };
+		8D5CB6E122354C6800527DEB /* LLPublishChooseViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLPublishChooseViewCell.h; sourceTree = "<group>"; };
+		8D5CB6E222354C6800527DEB /* LLPublishChooseViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLPublishChooseViewCell.m; sourceTree = "<group>"; };
+		8D5CB6E322354C6800527DEB /* LLPublishChooseViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LLPublishChooseViewCell.xib; sourceTree = "<group>"; };
 		8D79E4D0222672A20019A1BE /* LLTabBarViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLTabBarViewController.h; sourceTree = "<group>"; };
 		8D79E4D1222672A20019A1BE /* LLTabBarViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLTabBarViewController.m; sourceTree = "<group>"; };
 		8D79E4D3222672CA0019A1BE /* LLNavigationController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLNavigationController.h; sourceTree = "<group>"; };
@@ -991,6 +996,9 @@
 				8D5CB6C62233AF2400527DEB /* LLPublishIDCardViewCell.h */,
 				8D5CB6C72233AF2400527DEB /* LLPublishIDCardViewCell.m */,
 				8D5CB6C82233AF2400527DEB /* LLPublishIDCardViewCell.xib */,
+				8D5CB6E122354C6800527DEB /* LLPublishChooseViewCell.h */,
+				8D5CB6E222354C6800527DEB /* LLPublishChooseViewCell.m */,
+				8D5CB6E322354C6800527DEB /* LLPublishChooseViewCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1251,6 +1259,7 @@
 				8D890B532232077D00CA711A /* LLMineWalletViewController.xib in Resources */,
 				8D4C6123222D553A00024840 /* LLForgotPasswordViewController.xib in Resources */,
 				8D5CB6DD22352C6700527DEB /* LLAddShopAddressViewController.xib in Resources */,
+				8D5CB6E522354C6800527DEB /* LLPublishChooseViewCell.xib in Resources */,
 				8D542A63222A5BC2008B90B0 /* NetWorkConfig.json in Resources */,
 				8D890B4D2232060100CA711A /* LLMessageViewController.xib in Resources */,
 				8D890B68223231BF00CA711A /* LLPublishNormalViewCell.xib in Resources */,
@@ -1530,6 +1539,7 @@
 				8D890B5C223212A000CA711A /* LLPublishViewController.m in Sources */,
 				8D5CB6C32232D73300527DEB /* ZJUsefulPickerView.m in Sources */,
 				8D542A72222A5BC2008B90B0 /* LELoginModel.m in Sources */,
+				8D5CB6E422354C6800527DEB /* LLPublishChooseViewCell.m in Sources */,
 				8D542A6C222A5BC2008B90B0 /* LEShareWindow.m in Sources */,
 				8D542A5F222A5BC2008B90B0 /* LESuperTableViewController.m in Sources */,
 			);

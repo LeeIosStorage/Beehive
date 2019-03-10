@@ -26,11 +26,18 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yrm-jX-eW8">
-                        <rect key="frame" x="49" y="10.5" width="245" height="19"/>
+                        <rect key="frame" x="261" y="10.5" width="33" height="19"/>
                         <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="13"/>
                         <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="3_2_3.1" translatesAutoresizingMaskIntoConstraints="NO" id="eRj-4L-a20">
+                        <rect key="frame" x="244" y="14" width="12" height="12"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="12" id="1uk-rh-Au4"/>
+                            <constraint firstAttribute="height" constant="12" id="nYt-bq-hN9"/>
+                        </constraints>
+                    </imageView>
                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="KZr-fE-F4c">
                         <rect key="frame" x="51" y="3" width="259" height="34"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -60,10 +67,12 @@
                     <constraint firstItem="KZr-fE-F4c" firstAttribute="leading" secondItem="xLy-vU-RCf" secondAttribute="trailing" constant="8" id="27f-fL-TgK"/>
                     <constraint firstItem="yrm-jX-eW8" firstAttribute="centerY" secondItem="xLy-vU-RCf" secondAttribute="centerY" id="4gv-MI-i8p"/>
                     <constraint firstItem="qWu-re-xT8" firstAttribute="leading" secondItem="yrm-jX-eW8" secondAttribute="trailing" constant="5" id="7Kl-fq-eiY"/>
+                    <constraint firstItem="yrm-jX-eW8" firstAttribute="centerY" secondItem="eRj-4L-a20" secondAttribute="centerY" id="7Vr-l8-zIC"/>
                     <constraint firstItem="KZr-fE-F4c" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="3" id="D0r-s9-OfZ"/>
+                    <constraint firstItem="yrm-jX-eW8" firstAttribute="leading" secondItem="eRj-4L-a20" secondAttribute="trailing" constant="5" id="NtC-v2-O4A"/>
                     <constraint firstItem="hk9-rN-KpY" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="SAs-fa-XAO"/>
                     <constraint firstAttribute="bottom" secondItem="hk9-rN-KpY" secondAttribute="bottom" id="T0U-LC-Pwf"/>
-                    <constraint firstItem="yrm-jX-eW8" firstAttribute="leading" secondItem="xLy-vU-RCf" secondAttribute="trailing" constant="6" id="af9-Lf-ci6"/>
+                    <constraint firstItem="yrm-jX-eW8" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="xLy-vU-RCf" secondAttribute="trailing" constant="6" id="af9-Lf-ci6"/>
                     <constraint firstAttribute="trailing" secondItem="hk9-rN-KpY" secondAttribute="trailing" id="cM5-Ja-w7k"/>
                     <constraint firstAttribute="trailing" secondItem="KZr-fE-F4c" secondAttribute="trailing" constant="10" id="eAe-Qd-WyB"/>
                     <constraint firstItem="xLy-vU-RCf" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="fNp-i8-Von"/>
@@ -75,6 +84,8 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
             <connections>
+                <outlet property="imgLabDes" destination="eRj-4L-a20" id="f2x-Jz-edm"/>
+                <outlet property="imgLine" destination="hk9-rN-KpY" id="mMF-Jy-Fz5"/>
                 <outlet property="imgRight" destination="qWu-re-xT8" id="v58-Vu-8BR"/>
                 <outlet property="labDes" destination="yrm-jX-eW8" id="kFs-YE-tID"/>
                 <outlet property="labTitle" destination="xLy-vU-RCf" id="aFa-UP-H4E"/>
@@ -84,6 +95,7 @@
         </tableViewCell>
     </objects>
     <resources>
+        <image name="3_2_3.1" width="12" height="12"/>
         <image name="app_cell_right_icon" width="11" height="11"/>
     </resources>
 </document>
