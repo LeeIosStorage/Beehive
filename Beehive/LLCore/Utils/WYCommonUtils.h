@@ -59,6 +59,8 @@ typedef enum : NSUInteger {
 + (NSString *)dateDiscriptionFromNowBk:(NSDate *)date;
 //显示时间格式:MM/dd HH:mm
 + (NSString *)dateDiscriptionFromDate:(NSDate *)date;
+//显示时间格式:yyyy-MM-dd
++ (NSString*)dateYearToDayDiscriptionFromDate:(NSDate*)date;
 //显示时间格式:yyyy-MM-dd HH:mm:ss
 + (NSString*)dateYearToSecondDiscriptionFromDate:(NSDate*)date;
 //显示时间格式:HH:mm

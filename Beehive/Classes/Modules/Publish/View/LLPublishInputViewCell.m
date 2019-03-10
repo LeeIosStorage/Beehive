@@ -17,6 +17,7 @@ UITextViewDelegate
 @property (nonatomic, weak) IBOutlet UIView *viewInputContainer;
 @property (nonatomic, weak) IBOutlet UILabel *labPlaceholder;
 @property (nonatomic, weak) IBOutlet UITextView *textView;
+@property (nonatomic, weak) IBOutlet UILabel *labMaxTip;
 
 @end
 
@@ -44,15 +45,30 @@ UITextViewDelegate
     self.node = cellNode;
     self.labTitle.text = cellNode.title;
     self.labPlaceholder.text = cellNode.placeholder;
+    
     self.textView.text = cellNode.inputText;
     
     self.labPlaceholder.hidden = (cellNode.inputText.length > 0);
+    self.labMaxTip.hidden = true;
+    if (cellNode.inputMaxCount > 0) {
+        self.labMaxTip.hidden = false;
+        self.labMaxTip.text = [NSString stringWithFormat:@"%ld/%d",self.textView.text.length, cellNode.inputMaxCount];
+    }
 }
 
 #pragma mark - UITextViewDelegate
 - (void)textViewDidChange:(UITextView *)textView {
     LLPublishCellNode *cellNode = (LLPublishCellNode *)self.node;
-    cellNode.inputText = textView.text;
+    
+    if (cellNode.inputMaxCount > 0) {
+        NSInteger length = cellNode.inputMaxCount - self.textView.text.length;
+        if (length < 0) {
+            self.textView.text = [textView.text substringWithRange:NSMakeRange(0, cellNode.inputMaxCount)];
+        }
+        self.labMaxTip.text = [NSString stringWithFormat:@"%ld/%d",self.textView.text.length, cellNode.inputMaxCount];
+    }
+    
+    cellNode.inputText = self.textView.text;
     self.labPlaceholder.hidden = (cellNode.inputText.length > 0);
 }
 

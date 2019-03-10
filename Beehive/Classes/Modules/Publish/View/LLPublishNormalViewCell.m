@@ -39,6 +39,12 @@ UITextFieldDelegate
     LLPublishCellNode *cellNode = (LLPublishCellNode *)node;
     self.node = cellNode;
     self.labTitle.text = cellNode.title;
+    if (cellNode.inputMaxCount > 0 ) {
+        NSString *maxText = [NSString stringWithFormat:@"(最多%d个字)",cellNode.inputMaxCount];
+        NSString *attStr = [NSString stringWithFormat:@"%@%@",cellNode.title,maxText];
+        self.labTitle.attributedText = [WYCommonUtils stringToColorAndFontAttributeString:attStr range:NSMakeRange(cellNode.title.length, maxText.length) font:[FontConst PingFangSCRegularWithSize:10] color:kAppLightTitleColor];;
+    }
+    
     self.labDes.text = (cellNode.inputText && cellNode.inputText.length) > 0 ? cellNode.inputText : cellNode.placeholder;
     if (cellNode.inputType == LLPublishInputTypeSelect) {
         self.labDes.hidden = false;
@@ -61,6 +67,11 @@ UITextFieldDelegate
         
         self.tfDes.attributedPlaceholder = [WYCommonUtils stringToColorAndFontAttributeString:cellNode.placeholder range:NSMakeRange(0, cellNode.placeholder.length) font:[FontConst PingFangSCRegularWithSize:13] color:kAppLightTitleColor];
     }
+    
+    self.labTitle.font = [FontConst PingFangSCRegularWithSize:13];
+    if (cellNode.titleFont) {
+        self.labTitle.font = cellNode.titleFont;
+    }
 }
 
 #pragma mark - UITextFieldDelegate
@@ -69,18 +80,20 @@ UITextFieldDelegate
     if ([string isEqualToString:@"\n"]) {
         return false;
     }
-    if (!string.length && range.length > 0) {
-        return true;
-    }
+//    if (!string.length && range.length > 0) {
+//        return true;
+//    }
     NSString *oldString = [textField.text copy];
     NSString *newString = [oldString stringByReplacingCharactersInRange:range withString:string];
     LLPublishCellNode *cellNode = (LLPublishCellNode *)self.node;
     cellNode.inputText = newString;
     
     if (textField == self.tfDes && textField.markedTextRange == nil) {
-//        if (newString.length > 20 && textField.text.length >= 20) {
-//            return NO;
-//        }
+        if (cellNode.inputMaxCount > 0) {
+            if (newString.length > cellNode.inputMaxCount && textField.text.length >= cellNode.inputMaxCount) {
+                return NO;
+            }
+        }
     }
     return true;
 }

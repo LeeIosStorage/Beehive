@@ -80,6 +80,16 @@
 		8D5CB6C32232D73300527DEB /* ZJUsefulPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D5CB6B82232D73300527DEB /* ZJUsefulPickerView.m */; };
 		8D5CB6C42232D73300527DEB /* ZJSinglePickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D5CB6BA2232D73300527DEB /* ZJSinglePickerView.m */; };
 		8D5CB6C52232D73300527DEB /* ZJToolBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D5CB6BB2232D73300527DEB /* ZJToolBar.m */; };
+		8D5CB6C92233AF2400527DEB /* LLPublishIDCardViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D5CB6C72233AF2400527DEB /* LLPublishIDCardViewCell.m */; };
+		8D5CB6CA2233AF2400527DEB /* LLPublishIDCardViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D5CB6C82233AF2400527DEB /* LLPublishIDCardViewCell.xib */; };
+		8D5CB6CD2234E65000527DEB /* LLMultipleSelectedPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D5CB6CC2234E65000527DEB /* LLMultipleSelectedPickerView.m */; };
+		8D5CB6D222352A9800527DEB /* LLTradeMoldViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D5CB6D022352A9800527DEB /* LLTradeMoldViewController.m */; };
+		8D5CB6D322352A9800527DEB /* LLTradeMoldViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D5CB6D122352A9800527DEB /* LLTradeMoldViewController.xib */; };
+		8D5CB6D722352C0600527DEB /* LLChooseLocationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D5CB6D522352C0600527DEB /* LLChooseLocationViewController.m */; };
+		8D5CB6D822352C0600527DEB /* LLChooseLocationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D5CB6D622352C0600527DEB /* LLChooseLocationViewController.xib */; };
+		8D5CB6DC22352C6700527DEB /* LLAddShopAddressViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D5CB6DA22352C6700527DEB /* LLAddShopAddressViewController.m */; };
+		8D5CB6DD22352C6700527DEB /* LLAddShopAddressViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D5CB6DB22352C6700527DEB /* LLAddShopAddressViewController.xib */; };
+		8D5CB6E022352F3900527DEB /* LLTradeMoldNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D5CB6DF22352F3900527DEB /* LLTradeMoldNode.m */; };
 		8D79E4D2222672A20019A1BE /* LLTabBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D79E4D1222672A20019A1BE /* LLTabBarViewController.m */; };
 		8D79E4D5222672CA0019A1BE /* LLNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D79E4D4222672CA0019A1BE /* LLNavigationController.m */; };
 		8D79E4D82226748D0019A1BE /* LLBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D79E4D72226748D0019A1BE /* LLBaseViewController.m */; };
@@ -288,6 +298,22 @@
 		8D5CB6B92232D73300527DEB /* ZJSelectedTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJSelectedTextField.h; sourceTree = "<group>"; };
 		8D5CB6BA2232D73300527DEB /* ZJSinglePickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZJSinglePickerView.m; sourceTree = "<group>"; };
 		8D5CB6BB2232D73300527DEB /* ZJToolBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZJToolBar.m; sourceTree = "<group>"; };
+		8D5CB6C62233AF2400527DEB /* LLPublishIDCardViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLPublishIDCardViewCell.h; sourceTree = "<group>"; };
+		8D5CB6C72233AF2400527DEB /* LLPublishIDCardViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLPublishIDCardViewCell.m; sourceTree = "<group>"; };
+		8D5CB6C82233AF2400527DEB /* LLPublishIDCardViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LLPublishIDCardViewCell.xib; sourceTree = "<group>"; };
+		8D5CB6CB2234E65000527DEB /* LLMultipleSelectedPickerView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLMultipleSelectedPickerView.h; sourceTree = "<group>"; };
+		8D5CB6CC2234E65000527DEB /* LLMultipleSelectedPickerView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLMultipleSelectedPickerView.m; sourceTree = "<group>"; };
+		8D5CB6CF22352A9800527DEB /* LLTradeMoldViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLTradeMoldViewController.h; sourceTree = "<group>"; };
+		8D5CB6D022352A9800527DEB /* LLTradeMoldViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLTradeMoldViewController.m; sourceTree = "<group>"; };
+		8D5CB6D122352A9800527DEB /* LLTradeMoldViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LLTradeMoldViewController.xib; sourceTree = "<group>"; };
+		8D5CB6D422352C0600527DEB /* LLChooseLocationViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLChooseLocationViewController.h; sourceTree = "<group>"; };
+		8D5CB6D522352C0600527DEB /* LLChooseLocationViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLChooseLocationViewController.m; sourceTree = "<group>"; };
+		8D5CB6D622352C0600527DEB /* LLChooseLocationViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LLChooseLocationViewController.xib; sourceTree = "<group>"; };
+		8D5CB6D922352C6700527DEB /* LLAddShopAddressViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLAddShopAddressViewController.h; sourceTree = "<group>"; };
+		8D5CB6DA22352C6700527DEB /* LLAddShopAddressViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLAddShopAddressViewController.m; sourceTree = "<group>"; };
+		8D5CB6DB22352C6700527DEB /* LLAddShopAddressViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LLAddShopAddressViewController.xib; sourceTree = "<group>"; };
+		8D5CB6DE22352F3900527DEB /* LLTradeMoldNode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLTradeMoldNode.h; sourceTree = "<group>"; };
+		8D5CB6DF22352F3900527DEB /* LLTradeMoldNode.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLTradeMoldNode.m; sourceTree = "<group>"; };
 		8D79E4D0222672A20019A1BE /* LLTabBarViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLTabBarViewController.h; sourceTree = "<group>"; };
 		8D79E4D1222672A20019A1BE /* LLTabBarViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLTabBarViewController.m; sourceTree = "<group>"; };
 		8D79E4D3222672CA0019A1BE /* LLNavigationController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLNavigationController.h; sourceTree = "<group>"; };
@@ -793,21 +819,39 @@
 				8D5CB6B62232D73300527DEB /* City.plist */,
 				8D5CB6AC2232D73300527DEB /* Area.plist */,
 				8D5CB6AB2232D73300527DEB /* ZJMultiplePickerView.h */,
-				8D5CB6AD2232D73300527DEB /* ZJMultipleAssociatedPickerView.h */,
-				8D5CB6AF2232D73300527DEB /* ZJDatePickerView.h */,
-				8D5CB6B02232D73300527DEB /* ZJSelectedTextField.m */,
-				8D5CB6B12232D73300527DEB /* ZJUsefulPickerView.h */,
-				8D5CB6B22232D73300527DEB /* ZJToolBar.h */,
-				8D5CB6B32232D73300527DEB /* ZJSinglePickerView.h */,
-				8D5CB6B42232D73300527DEB /* ZJMultipleAssociatedPickerView.m */,
 				8D5CB6B52232D73300527DEB /* ZJMultiplePickerView.m */,
+				8D5CB6AD2232D73300527DEB /* ZJMultipleAssociatedPickerView.h */,
+				8D5CB6B42232D73300527DEB /* ZJMultipleAssociatedPickerView.m */,
+				8D5CB6AF2232D73300527DEB /* ZJDatePickerView.h */,
 				8D5CB6B72232D73300527DEB /* ZJDatePickerView.m */,
+				8D5CB6B32232D73300527DEB /* ZJSinglePickerView.h */,
+				8D5CB6BA2232D73300527DEB /* ZJSinglePickerView.m */,
+				8D5CB6CB2234E65000527DEB /* LLMultipleSelectedPickerView.h */,
+				8D5CB6CC2234E65000527DEB /* LLMultipleSelectedPickerView.m */,
+				8D5CB6B12232D73300527DEB /* ZJUsefulPickerView.h */,
 				8D5CB6B82232D73300527DEB /* ZJUsefulPickerView.m */,
 				8D5CB6B92232D73300527DEB /* ZJSelectedTextField.h */,
-				8D5CB6BA2232D73300527DEB /* ZJSinglePickerView.m */,
+				8D5CB6B02232D73300527DEB /* ZJSelectedTextField.m */,
+				8D5CB6B22232D73300527DEB /* ZJToolBar.h */,
 				8D5CB6BB2232D73300527DEB /* ZJToolBar.m */,
 			);
 			path = ZJUsefulPickerView;
+			sourceTree = "<group>";
+		};
+		8D5CB6CE22352A6F00527DEB /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				8D5CB6CF22352A9800527DEB /* LLTradeMoldViewController.h */,
+				8D5CB6D022352A9800527DEB /* LLTradeMoldViewController.m */,
+				8D5CB6D122352A9800527DEB /* LLTradeMoldViewController.xib */,
+				8D5CB6D422352C0600527DEB /* LLChooseLocationViewController.h */,
+				8D5CB6D522352C0600527DEB /* LLChooseLocationViewController.m */,
+				8D5CB6D622352C0600527DEB /* LLChooseLocationViewController.xib */,
+				8D5CB6D922352C6700527DEB /* LLAddShopAddressViewController.h */,
+				8D5CB6DA22352C6700527DEB /* LLAddShopAddressViewController.m */,
+				8D5CB6DB22352C6700527DEB /* LLAddShopAddressViewController.xib */,
+			);
+			path = Controller;
 			sourceTree = "<group>";
 		};
 		8D79E4C822266ECC0019A1BE /* AppDelegate */ = {
@@ -923,6 +967,7 @@
 		8D890B592232125C00CA711A /* Publish */ = {
 			isa = PBXGroup;
 			children = (
+				8D5CB6CE22352A6F00527DEB /* Controller */,
 				8D890B6022322BF700CA711A /* Model */,
 				8D890B5F22322BB800CA711A /* View */,
 				8D890B5A223212A000CA711A /* LLPublishViewController.h */,
@@ -943,6 +988,9 @@
 				8D890B6E2232346700CA711A /* LLPublishImageViewCell.h */,
 				8D890B6F2232346700CA711A /* LLPublishImageViewCell.m */,
 				8D890B702232346700CA711A /* LLPublishImageViewCell.xib */,
+				8D5CB6C62233AF2400527DEB /* LLPublishIDCardViewCell.h */,
+				8D5CB6C72233AF2400527DEB /* LLPublishIDCardViewCell.m */,
+				8D5CB6C82233AF2400527DEB /* LLPublishIDCardViewCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -952,6 +1000,8 @@
 			children = (
 				8D890B6122322C2100CA711A /* LLPublishCellNode.h */,
 				8D890B6222322C2100CA711A /* LLPublishCellNode.m */,
+				8D5CB6DE22352F3900527DEB /* LLTradeMoldNode.h */,
+				8D5CB6DF22352F3900527DEB /* LLTradeMoldNode.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1192,12 +1242,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				8D79E4DD222676E20019A1BE /* LLBeeHomeViewController.xib in Resources */,
+				8D5CB6D322352A9800527DEB /* LLTradeMoldViewController.xib in Resources */,
 				8D5CB6C12232D73300527DEB /* City.plist in Resources */,
+				8D5CB6D822352C0600527DEB /* LLChooseLocationViewController.xib in Resources */,
 				8D5CB6BC2232D73300527DEB /* Area.plist in Resources */,
 				8DE5885F2227A4CC002C1576 /* LLBeeRankingViewController.xib in Resources */,
 				8D890B582232082800CA711A /* LLBeeQunViewController.xib in Resources */,
 				8D890B532232077D00CA711A /* LLMineWalletViewController.xib in Resources */,
 				8D4C6123222D553A00024840 /* LLForgotPasswordViewController.xib in Resources */,
+				8D5CB6DD22352C6700527DEB /* LLAddShopAddressViewController.xib in Resources */,
 				8D542A63222A5BC2008B90B0 /* NetWorkConfig.json in Resources */,
 				8D890B4D2232060100CA711A /* LLMessageViewController.xib in Resources */,
 				8D890B68223231BF00CA711A /* LLPublishNormalViewCell.xib in Resources */,
@@ -1219,6 +1272,7 @@
 				7E1E8A7522315672002766AD /* LLMineCollectionHeaderView.xib in Resources */,
 				8D890B722232346700CA711A /* LLPublishImageViewCell.xib in Resources */,
 				8DC02D5622313731000CAE9C /* LLMineCollectionViewCell.xib in Resources */,
+				8D5CB6CA2233AF2400527DEB /* LLPublishIDCardViewCell.xib in Resources */,
 				7E1E8A7022301AF2002766AD /* LLMessageCommentViewCell.xib in Resources */,
 				8D79E4E2222676FC0019A1BE /* LLBeeMineViewController.xib in Resources */,
 			);
@@ -1391,16 +1445,20 @@
 				8D542A70222A5BC2008B90B0 /* LELoginUserManager.m in Sources */,
 				8D890B6322322C2100CA711A /* LLPublishCellNode.m in Sources */,
 				8DCC9AAE222B71F200AC3128 /* LLRedRuleViewController.m in Sources */,
+				8D5CB6D222352A9800527DEB /* LLTradeMoldViewController.m in Sources */,
 				8D890B572232082800CA711A /* LLBeeQunViewController.m in Sources */,
 				8D5CB6BE2232D73300527DEB /* ZJSelectedTextField.m in Sources */,
 				8D890B522232077D00CA711A /* LLMineWalletViewController.m in Sources */,
 				8D542A71222A5BC2008B90B0 /* LELoginManager.m in Sources */,
 				8D3F214D222FB4FF0066F5EB /* LLImageItemViewCell.m in Sources */,
+				8D5CB6DC22352C6700527DEB /* LLAddShopAddressViewController.m in Sources */,
 				8D3F2153222FCB050066F5EB /* LLMessageDetailsViewController.m in Sources */,
 				8D542A6D222A5BC2008B90B0 /* LEShareSheetView.m in Sources */,
+				8D5CB6E022352F3900527DEB /* LLTradeMoldNode.m in Sources */,
 				8DD290E52229450D00E4338D /* UINavigationBar+LLFixSpace.m in Sources */,
 				8DE5885E2227A4CC002C1576 /* LLBeeRankingViewController.m in Sources */,
 				7E1E8A7422315672002766AD /* LLMineCollectionHeaderView.m in Sources */,
+				8D5CB6D722352C0600527DEB /* LLChooseLocationViewController.m in Sources */,
 				8D79E4E1222676FC0019A1BE /* LLBeeMineViewController.m in Sources */,
 				8D542A6A222A5BC2008B90B0 /* LEWebViewController.m in Sources */,
 				8D542A6B222A5BC2008B90B0 /* LEShareModel.m in Sources */,
@@ -1454,8 +1512,10 @@
 				8D542A67222A5BC2008B90B0 /* WYCustomActionSheet.m in Sources */,
 				8D542A78222A5BC2008B90B0 /* MBProgressHUD+LETools.m in Sources */,
 				8DD290D92228D72200E4338D /* UIViewController+LLNavigationBar.m in Sources */,
+				8D5CB6C92233AF2400527DEB /* LLPublishIDCardViewCell.m in Sources */,
 				8DCC9AB6222B7D5700AC3128 /* LLView.m in Sources */,
 				8D542A79222A5BC2008B90B0 /* UIImage+ProportionalFill.m in Sources */,
+				8D5CB6CD2234E65000527DEB /* LLMultipleSelectedPickerView.m in Sources */,
 				8D542A7A222A5BC2008B90B0 /* LEBaseModel.m in Sources */,
 				8D5CB6C22232D73300527DEB /* ZJDatePickerView.m in Sources */,
 				8D890B6C2232344500CA711A /* LLPublishInputViewCell.m in Sources */,

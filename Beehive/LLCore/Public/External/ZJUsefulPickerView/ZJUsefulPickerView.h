@@ -29,6 +29,17 @@ typedef void(^DateSelectedHandler)(NSDate *selectedDate);
 + (ZJUsefulPickerView *)showSingleColPickerWithToolBarText:(NSString *)toolBarText withData:(NSArray<NSString *> *)data withDefaultIndex:(NSInteger)defaultIndex withCancelHandler:(CancelHandler)cancelHandler withDoneHandler:(SingleDoneHandler)doneHandler;
 
 /**
+ *  弹出显示单列数据可以多选的pickerView
+ *
+ *  @param toolBarText   提示文字
+ *  @param data          数据 -- 数组(字符串)
+ *  @param defaultIndexs 默认选中indexs
+ *  @param cancelHandler 取消操作
+ *  @param doneHandler   完成操作
+ */
++ (ZJUsefulPickerView *)showMultipleSelPickerWithToolBarText:(NSString *)toolBarText withData:(NSArray<NSString *> *)data withDefaultIndexs:(NSArray *)defaultIndexs withCancelHandler:(CancelHandler)cancelHandler withDoneHandler:(MultipleDoneHandler)doneHandler;
+
+/**
  *  弹出显示多列不关联数据的pickerView
  *
  *  @param toolBarText   提示文字

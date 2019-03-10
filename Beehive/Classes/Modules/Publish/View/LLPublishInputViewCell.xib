@@ -44,14 +44,23 @@
                                 <color key="textColor" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0/200" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qmg-Z3-3PN">
+                                <rect key="frame" x="258" y="55.5" width="32" height="15.5"/>
+                                <color key="backgroundColor" red="0.96078431372549022" green="0.96078431372549022" blue="0.96078431372549022" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="11"/>
+                                <color key="textColor" red="0.66666666669999997" green="0.66666666669999997" blue="0.66666666669999997" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.96078431372549022" green="0.96078431372549022" blue="0.96078431372549022" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="PlZ-SF-MKd" firstAttribute="top" secondItem="LfL-47-bY8" secondAttribute="top" constant="1" id="1vr-q9-vk9"/>
                             <constraint firstAttribute="trailing" secondItem="SHc-db-Y2x" secondAttribute="trailing" constant="13" id="52x-sS-1uE"/>
+                            <constraint firstAttribute="trailing" secondItem="Qmg-Z3-3PN" secondAttribute="trailing" constant="10" id="7cN-zU-8t6"/>
                             <constraint firstAttribute="trailing" secondItem="PlZ-SF-MKd" secondAttribute="trailing" constant="10" id="Alm-0x-idJ"/>
                             <constraint firstItem="PlZ-SF-MKd" firstAttribute="leading" secondItem="LfL-47-bY8" secondAttribute="leading" constant="7" id="Bwe-tv-j9g"/>
                             <constraint firstAttribute="bottom" secondItem="PlZ-SF-MKd" secondAttribute="bottom" constant="1" id="MeY-h8-AcH"/>
+                            <constraint firstAttribute="bottom" secondItem="Qmg-Z3-3PN" secondAttribute="bottom" constant="3" id="eYj-6J-l4M"/>
                             <constraint firstItem="SHc-db-Y2x" firstAttribute="leading" secondItem="LfL-47-bY8" secondAttribute="leading" constant="13" id="gyJ-27-6bn"/>
                             <constraint firstItem="SHc-db-Y2x" firstAttribute="top" secondItem="LfL-47-bY8" secondAttribute="top" constant="10" id="hZA-fe-9Bt"/>
                             <constraint firstAttribute="height" constant="74" id="j1p-Dh-zrv"/>
@@ -79,6 +88,7 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
             <connections>
+                <outlet property="labMaxTip" destination="Qmg-Z3-3PN" id="BHH-09-Dqv"/>
                 <outlet property="labPlaceholder" destination="SHc-db-Y2x" id="Rc1-dH-ye1"/>
                 <outlet property="labTitle" destination="N0U-Uv-b5N" id="bhQ-Gj-aUc"/>
                 <outlet property="textView" destination="PlZ-SF-MKd" id="ARh-bC-2N8"/>

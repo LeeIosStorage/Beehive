@@ -17,7 +17,7 @@ void ifDebug(dispatch_block_t blcok) {
 }
 
 
-@interface ZJUsefulPickerView ()
+@interface ZJUsefulPickerView () <UIGestureRecognizerDelegate>
 /// 使用UIView可以代替不同类型的pickerView
 @property (strong, nonatomic) UIView *pickerView;
 
@@ -59,6 +59,40 @@ static const CGFloat kPickerViewHeight = 260.0f;
     }];
     /// 设置pickerView --- 在重写的set方法里面会将pickerView添加到usefulPickerView上
     usefulPickerView.pickerView = single;
+    /// 弹出usefulPickerView
+    [usefulPickerView showPickerView];
+    /// 返回usefulPickerView --- 便于使用者自定义一些toolBar的属性
+    return usefulPickerView;
+}
+
++ (ZJUsefulPickerView *)showMultipleSelPickerWithToolBarText:(NSString *)toolBarText withData:(NSArray<NSString *> *)data withDefaultIndexs:(NSArray *)defaultIndexs withCancelHandler:(CancelHandler)cancelHandler withDoneHandler:(MultipleDoneHandler)doneHandler {
+    ZJUsefulPickerView *usefulPickerView = [ZJUsefulPickerView new];
+    
+    __weak ZJUsefulPickerView *weakUsefulPickerView = usefulPickerView;
+    /// 解决循环引用的问题
+    LLMultipleSelectedPickerView *multipleSel = [[LLMultipleSelectedPickerView alloc] initWithToolBarText:toolBarText withDefaultIndexs:defaultIndexs withData:data withValueDidChangedHandler:nil cancelAction:^{
+        if (cancelHandler) {
+            cancelHandler();
+        }
+        __strong ZJUsefulPickerView *strongUsefulPickerView = weakUsefulPickerView;
+        if (strongUsefulPickerView) {
+            /// 移除
+            [strongUsefulPickerView hidePickerView];
+            
+        }
+    } doneAction:^(NSArray *selectedIndexs, NSArray *selectedValues) {
+        if (doneHandler) {
+            doneHandler(selectedIndexs, selectedValues);
+        }
+        __strong ZJUsefulPickerView *strongUsefulPickerView = weakUsefulPickerView;
+        if (strongUsefulPickerView) {
+            /// 移除
+            [strongUsefulPickerView hidePickerView];
+            
+        }
+    }];
+    /// 设置pickerView --- 在重写的set方法里面会将pickerView添加到usefulPickerView上
+    usefulPickerView.pickerView = multipleSel;
     /// 弹出usefulPickerView
     [usefulPickerView showPickerView];
     /// 返回usefulPickerView --- 便于使用者自定义一些toolBar的属性
@@ -183,6 +217,7 @@ static const CGFloat kPickerViewHeight = 260.0f;
     if (self = [super init]) {
         UITapGestureRecognizer *tapGes = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapedSelf:)];
         tapGes.numberOfTapsRequired = 1;
+        tapGes.delegate = self;
         [self addGestureRecognizer:tapGes];
         self.backgroundColor = [UIColor whiteColor];
     }
@@ -200,6 +235,16 @@ static const CGFloat kPickerViewHeight = 260.0f;
     if (location.y <= [UIScreen mainScreen].bounds.size.height - kPickerViewHeight) {
         [self hidePickerView];
     }
+}
+
+#pragma mark - UIGestureRecognizerDelegate
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch
+{
+    // 若为UITableViewCellContentView（即点击了tableViewCell），则不截获Touch事件
+    if ([NSStringFromClass([touch.view class]) isEqualToString:@"UITableViewCellContentView"]) {
+        return NO;
+    }
+    return  YES;
 }
 
 #pragma mark - helper
