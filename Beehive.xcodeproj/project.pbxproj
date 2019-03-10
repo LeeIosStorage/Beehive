@@ -92,6 +92,10 @@
 		8D5CB6E022352F3900527DEB /* LLTradeMoldNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D5CB6DF22352F3900527DEB /* LLTradeMoldNode.m */; };
 		8D5CB6E422354C6800527DEB /* LLPublishChooseViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D5CB6E222354C6800527DEB /* LLPublishChooseViewCell.m */; };
 		8D5CB6E522354C6800527DEB /* LLPublishChooseViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D5CB6E322354C6800527DEB /* LLPublishChooseViewCell.xib */; };
+		8D5CB6E922357EA000527DEB /* LLMapAddressViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D5CB6E722357EA000527DEB /* LLMapAddressViewController.m */; };
+		8D5CB6EA22357EA000527DEB /* LLMapAddressViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D5CB6E822357EA000527DEB /* LLMapAddressViewController.xib */; };
+		8D5CB6EE22357F1D00527DEB /* LLMapAddressSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D5CB6EC22357F1D00527DEB /* LLMapAddressSearchViewController.m */; };
+		8D5CB6EF22357F1D00527DEB /* LLMapAddressSearchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D5CB6ED22357F1D00527DEB /* LLMapAddressSearchViewController.xib */; };
 		8D79E4D2222672A20019A1BE /* LLTabBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D79E4D1222672A20019A1BE /* LLTabBarViewController.m */; };
 		8D79E4D5222672CA0019A1BE /* LLNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D79E4D4222672CA0019A1BE /* LLNavigationController.m */; };
 		8D79E4D82226748D0019A1BE /* LLBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D79E4D72226748D0019A1BE /* LLBaseViewController.m */; };
@@ -319,6 +323,12 @@
 		8D5CB6E122354C6800527DEB /* LLPublishChooseViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLPublishChooseViewCell.h; sourceTree = "<group>"; };
 		8D5CB6E222354C6800527DEB /* LLPublishChooseViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLPublishChooseViewCell.m; sourceTree = "<group>"; };
 		8D5CB6E322354C6800527DEB /* LLPublishChooseViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LLPublishChooseViewCell.xib; sourceTree = "<group>"; };
+		8D5CB6E622357EA000527DEB /* LLMapAddressViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLMapAddressViewController.h; sourceTree = "<group>"; };
+		8D5CB6E722357EA000527DEB /* LLMapAddressViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLMapAddressViewController.m; sourceTree = "<group>"; };
+		8D5CB6E822357EA000527DEB /* LLMapAddressViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LLMapAddressViewController.xib; sourceTree = "<group>"; };
+		8D5CB6EB22357F1D00527DEB /* LLMapAddressSearchViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLMapAddressSearchViewController.h; sourceTree = "<group>"; };
+		8D5CB6EC22357F1D00527DEB /* LLMapAddressSearchViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLMapAddressSearchViewController.m; sourceTree = "<group>"; };
+		8D5CB6ED22357F1D00527DEB /* LLMapAddressSearchViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LLMapAddressSearchViewController.xib; sourceTree = "<group>"; };
 		8D79E4D0222672A20019A1BE /* LLTabBarViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLTabBarViewController.h; sourceTree = "<group>"; };
 		8D79E4D1222672A20019A1BE /* LLTabBarViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLTabBarViewController.m; sourceTree = "<group>"; };
 		8D79E4D3222672CA0019A1BE /* LLNavigationController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLNavigationController.h; sourceTree = "<group>"; };
@@ -855,6 +865,12 @@
 				8D5CB6D922352C6700527DEB /* LLAddShopAddressViewController.h */,
 				8D5CB6DA22352C6700527DEB /* LLAddShopAddressViewController.m */,
 				8D5CB6DB22352C6700527DEB /* LLAddShopAddressViewController.xib */,
+				8D5CB6E622357EA000527DEB /* LLMapAddressViewController.h */,
+				8D5CB6E722357EA000527DEB /* LLMapAddressViewController.m */,
+				8D5CB6E822357EA000527DEB /* LLMapAddressViewController.xib */,
+				8D5CB6EB22357F1D00527DEB /* LLMapAddressSearchViewController.h */,
+				8D5CB6EC22357F1D00527DEB /* LLMapAddressSearchViewController.m */,
+				8D5CB6ED22357F1D00527DEB /* LLMapAddressSearchViewController.xib */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1258,7 +1274,9 @@
 				8D890B582232082800CA711A /* LLBeeQunViewController.xib in Resources */,
 				8D890B532232077D00CA711A /* LLMineWalletViewController.xib in Resources */,
 				8D4C6123222D553A00024840 /* LLForgotPasswordViewController.xib in Resources */,
+				8D5CB6EF22357F1D00527DEB /* LLMapAddressSearchViewController.xib in Resources */,
 				8D5CB6DD22352C6700527DEB /* LLAddShopAddressViewController.xib in Resources */,
+				8D5CB6EA22357EA000527DEB /* LLMapAddressViewController.xib in Resources */,
 				8D5CB6E522354C6800527DEB /* LLPublishChooseViewCell.xib in Resources */,
 				8D542A63222A5BC2008B90B0 /* NetWorkConfig.json in Resources */,
 				8D890B4D2232060100CA711A /* LLMessageViewController.xib in Resources */,
@@ -1479,6 +1497,7 @@
 				8D58D4C62226355B00803985 /* main.m in Sources */,
 				8DC02D4A2230E4F6000CAE9C /* LLCommentBottomView.m in Sources */,
 				8DC02D4F22311443000CAE9C /* LLRankTableViewCell.m in Sources */,
+				8D5CB6E922357EA000527DEB /* LLMapAddressViewController.m in Sources */,
 				8D79E4D5222672CA0019A1BE /* LLNavigationController.m in Sources */,
 				8DCC9AC2222B815E00AC3128 /* LLTableViewCell.m in Sources */,
 				8D542A64222A5BC2008B90B0 /* WYAPIGenerate.m in Sources */,
@@ -1537,6 +1556,7 @@
 				8D58D4B82226355900803985 /* AppDelegate.m in Sources */,
 				8D4C611E222D058C00024840 /* LLUserInputView.m in Sources */,
 				8D890B5C223212A000CA711A /* LLPublishViewController.m in Sources */,
+				8D5CB6EE22357F1D00527DEB /* LLMapAddressSearchViewController.m in Sources */,
 				8D5CB6C32232D73300527DEB /* ZJUsefulPickerView.m in Sources */,
 				8D542A72222A5BC2008B90B0 /* LELoginModel.m in Sources */,
 				8D5CB6E422354C6800527DEB /* LLPublishChooseViewCell.m in Sources */,

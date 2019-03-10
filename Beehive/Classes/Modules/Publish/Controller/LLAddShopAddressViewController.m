@@ -10,6 +10,7 @@
 #import "LLPublishCellNode.h"
 #import "LLPublishNormalViewCell.h"
 #import "LLPublishChooseViewCell.h"
+#import "LLMapAddressViewController.h"
 
 @interface LLAddShopAddressViewController ()
 <
@@ -124,7 +125,8 @@ UITableViewDataSource
 }
 
 - (void)chooseShipAddress {
-    
+    LLMapAddressViewController *vc = [[LLMapAddressViewController alloc] init];
+    [self.navigationController pushViewController:vc animated:true];
 }
 
 #pragma mark - SetGet
