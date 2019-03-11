@@ -14,6 +14,7 @@
 #import "LLBeeMineViewController.h"
 #import <AMapFoundationKit/AMapFoundationKit.h>
 #import "LLLoginViewController.h"
+#import "LLAddShopAddressViewController.h"
 
 @interface AppDelegate ()
 
@@ -71,6 +72,13 @@
 
 #pragma mark - init
 - (void)initRootVc {
+    
+    LLAddShopAddressViewController *vc = [[LLAddShopAddressViewController alloc] init];
+    LLNavigationController *nav = [[LLNavigationController alloc] initWithRootViewController:vc];
+    self.window.rootViewController = nav;
+    return;
+    
+    
     [LLPlusButton registerPlusButton];
     LLTabBarViewController *tabBarController = [[LLTabBarViewController alloc] init];
     [tabBarController hideTabBadgeBackgroundSeparator];
