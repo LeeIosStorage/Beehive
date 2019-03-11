@@ -10,7 +10,13 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+typedef void(^LLMapAddressSearchCoordinateBlock) (CLLocationCoordinate2D currentCoordinate, NSString *address);
+
 @interface LLMapAddressSearchViewController : LLBaseViewController
+
+@property (nonatomic, strong) NSString *city;
+
+@property (nonatomic, strong) LLMapAddressSearchCoordinateBlock searchCoordinateBlock;
 
 @end
 

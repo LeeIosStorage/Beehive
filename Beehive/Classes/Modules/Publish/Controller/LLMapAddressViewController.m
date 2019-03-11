@@ -28,6 +28,10 @@ AMapSearchDelegate
 
 @property (nonatomic, assign) BOOL isLocated;
 
+@property (nonatomic, assign) CLLocationCoordinate2D currentCoordinate;
+@property (nonatomic, strong) NSString *currentAddress;
+@property (nonatomic, strong) NSString *city;
+
 @end
 
 @implementation LLMapAddressViewController
@@ -42,6 +46,9 @@ AMapSearchDelegate
     self.title = @"选择地址";
     //3_2_4.1
     [self createBarButtonItemAtPosition:LLNavigationBarPositionRight normalImage:[UIImage imageNamed:@"3_2_4.1"] highlightImage:[UIImage imageNamed:@"3_2_4.1"] text:nil action:@selector(searchAddress)];
+    
+//    self.currentCoordinate.longitude = 0;
+//    self.currentCoordinate.latitude = 0;
     
     [self.view addSubview:self.mapView];
     [self.mapView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -79,7 +86,7 @@ AMapSearchDelegate
     
     self.mapView.zoomLevel = 17;
     self.mapView.showsUserLocation = YES;
-//    self.mapView.userTrackingMode = MAUserTrackingModeFollow;
+    self.mapView.userTrackingMode = MAUserTrackingModeFollow;
 }
 
 
@@ -108,8 +115,11 @@ AMapSearchDelegate
 - (void)getPoiInfoWithCoordinate:(CLLocationCoordinate2D)coordinate {
     [self centerAnnotationAnimimate];
     LELog(@"%f-%f",self.mapView.centerCoordinate.latitude,self.mapView.centerCoordinate.longitude);
+    self.currentCoordinate = coordinate;
+    self.mapAddressShowView.addressLabel.text = @"加载中...";
+    self.mapAddressShowView.addressDesLabel.text = @"加载中...";
     AMapReGeocodeSearchRequest *regeo = [[AMapReGeocodeSearchRequest alloc] init];
-    regeo.location = [AMapGeoPoint locationWithLatitude:self.mapView.centerCoordinate.latitude longitude:self.mapView.centerCoordinate.longitude];
+    regeo.location = [AMapGeoPoint locationWithLatitude:coordinate.latitude longitude:coordinate.longitude];
     regeo.requireExtension = false;
     [self.mapSearch AMapReGoecodeSearch:regeo];
 }
@@ -118,7 +128,14 @@ AMapSearchDelegate
 #pragma mark - Action
 - (void)searchAddress {
     LLMapAddressSearchViewController *vc = [[LLMapAddressSearchViewController alloc] init];
+    vc.city = self.city;
     [self.navigationController pushViewController:vc animated:true];
+    
+    WEAKSELF
+    vc.searchCoordinateBlock = ^(CLLocationCoordinate2D currentCoordinate, NSString * _Nonnull address) {
+        [weakSelf.mapView setCenterCoordinate:currentCoordinate animated:YES];
+        [weakSelf getPoiInfoWithCoordinate:currentCoordinate];
+    };
 }
 
 - (void)actionLocation
@@ -135,7 +152,14 @@ AMapSearchDelegate
 }
 
 - (void)affirmAction {
-    
+    if (self.currentCoordinate.latitude == 0 || self.currentCoordinate.longitude == 0) {
+        [SVProgressHUD showCustomInfoWithStatus:@"请选择地址"];
+        return;
+    }
+    if (self.chooseCoordinateBlock) {
+        self.chooseCoordinateBlock(self.currentCoordinate, self.currentAddress);
+    }
+    [self.navigationController popViewControllerAnimated:true];
 }
 
 #pragma mark - setget
@@ -185,6 +209,7 @@ AMapSearchDelegate
     if (!_affirmButton) {
         _affirmButton = [UIButton buttonWithType:UIButtonTypeSystem];
         [_affirmButton setTitle:@"确定" forState:UIControlStateNormal];
+        [_affirmButton setTitleColor:UIColor.whiteColor forState:UIControlStateNormal];
         _affirmButton.backgroundColor = kAppThemeColor;
         [_affirmButton.titleLabel setFont:[FontConst PingFangSCRegularWithSize:14]];
         _affirmButton.layer.cornerRadius = 3;
@@ -243,9 +268,11 @@ AMapSearchDelegate
     if (response.regeocode != nil) {
         NSString *formattedAddress = response.regeocode.formattedAddress;
         AMapAddressComponent *addressComponent = response.regeocode.addressComponent;
-        LELog(@"formattedAddress:%@---\naddressComponent:%@",formattedAddress,addressComponent);
         self.mapAddressShowView.addressLabel.text = formattedAddress;
-        self.mapAddressShowView.addressDesLabel.text = formattedAddress;
+        NSString *addressDes = [NSString stringWithFormat:@"%@ %@",addressComponent.streetNumber.street, addressComponent.streetNumber.number];
+        self.mapAddressShowView.addressDesLabel.text = addressDes;
+        self.currentAddress = formattedAddress;
+        self.city = addressComponent.city;
     }
 }
 

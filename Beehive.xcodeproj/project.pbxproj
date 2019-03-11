@@ -98,6 +98,8 @@
 		8D5CB6EF22357F1D00527DEB /* LLMapAddressSearchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D5CB6ED22357F1D00527DEB /* LLMapAddressSearchViewController.xib */; };
 		8D5F2E56223662E50049C28F /* LLMapAddressShowView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D5F2E55223662E50049C28F /* LLMapAddressShowView.m */; };
 		8D5F2E58223662F20049C28F /* LLMapAddressShowView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D5F2E57223662F10049C28F /* LLMapAddressShowView.xib */; };
+		8D5F2E5B223698D90049C28F /* LLMapAddressSearchTitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D5F2E5A223698D90049C28F /* LLMapAddressSearchTitleView.m */; };
+		8D5F2E5D223698E60049C28F /* LLMapAddressSearchTitleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D5F2E5C223698E60049C28F /* LLMapAddressSearchTitleView.xib */; };
 		8D79E4D2222672A20019A1BE /* LLTabBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D79E4D1222672A20019A1BE /* LLTabBarViewController.m */; };
 		8D79E4D5222672CA0019A1BE /* LLNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D79E4D4222672CA0019A1BE /* LLNavigationController.m */; };
 		8D79E4D82226748D0019A1BE /* LLBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D79E4D72226748D0019A1BE /* LLBaseViewController.m */; };
@@ -334,6 +336,9 @@
 		8D5F2E54223662E50049C28F /* LLMapAddressShowView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLMapAddressShowView.h; sourceTree = "<group>"; };
 		8D5F2E55223662E50049C28F /* LLMapAddressShowView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLMapAddressShowView.m; sourceTree = "<group>"; };
 		8D5F2E57223662F10049C28F /* LLMapAddressShowView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LLMapAddressShowView.xib; sourceTree = "<group>"; };
+		8D5F2E59223698D90049C28F /* LLMapAddressSearchTitleView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLMapAddressSearchTitleView.h; sourceTree = "<group>"; };
+		8D5F2E5A223698D90049C28F /* LLMapAddressSearchTitleView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLMapAddressSearchTitleView.m; sourceTree = "<group>"; };
+		8D5F2E5C223698E60049C28F /* LLMapAddressSearchTitleView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LLMapAddressSearchTitleView.xib; sourceTree = "<group>"; };
 		8D79E4D0222672A20019A1BE /* LLTabBarViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLTabBarViewController.h; sourceTree = "<group>"; };
 		8D79E4D1222672A20019A1BE /* LLTabBarViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLTabBarViewController.m; sourceTree = "<group>"; };
 		8D79E4D3222672CA0019A1BE /* LLNavigationController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLNavigationController.h; sourceTree = "<group>"; };
@@ -887,6 +892,9 @@
 				8D5F2E54223662E50049C28F /* LLMapAddressShowView.h */,
 				8D5F2E55223662E50049C28F /* LLMapAddressShowView.m */,
 				8D5F2E57223662F10049C28F /* LLMapAddressShowView.xib */,
+				8D5F2E59223698D90049C28F /* LLMapAddressSearchTitleView.h */,
+				8D5F2E5A223698D90049C28F /* LLMapAddressSearchTitleView.m */,
+				8D5F2E5C223698E60049C28F /* LLMapAddressSearchTitleView.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1306,6 +1314,7 @@
 				8D4C6128222D555800024840 /* LLRegisterViewController.xib in Resources */,
 				8DCC9AAF222B71F200AC3128 /* LLRedRuleViewController.xib in Resources */,
 				8D3F2154222FCB050066F5EB /* LLMessageDetailsViewController.xib in Resources */,
+				8D5F2E5D223698E60049C28F /* LLMapAddressSearchTitleView.xib in Resources */,
 				8D58D4C02226355B00803985 /* Assets.xcassets in Resources */,
 				8D58D4BE2226355900803985 /* Main.storyboard in Resources */,
 				7E1E8A65222ED0E6002766AD /* LLMessageTimeLineViewCell.xib in Resources */,
@@ -1527,6 +1536,7 @@
 				8D5CB6C42232D73300527DEB /* ZJSinglePickerView.m in Sources */,
 				8D542A74222A5BC2008B90B0 /* PathHelper.m in Sources */,
 				8D79E4D82226748D0019A1BE /* LLBaseViewController.m in Sources */,
+				8D5F2E5B223698D90049C28F /* LLMapAddressSearchTitleView.m in Sources */,
 				8D890B4C2232060100CA711A /* LLMessageViewController.m in Sources */,
 				8DE588672227C76F002C1576 /* FontConst.swift in Sources */,
 				8D5CB6C02232D73300527DEB /* ZJMultiplePickerView.m in Sources */,

@@ -107,6 +107,9 @@ UITableViewDataSource
         case LLPublishCellTypeShipAddress:
             cellNode.title = @"收货地址";
             cellNode.placeholder = @"点击选择";
+            if (self.currentPublishNode.address.length > 0) {
+                cellNode.inputText = self.currentPublishNode.address;
+            }
             break;
         case LLPublishCellTypeHouseNumber:
             cellNode.title = @"门牌号";
@@ -127,6 +130,12 @@ UITableViewDataSource
 - (void)chooseShipAddress {
     LLMapAddressViewController *vc = [[LLMapAddressViewController alloc] init];
     [self.navigationController pushViewController:vc animated:true];
+    WEAKSELF
+    vc.chooseCoordinateBlock = ^(CLLocationCoordinate2D currentCoordinate, NSString * _Nonnull address) {
+        weakSelf.currentPublishNode.coordinate = currentCoordinate;
+        weakSelf.currentPublishNode.address = address;
+        [weakSelf refreshDataSource];
+    };
 }
 
 #pragma mark - SetGet

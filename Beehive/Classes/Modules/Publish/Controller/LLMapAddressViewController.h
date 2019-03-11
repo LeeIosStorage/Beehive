@@ -10,7 +10,11 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+typedef void(^LLMapAddressChooseCoordinateBlock) (CLLocationCoordinate2D currentCoordinate, NSString *address);
+
 @interface LLMapAddressViewController : LLBaseViewController
+
+@property (nonatomic, copy) LLMapAddressChooseCoordinateBlock chooseCoordinateBlock;
 
 @end
 
