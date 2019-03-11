@@ -73,10 +73,10 @@
 #pragma mark - init
 - (void)initRootVc {
     
-    LLAddShopAddressViewController *vc = [[LLAddShopAddressViewController alloc] init];
-    LLNavigationController *nav = [[LLNavigationController alloc] initWithRootViewController:vc];
-    self.window.rootViewController = nav;
-    return;
+//    LLAddShopAddressViewController *vc = [[LLAddShopAddressViewController alloc] init];
+//    LLNavigationController *nav = [[LLNavigationController alloc] initWithRootViewController:vc];
+//    self.window.rootViewController = nav;
+//    return;
     
     
     [LLPlusButton registerPlusButton];
