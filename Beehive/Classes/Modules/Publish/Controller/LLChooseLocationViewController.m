@@ -38,6 +38,8 @@ AMapGeoFenceManagerDelegate
 
 @property (nonatomic, assign) NSInteger selScopeIndex;
 
+@property (nonatomic, assign) BOOL isChooseCity;
+
 @end
 
 @implementation LLChooseLocationViewController
@@ -50,6 +52,8 @@ AMapGeoFenceManagerDelegate
 
 - (void)setup {
     self.title = @"选择位置";
+    self.isChooseCity = false;
+    
     [self.view addSubview:self.chooseLocationScopeView];
     [self.chooseLocationScopeView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.top.equalTo(self.view);
@@ -122,6 +126,10 @@ AMapGeoFenceManagerDelegate
     regeo.requireExtension = false;
     [self.mapSearch AMapReGoecodeSearch:regeo];
     
+    if (self.isChooseCity) {
+        self.isChooseCity = false;
+        return;
+    }
     [self addCircleRegionForMonitoringWithCenter:coordinate];
 }
 
@@ -138,11 +146,24 @@ AMapGeoFenceManagerDelegate
 //    [self.geoFenceManager addDistrictRegionForMonitoringWithDistrictName:@"西湖区" customID:@"district_1"];
 }
 
+- (void)addDistrictRegionForMonitoringWithDistrictName:(NSString *)districtName {
+    self.isChooseCity = true;
+    [self.mapView removeOverlays:self.mapView.overlays];
+    [self.geoFenceManager removeAllGeoFenceRegions];
+    [self.geoFenceManager addDistrictRegionForMonitoringWithDistrictName:districtName customID:@"district_1"];
+}
+
 //添加地理围栏对应的Overlay，方便查看。地图上显示圆
 - (MACircle *)showCircleInMap:(CLLocationCoordinate2D )coordinate radius:(NSInteger)radius {
     MACircle *circleOverlay = [MACircle circleWithCenterCoordinate:coordinate radius:radius];
     [self.mapView addOverlay:circleOverlay];
     return circleOverlay;
+}
+
+- (MAPolygon *)showPolygonInMap:(CLLocationCoordinate2D *)coordinates count:(NSInteger)count {
+    MAPolygon *polygonOverlay = [MAPolygon polygonWithCoordinates:coordinates count:count];
+    [self.mapView addOverlay:polygonOverlay];
+    return polygonOverlay;
 }
 
 #pragma mark Methds
@@ -151,7 +172,12 @@ AMapGeoFenceManagerDelegate
     [ZJUsefulPickerView showCitiesPickerWithToolBarText:@"选择地区" withDefaultSelectedValues:nil withCancelHandler:^{
         
     } withDoneHandler:^(NSArray *selectedValues) {
-        
+        LELog(@"selectedValues: %@",selectedValues);
+        NSString *districtName = selectedValues[2];
+        if (districtName.length == 0) {
+            districtName = selectedValues[1];
+        }
+        [weakSelf addDistrictRegionForMonitoringWithDistrictName:districtName];
     }];
 }
 
@@ -235,13 +261,16 @@ AMapGeoFenceManagerDelegate
     if ([overlay isKindOfClass:[MAPolygon class]]) {
         MAPolygonRenderer *polylineRenderer = [[MAPolygonRenderer alloc] initWithPolygon:overlay];
         polylineRenderer.lineWidth = 3.0f;
-        polylineRenderer.strokeColor = [UIColor orangeColor];
+        polylineRenderer.strokeColor = [kAppThemeColor colorWithAlphaComponent:0.3];
+        UIColor *fillColor = polylineRenderer.fillColor;
+        
+        polylineRenderer.fillColor = [fillColor colorWithAlphaComponent:0.5];
         
         return polylineRenderer;
     } else if ([overlay isKindOfClass:[MACircle class]]) {
         MACircleRenderer *circleRenderer = [[MACircleRenderer alloc] initWithCircle:overlay];
         circleRenderer.lineWidth = 3.0f;
-        circleRenderer.strokeColor = kAppThemeColor;
+        circleRenderer.strokeColor = [kAppThemeColor colorWithAlphaComponent:0.3];
         circleRenderer.fillColor = UIColor.clearColor;
         
         return circleRenderer;
@@ -306,6 +335,21 @@ AMapGeoFenceManagerDelegate
             AMapGeoFenceCircleRegion *circleRegion = (AMapGeoFenceCircleRegion *)regions.firstObject;  //一次添加一个圆形围栏，只会返回一个
             MACircle *circleOverlay = [self showCircleInMap:circleRegion.center radius:circleRegion.radius];
 //            [self.mapView setVisibleMapRect:circleOverlay.boundingMapRect edgePadding:UIEdgeInsetsMake(20, 20, 20, 20) animated:YES];   //设置地图的可见范围，让地图缩放和平移到合适的位置
+        } else if ([customID hasPrefix:@"district_1"]) {
+            AMapGeoFenceDistrictRegion *districtRegion = (AMapGeoFenceDistrictRegion *)regions.firstObject;
+            for (NSArray *arealocation in districtRegion.polylinePoints) {
+                CLLocationCoordinate2D *coorArr = malloc(sizeof(CLLocationCoordinate2D) * arealocation.count);
+                for (int i = 0; i < arealocation.count; i++) {
+                    AMapLocationPoint *point = [arealocation objectAtIndex:i];
+                    coorArr[i] = CLLocationCoordinate2DMake(point.latitude, point.longitude);
+                }
+                MAPolygon *polygonOverlay = [self showPolygonInMap:coorArr count:arealocation.count];
+                [self.mapView setVisibleMapRect:polygonOverlay.boundingMapRect edgePadding:UIEdgeInsetsMake(0, 0, 0, 0) animated:YES];
+                
+                free(coorArr);
+                coorArr = NULL;
+                
+            }
         }
     }
 }
