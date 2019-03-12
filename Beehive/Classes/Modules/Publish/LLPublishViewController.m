@@ -176,10 +176,7 @@ UITableViewDataSource
         }
     }
     
-    LLPublishCellNode *cellNode3 = [[LLPublishCellNode alloc] init];
-    cellNode3.title = @"选择位置";
-    cellNode3.placeholder = @"请选择";
-    cellNode3.cellType = LLPublishCellTypeLocation;
+    LLPublishCellNode *cellNode3 = [self nodeForCellTypeWithType:LLPublishCellTypeLocation];
     [newMutArray addObject:[NSMutableArray arrayWithObject:cellNode3]];
     
     LLPublishCellNode *cellNode4 = [[LLPublishCellNode alloc] init];
@@ -302,10 +299,7 @@ UITableViewDataSource
     cellNode2.cellType = LLPublishCellTypeImage;
     [newMutArray addObject:[NSMutableArray arrayWithObject:cellNode2]];
     
-    LLPublishCellNode *cellNode3 = [[LLPublishCellNode alloc] init];
-    cellNode3.title = @"选择位置";
-    cellNode3.placeholder = @"请选择";
-    cellNode3.cellType = LLPublishCellTypeLocation;
+    LLPublishCellNode *cellNode3 = [self nodeForCellTypeWithType:LLPublishCellTypeLocation];
     [newMutArray addObject:[NSMutableArray arrayWithObject:cellNode3]];
     
     LLPublishCellNode *cellNode4 = [[LLPublishCellNode alloc] init];
@@ -355,10 +349,7 @@ UITableViewDataSource
     cellNode2.inputType = LLPublishInputTypeInput;
     [newMutArray addObject:[NSMutableArray arrayWithObjects:cellNode2, nil]];
     
-    LLPublishCellNode *cellNode3 = [[LLPublishCellNode alloc] init];
-    cellNode3.title = @"选择位置";
-    cellNode3.placeholder = @"请选择";
-    cellNode3.cellType = LLPublishCellTypeLocation;
+    LLPublishCellNode *cellNode3 = [self nodeForCellTypeWithType:LLPublishCellTypeLocation];
     [newMutArray addObject:[NSMutableArray arrayWithObject:cellNode3]];
     
     LLPublishCellNode *cellNode4 = [[LLPublishCellNode alloc] init];
@@ -461,6 +452,13 @@ UITableViewDataSource
             cellNode.placeholder = @"请选择";
             if (self.currentPublishNode.tradeMoldNode1 && self.currentPublishNode.tradeMoldNode2) {
                 cellNode.inputText = [NSString stringWithFormat:@"%@/%@",self.currentPublishNode.tradeMoldNode1.title, self.currentPublishNode.tradeMoldNode2.title];
+            }
+            break;
+        case LLPublishCellTypeLocation:
+            cellNode.title = @"选择位置";
+            cellNode.placeholder = @"请选择";
+            if (self.currentPublishNode.address.length > 0) {
+                cellNode.inputText = self.currentPublishNode.address;
             }
             break;
         default:
@@ -649,6 +647,13 @@ UITableViewDataSource
 - (void)chooseLocation {
     LLChooseLocationViewController *vc = [[LLChooseLocationViewController alloc] init];
     [self.navigationController pushViewController:vc animated:true];
+    
+    WEAKSELF
+    vc.chooseLocationCoordinateBlock = ^(CLLocationCoordinate2D currentCoordinate, NSString * _Nonnull address) {
+        weakSelf.currentPublishNode.coordinate = currentCoordinate;
+        weakSelf.currentPublishNode.address = address;
+        [weakSelf refreshDataSource];
+    };
 }
 
 - (void)chooseShopAddress {

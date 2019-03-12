@@ -18,6 +18,7 @@
 MAMapViewDelegate,
 AMapSearchDelegate
 >
+
 @property (nonatomic, strong) MAMapView *mapView;
 @property (nonatomic, strong) AMapSearchAPI *mapSearch;
 
