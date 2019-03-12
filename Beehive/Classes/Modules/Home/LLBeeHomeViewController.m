@@ -162,7 +162,7 @@
     if (!_btnSingin) {
         _btnSingin = [UIButton buttonWithType:UIButtonTypeCustom];
         [_btnSingin setImage:[UIImage imageNamed:@"home_signin"] forState:UIControlStateNormal];
-        [_btnExchange addTarget:self action:@selector(singinAction:) forControlEvents:UIControlEventTouchUpInside];
+        [_btnSingin addTarget:self action:@selector(singinAction:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _btnSingin;
 }
@@ -170,7 +170,7 @@
     if (!_btnShare) {
         _btnShare = [UIButton buttonWithType:UIButtonTypeCustom];
         [_btnShare setImage:[UIImage imageNamed:@"home_share"] forState:UIControlStateNormal];
-        [_btnExchange addTarget:self action:@selector(shareAction:) forControlEvents:UIControlEventTouchUpInside];
+        [_btnShare addTarget:self action:@selector(shareAction:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _btnShare;
 }
@@ -178,7 +178,7 @@
     if (!_btnRefresh) {
         _btnRefresh = [UIButton buttonWithType:UIButtonTypeCustom];
         [_btnRefresh setImage:[UIImage imageNamed:@"home_redpacket_refresh"] forState:UIControlStateNormal];
-        [_btnExchange addTarget:self action:@selector(refreshAction:) forControlEvents:UIControlEventTouchUpInside];
+        [_btnRefresh addTarget:self action:@selector(refreshAction:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _btnRefresh;
 }
@@ -186,7 +186,7 @@
     if (!_btnRedTask) {
         _btnRedTask = [UIButton buttonWithType:UIButtonTypeCustom];
         [_btnRedTask setImage:[UIImage imageNamed:@"home_redpacket_task"] forState:UIControlStateNormal];
-        [_btnExchange addTarget:self action:@selector(redTaskAction:) forControlEvents:UIControlEventTouchUpInside];
+        [_btnRedTask addTarget:self action:@selector(redTaskAction:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _btnRedTask;
 }
@@ -194,7 +194,7 @@
     if (!_btnRedHistory) {
         _btnRedHistory = [UIButton buttonWithType:UIButtonTypeCustom];
         [_btnRedHistory setImage:[UIImage imageNamed:@"home_redpacket_history"] forState:UIControlStateNormal];
-        [_btnExchange addTarget:self action:@selector(redHistoryAction:) forControlEvents:UIControlEventTouchUpInside];
+        [_btnRedHistory addTarget:self action:@selector(redHistoryAction:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _btnRedHistory;
 }
