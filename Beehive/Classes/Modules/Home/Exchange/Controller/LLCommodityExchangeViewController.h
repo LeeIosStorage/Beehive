@@ -7,10 +7,11 @@
 //
 
 #import "LLBaseViewController.h"
+#import <HJTabViewController/HJTabViewController.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface LLCommodityExchangeViewController : LLBaseViewController
+@interface LLCommodityExchangeViewController : HJTabViewController
 
 @end
 

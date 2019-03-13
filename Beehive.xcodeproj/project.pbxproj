@@ -39,6 +39,9 @@
 		8D0167282238E1EE00CD21D8 /* LLReceiveCommentTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D0167262238E1EE00CD21D8 /* LLReceiveCommentTableViewCell.xib */; };
 		8D01672C2238E20A00CD21D8 /* LLReceiveFavourTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D01672A2238E20A00CD21D8 /* LLReceiveFavourTableViewCell.m */; };
 		8D01672D2238E20A00CD21D8 /* LLReceiveFavourTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D01672B2238E20A00CD21D8 /* LLReceiveFavourTableViewCell.xib */; };
+		8D0167322238ED8900CD21D8 /* LLCommodityExchangeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D0167302238ED8900CD21D8 /* LLCommodityExchangeTableViewCell.m */; };
+		8D0167332238ED8900CD21D8 /* LLCommodityExchangeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D0167312238ED8900CD21D8 /* LLCommodityExchangeTableViewCell.xib */; };
+		8D0167362238FB9C00CD21D8 /* LLExchangeBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D0167352238FB9C00CD21D8 /* LLExchangeBaseViewController.m */; };
 		8D3F2149222F65020066F5EB /* LLHandleStatusView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D3F2148222F65020066F5EB /* LLHandleStatusView.m */; };
 		8D3F214D222FB4FF0066F5EB /* LLImageItemViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D3F214B222FB4FF0066F5EB /* LLImageItemViewCell.m */; };
 		8D3F214E222FB4FF0066F5EB /* LLImageItemViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D3F214C222FB4FF0066F5EB /* LLImageItemViewCell.xib */; };
@@ -246,6 +249,11 @@
 		8D0167292238E20A00CD21D8 /* LLReceiveFavourTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLReceiveFavourTableViewCell.h; sourceTree = "<group>"; };
 		8D01672A2238E20A00CD21D8 /* LLReceiveFavourTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLReceiveFavourTableViewCell.m; sourceTree = "<group>"; };
 		8D01672B2238E20A00CD21D8 /* LLReceiveFavourTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LLReceiveFavourTableViewCell.xib; sourceTree = "<group>"; };
+		8D01672F2238ED8900CD21D8 /* LLCommodityExchangeTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLCommodityExchangeTableViewCell.h; sourceTree = "<group>"; };
+		8D0167302238ED8900CD21D8 /* LLCommodityExchangeTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLCommodityExchangeTableViewCell.m; sourceTree = "<group>"; };
+		8D0167312238ED8900CD21D8 /* LLCommodityExchangeTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LLCommodityExchangeTableViewCell.xib; sourceTree = "<group>"; };
+		8D0167342238FB9C00CD21D8 /* LLExchangeBaseViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLExchangeBaseViewController.h; sourceTree = "<group>"; };
+		8D0167352238FB9C00CD21D8 /* LLExchangeBaseViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLExchangeBaseViewController.m; sourceTree = "<group>"; };
 		8D3F2147222F65020066F5EB /* LLHandleStatusView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLHandleStatusView.h; sourceTree = "<group>"; };
 		8D3F2148222F65020066F5EB /* LLHandleStatusView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLHandleStatusView.m; sourceTree = "<group>"; };
 		8D3F214A222FB4FF0066F5EB /* LLImageItemViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLImageItemViewCell.h; sourceTree = "<group>"; };
@@ -573,6 +581,7 @@
 		7E2E7007223801F500F185A7 /* Exchange */ = {
 			isa = PBXGroup;
 			children = (
+				8D01672E2238ED4500CD21D8 /* View */,
 				7E2E70082238020C00F185A7 /* Controller */,
 			);
 			path = Exchange;
@@ -584,6 +593,8 @@
 				7E2E70092238023300F185A7 /* LLCommodityExchangeViewController.h */,
 				7E2E700A2238023300F185A7 /* LLCommodityExchangeViewController.m */,
 				7E2E700B2238023300F185A7 /* LLCommodityExchangeViewController.xib */,
+				8D0167342238FB9C00CD21D8 /* LLExchangeBaseViewController.h */,
+				8D0167352238FB9C00CD21D8 /* LLExchangeBaseViewController.m */,
 				7E2E700E223802BF00F185A7 /* LLRedTaskViewController.h */,
 				7E2E700F223802BF00F185A7 /* LLRedTaskViewController.m */,
 				7E2E7010223802BF00F185A7 /* LLRedTaskViewController.xib */,
@@ -615,6 +626,16 @@
 				8D0167292238E20A00CD21D8 /* LLReceiveFavourTableViewCell.h */,
 				8D01672A2238E20A00CD21D8 /* LLReceiveFavourTableViewCell.m */,
 				8D01672B2238E20A00CD21D8 /* LLReceiveFavourTableViewCell.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		8D01672E2238ED4500CD21D8 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				8D01672F2238ED8900CD21D8 /* LLCommodityExchangeTableViewCell.h */,
+				8D0167302238ED8900CD21D8 /* LLCommodityExchangeTableViewCell.m */,
+				8D0167312238ED8900CD21D8 /* LLCommodityExchangeTableViewCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1453,6 +1474,7 @@
 				8D0167192238CECC00CD21D8 /* LLCellOriginalContentView.xib in Resources */,
 				8D890B722232346700CA711A /* LLPublishImageViewCell.xib in Resources */,
 				8D01672D2238E20A00CD21D8 /* LLReceiveFavourTableViewCell.xib in Resources */,
+				8D0167332238ED8900CD21D8 /* LLCommodityExchangeTableViewCell.xib in Resources */,
 				8DC02D5622313731000CAE9C /* LLMineCollectionViewCell.xib in Resources */,
 				8D5CB6CA2233AF2400527DEB /* LLPublishIDCardViewCell.xib in Resources */,
 				7E2E7017223802D800F185A7 /* LLRedTaskHistoryViewController.xib in Resources */,
@@ -1491,6 +1513,7 @@
 				"${SRCROOT}/Pods/Target Support Files/Pods-Beehive/Pods-Beehive-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/AFNetworking/AFNetworking.framework",
 				"${BUILT_PRODUCTS_DIR}/CYLTabBarController/CYLTabBarController.framework",
+				"${BUILT_PRODUCTS_DIR}/HJTabViewController/HJTabViewController.framework",
 				"${BUILT_PRODUCTS_DIR}/HXPhotoPicker/HXPhotoPicker.framework",
 				"${BUILT_PRODUCTS_DIR}/JMRoundedCorner/JMRoundedCorner.framework",
 				"${BUILT_PRODUCTS_DIR}/JSONModel/JSONModel.framework",
@@ -1508,6 +1531,7 @@
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AFNetworking.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CYLTabBarController.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/HJTabViewController.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/HXPhotoPicker.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JMRoundedCorner.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JSONModel.framework",
@@ -1675,6 +1699,7 @@
 				8D0167092238BFDB00CD21D8 /* LLAttentionTableViewCell.m in Sources */,
 				8D79E4D82226748D0019A1BE /* LLBaseViewController.m in Sources */,
 				8D5F2E5B223698D90049C28F /* LLMapAddressSearchTitleView.m in Sources */,
+				8D0167362238FB9C00CD21D8 /* LLExchangeBaseViewController.m in Sources */,
 				8D890B4C2232060100CA711A /* LLMessageViewController.m in Sources */,
 				8DE588672227C76F002C1576 /* FontConst.swift in Sources */,
 				8D5CB6C02232D73300527DEB /* ZJMultiplePickerView.m in Sources */,
@@ -1723,6 +1748,7 @@
 				8D542A75222A5BC2008B90B0 /* WYCommonUtils.m in Sources */,
 				8DD290E22229442D00E4338D /* NSObject+LLRuntime.m in Sources */,
 				7E1E8A5F222EB2F5002766AD /* LLSegmentedHeadView.m in Sources */,
+				8D0167322238ED8900CD21D8 /* LLCommodityExchangeTableViewCell.m in Sources */,
 				8D542A6F222A5BC2008B90B0 /* LERefreshFooter.m in Sources */,
 				8DCC9ABF222B814D00AC3128 /* LLTableView.m in Sources */,
 				8D58D4B82226355900803985 /* AppDelegate.m in Sources */,
