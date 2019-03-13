@@ -8,6 +8,7 @@
 
 #import "LLExchangeBaseViewController.h"
 #import "LLCommodityExchangeTableViewCell.h"
+#import "LLCommodityExchangeDetailsViewController.h"
 
 @interface LLExchangeBaseViewController ()
 <
@@ -96,6 +97,8 @@ UITableViewDataSource
 {
     NSIndexPath* selIndexPath = [tableView indexPathForSelectedRow];
     [tableView deselectRowAtIndexPath:selIndexPath animated:YES];
+    LLCommodityExchangeDetailsViewController *vc = [[LLCommodityExchangeDetailsViewController alloc] init];
+    [self.navigationController pushViewController:vc animated:true];
 }
 
 @end

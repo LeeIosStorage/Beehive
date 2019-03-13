@@ -42,6 +42,8 @@
 		8D0167322238ED8900CD21D8 /* LLCommodityExchangeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D0167302238ED8900CD21D8 /* LLCommodityExchangeTableViewCell.m */; };
 		8D0167332238ED8900CD21D8 /* LLCommodityExchangeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D0167312238ED8900CD21D8 /* LLCommodityExchangeTableViewCell.xib */; };
 		8D0167362238FB9C00CD21D8 /* LLExchangeBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D0167352238FB9C00CD21D8 /* LLExchangeBaseViewController.m */; };
+		8D01673A22391EC000CD21D8 /* LLCommodityExchangeDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D01673822391EC000CD21D8 /* LLCommodityExchangeDetailsViewController.m */; };
+		8D01673B22391EC000CD21D8 /* LLCommodityExchangeDetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D01673922391EC000CD21D8 /* LLCommodityExchangeDetailsViewController.xib */; };
 		8D3F2149222F65020066F5EB /* LLHandleStatusView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D3F2148222F65020066F5EB /* LLHandleStatusView.m */; };
 		8D3F214D222FB4FF0066F5EB /* LLImageItemViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D3F214B222FB4FF0066F5EB /* LLImageItemViewCell.m */; };
 		8D3F214E222FB4FF0066F5EB /* LLImageItemViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D3F214C222FB4FF0066F5EB /* LLImageItemViewCell.xib */; };
@@ -254,6 +256,9 @@
 		8D0167312238ED8900CD21D8 /* LLCommodityExchangeTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LLCommodityExchangeTableViewCell.xib; sourceTree = "<group>"; };
 		8D0167342238FB9C00CD21D8 /* LLExchangeBaseViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLExchangeBaseViewController.h; sourceTree = "<group>"; };
 		8D0167352238FB9C00CD21D8 /* LLExchangeBaseViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLExchangeBaseViewController.m; sourceTree = "<group>"; };
+		8D01673722391EC000CD21D8 /* LLCommodityExchangeDetailsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLCommodityExchangeDetailsViewController.h; sourceTree = "<group>"; };
+		8D01673822391EC000CD21D8 /* LLCommodityExchangeDetailsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLCommodityExchangeDetailsViewController.m; sourceTree = "<group>"; };
+		8D01673922391EC000CD21D8 /* LLCommodityExchangeDetailsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LLCommodityExchangeDetailsViewController.xib; sourceTree = "<group>"; };
 		8D3F2147222F65020066F5EB /* LLHandleStatusView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLHandleStatusView.h; sourceTree = "<group>"; };
 		8D3F2148222F65020066F5EB /* LLHandleStatusView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLHandleStatusView.m; sourceTree = "<group>"; };
 		8D3F214A222FB4FF0066F5EB /* LLImageItemViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLImageItemViewCell.h; sourceTree = "<group>"; };
@@ -595,6 +600,9 @@
 				7E2E700B2238023300F185A7 /* LLCommodityExchangeViewController.xib */,
 				8D0167342238FB9C00CD21D8 /* LLExchangeBaseViewController.h */,
 				8D0167352238FB9C00CD21D8 /* LLExchangeBaseViewController.m */,
+				8D01673722391EC000CD21D8 /* LLCommodityExchangeDetailsViewController.h */,
+				8D01673822391EC000CD21D8 /* LLCommodityExchangeDetailsViewController.m */,
+				8D01673922391EC000CD21D8 /* LLCommodityExchangeDetailsViewController.xib */,
 				7E2E700E223802BF00F185A7 /* LLRedTaskViewController.h */,
 				7E2E700F223802BF00F185A7 /* LLRedTaskViewController.m */,
 				7E2E7010223802BF00F185A7 /* LLRedTaskViewController.xib */,
@@ -1454,6 +1462,7 @@
 				8D890B68223231BF00CA711A /* LLPublishNormalViewCell.xib in Resources */,
 				8DE5885A2227A4B3002C1576 /* LLBeeMessageViewController.xib in Resources */,
 				8D890B6D2232344500CA711A /* LLPublishInputViewCell.xib in Resources */,
+				8D01673B22391EC000CD21D8 /* LLCommodityExchangeDetailsViewController.xib in Resources */,
 				8D542A86222A66A5008B90B0 /* LLLoginViewController.xib in Resources */,
 				8D5CB6BD2232D73300527DEB /* Province.plist in Resources */,
 				8D5F2E622236D3040049C28F /* LLChooseLocationScopeView.xib in Resources */,
@@ -1675,6 +1684,7 @@
 				8D542A6B222A5BC2008B90B0 /* LEShareModel.m in Sources */,
 				8D79E4DC222676E20019A1BE /* LLBeeHomeViewController.m in Sources */,
 				7E1E8A7922317338002766AD /* LLMineNode.m in Sources */,
+				8D01673A22391EC000CD21D8 /* LLCommodityExchangeDetailsViewController.m in Sources */,
 				8D542A6E222A5BC2008B90B0 /* LERefreshHeader.m in Sources */,
 				8DCC9AC9222BF81A00AC3128 /* LLCityOptionCollectionViewCell.m in Sources */,
 				8D58D4BB2226355900803985 /* ViewController.m in Sources */,
