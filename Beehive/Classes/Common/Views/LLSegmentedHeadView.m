@@ -72,6 +72,16 @@
                 make.left.equalTo(button.mas_right).offset(5);
             }];
         }
+        
+        UIImageView *lineImg = [[UIImageView alloc] init];
+        lineImg.backgroundColor = LineColor;
+        [itemView addSubview:lineImg];
+        [lineImg mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.right.equalTo(itemView);
+            make.top.equalTo(itemView).offset(10);
+            make.bottom.equalTo(itemView).offset(-10);
+            make.width.mas_equalTo(0.5);
+        }];
     }
     
     [self addSubview:self.lineImageView];
@@ -106,10 +116,13 @@
     for (id obj in self.subviews) {
         if ([obj isKindOfClass:[UIView class]]) {
             UIView *view = (UIView *)obj;
-            for (UIButton *button in view.subviews) {
-                button.selected = false;
-                if (view.tag - 10 == index) {
-                    button.selected = true;
+            for (id subview in view.subviews) {
+                if ([subview isKindOfClass:[UIButton class]]) {
+                    UIButton *button = (UIButton *)subview;
+                    button.selected = false;
+                    if (view.tag - 10 == index) {
+                        button.selected = true;
+                    }
                 }
             }
         }
