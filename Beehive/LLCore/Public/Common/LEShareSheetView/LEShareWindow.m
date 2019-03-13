@@ -145,11 +145,11 @@
     //分享
     if (_shareItemArray.count == 0 || !_shareItemArray) {
         _shareItemArray = [NSMutableArray array];
+        [_shareItemArray addObject:@{Share_Item_Name: @"微信", Share_Item_Icon:@"le_news_share_weixin", Share_Item_Action:@"shareToWXSession"}];
         [_shareItemArray addObject:@{Share_Item_Name: @"朋友圈", Share_Item_Icon:@"le_news_share_pengyouquan", Share_Item_Action:@"shareToWXTimeline"}];
-        [_shareItemArray addObject:@{Share_Item_Name: @"微信好友", Share_Item_Icon:@"le_news_share_weixin", Share_Item_Action:@"shareToWXSession"}];
-        [_shareItemArray addObject:@{Share_Item_Name: @"QQ好友", Share_Item_Icon:@"le_news_share_qq", Share_Item_Action:@"shareToQQ"}];
-        [_shareItemArray addObject:@{Share_Item_Name: @"微博", Share_Item_Icon:@"le_news_share_weibo", Share_Item_Action:@"shareToWeibo"}];
-        [_shareItemArray addObject:@{Share_Item_Name: @"复制链接", Share_Item_Icon:@"le_news_fuzhilianjie", Share_Item_Action:@"copylink"}];
+        [_shareItemArray addObject:@{Share_Item_Name: @"QQ", Share_Item_Icon:@"le_news_share_qq", Share_Item_Action:@"shareToQQ"}];
+//        [_shareItemArray addObject:@{Share_Item_Name: @"微博", Share_Item_Icon:@"le_news_share_weibo", Share_Item_Action:@"shareToWeibo"}];
+//        [_shareItemArray addObject:@{Share_Item_Name: @"复制链接", Share_Item_Icon:@"le_news_fuzhilianjie", Share_Item_Action:@"copylink"}];
     }
     
     CGSize itemSize = CGSizeMake(50, 50);
@@ -175,7 +175,7 @@
     if (_handleItemArray.count == 0 || !_handleItemArray) {
         _handleItemArray = [NSMutableArray array];
 //        [_handleItemArray addObject:@{Share_Item_Name: @"收藏", Share_Item_Icon:@"le_news_shoucang", Share_Item_Action:@"collectAction"}];
-        [_handleItemArray addObject:@{Share_Item_Name: @"举报", Share_Item_Icon:@"le_news_jubao", Share_Item_Action:@"reportAction"}];
+//        [_handleItemArray addObject:@{Share_Item_Name: @"举报", Share_Item_Icon:@"le_news_jubao", Share_Item_Action:@"reportAction"}];
     }
     left = 23;
     tag = 0;

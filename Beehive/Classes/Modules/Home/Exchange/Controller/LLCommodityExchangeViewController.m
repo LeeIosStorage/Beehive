@@ -108,6 +108,10 @@ SDCycleScrollViewDelegate
     
 }
 
+- (void)tabViewController:(HJTabViewController *)tabViewController scrollViewDidScrollToIndex:(NSInteger)index {
+    self.segmentedHeadView.selectIndex = index;
+}
+
 - (NSInteger)numberOfViewControllerForTabViewController:(HJTabViewController *)tabViewController {
     return 2;
 }

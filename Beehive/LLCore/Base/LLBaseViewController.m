@@ -40,7 +40,7 @@ UIGestureRecognizerDelegate
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.view.backgroundColor = kAppBackgroundColor;
+    self.view.backgroundColor = kAppSectionBackgroundColor;
     
     if (self.navigationController.viewControllers.count > 1) {
         [self createBarButtonItemAtPosition:LLNavigationBarPositionLeft normalImage:[UIImage imageNamed:@"light_nav_back"] highlightImage:[UIImage imageNamed:@"light_nav_back"] text:@"" action:@selector(backAction:)];

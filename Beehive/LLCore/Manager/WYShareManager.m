@@ -60,7 +60,7 @@ static WYShareManager* wy_shareManager = nil;
     NSData *imgData = nil;
     
     if (!wxImage) {
-        wxImage = [UIImage imageNamed:@"LOGO"];
+        wxImage = [UIImage imageNamed:@"app_logo"];
     }
     
     if (wxImage) {
@@ -144,7 +144,7 @@ static WYShareManager* wy_shareManager = nil;
     NSData *imgData = nil;
     
     if (!image) {
-        image = [UIImage imageNamed:@"LOGO"];
+        image = [UIImage imageNamed:@"app_logo"];
     }
     if (image) {
         imgData = UIImageJPEGRepresentation(image, WY_IMAGE_COMPRESSION_QUALITY);
@@ -180,7 +180,7 @@ static WYShareManager* wy_shareManager = nil;
     WBImageObject *msg = [WBImageObject object];
     NSData *imgData = nil;
     if (!image) {
-        image = [UIImage imageNamed:@"LOGO"];
+        image = [UIImage imageNamed:@"app_logo"];
     }
     if (image) {
         imgData = UIImageJPEGRepresentation(image, WY_IMAGE_COMPRESSION_QUALITY);
@@ -257,7 +257,7 @@ static WYShareManager* wy_shareManager = nil;
     
     NSData *imgData = nil;
     if (!image) {
-        image = [UIImage imageNamed:@"LOGO"];
+        image = [UIImage imageNamed:@"app_logo"];
     }
     if (image) {
         imgData = UIImageJPEGRepresentation(image, WY_IMAGE_COMPRESSION_QUALITY);

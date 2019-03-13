@@ -23,6 +23,15 @@
 		7E2E7012223802BF00F185A7 /* LLRedTaskViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7E2E7010223802BF00F185A7 /* LLRedTaskViewController.xib */; };
 		7E2E7016223802D800F185A7 /* LLRedTaskHistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E2E7014223802D800F185A7 /* LLRedTaskHistoryViewController.m */; };
 		7E2E7017223802D800F185A7 /* LLRedTaskHistoryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7E2E7015223802D800F185A7 /* LLRedTaskHistoryViewController.xib */; };
+		7E561B7E22392FAC00DA3B20 /* LLExchangeDetailsHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E561B7D22392FAC00DA3B20 /* LLExchangeDetailsHeaderView.m */; };
+		7E561B8022392FBF00DA3B20 /* LLExchangeDetailsHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7E561B7F22392FBF00DA3B20 /* LLExchangeDetailsHeaderView.xib */; };
+		7E561B832239424800DA3B20 /* LLExchangeDetailsBottomView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E561B822239424800DA3B20 /* LLExchangeDetailsBottomView.m */; };
+		7E561B852239425400DA3B20 /* LLExchangeDetailsBottomView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7E561B842239425400DA3B20 /* LLExchangeDetailsBottomView.xib */; };
+		7E561B8922394B1100DA3B20 /* LLReportViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E561B8722394B1100DA3B20 /* LLReportViewController.m */; };
+		7E561B8A22394B1100DA3B20 /* LLReportViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7E561B8822394B1100DA3B20 /* LLReportViewController.xib */; };
+		7E561B8E2239518200DA3B20 /* LEAlertMarkView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E561B8D2239518200DA3B20 /* LEAlertMarkView.m */; };
+		7E561B91223955CB00DA3B20 /* LLReportSucceedView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E561B90223955CB00DA3B20 /* LLReportSucceedView.m */; };
+		7E561B93223955D900DA3B20 /* LLReportSucceedView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7E561B92223955D900DA3B20 /* LLReportSucceedView.xib */; };
 		8D0167092238BFDB00CD21D8 /* LLAttentionTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D0167072238BFDB00CD21D8 /* LLAttentionTableViewCell.m */; };
 		8D01670A2238BFDB00CD21D8 /* LLAttentionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D0167082238BFDB00CD21D8 /* LLAttentionTableViewCell.xib */; };
 		8D01670E2238C05F00CD21D8 /* LLMessageWarnTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D01670C2238C05F00CD21D8 /* LLMessageWarnTableViewCell.m */; };
@@ -226,6 +235,20 @@
 		7E2E7013223802D800F185A7 /* LLRedTaskHistoryViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLRedTaskHistoryViewController.h; sourceTree = "<group>"; };
 		7E2E7014223802D800F185A7 /* LLRedTaskHistoryViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLRedTaskHistoryViewController.m; sourceTree = "<group>"; };
 		7E2E7015223802D800F185A7 /* LLRedTaskHistoryViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LLRedTaskHistoryViewController.xib; sourceTree = "<group>"; };
+		7E561B7C22392FAC00DA3B20 /* LLExchangeDetailsHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLExchangeDetailsHeaderView.h; sourceTree = "<group>"; };
+		7E561B7D22392FAC00DA3B20 /* LLExchangeDetailsHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLExchangeDetailsHeaderView.m; sourceTree = "<group>"; };
+		7E561B7F22392FBF00DA3B20 /* LLExchangeDetailsHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LLExchangeDetailsHeaderView.xib; sourceTree = "<group>"; };
+		7E561B812239424800DA3B20 /* LLExchangeDetailsBottomView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLExchangeDetailsBottomView.h; sourceTree = "<group>"; };
+		7E561B822239424800DA3B20 /* LLExchangeDetailsBottomView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLExchangeDetailsBottomView.m; sourceTree = "<group>"; };
+		7E561B842239425400DA3B20 /* LLExchangeDetailsBottomView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LLExchangeDetailsBottomView.xib; sourceTree = "<group>"; };
+		7E561B8622394B1100DA3B20 /* LLReportViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLReportViewController.h; sourceTree = "<group>"; };
+		7E561B8722394B1100DA3B20 /* LLReportViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLReportViewController.m; sourceTree = "<group>"; };
+		7E561B8822394B1100DA3B20 /* LLReportViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LLReportViewController.xib; sourceTree = "<group>"; };
+		7E561B8C2239518200DA3B20 /* LEAlertMarkView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LEAlertMarkView.h; sourceTree = "<group>"; };
+		7E561B8D2239518200DA3B20 /* LEAlertMarkView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LEAlertMarkView.m; sourceTree = "<group>"; };
+		7E561B8F223955CB00DA3B20 /* LLReportSucceedView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLReportSucceedView.h; sourceTree = "<group>"; };
+		7E561B90223955CB00DA3B20 /* LLReportSucceedView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLReportSucceedView.m; sourceTree = "<group>"; };
+		7E561B92223955D900DA3B20 /* LLReportSucceedView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LLReportSucceedView.xib; sourceTree = "<group>"; };
 		86AFFE00E0BD8677E897D9D1 /* Pods-Beehive.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Beehive.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Beehive/Pods-Beehive.debug.xcconfig"; sourceTree = "<group>"; };
 		8D0167062238BFDB00CD21D8 /* LLAttentionTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLAttentionTableViewCell.h; sourceTree = "<group>"; };
 		8D0167072238BFDB00CD21D8 /* LLAttentionTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLAttentionTableViewCell.m; sourceTree = "<group>"; };
@@ -538,6 +561,9 @@
 			children = (
 				7E1E8A5D222EB2F5002766AD /* LLSegmentedHeadView.h */,
 				7E1E8A5E222EB2F5002766AD /* LLSegmentedHeadView.m */,
+				7E561B8F223955CB00DA3B20 /* LLReportSucceedView.h */,
+				7E561B90223955CB00DA3B20 /* LLReportSucceedView.m */,
+				7E561B92223955D900DA3B20 /* LLReportSucceedView.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -603,6 +629,9 @@
 				8D01673722391EC000CD21D8 /* LLCommodityExchangeDetailsViewController.h */,
 				8D01673822391EC000CD21D8 /* LLCommodityExchangeDetailsViewController.m */,
 				8D01673922391EC000CD21D8 /* LLCommodityExchangeDetailsViewController.xib */,
+				7E561B8622394B1100DA3B20 /* LLReportViewController.h */,
+				7E561B8722394B1100DA3B20 /* LLReportViewController.m */,
+				7E561B8822394B1100DA3B20 /* LLReportViewController.xib */,
 				7E2E700E223802BF00F185A7 /* LLRedTaskViewController.h */,
 				7E2E700F223802BF00F185A7 /* LLRedTaskViewController.m */,
 				7E2E7010223802BF00F185A7 /* LLRedTaskViewController.xib */,
@@ -611,6 +640,15 @@
 				7E2E7015223802D800F185A7 /* LLRedTaskHistoryViewController.xib */,
 			);
 			path = Controller;
+			sourceTree = "<group>";
+		};
+		7E561B8B2239513F00DA3B20 /* LEAlertMarkView */ = {
+			isa = PBXGroup;
+			children = (
+				7E561B8C2239518200DA3B20 /* LEAlertMarkView.h */,
+				7E561B8D2239518200DA3B20 /* LEAlertMarkView.m */,
+			);
+			path = LEAlertMarkView;
 			sourceTree = "<group>";
 		};
 		8D0167052238B3F200CD21D8 /* View */ = {
@@ -644,6 +682,12 @@
 				8D01672F2238ED8900CD21D8 /* LLCommodityExchangeTableViewCell.h */,
 				8D0167302238ED8900CD21D8 /* LLCommodityExchangeTableViewCell.m */,
 				8D0167312238ED8900CD21D8 /* LLCommodityExchangeTableViewCell.xib */,
+				7E561B7C22392FAC00DA3B20 /* LLExchangeDetailsHeaderView.h */,
+				7E561B7D22392FAC00DA3B20 /* LLExchangeDetailsHeaderView.m */,
+				7E561B7F22392FBF00DA3B20 /* LLExchangeDetailsHeaderView.xib */,
+				7E561B812239424800DA3B20 /* LLExchangeDetailsBottomView.h */,
+				7E561B822239424800DA3B20 /* LLExchangeDetailsBottomView.m */,
+				7E561B842239425400DA3B20 /* LLExchangeDetailsBottomView.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -733,6 +777,7 @@
 		8D542A1D222A5BC2008B90B0 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				7E561B8B2239513F00DA3B20 /* LEAlertMarkView */,
 				8D4C612A222D77B000024840 /* LEPublishMenuView */,
 				8D542A1E222A5BC2008B90B0 /* LEButton */,
 				8D542A21222A5BC2008B90B0 /* WYActionSheetWithBlock */,
@@ -796,11 +841,11 @@
 			isa = PBXGroup;
 			children = (
 				8D542A30222A5BC2008B90B0 /* LEShareModel.h */,
-				8D542A31222A5BC2008B90B0 /* LEShareWindow.h */,
-				8D542A32222A5BC2008B90B0 /* LEShareSheetView.h */,
 				8D542A33222A5BC2008B90B0 /* LEShareModel.m */,
-				8D542A34222A5BC2008B90B0 /* LEShareWindow.m */,
+				8D542A32222A5BC2008B90B0 /* LEShareSheetView.h */,
 				8D542A35222A5BC2008B90B0 /* LEShareSheetView.m */,
+				8D542A31222A5BC2008B90B0 /* LEShareWindow.h */,
+				8D542A34222A5BC2008B90B0 /* LEShareWindow.m */,
 			);
 			path = LEShareSheetView;
 			sourceTree = "<group>";
@@ -1438,6 +1483,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7E561B852239425400DA3B20 /* LLExchangeDetailsBottomView.xib in Resources */,
 				8D01671E2238DE8500CD21D8 /* LLReceiveCommentViewController.xib in Resources */,
 				7E2E700D2238023300F185A7 /* LLCommodityExchangeViewController.xib in Resources */,
 				8D79E4DD222676E20019A1BE /* LLBeeHomeViewController.xib in Resources */,
@@ -1465,6 +1511,7 @@
 				8D01673B22391EC000CD21D8 /* LLCommodityExchangeDetailsViewController.xib in Resources */,
 				8D542A86222A66A5008B90B0 /* LLLoginViewController.xib in Resources */,
 				8D5CB6BD2232D73300527DEB /* Province.plist in Resources */,
+				7E561B8022392FBF00DA3B20 /* LLExchangeDetailsHeaderView.xib in Resources */,
 				8D5F2E622236D3040049C28F /* LLChooseLocationScopeView.xib in Resources */,
 				8D58D4C32226355B00803985 /* LaunchScreen.storyboard in Resources */,
 				8D4C6128222D555800024840 /* LLRegisterViewController.xib in Resources */,
@@ -1474,12 +1521,14 @@
 				8D58D4C02226355B00803985 /* Assets.xcassets in Resources */,
 				8D58D4BE2226355900803985 /* Main.storyboard in Resources */,
 				8D0167142238C47400CD21D8 /* LLMsgTickTableViewCell.xib in Resources */,
+				7E561B8A22394B1100DA3B20 /* LLReportViewController.xib in Resources */,
 				7E1E8A65222ED0E6002766AD /* LLMessageTimeLineViewCell.xib in Resources */,
 				8DC02D5022311443000CAE9C /* LLRankTableViewCell.xib in Resources */,
 				8DCC9ACA222BF81A00AC3128 /* LLCityOptionCollectionViewCell.xib in Resources */,
 				8D3F214E222FB4FF0066F5EB /* LLImageItemViewCell.xib in Resources */,
 				7E1E8A6B22301172002766AD /* LLMessageDetailsHeaderView.xib in Resources */,
 				7E1E8A7522315672002766AD /* LLMineCollectionHeaderView.xib in Resources */,
+				7E561B93223955D900DA3B20 /* LLReportSucceedView.xib in Resources */,
 				8D0167192238CECC00CD21D8 /* LLCellOriginalContentView.xib in Resources */,
 				8D890B722232346700CA711A /* LLPublishImageViewCell.xib in Resources */,
 				8D01672D2238E20A00CD21D8 /* LLReceiveFavourTableViewCell.xib in Resources */,
@@ -1661,6 +1710,7 @@
 				8D0167132238C47400CD21D8 /* LLMsgTickTableViewCell.m in Sources */,
 				8D542A68222A5BC2008B90B0 /* LEMenuView.m in Sources */,
 				7E1E8A64222ED0E6002766AD /* LLMessageTimeLineViewCell.m in Sources */,
+				7E561B832239424800DA3B20 /* LLExchangeDetailsBottomView.m in Sources */,
 				8D542A70222A5BC2008B90B0 /* LELoginUserManager.m in Sources */,
 				8D890B6322322C2100CA711A /* LLPublishCellNode.m in Sources */,
 				8DCC9AAE222B71F200AC3128 /* LLRedRuleViewController.m in Sources */,
@@ -1670,6 +1720,7 @@
 				8D890B522232077D00CA711A /* LLMineWalletViewController.m in Sources */,
 				8D5F2E56223662E50049C28F /* LLMapAddressShowView.m in Sources */,
 				8D542A71222A5BC2008B90B0 /* LELoginManager.m in Sources */,
+				7E561B8922394B1100DA3B20 /* LLReportViewController.m in Sources */,
 				8D3F214D222FB4FF0066F5EB /* LLImageItemViewCell.m in Sources */,
 				8D5CB6DC22352C6700527DEB /* LLAddShopAddressViewController.m in Sources */,
 				8D3F2153222FCB050066F5EB /* LLMessageDetailsViewController.m in Sources */,
@@ -1686,6 +1737,7 @@
 				7E1E8A7922317338002766AD /* LLMineNode.m in Sources */,
 				8D01673A22391EC000CD21D8 /* LLCommodityExchangeDetailsViewController.m in Sources */,
 				8D542A6E222A5BC2008B90B0 /* LERefreshHeader.m in Sources */,
+				7E561B7E22392FAC00DA3B20 /* LLExchangeDetailsHeaderView.m in Sources */,
 				8DCC9AC9222BF81A00AC3128 /* LLCityOptionCollectionViewCell.m in Sources */,
 				8D58D4BB2226355900803985 /* ViewController.m in Sources */,
 				8D0167222238DEC100CD21D8 /* LLReceiveFavourViewController.m in Sources */,
@@ -1726,6 +1778,7 @@
 				8D542A7B222A5BC2008B90B0 /* WYShareManager.m in Sources */,
 				8D3F2149222F65020066F5EB /* LLHandleStatusView.m in Sources */,
 				8DCC9AB9222B810900AC3128 /* LLCollectionView.m in Sources */,
+				7E561B8E2239518200DA3B20 /* LEAlertMarkView.m in Sources */,
 				8D5CB6C52232D73300527DEB /* ZJToolBar.m in Sources */,
 				7E1E8A6922301162002766AD /* LLMessageDetailsHeaderView.m in Sources */,
 				8D542A62222A5BC2008B90B0 /* WYNetWorkManager.m in Sources */,
@@ -1738,6 +1791,7 @@
 				8D5CB6BF2232D73300527DEB /* ZJMultipleAssociatedPickerView.m in Sources */,
 				8D542A65222A5BC2008B90B0 /* HotUpButton.m in Sources */,
 				8D890B712232346700CA711A /* LLPublishImageViewCell.m in Sources */,
+				7E561B91223955CB00DA3B20 /* LLReportSucceedView.m in Sources */,
 				8D542A73222A5BC2008B90B0 /* SVProgressHUD+LETools.m in Sources */,
 				8D542A77222A5BC2008B90B0 /* YTCache.m in Sources */,
 				8D0167172238CE9400CD21D8 /* LLCellOriginalContentView.m in Sources */,

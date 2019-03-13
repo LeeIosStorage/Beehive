@@ -37,10 +37,13 @@
     [WYCommonUtils setImageWithURL:[NSURL URLWithString:kLLAppTestHttpURL] setImage:self.imgIcon setbitmapImage:nil];
     self.labTitle.text = @"11";
     self.labRead.text = @"11";
-    self.labPrice.text = @"¥ 40.00";
     self.labAddress.text = @"11";
     self.labBeeCoin.text = @"11";
     self.labExchange.text = @"11";
+    
+    NSDictionary *attribtDic = @{NSStrikethroughStyleAttributeName: [NSNumber numberWithInteger:NSUnderlineStyleSingle]};
+    NSMutableAttributedString *attribtStr = [[NSMutableAttributedString alloc]initWithString:@"¥ 40.00" attributes:attribtDic];
+    self.labPrice.attributedText = attribtStr;
 }
 
 @end

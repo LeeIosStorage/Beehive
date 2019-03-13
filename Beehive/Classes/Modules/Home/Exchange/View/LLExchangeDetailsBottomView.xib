@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="3a1-6C-WgG" customClass="LLExchangeDetailsBottomView">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="45"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ULZ-aP-nUI">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="0.5"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="0.5" id="mvM-To-Cmr"/>
+                    </constraints>
+                </imageView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SmB-mN-jty">
+                    <rect key="frame" x="0.0" y="0.5" width="70" height="44.5"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="70" id="AQT-J5-y7f"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                    <state key="normal" title=" 分享" image="1_2_2.5">
+                        <color key="titleColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                    <connections>
+                        <action selector="shareAction:" destination="3a1-6C-WgG" eventType="touchUpInside" id="M9c-nU-icz"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dFj-ei-ZEA">
+                    <rect key="frame" x="70" y="0.0" width="70" height="45"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="70" id="0FA-wi-bsX"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                    <state key="normal" title=" 收藏" image="1_2_2.6">
+                        <color key="titleColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                    <connections>
+                        <action selector="collectAction:" destination="3a1-6C-WgG" eventType="touchUpInside" id="fzS-KG-adq"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KSv-w2-Kk0">
+                    <rect key="frame" x="140" y="0.0" width="235" height="45"/>
+                    <color key="backgroundColor" red="1" green="0.68627450980392157" blue="0.0078431372549019607" alpha="1" colorSpace="calibratedRGB"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <state key="normal" title="立即兑换">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </state>
+                    <connections>
+                        <action selector="exchangeAction:" destination="3a1-6C-WgG" eventType="touchUpInside" id="eUi-f1-SD4"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="KSv-w2-Kk0" firstAttribute="bottom" secondItem="pbI-6V-wvn" secondAttribute="bottom" id="1l9-IB-aKJ"/>
+                <constraint firstItem="ULZ-aP-nUI" firstAttribute="top" secondItem="3a1-6C-WgG" secondAttribute="top" id="Awk-Xd-pie"/>
+                <constraint firstItem="pbI-6V-wvn" firstAttribute="trailing" secondItem="KSv-w2-Kk0" secondAttribute="trailing" id="EuO-IH-R68"/>
+                <constraint firstItem="KSv-w2-Kk0" firstAttribute="leading" secondItem="dFj-ei-ZEA" secondAttribute="trailing" id="Oky-XN-pZg"/>
+                <constraint firstItem="pbI-6V-wvn" firstAttribute="trailing" secondItem="ULZ-aP-nUI" secondAttribute="trailing" id="S3s-AP-8Qx"/>
+                <constraint firstItem="pbI-6V-wvn" firstAttribute="bottom" secondItem="SmB-mN-jty" secondAttribute="bottom" id="aKE-to-1SD"/>
+                <constraint firstItem="dFj-ei-ZEA" firstAttribute="leading" secondItem="SmB-mN-jty" secondAttribute="trailing" id="bGB-cz-BBp"/>
+                <constraint firstItem="KSv-w2-Kk0" firstAttribute="top" secondItem="pbI-6V-wvn" secondAttribute="top" id="gGL-3d-rUg"/>
+                <constraint firstItem="pbI-6V-wvn" firstAttribute="bottom" secondItem="dFj-ei-ZEA" secondAttribute="bottom" id="pJu-EP-Vg8"/>
+                <constraint firstItem="ULZ-aP-nUI" firstAttribute="leading" secondItem="pbI-6V-wvn" secondAttribute="leading" id="rHd-Eg-BFO"/>
+                <constraint firstItem="SmB-mN-jty" firstAttribute="leading" secondItem="pbI-6V-wvn" secondAttribute="leading" id="sVw-u7-dtr"/>
+                <constraint firstItem="dFj-ei-ZEA" firstAttribute="top" secondItem="pbI-6V-wvn" secondAttribute="top" id="yww-fS-ebe"/>
+                <constraint firstItem="SmB-mN-jty" firstAttribute="top" secondItem="ULZ-aP-nUI" secondAttribute="bottom" id="zkO-aY-fwA"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="pbI-6V-wvn"/>
+            <point key="canvasLocation" x="138.40000000000001" y="31.03448275862069"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="1_2_2.5" width="15" height="15"/>
+        <image name="1_2_2.6" width="15" height="15"/>
+    </resources>
+</document>

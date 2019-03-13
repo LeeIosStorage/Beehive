@@ -24,6 +24,7 @@
 
 - (void)setSelectIndex:(NSInteger)selectIndex {
     _selectIndex = selectIndex;
+    [self refreshStateUI];
 }
 
 - (void)setItems:(NSArray *)items {
@@ -102,10 +103,7 @@
     
 }
 
-- (void)clickAction:(id)sender {
-    UIButton *btn = (UIButton *)sender;
-    NSInteger index = btn.superview.tag - 10;
-    _selectIndex = index;
+- (void)refreshStateUI {
     UIView *itemView = (UIView *)[self viewWithTag:10 + self.selectIndex];
     [self.selImageView mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.bottom.equalTo(self);
@@ -120,13 +118,19 @@
                 if ([subview isKindOfClass:[UIButton class]]) {
                     UIButton *button = (UIButton *)subview;
                     button.selected = false;
-                    if (view.tag - 10 == index) {
+                    if (view.tag - 10 == self.selectIndex) {
                         button.selected = true;
                     }
                 }
             }
         }
     }
+}
+
+- (void)clickAction:(id)sender {
+    UIButton *btn = (UIButton *)sender;
+    NSInteger index = btn.superview.tag - 10;
+    self.selectIndex = index;
     
     if (self.clickBlock) {
         self.clickBlock(index);
