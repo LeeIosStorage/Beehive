@@ -146,7 +146,7 @@ LEShareSheetViewDelegate
             LELog(@"查看订单");
         }
     };
-    LEAlertMarkView *alert = [[LEAlertMarkView alloc] initWithCustomView:tipView type:LEAlertMarkViewTypeBottom];
+    LEAlertMarkView *alert = [[LEAlertMarkView alloc] initWithCustomView:tipView type:LEAlertMarkViewTypeCenter];
     [alert show];
 }
 

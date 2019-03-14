@@ -10,6 +10,11 @@
 
 @implementation LLCommodityPurchaseSucceedView
 
+- (void)setup {
+    [super setup];
+    self.backgroundColor = [UIColor clearColor];
+}
+
 - (IBAction)backAction:(id)sender {
     if (self.clickBlock) {
         self.clickBlock(0);

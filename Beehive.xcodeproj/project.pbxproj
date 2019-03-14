@@ -19,8 +19,6 @@
 		7E1E8A7922317338002766AD /* LLMineNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E1E8A7822317338002766AD /* LLMineNode.m */; };
 		7E2E700C2238023300F185A7 /* LLCommodityExchangeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E2E700A2238023300F185A7 /* LLCommodityExchangeViewController.m */; };
 		7E2E700D2238023300F185A7 /* LLCommodityExchangeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7E2E700B2238023300F185A7 /* LLCommodityExchangeViewController.xib */; };
-		7E2E7011223802BF00F185A7 /* LLRedTaskViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E2E700F223802BF00F185A7 /* LLRedTaskViewController.m */; };
-		7E2E7012223802BF00F185A7 /* LLRedTaskViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7E2E7010223802BF00F185A7 /* LLRedTaskViewController.xib */; };
 		7E2E7016223802D800F185A7 /* LLRedTaskHistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E2E7014223802D800F185A7 /* LLRedTaskHistoryViewController.m */; };
 		7E2E7017223802D800F185A7 /* LLRedTaskHistoryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7E2E7015223802D800F185A7 /* LLRedTaskHistoryViewController.xib */; };
 		7E561B7E22392FAC00DA3B20 /* LLExchangeDetailsHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E561B7D22392FAC00DA3B20 /* LLExchangeDetailsHeaderView.m */; };
@@ -187,6 +185,12 @@
 		8DE5885F2227A4CC002C1576 /* LLBeeRankingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8DE5885D2227A4CC002C1576 /* LLBeeRankingViewController.xib */; };
 		8DE588622227AD82002C1576 /* LLPlusButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DE588612227AD82002C1576 /* LLPlusButton.m */; };
 		8DE588672227C76F002C1576 /* FontConst.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE588662227C76F002C1576 /* FontConst.swift */; };
+		8DF0C273223A25D4006175E7 /* LLRedTaskViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DF0C271223A25D4006175E7 /* LLRedTaskViewController.m */; };
+		8DF0C274223A25D4006175E7 /* LLRedTaskViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8DF0C272223A25D4006175E7 /* LLRedTaskViewController.xib */; };
+		8DF0C279223A29A2006175E7 /* LLRedTaskTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DF0C277223A29A2006175E7 /* LLRedTaskTableViewCell.m */; };
+		8DF0C27A223A29A2006175E7 /* LLRedTaskTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8DF0C278223A29A2006175E7 /* LLRedTaskTableViewCell.xib */; };
+		8DF0C27E223A2EB1006175E7 /* LLRedTaskHistoryTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DF0C27C223A2EB1006175E7 /* LLRedTaskHistoryTableViewCell.m */; };
+		8DF0C27F223A2EB1006175E7 /* LLRedTaskHistoryTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8DF0C27D223A2EB1006175E7 /* LLRedTaskHistoryTableViewCell.xib */; };
 		A78A3C5E8FBF200497ED12F0 /* Pods_BeehiveTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A98A37B880E16C6C709CB88A /* Pods_BeehiveTests.framework */; };
 		BE3EF924D54032F1DFDF5383 /* Pods_BeehiveUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0DB97A8E569F793FB5ABD125 /* Pods_BeehiveUITests.framework */; };
 		E0E531C080DEB8E8705299CF /* Pods_Beehive.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA9C64AC55444CFD230537D9 /* Pods_Beehive.framework */; };
@@ -233,9 +237,6 @@
 		7E2E70092238023300F185A7 /* LLCommodityExchangeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLCommodityExchangeViewController.h; sourceTree = "<group>"; };
 		7E2E700A2238023300F185A7 /* LLCommodityExchangeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLCommodityExchangeViewController.m; sourceTree = "<group>"; };
 		7E2E700B2238023300F185A7 /* LLCommodityExchangeViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LLCommodityExchangeViewController.xib; sourceTree = "<group>"; };
-		7E2E700E223802BF00F185A7 /* LLRedTaskViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLRedTaskViewController.h; sourceTree = "<group>"; };
-		7E2E700F223802BF00F185A7 /* LLRedTaskViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLRedTaskViewController.m; sourceTree = "<group>"; };
-		7E2E7010223802BF00F185A7 /* LLRedTaskViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LLRedTaskViewController.xib; sourceTree = "<group>"; };
 		7E2E7013223802D800F185A7 /* LLRedTaskHistoryViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLRedTaskHistoryViewController.h; sourceTree = "<group>"; };
 		7E2E7014223802D800F185A7 /* LLRedTaskHistoryViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLRedTaskHistoryViewController.m; sourceTree = "<group>"; };
 		7E2E7015223802D800F185A7 /* LLRedTaskHistoryViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LLRedTaskHistoryViewController.xib; sourceTree = "<group>"; };
@@ -522,6 +523,15 @@
 		8DE588652227C76E002C1576 /* Beehive-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Beehive-Bridging-Header.h"; sourceTree = "<group>"; };
 		8DE588662227C76F002C1576 /* FontConst.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontConst.swift; sourceTree = "<group>"; };
 		8DE588682227EC97002C1576 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
+		8DF0C270223A25D4006175E7 /* LLRedTaskViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLRedTaskViewController.h; sourceTree = "<group>"; };
+		8DF0C271223A25D4006175E7 /* LLRedTaskViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLRedTaskViewController.m; sourceTree = "<group>"; };
+		8DF0C272223A25D4006175E7 /* LLRedTaskViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LLRedTaskViewController.xib; sourceTree = "<group>"; };
+		8DF0C276223A29A2006175E7 /* LLRedTaskTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLRedTaskTableViewCell.h; sourceTree = "<group>"; };
+		8DF0C277223A29A2006175E7 /* LLRedTaskTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLRedTaskTableViewCell.m; sourceTree = "<group>"; };
+		8DF0C278223A29A2006175E7 /* LLRedTaskTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LLRedTaskTableViewCell.xib; sourceTree = "<group>"; };
+		8DF0C27B223A2EB1006175E7 /* LLRedTaskHistoryTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLRedTaskHistoryTableViewCell.h; sourceTree = "<group>"; };
+		8DF0C27C223A2EB1006175E7 /* LLRedTaskHistoryTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLRedTaskHistoryTableViewCell.m; sourceTree = "<group>"; };
+		8DF0C27D223A2EB1006175E7 /* LLRedTaskHistoryTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LLRedTaskHistoryTableViewCell.xib; sourceTree = "<group>"; };
 		A64954C5C3CAB5F3221F123D /* Pods-BeehiveTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BeehiveTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BeehiveTests/Pods-BeehiveTests.debug.xcconfig"; sourceTree = "<group>"; };
 		A98A37B880E16C6C709CB88A /* Pods_BeehiveTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BeehiveTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BA9C64AC55444CFD230537D9 /* Pods_Beehive.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Beehive.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -642,12 +652,6 @@
 				7E561B8622394B1100DA3B20 /* LLReportViewController.h */,
 				7E561B8722394B1100DA3B20 /* LLReportViewController.m */,
 				7E561B8822394B1100DA3B20 /* LLReportViewController.xib */,
-				7E2E700E223802BF00F185A7 /* LLRedTaskViewController.h */,
-				7E2E700F223802BF00F185A7 /* LLRedTaskViewController.m */,
-				7E2E7010223802BF00F185A7 /* LLRedTaskViewController.xib */,
-				7E2E7013223802D800F185A7 /* LLRedTaskHistoryViewController.h */,
-				7E2E7014223802D800F185A7 /* LLRedTaskHistoryViewController.m */,
-				7E2E7015223802D800F185A7 /* LLRedTaskHistoryViewController.xib */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1290,6 +1294,7 @@
 		8DCC9AAA222B719100AC3128 /* Redpacket */ = {
 			isa = PBXGroup;
 			children = (
+				8DF0C275223A2980006175E7 /* View */,
 				8DCC9AB0222B77D600AC3128 /* Controller */,
 			);
 			path = Redpacket;
@@ -1301,6 +1306,12 @@
 				8DCC9AAB222B71F200AC3128 /* LLRedRuleViewController.h */,
 				8DCC9AAC222B71F200AC3128 /* LLRedRuleViewController.m */,
 				8DCC9AAD222B71F200AC3128 /* LLRedRuleViewController.xib */,
+				8DF0C270223A25D4006175E7 /* LLRedTaskViewController.h */,
+				8DF0C271223A25D4006175E7 /* LLRedTaskViewController.m */,
+				8DF0C272223A25D4006175E7 /* LLRedTaskViewController.xib */,
+				7E2E7013223802D800F185A7 /* LLRedTaskHistoryViewController.h */,
+				7E2E7014223802D800F185A7 /* LLRedTaskHistoryViewController.m */,
+				7E2E7015223802D800F185A7 /* LLRedTaskHistoryViewController.xib */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1375,6 +1386,19 @@
 				8D542A43222A5BC2008B90B0 /* Utils */,
 			);
 			path = LLCore;
+			sourceTree = "<group>";
+		};
+		8DF0C275223A2980006175E7 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				8DF0C276223A29A2006175E7 /* LLRedTaskTableViewCell.h */,
+				8DF0C277223A29A2006175E7 /* LLRedTaskTableViewCell.m */,
+				8DF0C278223A29A2006175E7 /* LLRedTaskTableViewCell.xib */,
+				8DF0C27B223A2EB1006175E7 /* LLRedTaskHistoryTableViewCell.h */,
+				8DF0C27C223A2EB1006175E7 /* LLRedTaskHistoryTableViewCell.m */,
+				8DF0C27D223A2EB1006175E7 /* LLRedTaskHistoryTableViewCell.xib */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		C56CAB9DFE086D770962AA2C /* Pods */ = {
@@ -1517,12 +1541,14 @@
 				8D5CB6DD22352C6700527DEB /* LLAddShopAddressViewController.xib in Resources */,
 				8D5CB6EA22357EA000527DEB /* LLMapAddressViewController.xib in Resources */,
 				8D5CB6E522354C6800527DEB /* LLPublishChooseViewCell.xib in Resources */,
+				8DF0C27F223A2EB1006175E7 /* LLRedTaskHistoryTableViewCell.xib in Resources */,
 				8D542A63222A5BC2008B90B0 /* NetWorkConfig.json in Resources */,
 				8D01670F2238C05F00CD21D8 /* LLMessageWarnTableViewCell.xib in Resources */,
 				8D0167232238DEC100CD21D8 /* LLReceiveFavourViewController.xib in Resources */,
 				8D890B4D2232060100CA711A /* LLMessageViewController.xib in Resources */,
 				8D890B68223231BF00CA711A /* LLPublishNormalViewCell.xib in Resources */,
 				8DE5885A2227A4B3002C1576 /* LLBeeMessageViewController.xib in Resources */,
+				8DF0C27A223A29A2006175E7 /* LLRedTaskTableViewCell.xib in Resources */,
 				8D890B6D2232344500CA711A /* LLPublishInputViewCell.xib in Resources */,
 				8D01673B22391EC000CD21D8 /* LLCommodityExchangeDetailsViewController.xib in Resources */,
 				8D542A86222A66A5008B90B0 /* LLLoginViewController.xib in Resources */,
@@ -1554,8 +1580,8 @@
 				8DC02D5622313731000CAE9C /* LLMineCollectionViewCell.xib in Resources */,
 				8D5CB6CA2233AF2400527DEB /* LLPublishIDCardViewCell.xib in Resources */,
 				7E2E7017223802D800F185A7 /* LLRedTaskHistoryViewController.xib in Resources */,
-				7E2E7012223802BF00F185A7 /* LLRedTaskViewController.xib in Resources */,
 				7E1E8A7022301AF2002766AD /* LLMessageCommentViewCell.xib in Resources */,
+				8DF0C274223A25D4006175E7 /* LLRedTaskViewController.xib in Resources */,
 				8D79E4E2222676FC0019A1BE /* LLBeeMineViewController.xib in Resources */,
 				8D0167282238E1EE00CD21D8 /* LLReceiveCommentTableViewCell.xib in Resources */,
 			);
@@ -1737,11 +1763,13 @@
 				8D5CB6BE2232D73300527DEB /* ZJSelectedTextField.m in Sources */,
 				8D890B522232077D00CA711A /* LLMineWalletViewController.m in Sources */,
 				8D5F2E56223662E50049C28F /* LLMapAddressShowView.m in Sources */,
+				8DF0C279223A29A2006175E7 /* LLRedTaskTableViewCell.m in Sources */,
 				8D542A71222A5BC2008B90B0 /* LELoginManager.m in Sources */,
 				7E561B8922394B1100DA3B20 /* LLReportViewController.m in Sources */,
 				8D3F214D222FB4FF0066F5EB /* LLImageItemViewCell.m in Sources */,
 				8D5CB6DC22352C6700527DEB /* LLAddShopAddressViewController.m in Sources */,
 				8D3F2153222FCB050066F5EB /* LLMessageDetailsViewController.m in Sources */,
+				8DF0C273223A25D4006175E7 /* LLRedTaskViewController.m in Sources */,
 				8D542A6D222A5BC2008B90B0 /* LEShareSheetView.m in Sources */,
 				8D5CB6E022352F3900527DEB /* LLTradeMoldNode.m in Sources */,
 				8DD290E52229450D00E4338D /* UINavigationBar+LLFixSpace.m in Sources */,
@@ -1769,7 +1797,6 @@
 				8D01670E2238C05F00CD21D8 /* LLMessageWarnTableViewCell.m in Sources */,
 				8D4C612D222D77E800024840 /* LEPublishMenuView.m in Sources */,
 				8DCC9ABC222B812E00AC3128 /* LLCollectionViewCell.m in Sources */,
-				7E2E7011223802BF00F185A7 /* LLRedTaskViewController.m in Sources */,
 				8D542A66222A5BC2008B90B0 /* WYActionSheet.m in Sources */,
 				8DE588592227A4B3002C1576 /* LLBeeMessageViewController.m in Sources */,
 				8D542A7C222A5BC2008B90B0 /* LELoginAuthManager.m in Sources */,
@@ -1810,6 +1837,7 @@
 				8DC02D5522313731000CAE9C /* LLMineCollectionViewCell.m in Sources */,
 				8D5CB6BF2232D73300527DEB /* ZJMultipleAssociatedPickerView.m in Sources */,
 				8D542A65222A5BC2008B90B0 /* HotUpButton.m in Sources */,
+				8DF0C27E223A2EB1006175E7 /* LLRedTaskHistoryTableViewCell.m in Sources */,
 				8D890B712232346700CA711A /* LLPublishImageViewCell.m in Sources */,
 				7E561B91223955CB00DA3B20 /* LLReportSucceedView.m in Sources */,
 				8D542A73222A5BC2008B90B0 /* SVProgressHUD+LETools.m in Sources */,
