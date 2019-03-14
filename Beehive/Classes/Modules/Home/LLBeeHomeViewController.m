@@ -19,6 +19,7 @@
 #import "LLAwardRecordViewController.h"
 #import "LLReceiveRedAlertView.h"
 #import "LEAlertMarkView.h"
+#import "LLRedpacketDetailsViewController.h"
 
 @interface LLBeeHomeViewController ()
 
@@ -110,19 +111,25 @@
 - (void)receiveRedAlertViewShow {
     LLReceiveRedAlertView *tipView = [[[NSBundle mainBundle] loadNibNamed:@"LLReceiveRedAlertView" owner:self options:nil] firstObject];
     tipView.frame = CGRectMake(0, 0, 186, 280);
-//    __weak UIView *weakView = tipView;
-//    WEAKSELF
-//    tipView.clickBlock = ^(NSInteger index) {
-//        if ([weakView.superview isKindOfClass:[LEAlertMarkView class]]) {
-//            LEAlertMarkView *alert = (LEAlertMarkView *)weakView.superview;
-//            [alert dismiss];
-//        }
-//        if (index == 1) {
-//            LELog(@"查看订单");
-//        }
-//    };
+    [tipView updateCellWithData:nil];
+    __weak UIView *weakView = tipView;
+    WEAKSELF
+    tipView.clickBlock = ^(NSInteger index) {
+        if ([weakView.superview isKindOfClass:[LEAlertMarkView class]]) {
+            LEAlertMarkView *alert = (LEAlertMarkView *)weakView.superview;
+            [alert dismiss];
+        }
+        if (index == 0) {
+            [weakSelf gotoRedpacketDetailsVc];
+        }
+    };
     LEAlertMarkView *alert = [[LEAlertMarkView alloc] initWithCustomView:tipView type:LEAlertMarkViewTypeCenter];
     [alert show];
+}
+
+- (void)gotoRedpacketDetailsVc {
+    LLRedpacketDetailsViewController *vc = [[LLRedpacketDetailsViewController alloc] init];
+    [self.navigationController pushViewController:vc animated:true];
 }
 
 #pragma mark -
@@ -158,7 +165,7 @@
 }
 
 - (void)shareAction:(id)sender {
-    
+    [self receiveRedAlertViewShow];
 }
 
 #pragma mark -

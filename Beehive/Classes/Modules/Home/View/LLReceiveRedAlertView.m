@@ -20,6 +20,13 @@
 
 - (void)setup {
     [super setup];
+    self.backgroundColor = UIColor.clearColor;
+}
+
+- (IBAction)clickAction:(id)sender {
+    if (self.clickBlock) {
+        self.clickBlock(0);
+    }
 }
 
 - (void)updateCellWithData:(id)node {

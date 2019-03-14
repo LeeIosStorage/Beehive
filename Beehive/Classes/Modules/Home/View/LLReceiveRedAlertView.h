@@ -10,7 +10,11 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+typedef void(^LLReceiveRedAlertViewClickBlock)(NSInteger index);
+
 @interface LLReceiveRedAlertView : LLView
+
+@property (nonatomic, strong) LLReceiveRedAlertViewClickBlock clickBlock;
 
 - (void)updateCellWithData:(id)node;
 
