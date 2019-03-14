@@ -16,6 +16,9 @@
 #import "LLCommodityExchangeViewController.h"
 #import "LLRedTaskViewController.h"
 #import "LLRedTaskHistoryViewController.h"
+#import "LLAwardRecordViewController.h"
+#import "LLReceiveRedAlertView.h"
+#import "LEAlertMarkView.h"
 
 @interface LLBeeHomeViewController ()
 
@@ -104,6 +107,24 @@
     self.mapView.userTrackingMode = MAUserTrackingModeFollow;
 }
 
+- (void)receiveRedAlertViewShow {
+    LLReceiveRedAlertView *tipView = [[[NSBundle mainBundle] loadNibNamed:@"LLReceiveRedAlertView" owner:self options:nil] firstObject];
+    tipView.frame = CGRectMake(0, 0, 186, 280);
+//    __weak UIView *weakView = tipView;
+//    WEAKSELF
+//    tipView.clickBlock = ^(NSInteger index) {
+//        if ([weakView.superview isKindOfClass:[LEAlertMarkView class]]) {
+//            LEAlertMarkView *alert = (LEAlertMarkView *)weakView.superview;
+//            [alert dismiss];
+//        }
+//        if (index == 1) {
+//            LELog(@"查看订单");
+//        }
+//    };
+    LEAlertMarkView *alert = [[LEAlertMarkView alloc] initWithCustomView:tipView type:LEAlertMarkViewTypeCenter];
+    [alert show];
+}
+
 #pragma mark -
 #pragma mark - Action
 - (void)ruleClickAction:(id)sender {
@@ -115,21 +136,27 @@
     LLCommodityExchangeViewController *vc = [[LLCommodityExchangeViewController alloc] init];
     [self.navigationController pushViewController:vc animated:true];
 }
+
 - (void)singinAction:(id)sender {
     LEWebViewController *vc = [[LEWebViewController alloc] initWithURLString:@"http://www.baidu.com"];
     [self.navigationController pushViewController:vc animated:true];
 }
+
 - (void)refreshAction:(id)sender {
-    
+    LLAwardRecordViewController *vc = [[LLAwardRecordViewController alloc] init];
+    [self.navigationController pushViewController:vc animated:true];
 }
+
 - (void)redTaskAction:(id)sender {
     LLRedTaskViewController *vc = [[LLRedTaskViewController alloc] init];
     [self.navigationController pushViewController:vc animated:true];
 }
+
 - (void)redHistoryAction:(id)sender {
     LLRedTaskHistoryViewController *vc = [[LLRedTaskHistoryViewController alloc] init];
     [self.navigationController pushViewController:vc animated:true];
 }
+
 - (void)shareAction:(id)sender {
     
 }

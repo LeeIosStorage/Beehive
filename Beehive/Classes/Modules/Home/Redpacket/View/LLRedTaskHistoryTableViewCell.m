@@ -13,6 +13,9 @@
 
 @property (nonatomic, weak) IBOutlet UIImageView *imgIcon;
 
+@property (nonatomic, weak) IBOutlet UILabel *labTitle;
+@property (nonatomic, weak) IBOutlet UILabel *labTime;
+
 @property (nonatomic, weak) IBOutlet LLHandleStatusView *handleStatusView;
 
 @end
@@ -32,7 +35,9 @@
 }
 
 - (void)updateCellWithData:(id)node {
-    [WYCommonUtils setImageWithURL:[NSURL URLWithString:@""] setImage:self.imgIcon setbitmapImage:[UIImage imageNamed:@"app_def"]];
+    [WYCommonUtils setImageWithURL:[NSURL URLWithString:kLLAppTestHttpURL] setImage:self.imgIcon setbitmapImage:[UIImage imageNamed:@""]];
+    self.labTitle.text = @"奶茶三兄弟";
+    self.labTime.text = @"198月";
 }
 
 @end

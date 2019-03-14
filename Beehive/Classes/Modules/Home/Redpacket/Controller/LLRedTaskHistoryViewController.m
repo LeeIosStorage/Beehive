@@ -9,6 +9,7 @@
 #import "LLRedTaskHistoryViewController.h"
 #import "LLSegmentedHeadView.h"
 #import "LLRedTaskHistoryTableViewCell.h"
+#import "LLRedTaskHistoryHeaderView.h"
 
 @interface LLRedTaskHistoryViewController ()
 <
@@ -17,6 +18,7 @@ UITableViewDelegate
 >
 @property (nonatomic, strong) LLSegmentedHeadView *segmentedHeadView;
 
+@property (nonatomic, strong) LLRedTaskHistoryHeaderView *redTaskHistoryHeaderView;
 @property (nonatomic, strong) UITableView *tableView;
 
 @property (nonatomic, strong) NSMutableArray *dataLists;
@@ -54,6 +56,9 @@ UITableViewDelegate
         make.top.equalTo(self.segmentedHeadView.mas_bottom).offset(0);
     }];
     
+    self.redTaskHistoryHeaderView.height = 116;
+    self.tableView.tableHeaderView = self.redTaskHistoryHeaderView;
+    
     [self.tableView reloadData];
 }
 
@@ -64,7 +69,26 @@ UITableViewDelegate
     [self.dataLists addObject:@""];
     [self.dataLists addObject:@""];
     
+    [self refreshHeaderViewUI];
     [self.tableView reloadData];
+}
+
+- (void)refreshHeaderViewUI {
+    if (self.currentPage == 0) {
+        self.redTaskHistoryHeaderView.labTotalAmount.text = @"12.08";
+        self.redTaskHistoryHeaderView.labTotalType.text = @"元";
+        self.redTaskHistoryHeaderView.labTotalTip.text = @"抢到的总金额";
+        self.redTaskHistoryHeaderView.labDayAmount.text = @"1.08";
+        self.redTaskHistoryHeaderView.labDayType.text = @"元";
+        self.redTaskHistoryHeaderView.labDayTip.text = @"当日抢金额";
+    } else {
+        self.redTaskHistoryHeaderView.labTotalAmount.text = @"12.08";
+        self.redTaskHistoryHeaderView.labTotalType.text = @"元";
+        self.redTaskHistoryHeaderView.labTotalTip.text = @"发布总金额";
+        self.redTaskHistoryHeaderView.labDayAmount.text = @"99";
+        self.redTaskHistoryHeaderView.labDayType.text = @"人";
+        self.redTaskHistoryHeaderView.labDayTip.text = @"累计影响人数";
+    }
 }
 
 #pragma mark - SetGet
@@ -84,6 +108,13 @@ UITableViewDelegate
         };
     }
     return _segmentedHeadView;
+}
+
+- (LLRedTaskHistoryHeaderView *)redTaskHistoryHeaderView {
+    if (!_redTaskHistoryHeaderView) {
+        _redTaskHistoryHeaderView = [[[NSBundle mainBundle] loadNibNamed:@"LLRedTaskHistoryHeaderView" owner:self options:nil] firstObject];
+    }
+    return _redTaskHistoryHeaderView;
 }
 
 - (UITableView *)tableView {
@@ -111,7 +142,7 @@ UITableViewDelegate
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 75;
+    return 80;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath

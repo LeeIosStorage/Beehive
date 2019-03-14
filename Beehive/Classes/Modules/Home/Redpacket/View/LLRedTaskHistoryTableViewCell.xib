@@ -70,6 +70,8 @@
             <connections>
                 <outlet property="handleStatusView" destination="9cj-Z8-EYf" id="3fl-Qk-pcu"/>
                 <outlet property="imgIcon" destination="WGN-WJ-yH4" id="b44-oN-j3Z"/>
+                <outlet property="labTime" destination="qdj-7S-EAH" id="WVN-QI-Lcf"/>
+                <outlet property="labTitle" destination="BBK-XK-pCN" id="EPJ-WR-fA5"/>
             </connections>
             <point key="canvasLocation" x="172.80000000000001" y="100.29985007496252"/>
         </tableViewCell>
