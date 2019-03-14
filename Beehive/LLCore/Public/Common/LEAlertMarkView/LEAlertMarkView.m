@@ -12,6 +12,8 @@
 
 @property (nonatomic, strong) UIView *customView;
 
+@property (nonatomic, assign) LEAlertMarkViewType alertType;
+
 @end
 
 @implementation LEAlertMarkView
@@ -23,9 +25,10 @@
     LELog(@"!!!!");
 }
 
-- (instancetype)initWithCustomView:(UIView *)customView {
+- (instancetype)initWithCustomView:(UIView *)customView type:(LEAlertMarkViewType)type {
     self = [super init];
     if (self) {
+        self.alertType = type;
         self.customView = customView;
         [self setup];
     }
@@ -42,7 +45,12 @@
         LELog(@"%f",self.customView.frame.size.width);
         CGSize size = self.customView.frame.size;
         [self.customView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.center.equalTo(self);
+            if (self.alertType == LEAlertMarkViewTypeCenter) {
+                make.center.equalTo(self);
+            } else if (self.alertType == LEAlertMarkViewTypeBottom) {
+                make.centerX.equalTo(self);
+                make.bottom.equalTo(self);
+            }
             make.size.mas_equalTo(size);
         }];
     }

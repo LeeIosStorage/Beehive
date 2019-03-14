@@ -65,7 +65,7 @@ UITableViewDataSource
     tipView.layer.cornerRadius = 3;
     tipView.layer.masksToBounds = true;
     tipView.frame = CGRectMake(0, 0, 260, 247);
-    LEAlertMarkView *alert = [[LEAlertMarkView alloc] initWithCustomView:tipView];
+    LEAlertMarkView *alert = [[LEAlertMarkView alloc] initWithCustomView:tipView type:LEAlertMarkViewTypeCenter];
     [alert show];
 }
 

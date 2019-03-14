@@ -53,6 +53,10 @@
 		8D0167362238FB9C00CD21D8 /* LLExchangeBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D0167352238FB9C00CD21D8 /* LLExchangeBaseViewController.m */; };
 		8D01673A22391EC000CD21D8 /* LLCommodityExchangeDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D01673822391EC000CD21D8 /* LLCommodityExchangeDetailsViewController.m */; };
 		8D01673B22391EC000CD21D8 /* LLCommodityExchangeDetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D01673922391EC000CD21D8 /* LLCommodityExchangeDetailsViewController.xib */; };
+		8D01673E223A04F900CD21D8 /* LLCommodityExchangeconfirmView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D01673D223A04F900CD21D8 /* LLCommodityExchangeconfirmView.m */; };
+		8D016740223A052500CD21D8 /* LLCommodityExchangeconfirmView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D01673F223A052500CD21D8 /* LLCommodityExchangeconfirmView.xib */; };
+		8D016743223A19D700CD21D8 /* LLCommodityPurchaseSucceedView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D016742223A19D600CD21D8 /* LLCommodityPurchaseSucceedView.m */; };
+		8D016745223A19EF00CD21D8 /* LLCommodityPurchaseSucceedView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D016744223A19EF00CD21D8 /* LLCommodityPurchaseSucceedView.xib */; };
 		8D3F2149222F65020066F5EB /* LLHandleStatusView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D3F2148222F65020066F5EB /* LLHandleStatusView.m */; };
 		8D3F214D222FB4FF0066F5EB /* LLImageItemViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D3F214B222FB4FF0066F5EB /* LLImageItemViewCell.m */; };
 		8D3F214E222FB4FF0066F5EB /* LLImageItemViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D3F214C222FB4FF0066F5EB /* LLImageItemViewCell.xib */; };
@@ -282,6 +286,12 @@
 		8D01673722391EC000CD21D8 /* LLCommodityExchangeDetailsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLCommodityExchangeDetailsViewController.h; sourceTree = "<group>"; };
 		8D01673822391EC000CD21D8 /* LLCommodityExchangeDetailsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLCommodityExchangeDetailsViewController.m; sourceTree = "<group>"; };
 		8D01673922391EC000CD21D8 /* LLCommodityExchangeDetailsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LLCommodityExchangeDetailsViewController.xib; sourceTree = "<group>"; };
+		8D01673C223A04F900CD21D8 /* LLCommodityExchangeconfirmView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLCommodityExchangeconfirmView.h; sourceTree = "<group>"; };
+		8D01673D223A04F900CD21D8 /* LLCommodityExchangeconfirmView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLCommodityExchangeconfirmView.m; sourceTree = "<group>"; };
+		8D01673F223A052500CD21D8 /* LLCommodityExchangeconfirmView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LLCommodityExchangeconfirmView.xib; sourceTree = "<group>"; };
+		8D016741223A19D600CD21D8 /* LLCommodityPurchaseSucceedView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLCommodityPurchaseSucceedView.h; sourceTree = "<group>"; };
+		8D016742223A19D600CD21D8 /* LLCommodityPurchaseSucceedView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLCommodityPurchaseSucceedView.m; sourceTree = "<group>"; };
+		8D016744223A19EF00CD21D8 /* LLCommodityPurchaseSucceedView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LLCommodityPurchaseSucceedView.xib; sourceTree = "<group>"; };
 		8D3F2147222F65020066F5EB /* LLHandleStatusView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLHandleStatusView.h; sourceTree = "<group>"; };
 		8D3F2148222F65020066F5EB /* LLHandleStatusView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLHandleStatusView.m; sourceTree = "<group>"; };
 		8D3F214A222FB4FF0066F5EB /* LLImageItemViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLImageItemViewCell.h; sourceTree = "<group>"; };
@@ -688,6 +698,12 @@
 				7E561B812239424800DA3B20 /* LLExchangeDetailsBottomView.h */,
 				7E561B822239424800DA3B20 /* LLExchangeDetailsBottomView.m */,
 				7E561B842239425400DA3B20 /* LLExchangeDetailsBottomView.xib */,
+				8D01673C223A04F900CD21D8 /* LLCommodityExchangeconfirmView.h */,
+				8D01673D223A04F900CD21D8 /* LLCommodityExchangeconfirmView.m */,
+				8D01673F223A052500CD21D8 /* LLCommodityExchangeconfirmView.xib */,
+				8D016741223A19D600CD21D8 /* LLCommodityPurchaseSucceedView.h */,
+				8D016742223A19D600CD21D8 /* LLCommodityPurchaseSucceedView.m */,
+				8D016744223A19EF00CD21D8 /* LLCommodityPurchaseSucceedView.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1523,11 +1539,13 @@
 				8D0167142238C47400CD21D8 /* LLMsgTickTableViewCell.xib in Resources */,
 				7E561B8A22394B1100DA3B20 /* LLReportViewController.xib in Resources */,
 				7E1E8A65222ED0E6002766AD /* LLMessageTimeLineViewCell.xib in Resources */,
+				8D016740223A052500CD21D8 /* LLCommodityExchangeconfirmView.xib in Resources */,
 				8DC02D5022311443000CAE9C /* LLRankTableViewCell.xib in Resources */,
 				8DCC9ACA222BF81A00AC3128 /* LLCityOptionCollectionViewCell.xib in Resources */,
 				8D3F214E222FB4FF0066F5EB /* LLImageItemViewCell.xib in Resources */,
 				7E1E8A6B22301172002766AD /* LLMessageDetailsHeaderView.xib in Resources */,
 				7E1E8A7522315672002766AD /* LLMineCollectionHeaderView.xib in Resources */,
+				8D016745223A19EF00CD21D8 /* LLCommodityPurchaseSucceedView.xib in Resources */,
 				7E561B93223955D900DA3B20 /* LLReportSucceedView.xib in Resources */,
 				8D0167192238CECC00CD21D8 /* LLCellOriginalContentView.xib in Resources */,
 				8D890B722232346700CA711A /* LLPublishImageViewCell.xib in Resources */,
@@ -1759,6 +1777,8 @@
 				8D542A74222A5BC2008B90B0 /* PathHelper.m in Sources */,
 				7E2E700C2238023300F185A7 /* LLCommodityExchangeViewController.m in Sources */,
 				8D0167092238BFDB00CD21D8 /* LLAttentionTableViewCell.m in Sources */,
+				8D01673E223A04F900CD21D8 /* LLCommodityExchangeconfirmView.m in Sources */,
+				8D016743223A19D700CD21D8 /* LLCommodityPurchaseSucceedView.m in Sources */,
 				8D79E4D82226748D0019A1BE /* LLBaseViewController.m in Sources */,
 				8D5F2E5B223698D90049C28F /* LLMapAddressSearchTitleView.m in Sources */,
 				8D0167362238FB9C00CD21D8 /* LLExchangeBaseViewController.m in Sources */,

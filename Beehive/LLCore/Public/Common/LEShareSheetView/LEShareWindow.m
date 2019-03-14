@@ -70,14 +70,15 @@
     
     [self.containersView addSubview:self.shareTipLabel];
     [self.shareTipLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.right.top.equalTo(self.containersView);
+        make.left.right.equalTo(self.containersView);
+        make.top.equalTo(self.containersView).offset(20);
         make.height.mas_equalTo(16);
     }];
     
     [self.containersView addSubview:self.shareScrollView];
     [self.shareScrollView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.equalTo(self.containersView);
-        make.top.equalTo(self.shareTipLabel.mas_bottom);
+        make.top.equalTo(self.shareTipLabel.mas_bottom).offset(20);
         make.height.mas_equalTo(88);
     }];
     
@@ -190,10 +191,18 @@
     }
     [self.handleScrollView setContentSize:CGSizeMake(left, 74)];
     
+    CGFloat height = 236;
+    if (_handleItemArray.count == 0) {
+        height = 236-48;
+        [self.handleScrollView mas_updateConstraints:^(MASConstraintMaker *make) {
+            make.height.mas_equalTo(0);
+        }];
+        self.lineImageView.hidden = true;
+    }
     
     [UIView animateWithDuration:0.2 animations:^{
         self.maskView.backgroundColor = kAppMaskOpaqueBlackColor;
-        self.containersView.frame = CGRectMake(0, SCREEN_HEIGHT-236-14, SCREEN_WIDTH, 236+14);
+        self.containersView.frame = CGRectMake(0, SCREEN_HEIGHT-height-14, SCREEN_WIDTH, height+14);
     }];
     
     UIWindow *keyWindow = HitoApplication;
@@ -255,7 +264,7 @@
         _shareTipLabel = [[UILabel alloc] init];
         _shareTipLabel.textColor = kAppTitleColor;
         _shareTipLabel.font = HitoPFSCRegularOfSize(14);
-//        _shareTipLabel.text = @"选择分享平台";
+        _shareTipLabel.text = @"分享到";
         _shareTipLabel.textAlignment = NSTextAlignmentCenter;
     }
     return _shareTipLabel;
@@ -293,8 +302,8 @@
         lineImageView.backgroundColor = LineColor;
         [_cancelView addSubview:lineImageView];
         [lineImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.equalTo(self->_cancelView).offset(20);
-            make.right.equalTo(self->_cancelView).offset(-20);
+            make.left.equalTo(self->_cancelView).offset(0);
+            make.right.equalTo(self->_cancelView).offset(0);
             make.top.equalTo(self->_cancelView);
             make.height.mas_equalTo(0.5);
         }];

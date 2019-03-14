@@ -12,6 +12,9 @@
 #import "LEMenuView.h"
 #import "LLReportViewController.h"
 #import "LEShareSheetView.h"
+#import "LLCommodityExchangeconfirmView.h"
+#import "LEAlertMarkView.h"
+#import "LLCommodityPurchaseSucceedView.h"
 
 @interface LLCommodityExchangeDetailsViewController ()
 <
@@ -27,6 +30,8 @@ LEShareSheetViewDelegate
 @property (nonatomic, strong) LLExchangeDetailsHeaderView *exchangeDetailsHeaderView;
 
 @property (nonatomic, strong) LLExchangeDetailsBottomView *exchangeDetailsBottomView;
+
+@property (nonatomic, strong) LLCommodityExchangeconfirmView *commodityExchangeconfirmView;
 
 @end
 
@@ -113,7 +118,36 @@ LEShareSheetViewDelegate
 }
 
 - (void)exchangeAction {
+    [self.commodityExchangeconfirmView updateCellWithData:nil];
+    WEAKSELF
+    self.commodityExchangeconfirmView.submitBlock = ^{
+        if ([weakSelf.commodityExchangeconfirmView.superview isKindOfClass:[LEAlertMarkView class]]) {
+            LEAlertMarkView *alert = (LEAlertMarkView *)weakSelf.commodityExchangeconfirmView.superview;
+            [alert dismiss];
+        }
+        [weakSelf exchangeSucceedView];
+    };
     
+    LEAlertMarkView *alert = [[LEAlertMarkView alloc] initWithCustomView:self.commodityExchangeconfirmView type:LEAlertMarkViewTypeBottom];
+    [alert show];
+}
+
+- (void)exchangeSucceedView {
+    LLCommodityPurchaseSucceedView *tipView = [[[NSBundle mainBundle] loadNibNamed:@"LLCommodityPurchaseSucceedView" owner:self options:nil] firstObject];
+    tipView.frame = CGRectMake(0, 0, 248, 288);
+    __weak UIView *weakView = tipView;
+    WEAKSELF
+    tipView.clickBlock = ^(NSInteger index) {
+        if ([weakView.superview isKindOfClass:[LEAlertMarkView class]]) {
+            LEAlertMarkView *alert = (LEAlertMarkView *)weakView.superview;
+            [alert dismiss];
+        }
+        if (index == 1) {
+            LELog(@"查看订单");
+        }
+    };
+    LEAlertMarkView *alert = [[LEAlertMarkView alloc] initWithCustomView:tipView type:LEAlertMarkViewTypeBottom];
+    [alert show];
 }
 
 #pragma mark - set
@@ -129,6 +163,14 @@ LEShareSheetViewDelegate
         _exchangeDetailsBottomView = [[[NSBundle mainBundle] loadNibNamed:@"LLExchangeDetailsBottomView" owner:self options:nil] firstObject];
     }
     return _exchangeDetailsBottomView;
+}
+
+- (LLCommodityExchangeconfirmView *)commodityExchangeconfirmView {
+    if (!_commodityExchangeconfirmView) {
+        _commodityExchangeconfirmView = [[[NSBundle mainBundle] loadNibNamed:@"LLCommodityExchangeconfirmView" owner:self options:nil] firstObject];
+        _commodityExchangeconfirmView.frame = CGRectMake(0, 0, SCREEN_WIDTH, 342);
+    }
+    return _commodityExchangeconfirmView;
 }
 
 #pragma mark - Table view data source

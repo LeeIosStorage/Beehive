@@ -13,6 +13,7 @@
 <
 SDCycleScrollViewDelegate
 >
+
 @property (nonatomic, weak) IBOutlet UIImageView *avatarImageView;
 @property (nonatomic, weak) IBOutlet UIImageView *sexImageView;
 

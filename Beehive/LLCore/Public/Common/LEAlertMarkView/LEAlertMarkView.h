@@ -10,9 +10,14 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+typedef NS_ENUM(NSInteger, LEAlertMarkViewType) {
+    LEAlertMarkViewTypeCenter,
+    LEAlertMarkViewTypeBottom
+};
+
 @interface LEAlertMarkView : UIView
 
-- (instancetype)initWithCustomView:(UIView *)customView;
+- (instancetype)initWithCustomView:(UIView *)customView type:(LEAlertMarkViewType)type;
 
 - (void)show;
 
