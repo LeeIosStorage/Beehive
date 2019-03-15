@@ -71,15 +71,21 @@
 
 #pragma mark - Action
 - (void)shareAction:(id)sender {
-    
+    if (self.commentBottomViewHandleBlock) {
+        self.commentBottomViewHandleBlock(0);
+    }
 }
 
 - (void)likeAction:(id)sender {
-    
+    if (self.commentBottomViewHandleBlock) {
+        self.commentBottomViewHandleBlock(1);
+    }
 }
 
 - (void)collectAction:(id)sender {
-    
+    if (self.commentBottomViewHandleBlock) {
+        self.commentBottomViewHandleBlock(2);
+    }
 }
 
 - (void)publishAction:(id)sender {

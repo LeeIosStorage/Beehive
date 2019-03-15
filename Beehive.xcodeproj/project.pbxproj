@@ -200,6 +200,8 @@
 		8DF0C287223A4A6C006175E7 /* LLAwardRecordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DF0C286223A4A6C006175E7 /* LLAwardRecordViewController.m */; };
 		8DF0C28A223A501E006175E7 /* LLReceiveRedAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DF0C289223A501E006175E7 /* LLReceiveRedAlertView.m */; };
 		8DF0C28C223A502B006175E7 /* LLReceiveRedAlertView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8DF0C28B223A502B006175E7 /* LLReceiveRedAlertView.xib */; };
+		8DF0C28F223B67AE006175E7 /* LLRedTaskShowAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DF0C28E223B67AE006175E7 /* LLRedTaskShowAlertView.m */; };
+		8DF0C291223B67FA006175E7 /* LLRedTaskShowAlertView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8DF0C290223B67FA006175E7 /* LLRedTaskShowAlertView.xib */; };
 		A78A3C5E8FBF200497ED12F0 /* Pods_BeehiveTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A98A37B880E16C6C709CB88A /* Pods_BeehiveTests.framework */; };
 		BE3EF924D54032F1DFDF5383 /* Pods_BeehiveUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0DB97A8E569F793FB5ABD125 /* Pods_BeehiveUITests.framework */; };
 		E0E531C080DEB8E8705299CF /* Pods_Beehive.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA9C64AC55444CFD230537D9 /* Pods_Beehive.framework */; };
@@ -555,6 +557,9 @@
 		8DF0C288223A501E006175E7 /* LLReceiveRedAlertView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLReceiveRedAlertView.h; sourceTree = "<group>"; };
 		8DF0C289223A501E006175E7 /* LLReceiveRedAlertView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLReceiveRedAlertView.m; sourceTree = "<group>"; };
 		8DF0C28B223A502B006175E7 /* LLReceiveRedAlertView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LLReceiveRedAlertView.xib; sourceTree = "<group>"; };
+		8DF0C28D223B67AE006175E7 /* LLRedTaskShowAlertView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLRedTaskShowAlertView.h; sourceTree = "<group>"; };
+		8DF0C28E223B67AE006175E7 /* LLRedTaskShowAlertView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLRedTaskShowAlertView.m; sourceTree = "<group>"; };
+		8DF0C290223B67FA006175E7 /* LLRedTaskShowAlertView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LLRedTaskShowAlertView.xib; sourceTree = "<group>"; };
 		A64954C5C3CAB5F3221F123D /* Pods-BeehiveTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BeehiveTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BeehiveTests/Pods-BeehiveTests.debug.xcconfig"; sourceTree = "<group>"; };
 		A98A37B880E16C6C709CB88A /* Pods_BeehiveTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BeehiveTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BA9C64AC55444CFD230537D9 /* Pods_Beehive.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Beehive.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1434,6 +1439,9 @@
 				7E561B99223A9D2F00DA3B20 /* LLRedpacketDetailsHeaderView.h */,
 				7E561B9A223A9D2F00DA3B20 /* LLRedpacketDetailsHeaderView.m */,
 				7E561B9C223A9D4100DA3B20 /* LLRedpacketDetailsHeaderView.xib */,
+				8DF0C28D223B67AE006175E7 /* LLRedTaskShowAlertView.h */,
+				8DF0C28E223B67AE006175E7 /* LLRedTaskShowAlertView.m */,
+				8DF0C290223B67FA006175E7 /* LLRedTaskShowAlertView.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1565,6 +1573,7 @@
 				7E561B9D223A9D4100DA3B20 /* LLRedpacketDetailsHeaderView.xib in Resources */,
 				7E2E700D2238023300F185A7 /* LLCommodityExchangeViewController.xib in Resources */,
 				8D79E4DD222676E20019A1BE /* LLBeeHomeViewController.xib in Resources */,
+				8DF0C291223B67FA006175E7 /* LLRedTaskShowAlertView.xib in Resources */,
 				8D5CB6D322352A9800527DEB /* LLTradeMoldViewController.xib in Resources */,
 				8D5CB6C12232D73300527DEB /* City.plist in Resources */,
 				8D5CB6D822352C0600527DEB /* LLChooseLocationViewController.xib in Resources */,
@@ -1807,6 +1816,7 @@
 				8DF0C279223A29A2006175E7 /* LLRedTaskTableViewCell.m in Sources */,
 				8D542A71222A5BC2008B90B0 /* LELoginManager.m in Sources */,
 				7E561B8922394B1100DA3B20 /* LLReportViewController.m in Sources */,
+				8DF0C28F223B67AE006175E7 /* LLRedTaskShowAlertView.m in Sources */,
 				8D3F214D222FB4FF0066F5EB /* LLImageItemViewCell.m in Sources */,
 				8D5CB6DC22352C6700527DEB /* LLAddShopAddressViewController.m in Sources */,
 				8D3F2153222FCB050066F5EB /* LLMessageDetailsViewController.m in Sources */,

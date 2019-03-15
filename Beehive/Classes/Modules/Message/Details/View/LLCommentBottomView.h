@@ -10,10 +10,12 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+typedef void (^LLCommentBottomViewHandleBlock) (NSInteger index);
 typedef void (^LLCommentBottomViewSendBlock) (void);
 
 @interface LLCommentBottomView : LLView
 
+@property (nonatomic, strong) LLCommentBottomViewHandleBlock commentBottomViewHandleBlock;
 @property (nonatomic, strong) LLCommentBottomViewSendBlock commentBottomViewSendBlock;
 
 @end

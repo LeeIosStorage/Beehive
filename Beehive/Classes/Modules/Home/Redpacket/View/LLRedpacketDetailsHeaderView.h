@@ -7,10 +7,15 @@
 //
 
 #import "LLView.h"
+#import "LLSegmentedHeadView.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface LLRedpacketDetailsHeaderView : LLView
+
+@property (nonatomic, weak) IBOutlet LLSegmentedHeadView *segmentedHeadView;
+
+@property (nonatomic, assign) NSInteger type;
 
 - (void)updateCellWithData:(id)node;
 

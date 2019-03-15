@@ -10,7 +10,7 @@
 
 @interface LLImageItemViewCell ()
 
-@property (nonatomic, weak) IBOutlet UIImageView *imageView;
+
 
 @end
 
@@ -19,8 +19,6 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
-    self.backgroundColor = kAppThemeColor;
-    self.contentView.backgroundColor = kAppThemeColor;
     self.imageView.contentMode = UIViewContentModeScaleAspectFill;
     self.imageView.clipsToBounds = true;
     self.imageView.layer.cornerRadius = 4;

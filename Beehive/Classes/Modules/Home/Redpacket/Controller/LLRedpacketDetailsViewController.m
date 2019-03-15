@@ -10,13 +10,19 @@
 #import "LLRedpacketDetailsHeaderView.h"
 #import "LLMessageCommentViewCell.h"
 #import "LLCommentBottomView.h"
+#import "LEShareSheetView.h"
+#import "LLRedTaskShowAlertView.h"
+#import "LEAlertMarkView.h"
 
 @interface LLRedpacketDetailsViewController ()
 <
 UITableViewDelegate,
-UITableViewDataSource
+UITableViewDataSource,
+LEShareSheetViewDelegate
 >
-
+{
+    LEShareSheetView *_shareSheetView;
+}
 @property (nonatomic, strong) NSMutableArray *commentLists;
 
 @property (nonatomic, strong) IBOutlet UITableView *tableView;
@@ -24,6 +30,8 @@ UITableViewDataSource
 @property (nonatomic, strong) LLRedpacketDetailsHeaderView *redpacketDetailsHeaderView;
 
 @property (nonatomic, strong) LLCommentBottomView *commentBottomView;
+
+@property (nonatomic, assign) NSInteger currentPage;
 
 @end
 
@@ -42,7 +50,7 @@ UITableViewDataSource
 }
 
 - (void)setup {
-    self.title = @"详情";
+    self.title = @"红包详情";
     
     [self createBarButtonItemAtPosition:LLNavigationBarPositionRight normalImage:[UIImage imageNamed:@"message_details_more"] highlightImage:[UIImage imageNamed:@"message_details_more"] text:@"" action:@selector(moreAction:)];
     self.view.backgroundColor = kAppSectionBackgroundColor;
@@ -62,6 +70,10 @@ UITableViewDataSource
     _tableView.backgroundColor = self.view.backgroundColor;
     _tableView.estimatedRowHeight = 73;
     _tableView.rowHeight = UITableViewAutomaticDimension;
+//    _tableView
+    _tableView.sectionFooterHeight = UITableViewAutomaticDimension;
+    
+    self.currentPage = 0;
     
     self.commentLists = [NSMutableArray array];
     
@@ -78,6 +90,17 @@ UITableViewDataSource
         make.left.right.bottom.equalTo(self.view);
         make.height.mas_equalTo(49);
     }];
+    
+    WEAKSELF
+    self.redpacketDetailsHeaderView.segmentedHeadView.clickBlock = ^(NSInteger index) {
+        if (index == 0) {
+            weakSelf.currentPage = 0;
+            [weakSelf.tableView reloadData];
+        } else if (index == 1) {
+            weakSelf.currentPage = 1;
+            [weakSelf.tableView reloadData];
+        }
+    };
 }
 
 - (void)refreshData {
@@ -85,6 +108,7 @@ UITableViewDataSource
     [self.commentLists addObject:@""];
     [self.commentLists addObject:@""];
     
+    self.redpacketDetailsHeaderView.type = self.vcType;
     [self.redpacketDetailsHeaderView updateCellWithData:nil];
     
     LLRedpacketDetailsHeaderView *headView = (LLRedpacketDetailsHeaderView *)self.tableView.tableHeaderView;
@@ -96,11 +120,40 @@ UITableViewDataSource
 
 #pragma mark - Action
 - (void)moreAction:(id)sender {
-    
+    [self redTaskAlertViewShow];
 }
 
 - (void)sendComment {
     [self.view endEditing:true];
+}
+
+- (void)shareAction {
+    
+    LEShareModel *shareModel = [[LEShareModel alloc] init];
+    shareModel.shareTitle = @"领红包";
+    shareModel.shareDescription = @"";
+    shareModel.shareWebpageUrl = @"http://www.baidu.com";
+    //    shareModel.shareImage = [];
+    _shareSheetView = [[LEShareSheetView alloc] init];
+    _shareSheetView.owner = self;
+    _shareSheetView.shareModel = shareModel;
+    [_shareSheetView showShareAction];
+}
+
+- (void)redTaskAlertViewShow {
+    LLRedTaskShowAlertView *tipView = [[[NSBundle mainBundle] loadNibNamed:@"LLRedTaskShowAlertView" owner:self options:nil] firstObject];
+    tipView.frame = CGRectMake(0, 0, 270, 115);
+    __weak UIView *weakView = tipView;
+    WEAKSELF
+    tipView.clickBlock = ^{
+        if ([weakView.superview isKindOfClass:[LEAlertMarkView class]]) {
+            LEAlertMarkView *alert = (LEAlertMarkView *)weakView.superview;
+            [alert dismiss];
+        }
+//        [weakSelf ];
+    };
+    LEAlertMarkView *alert = [[LEAlertMarkView alloc] initWithCustomView:tipView type:LEAlertMarkViewTypeCenter];
+    [alert show];
 }
 
 #pragma mark -
@@ -150,6 +203,11 @@ UITableViewDataSource
         _commentBottomView.commentBottomViewSendBlock = ^{
             [weakSelf sendComment];
         };
+        _commentBottomView.commentBottomViewHandleBlock = ^(NSInteger index) {
+            if (index == 0) {
+                [weakSelf shareAction];
+            }
+        };
     }
     return _commentBottomView;
 }
@@ -161,7 +219,55 @@ UITableViewDataSource
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
+    if (self.currentPage == 1) {
+        return 0;
+    }
     return self.commentLists.count;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
+    if (self.currentPage == 0) {
+        return 0;
+    }
+    return 130;
+}
+
+- (nullable UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
+    if (self.currentPage == 0) {
+        return nil;
+    }
+    static NSString *headerIdentifier = @"UITableViewHeaderFooterView";
+    UITableViewHeaderFooterView *header = [tableView dequeueReusableHeaderFooterViewWithIdentifier:headerIdentifier];
+    if (!header) {
+        header = [[UITableViewHeaderFooterView alloc] initWithReuseIdentifier:headerIdentifier];
+        header.backgroundColor = kAppBackgroundColor;
+        header.contentView.backgroundColor = kAppBackgroundColor;
+        
+        UILabel *label = [[UILabel alloc] init];
+        label.textColor = kAppTitleColor;
+        label.font = [FontConst PingFangSCRegularWithSize:13];
+        label.numberOfLines = 0;
+        label.tag = 201;
+        [header.contentView addSubview:label];
+        [label mas_makeConstraints:^(MASConstraintMaker *make) {
+//            make.edges.mas_equalTo(UIEdgeInsetsMake(15, 10, 25, 10));
+            make.left.equalTo(header.contentView).offset(10);
+            make.right.equalTo(header.contentView).offset(-10);
+            make.top.equalTo(header.contentView).offset(10);
+//            make.bottom.equalTo(header.contentView).offset(-10);
+        }];
+        
+        UIImageView *imgLine = [UIImageView new];
+        imgLine.backgroundColor = LineColor;
+        [header.contentView addSubview:imgLine];
+        [imgLine mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.bottom.right.equalTo(header);
+            make.height.mas_equalTo(0.5);
+        }];
+    }
+    UILabel *label = (UILabel *)[header.contentView viewWithTag:201];
+    label.text = @"红包任务介绍红包任务介绍红包任务介绍红包任务介绍红包任务介绍红包任务介绍红包任务介绍红包任务介绍红包任务介绍红包任务介绍红包任务介绍红包任务介绍红包任务介绍红包任务介绍红包任务介绍红包任务介绍红包任务介绍";
+    return header;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath

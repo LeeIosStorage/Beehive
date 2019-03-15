@@ -12,6 +12,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface LLImageItemViewCell : LLCollectionViewCell
 
+@property (nonatomic, weak) IBOutlet UIImageView *imageView;
+
 @end
 
 NS_ASSUME_NONNULL_END

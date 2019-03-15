@@ -129,6 +129,7 @@
 
 - (void)gotoRedpacketDetailsVc {
     LLRedpacketDetailsViewController *vc = [[LLRedpacketDetailsViewController alloc] init];
+    vc.vcType = 0;
     [self.navigationController pushViewController:vc animated:true];
 }
 
