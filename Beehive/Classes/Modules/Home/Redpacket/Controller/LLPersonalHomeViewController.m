@@ -34,7 +34,7 @@ UITableViewDataSource
 
 - (void)setup {
     self.title = @"个人主页";
-    self.view.backgroundColor = kAppSectionBackgroundColor;
+    self.tableView.backgroundColor = self.view.backgroundColor;
     self.dataLists = [NSMutableArray array];
     
     self.personalHomeHeaderView.height = 228;

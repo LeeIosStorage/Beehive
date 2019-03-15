@@ -20,6 +20,8 @@
 #import "LLReceiveRedAlertView.h"
 #import "LEAlertMarkView.h"
 #import "LLRedpacketDetailsViewController.h"
+#import "LLPartnerViewController.h"
+#import "UIButton+WebCache.h"
 
 @interface LLBeeHomeViewController ()
 
@@ -34,6 +36,8 @@
 @property (nonatomic, strong) UIButton *btnRedHistory;
 @property (nonatomic, strong) UIButton *btnShare;
 
+@property (nonatomic, strong) UIButton *btnBottomAds;
+
 @end
 
 @implementation LLBeeHomeViewController
@@ -42,6 +46,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     [self setup];
+    [self addBottomAds:kLLAppTestHttpURL];
 }
 
 - (void)injected {
@@ -133,6 +138,15 @@
     [self.navigationController pushViewController:vc animated:true];
 }
 
+- (void)addBottomAds:(NSString *)url {
+    [self.mapView addSubview:self.btnBottomAds];
+    [self.btnBottomAds mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.bottom.equalTo(self.mapView);
+        make.height.mas_equalTo(50);
+    }];
+    [self.btnBottomAds sd_setImageWithURL:[NSURL URLWithString:url] forState:UIControlStateNormal];
+}
+
 #pragma mark -
 #pragma mark - Action
 - (void)ruleClickAction:(id)sender {
@@ -167,6 +181,11 @@
 
 - (void)shareAction:(id)sender {
     [self receiveRedAlertViewShow];
+}
+
+- (void)adsBtnAction {
+    LLPartnerViewController *vc = [[LLPartnerViewController alloc] init];
+    [self.navigationController pushViewController:vc animated:true];
 }
 
 #pragma mark -
@@ -232,6 +251,14 @@
         [_btnRedHistory addTarget:self action:@selector(redHistoryAction:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _btnRedHistory;
+}
+
+- (UIButton *)btnBottomAds {
+    if (!_btnBottomAds) {
+        _btnBottomAds = [UIButton buttonWithType:UIButtonTypeCustom];
+        [_btnBottomAds addTarget:self action:@selector(adsBtnAction) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _btnBottomAds;
 }
 
 @end

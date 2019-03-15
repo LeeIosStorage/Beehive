@@ -34,7 +34,7 @@ UITableViewDataSource
 
 - (void)setup {
     self.title = @"红包详情";
-    self.view.backgroundColor = kAppSectionBackgroundColor;
+    self.tableView.backgroundColor = self.view.backgroundColor;
     self.dataLists = [NSMutableArray array];
     
     self.redReceiveDetailsHeaderView.height = 238;
