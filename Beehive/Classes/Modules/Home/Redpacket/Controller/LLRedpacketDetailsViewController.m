@@ -13,6 +13,8 @@
 #import "LEShareSheetView.h"
 #import "LLRedTaskShowAlertView.h"
 #import "LEAlertMarkView.h"
+#import "LLRedrReceiveDetailsViewController.h"
+#import "LLPersonalHomeViewController.h"
 
 @interface LLRedpacketDetailsViewController ()
 <
@@ -100,6 +102,14 @@ LEShareSheetViewDelegate
             weakSelf.currentPage = 1;
             [weakSelf.tableView reloadData];
         }
+    };
+    self.redpacketDetailsHeaderView.redReceiveBlock = ^{
+        LLRedrReceiveDetailsViewController *vc = [[LLRedrReceiveDetailsViewController alloc] init];
+        [weakSelf.navigationController pushViewController:vc animated:true];
+    };
+    self.redpacketDetailsHeaderView.avatarBlock = ^{
+        LLPersonalHomeViewController *vc = [[LLPersonalHomeViewController alloc] init];
+        [weakSelf.navigationController pushViewController:vc animated:true];
     };
 }
 

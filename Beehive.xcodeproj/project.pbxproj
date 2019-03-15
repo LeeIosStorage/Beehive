@@ -34,6 +34,16 @@
 		7E561B98223A99BF00DA3B20 /* LLRedpacketDetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7E561B96223A99BF00DA3B20 /* LLRedpacketDetailsViewController.xib */; };
 		7E561B9B223A9D2F00DA3B20 /* LLRedpacketDetailsHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E561B9A223A9D2F00DA3B20 /* LLRedpacketDetailsHeaderView.m */; };
 		7E561B9D223A9D4100DA3B20 /* LLRedpacketDetailsHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7E561B9C223A9D4100DA3B20 /* LLRedpacketDetailsHeaderView.xib */; };
+		8D004EC4223B71400029EDE6 /* LLRedrReceiveDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D004EC2223B71400029EDE6 /* LLRedrReceiveDetailsViewController.m */; };
+		8D004EC5223B71400029EDE6 /* LLRedrReceiveDetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D004EC3223B71400029EDE6 /* LLRedrReceiveDetailsViewController.xib */; };
+		8D004EC8223B71650029EDE6 /* LLRedrReceiveDetailsHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D004EC7223B71650029EDE6 /* LLRedrReceiveDetailsHeaderView.m */; };
+		8D004ECA223B719D0029EDE6 /* LLRedrReceiveDetailsHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D004EC9223B719D0029EDE6 /* LLRedrReceiveDetailsHeaderView.xib */; };
+		8D004ECE223B7ADC0029EDE6 /* LLRedReceiveUserTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D004ECC223B7ADC0029EDE6 /* LLRedReceiveUserTableViewCell.m */; };
+		8D004ECF223B7ADC0029EDE6 /* LLRedReceiveUserTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D004ECD223B7ADC0029EDE6 /* LLRedReceiveUserTableViewCell.xib */; };
+		8D004ED3223B80C50029EDE6 /* LLPersonalHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D004ED1223B80C50029EDE6 /* LLPersonalHomeViewController.m */; };
+		8D004ED4223B80C50029EDE6 /* LLPersonalHomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D004ED2223B80C50029EDE6 /* LLPersonalHomeViewController.xib */; };
+		8D004ED7223B81340029EDE6 /* LLPersonalHomeHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D004ED6223B81340029EDE6 /* LLPersonalHomeHeaderView.m */; };
+		8D004ED9223B813F0029EDE6 /* LLPersonalHomeHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D004ED8223B813F0029EDE6 /* LLPersonalHomeHeaderView.xib */; };
 		8D0167092238BFDB00CD21D8 /* LLAttentionTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D0167072238BFDB00CD21D8 /* LLAttentionTableViewCell.m */; };
 		8D01670A2238BFDB00CD21D8 /* LLAttentionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D0167082238BFDB00CD21D8 /* LLAttentionTableViewCell.xib */; };
 		8D01670E2238C05F00CD21D8 /* LLMessageWarnTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D01670C2238C05F00CD21D8 /* LLMessageWarnTableViewCell.m */; };
@@ -272,6 +282,21 @@
 		7E561B9A223A9D2F00DA3B20 /* LLRedpacketDetailsHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLRedpacketDetailsHeaderView.m; sourceTree = "<group>"; };
 		7E561B9C223A9D4100DA3B20 /* LLRedpacketDetailsHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LLRedpacketDetailsHeaderView.xib; sourceTree = "<group>"; };
 		86AFFE00E0BD8677E897D9D1 /* Pods-Beehive.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Beehive.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Beehive/Pods-Beehive.debug.xcconfig"; sourceTree = "<group>"; };
+		8D004EC1223B71400029EDE6 /* LLRedrReceiveDetailsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLRedrReceiveDetailsViewController.h; sourceTree = "<group>"; };
+		8D004EC2223B71400029EDE6 /* LLRedrReceiveDetailsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLRedrReceiveDetailsViewController.m; sourceTree = "<group>"; };
+		8D004EC3223B71400029EDE6 /* LLRedrReceiveDetailsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LLRedrReceiveDetailsViewController.xib; sourceTree = "<group>"; };
+		8D004EC6223B71650029EDE6 /* LLRedrReceiveDetailsHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLRedrReceiveDetailsHeaderView.h; sourceTree = "<group>"; };
+		8D004EC7223B71650029EDE6 /* LLRedrReceiveDetailsHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLRedrReceiveDetailsHeaderView.m; sourceTree = "<group>"; };
+		8D004EC9223B719D0029EDE6 /* LLRedrReceiveDetailsHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LLRedrReceiveDetailsHeaderView.xib; sourceTree = "<group>"; };
+		8D004ECB223B7ADC0029EDE6 /* LLRedReceiveUserTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLRedReceiveUserTableViewCell.h; sourceTree = "<group>"; };
+		8D004ECC223B7ADC0029EDE6 /* LLRedReceiveUserTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLRedReceiveUserTableViewCell.m; sourceTree = "<group>"; };
+		8D004ECD223B7ADC0029EDE6 /* LLRedReceiveUserTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LLRedReceiveUserTableViewCell.xib; sourceTree = "<group>"; };
+		8D004ED0223B80C50029EDE6 /* LLPersonalHomeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLPersonalHomeViewController.h; sourceTree = "<group>"; };
+		8D004ED1223B80C50029EDE6 /* LLPersonalHomeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLPersonalHomeViewController.m; sourceTree = "<group>"; };
+		8D004ED2223B80C50029EDE6 /* LLPersonalHomeViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LLPersonalHomeViewController.xib; sourceTree = "<group>"; };
+		8D004ED5223B81340029EDE6 /* LLPersonalHomeHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLPersonalHomeHeaderView.h; sourceTree = "<group>"; };
+		8D004ED6223B81340029EDE6 /* LLPersonalHomeHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLPersonalHomeHeaderView.m; sourceTree = "<group>"; };
+		8D004ED8223B813F0029EDE6 /* LLPersonalHomeHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LLPersonalHomeHeaderView.xib; sourceTree = "<group>"; };
 		8D0167062238BFDB00CD21D8 /* LLAttentionTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLAttentionTableViewCell.h; sourceTree = "<group>"; };
 		8D0167072238BFDB00CD21D8 /* LLAttentionTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLAttentionTableViewCell.m; sourceTree = "<group>"; };
 		8D0167082238BFDB00CD21D8 /* LLAttentionTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LLAttentionTableViewCell.xib; sourceTree = "<group>"; };
@@ -1345,6 +1370,12 @@
 				7E561B94223A99BF00DA3B20 /* LLRedpacketDetailsViewController.h */,
 				7E561B95223A99BF00DA3B20 /* LLRedpacketDetailsViewController.m */,
 				7E561B96223A99BF00DA3B20 /* LLRedpacketDetailsViewController.xib */,
+				8D004EC1223B71400029EDE6 /* LLRedrReceiveDetailsViewController.h */,
+				8D004EC2223B71400029EDE6 /* LLRedrReceiveDetailsViewController.m */,
+				8D004EC3223B71400029EDE6 /* LLRedrReceiveDetailsViewController.xib */,
+				8D004ED0223B80C50029EDE6 /* LLPersonalHomeViewController.h */,
+				8D004ED1223B80C50029EDE6 /* LLPersonalHomeViewController.m */,
+				8D004ED2223B80C50029EDE6 /* LLPersonalHomeViewController.xib */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1442,6 +1473,15 @@
 				8DF0C28D223B67AE006175E7 /* LLRedTaskShowAlertView.h */,
 				8DF0C28E223B67AE006175E7 /* LLRedTaskShowAlertView.m */,
 				8DF0C290223B67FA006175E7 /* LLRedTaskShowAlertView.xib */,
+				8D004EC6223B71650029EDE6 /* LLRedrReceiveDetailsHeaderView.h */,
+				8D004EC7223B71650029EDE6 /* LLRedrReceiveDetailsHeaderView.m */,
+				8D004EC9223B719D0029EDE6 /* LLRedrReceiveDetailsHeaderView.xib */,
+				8D004ECB223B7ADC0029EDE6 /* LLRedReceiveUserTableViewCell.h */,
+				8D004ECC223B7ADC0029EDE6 /* LLRedReceiveUserTableViewCell.m */,
+				8D004ECD223B7ADC0029EDE6 /* LLRedReceiveUserTableViewCell.xib */,
+				8D004ED5223B81340029EDE6 /* LLPersonalHomeHeaderView.h */,
+				8D004ED6223B81340029EDE6 /* LLPersonalHomeHeaderView.m */,
+				8D004ED8223B813F0029EDE6 /* LLPersonalHomeHeaderView.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1575,6 +1615,7 @@
 				8D79E4DD222676E20019A1BE /* LLBeeHomeViewController.xib in Resources */,
 				8DF0C291223B67FA006175E7 /* LLRedTaskShowAlertView.xib in Resources */,
 				8D5CB6D322352A9800527DEB /* LLTradeMoldViewController.xib in Resources */,
+				8D004ECF223B7ADC0029EDE6 /* LLRedReceiveUserTableViewCell.xib in Resources */,
 				8D5CB6C12232D73300527DEB /* City.plist in Resources */,
 				8D5CB6D822352C0600527DEB /* LLChooseLocationViewController.xib in Resources */,
 				8D5CB6BC2232D73300527DEB /* Area.plist in Resources */,
@@ -1584,6 +1625,7 @@
 				8D4C6123222D553A00024840 /* LLForgotPasswordViewController.xib in Resources */,
 				8D01670A2238BFDB00CD21D8 /* LLAttentionTableViewCell.xib in Resources */,
 				8D5F2E58223662F20049C28F /* LLMapAddressShowView.xib in Resources */,
+				8D004EC5223B71400029EDE6 /* LLRedrReceiveDetailsViewController.xib in Resources */,
 				8D5CB6EF22357F1D00527DEB /* LLMapAddressSearchViewController.xib in Resources */,
 				8D5CB6DD22352C6700527DEB /* LLAddShopAddressViewController.xib in Resources */,
 				8D5CB6EA22357EA000527DEB /* LLMapAddressViewController.xib in Resources */,
@@ -1604,6 +1646,7 @@
 				8D5CB6BD2232D73300527DEB /* Province.plist in Resources */,
 				7E561B8022392FBF00DA3B20 /* LLExchangeDetailsHeaderView.xib in Resources */,
 				8D5F2E622236D3040049C28F /* LLChooseLocationScopeView.xib in Resources */,
+				8D004ED9223B813F0029EDE6 /* LLPersonalHomeHeaderView.xib in Resources */,
 				8D58D4C32226355B00803985 /* LaunchScreen.storyboard in Resources */,
 				8D4C6128222D555800024840 /* LLRegisterViewController.xib in Resources */,
 				8DCC9AAF222B71F200AC3128 /* LLRedRuleViewController.xib in Resources */,
@@ -1616,6 +1659,8 @@
 				7E1E8A65222ED0E6002766AD /* LLMessageTimeLineViewCell.xib in Resources */,
 				8D016740223A052500CD21D8 /* LLCommodityExchangeconfirmView.xib in Resources */,
 				8DC02D5022311443000CAE9C /* LLRankTableViewCell.xib in Resources */,
+				8D004ED4223B80C50029EDE6 /* LLPersonalHomeViewController.xib in Resources */,
+				8D004ECA223B719D0029EDE6 /* LLRedrReceiveDetailsHeaderView.xib in Resources */,
 				8DCC9ACA222BF81A00AC3128 /* LLCityOptionCollectionViewCell.xib in Resources */,
 				8D3F214E222FB4FF0066F5EB /* LLImageItemViewCell.xib in Resources */,
 				7E1E8A6B22301172002766AD /* LLMessageDetailsHeaderView.xib in Resources */,
@@ -1819,6 +1864,7 @@
 				8DF0C28F223B67AE006175E7 /* LLRedTaskShowAlertView.m in Sources */,
 				8D3F214D222FB4FF0066F5EB /* LLImageItemViewCell.m in Sources */,
 				8D5CB6DC22352C6700527DEB /* LLAddShopAddressViewController.m in Sources */,
+				8D004EC8223B71650029EDE6 /* LLRedrReceiveDetailsHeaderView.m in Sources */,
 				8D3F2153222FCB050066F5EB /* LLMessageDetailsViewController.m in Sources */,
 				8DF0C273223A25D4006175E7 /* LLRedTaskViewController.m in Sources */,
 				8D542A6D222A5BC2008B90B0 /* LEShareSheetView.m in Sources */,
@@ -1844,8 +1890,10 @@
 				8DC02D4F22311443000CAE9C /* LLRankTableViewCell.m in Sources */,
 				8D5CB6E922357EA000527DEB /* LLMapAddressViewController.m in Sources */,
 				8D79E4D5222672CA0019A1BE /* LLNavigationController.m in Sources */,
+				8D004ED3223B80C50029EDE6 /* LLPersonalHomeViewController.m in Sources */,
 				8DCC9AC2222B815E00AC3128 /* LLTableViewCell.m in Sources */,
 				8D542A64222A5BC2008B90B0 /* WYAPIGenerate.m in Sources */,
+				8D004ECE223B7ADC0029EDE6 /* LLRedReceiveUserTableViewCell.m in Sources */,
 				8D01670E2238C05F00CD21D8 /* LLMessageWarnTableViewCell.m in Sources */,
 				8DF0C287223A4A6C006175E7 /* LLAwardRecordViewController.m in Sources */,
 				8D4C612D222D77E800024840 /* LEPublishMenuView.m in Sources */,
@@ -1900,6 +1948,7 @@
 				8D0167172238CE9400CD21D8 /* LLCellOriginalContentView.m in Sources */,
 				7E561B9B223A9D2F00DA3B20 /* LLRedpacketDetailsHeaderView.m in Sources */,
 				8D4C6127222D555800024840 /* LLRegisterViewController.m in Sources */,
+				8D004ED7223B81340029EDE6 /* LLPersonalHomeHeaderView.m in Sources */,
 				8D542A85222A66A5008B90B0 /* LLLoginViewController.m in Sources */,
 				8D542A67222A5BC2008B90B0 /* WYCustomActionSheet.m in Sources */,
 				8D542A78222A5BC2008B90B0 /* MBProgressHUD+LETools.m in Sources */,
@@ -1909,6 +1958,7 @@
 				8D0167272238E1EE00CD21D8 /* LLReceiveCommentTableViewCell.m in Sources */,
 				8D542A79222A5BC2008B90B0 /* UIImage+ProportionalFill.m in Sources */,
 				8D5CB6CD2234E65000527DEB /* LLMultipleSelectedPickerView.m in Sources */,
+				8D004EC4223B71400029EDE6 /* LLRedrReceiveDetailsViewController.m in Sources */,
 				8D542A7A222A5BC2008B90B0 /* LEBaseModel.m in Sources */,
 				8D5CB6C22232D73300527DEB /* ZJDatePickerView.m in Sources */,
 				8D890B6C2232344500CA711A /* LLPublishInputViewCell.m in Sources */,

@@ -76,6 +76,12 @@ UICollectionViewDataSource
     
 }
 
+- (IBAction)avatarAction:(id)sender {
+    if (self.avatarBlock) {
+        self.avatarBlock();
+    }
+}
+
 - (void)updateCellWithData:(id)node {
     [WYCommonUtils setImageWithURL:[NSURL URLWithString:@""] setImage:self.avatarImageView setbitmapImage:[UIImage imageNamed:@"app_def"]];
     self.contentLabel.text = @"信息正文信息正文信息正文信息正文信息正文信息正文信息正文信息正文";
@@ -173,6 +179,11 @@ UICollectionViewDataSource
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     [collectionView deselectItemAtIndexPath:indexPath animated:YES];
+    if (collectionView == self.allowCollectionView) {
+        if (self.redReceiveBlock) {
+            self.redReceiveBlock();
+        }
+    }
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
