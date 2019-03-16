@@ -42,7 +42,7 @@ typedef NS_ENUM(NSInteger, LLPublishCellType) {
     LLPublishCellTypeContacts,       //联系人
     LLPublishCellTypeShipAddress,    //收货地址
     LLPublishCellTypeHouseNumber,    //门牌号
-    
+    LLPublishCellTypeADImage,        //广告图
 };
 
 typedef NS_ENUM(NSInteger, LLPublishInputType) {

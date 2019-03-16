@@ -10,6 +10,8 @@
 
 @interface LEAlertMarkView ()
 
+@property (nonatomic, strong) UIImageView *markImageView;
+
 @property (nonatomic, strong) UIView *customView;
 
 @property (nonatomic, assign) LEAlertMarkViewType alertType;
@@ -36,8 +38,13 @@
 }
 
 - (void)setup {
+    
+    [self addSubview:self.markImageView];
+    [self.markImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.equalTo(self);
+    }];
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismiss)];
-    [self addGestureRecognizer:tap];
+    [self.markImageView addGestureRecognizer:tap];
     self.backgroundColor = kAppMaskOpaqueBlackColor;
     
     if (self.customView) {
@@ -54,6 +61,14 @@
             make.size.mas_equalTo(size);
         }];
     }
+}
+
+- (UIImageView *)markImageView {
+    if (!_markImageView) {
+        _markImageView = [[UIImageView alloc] init];
+        _markImageView.userInteractionEnabled = true;
+    }
+    return _markImageView;
 }
 
 - (void)show {

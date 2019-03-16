@@ -47,6 +47,13 @@
     if (cellNode.uploadImageDatas.count > 1) {
         [self.btn2 setImage:cellNode.uploadImageDatas[1] forState:UIControlStateNormal];
     }
+    
+    if (cellNode.cellType == LLPublishCellTypeADImage) {
+        self.btn1.hidden = true;
+        if (cellNode.uploadImageDatas.count > 0) {
+            [self.btn2 setImage:cellNode.uploadImageDatas[0] forState:UIControlStateNormal];
+        }
+    }
 }
 
 - (IBAction)btn1Action:(id)sender {
@@ -81,7 +88,11 @@
             HXPhotoModel *first = photoList.firstObject;
             [self.btn2 setImage:first.thumbPhoto forState:UIControlStateNormal];
             [self.toolManager getSelectedImageList:photoList requestType:HXDatePhotoToolManagerRequestTypeOriginal success:^(NSArray<UIImage *> *imageList) {
-                [cellNode.uploadImageDatas insertObjects:imageList atIndex:1];
+                if (cellNode.cellType == LLPublishCellTypeADImage) {
+                    [cellNode.uploadImageDatas insertObjects:imageList atIndex:0];
+                } else {
+                    [cellNode.uploadImageDatas insertObjects:imageList atIndex:1];
+                }
             } failed:^{
                 
             }];

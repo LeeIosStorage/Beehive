@@ -48,6 +48,10 @@
 		8D004EE1223B8F3B0029EDE6 /* LLPartnerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D004EDF223B8F3B0029EDE6 /* LLPartnerViewController.xib */; };
 		8D004EE4223B90780029EDE6 /* LLPartnerHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D004EE3223B90780029EDE6 /* LLPartnerHeaderView.m */; };
 		8D004EE6223B974E0029EDE6 /* LLPartnerHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D004EE5223B974E0029EDE6 /* LLPartnerHeaderView.xib */; };
+		8D004EEA223BE2B00029EDE6 /* LLUploadAdViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D004EE8223BE2B00029EDE6 /* LLUploadAdViewController.m */; };
+		8D004EEB223BE2B00029EDE6 /* LLUploadAdViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D004EE9223BE2B00029EDE6 /* LLUploadAdViewController.xib */; };
+		8D004EEF223BED150029EDE6 /* LLBuyAdViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D004EED223BED150029EDE6 /* LLBuyAdViewController.m */; };
+		8D004EF0223BED150029EDE6 /* LLBuyAdViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D004EEE223BED150029EDE6 /* LLBuyAdViewController.xib */; };
 		8D0167092238BFDB00CD21D8 /* LLAttentionTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D0167072238BFDB00CD21D8 /* LLAttentionTableViewCell.m */; };
 		8D01670A2238BFDB00CD21D8 /* LLAttentionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D0167082238BFDB00CD21D8 /* LLAttentionTableViewCell.xib */; };
 		8D01670E2238C05F00CD21D8 /* LLMessageWarnTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D01670C2238C05F00CD21D8 /* LLMessageWarnTableViewCell.m */; };
@@ -179,6 +183,19 @@
 		8D890B6D2232344500CA711A /* LLPublishInputViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D890B6B2232344500CA711A /* LLPublishInputViewCell.xib */; };
 		8D890B712232346700CA711A /* LLPublishImageViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D890B6F2232346700CA711A /* LLPublishImageViewCell.m */; };
 		8D890B722232346700CA711A /* LLPublishImageViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D890B702232346700CA711A /* LLPublishImageViewCell.xib */; };
+		8DBEAE29223C93E50095D214 /* ZJPayPopupView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DBEAE25223C93E50095D214 /* ZJPayPopupView.m */; };
+		8DBEAE2A223C93E50095D214 /* ZJPayPasswordView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DBEAE26223C93E50095D214 /* ZJPayPasswordView.m */; };
+		8DBEAE30223C9AB10095D214 /* LLPayPasswordResetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DBEAE2E223C9AB10095D214 /* LLPayPasswordResetViewController.m */; };
+		8DBEAE31223C9AB10095D214 /* LLPayPasswordResetViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8DBEAE2F223C9AB10095D214 /* LLPayPasswordResetViewController.xib */; };
+		8DBEAE34223C9BBB0095D214 /* LLPaymentWayView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DBEAE33223C9BBB0095D214 /* LLPaymentWayView.m */; };
+		8DBEAE36223C9BC90095D214 /* LLPaymentWayView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8DBEAE35223C9BC90095D214 /* LLPaymentWayView.xib */; };
+		8DBEAE3A223C9F6B0095D214 /* LLPaymentWayNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DBEAE39223C9F6B0095D214 /* LLPaymentWayNode.m */; };
+		8DBEAE3E223CA0150095D214 /* LLPaymentWayTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DBEAE3C223CA0150095D214 /* LLPaymentWayTableViewCell.m */; };
+		8DBEAE3F223CA0150095D214 /* LLPaymentWayTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8DBEAE3D223CA0150095D214 /* LLPaymentWayTableViewCell.xib */; };
+		8DBEAE43223CAEC90095D214 /* LLEditAdViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DBEAE41223CAEC90095D214 /* LLEditAdViewController.m */; };
+		8DBEAE44223CAEC90095D214 /* LLEditAdViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8DBEAE42223CAEC90095D214 /* LLEditAdViewController.xib */; };
+		8DBEAE48223CAEDE0095D214 /* LLBeeKingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DBEAE46223CAEDE0095D214 /* LLBeeKingViewController.m */; };
+		8DBEAE49223CAEDE0095D214 /* LLBeeKingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8DBEAE47223CAEDE0095D214 /* LLBeeKingViewController.xib */; };
 		8DC02D4A2230E4F6000CAE9C /* LLCommentBottomView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DC02D492230E4F6000CAE9C /* LLCommentBottomView.m */; };
 		8DC02D4F22311443000CAE9C /* LLRankTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DC02D4D22311443000CAE9C /* LLRankTableViewCell.m */; };
 		8DC02D5022311443000CAE9C /* LLRankTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8DC02D4E22311443000CAE9C /* LLRankTableViewCell.xib */; };
@@ -307,6 +324,12 @@
 		8D004EE2223B90780029EDE6 /* LLPartnerHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLPartnerHeaderView.h; sourceTree = "<group>"; };
 		8D004EE3223B90780029EDE6 /* LLPartnerHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLPartnerHeaderView.m; sourceTree = "<group>"; };
 		8D004EE5223B974E0029EDE6 /* LLPartnerHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LLPartnerHeaderView.xib; sourceTree = "<group>"; };
+		8D004EE7223BE2B00029EDE6 /* LLUploadAdViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLUploadAdViewController.h; sourceTree = "<group>"; };
+		8D004EE8223BE2B00029EDE6 /* LLUploadAdViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLUploadAdViewController.m; sourceTree = "<group>"; };
+		8D004EE9223BE2B00029EDE6 /* LLUploadAdViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LLUploadAdViewController.xib; sourceTree = "<group>"; };
+		8D004EEC223BED150029EDE6 /* LLBuyAdViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLBuyAdViewController.h; sourceTree = "<group>"; };
+		8D004EED223BED150029EDE6 /* LLBuyAdViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLBuyAdViewController.m; sourceTree = "<group>"; };
+		8D004EEE223BED150029EDE6 /* LLBuyAdViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LLBuyAdViewController.xib; sourceTree = "<group>"; };
 		8D0167062238BFDB00CD21D8 /* LLAttentionTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLAttentionTableViewCell.h; sourceTree = "<group>"; };
 		8D0167072238BFDB00CD21D8 /* LLAttentionTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLAttentionTableViewCell.m; sourceTree = "<group>"; };
 		8D0167082238BFDB00CD21D8 /* LLAttentionTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LLAttentionTableViewCell.xib; sourceTree = "<group>"; };
@@ -532,6 +555,28 @@
 		8D890B6E2232346700CA711A /* LLPublishImageViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLPublishImageViewCell.h; sourceTree = "<group>"; };
 		8D890B6F2232346700CA711A /* LLPublishImageViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLPublishImageViewCell.m; sourceTree = "<group>"; };
 		8D890B702232346700CA711A /* LLPublishImageViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LLPublishImageViewCell.xib; sourceTree = "<group>"; };
+		8DBEAE24223C93E50095D214 /* ZJPayPasswordView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJPayPasswordView.h; sourceTree = "<group>"; };
+		8DBEAE25223C93E50095D214 /* ZJPayPopupView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZJPayPopupView.m; sourceTree = "<group>"; };
+		8DBEAE26223C93E50095D214 /* ZJPayPasswordView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZJPayPasswordView.m; sourceTree = "<group>"; };
+		8DBEAE27223C93E50095D214 /* ZJDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJDefines.h; sourceTree = "<group>"; };
+		8DBEAE28223C93E50095D214 /* ZJPayPopupView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJPayPopupView.h; sourceTree = "<group>"; };
+		8DBEAE2D223C9AB10095D214 /* LLPayPasswordResetViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLPayPasswordResetViewController.h; sourceTree = "<group>"; };
+		8DBEAE2E223C9AB10095D214 /* LLPayPasswordResetViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLPayPasswordResetViewController.m; sourceTree = "<group>"; };
+		8DBEAE2F223C9AB10095D214 /* LLPayPasswordResetViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LLPayPasswordResetViewController.xib; sourceTree = "<group>"; };
+		8DBEAE32223C9BBB0095D214 /* LLPaymentWayView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLPaymentWayView.h; sourceTree = "<group>"; };
+		8DBEAE33223C9BBB0095D214 /* LLPaymentWayView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLPaymentWayView.m; sourceTree = "<group>"; };
+		8DBEAE35223C9BC90095D214 /* LLPaymentWayView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LLPaymentWayView.xib; sourceTree = "<group>"; };
+		8DBEAE38223C9F6B0095D214 /* LLPaymentWayNode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLPaymentWayNode.h; sourceTree = "<group>"; };
+		8DBEAE39223C9F6B0095D214 /* LLPaymentWayNode.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLPaymentWayNode.m; sourceTree = "<group>"; };
+		8DBEAE3B223CA0150095D214 /* LLPaymentWayTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLPaymentWayTableViewCell.h; sourceTree = "<group>"; };
+		8DBEAE3C223CA0150095D214 /* LLPaymentWayTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLPaymentWayTableViewCell.m; sourceTree = "<group>"; };
+		8DBEAE3D223CA0150095D214 /* LLPaymentWayTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LLPaymentWayTableViewCell.xib; sourceTree = "<group>"; };
+		8DBEAE40223CAEC90095D214 /* LLEditAdViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLEditAdViewController.h; sourceTree = "<group>"; };
+		8DBEAE41223CAEC90095D214 /* LLEditAdViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLEditAdViewController.m; sourceTree = "<group>"; };
+		8DBEAE42223CAEC90095D214 /* LLEditAdViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LLEditAdViewController.xib; sourceTree = "<group>"; };
+		8DBEAE45223CAEDE0095D214 /* LLBeeKingViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLBeeKingViewController.h; sourceTree = "<group>"; };
+		8DBEAE46223CAEDE0095D214 /* LLBeeKingViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLBeeKingViewController.m; sourceTree = "<group>"; };
+		8DBEAE47223CAEDE0095D214 /* LLBeeKingViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LLBeeKingViewController.xib; sourceTree = "<group>"; };
 		8DC02D482230E4F6000CAE9C /* LLCommentBottomView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLCommentBottomView.h; sourceTree = "<group>"; };
 		8DC02D492230E4F6000CAE9C /* LLCommentBottomView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLCommentBottomView.m; sourceTree = "<group>"; };
 		8DC02D4C22311443000CAE9C /* LLRankTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLRankTableViewCell.h; sourceTree = "<group>"; };
@@ -731,6 +776,7 @@
 		8D004EDA223B8EFF0029EDE6 /* Partner */ = {
 			isa = PBXGroup;
 			children = (
+				8DBEAE37223C9F4E0095D214 /* Model */,
 				8D004EDC223B8F200029EDE6 /* View */,
 				8D004EDB223B8F180029EDE6 /* Controller */,
 			);
@@ -743,6 +789,18 @@
 				8D004EDD223B8F3B0029EDE6 /* LLPartnerViewController.h */,
 				8D004EDE223B8F3B0029EDE6 /* LLPartnerViewController.m */,
 				8D004EDF223B8F3B0029EDE6 /* LLPartnerViewController.xib */,
+				8D004EE7223BE2B00029EDE6 /* LLUploadAdViewController.h */,
+				8D004EE8223BE2B00029EDE6 /* LLUploadAdViewController.m */,
+				8D004EE9223BE2B00029EDE6 /* LLUploadAdViewController.xib */,
+				8D004EEC223BED150029EDE6 /* LLBuyAdViewController.h */,
+				8D004EED223BED150029EDE6 /* LLBuyAdViewController.m */,
+				8D004EEE223BED150029EDE6 /* LLBuyAdViewController.xib */,
+				8DBEAE40223CAEC90095D214 /* LLEditAdViewController.h */,
+				8DBEAE41223CAEC90095D214 /* LLEditAdViewController.m */,
+				8DBEAE42223CAEC90095D214 /* LLEditAdViewController.xib */,
+				8DBEAE45223CAEDE0095D214 /* LLBeeKingViewController.h */,
+				8DBEAE46223CAEDE0095D214 /* LLBeeKingViewController.m */,
+				8DBEAE47223CAEDE0095D214 /* LLBeeKingViewController.xib */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -753,6 +811,12 @@
 				8D004EE2223B90780029EDE6 /* LLPartnerHeaderView.h */,
 				8D004EE3223B90780029EDE6 /* LLPartnerHeaderView.m */,
 				8D004EE5223B974E0029EDE6 /* LLPartnerHeaderView.xib */,
+				8DBEAE32223C9BBB0095D214 /* LLPaymentWayView.h */,
+				8DBEAE33223C9BBB0095D214 /* LLPaymentWayView.m */,
+				8DBEAE35223C9BC90095D214 /* LLPaymentWayView.xib */,
+				8DBEAE3B223CA0150095D214 /* LLPaymentWayTableViewCell.h */,
+				8DBEAE3C223CA0150095D214 /* LLPaymentWayTableViewCell.m */,
+				8DBEAE3D223CA0150095D214 /* LLPaymentWayTableViewCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1127,6 +1191,7 @@
 		8D5CB6A92232D70C00527DEB /* External */ = {
 			isa = PBXGroup;
 			children = (
+				8DBEAE23223C93B90095D214 /* ZJPayPassword */,
 				8D5CB6AA2232D73300527DEB /* ZJUsefulPickerView */,
 			);
 			path = External;
@@ -1263,6 +1328,7 @@
 		8D79E4CE2226704C0019A1BE /* Mine */ = {
 			isa = PBXGroup;
 			children = (
+				8DBEAE2B223C9A520095D214 /* Setting */,
 				8D890B48223205E200CA711A /* Message */,
 				8D542A80222A6602008B90B0 /* Info */,
 				8D890B4E2232074E00CA711A /* Controller */,
@@ -1357,6 +1423,45 @@
 				8D890B6222322C2100CA711A /* LLPublishCellNode.m */,
 				8D5CB6DE22352F3900527DEB /* LLTradeMoldNode.h */,
 				8D5CB6DF22352F3900527DEB /* LLTradeMoldNode.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		8DBEAE23223C93B90095D214 /* ZJPayPassword */ = {
+			isa = PBXGroup;
+			children = (
+				8DBEAE27223C93E50095D214 /* ZJDefines.h */,
+				8DBEAE24223C93E50095D214 /* ZJPayPasswordView.h */,
+				8DBEAE26223C93E50095D214 /* ZJPayPasswordView.m */,
+				8DBEAE28223C93E50095D214 /* ZJPayPopupView.h */,
+				8DBEAE25223C93E50095D214 /* ZJPayPopupView.m */,
+			);
+			path = ZJPayPassword;
+			sourceTree = "<group>";
+		};
+		8DBEAE2B223C9A520095D214 /* Setting */ = {
+			isa = PBXGroup;
+			children = (
+				8DBEAE2C223C9A5D0095D214 /* View */,
+				8DBEAE2D223C9AB10095D214 /* LLPayPasswordResetViewController.h */,
+				8DBEAE2E223C9AB10095D214 /* LLPayPasswordResetViewController.m */,
+				8DBEAE2F223C9AB10095D214 /* LLPayPasswordResetViewController.xib */,
+			);
+			path = Setting;
+			sourceTree = "<group>";
+		};
+		8DBEAE2C223C9A5D0095D214 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		8DBEAE37223C9F4E0095D214 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				8DBEAE38223C9F6B0095D214 /* LLPaymentWayNode.h */,
+				8DBEAE39223C9F6B0095D214 /* LLPaymentWayNode.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1652,13 +1757,16 @@
 				8D01671E2238DE8500CD21D8 /* LLReceiveCommentViewController.xib in Resources */,
 				7E561B9D223A9D4100DA3B20 /* LLRedpacketDetailsHeaderView.xib in Resources */,
 				7E2E700D2238023300F185A7 /* LLCommodityExchangeViewController.xib in Resources */,
+				8DBEAE3F223CA0150095D214 /* LLPaymentWayTableViewCell.xib in Resources */,
 				8D79E4DD222676E20019A1BE /* LLBeeHomeViewController.xib in Resources */,
+				8D004EF0223BED150029EDE6 /* LLBuyAdViewController.xib in Resources */,
 				8DF0C291223B67FA006175E7 /* LLRedTaskShowAlertView.xib in Resources */,
 				8D5CB6D322352A9800527DEB /* LLTradeMoldViewController.xib in Resources */,
 				8D004ECF223B7ADC0029EDE6 /* LLRedReceiveUserTableViewCell.xib in Resources */,
 				8D5CB6C12232D73300527DEB /* City.plist in Resources */,
 				8D5CB6D822352C0600527DEB /* LLChooseLocationViewController.xib in Resources */,
 				8D5CB6BC2232D73300527DEB /* Area.plist in Resources */,
+				8DBEAE31223C9AB10095D214 /* LLPayPasswordResetViewController.xib in Resources */,
 				8DE5885F2227A4CC002C1576 /* LLBeeRankingViewController.xib in Resources */,
 				8D890B582232082800CA711A /* LLBeeQunViewController.xib in Resources */,
 				8D890B532232077D00CA711A /* LLMineWalletViewController.xib in Resources */,
@@ -1672,6 +1780,7 @@
 				8D5CB6EA22357EA000527DEB /* LLMapAddressViewController.xib in Resources */,
 				8D5CB6E522354C6800527DEB /* LLPublishChooseViewCell.xib in Resources */,
 				8DF0C27F223A2EB1006175E7 /* LLRedTaskHistoryTableViewCell.xib in Resources */,
+				8D004EEB223BE2B00029EDE6 /* LLUploadAdViewController.xib in Resources */,
 				8DF0C284223A3D4D006175E7 /* LLRedTaskHistoryHeaderView.xib in Resources */,
 				8D542A63222A5BC2008B90B0 /* NetWorkConfig.json in Resources */,
 				7E561B98223A99BF00DA3B20 /* LLRedpacketDetailsViewController.xib in Resources */,
@@ -1680,6 +1789,7 @@
 				8D890B4D2232060100CA711A /* LLMessageViewController.xib in Resources */,
 				8D890B68223231BF00CA711A /* LLPublishNormalViewCell.xib in Resources */,
 				8DE5885A2227A4B3002C1576 /* LLBeeMessageViewController.xib in Resources */,
+				8DBEAE44223CAEC90095D214 /* LLEditAdViewController.xib in Resources */,
 				8DF0C27A223A29A2006175E7 /* LLRedTaskTableViewCell.xib in Resources */,
 				8D890B6D2232344500CA711A /* LLPublishInputViewCell.xib in Resources */,
 				8D01673B22391EC000CD21D8 /* LLCommodityExchangeDetailsViewController.xib in Resources */,
@@ -1715,12 +1825,14 @@
 				8D0167332238ED8900CD21D8 /* LLCommodityExchangeTableViewCell.xib in Resources */,
 				8DC02D5622313731000CAE9C /* LLMineCollectionViewCell.xib in Resources */,
 				8DF0C28C223A502B006175E7 /* LLReceiveRedAlertView.xib in Resources */,
+				8DBEAE49223CAEDE0095D214 /* LLBeeKingViewController.xib in Resources */,
 				8D5CB6CA2233AF2400527DEB /* LLPublishIDCardViewCell.xib in Resources */,
 				7E2E7017223802D800F185A7 /* LLRedTaskHistoryViewController.xib in Resources */,
 				7E1E8A7022301AF2002766AD /* LLMessageCommentViewCell.xib in Resources */,
 				8DF0C274223A25D4006175E7 /* LLRedTaskViewController.xib in Resources */,
 				8D79E4E2222676FC0019A1BE /* LLBeeMineViewController.xib in Resources */,
 				8D0167282238E1EE00CD21D8 /* LLReceiveCommentTableViewCell.xib in Resources */,
+				8DBEAE36223C9BC90095D214 /* LLPaymentWayView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1917,7 +2029,9 @@
 				8D5CB6D722352C0600527DEB /* LLChooseLocationViewController.m in Sources */,
 				8D79E4E1222676FC0019A1BE /* LLBeeMineViewController.m in Sources */,
 				8D542A6A222A5BC2008B90B0 /* LEWebViewController.m in Sources */,
+				8DBEAE29223C93E50095D214 /* ZJPayPopupView.m in Sources */,
 				8D542A6B222A5BC2008B90B0 /* LEShareModel.m in Sources */,
+				8D004EEF223BED150029EDE6 /* LLBuyAdViewController.m in Sources */,
 				8D79E4DC222676E20019A1BE /* LLBeeHomeViewController.m in Sources */,
 				7E1E8A7922317338002766AD /* LLMineNode.m in Sources */,
 				8D01673A22391EC000CD21D8 /* LLCommodityExchangeDetailsViewController.m in Sources */,
@@ -1929,6 +2043,7 @@
 				8D58D4C62226355B00803985 /* main.m in Sources */,
 				7E561B97223A99BF00DA3B20 /* LLRedpacketDetailsViewController.m in Sources */,
 				8DC02D4A2230E4F6000CAE9C /* LLCommentBottomView.m in Sources */,
+				8DBEAE30223C9AB10095D214 /* LLPayPasswordResetViewController.m in Sources */,
 				8DC02D4F22311443000CAE9C /* LLRankTableViewCell.m in Sources */,
 				8D5CB6E922357EA000527DEB /* LLMapAddressViewController.m in Sources */,
 				8D79E4D5222672CA0019A1BE /* LLNavigationController.m in Sources */,
@@ -1941,6 +2056,7 @@
 				8DF0C287223A4A6C006175E7 /* LLAwardRecordViewController.m in Sources */,
 				8D4C612D222D77E800024840 /* LEPublishMenuView.m in Sources */,
 				8DCC9ABC222B812E00AC3128 /* LLCollectionViewCell.m in Sources */,
+				8DBEAE3E223CA0150095D214 /* LLPaymentWayTableViewCell.m in Sources */,
 				8D542A66222A5BC2008B90B0 /* WYActionSheet.m in Sources */,
 				8DE588592227A4B3002C1576 /* LLBeeMessageViewController.m in Sources */,
 				8D542A7C222A5BC2008B90B0 /* LELoginAuthManager.m in Sources */,
@@ -1958,6 +2074,7 @@
 				8DE588672227C76F002C1576 /* FontConst.swift in Sources */,
 				8D5CB6C02232D73300527DEB /* ZJMultiplePickerView.m in Sources */,
 				8D542A69222A5BC2008B90B0 /* LESearchBar.m in Sources */,
+				8D004EEA223BE2B00029EDE6 /* LLUploadAdViewController.m in Sources */,
 				8DCC9AC5222B835000AC3128 /* LLCityOptionHeaderView.m in Sources */,
 				8DE588622227AD82002C1576 /* LLPlusButton.m in Sources */,
 				8D4C6122222D553A00024840 /* LLForgotPasswordViewController.m in Sources */,
@@ -1967,6 +2084,7 @@
 				8D79E4D2222672A20019A1BE /* LLTabBarViewController.m in Sources */,
 				8D542A61222A5BC2008B90B0 /* WYNetWorkExceptionHandling.m in Sources */,
 				8D890B67223231BF00CA711A /* LLPublishNormalViewCell.m in Sources */,
+				8DBEAE3A223C9F6B0095D214 /* LLPaymentWayNode.m in Sources */,
 				8D542A7B222A5BC2008B90B0 /* WYShareManager.m in Sources */,
 				8D004EE0223B8F3B0029EDE6 /* LLPartnerViewController.m in Sources */,
 				8D3F2149222F65020066F5EB /* LLHandleStatusView.m in Sources */,
@@ -1987,13 +2105,16 @@
 				8DF0C27E223A2EB1006175E7 /* LLRedTaskHistoryTableViewCell.m in Sources */,
 				8D890B712232346700CA711A /* LLPublishImageViewCell.m in Sources */,
 				7E561B91223955CB00DA3B20 /* LLReportSucceedView.m in Sources */,
+				8DBEAE34223C9BBB0095D214 /* LLPaymentWayView.m in Sources */,
 				8D542A73222A5BC2008B90B0 /* SVProgressHUD+LETools.m in Sources */,
 				8D542A77222A5BC2008B90B0 /* YTCache.m in Sources */,
 				8D0167172238CE9400CD21D8 /* LLCellOriginalContentView.m in Sources */,
 				7E561B9B223A9D2F00DA3B20 /* LLRedpacketDetailsHeaderView.m in Sources */,
 				8D4C6127222D555800024840 /* LLRegisterViewController.m in Sources */,
 				8D004ED7223B81340029EDE6 /* LLPersonalHomeHeaderView.m in Sources */,
+				8DBEAE48223CAEDE0095D214 /* LLBeeKingViewController.m in Sources */,
 				8D542A85222A66A5008B90B0 /* LLLoginViewController.m in Sources */,
+				8DBEAE43223CAEC90095D214 /* LLEditAdViewController.m in Sources */,
 				8D542A67222A5BC2008B90B0 /* WYCustomActionSheet.m in Sources */,
 				8D542A78222A5BC2008B90B0 /* MBProgressHUD+LETools.m in Sources */,
 				8DD290D92228D72200E4338D /* UIViewController+LLNavigationBar.m in Sources */,
@@ -2017,6 +2138,7 @@
 				8D4C611E222D058C00024840 /* LLUserInputView.m in Sources */,
 				8D890B5C223212A000CA711A /* LLPublishViewController.m in Sources */,
 				8D5CB6EE22357F1D00527DEB /* LLMapAddressSearchViewController.m in Sources */,
+				8DBEAE2A223C93E50095D214 /* ZJPayPasswordView.m in Sources */,
 				8D5CB6C32232D73300527DEB /* ZJUsefulPickerView.m in Sources */,
 				8D542A72222A5BC2008B90B0 /* LELoginModel.m in Sources */,
 				8D5CB6E422354C6800527DEB /* LLPublishChooseViewCell.m in Sources */,

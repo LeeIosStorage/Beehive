@@ -142,7 +142,7 @@
     [self.mapView addSubview:self.btnBottomAds];
     [self.btnBottomAds mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.bottom.equalTo(self.mapView);
-        make.height.mas_equalTo(50);
+        make.height.mas_equalTo(60);
     }];
     [self.btnBottomAds sd_setImageWithURL:[NSURL URLWithString:url] forState:UIControlStateNormal];
 }

@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="HBo-EL-bq2" customClass="LLPaymentWayView">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="262"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="支付方式" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xRx-Ji-BJt">
+                    <rect key="frame" x="10" y="10" width="53.5" height="29"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="29" id="LXx-44-gbF"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                    <color key="textColor" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wXR-4X-Yc7">
+                    <rect key="frame" x="0.0" y="218" width="375" height="44"/>
+                    <color key="backgroundColor" red="1" green="0.68627450980000004" blue="0.0078431372550000003" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="44" id="Dxe-ZX-sqU"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <state key="normal" title="支付">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </state>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                            <integer key="value" value="3"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <action selector="paymentAction:" destination="HBo-EL-bq2" eventType="touchUpInside" id="NEi-vz-X8c"/>
+                    </connections>
+                </button>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="XNf-xS-geZ">
+                    <rect key="frame" x="0.0" y="39" width="375" height="179"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <connections>
+                        <outlet property="dataSource" destination="HBo-EL-bq2" id="gGZ-ce-19i"/>
+                        <outlet property="delegate" destination="HBo-EL-bq2" id="fnm-wu-dVM"/>
+                    </connections>
+                </tableView>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="wXR-4X-Yc7" firstAttribute="top" secondItem="XNf-xS-geZ" secondAttribute="bottom" id="06F-VP-XQ8"/>
+                <constraint firstItem="LGA-1o-gSz" firstAttribute="trailing" secondItem="XNf-xS-geZ" secondAttribute="trailing" id="1Jp-jX-foW"/>
+                <constraint firstItem="XNf-xS-geZ" firstAttribute="top" secondItem="xRx-Ji-BJt" secondAttribute="bottom" id="FeD-DR-tA9"/>
+                <constraint firstItem="xRx-Ji-BJt" firstAttribute="top" secondItem="LGA-1o-gSz" secondAttribute="top" constant="10" id="GDn-PD-TDQ"/>
+                <constraint firstItem="xRx-Ji-BJt" firstAttribute="leading" secondItem="LGA-1o-gSz" secondAttribute="leading" constant="10" id="Zb3-EM-mtX"/>
+                <constraint firstItem="LGA-1o-gSz" firstAttribute="bottom" secondItem="wXR-4X-Yc7" secondAttribute="bottom" id="hhj-Zf-kqI"/>
+                <constraint firstItem="LGA-1o-gSz" firstAttribute="trailing" secondItem="wXR-4X-Yc7" secondAttribute="trailing" id="uaD-62-Rm6"/>
+                <constraint firstItem="XNf-xS-geZ" firstAttribute="leading" secondItem="LGA-1o-gSz" secondAttribute="leading" id="vMU-3J-ovF"/>
+                <constraint firstItem="wXR-4X-Yc7" firstAttribute="leading" secondItem="HBo-EL-bq2" secondAttribute="leading" id="xjG-MH-DAh"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="LGA-1o-gSz"/>
+            <connections>
+                <outlet property="paymentButton" destination="wXR-4X-Yc7" id="kEh-yj-7tm"/>
+                <outlet property="tableView" destination="XNf-xS-geZ" id="5Rd-2f-QLd"/>
+            </connections>
+            <point key="canvasLocation" x="152.80000000000001" y="-86.35682158920541"/>
+        </view>
+    </objects>
+</document>
