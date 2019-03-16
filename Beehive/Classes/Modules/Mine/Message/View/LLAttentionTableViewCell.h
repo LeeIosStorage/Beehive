@@ -12,6 +12,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface LLAttentionTableViewCell : LLTableViewCell
 
+@property (nonatomic, weak) IBOutlet UIButton *rightButton;
+
 @end
 
 NS_ASSUME_NONNULL_END

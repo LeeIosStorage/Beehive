@@ -196,6 +196,21 @@
 		8DBEAE44223CAEC90095D214 /* LLEditAdViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8DBEAE42223CAEC90095D214 /* LLEditAdViewController.xib */; };
 		8DBEAE48223CAEDE0095D214 /* LLBeeKingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DBEAE46223CAEDE0095D214 /* LLBeeKingViewController.m */; };
 		8DBEAE49223CAEDE0095D214 /* LLBeeKingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8DBEAE47223CAEDE0095D214 /* LLBeeKingViewController.xib */; };
+		8DBEAE4D223CB6BD0095D214 /* LLCollectListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DBEAE4B223CB6BD0095D214 /* LLCollectListViewController.m */; };
+		8DBEAE4E223CB6BD0095D214 /* LLCollectListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8DBEAE4C223CB6BD0095D214 /* LLCollectListViewController.xib */; };
+		8DBEAE52223CB7180095D214 /* LLAttentionListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DBEAE50223CB7180095D214 /* LLAttentionListViewController.m */; };
+		8DBEAE53223CB7180095D214 /* LLAttentionListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8DBEAE51223CB7180095D214 /* LLAttentionListViewController.xib */; };
+		8DBEAE57223CB73B0095D214 /* LLMineCollectTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DBEAE55223CB73B0095D214 /* LLMineCollectTableViewCell.m */; };
+		8DBEAE58223CB73B0095D214 /* LLMineCollectTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8DBEAE56223CB73B0095D214 /* LLMineCollectTableViewCell.xib */; };
+		8DBEAE5C223CB83A0095D214 /* LLPublishHistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DBEAE5A223CB83A0095D214 /* LLPublishHistoryViewController.m */; };
+		8DBEAE5D223CB83A0095D214 /* LLPublishHistoryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8DBEAE5B223CB83A0095D214 /* LLPublishHistoryViewController.xib */; };
+		8DBEAE60223CCAD60095D214 /* LLPublishHistoryListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DBEAE5F223CCAD60095D214 /* LLPublishHistoryListViewController.m */; };
+		8DBEAE64223CD6200095D214 /* LLMineTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DBEAE62223CD6200095D214 /* LLMineTableViewCell.m */; };
+		8DBEAE65223CD6200095D214 /* LLMineTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8DBEAE63223CD6200095D214 /* LLMineTableViewCell.xib */; };
+		8DBEAE6C223D026E0095D214 /* LLWithdrawViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DBEAE6A223D026E0095D214 /* LLWithdrawViewController.m */; };
+		8DBEAE6D223D026E0095D214 /* LLWithdrawViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8DBEAE6B223D026E0095D214 /* LLWithdrawViewController.xib */; };
+		8DBEAE70223D6CC70095D214 /* LLFundHandleHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DBEAE6F223D6CC70095D214 /* LLFundHandleHeaderView.m */; };
+		8DBEAE72223D6CD50095D214 /* LLFundHandleHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8DBEAE71223D6CD50095D214 /* LLFundHandleHeaderView.xib */; };
 		8DC02D4A2230E4F6000CAE9C /* LLCommentBottomView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DC02D492230E4F6000CAE9C /* LLCommentBottomView.m */; };
 		8DC02D4F22311443000CAE9C /* LLRankTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DC02D4D22311443000CAE9C /* LLRankTableViewCell.m */; };
 		8DC02D5022311443000CAE9C /* LLRankTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8DC02D4E22311443000CAE9C /* LLRankTableViewCell.xib */; };
@@ -577,6 +592,29 @@
 		8DBEAE45223CAEDE0095D214 /* LLBeeKingViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLBeeKingViewController.h; sourceTree = "<group>"; };
 		8DBEAE46223CAEDE0095D214 /* LLBeeKingViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLBeeKingViewController.m; sourceTree = "<group>"; };
 		8DBEAE47223CAEDE0095D214 /* LLBeeKingViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LLBeeKingViewController.xib; sourceTree = "<group>"; };
+		8DBEAE4A223CB6BD0095D214 /* LLCollectListViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLCollectListViewController.h; sourceTree = "<group>"; };
+		8DBEAE4B223CB6BD0095D214 /* LLCollectListViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLCollectListViewController.m; sourceTree = "<group>"; };
+		8DBEAE4C223CB6BD0095D214 /* LLCollectListViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LLCollectListViewController.xib; sourceTree = "<group>"; };
+		8DBEAE4F223CB7180095D214 /* LLAttentionListViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLAttentionListViewController.h; sourceTree = "<group>"; };
+		8DBEAE50223CB7180095D214 /* LLAttentionListViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLAttentionListViewController.m; sourceTree = "<group>"; };
+		8DBEAE51223CB7180095D214 /* LLAttentionListViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LLAttentionListViewController.xib; sourceTree = "<group>"; };
+		8DBEAE54223CB73B0095D214 /* LLMineCollectTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLMineCollectTableViewCell.h; sourceTree = "<group>"; };
+		8DBEAE55223CB73B0095D214 /* LLMineCollectTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLMineCollectTableViewCell.m; sourceTree = "<group>"; };
+		8DBEAE56223CB73B0095D214 /* LLMineCollectTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LLMineCollectTableViewCell.xib; sourceTree = "<group>"; };
+		8DBEAE59223CB83A0095D214 /* LLPublishHistoryViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLPublishHistoryViewController.h; sourceTree = "<group>"; };
+		8DBEAE5A223CB83A0095D214 /* LLPublishHistoryViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLPublishHistoryViewController.m; sourceTree = "<group>"; };
+		8DBEAE5B223CB83A0095D214 /* LLPublishHistoryViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LLPublishHistoryViewController.xib; sourceTree = "<group>"; };
+		8DBEAE5E223CCAD60095D214 /* LLPublishHistoryListViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLPublishHistoryListViewController.h; sourceTree = "<group>"; };
+		8DBEAE5F223CCAD60095D214 /* LLPublishHistoryListViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLPublishHistoryListViewController.m; sourceTree = "<group>"; };
+		8DBEAE61223CD6200095D214 /* LLMineTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLMineTableViewCell.h; sourceTree = "<group>"; };
+		8DBEAE62223CD6200095D214 /* LLMineTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLMineTableViewCell.m; sourceTree = "<group>"; };
+		8DBEAE63223CD6200095D214 /* LLMineTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LLMineTableViewCell.xib; sourceTree = "<group>"; };
+		8DBEAE69223D026E0095D214 /* LLWithdrawViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLWithdrawViewController.h; sourceTree = "<group>"; };
+		8DBEAE6A223D026E0095D214 /* LLWithdrawViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLWithdrawViewController.m; sourceTree = "<group>"; };
+		8DBEAE6B223D026E0095D214 /* LLWithdrawViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LLWithdrawViewController.xib; sourceTree = "<group>"; };
+		8DBEAE6E223D6CC60095D214 /* LLFundHandleHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLFundHandleHeaderView.h; sourceTree = "<group>"; };
+		8DBEAE6F223D6CC70095D214 /* LLFundHandleHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLFundHandleHeaderView.m; sourceTree = "<group>"; };
+		8DBEAE71223D6CD50095D214 /* LLFundHandleHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LLFundHandleHeaderView.xib; sourceTree = "<group>"; };
 		8DC02D482230E4F6000CAE9C /* LLCommentBottomView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLCommentBottomView.h; sourceTree = "<group>"; };
 		8DC02D492230E4F6000CAE9C /* LLCommentBottomView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLCommentBottomView.m; sourceTree = "<group>"; };
 		8DC02D4C22311443000CAE9C /* LLRankTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLRankTableViewCell.h; sourceTree = "<group>"; };
@@ -1328,6 +1366,7 @@
 		8D79E4CE2226704C0019A1BE /* Mine */ = {
 			isa = PBXGroup;
 			children = (
+				8DBEAE66223D02340095D214 /* Wallet */,
 				8DBEAE2B223C9A520095D214 /* Setting */,
 				8D890B48223205E200CA711A /* Message */,
 				8D542A80222A6602008B90B0 /* Info */,
@@ -1378,6 +1417,17 @@
 				8D890B542232082800CA711A /* LLBeeQunViewController.h */,
 				8D890B552232082800CA711A /* LLBeeQunViewController.m */,
 				8D890B562232082800CA711A /* LLBeeQunViewController.xib */,
+				8DBEAE4A223CB6BD0095D214 /* LLCollectListViewController.h */,
+				8DBEAE4B223CB6BD0095D214 /* LLCollectListViewController.m */,
+				8DBEAE4C223CB6BD0095D214 /* LLCollectListViewController.xib */,
+				8DBEAE4F223CB7180095D214 /* LLAttentionListViewController.h */,
+				8DBEAE50223CB7180095D214 /* LLAttentionListViewController.m */,
+				8DBEAE51223CB7180095D214 /* LLAttentionListViewController.xib */,
+				8DBEAE59223CB83A0095D214 /* LLPublishHistoryViewController.h */,
+				8DBEAE5A223CB83A0095D214 /* LLPublishHistoryViewController.m */,
+				8DBEAE5B223CB83A0095D214 /* LLPublishHistoryViewController.xib */,
+				8DBEAE5E223CCAD60095D214 /* LLPublishHistoryListViewController.h */,
+				8DBEAE5F223CCAD60095D214 /* LLPublishHistoryListViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1466,6 +1516,35 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		8DBEAE66223D02340095D214 /* Wallet */ = {
+			isa = PBXGroup;
+			children = (
+				8DBEAE68223D02430095D214 /* View */,
+				8DBEAE67223D023E0095D214 /* Controller */,
+			);
+			path = Wallet;
+			sourceTree = "<group>";
+		};
+		8DBEAE67223D023E0095D214 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				8DBEAE69223D026E0095D214 /* LLWithdrawViewController.h */,
+				8DBEAE6A223D026E0095D214 /* LLWithdrawViewController.m */,
+				8DBEAE6B223D026E0095D214 /* LLWithdrawViewController.xib */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		8DBEAE68223D02430095D214 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				8DBEAE6E223D6CC60095D214 /* LLFundHandleHeaderView.h */,
+				8DBEAE6F223D6CC70095D214 /* LLFundHandleHeaderView.m */,
+				8DBEAE71223D6CD50095D214 /* LLFundHandleHeaderView.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		8DC02D4B2231141C000CAE9C /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -1485,6 +1564,12 @@
 				7E1E8A7122315672002766AD /* LLMineCollectionHeaderView.h */,
 				7E1E8A7222315672002766AD /* LLMineCollectionHeaderView.m */,
 				7E1E8A7322315672002766AD /* LLMineCollectionHeaderView.xib */,
+				8DBEAE61223CD6200095D214 /* LLMineTableViewCell.h */,
+				8DBEAE62223CD6200095D214 /* LLMineTableViewCell.m */,
+				8DBEAE63223CD6200095D214 /* LLMineTableViewCell.xib */,
+				8DBEAE54223CB73B0095D214 /* LLMineCollectTableViewCell.h */,
+				8DBEAE55223CB73B0095D214 /* LLMineCollectTableViewCell.m */,
+				8DBEAE56223CB73B0095D214 /* LLMineCollectTableViewCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1776,6 +1861,7 @@
 				8D5F2E58223662F20049C28F /* LLMapAddressShowView.xib in Resources */,
 				8D004EC5223B71400029EDE6 /* LLRedrReceiveDetailsViewController.xib in Resources */,
 				8D5CB6EF22357F1D00527DEB /* LLMapAddressSearchViewController.xib in Resources */,
+				8DBEAE5D223CB83A0095D214 /* LLPublishHistoryViewController.xib in Resources */,
 				8D5CB6DD22352C6700527DEB /* LLAddShopAddressViewController.xib in Resources */,
 				8D5CB6EA22357EA000527DEB /* LLMapAddressViewController.xib in Resources */,
 				8D5CB6E522354C6800527DEB /* LLPublishChooseViewCell.xib in Resources */,
@@ -1790,15 +1876,18 @@
 				8D890B68223231BF00CA711A /* LLPublishNormalViewCell.xib in Resources */,
 				8DE5885A2227A4B3002C1576 /* LLBeeMessageViewController.xib in Resources */,
 				8DBEAE44223CAEC90095D214 /* LLEditAdViewController.xib in Resources */,
+				8DBEAE6D223D026E0095D214 /* LLWithdrawViewController.xib in Resources */,
 				8DF0C27A223A29A2006175E7 /* LLRedTaskTableViewCell.xib in Resources */,
 				8D890B6D2232344500CA711A /* LLPublishInputViewCell.xib in Resources */,
 				8D01673B22391EC000CD21D8 /* LLCommodityExchangeDetailsViewController.xib in Resources */,
 				8D542A86222A66A5008B90B0 /* LLLoginViewController.xib in Resources */,
 				8D5CB6BD2232D73300527DEB /* Province.plist in Resources */,
 				7E561B8022392FBF00DA3B20 /* LLExchangeDetailsHeaderView.xib in Resources */,
+				8DBEAE72223D6CD50095D214 /* LLFundHandleHeaderView.xib in Resources */,
 				8D5F2E622236D3040049C28F /* LLChooseLocationScopeView.xib in Resources */,
 				8D004ED9223B813F0029EDE6 /* LLPersonalHomeHeaderView.xib in Resources */,
 				8D58D4C32226355B00803985 /* LaunchScreen.storyboard in Resources */,
+				8DBEAE4E223CB6BD0095D214 /* LLCollectListViewController.xib in Resources */,
 				8D4C6128222D555800024840 /* LLRegisterViewController.xib in Resources */,
 				8DCC9AAF222B71F200AC3128 /* LLRedRuleViewController.xib in Resources */,
 				8D3F2154222FCB050066F5EB /* LLMessageDetailsViewController.xib in Resources */,
@@ -1806,6 +1895,7 @@
 				8D58D4C02226355B00803985 /* Assets.xcassets in Resources */,
 				8D58D4BE2226355900803985 /* Main.storyboard in Resources */,
 				8D0167142238C47400CD21D8 /* LLMsgTickTableViewCell.xib in Resources */,
+				8DBEAE58223CB73B0095D214 /* LLMineCollectTableViewCell.xib in Resources */,
 				7E561B8A22394B1100DA3B20 /* LLReportViewController.xib in Resources */,
 				7E1E8A65222ED0E6002766AD /* LLMessageTimeLineViewCell.xib in Resources */,
 				8D016740223A052500CD21D8 /* LLCommodityExchangeconfirmView.xib in Resources */,
@@ -1813,10 +1903,12 @@
 				8D004ED4223B80C50029EDE6 /* LLPersonalHomeViewController.xib in Resources */,
 				8D004ECA223B719D0029EDE6 /* LLRedrReceiveDetailsHeaderView.xib in Resources */,
 				8DCC9ACA222BF81A00AC3128 /* LLCityOptionCollectionViewCell.xib in Resources */,
+				8DBEAE65223CD6200095D214 /* LLMineTableViewCell.xib in Resources */,
 				8D3F214E222FB4FF0066F5EB /* LLImageItemViewCell.xib in Resources */,
 				7E1E8A6B22301172002766AD /* LLMessageDetailsHeaderView.xib in Resources */,
 				7E1E8A7522315672002766AD /* LLMineCollectionHeaderView.xib in Resources */,
 				8D016745223A19EF00CD21D8 /* LLCommodityPurchaseSucceedView.xib in Resources */,
+				8DBEAE53223CB7180095D214 /* LLAttentionListViewController.xib in Resources */,
 				7E561B93223955D900DA3B20 /* LLReportSucceedView.xib in Resources */,
 				8D0167192238CECC00CD21D8 /* LLCellOriginalContentView.xib in Resources */,
 				8D890B722232346700CA711A /* LLPublishImageViewCell.xib in Resources */,
@@ -2033,6 +2125,7 @@
 				8D542A6B222A5BC2008B90B0 /* LEShareModel.m in Sources */,
 				8D004EEF223BED150029EDE6 /* LLBuyAdViewController.m in Sources */,
 				8D79E4DC222676E20019A1BE /* LLBeeHomeViewController.m in Sources */,
+				8DBEAE60223CCAD60095D214 /* LLPublishHistoryListViewController.m in Sources */,
 				7E1E8A7922317338002766AD /* LLMineNode.m in Sources */,
 				8D01673A22391EC000CD21D8 /* LLCommodityExchangeDetailsViewController.m in Sources */,
 				8D542A6E222A5BC2008B90B0 /* LERefreshHeader.m in Sources */,
@@ -2042,6 +2135,7 @@
 				8D0167222238DEC100CD21D8 /* LLReceiveFavourViewController.m in Sources */,
 				8D58D4C62226355B00803985 /* main.m in Sources */,
 				7E561B97223A99BF00DA3B20 /* LLRedpacketDetailsViewController.m in Sources */,
+				8DBEAE5C223CB83A0095D214 /* LLPublishHistoryViewController.m in Sources */,
 				8DC02D4A2230E4F6000CAE9C /* LLCommentBottomView.m in Sources */,
 				8DBEAE30223C9AB10095D214 /* LLPayPasswordResetViewController.m in Sources */,
 				8DC02D4F22311443000CAE9C /* LLRankTableViewCell.m in Sources */,
@@ -2060,6 +2154,7 @@
 				8D542A66222A5BC2008B90B0 /* WYActionSheet.m in Sources */,
 				8DE588592227A4B3002C1576 /* LLBeeMessageViewController.m in Sources */,
 				8D542A7C222A5BC2008B90B0 /* LELoginAuthManager.m in Sources */,
+				8DBEAE4D223CB6BD0095D214 /* LLCollectListViewController.m in Sources */,
 				8D5CB6C42232D73300527DEB /* ZJSinglePickerView.m in Sources */,
 				8D542A74222A5BC2008B90B0 /* PathHelper.m in Sources */,
 				7E2E700C2238023300F185A7 /* LLCommodityExchangeViewController.m in Sources */,
@@ -2078,7 +2173,9 @@
 				8DCC9AC5222B835000AC3128 /* LLCityOptionHeaderView.m in Sources */,
 				8DE588622227AD82002C1576 /* LLPlusButton.m in Sources */,
 				8D4C6122222D553A00024840 /* LLForgotPasswordViewController.m in Sources */,
+				8DBEAE52223CB7180095D214 /* LLAttentionListViewController.m in Sources */,
 				8D01672C2238E20A00CD21D8 /* LLReceiveFavourTableViewCell.m in Sources */,
+				8DBEAE57223CB73B0095D214 /* LLMineCollectTableViewCell.m in Sources */,
 				8D01671D2238DE8500CD21D8 /* LLReceiveCommentViewController.m in Sources */,
 				8D542A7D222A5BC2008B90B0 /* LELinkerHandler.m in Sources */,
 				8D79E4D2222672A20019A1BE /* LLTabBarViewController.m in Sources */,
@@ -2094,7 +2191,9 @@
 				7E1E8A6922301162002766AD /* LLMessageDetailsHeaderView.m in Sources */,
 				8DF0C28A223A501E006175E7 /* LLReceiveRedAlertView.m in Sources */,
 				8D542A62222A5BC2008B90B0 /* WYNetWorkManager.m in Sources */,
+				8DBEAE6C223D026E0095D214 /* LLWithdrawViewController.m in Sources */,
 				8D5F2E602236D2F80049C28F /* LLChooseLocationScopeView.m in Sources */,
+				8DBEAE64223CD6200095D214 /* LLMineTableViewCell.m in Sources */,
 				8D542A76222A5BC2008B90B0 /* UIImage+LEAdd.m in Sources */,
 				7E2E7016223802D800F185A7 /* LLRedTaskHistoryViewController.m in Sources */,
 				7E1E8A6F22301AF2002766AD /* LLMessageCommentViewCell.m in Sources */,
@@ -2121,6 +2220,7 @@
 				8D5CB6C92233AF2400527DEB /* LLPublishIDCardViewCell.m in Sources */,
 				8DCC9AB6222B7D5700AC3128 /* LLView.m in Sources */,
 				8D0167272238E1EE00CD21D8 /* LLReceiveCommentTableViewCell.m in Sources */,
+				8DBEAE70223D6CC70095D214 /* LLFundHandleHeaderView.m in Sources */,
 				8D542A79222A5BC2008B90B0 /* UIImage+ProportionalFill.m in Sources */,
 				8D5CB6CD2234E65000527DEB /* LLMultipleSelectedPickerView.m in Sources */,
 				8D004EC4223B71400029EDE6 /* LLRedrReceiveDetailsViewController.m in Sources */,

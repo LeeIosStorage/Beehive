@@ -13,7 +13,6 @@
 @property (nonatomic, weak) IBOutlet UIImageView *imgIcon;
 @property (nonatomic, weak) IBOutlet UILabel *labTitle;
 @property (nonatomic, weak) IBOutlet UILabel *labDes;
-@property (nonatomic, weak) IBOutlet UIButton *rightButton;
 
 @end
 
@@ -43,12 +42,15 @@
     self.rightButton.backgroundColor = kAppThemeColor;
     [self.rightButton setTitleColor:UIColor.whiteColor forState:UIControlStateNormal];
     self.rightButton.titleLabel.font = [FontConst PingFangSCRegularWithSize:12];
-    [self.rightButton setTitle:@"+关注" forState:UIControlStateNormal];
+    [self.rightButton setTitle:@" +关注 " forState:UIControlStateNormal];
+    self.rightButton.enabled = true;
+    return;
     if (1) {
+        self.rightButton.enabled = false;
         self.rightButton.backgroundColor = UIColor.clearColor;
         [self.rightButton setTitleColor:kAppLightTitleColor forState:UIControlStateNormal];
         self.rightButton.titleLabel.font = [FontConst PingFangSCRegularWithSize:11];
-        [self.rightButton setTitle:@"已关注" forState:UIControlStateNormal];
+        [self.rightButton setTitle:@" 已关注 " forState:UIControlStateNormal];
     }
 }
 

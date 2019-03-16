@@ -21,7 +21,15 @@ typedef NS_ENUM(NSInteger, LLMineNodeType) {
     LLMineNodeTypeHelp, //
     LLMineNodeTypeSet, //
     LLMineNodeTypeVIP, //
-    LLMineNodeTypeTui  //
+    LLMineNodeTypeTui,  //
+    //设置相关
+    LLMineNodeTypeSetLoginPwd, //修改登录密码
+    LLMineNodeTypeSetPayPwd, //修改支付密码
+    LLMineNodeTypeSetPhone, //修改手机号
+    //钱包相关
+    LLMineNodeTypeWalletDetail, //明细
+    LLMineNodeTypeWalletBeeHistory, //
+    LLMineNodeTypeWalletWithdrawDetail, //提现明细
 };
 
 @interface LLMineNode : NSObject

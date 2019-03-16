@@ -46,9 +46,8 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TbG-YQ-dHb">
-                        <rect key="frame" x="267" y="19" width="43" height="21"/>
+                        <rect key="frame" x="277" y="19" width="33" height="21"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="43" id="spH-01-gCC"/>
                             <constraint firstAttribute="height" constant="21" id="wHB-NZ-GEd"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="12"/>

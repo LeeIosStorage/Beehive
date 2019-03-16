@@ -14,6 +14,9 @@
 #import "LLMessageViewController.h"
 #import "LLMineWalletViewController.h"
 #import "LLBeeQunViewController.h"
+#import "LLCollectListViewController.h"
+#import "LLAttentionListViewController.h"
+#import "LLPublishHistoryViewController.h"
 
 static NSString *const kLLMineCollectionViewCell = @"LLMineCollectionViewCell";
 static NSString *const kLLMineCollectionHeaderView = @"LLMineCollectionHeaderView";
@@ -102,15 +105,18 @@ UICollectionViewDataSource
 }
 
 - (void)mineCollectAction {
-    
+    LLCollectListViewController *vc = [[LLCollectListViewController alloc] init];
+    [self.navigationController pushViewController:vc animated:true];
 }
 
 - (void)mineAttentionAction {
-    
+    LLAttentionListViewController *vc = [[LLAttentionListViewController alloc] init];
+    [self.navigationController pushViewController:vc animated:true];
 }
 
 - (void)historyAction {
-    
+    LLPublishHistoryViewController *vc = [[LLPublishHistoryViewController alloc] init];
+    [self.navigationController pushViewController:vc animated:true];
 }
 
 #pragma mark -
