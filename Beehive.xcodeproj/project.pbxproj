@@ -274,6 +274,14 @@
 		8DF28F97223E4B080074A4D8 /* LLExchangeOrderTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8DF28F95223E4B080074A4D8 /* LLExchangeOrderTableViewCell.xib */; };
 		8DF28F9B223E61900074A4D8 /* LLNoticeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DF28F99223E61900074A4D8 /* LLNoticeViewController.m */; };
 		8DF28F9C223E61900074A4D8 /* LLNoticeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8DF28F9A223E61900074A4D8 /* LLNoticeViewController.xib */; };
+		8DF28FA0223E6CC10074A4D8 /* LLSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DF28F9E223E6CC10074A4D8 /* LLSettingViewController.m */; };
+		8DF28FA1223E6CC10074A4D8 /* LLSettingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8DF28F9F223E6CC10074A4D8 /* LLSettingViewController.xib */; };
+		8DF28FA5223E7EEE0074A4D8 /* LEFeedbackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DF28FA3223E7EED0074A4D8 /* LEFeedbackViewController.m */; };
+		8DF28FA6223E7EEE0074A4D8 /* LEFeedbackViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8DF28FA4223E7EEE0074A4D8 /* LEFeedbackViewController.xib */; };
+		8DF28FAA223E84190074A4D8 /* LLLoginPasswordResetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DF28FA8223E84190074A4D8 /* LLLoginPasswordResetViewController.m */; };
+		8DF28FAB223E84190074A4D8 /* LLLoginPasswordResetViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8DF28FA9223E84190074A4D8 /* LLLoginPasswordResetViewController.xib */; };
+		8DF28FAF223E84A00074A4D8 /* LLAmendPhoneViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DF28FAD223E84A00074A4D8 /* LLAmendPhoneViewController.m */; };
+		8DF28FB0223E84A00074A4D8 /* LLAmendPhoneViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8DF28FAE223E84A00074A4D8 /* LLAmendPhoneViewController.xib */; };
 		A78A3C5E8FBF200497ED12F0 /* Pods_BeehiveTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A98A37B880E16C6C709CB88A /* Pods_BeehiveTests.framework */; };
 		BE3EF924D54032F1DFDF5383 /* Pods_BeehiveUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0DB97A8E569F793FB5ABD125 /* Pods_BeehiveUITests.framework */; };
 		E0E531C080DEB8E8705299CF /* Pods_Beehive.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA9C64AC55444CFD230537D9 /* Pods_Beehive.framework */; };
@@ -743,6 +751,18 @@
 		8DF28F98223E61900074A4D8 /* LLNoticeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLNoticeViewController.h; sourceTree = "<group>"; };
 		8DF28F99223E61900074A4D8 /* LLNoticeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLNoticeViewController.m; sourceTree = "<group>"; };
 		8DF28F9A223E61900074A4D8 /* LLNoticeViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LLNoticeViewController.xib; sourceTree = "<group>"; };
+		8DF28F9D223E6CC10074A4D8 /* LLSettingViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLSettingViewController.h; sourceTree = "<group>"; };
+		8DF28F9E223E6CC10074A4D8 /* LLSettingViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLSettingViewController.m; sourceTree = "<group>"; };
+		8DF28F9F223E6CC10074A4D8 /* LLSettingViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LLSettingViewController.xib; sourceTree = "<group>"; };
+		8DF28FA2223E7EED0074A4D8 /* LEFeedbackViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEFeedbackViewController.h; sourceTree = "<group>"; };
+		8DF28FA3223E7EED0074A4D8 /* LEFeedbackViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEFeedbackViewController.m; sourceTree = "<group>"; };
+		8DF28FA4223E7EEE0074A4D8 /* LEFeedbackViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LEFeedbackViewController.xib; sourceTree = "<group>"; };
+		8DF28FA7223E84190074A4D8 /* LLLoginPasswordResetViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLLoginPasswordResetViewController.h; sourceTree = "<group>"; };
+		8DF28FA8223E84190074A4D8 /* LLLoginPasswordResetViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLLoginPasswordResetViewController.m; sourceTree = "<group>"; };
+		8DF28FA9223E84190074A4D8 /* LLLoginPasswordResetViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LLLoginPasswordResetViewController.xib; sourceTree = "<group>"; };
+		8DF28FAC223E84A00074A4D8 /* LLAmendPhoneViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLAmendPhoneViewController.h; sourceTree = "<group>"; };
+		8DF28FAD223E84A00074A4D8 /* LLAmendPhoneViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLAmendPhoneViewController.m; sourceTree = "<group>"; };
+		8DF28FAE223E84A00074A4D8 /* LLAmendPhoneViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LLAmendPhoneViewController.xib; sourceTree = "<group>"; };
 		A64954C5C3CAB5F3221F123D /* Pods-BeehiveTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BeehiveTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BeehiveTests/Pods-BeehiveTests.debug.xcconfig"; sourceTree = "<group>"; };
 		A98A37B880E16C6C709CB88A /* Pods_BeehiveTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BeehiveTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BA9C64AC55444CFD230537D9 /* Pods_Beehive.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Beehive.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1572,9 +1592,21 @@
 			isa = PBXGroup;
 			children = (
 				8DBEAE2C223C9A5D0095D214 /* View */,
+				8DF28F9D223E6CC10074A4D8 /* LLSettingViewController.h */,
+				8DF28F9E223E6CC10074A4D8 /* LLSettingViewController.m */,
+				8DF28F9F223E6CC10074A4D8 /* LLSettingViewController.xib */,
+				8DF28FA7223E84190074A4D8 /* LLLoginPasswordResetViewController.h */,
+				8DF28FA8223E84190074A4D8 /* LLLoginPasswordResetViewController.m */,
+				8DF28FA9223E84190074A4D8 /* LLLoginPasswordResetViewController.xib */,
 				8DBEAE2D223C9AB10095D214 /* LLPayPasswordResetViewController.h */,
 				8DBEAE2E223C9AB10095D214 /* LLPayPasswordResetViewController.m */,
 				8DBEAE2F223C9AB10095D214 /* LLPayPasswordResetViewController.xib */,
+				8DF28FAC223E84A00074A4D8 /* LLAmendPhoneViewController.h */,
+				8DF28FAD223E84A00074A4D8 /* LLAmendPhoneViewController.m */,
+				8DF28FAE223E84A00074A4D8 /* LLAmendPhoneViewController.xib */,
+				8DF28FA2223E7EED0074A4D8 /* LEFeedbackViewController.h */,
+				8DF28FA3223E7EED0074A4D8 /* LEFeedbackViewController.m */,
+				8DF28FA4223E7EEE0074A4D8 /* LEFeedbackViewController.xib */,
 			);
 			path = Setting;
 			sourceTree = "<group>";
@@ -2003,6 +2035,7 @@
 				8D5CB6D322352A9800527DEB /* LLTradeMoldViewController.xib in Resources */,
 				8D004ECF223B7ADC0029EDE6 /* LLRedReceiveUserTableViewCell.xib in Resources */,
 				8D5CB6C12232D73300527DEB /* City.plist in Resources */,
+				8DF28FAB223E84190074A4D8 /* LLLoginPasswordResetViewController.xib in Resources */,
 				8D5CB6D822352C0600527DEB /* LLChooseLocationViewController.xib in Resources */,
 				8D5CB6BC2232D73300527DEB /* Area.plist in Resources */,
 				8DBEAE31223C9AB10095D214 /* LLPayPasswordResetViewController.xib in Resources */,
@@ -2018,6 +2051,7 @@
 				8DBEAE77223DEA870095D214 /* LLFundAmountCollectionViewCell.xib in Resources */,
 				8DBEAE5D223CB83A0095D214 /* LLPublishHistoryViewController.xib in Resources */,
 				8D5CB6DD22352C6700527DEB /* LLAddShopAddressViewController.xib in Resources */,
+				8DF28FA1223E6CC10074A4D8 /* LLSettingViewController.xib in Resources */,
 				8D5CB6EA22357EA000527DEB /* LLMapAddressViewController.xib in Resources */,
 				8D5CB6E522354C6800527DEB /* LLPublishChooseViewCell.xib in Resources */,
 				8DF0C27F223A2EB1006175E7 /* LLRedTaskHistoryTableViewCell.xib in Resources */,
@@ -2051,11 +2085,13 @@
 				8D58D4C32226355B00803985 /* LaunchScreen.storyboard in Resources */,
 				8DBEAE4E223CB6BD0095D214 /* LLCollectListViewController.xib in Resources */,
 				8D4C6128222D555800024840 /* LLRegisterViewController.xib in Resources */,
+				8DF28FA6223E7EEE0074A4D8 /* LEFeedbackViewController.xib in Resources */,
 				8DCC9AAF222B71F200AC3128 /* LLRedRuleViewController.xib in Resources */,
 				8DBEAE7C223DF2A40095D214 /* LLFundDetailViewController.xib in Resources */,
 				8D3F2154222FCB050066F5EB /* LLMessageDetailsViewController.xib in Resources */,
 				8D5F2E5D223698E60049C28F /* LLMapAddressSearchTitleView.xib in Resources */,
 				8DF28F76223E27ED0074A4D8 /* LLBeeTaskViewController.xib in Resources */,
+				8DF28FB0223E84A00074A4D8 /* LLAmendPhoneViewController.xib in Resources */,
 				8D58D4C02226355B00803985 /* Assets.xcassets in Resources */,
 				8D58D4BE2226355900803985 /* Main.storyboard in Resources */,
 				8D0167142238C47400CD21D8 /* LLMsgTickTableViewCell.xib in Resources */,
@@ -2290,10 +2326,12 @@
 				8DBEAE29223C93E50095D214 /* ZJPayPopupView.m in Sources */,
 				8DF28F96223E4B080074A4D8 /* LLExchangeOrderTableViewCell.m in Sources */,
 				8D542A6B222A5BC2008B90B0 /* LEShareModel.m in Sources */,
+				8DF28FA0223E6CC10074A4D8 /* LLSettingViewController.m in Sources */,
 				8D004EEF223BED150029EDE6 /* LLBuyAdViewController.m in Sources */,
 				8D79E4DC222676E20019A1BE /* LLBeeHomeViewController.m in Sources */,
 				8DBEAE60223CCAD60095D214 /* LLPublishHistoryListViewController.m in Sources */,
 				7E1E8A7922317338002766AD /* LLMineNode.m in Sources */,
+				8DF28FA5223E7EEE0074A4D8 /* LEFeedbackViewController.m in Sources */,
 				8D01673A22391EC000CD21D8 /* LLCommodityExchangeDetailsViewController.m in Sources */,
 				8DBEAE84223DFF5F0095D214 /* LLBeePresentAffirmView.m in Sources */,
 				8D542A6E222A5BC2008B90B0 /* LERefreshHeader.m in Sources */,
@@ -2362,6 +2400,7 @@
 				7E561B8E2239518200DA3B20 /* LEAlertMarkView.m in Sources */,
 				8DF28F9B223E61900074A4D8 /* LLNoticeViewController.m in Sources */,
 				8D5CB6C52232D73300527DEB /* ZJToolBar.m in Sources */,
+				8DF28FAF223E84A00074A4D8 /* LLAmendPhoneViewController.m in Sources */,
 				7E1E8A6922301162002766AD /* LLMessageDetailsHeaderView.m in Sources */,
 				8DF0C28A223A501E006175E7 /* LLReceiveRedAlertView.m in Sources */,
 				8D542A62222A5BC2008B90B0 /* WYNetWorkManager.m in Sources */,
@@ -2412,6 +2451,7 @@
 				8D0167322238ED8900CD21D8 /* LLCommodityExchangeTableViewCell.m in Sources */,
 				8D542A6F222A5BC2008B90B0 /* LERefreshFooter.m in Sources */,
 				8DCC9ABF222B814D00AC3128 /* LLTableView.m in Sources */,
+				8DF28FAA223E84190074A4D8 /* LLLoginPasswordResetViewController.m in Sources */,
 				8D58D4B82226355900803985 /* AppDelegate.m in Sources */,
 				8D4C611E222D058C00024840 /* LLUserInputView.m in Sources */,
 				8D890B5C223212A000CA711A /* LLPublishViewController.m in Sources */,

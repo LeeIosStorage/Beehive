@@ -10,7 +10,11 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+typedef void(^LLMineCellSwitchBlock)(BOOL on);
+
 @interface LLMineTableViewCell : LLTableViewCell
+
+@property (nonatomic, strong) LLMineCellSwitchBlock switchBlock;
 
 @end
 

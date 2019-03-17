@@ -26,6 +26,8 @@
     self.title = @"规则";
     if (self.vcType == LLInfoDetailsVcTypeNotice) {
         self.title = @"详情";
+    } else if (self.vcType ==LLInfoDetailsVcTypeAbout) {
+        self.title = @"关于蜂巢";
     }
     self.view.backgroundColor = kAppBackgroundColor;
     self.ruleTextView.textColor = kAppTitleColor;
@@ -34,6 +36,8 @@
         self.ruleTextView.text = @"1.签到抽奖规则，签到抽奖规则\n2.签到抽奖规则，签到抽奖规则";
     } else if (self.vcType == LLInfoDetailsVcTypeNotice) {
         self.ruleTextView.text = self.text;
+    } else if (self.vcType == LLInfoDetailsVcTypeAbout) {
+        self.ruleTextView.text = @"关于蜂巢关于蜂巢关于蜂巢关于蜂巢关于蜂巢关于蜂巢关于蜂巢关于蜂巢关于蜂巢关于蜂巢关于蜂巢关于蜂巢关于蜂巢关于蜂巢关于蜂巢关于蜂巢关于蜂巢关于蜂巢关于蜂巢关于蜂巢关于蜂巢关于蜂巢关于蜂巢关于蜂巢关于蜂巢关于蜂巢关于蜂巢关于蜂巢关于蜂巢关于蜂巢";
     }
 }
 

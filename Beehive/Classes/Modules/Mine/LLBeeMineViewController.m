@@ -22,6 +22,7 @@
 #import "LLInvitationCodeViewController.h"
 #import "LLExchangeOrderViewController.h"
 #import "LLNoticeViewController.h"
+#import "LLSettingViewController.h"
 
 static NSString *const kLLMineCollectionViewCell = @"LLMineCollectionViewCell";
 static NSString *const kLLMineCollectionHeaderView = @"LLMineCollectionHeaderView";
@@ -214,7 +215,8 @@ UICollectionViewDataSource
         }
             break;
         case LLMineNodeTypeSet: {
-            
+            LLSettingViewController *vc = [[LLSettingViewController alloc] init];
+            [self.navigationController pushViewController:vc animated:true];
         }
             break;
         case LLMineNodeTypeVIP: {

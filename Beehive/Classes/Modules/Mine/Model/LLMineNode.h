@@ -26,6 +26,12 @@ typedef NS_ENUM(NSInteger, LLMineNodeType) {
     LLMineNodeTypeSetLoginPwd, //修改登录密码
     LLMineNodeTypeSetPayPwd, //修改支付密码
     LLMineNodeTypeSetPhone, //修改手机号
+    LLMineNodeTypeSetRedSound, //红包声音
+    LLMineNodeTypeSetFeedback, //意见反馈
+    LLMineNodeTypeSetAbout, //关于
+    LLMineNodeTypeSetClearCache, //清除缓存
+    LLMineNodeTypeSetVersion, //版本更新
+    
     //钱包相关
     LLMineNodeTypeWalletDetail, //明细
     LLMineNodeTypeWalletBeeHistory, //
@@ -35,7 +41,9 @@ typedef NS_ENUM(NSInteger, LLMineNodeType) {
 @interface LLMineNode : NSObject
 
 @property (nonatomic, strong) NSString *title;
+@property (nonatomic, strong) NSString *des;
 @property (nonatomic, strong) NSString *icon;
+@property (nonatomic, assign) bool switchShow;
 @property (nonatomic, assign) LLMineNodeType vcType;
 
 @end

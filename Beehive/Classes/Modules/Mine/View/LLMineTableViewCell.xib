@@ -39,6 +39,19 @@
                             <constraint firstAttribute="width" constant="11" id="uqR-eQ-5dP"/>
                         </constraints>
                     </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="baZ-8t-VCF">
+                        <rect key="frame" x="291" y="20" width="0.0" height="0.0"/>
+                        <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="11"/>
+                        <color key="textColor" red="0.66666666669999997" green="0.66666666669999997" blue="0.66666666669999997" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="trailing" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gF0-hB-BGg">
+                        <rect key="frame" x="261" y="4.5" width="51" height="31"/>
+                        <color key="onTintColor" red="1" green="0.68627450980000004" blue="0.0078431372550000003" alpha="1" colorSpace="calibratedRGB"/>
+                        <connections>
+                            <action selector="switchAction:" destination="KGk-i7-Jjw" eventType="valueChanged" id="EBS-f0-Wyl"/>
+                        </connections>
+                    </switch>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="nn7-9U-eWp">
                         <rect key="frame" x="0.0" y="39" width="320" height="0.5"/>
                         <color key="backgroundColor" red="0.88235294119999996" green="0.88235294119999996" blue="0.88235294119999996" alpha="1" colorSpace="calibratedRGB"/>
@@ -48,13 +61,17 @@
                     </imageView>
                 </subviews>
                 <constraints>
+                    <constraint firstAttribute="trailing" secondItem="gF0-hB-BGg" secondAttribute="trailing" constant="10" id="0Zb-AC-AKW"/>
                     <constraint firstItem="b4I-xs-jTa" firstAttribute="leading" secondItem="bOk-Is-q9j" secondAttribute="trailing" constant="10" id="6y0-PL-XM8"/>
+                    <constraint firstItem="5Sm-C4-dUg" firstAttribute="leading" secondItem="baZ-8t-VCF" secondAttribute="trailing" constant="8" id="AtP-ka-Iqw"/>
                     <constraint firstAttribute="trailing" secondItem="5Sm-C4-dUg" secondAttribute="trailing" constant="10" id="CdL-qi-FmV"/>
                     <constraint firstItem="bOk-Is-q9j" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="EUf-fh-PUE"/>
                     <constraint firstAttribute="trailing" secondItem="nn7-9U-eWp" secondAttribute="trailing" id="HWy-IC-UDg"/>
                     <constraint firstAttribute="bottom" secondItem="nn7-9U-eWp" secondAttribute="bottom" id="Kux-O4-w7f"/>
                     <constraint firstItem="nn7-9U-eWp" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="RCl-HS-kp2"/>
+                    <constraint firstItem="5Sm-C4-dUg" firstAttribute="centerY" secondItem="baZ-8t-VCF" secondAttribute="centerY" id="aMc-ig-nTF"/>
                     <constraint firstItem="bOk-Is-q9j" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="eMQ-Vu-KMo"/>
+                    <constraint firstItem="gF0-hB-BGg" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="eve-qm-fgS"/>
                     <constraint firstItem="b4I-xs-jTa" firstAttribute="centerY" secondItem="bOk-Is-q9j" secondAttribute="centerY" id="fnH-YE-3ZK"/>
                     <constraint firstItem="5Sm-C4-dUg" firstAttribute="centerY" secondItem="b4I-xs-jTa" secondAttribute="centerY" id="iR5-69-YLx"/>
                 </constraints>
@@ -63,7 +80,10 @@
             <connections>
                 <outlet property="imgIcon" destination="bOk-Is-q9j" id="0BZ-nz-tsN"/>
                 <outlet property="imgIconConstraintL" destination="EUf-fh-PUE" id="13I-Z4-NrK"/>
+                <outlet property="imgRight" destination="5Sm-C4-dUg" id="Jej-rG-CNc"/>
+                <outlet property="labDes" destination="baZ-8t-VCF" id="W6N-WN-M2M"/>
                 <outlet property="labTitle" destination="b4I-xs-jTa" id="5aB-wK-syU"/>
+                <outlet property="rightSwitch" destination="gF0-hB-BGg" id="Grt-jL-kcf"/>
             </connections>
             <point key="canvasLocation" x="82" y="100"/>
         </tableViewCell>

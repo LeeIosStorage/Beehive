@@ -14,6 +14,9 @@
 @property (nonatomic, weak) IBOutlet UIImageView *imgIcon;
 @property (nonatomic, weak) IBOutlet NSLayoutConstraint *imgIconConstraintL;
 @property (nonatomic, weak) IBOutlet UILabel *labTitle;
+@property (nonatomic, weak) IBOutlet UILabel *labDes;
+@property (nonatomic, weak) IBOutlet UIImageView *imgRight;
+@property (nonatomic, weak) IBOutlet UISwitch *rightSwitch;
 
 @end
 
@@ -31,6 +34,13 @@
     // Configure the view for the selected state
 }
 
+- (IBAction)switchAction:(id)sender {
+    UISwitch *s = (UISwitch *)sender;
+    if (self.switchBlock) {
+        self.switchBlock(s.on);
+    }
+}
+
 - (void)updateCellWithData:(id)node {
     LLMineNode *mineNode = (LLMineNode *)node;
     self.imgIcon.image = [UIImage imageNamed:mineNode.icon];
@@ -40,6 +50,9 @@
     } else {
         self.imgIconConstraintL.constant = -10;
     }
+    self.labDes.text = mineNode.des;
+    self.rightSwitch.hidden = !mineNode.switchShow;
+    self.imgRight.hidden = mineNode.switchShow;
 }
 
 @end
