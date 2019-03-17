@@ -150,6 +150,14 @@
     });
 }
 
+- (void)clearAllLabelText
+{
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        self.textField.text = @"";
+        [self updateAllLabelTextToNone];
+    });
+}
+
 - (void)updateAllLabelTextToNone
 {
     for (int i = 0; i < kZJPasswordBoxNumber; i++)

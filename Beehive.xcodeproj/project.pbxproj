@@ -282,6 +282,10 @@
 		8DF28FAB223E84190074A4D8 /* LLLoginPasswordResetViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8DF28FA9223E84190074A4D8 /* LLLoginPasswordResetViewController.xib */; };
 		8DF28FAF223E84A00074A4D8 /* LLAmendPhoneViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DF28FAD223E84A00074A4D8 /* LLAmendPhoneViewController.m */; };
 		8DF28FB0223E84A00074A4D8 /* LLAmendPhoneViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8DF28FAE223E84A00074A4D8 /* LLAmendPhoneViewController.xib */; };
+		8DF28FB4223E95B00074A4D8 /* LLVerifyIdentityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DF28FB2223E95B00074A4D8 /* LLVerifyIdentityViewController.m */; };
+		8DF28FB5223E95B00074A4D8 /* LLVerifyIdentityViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8DF28FB3223E95B00074A4D8 /* LLVerifyIdentityViewController.xib */; };
+		8DF28FB9223E95DF0074A4D8 /* LLSetPayPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DF28FB7223E95DF0074A4D8 /* LLSetPayPasswordViewController.m */; };
+		8DF28FBA223E95DF0074A4D8 /* LLSetPayPasswordViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8DF28FB8223E95DF0074A4D8 /* LLSetPayPasswordViewController.xib */; };
 		A78A3C5E8FBF200497ED12F0 /* Pods_BeehiveTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A98A37B880E16C6C709CB88A /* Pods_BeehiveTests.framework */; };
 		BE3EF924D54032F1DFDF5383 /* Pods_BeehiveUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0DB97A8E569F793FB5ABD125 /* Pods_BeehiveUITests.framework */; };
 		E0E531C080DEB8E8705299CF /* Pods_Beehive.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA9C64AC55444CFD230537D9 /* Pods_Beehive.framework */; };
@@ -763,6 +767,12 @@
 		8DF28FAC223E84A00074A4D8 /* LLAmendPhoneViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLAmendPhoneViewController.h; sourceTree = "<group>"; };
 		8DF28FAD223E84A00074A4D8 /* LLAmendPhoneViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLAmendPhoneViewController.m; sourceTree = "<group>"; };
 		8DF28FAE223E84A00074A4D8 /* LLAmendPhoneViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LLAmendPhoneViewController.xib; sourceTree = "<group>"; };
+		8DF28FB1223E95B00074A4D8 /* LLVerifyIdentityViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLVerifyIdentityViewController.h; sourceTree = "<group>"; };
+		8DF28FB2223E95B00074A4D8 /* LLVerifyIdentityViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLVerifyIdentityViewController.m; sourceTree = "<group>"; };
+		8DF28FB3223E95B00074A4D8 /* LLVerifyIdentityViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LLVerifyIdentityViewController.xib; sourceTree = "<group>"; };
+		8DF28FB6223E95DF0074A4D8 /* LLSetPayPasswordViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLSetPayPasswordViewController.h; sourceTree = "<group>"; };
+		8DF28FB7223E95DF0074A4D8 /* LLSetPayPasswordViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLSetPayPasswordViewController.m; sourceTree = "<group>"; };
+		8DF28FB8223E95DF0074A4D8 /* LLSetPayPasswordViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LLSetPayPasswordViewController.xib; sourceTree = "<group>"; };
 		A64954C5C3CAB5F3221F123D /* Pods-BeehiveTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BeehiveTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BeehiveTests/Pods-BeehiveTests.debug.xcconfig"; sourceTree = "<group>"; };
 		A98A37B880E16C6C709CB88A /* Pods_BeehiveTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BeehiveTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BA9C64AC55444CFD230537D9 /* Pods_Beehive.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Beehive.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1601,6 +1611,12 @@
 				8DBEAE2D223C9AB10095D214 /* LLPayPasswordResetViewController.h */,
 				8DBEAE2E223C9AB10095D214 /* LLPayPasswordResetViewController.m */,
 				8DBEAE2F223C9AB10095D214 /* LLPayPasswordResetViewController.xib */,
+				8DF28FB1223E95B00074A4D8 /* LLVerifyIdentityViewController.h */,
+				8DF28FB2223E95B00074A4D8 /* LLVerifyIdentityViewController.m */,
+				8DF28FB3223E95B00074A4D8 /* LLVerifyIdentityViewController.xib */,
+				8DF28FB6223E95DF0074A4D8 /* LLSetPayPasswordViewController.h */,
+				8DF28FB7223E95DF0074A4D8 /* LLSetPayPasswordViewController.m */,
+				8DF28FB8223E95DF0074A4D8 /* LLSetPayPasswordViewController.xib */,
 				8DF28FAC223E84A00074A4D8 /* LLAmendPhoneViewController.h */,
 				8DF28FAD223E84A00074A4D8 /* LLAmendPhoneViewController.m */,
 				8DF28FAE223E84A00074A4D8 /* LLAmendPhoneViewController.xib */,
@@ -2047,6 +2063,7 @@
 				8D01670A2238BFDB00CD21D8 /* LLAttentionTableViewCell.xib in Resources */,
 				8D5F2E58223662F20049C28F /* LLMapAddressShowView.xib in Resources */,
 				8D004EC5223B71400029EDE6 /* LLRedrReceiveDetailsViewController.xib in Resources */,
+				8DF28FBA223E95DF0074A4D8 /* LLSetPayPasswordViewController.xib in Resources */,
 				8D5CB6EF22357F1D00527DEB /* LLMapAddressSearchViewController.xib in Resources */,
 				8DBEAE77223DEA870095D214 /* LLFundAmountCollectionViewCell.xib in Resources */,
 				8DBEAE5D223CB83A0095D214 /* LLPublishHistoryViewController.xib in Resources */,
@@ -2077,6 +2094,7 @@
 				7E561B8022392FBF00DA3B20 /* LLExchangeDetailsHeaderView.xib in Resources */,
 				8DBEAE72223D6CD50095D214 /* LLFundHandleHeaderView.xib in Resources */,
 				8DF28F9C223E61900074A4D8 /* LLNoticeViewController.xib in Resources */,
+				8DF28FB5223E95B00074A4D8 /* LLVerifyIdentityViewController.xib in Resources */,
 				8DBEAE81223DF9CA0095D214 /* LLFundDetailTableViewCell.xib in Resources */,
 				8D5F2E622236D3040049C28F /* LLChooseLocationScopeView.xib in Resources */,
 				8DF28F7E223E2B620074A4D8 /* LLBeeLobbyViewController.xib in Resources */,
@@ -2437,6 +2455,7 @@
 				8D0167272238E1EE00CD21D8 /* LLReceiveCommentTableViewCell.m in Sources */,
 				8DBEAE70223D6CC70095D214 /* LLFundHandleHeaderView.m in Sources */,
 				8D542A79222A5BC2008B90B0 /* UIImage+ProportionalFill.m in Sources */,
+				8DF28FB9223E95DF0074A4D8 /* LLSetPayPasswordViewController.m in Sources */,
 				8DF28F91223E4A470074A4D8 /* LLExchangeOrderDetailsViewController.m in Sources */,
 				8D5CB6CD2234E65000527DEB /* LLMultipleSelectedPickerView.m in Sources */,
 				8D004EC4223B71400029EDE6 /* LLRedrReceiveDetailsViewController.m in Sources */,
@@ -2457,6 +2476,7 @@
 				8D890B5C223212A000CA711A /* LLPublishViewController.m in Sources */,
 				8D5CB6EE22357F1D00527DEB /* LLMapAddressSearchViewController.m in Sources */,
 				8DBEAE2A223C93E50095D214 /* ZJPayPasswordView.m in Sources */,
+				8DF28FB4223E95B00074A4D8 /* LLVerifyIdentityViewController.m in Sources */,
 				8D5CB6C32232D73300527DEB /* ZJUsefulPickerView.m in Sources */,
 				8D542A72222A5BC2008B90B0 /* LELoginModel.m in Sources */,
 				8D5CB6E422354C6800527DEB /* LLPublishChooseViewCell.m in Sources */,

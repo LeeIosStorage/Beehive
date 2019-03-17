@@ -17,6 +17,8 @@ typedef void(^ZJInputPasswordCompletionBlock)(NSString *password);
 /** 更新输入框数据 */
 - (void)updateLabelBoxWithText:(NSString *)text;
 
+- (void)clearAllLabelText;
+
 /** 抖动输入框 */
 - (void)startShakeViewAnimation;
 

@@ -10,6 +10,9 @@
 
 @interface LLAmendPhoneViewController ()
 
+@property (nonatomic, weak) IBOutlet UITextField *tfPhone;
+@property (nonatomic, weak) IBOutlet UITextField *tfSmsCode;
+
 @end
 
 @implementation LLAmendPhoneViewController
