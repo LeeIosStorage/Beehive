@@ -60,7 +60,7 @@ SDCycleScrollViewDelegate
 }
 
 - (IBAction)callTelAction:(id)sender {
-    [[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"tel://10086"]];
+    [WYCommonUtils callTelephone:@"10086"];
 }
 
 - (void)updateCellWithData:(id)node {

@@ -24,8 +24,17 @@
 
 - (void)setup {
     self.title = @"规则";
-    self.ruleTextView.text = @"1.签到抽奖规则，签到抽奖规则\n2.签到抽奖规则，签到抽奖规则";
+    if (self.vcType == LLInfoDetailsVcTypeNotice) {
+        self.title = @"详情";
+    }
+    self.view.backgroundColor = kAppBackgroundColor;
     self.ruleTextView.textColor = kAppTitleColor;
+    
+    if (self.vcType == LLInfoDetailsVcTypeRule) {
+        self.ruleTextView.text = @"1.签到抽奖规则，签到抽奖规则\n2.签到抽奖规则，签到抽奖规则";
+    } else if (self.vcType == LLInfoDetailsVcTypeNotice) {
+        self.ruleTextView.text = self.text;
+    }
 }
 
 @end

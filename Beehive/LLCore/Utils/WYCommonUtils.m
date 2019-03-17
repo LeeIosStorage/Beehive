@@ -11,6 +11,7 @@
 #import "UIImage+LEAdd.h"
 #import <AdSupport/AdSupport.h>
 #import <JMRoundedCorner/UIView+RoundedCorner.h>
+#import <CoreImage/CoreImage.h>
 
 #define DAY_SECOND 60*60*24
 
@@ -478,6 +479,79 @@ static bool dateFormatterOFUSInvalid;
     result = nextResponder;
     
     return result;
+}
+
++ (UIImage *)getHDQRImgWithString:(NSString *)str size:(CGSize)size {
+    
+    CIFilter *filter = [CIFilter filterWithName:@"CIQRCodeGenerator"];
+    [filter setDefaults];
+    //将所需尽心转为UTF8的数据，并设置给filter
+    NSData *data = [str dataUsingEncoding:NSUTF8StringEncoding];
+    [filter setValue:data forKey:@"inputMessage"];
+    //设置二维码的纠错水平，越高纠错水平越高，可以污损的范围越大
+    /*
+     * L: 7%
+     * M: 15%
+     * Q: 25%
+     * H: 30%
+     */
+    [filter setValue:@"H" forKey:@"inputCorrectionLevel"];
+    //拿到二维码图片，此时的图片不是很清晰，需要二次加工
+    CIImage *outPutImage = [filter outputImage];
+    if (size.width == 0 || size.height == 0) {
+        size.width = 200;
+        size.height = 200;
+    }
+    return [WYCommonUtils getHDImgWithCIImage:outPutImage size:size];
+}
+
+/**
+ 调整二维码清晰度
+ 
+ @param img 模糊的二维码图片
+ @param size 二维码的宽高
+ @return 清晰的二维码图片
+ */
++ (UIImage *)getHDImgWithCIImage:(CIImage *)img size:(CGSize)size {
+    
+    //二维码的颜色
+    UIColor *pointColor = [UIColor blackColor];
+    //背景颜色
+    UIColor *backgroundColor = [UIColor whiteColor];
+    CIFilter *colorFilter = [CIFilter filterWithName:@"CIFalseColor"
+                                       keysAndValues:
+                             @"inputImage", img,
+                             @"inputColor0", [CIColor colorWithCGColor:pointColor.CGColor],
+                             @"inputColor1", [CIColor colorWithCGColor:backgroundColor.CGColor],
+                             nil];
+    
+    CIImage *qrImage = colorFilter.outputImage;
+    
+    //绘制
+    CGImageRef cgImage = [[CIContext contextWithOptions:nil] createCGImage:qrImage fromRect:qrImage.extent];
+    UIGraphicsBeginImageContext(size);
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    CGContextSetInterpolationQuality(context, kCGInterpolationNone);
+    CGContextScaleCTM(context, 1.0, -1.0);
+    CGContextDrawImage(context, CGContextGetClipBoundingBox(context), cgImage);
+    UIImage *codeImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    CGImageRelease(cgImage);
+    
+    return codeImage;
+}
+
++ (UIImage *)cutImageWithView:(UIView *)view {
+    UIGraphicsBeginImageContextWithOptions(view.frame.size, true, UIScreen.mainScreen.scale);
+    [view.layer renderInContext:UIGraphicsGetCurrentContext()];
+    UIImage *screenShotImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return screenShotImage;
+}
+
++ (void)callTelephone:(NSString *)phone {
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"tel:%@", phone]] options:@{} completionHandler:nil];
 }
 
 @end

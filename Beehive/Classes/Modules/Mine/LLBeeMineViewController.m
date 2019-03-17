@@ -17,6 +17,11 @@
 #import "LLCollectListViewController.h"
 #import "LLAttentionListViewController.h"
 #import "LLPublishHistoryViewController.h"
+#import "LLBeeLobbyViewController.h"
+#import "LLBeeTaskViewController.h"
+#import "LLInvitationCodeViewController.h"
+#import "LLExchangeOrderViewController.h"
+#import "LLNoticeViewController.h"
 
 static NSString *const kLLMineCollectionViewCell = @"LLMineCollectionViewCell";
 static NSString *const kLLMineCollectionHeaderView = @"LLMineCollectionHeaderView";
@@ -177,27 +182,35 @@ UICollectionViewDataSource
         }
             break;
         case LLMineNodeTypeBeeLobby: {
-            
+            LLBeeLobbyViewController *vc = [[LLBeeLobbyViewController alloc] init];
+            [self.navigationController pushViewController:vc animated:true];
         }
             break;
         case LLMineNodeTypeBeeTask: {
-            
+            LLBeeTaskViewController *vc = [[LLBeeTaskViewController alloc] init];
+            [self.navigationController pushViewController:vc animated:true];
         }
             break;
         case LLMineNodeTypeCode: {
-            
+            LLInvitationCodeViewController *vc = [[LLInvitationCodeViewController alloc] init];
+            [self.navigationController pushViewController:vc animated:true];
         }
             break;
         case LLMineNodeTypeOrder: {
-            
+            LLExchangeOrderViewController *vc = [[LLExchangeOrderViewController alloc] init];
+            [self.navigationController pushViewController:vc animated:true];
         }
             break;
         case LLMineNodeTypeNotice: {
-            
+            LLNoticeViewController *vc = [[LLNoticeViewController alloc] init];
+            vc.vcType = LLNoticeVcTypeNotice;
+            [self.navigationController pushViewController:vc animated:true];
         }
             break;
         case LLMineNodeTypeHelp: {
-            
+            LLNoticeViewController *vc = [[LLNoticeViewController alloc] init];
+            vc.vcType = LLNoticeVcTypeHelp;
+            [self.navigationController pushViewController:vc animated:true];
         }
             break;
         case LLMineNodeTypeSet: {

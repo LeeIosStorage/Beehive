@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="KGk-i7-Jjw" customClass="LLBeeTaskTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="89"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="88.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HXv-0C-1bK">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="78.5"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="1_4_0.3" translatesAutoresizingMaskIntoConstraints="NO" id="jwq-eC-3Uy">
+                                <rect key="frame" x="10" y="13" width="35" height="35"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="35" id="ERx-ia-Mvf"/>
+                                    <constraint firstAttribute="height" constant="35" id="ccL-7A-CBV"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="邀请好友" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kba-e2-Ldm">
+                                <rect key="frame" x="55" y="12" width="52.5" height="18.5"/>
+                                <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="13"/>
+                                <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yCG-yp-Tvw">
+                                <rect key="frame" x="253" y="45.5" width="57" height="22"/>
+                                <color key="backgroundColor" red="1" green="0.68627450980000004" blue="0.0078431372550000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="22" id="p8D-aT-NJZ"/>
+                                    <constraint firstAttribute="width" constant="57" id="p8k-nS-RV5"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                <state key="normal" title="去邀请">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="11"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="奖励一次抽奖机会" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rgb-Y7-WQC">
+                                <rect key="frame" x="55" y="32.5" width="88" height="15.5"/>
+                                <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="11"/>
+                                <color key="textColor" red="0.66666666669999997" green="0.66666666669999997" blue="0.66666666669999997" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="yCG-yp-Tvw" secondAttribute="bottom" constant="11" id="5eV-L6-rsg"/>
+                            <constraint firstItem="jwq-eC-3Uy" firstAttribute="top" secondItem="HXv-0C-1bK" secondAttribute="top" constant="13" id="Dbp-IH-uTo"/>
+                            <constraint firstItem="jwq-eC-3Uy" firstAttribute="leading" secondItem="HXv-0C-1bK" secondAttribute="leading" constant="10" id="ISh-Hs-5ht"/>
+                            <constraint firstItem="kba-e2-Ldm" firstAttribute="top" secondItem="HXv-0C-1bK" secondAttribute="top" constant="12" id="N8O-rE-Lnl"/>
+                            <constraint firstItem="kba-e2-Ldm" firstAttribute="leading" secondItem="jwq-eC-3Uy" secondAttribute="trailing" constant="10" id="NRN-zp-h1f"/>
+                            <constraint firstItem="rgb-Y7-WQC" firstAttribute="leading" secondItem="kba-e2-Ldm" secondAttribute="leading" id="Py4-Of-4lb"/>
+                            <constraint firstAttribute="trailing" secondItem="yCG-yp-Tvw" secondAttribute="trailing" constant="10" id="nSq-dA-B7G"/>
+                            <constraint firstItem="rgb-Y7-WQC" firstAttribute="top" secondItem="kba-e2-Ldm" secondAttribute="bottom" constant="2" id="nup-RG-9yD"/>
+                        </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                <integer key="value" value="7"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </view>
+                </subviews>
+                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                <constraints>
+                    <constraint firstItem="HXv-0C-1bK" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="7uz-3R-GwQ"/>
+                    <constraint firstAttribute="bottom" secondItem="HXv-0C-1bK" secondAttribute="bottom" constant="10" id="Kr3-gG-KlF"/>
+                    <constraint firstAttribute="trailing" secondItem="HXv-0C-1bK" secondAttribute="trailing" id="qM2-pO-vfo"/>
+                    <constraint firstItem="HXv-0C-1bK" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="tMY-hn-ryp"/>
+                </constraints>
+            </tableViewCellContentView>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="1_4_0.3" width="35" height="35"/>
+    </resources>
+</document>

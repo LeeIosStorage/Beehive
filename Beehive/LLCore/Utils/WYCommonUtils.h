@@ -104,4 +104,12 @@ typedef enum : NSUInteger {
 #pragma mark - common
 + (UIViewController *)getCurrentVC;
 
+#pragma mark - 生成二维码
++ (UIImage *)getHDQRImgWithString:(NSString *)str size:(CGSize)size;
+//截屏
++ (UIImage *)cutImageWithView:(UIView *)view;
+
+//打电话
++ (void)callTelephone:(NSString *)phone;
+
 @end

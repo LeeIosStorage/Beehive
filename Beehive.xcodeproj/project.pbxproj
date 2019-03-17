@@ -256,6 +256,24 @@
 		8DF0C28C223A502B006175E7 /* LLReceiveRedAlertView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8DF0C28B223A502B006175E7 /* LLReceiveRedAlertView.xib */; };
 		8DF0C28F223B67AE006175E7 /* LLRedTaskShowAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DF0C28E223B67AE006175E7 /* LLRedTaskShowAlertView.m */; };
 		8DF0C291223B67FA006175E7 /* LLRedTaskShowAlertView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8DF0C290223B67FA006175E7 /* LLRedTaskShowAlertView.xib */; };
+		8DF28F70223E21550074A4D8 /* LLBeeQunPersonsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DF28F6E223E21550074A4D8 /* LLBeeQunPersonsViewController.m */; };
+		8DF28F71223E21550074A4D8 /* LLBeeQunPersonsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8DF28F6F223E21550074A4D8 /* LLBeeQunPersonsViewController.xib */; };
+		8DF28F75223E27ED0074A4D8 /* LLBeeTaskViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DF28F73223E27ED0074A4D8 /* LLBeeTaskViewController.m */; };
+		8DF28F76223E27ED0074A4D8 /* LLBeeTaskViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8DF28F74223E27ED0074A4D8 /* LLBeeTaskViewController.xib */; };
+		8DF28F7D223E2B620074A4D8 /* LLBeeLobbyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DF28F7B223E2B620074A4D8 /* LLBeeLobbyViewController.m */; };
+		8DF28F7E223E2B620074A4D8 /* LLBeeLobbyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8DF28F7C223E2B620074A4D8 /* LLBeeLobbyViewController.xib */; };
+		8DF28F82223E2DF00074A4D8 /* LLBeeTaskTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DF28F80223E2DF00074A4D8 /* LLBeeTaskTableViewCell.m */; };
+		8DF28F83223E2DF00074A4D8 /* LLBeeTaskTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8DF28F81223E2DF00074A4D8 /* LLBeeTaskTableViewCell.xib */; };
+		8DF28F87223E31400074A4D8 /* LLInvitationCodeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DF28F85223E31400074A4D8 /* LLInvitationCodeViewController.m */; };
+		8DF28F88223E31400074A4D8 /* LLInvitationCodeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8DF28F86223E31400074A4D8 /* LLInvitationCodeViewController.xib */; };
+		8DF28F8C223E4A0F0074A4D8 /* LLExchangeOrderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DF28F8A223E4A0F0074A4D8 /* LLExchangeOrderViewController.m */; };
+		8DF28F8D223E4A0F0074A4D8 /* LLExchangeOrderViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8DF28F8B223E4A0F0074A4D8 /* LLExchangeOrderViewController.xib */; };
+		8DF28F91223E4A470074A4D8 /* LLExchangeOrderDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DF28F8F223E4A470074A4D8 /* LLExchangeOrderDetailsViewController.m */; };
+		8DF28F92223E4A470074A4D8 /* LLExchangeOrderDetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8DF28F90223E4A470074A4D8 /* LLExchangeOrderDetailsViewController.xib */; };
+		8DF28F96223E4B080074A4D8 /* LLExchangeOrderTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DF28F94223E4B080074A4D8 /* LLExchangeOrderTableViewCell.m */; };
+		8DF28F97223E4B080074A4D8 /* LLExchangeOrderTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8DF28F95223E4B080074A4D8 /* LLExchangeOrderTableViewCell.xib */; };
+		8DF28F9B223E61900074A4D8 /* LLNoticeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DF28F99223E61900074A4D8 /* LLNoticeViewController.m */; };
+		8DF28F9C223E61900074A4D8 /* LLNoticeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8DF28F9A223E61900074A4D8 /* LLNoticeViewController.xib */; };
 		A78A3C5E8FBF200497ED12F0 /* Pods_BeehiveTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A98A37B880E16C6C709CB88A /* Pods_BeehiveTests.framework */; };
 		BE3EF924D54032F1DFDF5383 /* Pods_BeehiveUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0DB97A8E569F793FB5ABD125 /* Pods_BeehiveUITests.framework */; };
 		E0E531C080DEB8E8705299CF /* Pods_Beehive.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA9C64AC55444CFD230537D9 /* Pods_Beehive.framework */; };
@@ -698,6 +716,33 @@
 		8DF0C28D223B67AE006175E7 /* LLRedTaskShowAlertView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLRedTaskShowAlertView.h; sourceTree = "<group>"; };
 		8DF0C28E223B67AE006175E7 /* LLRedTaskShowAlertView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLRedTaskShowAlertView.m; sourceTree = "<group>"; };
 		8DF0C290223B67FA006175E7 /* LLRedTaskShowAlertView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LLRedTaskShowAlertView.xib; sourceTree = "<group>"; };
+		8DF28F6D223E21550074A4D8 /* LLBeeQunPersonsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLBeeQunPersonsViewController.h; sourceTree = "<group>"; };
+		8DF28F6E223E21550074A4D8 /* LLBeeQunPersonsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLBeeQunPersonsViewController.m; sourceTree = "<group>"; };
+		8DF28F6F223E21550074A4D8 /* LLBeeQunPersonsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LLBeeQunPersonsViewController.xib; sourceTree = "<group>"; };
+		8DF28F72223E27ED0074A4D8 /* LLBeeTaskViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLBeeTaskViewController.h; sourceTree = "<group>"; };
+		8DF28F73223E27ED0074A4D8 /* LLBeeTaskViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLBeeTaskViewController.m; sourceTree = "<group>"; };
+		8DF28F74223E27ED0074A4D8 /* LLBeeTaskViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LLBeeTaskViewController.xib; sourceTree = "<group>"; };
+		8DF28F7A223E2B620074A4D8 /* LLBeeLobbyViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLBeeLobbyViewController.h; sourceTree = "<group>"; };
+		8DF28F7B223E2B620074A4D8 /* LLBeeLobbyViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLBeeLobbyViewController.m; sourceTree = "<group>"; };
+		8DF28F7C223E2B620074A4D8 /* LLBeeLobbyViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LLBeeLobbyViewController.xib; sourceTree = "<group>"; };
+		8DF28F7F223E2DF00074A4D8 /* LLBeeTaskTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLBeeTaskTableViewCell.h; sourceTree = "<group>"; };
+		8DF28F80223E2DF00074A4D8 /* LLBeeTaskTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLBeeTaskTableViewCell.m; sourceTree = "<group>"; };
+		8DF28F81223E2DF00074A4D8 /* LLBeeTaskTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LLBeeTaskTableViewCell.xib; sourceTree = "<group>"; };
+		8DF28F84223E31400074A4D8 /* LLInvitationCodeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLInvitationCodeViewController.h; sourceTree = "<group>"; };
+		8DF28F85223E31400074A4D8 /* LLInvitationCodeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLInvitationCodeViewController.m; sourceTree = "<group>"; };
+		8DF28F86223E31400074A4D8 /* LLInvitationCodeViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LLInvitationCodeViewController.xib; sourceTree = "<group>"; };
+		8DF28F89223E4A0F0074A4D8 /* LLExchangeOrderViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLExchangeOrderViewController.h; sourceTree = "<group>"; };
+		8DF28F8A223E4A0F0074A4D8 /* LLExchangeOrderViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLExchangeOrderViewController.m; sourceTree = "<group>"; };
+		8DF28F8B223E4A0F0074A4D8 /* LLExchangeOrderViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LLExchangeOrderViewController.xib; sourceTree = "<group>"; };
+		8DF28F8E223E4A470074A4D8 /* LLExchangeOrderDetailsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLExchangeOrderDetailsViewController.h; sourceTree = "<group>"; };
+		8DF28F8F223E4A470074A4D8 /* LLExchangeOrderDetailsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLExchangeOrderDetailsViewController.m; sourceTree = "<group>"; };
+		8DF28F90223E4A470074A4D8 /* LLExchangeOrderDetailsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LLExchangeOrderDetailsViewController.xib; sourceTree = "<group>"; };
+		8DF28F93223E4B080074A4D8 /* LLExchangeOrderTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLExchangeOrderTableViewCell.h; sourceTree = "<group>"; };
+		8DF28F94223E4B080074A4D8 /* LLExchangeOrderTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLExchangeOrderTableViewCell.m; sourceTree = "<group>"; };
+		8DF28F95223E4B080074A4D8 /* LLExchangeOrderTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LLExchangeOrderTableViewCell.xib; sourceTree = "<group>"; };
+		8DF28F98223E61900074A4D8 /* LLNoticeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLNoticeViewController.h; sourceTree = "<group>"; };
+		8DF28F99223E61900074A4D8 /* LLNoticeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLNoticeViewController.m; sourceTree = "<group>"; };
+		8DF28F9A223E61900074A4D8 /* LLNoticeViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LLNoticeViewController.xib; sourceTree = "<group>"; };
 		A64954C5C3CAB5F3221F123D /* Pods-BeehiveTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BeehiveTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BeehiveTests/Pods-BeehiveTests.debug.xcconfig"; sourceTree = "<group>"; };
 		A98A37B880E16C6C709CB88A /* Pods_BeehiveTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BeehiveTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BA9C64AC55444CFD230537D9 /* Pods_Beehive.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Beehive.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -818,6 +863,12 @@
 				7E561B8622394B1100DA3B20 /* LLReportViewController.h */,
 				7E561B8722394B1100DA3B20 /* LLReportViewController.m */,
 				7E561B8822394B1100DA3B20 /* LLReportViewController.xib */,
+				8DF28F89223E4A0F0074A4D8 /* LLExchangeOrderViewController.h */,
+				8DF28F8A223E4A0F0074A4D8 /* LLExchangeOrderViewController.m */,
+				8DF28F8B223E4A0F0074A4D8 /* LLExchangeOrderViewController.xib */,
+				8DF28F8E223E4A470074A4D8 /* LLExchangeOrderDetailsViewController.h */,
+				8DF28F8F223E4A470074A4D8 /* LLExchangeOrderDetailsViewController.m */,
+				8DF28F90223E4A470074A4D8 /* LLExchangeOrderDetailsViewController.xib */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -922,6 +973,9 @@
 				8D016741223A19D600CD21D8 /* LLCommodityPurchaseSucceedView.h */,
 				8D016742223A19D600CD21D8 /* LLCommodityPurchaseSucceedView.m */,
 				8D016744223A19EF00CD21D8 /* LLCommodityPurchaseSucceedView.xib */,
+				8DF28F93223E4B080074A4D8 /* LLExchangeOrderTableViewCell.h */,
+				8DF28F94223E4B080074A4D8 /* LLExchangeOrderTableViewCell.m */,
+				8DF28F95223E4B080074A4D8 /* LLExchangeOrderTableViewCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1386,6 +1440,7 @@
 		8D79E4CE2226704C0019A1BE /* Mine */ = {
 			isa = PBXGroup;
 			children = (
+				8DF28F77223E2B330074A4D8 /* BeeLobby */,
 				8DBEAE87223E16790095D214 /* BeeQun */,
 				8DBEAE66223D02340095D214 /* Wallet */,
 				8DBEAE2B223C9A520095D214 /* Setting */,
@@ -1432,9 +1487,6 @@
 		8D890B4E2232074E00CA711A /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				8D890B4F2232077D00CA711A /* LLMineWalletViewController.h */,
-				8D890B502232077D00CA711A /* LLMineWalletViewController.m */,
-				8D890B512232077D00CA711A /* LLMineWalletViewController.xib */,
 				8DBEAE4A223CB6BD0095D214 /* LLCollectListViewController.h */,
 				8DBEAE4B223CB6BD0095D214 /* LLCollectListViewController.m */,
 				8DBEAE4C223CB6BD0095D214 /* LLCollectListViewController.xib */,
@@ -1446,6 +1498,15 @@
 				8DBEAE5B223CB83A0095D214 /* LLPublishHistoryViewController.xib */,
 				8DBEAE5E223CCAD60095D214 /* LLPublishHistoryListViewController.h */,
 				8DBEAE5F223CCAD60095D214 /* LLPublishHistoryListViewController.m */,
+				8DF28F72223E27ED0074A4D8 /* LLBeeTaskViewController.h */,
+				8DF28F73223E27ED0074A4D8 /* LLBeeTaskViewController.m */,
+				8DF28F74223E27ED0074A4D8 /* LLBeeTaskViewController.xib */,
+				8DF28F84223E31400074A4D8 /* LLInvitationCodeViewController.h */,
+				8DF28F85223E31400074A4D8 /* LLInvitationCodeViewController.m */,
+				8DF28F86223E31400074A4D8 /* LLInvitationCodeViewController.xib */,
+				8DF28F98223E61900074A4D8 /* LLNoticeViewController.h */,
+				8DF28F99223E61900074A4D8 /* LLNoticeViewController.m */,
+				8DF28F9A223E61900074A4D8 /* LLNoticeViewController.xib */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1546,6 +1607,9 @@
 		8DBEAE67223D023E0095D214 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				8D890B4F2232077D00CA711A /* LLMineWalletViewController.h */,
+				8D890B502232077D00CA711A /* LLMineWalletViewController.m */,
+				8D890B512232077D00CA711A /* LLMineWalletViewController.xib */,
 				8DBEAE69223D026E0095D214 /* LLWithdrawViewController.h */,
 				8DBEAE6A223D026E0095D214 /* LLWithdrawViewController.m */,
 				8DBEAE6B223D026E0095D214 /* LLWithdrawViewController.xib */,
@@ -1590,6 +1654,9 @@
 				8D890B542232082800CA711A /* LLBeeQunViewController.h */,
 				8D890B552232082800CA711A /* LLBeeQunViewController.m */,
 				8D890B562232082800CA711A /* LLBeeQunViewController.xib */,
+				8DF28F6D223E21550074A4D8 /* LLBeeQunPersonsViewController.h */,
+				8DF28F6E223E21550074A4D8 /* LLBeeQunPersonsViewController.m */,
+				8DF28F6F223E21550074A4D8 /* LLBeeQunPersonsViewController.xib */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1626,6 +1693,9 @@
 				8DBEAE54223CB73B0095D214 /* LLMineCollectTableViewCell.h */,
 				8DBEAE55223CB73B0095D214 /* LLMineCollectTableViewCell.m */,
 				8DBEAE56223CB73B0095D214 /* LLMineCollectTableViewCell.xib */,
+				8DF28F7F223E2DF00074A4D8 /* LLBeeTaskTableViewCell.h */,
+				8DF28F80223E2DF00074A4D8 /* LLBeeTaskTableViewCell.m */,
+				8DF28F81223E2DF00074A4D8 /* LLBeeTaskTableViewCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1772,6 +1842,32 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		8DF28F77223E2B330074A4D8 /* BeeLobby */ = {
+			isa = PBXGroup;
+			children = (
+				8DF28F79223E2B4F0074A4D8 /* View */,
+				8DF28F78223E2B470074A4D8 /* Controller */,
+			);
+			path = BeeLobby;
+			sourceTree = "<group>";
+		};
+		8DF28F78223E2B470074A4D8 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				8DF28F7A223E2B620074A4D8 /* LLBeeLobbyViewController.h */,
+				8DF28F7B223E2B620074A4D8 /* LLBeeLobbyViewController.m */,
+				8DF28F7C223E2B620074A4D8 /* LLBeeLobbyViewController.xib */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		8DF28F79223E2B4F0074A4D8 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		C56CAB9DFE086D770962AA2C /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -1898,7 +1994,9 @@
 				8D01671E2238DE8500CD21D8 /* LLReceiveCommentViewController.xib in Resources */,
 				7E561B9D223A9D4100DA3B20 /* LLRedpacketDetailsHeaderView.xib in Resources */,
 				7E2E700D2238023300F185A7 /* LLCommodityExchangeViewController.xib in Resources */,
+				8DF28F97223E4B080074A4D8 /* LLExchangeOrderTableViewCell.xib in Resources */,
 				8DBEAE3F223CA0150095D214 /* LLPaymentWayTableViewCell.xib in Resources */,
+				8DF28F8D223E4A0F0074A4D8 /* LLExchangeOrderViewController.xib in Resources */,
 				8D79E4DD222676E20019A1BE /* LLBeeHomeViewController.xib in Resources */,
 				8D004EF0223BED150029EDE6 /* LLBuyAdViewController.xib in Resources */,
 				8DF0C291223B67FA006175E7 /* LLRedTaskShowAlertView.xib in Resources */,
@@ -1927,22 +2025,27 @@
 				8DF0C284223A3D4D006175E7 /* LLRedTaskHistoryHeaderView.xib in Resources */,
 				8D542A63222A5BC2008B90B0 /* NetWorkConfig.json in Resources */,
 				7E561B98223A99BF00DA3B20 /* LLRedpacketDetailsViewController.xib in Resources */,
+				8DF28F71223E21550074A4D8 /* LLBeeQunPersonsViewController.xib in Resources */,
 				8D01670F2238C05F00CD21D8 /* LLMessageWarnTableViewCell.xib in Resources */,
 				8D0167232238DEC100CD21D8 /* LLReceiveFavourViewController.xib in Resources */,
 				8D890B4D2232060100CA711A /* LLMessageViewController.xib in Resources */,
 				8D890B68223231BF00CA711A /* LLPublishNormalViewCell.xib in Resources */,
+				8DF28F83223E2DF00074A4D8 /* LLBeeTaskTableViewCell.xib in Resources */,
 				8DE5885A2227A4B3002C1576 /* LLBeeMessageViewController.xib in Resources */,
 				8DBEAE44223CAEC90095D214 /* LLEditAdViewController.xib in Resources */,
 				8DBEAE6D223D026E0095D214 /* LLWithdrawViewController.xib in Resources */,
 				8DF0C27A223A29A2006175E7 /* LLRedTaskTableViewCell.xib in Resources */,
 				8D890B6D2232344500CA711A /* LLPublishInputViewCell.xib in Resources */,
+				8DF28F92223E4A470074A4D8 /* LLExchangeOrderDetailsViewController.xib in Resources */,
 				8D01673B22391EC000CD21D8 /* LLCommodityExchangeDetailsViewController.xib in Resources */,
 				8D542A86222A66A5008B90B0 /* LLLoginViewController.xib in Resources */,
 				8D5CB6BD2232D73300527DEB /* Province.plist in Resources */,
 				7E561B8022392FBF00DA3B20 /* LLExchangeDetailsHeaderView.xib in Resources */,
 				8DBEAE72223D6CD50095D214 /* LLFundHandleHeaderView.xib in Resources */,
+				8DF28F9C223E61900074A4D8 /* LLNoticeViewController.xib in Resources */,
 				8DBEAE81223DF9CA0095D214 /* LLFundDetailTableViewCell.xib in Resources */,
 				8D5F2E622236D3040049C28F /* LLChooseLocationScopeView.xib in Resources */,
+				8DF28F7E223E2B620074A4D8 /* LLBeeLobbyViewController.xib in Resources */,
 				8DBEAE86223DFF6B0095D214 /* LLBeePresentAffirmView.xib in Resources */,
 				8D004ED9223B813F0029EDE6 /* LLPersonalHomeHeaderView.xib in Resources */,
 				8D58D4C32226355B00803985 /* LaunchScreen.storyboard in Resources */,
@@ -1952,6 +2055,7 @@
 				8DBEAE7C223DF2A40095D214 /* LLFundDetailViewController.xib in Resources */,
 				8D3F2154222FCB050066F5EB /* LLMessageDetailsViewController.xib in Resources */,
 				8D5F2E5D223698E60049C28F /* LLMapAddressSearchTitleView.xib in Resources */,
+				8DF28F76223E27ED0074A4D8 /* LLBeeTaskViewController.xib in Resources */,
 				8D58D4C02226355B00803985 /* Assets.xcassets in Resources */,
 				8D58D4BE2226355900803985 /* Main.storyboard in Resources */,
 				8D0167142238C47400CD21D8 /* LLMsgTickTableViewCell.xib in Resources */,
@@ -1972,6 +2076,7 @@
 				7E561B93223955D900DA3B20 /* LLReportSucceedView.xib in Resources */,
 				8D0167192238CECC00CD21D8 /* LLCellOriginalContentView.xib in Resources */,
 				8D890B722232346700CA711A /* LLPublishImageViewCell.xib in Resources */,
+				8DF28F88223E31400074A4D8 /* LLInvitationCodeViewController.xib in Resources */,
 				8D01672D2238E20A00CD21D8 /* LLReceiveFavourTableViewCell.xib in Resources */,
 				8D004EE6223B974E0029EDE6 /* LLPartnerHeaderView.xib in Resources */,
 				8D0167332238ED8900CD21D8 /* LLCommodityExchangeTableViewCell.xib in Resources */,
@@ -2165,6 +2270,7 @@
 				8D890B522232077D00CA711A /* LLMineWalletViewController.m in Sources */,
 				8D5F2E56223662E50049C28F /* LLMapAddressShowView.m in Sources */,
 				8DF0C279223A29A2006175E7 /* LLRedTaskTableViewCell.m in Sources */,
+				8DF28F82223E2DF00074A4D8 /* LLBeeTaskTableViewCell.m in Sources */,
 				8D542A71222A5BC2008B90B0 /* LELoginManager.m in Sources */,
 				7E561B8922394B1100DA3B20 /* LLReportViewController.m in Sources */,
 				8DF0C28F223B67AE006175E7 /* LLRedTaskShowAlertView.m in Sources */,
@@ -2182,6 +2288,7 @@
 				8D79E4E1222676FC0019A1BE /* LLBeeMineViewController.m in Sources */,
 				8D542A6A222A5BC2008B90B0 /* LEWebViewController.m in Sources */,
 				8DBEAE29223C93E50095D214 /* ZJPayPopupView.m in Sources */,
+				8DF28F96223E4B080074A4D8 /* LLExchangeOrderTableViewCell.m in Sources */,
 				8D542A6B222A5BC2008B90B0 /* LEShareModel.m in Sources */,
 				8D004EEF223BED150029EDE6 /* LLBuyAdViewController.m in Sources */,
 				8D79E4DC222676E20019A1BE /* LLBeeHomeViewController.m in Sources */,
@@ -2218,6 +2325,7 @@
 				8D542A7C222A5BC2008B90B0 /* LELoginAuthManager.m in Sources */,
 				8DBEAE4D223CB6BD0095D214 /* LLCollectListViewController.m in Sources */,
 				8DBEAE7B223DF2A40095D214 /* LLFundDetailViewController.m in Sources */,
+				8DF28F75223E27ED0074A4D8 /* LLBeeTaskViewController.m in Sources */,
 				8D5CB6C42232D73300527DEB /* ZJSinglePickerView.m in Sources */,
 				8D542A74222A5BC2008B90B0 /* PathHelper.m in Sources */,
 				7E2E700C2238023300F185A7 /* LLCommodityExchangeViewController.m in Sources */,
@@ -2226,6 +2334,7 @@
 				8D016743223A19D700CD21D8 /* LLCommodityPurchaseSucceedView.m in Sources */,
 				8D79E4D82226748D0019A1BE /* LLBaseViewController.m in Sources */,
 				8D5F2E5B223698D90049C28F /* LLMapAddressSearchTitleView.m in Sources */,
+				8DF28F7D223E2B620074A4D8 /* LLBeeLobbyViewController.m in Sources */,
 				8D0167362238FB9C00CD21D8 /* LLExchangeBaseViewController.m in Sources */,
 				8D890B4C2232060100CA711A /* LLMessageViewController.m in Sources */,
 				8DF0C282223A3D40006175E7 /* LLRedTaskHistoryHeaderView.m in Sources */,
@@ -2251,6 +2360,7 @@
 				8D3F2149222F65020066F5EB /* LLHandleStatusView.m in Sources */,
 				8DCC9AB9222B810900AC3128 /* LLCollectionView.m in Sources */,
 				7E561B8E2239518200DA3B20 /* LEAlertMarkView.m in Sources */,
+				8DF28F9B223E61900074A4D8 /* LLNoticeViewController.m in Sources */,
 				8D5CB6C52232D73300527DEB /* ZJToolBar.m in Sources */,
 				7E1E8A6922301162002766AD /* LLMessageDetailsHeaderView.m in Sources */,
 				8DF0C28A223A501E006175E7 /* LLReceiveRedAlertView.m in Sources */,
@@ -2266,6 +2376,7 @@
 				8D5CB6BF2232D73300527DEB /* ZJMultipleAssociatedPickerView.m in Sources */,
 				8D542A65222A5BC2008B90B0 /* HotUpButton.m in Sources */,
 				8DF0C27E223A2EB1006175E7 /* LLRedTaskHistoryTableViewCell.m in Sources */,
+				8DF28F70223E21550074A4D8 /* LLBeeQunPersonsViewController.m in Sources */,
 				8D890B712232346700CA711A /* LLPublishImageViewCell.m in Sources */,
 				7E561B91223955CB00DA3B20 /* LLReportSucceedView.m in Sources */,
 				8DBEAE34223C9BBB0095D214 /* LLPaymentWayView.m in Sources */,
@@ -2280,17 +2391,20 @@
 				8DBEAE43223CAEC90095D214 /* LLEditAdViewController.m in Sources */,
 				8D542A67222A5BC2008B90B0 /* WYCustomActionSheet.m in Sources */,
 				8D542A78222A5BC2008B90B0 /* MBProgressHUD+LETools.m in Sources */,
+				8DF28F87223E31400074A4D8 /* LLInvitationCodeViewController.m in Sources */,
 				8DD290D92228D72200E4338D /* UIViewController+LLNavigationBar.m in Sources */,
 				8D5CB6C92233AF2400527DEB /* LLPublishIDCardViewCell.m in Sources */,
 				8DCC9AB6222B7D5700AC3128 /* LLView.m in Sources */,
 				8D0167272238E1EE00CD21D8 /* LLReceiveCommentTableViewCell.m in Sources */,
 				8DBEAE70223D6CC70095D214 /* LLFundHandleHeaderView.m in Sources */,
 				8D542A79222A5BC2008B90B0 /* UIImage+ProportionalFill.m in Sources */,
+				8DF28F91223E4A470074A4D8 /* LLExchangeOrderDetailsViewController.m in Sources */,
 				8D5CB6CD2234E65000527DEB /* LLMultipleSelectedPickerView.m in Sources */,
 				8D004EC4223B71400029EDE6 /* LLRedrReceiveDetailsViewController.m in Sources */,
 				8D542A7A222A5BC2008B90B0 /* LEBaseModel.m in Sources */,
 				8D5CB6C22232D73300527DEB /* ZJDatePickerView.m in Sources */,
 				8D890B6C2232344500CA711A /* LLPublishInputViewCell.m in Sources */,
+				8DF28F8C223E4A0F0074A4D8 /* LLExchangeOrderViewController.m in Sources */,
 				8D3F2157222FCD8B0066F5EB /* LLFilterDistanceView.m in Sources */,
 				8D542A75222A5BC2008B90B0 /* WYCommonUtils.m in Sources */,
 				8DD290E22229442D00E4338D /* NSObject+LLRuntime.m in Sources */,
