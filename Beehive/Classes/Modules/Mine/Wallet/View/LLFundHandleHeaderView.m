@@ -100,8 +100,12 @@ UICollectionViewDataSource
         [self.btnSubmit setTitle:@"确认赠送" forState:UIControlStateNormal];
         self.labExplain.text = @"1. 赠送说明。 \n2.赠送说明赠送说明赠送说明赠送说明赠送说明赠送说明赠送说明赠送说明赠送说明赠送说明赠送说明赠送说明赠送说明。";
     }
-    
-    
+}
+
+- (IBAction)affirmAction:(id)sender {
+    if (self.affirmBlock) {
+        self.affirmBlock();
+    }
 }
 
 - (CGSize)calculateGridImageViewSize {

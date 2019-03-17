@@ -217,6 +217,8 @@
 		8DBEAE7C223DF2A40095D214 /* LLFundDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8DBEAE7A223DF2A40095D214 /* LLFundDetailViewController.xib */; };
 		8DBEAE80223DF9CA0095D214 /* LLFundDetailTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DBEAE7E223DF9CA0095D214 /* LLFundDetailTableViewCell.m */; };
 		8DBEAE81223DF9CA0095D214 /* LLFundDetailTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8DBEAE7F223DF9CA0095D214 /* LLFundDetailTableViewCell.xib */; };
+		8DBEAE84223DFF5F0095D214 /* LLBeePresentAffirmView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DBEAE83223DFF5F0095D214 /* LLBeePresentAffirmView.m */; };
+		8DBEAE86223DFF6B0095D214 /* LLBeePresentAffirmView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8DBEAE85223DFF6B0095D214 /* LLBeePresentAffirmView.xib */; };
 		8DC02D4A2230E4F6000CAE9C /* LLCommentBottomView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DC02D492230E4F6000CAE9C /* LLCommentBottomView.m */; };
 		8DC02D4F22311443000CAE9C /* LLRankTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DC02D4D22311443000CAE9C /* LLRankTableViewCell.m */; };
 		8DC02D5022311443000CAE9C /* LLRankTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8DC02D4E22311443000CAE9C /* LLRankTableViewCell.xib */; };
@@ -630,6 +632,9 @@
 		8DBEAE7D223DF9CA0095D214 /* LLFundDetailTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLFundDetailTableViewCell.h; sourceTree = "<group>"; };
 		8DBEAE7E223DF9CA0095D214 /* LLFundDetailTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLFundDetailTableViewCell.m; sourceTree = "<group>"; };
 		8DBEAE7F223DF9CA0095D214 /* LLFundDetailTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LLFundDetailTableViewCell.xib; sourceTree = "<group>"; };
+		8DBEAE82223DFF5E0095D214 /* LLBeePresentAffirmView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLBeePresentAffirmView.h; sourceTree = "<group>"; };
+		8DBEAE83223DFF5F0095D214 /* LLBeePresentAffirmView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLBeePresentAffirmView.m; sourceTree = "<group>"; };
+		8DBEAE85223DFF6B0095D214 /* LLBeePresentAffirmView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LLBeePresentAffirmView.xib; sourceTree = "<group>"; };
 		8DC02D482230E4F6000CAE9C /* LLCommentBottomView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLCommentBottomView.h; sourceTree = "<group>"; };
 		8DC02D492230E4F6000CAE9C /* LLCommentBottomView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLCommentBottomView.m; sourceTree = "<group>"; };
 		8DC02D4C22311443000CAE9C /* LLRankTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLRankTableViewCell.h; sourceTree = "<group>"; };
@@ -1381,6 +1386,7 @@
 		8D79E4CE2226704C0019A1BE /* Mine */ = {
 			isa = PBXGroup;
 			children = (
+				8DBEAE87223E16790095D214 /* BeeQun */,
 				8DBEAE66223D02340095D214 /* Wallet */,
 				8DBEAE2B223C9A520095D214 /* Setting */,
 				8D890B48223205E200CA711A /* Message */,
@@ -1429,9 +1435,6 @@
 				8D890B4F2232077D00CA711A /* LLMineWalletViewController.h */,
 				8D890B502232077D00CA711A /* LLMineWalletViewController.m */,
 				8D890B512232077D00CA711A /* LLMineWalletViewController.xib */,
-				8D890B542232082800CA711A /* LLBeeQunViewController.h */,
-				8D890B552232082800CA711A /* LLBeeQunViewController.m */,
-				8D890B562232082800CA711A /* LLBeeQunViewController.xib */,
 				8DBEAE4A223CB6BD0095D214 /* LLCollectListViewController.h */,
 				8DBEAE4B223CB6BD0095D214 /* LLCollectListViewController.m */,
 				8DBEAE4C223CB6BD0095D214 /* LLCollectListViewController.xib */,
@@ -1565,6 +1568,35 @@
 				8DBEAE7D223DF9CA0095D214 /* LLFundDetailTableViewCell.h */,
 				8DBEAE7E223DF9CA0095D214 /* LLFundDetailTableViewCell.m */,
 				8DBEAE7F223DF9CA0095D214 /* LLFundDetailTableViewCell.xib */,
+				8DBEAE82223DFF5E0095D214 /* LLBeePresentAffirmView.h */,
+				8DBEAE83223DFF5F0095D214 /* LLBeePresentAffirmView.m */,
+				8DBEAE85223DFF6B0095D214 /* LLBeePresentAffirmView.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		8DBEAE87223E16790095D214 /* BeeQun */ = {
+			isa = PBXGroup;
+			children = (
+				8DBEAE89223E168B0095D214 /* View */,
+				8DBEAE88223E16850095D214 /* Controller */,
+			);
+			path = BeeQun;
+			sourceTree = "<group>";
+		};
+		8DBEAE88223E16850095D214 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				8D890B542232082800CA711A /* LLBeeQunViewController.h */,
+				8D890B552232082800CA711A /* LLBeeQunViewController.m */,
+				8D890B562232082800CA711A /* LLBeeQunViewController.xib */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		8DBEAE89223E168B0095D214 /* View */ = {
+			isa = PBXGroup;
+			children = (
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1911,6 +1943,7 @@
 				8DBEAE72223D6CD50095D214 /* LLFundHandleHeaderView.xib in Resources */,
 				8DBEAE81223DF9CA0095D214 /* LLFundDetailTableViewCell.xib in Resources */,
 				8D5F2E622236D3040049C28F /* LLChooseLocationScopeView.xib in Resources */,
+				8DBEAE86223DFF6B0095D214 /* LLBeePresentAffirmView.xib in Resources */,
 				8D004ED9223B813F0029EDE6 /* LLPersonalHomeHeaderView.xib in Resources */,
 				8D58D4C32226355B00803985 /* LaunchScreen.storyboard in Resources */,
 				8DBEAE4E223CB6BD0095D214 /* LLCollectListViewController.xib in Resources */,
@@ -2155,6 +2188,7 @@
 				8DBEAE60223CCAD60095D214 /* LLPublishHistoryListViewController.m in Sources */,
 				7E1E8A7922317338002766AD /* LLMineNode.m in Sources */,
 				8D01673A22391EC000CD21D8 /* LLCommodityExchangeDetailsViewController.m in Sources */,
+				8DBEAE84223DFF5F0095D214 /* LLBeePresentAffirmView.m in Sources */,
 				8D542A6E222A5BC2008B90B0 /* LERefreshHeader.m in Sources */,
 				7E561B7E22392FAC00DA3B20 /* LLExchangeDetailsHeaderView.m in Sources */,
 				8DCC9AC9222BF81A00AC3128 /* LLCityOptionCollectionViewCell.m in Sources */,

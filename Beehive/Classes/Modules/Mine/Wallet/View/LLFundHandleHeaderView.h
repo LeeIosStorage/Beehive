@@ -11,9 +11,13 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+typedef void(^LLFundHandleAffirmBlock)(void);
+
 @interface LLFundHandleHeaderView : LLView
 
 @property (nonatomic, assign) LLFundHandleVCType vcType;
+
+@property (nonatomic, strong) LLFundHandleAffirmBlock affirmBlock;
 
 - (void)updateCellWithData:(id)node;
 

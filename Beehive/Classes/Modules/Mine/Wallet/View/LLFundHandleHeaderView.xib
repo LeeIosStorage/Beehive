@@ -159,6 +159,9 @@
                             <integer key="value" value="3"/>
                         </userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>
+                    <connections>
+                        <action selector="affirmAction:" destination="ZEL-Oe-47G" eventType="touchUpInside" id="bkZ-f9-lkC"/>
+                    </connections>
                 </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="扣除¥ 0.03（费率6%），实际到账0.97" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9fS-n8-DTQ">
                     <rect key="frame" x="10" y="343" width="355" height="14.5"/>

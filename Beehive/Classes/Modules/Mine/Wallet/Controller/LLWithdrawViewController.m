@@ -8,6 +8,8 @@
 
 #import "LLWithdrawViewController.h"
 #import "LLFundHandleHeaderView.h"
+#import "LLBeePresentAffirmView.h"
+#import "LEAlertMarkView.h"
 
 @interface LLWithdrawViewController ()
 
@@ -40,6 +42,17 @@
         make.top.width.equalTo(self.tableView);
     }];
     [self.tableView reloadData];
+    
+    WEAKSELF
+    self.fundHandleHeaderView.affirmBlock = ^{
+        if (weakSelf.vcType == LLFundHandleVCTypeWithdraw) {
+            
+        } else if (weakSelf.vcType == LLFundHandleVCTypeDeposit) {
+            
+        } else if (weakSelf.vcType == LLFundHandleVCTypePresent) {
+            [weakSelf showBeePresentAffirmView];
+        }
+    };
 }
 
 - (void)refreshData {
@@ -52,6 +65,25 @@
     self.tableView.tableHeaderView = headView;
     
     [self.tableView reloadData];
+}
+
+- (void)showBeePresentAffirmView {
+    LLBeePresentAffirmView *tipView = [[[NSBundle mainBundle] loadNibNamed:@"LLBeePresentAffirmView" owner:self options:nil] firstObject];
+    tipView.frame = CGRectMake(0, 0, 260, 280);
+    [tipView updateCellWithData:nil];
+    __weak UIView *weakView = tipView;
+    WEAKSELF
+    tipView.clickBlock = ^(NSInteger index) {
+        if ([weakView.superview isKindOfClass:[LEAlertMarkView class]]) {
+            LEAlertMarkView *alert = (LEAlertMarkView *)weakView.superview;
+            [alert dismiss];
+        }
+        if (index == 1) {
+            
+        }
+    };
+    LEAlertMarkView *alert = [[LEAlertMarkView alloc] initWithCustomView:tipView type:LEAlertMarkViewTypeCenter];
+    [alert show];
 }
 
 #pragma mark - set
