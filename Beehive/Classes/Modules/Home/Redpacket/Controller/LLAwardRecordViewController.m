@@ -30,7 +30,7 @@ UITableViewDataSource
 }
 
 - (void)setup {
-    self.title = @"中奖纪录";
+    self.title = @"中奖记录";
     self.view.backgroundColor = kAppSectionBackgroundColor;
     self.dataLists = [NSMutableArray array];
     

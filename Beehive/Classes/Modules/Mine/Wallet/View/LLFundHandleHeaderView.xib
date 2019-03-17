@@ -16,7 +16,7 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="482"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2hC-Ul-6z9">
+                <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2hC-Ul-6z9">
                     <rect key="frame" x="0.0" y="0.0" width="375" height="40"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="钱包余额" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WzO-2c-R87">
@@ -52,7 +52,7 @@
                     </constraints>
                     <viewLayoutGuide key="safeArea" id="vn7-Wn-Uaq"/>
                 </view>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Y0e-mF-08a">
+                <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Y0e-mF-08a">
                     <rect key="frame" x="0.0" y="40" width="375" height="40"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="提现到微信" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ePp-H9-8xw">
@@ -88,7 +88,7 @@
                     </constraints>
                     <viewLayoutGuide key="safeArea" id="MRb-c7-x5s"/>
                 </view>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="env-50-MSO">
+                <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="env-50-MSO">
                     <rect key="frame" x="0.0" y="80" width="375" height="10"/>
                     <subviews>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="3kW-Q6-n9H">
@@ -115,7 +115,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="Ifv-o0-lRb">
-                    <rect key="frame" x="0.0" y="134" width="375" height="86"/>
+                    <rect key="frame" x="10" y="134" width="355" height="86"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="86" id="lyb-oM-Muf"/>
@@ -194,13 +194,13 @@
                 <constraint firstItem="tPV-cX-J4n" firstAttribute="trailing" secondItem="9fS-n8-DTQ" secondAttribute="trailing" constant="10" id="P7G-jm-AkQ"/>
                 <constraint firstItem="AhW-hS-CzJ" firstAttribute="leading" secondItem="tPV-cX-J4n" secondAttribute="leading" constant="10" id="QIG-eI-V61"/>
                 <constraint firstItem="2hC-Ul-6z9" firstAttribute="trailing" secondItem="tPV-cX-J4n" secondAttribute="trailing" id="QcH-ka-Lgx"/>
-                <constraint firstItem="Ifv-o0-lRb" firstAttribute="trailing" secondItem="tPV-cX-J4n" secondAttribute="trailing" id="RYb-je-wgW"/>
+                <constraint firstItem="Ifv-o0-lRb" firstAttribute="trailing" secondItem="tPV-cX-J4n" secondAttribute="trailing" constant="-10" id="RYb-je-wgW"/>
                 <constraint firstItem="z7b-QA-i2P" firstAttribute="top" secondItem="9fS-n8-DTQ" secondAttribute="bottom" constant="50" id="WHD-Bd-3cT"/>
                 <constraint firstItem="vnP-e8-QDf" firstAttribute="leading" secondItem="tPV-cX-J4n" secondAttribute="leading" constant="10" id="XWg-8c-WYM"/>
                 <constraint firstItem="tPV-cX-J4n" firstAttribute="trailing" secondItem="AhW-hS-CzJ" secondAttribute="trailing" constant="10" id="Xmi-mM-y7h"/>
                 <constraint firstItem="tPV-cX-J4n" firstAttribute="bottom" secondItem="eir-uL-VBc" secondAttribute="bottom" constant="20.5" id="Y8a-QT-X3b"/>
                 <constraint firstItem="2hC-Ul-6z9" firstAttribute="top" secondItem="ZEL-Oe-47G" secondAttribute="top" id="b86-re-AXL"/>
-                <constraint firstItem="Ifv-o0-lRb" firstAttribute="leading" secondItem="tPV-cX-J4n" secondAttribute="leading" id="dlR-Nv-qR4"/>
+                <constraint firstItem="Ifv-o0-lRb" firstAttribute="leading" secondItem="tPV-cX-J4n" secondAttribute="leading" constant="10" id="dlR-Nv-qR4"/>
                 <constraint firstItem="env-50-MSO" firstAttribute="trailing" secondItem="tPV-cX-J4n" secondAttribute="trailing" id="fGt-HA-b0n"/>
                 <constraint firstItem="AhW-hS-CzJ" firstAttribute="top" secondItem="Ifv-o0-lRb" secondAttribute="bottom" constant="15" id="gw5-pb-NMj"/>
                 <constraint firstItem="tPV-cX-J4n" firstAttribute="trailing" secondItem="Pi5-wa-Cze" secondAttribute="trailing" constant="10" id="jFg-Xs-8cA"/>
@@ -214,7 +214,24 @@
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="tPV-cX-J4n"/>
             <connections>
+                <outlet property="amountCollectionView" destination="Ifv-o0-lRb" id="6ex-3j-0OH"/>
+                <outlet property="btnSubmit" destination="Pi5-wa-Cze" id="sXc-yN-uaB"/>
+                <outlet property="collectionViewConstraintH" destination="lyb-oM-Muf" id="ynw-QY-MuX"/>
+                <outlet property="labBalance" destination="QLd-WK-6AN" id="y4x-7g-ma0"/>
                 <outlet property="labExplain" destination="eir-uL-VBc" id="cR8-W3-BUN"/>
+                <outlet property="labRateTip" destination="9fS-n8-DTQ" id="5t3-y3-PlG"/>
+                <outlet property="labTipAmount" destination="vnP-e8-QDf" id="CNK-MO-ccz"/>
+                <outlet property="labTipBalance" destination="WzO-2c-R87" id="1o9-oF-bIN"/>
+                <outlet property="labTipExplain" destination="z7b-QA-i2P" id="Df5-CT-tr3"/>
+                <outlet property="labWithdrawWay" destination="ePp-H9-8xw" id="oWe-O2-CjS"/>
+                <outlet property="labWithdrawWayName" destination="OhT-Cs-Q8a" id="cyV-dN-MbL"/>
+                <outlet property="textField" destination="AhW-hS-CzJ" id="dtY-0b-SNZ"/>
+                <outlet property="textFieldConstraintH" destination="aTk-NV-mSw" id="ibe-hm-V0W"/>
+                <outlet property="viewBalance" destination="2hC-Ul-6z9" id="pLy-qD-3TH"/>
+                <outlet property="viewBalanceConstraintH" destination="yQS-f6-M2I" id="9nF-FN-lVR"/>
+                <outlet property="viewSpaceConstraintH" destination="34O-Xs-aPp" id="Riu-vX-8H6"/>
+                <outlet property="viewWithdrawWay" destination="Y0e-mF-08a" id="k9U-G6-ZMR"/>
+                <outlet property="viewWithdrawWayConstraintH" destination="FPX-t0-7Bj" id="Lx6-gt-GVN"/>
             </connections>
             <point key="canvasLocation" x="156" y="7.1964017991004505"/>
         </view>

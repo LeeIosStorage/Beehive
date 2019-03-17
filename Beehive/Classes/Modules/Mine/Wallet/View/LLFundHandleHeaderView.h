@@ -7,10 +7,13 @@
 //
 
 #import "LLView.h"
+#import "LLWithdrawViewController.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface LLFundHandleHeaderView : LLView
+
+@property (nonatomic, assign) LLFundHandleVCType vcType;
 
 - (void)updateCellWithData:(id)node;
 

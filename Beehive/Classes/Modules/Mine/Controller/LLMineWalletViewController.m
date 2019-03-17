@@ -11,6 +11,7 @@
 #import "LLMineNode.h"
 #import "LLRedTaskHistoryViewController.h"
 #import "LLWithdrawViewController.h"
+#import "LLFundDetailViewController.h"
 
 @interface LLMineWalletViewController ()
 <
@@ -115,7 +116,9 @@ UITableViewDataSource
     LLMineNode *node = self.dataLists[indexPath.row];
     switch (node.vcType) {
         case LLMineNodeTypeWalletDetail: {
-            
+            LLFundDetailViewController *vc = [[LLFundDetailViewController alloc] init];
+            vc.vcType = LLFundDetailVCTypeAll;
+            [self.navigationController pushViewController:vc animated:true];
         }
             break;
         case LLMineNodeTypeWalletBeeHistory: {
@@ -124,7 +127,9 @@ UITableViewDataSource
         }
             break;
         case LLMineNodeTypeWalletWithdrawDetail: {
-            
+            LLFundDetailViewController *vc = [[LLFundDetailViewController alloc] init];
+            vc.vcType = LLFundDetailVCTypeWithdraw;
+            [self.navigationController pushViewController:vc animated:true];
         }
             break;
         default:

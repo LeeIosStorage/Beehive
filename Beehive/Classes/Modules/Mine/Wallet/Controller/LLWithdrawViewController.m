@@ -44,6 +44,7 @@
 
 - (void)refreshData {
     
+    self.fundHandleHeaderView.vcType = self.vcType;
     [self.fundHandleHeaderView updateCellWithData:nil];
     
     LLFundHandleHeaderView *headView = (LLFundHandleHeaderView *)self.tableView.tableHeaderView;
