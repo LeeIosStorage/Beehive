@@ -11,6 +11,7 @@
 #import "LLCommodityExchangeTableViewCell.h"
 #import "LLRedpacketDetailsViewController.h"
 #import "LLCommodityExchangeDetailsViewController.h"
+#import "LLMessageDetailsViewController.h"
 
 @interface LLPublishHistoryListViewController ()
 <
@@ -174,7 +175,8 @@ UITableViewDelegate
         vc.vcType = 0;
         [self.navigationController pushViewController:vc animated:true];
     } else if (self.publishVcType == LLPublishViewcTypeConvenience) {
-        
+        LLMessageDetailsViewController *vc = [[LLMessageDetailsViewController alloc] init];
+        [self.navigationController pushViewController:vc animated:true];
     }
 }
 
