@@ -23,6 +23,8 @@
 #import "LLExchangeOrderViewController.h"
 #import "LLNoticeViewController.h"
 #import "LLSettingViewController.h"
+#import "LLBeeVIPViewController.h"
+#import "LLTuiSpecialistViewController.h"
 
 static NSString *const kLLMineCollectionViewCell = @"LLMineCollectionViewCell";
 static NSString *const kLLMineCollectionHeaderView = @"LLMineCollectionHeaderView";
@@ -220,11 +222,13 @@ UICollectionViewDataSource
         }
             break;
         case LLMineNodeTypeVIP: {
-            
+            LLBeeVIPViewController *vc = [[LLBeeVIPViewController alloc] init];
+            [self.navigationController pushViewController:vc animated:true];
         }
             break;
         case LLMineNodeTypeTui: {
-            
+            LLTuiSpecialistViewController *vc = [[LLTuiSpecialistViewController alloc] init];
+            [self.navigationController pushViewController:vc animated:true];
         }
             break;
         default:

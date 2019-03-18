@@ -77,6 +77,10 @@
 		8D016740223A052500CD21D8 /* LLCommodityExchangeconfirmView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D01673F223A052500CD21D8 /* LLCommodityExchangeconfirmView.xib */; };
 		8D016743223A19D700CD21D8 /* LLCommodityPurchaseSucceedView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D016742223A19D600CD21D8 /* LLCommodityPurchaseSucceedView.m */; };
 		8D016745223A19EF00CD21D8 /* LLCommodityPurchaseSucceedView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D016744223A19EF00CD21D8 /* LLCommodityPurchaseSucceedView.xib */; };
+		8D0E4B43223F53CE00DA2866 /* LLBeeVIPViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D0E4B41223F53CE00DA2866 /* LLBeeVIPViewController.m */; };
+		8D0E4B44223F53CE00DA2866 /* LLBeeVIPViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D0E4B42223F53CE00DA2866 /* LLBeeVIPViewController.xib */; };
+		8D0E4B48223F53E200DA2866 /* LLTuiSpecialistViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D0E4B46223F53E200DA2866 /* LLTuiSpecialistViewController.m */; };
+		8D0E4B49223F53E200DA2866 /* LLTuiSpecialistViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D0E4B47223F53E200DA2866 /* LLTuiSpecialistViewController.xib */; };
 		8D3F2149222F65020066F5EB /* LLHandleStatusView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D3F2148222F65020066F5EB /* LLHandleStatusView.m */; };
 		8D3F214D222FB4FF0066F5EB /* LLImageItemViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D3F214B222FB4FF0066F5EB /* LLImageItemViewCell.m */; };
 		8D3F214E222FB4FF0066F5EB /* LLImageItemViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D3F214C222FB4FF0066F5EB /* LLImageItemViewCell.xib */; };
@@ -421,6 +425,12 @@
 		8D016741223A19D600CD21D8 /* LLCommodityPurchaseSucceedView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLCommodityPurchaseSucceedView.h; sourceTree = "<group>"; };
 		8D016742223A19D600CD21D8 /* LLCommodityPurchaseSucceedView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLCommodityPurchaseSucceedView.m; sourceTree = "<group>"; };
 		8D016744223A19EF00CD21D8 /* LLCommodityPurchaseSucceedView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LLCommodityPurchaseSucceedView.xib; sourceTree = "<group>"; };
+		8D0E4B40223F53CE00DA2866 /* LLBeeVIPViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLBeeVIPViewController.h; sourceTree = "<group>"; };
+		8D0E4B41223F53CE00DA2866 /* LLBeeVIPViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLBeeVIPViewController.m; sourceTree = "<group>"; };
+		8D0E4B42223F53CE00DA2866 /* LLBeeVIPViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LLBeeVIPViewController.xib; sourceTree = "<group>"; };
+		8D0E4B45223F53E200DA2866 /* LLTuiSpecialistViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLTuiSpecialistViewController.h; sourceTree = "<group>"; };
+		8D0E4B46223F53E200DA2866 /* LLTuiSpecialistViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLTuiSpecialistViewController.m; sourceTree = "<group>"; };
+		8D0E4B47223F53E200DA2866 /* LLTuiSpecialistViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LLTuiSpecialistViewController.xib; sourceTree = "<group>"; };
 		8D3F2147222F65020066F5EB /* LLHandleStatusView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLHandleStatusView.h; sourceTree = "<group>"; };
 		8D3F2148222F65020066F5EB /* LLHandleStatusView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLHandleStatusView.m; sourceTree = "<group>"; };
 		8D3F214A222FB4FF0066F5EB /* LLImageItemViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLImageItemViewCell.h; sourceTree = "<group>"; };
@@ -1537,6 +1547,12 @@
 				8DF28F98223E61900074A4D8 /* LLNoticeViewController.h */,
 				8DF28F99223E61900074A4D8 /* LLNoticeViewController.m */,
 				8DF28F9A223E61900074A4D8 /* LLNoticeViewController.xib */,
+				8D0E4B40223F53CE00DA2866 /* LLBeeVIPViewController.h */,
+				8D0E4B41223F53CE00DA2866 /* LLBeeVIPViewController.m */,
+				8D0E4B42223F53CE00DA2866 /* LLBeeVIPViewController.xib */,
+				8D0E4B45223F53E200DA2866 /* LLTuiSpecialistViewController.h */,
+				8D0E4B46223F53E200DA2866 /* LLTuiSpecialistViewController.m */,
+				8D0E4B47223F53E200DA2866 /* LLTuiSpecialistViewController.xib */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -2118,6 +2134,7 @@
 				7E1E8A65222ED0E6002766AD /* LLMessageTimeLineViewCell.xib in Resources */,
 				8D016740223A052500CD21D8 /* LLCommodityExchangeconfirmView.xib in Resources */,
 				8DC02D5022311443000CAE9C /* LLRankTableViewCell.xib in Resources */,
+				8D0E4B44223F53CE00DA2866 /* LLBeeVIPViewController.xib in Resources */,
 				8D004ED4223B80C50029EDE6 /* LLPersonalHomeViewController.xib in Resources */,
 				8D004ECA223B719D0029EDE6 /* LLRedrReceiveDetailsHeaderView.xib in Resources */,
 				8DCC9ACA222BF81A00AC3128 /* LLCityOptionCollectionViewCell.xib in Resources */,
@@ -2129,6 +2146,7 @@
 				8DBEAE53223CB7180095D214 /* LLAttentionListViewController.xib in Resources */,
 				7E561B93223955D900DA3B20 /* LLReportSucceedView.xib in Resources */,
 				8D0167192238CECC00CD21D8 /* LLCellOriginalContentView.xib in Resources */,
+				8D0E4B49223F53E200DA2866 /* LLTuiSpecialistViewController.xib in Resources */,
 				8D890B722232346700CA711A /* LLPublishImageViewCell.xib in Resources */,
 				8DF28F88223E31400074A4D8 /* LLInvitationCodeViewController.xib in Resources */,
 				8D01672D2238E20A00CD21D8 /* LLReceiveFavourTableViewCell.xib in Resources */,
@@ -2359,6 +2377,7 @@
 				8D0167222238DEC100CD21D8 /* LLReceiveFavourViewController.m in Sources */,
 				8D58D4C62226355B00803985 /* main.m in Sources */,
 				7E561B97223A99BF00DA3B20 /* LLRedpacketDetailsViewController.m in Sources */,
+				8D0E4B48223F53E200DA2866 /* LLTuiSpecialistViewController.m in Sources */,
 				8DBEAE5C223CB83A0095D214 /* LLPublishHistoryViewController.m in Sources */,
 				8DC02D4A2230E4F6000CAE9C /* LLCommentBottomView.m in Sources */,
 				8DBEAE30223C9AB10095D214 /* LLPayPasswordResetViewController.m in Sources */,
@@ -2396,6 +2415,7 @@
 				8DF0C282223A3D40006175E7 /* LLRedTaskHistoryHeaderView.m in Sources */,
 				8DE588672227C76F002C1576 /* FontConst.swift in Sources */,
 				8D5CB6C02232D73300527DEB /* ZJMultiplePickerView.m in Sources */,
+				8D0E4B43223F53CE00DA2866 /* LLBeeVIPViewController.m in Sources */,
 				8D542A69222A5BC2008B90B0 /* LESearchBar.m in Sources */,
 				8D004EEA223BE2B00029EDE6 /* LLUploadAdViewController.m in Sources */,
 				8DCC9AC5222B835000AC3128 /* LLCityOptionHeaderView.m in Sources */,
