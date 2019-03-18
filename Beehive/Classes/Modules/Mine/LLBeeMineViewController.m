@@ -25,6 +25,7 @@
 #import "LLSettingViewController.h"
 #import "LLBeeVIPViewController.h"
 #import "LLTuiSpecialistViewController.h"
+#import "LLPersonalInfoViewController.h"
 
 static NSString *const kLLMineCollectionViewCell = @"LLMineCollectionViewCell";
 static NSString *const kLLMineCollectionHeaderView = @"LLMineCollectionHeaderView";
@@ -112,6 +113,11 @@ UICollectionViewDataSource
     [self.navigationController pushViewController:vc animated:true];
 }
 
+- (void)avatarAction {
+    LLPersonalInfoViewController *vc = [[LLPersonalInfoViewController alloc] init];
+    [self.navigationController pushViewController:vc animated:true];
+}
+
 - (void)mineCollectAction {
     LLCollectListViewController *vc = [[LLCollectListViewController alloc] init];
     [self.navigationController pushViewController:vc animated:true];
@@ -151,6 +157,8 @@ UICollectionViewDataSource
                 [weakSelf mineAttentionAction];
             } else if (index == 3) {
                 [weakSelf historyAction];
+            } else if (index == 4) {
+                [weakSelf avatarAction];
             }
         };
         [header updateHeadViewWithData:nil];

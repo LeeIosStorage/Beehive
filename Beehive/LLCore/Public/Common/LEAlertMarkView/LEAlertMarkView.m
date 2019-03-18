@@ -25,6 +25,7 @@
 - (void)dealloc
 {
     LELog(@"!!!!");
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (instancetype)initWithCustomView:(UIView *)customView type:(LEAlertMarkViewType)type {
@@ -38,6 +39,18 @@
 }
 
 - (void)setup {
+    
+    //增加监听，当键盘出现或改变时收出消息
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardWillShow:)
+                                                 name:UIKeyboardWillShowNotification
+                                               object:nil];
+    
+    //增加监听，当键退出时收出消息
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardWillHide:)
+                                                 name:UIKeyboardWillHideNotification
+                                               object:nil];
     
     [self addSubview:self.markImageView];
     [self.markImageView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -91,6 +104,37 @@
         self.alpha = 0;
     } completion:^(BOOL finished) {
         [self removeFromSuperview];
+    }];
+}
+
+#pragma mark -
+#pragma mark - NSNotification
+- (void)keyboardWillShow:(NSNotification *)aNotification
+{
+    NSDictionary *userInfo = [aNotification userInfo];
+    NSValue *aValue = [userInfo objectForKey:UIKeyboardFrameEndUserInfoKey];
+    CGRect keyboardRect = [aValue CGRectValue];
+    NSNumber *duration = [userInfo objectForKey:UIKeyboardAnimationDurationUserInfoKey];
+    //    NSNumber *curve = [userInfo objectForKey:UIKeyboardAnimationCurveUserInfoKey];
+    
+    [UIView animateWithDuration:[duration doubleValue] animations:^{
+        [self.customView mas_updateConstraints:^(MASConstraintMaker *make) {
+            make.bottom.equalTo(self).offset(-keyboardRect.size.height);
+        }];
+        [self layoutIfNeeded];
+    }];
+}
+
+//当键退出时调用
+- (void)keyboardWillHide:(NSNotification *)aNotification{
+    
+    NSDictionary *userInfo = [aNotification userInfo];
+    NSNumber *duration = [userInfo objectForKey:UIKeyboardAnimationDurationUserInfoKey];
+    [UIView animateWithDuration:[duration doubleValue] animations:^{
+        [self.customView mas_updateConstraints:^(MASConstraintMaker *make) {
+            make.bottom.equalTo(self);
+        }];
+        [self layoutIfNeeded];
     }];
 }
 

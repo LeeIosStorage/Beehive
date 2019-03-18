@@ -11,6 +11,8 @@
 #import "LLBeeLobbyTableViewCell.h"
 #import "LLBeeKingViewController.h"
 #import "LEWebViewController.h"
+#import "LLBeeWelfareViewController.h"
+#import "LLAdsBidViewController.h"
 
 @interface LLBeeLobbyViewController ()
 <
@@ -58,7 +60,13 @@ UITableViewDataSource
         [weakSelf.navigationController pushViewController:vc animated:true];
     };
     self.beeLobbyHeaderView.handleBlock = ^(NSInteger index) {
-        
+        if (index == 0) {
+            [weakSelf adsBidVc];
+        } else if (index == 1) {
+            [weakSelf beeWelfareVc];
+        } else if (index == 2) {
+            
+        }
     };
 }
 
@@ -76,6 +84,16 @@ UITableViewDataSource
     [self.dataLists addObject:@"1111"];
     
     [self.tableView reloadData];
+}
+
+- (void)adsBidVc {
+    LLAdsBidViewController *vc = [[LLAdsBidViewController alloc] init];
+    [self.navigationController pushViewController:vc animated:true];
+}
+
+- (void)beeWelfareVc {
+    LLBeeWelfareViewController *vc = [[LLBeeWelfareViewController alloc] init];
+    [self.navigationController pushViewController:vc animated:true];
 }
 
 #pragma mark - setget

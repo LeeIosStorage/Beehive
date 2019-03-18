@@ -10,12 +10,15 @@
 
 @interface LLBeeKingAuctionHeadView ()
 
+@property (nonatomic, weak) IBOutlet NSLayoutConstraint *imgTopConstraintH;
+
 @end
 
 @implementation LLBeeKingAuctionHeadView
 
 - (void)setup {
     [super setup];
+    self.imgTopConstraintH.constant = HitoActureHeight(164);
 }
 
 

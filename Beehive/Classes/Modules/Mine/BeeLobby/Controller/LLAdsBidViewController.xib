@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LLAdsBidViewController">
+            <connections>
+                <outlet property="adsView1" destination="wL4-7Y-MxZ" id="ove-1X-eky"/>
+                <outlet property="adsView2" destination="Opl-Sd-QRy" id="J4Y-ie-RNk"/>
+                <outlet property="adsView3" destination="yts-No-w0g" id="Wkd-cy-1T4"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wL4-7Y-MxZ">
+                    <rect key="frame" x="15" y="47" width="345" height="50"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ah6-wC-iE8">
+                            <rect key="frame" x="0.0" y="0.0" width="345" height="50"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                            <state key="normal" title="启动页广告位">
+                                <color key="titleColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                            </state>
+                            <connections>
+                                <action selector="launchAdsAction:" destination="-1" eventType="touchUpInside" id="ghj-HB-Wtq"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstItem="ah6-wC-iE8" firstAttribute="leading" secondItem="wL4-7Y-MxZ" secondAttribute="leading" id="6En-BA-1u6"/>
+                        <constraint firstAttribute="trailing" secondItem="ah6-wC-iE8" secondAttribute="trailing" id="BqE-tG-JRR"/>
+                        <constraint firstAttribute="height" constant="50" id="W8D-Ln-NSG"/>
+                        <constraint firstAttribute="bottom" secondItem="ah6-wC-iE8" secondAttribute="bottom" id="bzC-F1-5vX"/>
+                        <constraint firstItem="ah6-wC-iE8" firstAttribute="top" secondItem="wL4-7Y-MxZ" secondAttribute="top" id="wm2-ra-JxJ"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                            <integer key="value" value="3"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
+                            <real key="value" value="0.5"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="color" keyPath="layer.borderColorFromUIColor">
+                            <color key="value" red="0.88235294117647056" green="0.88235294117647056" blue="0.88235294117647056" alpha="1" colorSpace="calibratedRGB"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Opl-Sd-QRy">
+                    <rect key="frame" x="15" y="122" width="345" height="50"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rkh-PA-ypF">
+                            <rect key="frame" x="0.0" y="0.0" width="345" height="50"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                            <state key="normal" title="首页广告位">
+                                <color key="titleColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                            </state>
+                            <connections>
+                                <action selector="homeAdsAction:" destination="-1" eventType="touchUpInside" id="loU-8B-mCa"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstItem="rkh-PA-ypF" firstAttribute="leading" secondItem="Opl-Sd-QRy" secondAttribute="leading" id="9EM-dl-5EM"/>
+                        <constraint firstAttribute="bottom" secondItem="rkh-PA-ypF" secondAttribute="bottom" id="OEs-ag-22R"/>
+                        <constraint firstAttribute="height" constant="50" id="RJi-bq-edS"/>
+                        <constraint firstItem="rkh-PA-ypF" firstAttribute="top" secondItem="Opl-Sd-QRy" secondAttribute="top" id="rQk-AU-a75"/>
+                        <constraint firstAttribute="trailing" secondItem="rkh-PA-ypF" secondAttribute="trailing" id="uv2-RJ-0V2"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                            <integer key="value" value="3"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
+                            <real key="value" value="0.5"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="color" keyPath="layer.borderColorFromUIColor">
+                            <color key="value" red="0.88235294119999996" green="0.88235294119999996" blue="0.88235294119999996" alpha="1" colorSpace="calibratedRGB"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yts-No-w0g">
+                    <rect key="frame" x="15" y="197" width="345" height="50"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NmM-hi-0Ix">
+                            <rect key="frame" x="0.0" y="0.0" width="345" height="50"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                            <state key="normal" title="首页打开弹出广告位">
+                                <color key="titleColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                            </state>
+                            <connections>
+                                <action selector="popupAdsAction:" destination="-1" eventType="touchUpInside" id="zLY-qC-a1Q"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="50" id="4Kl-RB-KhR"/>
+                        <constraint firstAttribute="trailing" secondItem="NmM-hi-0Ix" secondAttribute="trailing" id="Csl-XB-azm"/>
+                        <constraint firstAttribute="bottom" secondItem="NmM-hi-0Ix" secondAttribute="bottom" id="GKp-ZN-KLm"/>
+                        <constraint firstItem="NmM-hi-0Ix" firstAttribute="top" secondItem="yts-No-w0g" secondAttribute="top" id="R0n-LQ-pFm"/>
+                        <constraint firstItem="NmM-hi-0Ix" firstAttribute="leading" secondItem="yts-No-w0g" secondAttribute="leading" id="YOk-Dt-JQI"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                            <integer key="value" value="3"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
+                            <real key="value" value="0.5"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="color" keyPath="layer.borderColorFromUIColor">
+                            <color key="value" red="0.88235294119999996" green="0.88235294119999996" blue="0.88235294119999996" alpha="1" colorSpace="calibratedRGB"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="yts-No-w0g" firstAttribute="leading" secondItem="Opl-Sd-QRy" secondAttribute="leading" id="02N-4Y-ud2"/>
+                <constraint firstItem="Opl-Sd-QRy" firstAttribute="leading" secondItem="wL4-7Y-MxZ" secondAttribute="leading" id="9xw-J4-Y5j"/>
+                <constraint firstItem="yts-No-w0g" firstAttribute="top" secondItem="Opl-Sd-QRy" secondAttribute="bottom" constant="25" id="IhJ-FY-2HB"/>
+                <constraint firstItem="Opl-Sd-QRy" firstAttribute="top" secondItem="wL4-7Y-MxZ" secondAttribute="bottom" constant="25" id="IlR-Cy-Za4"/>
+                <constraint firstItem="Opl-Sd-QRy" firstAttribute="trailing" secondItem="wL4-7Y-MxZ" secondAttribute="trailing" id="Tdw-69-RZH"/>
+                <constraint firstItem="wL4-7Y-MxZ" firstAttribute="top" secondItem="Q5M-cg-NOt" secondAttribute="top" constant="27" id="XOD-1n-MYt"/>
+                <constraint firstItem="Q5M-cg-NOt" firstAttribute="trailing" secondItem="wL4-7Y-MxZ" secondAttribute="trailing" constant="15" id="bi3-iC-ZqN"/>
+                <constraint firstItem="yts-No-w0g" firstAttribute="trailing" secondItem="Opl-Sd-QRy" secondAttribute="trailing" id="vZb-8z-cPp"/>
+                <constraint firstItem="wL4-7Y-MxZ" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" constant="15" id="w5G-nu-kFj"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="Q5M-cg-NOt"/>
+        </view>
+    </objects>
+</document>

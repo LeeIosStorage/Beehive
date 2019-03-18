@@ -13,42 +13,51 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="aKY-L8-dgg" customClass="LLBeeKingAuctionHeadView">
-            <rect key="frame" x="0.0" y="0.0" width="375" height="325"/>
+            <rect key="frame" x="0.0" y="0.0" width="375" height="301"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="5_7_2_1.1" translatesAutoresizingMaskIntoConstraints="NO" id="Tw9-w1-Uu4">
-                    <rect key="frame" x="0.0" y="0.0" width="375" height="164"/>
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="140"/>
                     <constraints>
-                        <constraint firstAttribute="height" secondItem="Tw9-w1-Uu4" secondAttribute="width" multiplier="140:320" id="szc-lq-r0b"/>
+                        <constraint firstAttribute="height" constant="140" id="ap6-1a-JOe"/>
                     </constraints>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="中原区蜂王" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ers-Fh-xiG">
-                    <rect key="frame" x="154.5" y="181" width="66.5" height="16"/>
+                    <rect key="frame" x="154.5" y="157" width="66.5" height="16"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="16" id="R9I-AV-LxZ"/>
+                    </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                     <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="¥ 100 (10天)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S9c-pZ-8K1">
-                    <rect key="frame" x="147.5" y="212" width="80" height="17"/>
+                    <rect key="frame" x="147.5" y="188" width="80" height="17"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="17" id="ghH-gV-dM1"/>
+                    </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <color key="textColor" red="1" green="0.68627450980000004" blue="0.0078431372550000003" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="竞价时间：2019-2081" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jla-Vu-hIi">
-                    <rect key="frame" x="121" y="244" width="133" height="16"/>
+                    <rect key="frame" x="121" y="220" width="133" height="16"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="16" id="gO5-KA-Jjv"/>
+                    </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                     <color key="textColor" red="0.66666666669999997" green="0.66666666669999997" blue="0.66666666669999997" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TpO-B7-oYF">
-                    <rect key="frame" x="0.0" y="275" width="375" height="10"/>
+                    <rect key="frame" x="0.0" y="251" width="375" height="10"/>
                     <color key="backgroundColor" red="0.96078431369999995" green="0.96078431369999995" blue="0.96078431369999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="10" id="K1e-4k-noI"/>
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vuv-2a-hw6">
-                    <rect key="frame" x="0.0" y="285" width="375" height="40"/>
+                    <rect key="frame" x="0.0" y="261" width="375" height="40"/>
                     <subviews>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="5_7_2_1.2" translatesAutoresizingMaskIntoConstraints="NO" id="eMI-GK-Kzy">
                             <rect key="frame" x="10" y="12.5" width="15" height="15"/>
@@ -92,6 +101,7 @@
                 <constraint firstItem="ILH-N7-EDr" firstAttribute="trailing" secondItem="Tw9-w1-Uu4" secondAttribute="trailing" id="C1j-bf-n8e"/>
                 <constraint firstItem="Tw9-w1-Uu4" firstAttribute="leading" secondItem="ILH-N7-EDr" secondAttribute="leading" id="EKh-sq-dlq"/>
                 <constraint firstItem="vuv-2a-hw6" firstAttribute="top" secondItem="TpO-B7-oYF" secondAttribute="bottom" id="FJt-zu-Mgd"/>
+                <constraint firstItem="vuv-2a-hw6" firstAttribute="bottom" secondItem="ILH-N7-EDr" secondAttribute="bottom" id="HFa-NN-blX"/>
                 <constraint firstItem="ers-Fh-xiG" firstAttribute="centerX" secondItem="Tw9-w1-Uu4" secondAttribute="centerX" id="R0k-Pa-FTX"/>
                 <constraint firstItem="Tw9-w1-Uu4" firstAttribute="top" secondItem="ILH-N7-EDr" secondAttribute="top" id="Rpp-V5-RSx"/>
                 <constraint firstItem="vuv-2a-hw6" firstAttribute="leading" secondItem="ILH-N7-EDr" secondAttribute="leading" id="Tdr-sn-NUF"/>
@@ -104,7 +114,13 @@
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="ILH-N7-EDr"/>
-            <point key="canvasLocation" x="136.80000000000001" y="-43.628185907046479"/>
+            <connections>
+                <outlet property="imgTopConstraintH" destination="ap6-1a-JOe" id="bCt-H5-Ffg"/>
+                <outlet property="labDate" destination="jla-Vu-hIi" id="9L1-k4-KFU"/>
+                <outlet property="labPrice" destination="S9c-pZ-8K1" id="HS1-EE-bdu"/>
+                <outlet property="labTitle" destination="ers-Fh-xiG" id="7ZG-gz-BLG"/>
+            </connections>
+            <point key="canvasLocation" x="136.80000000000001" y="-54.422788605697157"/>
         </view>
     </objects>
     <resources>

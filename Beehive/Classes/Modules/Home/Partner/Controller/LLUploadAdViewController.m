@@ -37,6 +37,13 @@ UITableViewDataSource
 
 - (void)setup {
     self.title = @"上传广告图";
+    if (self.vcType == LLUploadAdTypeLaunch) {
+        self.title = @"启动页广告位";
+    } else if (self.vcType == LLUploadAdTypeHome) {
+        self.title = @"首页底部广告位";
+    }  else if (self.vcType == LLUploadAdTypePopup) {
+        self.title = @"首页弹出广告位";
+    }
     
     self.tableView.backgroundColor = kAppSectionBackgroundColor;
     
@@ -71,6 +78,13 @@ UITableViewDataSource
     LLPublishCellNode *cellNode3 = [self nodeForCellTypeWithType:LLPublishCellTypeLinkAddress];
     [newMutArray addObject:[NSMutableArray arrayWithObjects:cellNode3, nil]];
     
+    if (self.vcType == LLUploadAdTypeLaunch || self.vcType == LLUploadAdTypeHome || self.vcType == LLUploadAdTypePopup) {
+        newMutArray = [NSMutableArray array];
+        LLPublishCellNode *cellNode2 = [self nodeForCellTypeWithType:LLPublishCellTypeADImage];
+        [newMutArray addObject:[NSMutableArray arrayWithObjects:cellNode2, nil]];
+    }
+    
+    
     self.dataSource = [NSMutableArray arrayWithArray:newMutArray];
     [self.tableView reloadData];
 }
@@ -96,6 +110,9 @@ UITableViewDataSource
             break;
         case LLPublishCellTypeADImage:
             cellNode.title = @"添加广告图";
+            if (self.vcType != LLUploadAdTypeNone) {
+                cellNode.title = @"添加照片";
+            }
             cellNode.uploadImageDatas = [NSMutableArray array];
             break;
         case LLPublishCellTypeLinkAddress:
@@ -132,6 +149,9 @@ UITableViewDataSource
         _saveButton = [UIButton buttonWithType:UIButtonTypeSystem];
         _saveButton.backgroundColor = kAppThemeColor;
         [_saveButton setTitle:@"上传" forState:UIControlStateNormal];
+        if (self.vcType != LLUploadAdTypeNone) {
+            [_saveButton setTitle:@"提交" forState:UIControlStateNormal];
+        }
         [_saveButton setTitleColor:UIColor.whiteColor forState:UIControlStateNormal];
         [_saveButton.titleLabel setFont:[FontConst PingFangSCRegularWithSize:14]];
         [_saveButton addTarget:self action:@selector(saveAction:) forControlEvents:UIControlEventTouchUpInside];

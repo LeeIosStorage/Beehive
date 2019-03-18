@@ -45,6 +45,12 @@
     }
 }
 
+- (IBAction)avatarAction:(id)sender {
+    if (self.headerViewClickBlock) {
+        self.headerViewClickBlock(4);
+    }
+}
+
 - (IBAction)mineCollectAction:(id)sender {
     if (self.headerViewClickBlock) {
         self.headerViewClickBlock(1);
