@@ -85,6 +85,12 @@
 		8D0E4B4E223F689000DA2866 /* LLBeeLobbyHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D0E4B4D223F689000DA2866 /* LLBeeLobbyHeaderView.xib */; };
 		8D0E4B52223F68F100DA2866 /* LLBeeLobbyTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D0E4B50223F68F100DA2866 /* LLBeeLobbyTableViewCell.m */; };
 		8D0E4B53223F68F100DA2866 /* LLBeeLobbyTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D0E4B51223F68F100DA2866 /* LLBeeLobbyTableViewCell.xib */; };
+		8D0E4B56223FAFC400DA2866 /* LLBeeKingAuctionHeadView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D0E4B55223FAFC400DA2866 /* LLBeeKingAuctionHeadView.m */; };
+		8D0E4B58223FAFD500DA2866 /* LLBeeKingAuctionHeadView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D0E4B57223FAFD500DA2866 /* LLBeeKingAuctionHeadView.xib */; };
+		8D0E4B5C223FB29C00DA2866 /* LLAuctionUserTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D0E4B5A223FB29C00DA2866 /* LLAuctionUserTableViewCell.m */; };
+		8D0E4B5D223FB29C00DA2866 /* LLAuctionUserTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D0E4B5B223FB29C00DA2866 /* LLAuctionUserTableViewCell.xib */; };
+		8D0E4B61223FB2C900DA2866 /* LLPricingTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D0E4B5F223FB2C900DA2866 /* LLPricingTableViewCell.m */; };
+		8D0E4B62223FB2C900DA2866 /* LLPricingTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D0E4B60223FB2C900DA2866 /* LLPricingTableViewCell.xib */; };
 		8D3F2149222F65020066F5EB /* LLHandleStatusView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D3F2148222F65020066F5EB /* LLHandleStatusView.m */; };
 		8D3F214D222FB4FF0066F5EB /* LLImageItemViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D3F214B222FB4FF0066F5EB /* LLImageItemViewCell.m */; };
 		8D3F214E222FB4FF0066F5EB /* LLImageItemViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D3F214C222FB4FF0066F5EB /* LLImageItemViewCell.xib */; };
@@ -441,6 +447,15 @@
 		8D0E4B4F223F68F100DA2866 /* LLBeeLobbyTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLBeeLobbyTableViewCell.h; sourceTree = "<group>"; };
 		8D0E4B50223F68F100DA2866 /* LLBeeLobbyTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLBeeLobbyTableViewCell.m; sourceTree = "<group>"; };
 		8D0E4B51223F68F100DA2866 /* LLBeeLobbyTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LLBeeLobbyTableViewCell.xib; sourceTree = "<group>"; };
+		8D0E4B54223FAFC400DA2866 /* LLBeeKingAuctionHeadView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLBeeKingAuctionHeadView.h; sourceTree = "<group>"; };
+		8D0E4B55223FAFC400DA2866 /* LLBeeKingAuctionHeadView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLBeeKingAuctionHeadView.m; sourceTree = "<group>"; };
+		8D0E4B57223FAFD500DA2866 /* LLBeeKingAuctionHeadView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LLBeeKingAuctionHeadView.xib; sourceTree = "<group>"; };
+		8D0E4B59223FB29C00DA2866 /* LLAuctionUserTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLAuctionUserTableViewCell.h; sourceTree = "<group>"; };
+		8D0E4B5A223FB29C00DA2866 /* LLAuctionUserTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLAuctionUserTableViewCell.m; sourceTree = "<group>"; };
+		8D0E4B5B223FB29C00DA2866 /* LLAuctionUserTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LLAuctionUserTableViewCell.xib; sourceTree = "<group>"; };
+		8D0E4B5E223FB2C900DA2866 /* LLPricingTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLPricingTableViewCell.h; sourceTree = "<group>"; };
+		8D0E4B5F223FB2C900DA2866 /* LLPricingTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLPricingTableViewCell.m; sourceTree = "<group>"; };
+		8D0E4B60223FB2C900DA2866 /* LLPricingTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LLPricingTableViewCell.xib; sourceTree = "<group>"; };
 		8D3F2147222F65020066F5EB /* LLHandleStatusView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLHandleStatusView.h; sourceTree = "<group>"; };
 		8D3F2148222F65020066F5EB /* LLHandleStatusView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLHandleStatusView.m; sourceTree = "<group>"; };
 		8D3F214A222FB4FF0066F5EB /* LLImageItemViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLImageItemViewCell.h; sourceTree = "<group>"; };
@@ -976,6 +991,15 @@
 				8DBEAE3B223CA0150095D214 /* LLPaymentWayTableViewCell.h */,
 				8DBEAE3C223CA0150095D214 /* LLPaymentWayTableViewCell.m */,
 				8DBEAE3D223CA0150095D214 /* LLPaymentWayTableViewCell.xib */,
+				8D0E4B54223FAFC400DA2866 /* LLBeeKingAuctionHeadView.h */,
+				8D0E4B55223FAFC400DA2866 /* LLBeeKingAuctionHeadView.m */,
+				8D0E4B57223FAFD500DA2866 /* LLBeeKingAuctionHeadView.xib */,
+				8D0E4B59223FB29C00DA2866 /* LLAuctionUserTableViewCell.h */,
+				8D0E4B5A223FB29C00DA2866 /* LLAuctionUserTableViewCell.m */,
+				8D0E4B5B223FB29C00DA2866 /* LLAuctionUserTableViewCell.xib */,
+				8D0E4B5E223FB2C900DA2866 /* LLPricingTableViewCell.h */,
+				8D0E4B5F223FB2C900DA2866 /* LLPricingTableViewCell.m */,
+				8D0E4B60223FB2C900DA2866 /* LLPricingTableViewCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -2073,6 +2097,7 @@
 				7E561B852239425400DA3B20 /* LLExchangeDetailsBottomView.xib in Resources */,
 				8D01671E2238DE8500CD21D8 /* LLReceiveCommentViewController.xib in Resources */,
 				7E561B9D223A9D4100DA3B20 /* LLRedpacketDetailsHeaderView.xib in Resources */,
+				8D0E4B58223FAFD500DA2866 /* LLBeeKingAuctionHeadView.xib in Resources */,
 				7E2E700D2238023300F185A7 /* LLCommodityExchangeViewController.xib in Resources */,
 				8DF28F97223E4B080074A4D8 /* LLExchangeOrderTableViewCell.xib in Resources */,
 				8DBEAE3F223CA0150095D214 /* LLPaymentWayTableViewCell.xib in Resources */,
@@ -2131,6 +2156,7 @@
 				8DF28FB5223E95B00074A4D8 /* LLVerifyIdentityViewController.xib in Resources */,
 				8DBEAE81223DF9CA0095D214 /* LLFundDetailTableViewCell.xib in Resources */,
 				8D5F2E622236D3040049C28F /* LLChooseLocationScopeView.xib in Resources */,
+				8D0E4B62223FB2C900DA2866 /* LLPricingTableViewCell.xib in Resources */,
 				8DF28F7E223E2B620074A4D8 /* LLBeeLobbyViewController.xib in Resources */,
 				8DBEAE86223DFF6B0095D214 /* LLBeePresentAffirmView.xib in Resources */,
 				8D004ED9223B813F0029EDE6 /* LLPersonalHomeHeaderView.xib in Resources */,
@@ -2177,6 +2203,7 @@
 				7E2E7017223802D800F185A7 /* LLRedTaskHistoryViewController.xib in Resources */,
 				7E1E8A7022301AF2002766AD /* LLMessageCommentViewCell.xib in Resources */,
 				8DF0C274223A25D4006175E7 /* LLRedTaskViewController.xib in Resources */,
+				8D0E4B5D223FB29C00DA2866 /* LLAuctionUserTableViewCell.xib in Resources */,
 				8D79E4E2222676FC0019A1BE /* LLBeeMineViewController.xib in Resources */,
 				8D0167282238E1EE00CD21D8 /* LLReceiveCommentTableViewCell.xib in Resources */,
 				8DBEAE36223C9BC90095D214 /* LLPaymentWayView.xib in Resources */,
@@ -2358,6 +2385,7 @@
 				8D890B572232082800CA711A /* LLBeeQunViewController.m in Sources */,
 				8D5CB6BE2232D73300527DEB /* ZJSelectedTextField.m in Sources */,
 				8D890B522232077D00CA711A /* LLMineWalletViewController.m in Sources */,
+				8D0E4B5C223FB29C00DA2866 /* LLAuctionUserTableViewCell.m in Sources */,
 				8D5F2E56223662E50049C28F /* LLMapAddressShowView.m in Sources */,
 				8DF0C279223A29A2006175E7 /* LLRedTaskTableViewCell.m in Sources */,
 				8DF28F82223E2DF00074A4D8 /* LLBeeTaskTableViewCell.m in Sources */,
@@ -2381,6 +2409,7 @@
 				8DF28F96223E4B080074A4D8 /* LLExchangeOrderTableViewCell.m in Sources */,
 				8D542A6B222A5BC2008B90B0 /* LEShareModel.m in Sources */,
 				8DF28FA0223E6CC10074A4D8 /* LLSettingViewController.m in Sources */,
+				8D0E4B56223FAFC400DA2866 /* LLBeeKingAuctionHeadView.m in Sources */,
 				8D004EEF223BED150029EDE6 /* LLBuyAdViewController.m in Sources */,
 				8D79E4DC222676E20019A1BE /* LLBeeHomeViewController.m in Sources */,
 				8DBEAE60223CCAD60095D214 /* LLPublishHistoryListViewController.m in Sources */,
@@ -2461,6 +2490,7 @@
 				8DF28FAF223E84A00074A4D8 /* LLAmendPhoneViewController.m in Sources */,
 				7E1E8A6922301162002766AD /* LLMessageDetailsHeaderView.m in Sources */,
 				8DF0C28A223A501E006175E7 /* LLReceiveRedAlertView.m in Sources */,
+				8D0E4B61223FB2C900DA2866 /* LLPricingTableViewCell.m in Sources */,
 				8D542A62222A5BC2008B90B0 /* WYNetWorkManager.m in Sources */,
 				8DBEAE6C223D026E0095D214 /* LLWithdrawViewController.m in Sources */,
 				8D5F2E602236D2F80049C28F /* LLChooseLocationScopeView.m in Sources */,
