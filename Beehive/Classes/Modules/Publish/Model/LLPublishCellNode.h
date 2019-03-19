@@ -43,6 +43,13 @@ typedef NS_ENUM(NSInteger, LLPublishCellType) {
     LLPublishCellTypeShipAddress,    //收货地址
     LLPublishCellTypeHouseNumber,    //门牌号
     LLPublishCellTypeADImage,        //广告图
+    
+    //UserSet
+    LLPublishCellTypeAvatar,         //头像
+    LLPublishCellTypeNickName,       //昵称
+    LLPublishCellTypeBirthdayDate,   //生日
+    LLPublishCellTypeSignature,      //签名
+    
 };
 
 typedef NS_ENUM(NSInteger, LLPublishInputType) {

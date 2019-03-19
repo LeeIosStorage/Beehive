@@ -38,6 +38,9 @@ UITextViewDelegate
 #pragma mark - Private
 - (void)setupSubview{
     [self setTitle:@"意见反馈"];
+    if (self.vcType == LLFillInfoVcTypeSign) {
+        self.title = @"签名";
+    }
     self.view.backgroundColor = kAppBackgroundColor;
 }
 
@@ -81,9 +84,21 @@ UITextViewDelegate
 
 #pragma mark -
 #pragma mark - IBActions
-- (IBAction)publishAction:(id)sender{
+- (IBAction)publishAction:(id)sender {
     
     self.textView.text = [self.textView.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+    if (self.vcType == LLFillInfoVcTypeSign) {
+        if (self.textView.text.length == 0) {
+            [SVProgressHUD showCustomInfoWithStatus:@"请输入您的签名"];
+            return;
+        }
+        if (self.submitBlock) {
+            self.submitBlock(self.textView.text);
+        }
+        [self.navigationController popViewControllerAnimated:true];
+        return;
+    }
+    
     if (self.textView.text.length == 0) {
         [SVProgressHUD showCustomInfoWithStatus:@"请输入您想反馈的意见"];
         return;

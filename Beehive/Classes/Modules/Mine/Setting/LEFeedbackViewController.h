@@ -8,6 +8,17 @@
 
 #import "LLBaseViewController.h"
 
+typedef NS_ENUM(NSInteger, LLFillInfoVcType) {
+    LLFillInfoVcTypeNone, //意见反馈
+    LLFillInfoVcTypeSign  //个人签名
+};
+
+typedef void(^LLFillInfoVcSubmitBlock)(NSString *text);
+
 @interface LEFeedbackViewController : LLBaseViewController
+
+@property (nonatomic, assign) LLFillInfoVcType vcType;
+
+@property (nonatomic, copy) LLFillInfoVcSubmitBlock submitBlock;
 
 @end

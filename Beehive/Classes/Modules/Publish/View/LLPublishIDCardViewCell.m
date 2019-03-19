@@ -48,7 +48,7 @@
         [self.btn2 setImage:cellNode.uploadImageDatas[1] forState:UIControlStateNormal];
     }
     
-    if (cellNode.cellType == LLPublishCellTypeADImage) {
+    if (cellNode.cellType == LLPublishCellTypeADImage || cellNode.cellType == LLPublishCellTypeAvatar) {
         self.btn1.hidden = true;
         if (cellNode.uploadImageDatas.count > 0) {
             [self.btn2 setImage:cellNode.uploadImageDatas[0] forState:UIControlStateNormal];
@@ -88,7 +88,7 @@
             HXPhotoModel *first = photoList.firstObject;
             [self.btn2 setImage:first.thumbPhoto forState:UIControlStateNormal];
             [self.toolManager getSelectedImageList:photoList requestType:HXDatePhotoToolManagerRequestTypeOriginal success:^(NSArray<UIImage *> *imageList) {
-                if (cellNode.cellType == LLPublishCellTypeADImage) {
+                if (self.btn1.isHidden) {
                     [cellNode.uploadImageDatas insertObjects:imageList atIndex:0];
                 } else {
                     [cellNode.uploadImageDatas insertObjects:imageList atIndex:1];

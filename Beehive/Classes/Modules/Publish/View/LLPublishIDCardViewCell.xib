@@ -12,10 +12,10 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="94" id="KGk-i7-Jjw" customClass="LLPublishIDCardViewCell">
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="KGk-i7-Jjw" customClass="LLPublishIDCardViewCell">
             <rect key="frame" x="0.0" y="0.0" width="320" height="95"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
                 <rect key="frame" x="0.0" y="0.0" width="320" height="94.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
@@ -37,7 +37,7 @@
                         </connections>
                     </button>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mWd-ip-nvG">
-                        <rect key="frame" x="170" y="15.5" width="65" height="65"/>
+                        <rect key="frame" x="170" y="16.5" width="65" height="65"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="65" id="7Gy-fD-qJZ"/>
                             <constraint firstAttribute="height" constant="65" id="BGU-Jv-b5Z"/>
@@ -47,15 +47,26 @@
                             <action selector="btn1Action:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="Iwv-IP-b3g"/>
                         </connections>
                     </button>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="LRh-MA-QL9">
+                        <rect key="frame" x="0.0" y="95" width="320" height="0.5"/>
+                        <color key="backgroundColor" red="0.88235294117647056" green="0.88235294117647056" blue="0.88235294117647056" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="0.5" id="1kl-oi-oW9"/>
+                        </constraints>
+                    </imageView>
                 </subviews>
                 <constraints>
+                    <constraint firstItem="tYi-fI-Ps2" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="2qk-Re-ewq"/>
                     <constraint firstItem="tYi-fI-Ps2" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="15" id="FdT-Nq-Jta"/>
                     <constraint firstAttribute="trailing" secondItem="tYi-fI-Ps2" secondAttribute="trailing" constant="10" id="P0T-2Y-Rld"/>
+                    <constraint firstAttribute="trailing" secondItem="LRh-MA-QL9" secondAttribute="trailing" id="R5k-eB-MuI"/>
                     <constraint firstItem="tYi-fI-Ps2" firstAttribute="leading" secondItem="mWd-ip-nvG" secondAttribute="trailing" constant="10" id="Stz-Lm-ACy"/>
-                    <constraint firstItem="tYi-fI-Ps2" firstAttribute="centerY" secondItem="LEK-cJ-1cQ" secondAttribute="centerY" id="aDA-Fa-ZYe"/>
+                    <constraint firstItem="mWd-ip-nvG" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="5" id="UHa-Tg-OOG"/>
+                    <constraint firstItem="LEK-cJ-1cQ" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="cEE-BM-4K2"/>
+                    <constraint firstAttribute="bottom" secondItem="LRh-MA-QL9" secondAttribute="bottom" id="ld3-zq-LeM"/>
+                    <constraint firstItem="LRh-MA-QL9" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="oD8-CQ-tVQ"/>
                     <constraint firstAttribute="bottom" secondItem="tYi-fI-Ps2" secondAttribute="bottom" constant="15" id="qb0-aA-q4E"/>
                     <constraint firstItem="LEK-cJ-1cQ" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="ucv-Jr-viN"/>
-                    <constraint firstItem="tYi-fI-Ps2" firstAttribute="centerY" secondItem="mWd-ip-nvG" secondAttribute="centerY" id="xvU-VI-WmK"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
