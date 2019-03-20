@@ -10,6 +10,11 @@
 
 @interface LLBeeKingIntroViewController ()
 
+@property (nonatomic, weak) IBOutlet UILabel *labDes1;
+@property (nonatomic, weak) IBOutlet UILabel *labDes2;
+@property (nonatomic, weak) IBOutlet UILabel *labDes3;
+@property (nonatomic, weak) IBOutlet UILabel *labDes4;
+
 @end
 
 @implementation LLBeeKingIntroViewController
@@ -22,6 +27,11 @@
 
 - (void)setup {
     self.title = @"成为蜂王";
+    
+    self.labDes1.text = @"广告位收益、推荐收益";
+    self.labDes2.text = @"成功推荐他人购买广告位";
+    self.labDes3.text = @"1. 格子店铺收益\n2. 格子店铺收益";
+    self.labDes4.text = @"除上述收益外，平台将创造更多收益渠道和形式，为蜂王打造“家人级”服务。优秀蜂王有机会获得蜂巢APP平台收益和股权！";
 }
 
 @end

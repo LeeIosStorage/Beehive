@@ -22,6 +22,7 @@
 #import "LLRedpacketDetailsViewController.h"
 #import "LLPartnerViewController.h"
 #import "UIButton+WebCache.h"
+#import "LLHomeAdsAlertView.h"
 
 @interface LLBeeHomeViewController ()
 
@@ -47,6 +48,10 @@
     // Do any additional setup after loading the view from its nib.
     [self setup];
     [self addBottomAds:kLLAppTestHttpURL];
+    
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [self showHomeAdsAlertView];
+    });
 }
 
 - (void)injected {
@@ -126,6 +131,25 @@
         }
         if (index == 0) {
             [weakSelf gotoRedpacketDetailsVc];
+        }
+    };
+    LEAlertMarkView *alert = [[LEAlertMarkView alloc] initWithCustomView:tipView type:LEAlertMarkViewTypeCenter];
+    [alert show];
+}
+
+- (void)showHomeAdsAlertView {
+    LLHomeAdsAlertView *tipView = [[[NSBundle mainBundle] loadNibNamed:@"LLHomeAdsAlertView" owner:self options:nil] firstObject];
+    tipView.frame = CGRectMake(0, 0, 230, 345);
+    [tipView updateCellWithData:nil];
+    __weak UIView *weakView = tipView;
+    WEAKSELF
+    tipView.actionBlock = ^(NSInteger index) {
+        if ([weakView.superview isKindOfClass:[LEAlertMarkView class]]) {
+            LEAlertMarkView *alert = (LEAlertMarkView *)weakView.superview;
+            [alert dismiss];
+        }
+        if (index == 1) {
+            [LELinkerHandler handleDealWithHref:@"http://www.baidu.com" From:weakSelf.navigationController];
         }
     };
     LEAlertMarkView *alert = [[LEAlertMarkView alloc] initWithCustomView:tipView type:LEAlertMarkViewTypeCenter];

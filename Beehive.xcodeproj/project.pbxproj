@@ -42,6 +42,9 @@
 		7E561BAC223FE5E700DA3B20 /* LLAdsBidViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7E561BAA223FE5E700DA3B20 /* LLAdsBidViewController.xib */; };
 		7E561BB6223FEF6000DA3B20 /* LLPersonalInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E561BB4223FEF6000DA3B20 /* LLPersonalInfoViewController.m */; };
 		7E561BB7223FEF6000DA3B20 /* LLPersonalInfoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7E561BB5223FEF6000DA3B20 /* LLPersonalInfoViewController.xib */; };
+		7E561BBA224282F100DA3B20 /* LLHomeAdsAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E561BB9224282F100DA3B20 /* LLHomeAdsAlertView.m */; };
+		7E561BBC2242830B00DA3B20 /* LLHomeAdsAlertView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7E561BBB2242830B00DA3B20 /* LLHomeAdsAlertView.xib */; };
+		7E8A215B22429985003034F1 /* UINavigationItem+LLWidth.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E8A215A22429985003034F1 /* UINavigationItem+LLWidth.m */; };
 		8D004EC4223B71400029EDE6 /* LLRedrReceiveDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D004EC2223B71400029EDE6 /* LLRedrReceiveDetailsViewController.m */; };
 		8D004EC5223B71400029EDE6 /* LLRedrReceiveDetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D004EC3223B71400029EDE6 /* LLRedrReceiveDetailsViewController.xib */; };
 		8D004EC8223B71650029EDE6 /* LLRedrReceiveDetailsHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D004EC7223B71650029EDE6 /* LLRedrReceiveDetailsHeaderView.m */; };
@@ -391,6 +394,11 @@
 		7E561BB3223FEF6000DA3B20 /* LLPersonalInfoViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLPersonalInfoViewController.h; sourceTree = "<group>"; };
 		7E561BB4223FEF6000DA3B20 /* LLPersonalInfoViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLPersonalInfoViewController.m; sourceTree = "<group>"; };
 		7E561BB5223FEF6000DA3B20 /* LLPersonalInfoViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LLPersonalInfoViewController.xib; sourceTree = "<group>"; };
+		7E561BB8224282F100DA3B20 /* LLHomeAdsAlertView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLHomeAdsAlertView.h; sourceTree = "<group>"; };
+		7E561BB9224282F100DA3B20 /* LLHomeAdsAlertView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLHomeAdsAlertView.m; sourceTree = "<group>"; };
+		7E561BBB2242830B00DA3B20 /* LLHomeAdsAlertView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LLHomeAdsAlertView.xib; sourceTree = "<group>"; };
+		7E8A215922429985003034F1 /* UINavigationItem+LLWidth.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UINavigationItem+LLWidth.h"; sourceTree = "<group>"; };
+		7E8A215A22429985003034F1 /* UINavigationItem+LLWidth.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UINavigationItem+LLWidth.m"; sourceTree = "<group>"; };
 		86AFFE00E0BD8677E897D9D1 /* Pods-Beehive.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Beehive.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Beehive/Pods-Beehive.debug.xcconfig"; sourceTree = "<group>"; };
 		8D004EC1223B71400029EDE6 /* LLRedrReceiveDetailsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLRedrReceiveDetailsViewController.h; sourceTree = "<group>"; };
 		8D004EC2223B71400029EDE6 /* LLRedrReceiveDetailsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLRedrReceiveDetailsViewController.m; sourceTree = "<group>"; };
@@ -1140,6 +1148,8 @@
 				8DD290E12229442D00E4338D /* NSObject+LLRuntime.m */,
 				8DD290E32229450D00E4338D /* UINavigationBar+LLFixSpace.h */,
 				8DD290E42229450D00E4338D /* UINavigationBar+LLFixSpace.m */,
+				7E8A215922429985003034F1 /* UINavigationItem+LLWidth.h */,
+				7E8A215A22429985003034F1 /* UINavigationItem+LLWidth.m */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -1887,6 +1897,9 @@
 				8DF0C288223A501E006175E7 /* LLReceiveRedAlertView.h */,
 				8DF0C289223A501E006175E7 /* LLReceiveRedAlertView.m */,
 				8DF0C28B223A502B006175E7 /* LLReceiveRedAlertView.xib */,
+				7E561BB8224282F100DA3B20 /* LLHomeAdsAlertView.h */,
+				7E561BB9224282F100DA3B20 /* LLHomeAdsAlertView.m */,
+				7E561BBB2242830B00DA3B20 /* LLHomeAdsAlertView.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -2227,6 +2240,7 @@
 				8D58D4BE2226355900803985 /* Main.storyboard in Resources */,
 				8D0167142238C47400CD21D8 /* LLMsgTickTableViewCell.xib in Resources */,
 				8DBEAE58223CB73B0095D214 /* LLMineCollectTableViewCell.xib in Resources */,
+				7E561BBC2242830B00DA3B20 /* LLHomeAdsAlertView.xib in Resources */,
 				7E561B8A22394B1100DA3B20 /* LLReportViewController.xib in Resources */,
 				7E1E8A65222ED0E6002766AD /* LLMessageTimeLineViewCell.xib in Resources */,
 				8D016740223A052500CD21D8 /* LLCommodityExchangeconfirmView.xib in Resources */,
@@ -2454,6 +2468,7 @@
 				8D5CB6E022352F3900527DEB /* LLTradeMoldNode.m in Sources */,
 				8DD290E52229450D00E4338D /* UINavigationBar+LLFixSpace.m in Sources */,
 				8DE5885E2227A4CC002C1576 /* LLBeeRankingViewController.m in Sources */,
+				7E561BBA224282F100DA3B20 /* LLHomeAdsAlertView.m in Sources */,
 				7E1E8A7422315672002766AD /* LLMineCollectionHeaderView.m in Sources */,
 				8D5CB6D722352C0600527DEB /* LLChooseLocationViewController.m in Sources */,
 				8D79E4E1222676FC0019A1BE /* LLBeeMineViewController.m in Sources */,
@@ -2574,6 +2589,7 @@
 				8D542A85222A66A5008B90B0 /* LLLoginViewController.m in Sources */,
 				8DBEAE43223CAEC90095D214 /* LLEditAdViewController.m in Sources */,
 				8D542A67222A5BC2008B90B0 /* WYCustomActionSheet.m in Sources */,
+				7E8A215B22429985003034F1 /* UINavigationItem+LLWidth.m in Sources */,
 				8DAE2A912241FF3900E6B7BD /* LLBeeKingIntroViewController.m in Sources */,
 				8D542A78222A5BC2008B90B0 /* MBProgressHUD+LETools.m in Sources */,
 				8DF28F87223E31400074A4D8 /* LLInvitationCodeViewController.m in Sources */,

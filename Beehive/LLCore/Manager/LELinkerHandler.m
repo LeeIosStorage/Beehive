@@ -9,6 +9,7 @@
 
 #import "LELinkerHandler.h"
 //#import "DetailController.h"
+#import "LEWebViewController.h"
 
 @implementation LELinkerHandler
 
@@ -29,7 +30,8 @@
         return nil;
         
     } else if([scheme hasPrefix:@"http"]){
-        
+        LEWebViewController *vc = [[LEWebViewController alloc] initWithURLString:href];
+        [nav pushViewController:vc animated:true];
     }
     return nil;
 }
