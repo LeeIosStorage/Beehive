@@ -205,6 +205,8 @@
 		8D890B6D2232344500CA711A /* LLPublishInputViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D890B6B2232344500CA711A /* LLPublishInputViewCell.xib */; };
 		8D890B712232346700CA711A /* LLPublishImageViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D890B6F2232346700CA711A /* LLPublishImageViewCell.m */; };
 		8D890B722232346700CA711A /* LLPublishImageViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D890B702232346700CA711A /* LLPublishImageViewCell.xib */; };
+		8DAE2A912241FF3900E6B7BD /* LLBeeKingIntroViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DAE2A8F2241FF3900E6B7BD /* LLBeeKingIntroViewController.m */; };
+		8DAE2A922241FF3900E6B7BD /* LLBeeKingIntroViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8DAE2A902241FF3900E6B7BD /* LLBeeKingIntroViewController.xib */; };
 		8DBEAE29223C93E50095D214 /* ZJPayPopupView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DBEAE25223C93E50095D214 /* ZJPayPopupView.m */; };
 		8DBEAE2A223C93E50095D214 /* ZJPayPasswordView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DBEAE26223C93E50095D214 /* ZJPayPasswordView.m */; };
 		8DBEAE30223C9AB10095D214 /* LLPayPasswordResetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DBEAE2E223C9AB10095D214 /* LLPayPasswordResetViewController.m */; };
@@ -663,6 +665,9 @@
 		8D890B6E2232346700CA711A /* LLPublishImageViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLPublishImageViewCell.h; sourceTree = "<group>"; };
 		8D890B6F2232346700CA711A /* LLPublishImageViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLPublishImageViewCell.m; sourceTree = "<group>"; };
 		8D890B702232346700CA711A /* LLPublishImageViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LLPublishImageViewCell.xib; sourceTree = "<group>"; };
+		8DAE2A8E2241FF3900E6B7BD /* LLBeeKingIntroViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLBeeKingIntroViewController.h; sourceTree = "<group>"; };
+		8DAE2A8F2241FF3900E6B7BD /* LLBeeKingIntroViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLBeeKingIntroViewController.m; sourceTree = "<group>"; };
+		8DAE2A902241FF3900E6B7BD /* LLBeeKingIntroViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LLBeeKingIntroViewController.xib; sourceTree = "<group>"; };
 		8DBEAE24223C93E50095D214 /* ZJPayPasswordView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJPayPasswordView.h; sourceTree = "<group>"; };
 		8DBEAE25223C93E50095D214 /* ZJPayPopupView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZJPayPopupView.m; sourceTree = "<group>"; };
 		8DBEAE26223C93E50095D214 /* ZJPayPasswordView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZJPayPasswordView.m; sourceTree = "<group>"; };
@@ -1005,6 +1010,9 @@
 				8DBEAE45223CAEDE0095D214 /* LLBeeKingViewController.h */,
 				8DBEAE46223CAEDE0095D214 /* LLBeeKingViewController.m */,
 				8DBEAE47223CAEDE0095D214 /* LLBeeKingViewController.xib */,
+				8DAE2A8E2241FF3900E6B7BD /* LLBeeKingIntroViewController.h */,
+				8DAE2A8F2241FF3900E6B7BD /* LLBeeKingIntroViewController.m */,
+				8DAE2A902241FF3900E6B7BD /* LLBeeKingIntroViewController.xib */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -2184,6 +2192,7 @@
 				8D890B68223231BF00CA711A /* LLPublishNormalViewCell.xib in Resources */,
 				8DF28F83223E2DF00074A4D8 /* LLBeeTaskTableViewCell.xib in Resources */,
 				8DE5885A2227A4B3002C1576 /* LLBeeMessageViewController.xib in Resources */,
+				8DAE2A922241FF3900E6B7BD /* LLBeeKingIntroViewController.xib in Resources */,
 				8DBEAE44223CAEC90095D214 /* LLEditAdViewController.xib in Resources */,
 				8DBEAE6D223D026E0095D214 /* LLWithdrawViewController.xib in Resources */,
 				8DF0C27A223A29A2006175E7 /* LLRedTaskTableViewCell.xib in Resources */,
@@ -2565,6 +2574,7 @@
 				8D542A85222A66A5008B90B0 /* LLLoginViewController.m in Sources */,
 				8DBEAE43223CAEC90095D214 /* LLEditAdViewController.m in Sources */,
 				8D542A67222A5BC2008B90B0 /* WYCustomActionSheet.m in Sources */,
+				8DAE2A912241FF3900E6B7BD /* LLBeeKingIntroViewController.m in Sources */,
 				8D542A78222A5BC2008B90B0 /* MBProgressHUD+LETools.m in Sources */,
 				8DF28F87223E31400074A4D8 /* LLInvitationCodeViewController.m in Sources */,
 				8DD290D92228D72200E4338D /* UIViewController+LLNavigationBar.m in Sources */,

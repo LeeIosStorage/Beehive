@@ -35,14 +35,8 @@
     self.labDes2.text = @"蜂王分轮次售卖，首轮城寨售价1450元，\n后续依次递增，最高3250元！\n\n推荐1名蜂巢蜂王，您最高能获得\n3250*10%*1=325元\n\n推荐5名蜂巢蜂王，您最高能获得\n3250*10%*5=1625元\n\n推荐10名蜂巢蜂王，您最高能获得\n3250*10%*10=3250元\n\n推荐的蜂王越多，您赚取的推荐佣金也就越多!";
     self.labDes3.text = @"您还将享有以下高额收益:\n\n1, 租户收益：租户抢多少，您就得多少\n2, 广告位收益：最高417元/天；\n3, 格子铺收益：约100元/天；\n4, 区域线下服务收益：约200元/天；\n5, 区域发红包总金额抽成：约53元/天。";
     
-//    [self.mainScrollView setContentSize:CGSizeMake(SCREEN_WIDTH, SCREEN_HEIGHT*2)];
-    [self.view needsUpdateConstraints];
-//    [self.mainScrollView setContentSize:CGSizeMake(SCREEN_WIDTH, SCREEN_HEIGHT*2)];
-}
-
-- (void)updateViewConstraints {
-    [super updateViewConstraints];
-    self.viewContentH.constant = SCREEN_HEIGHT*2;
+    CGFloat height = [self.viewContent systemLayoutSizeFittingSize:UILayoutFittingCompressedSize].height;
+    self.viewContentH.constant = height;
 }
 
 @end

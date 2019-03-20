@@ -13,6 +13,7 @@
 #import "LLBuyAdViewController.h"
 #import "LLEditAdViewController.h"
 #import "LLBeeKingViewController.h"
+#import "LLBeeKingIntroViewController.h"
 
 @interface LLPartnerViewController ()
 <
@@ -89,8 +90,12 @@ UITableViewDataSource
 }
 
 - (IBAction)joinPartnerAction:(id)sender {
-    LLBeeKingViewController *vc = [[LLBeeKingViewController alloc] init];
+    
+    LLBeeKingIntroViewController *vc = [[LLBeeKingIntroViewController alloc] init];
     [self.navigationController pushViewController:vc animated:true];
+    
+//    LLBeeKingViewController *vc = [[LLBeeKingViewController alloc] init];
+//    [self.navigationController pushViewController:vc animated:true];
 }
 
 #pragma mark - set
