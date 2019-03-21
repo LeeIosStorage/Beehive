@@ -12,6 +12,9 @@
 #import "LLRedRuleViewController.h"
 #import "LLCityOptionHeaderView.h"
 #import <MAMapKit/MAMapKit.h>
+#import <AMapFoundationKit/AMapFoundationKit.h>
+#import <AMapSearchKit/AMapSearchKit.h>
+#import <AMapLocationKit/AMapLocationKit.h>
 #import "LEWebViewController.h"
 #import "LLCommodityExchangeViewController.h"
 #import "LLRedTaskViewController.h"
@@ -25,10 +28,22 @@
 #import "LLHomeAdsAlertView.h"
 
 @interface LLBeeHomeViewController ()
-
+<
+MAMapViewDelegate,
+AMapSearchDelegate,
+AMapGeoFenceManagerDelegate
+>
 @property (nonatomic, strong) LLCityOptionHeaderView *cityOptionHeaderView;
 
 @property (nonatomic, strong) MAMapView *mapView;
+@property (nonatomic, strong) AMapSearchAPI *mapSearch;
+@property (nonatomic, strong) AMapGeoFenceManager *geoFenceManager;
+    
+@property (nonatomic, assign) BOOL isLocated;
+
+@property (nonatomic, assign) CLLocationCoordinate2D currentCoordinate;
+
+@property (nonatomic, assign) BOOL isChooseCity;
 
 @property (nonatomic, strong) UIButton *btnExchange;
 @property (nonatomic, strong) UIButton *btnSingin;
@@ -114,6 +129,7 @@
     }];
     
     self.mapView.showsCompass = false;
+    self.mapView.zoomLevel = 14.5;
     self.mapView.showsUserLocation = true;
     self.mapView.userTrackingMode = MAUserTrackingModeFollow;
 }
@@ -171,6 +187,50 @@
     [self.btnBottomAds sd_setImageWithURL:[NSURL URLWithString:url] forState:UIControlStateNormal];
 }
 
+- (void)getPoiInfoWithCoordinate:(CLLocationCoordinate2D)coordinate {
+    self.currentCoordinate = coordinate;
+//    self.chooseLocationScopeView.addressLabel.text = @"加载中...";
+//    AMapReGeocodeSearchRequest *regeo = [[AMapReGeocodeSearchRequest alloc] init];
+//    regeo.location = [AMapGeoPoint locationWithLatitude:coordinate.latitude longitude:coordinate.longitude];
+//    regeo.requireExtension = false;
+//    [self.mapSearch AMapReGoecodeSearch:regeo];
+    
+    if (self.isChooseCity) {
+        self.isChooseCity = false;
+        return;
+    }
+    [self addCircleRegionForMonitoringWithCenter:coordinate];
+}
+
+//范围围栏
+- (void)addCircleRegionForMonitoringWithCenter:(CLLocationCoordinate2D)coordinate {
+    [self.mapView removeOverlays:self.mapView.overlays];
+    [self.geoFenceManager removeAllGeoFenceRegions];
+    
+    CLLocationDistance radius = 1000;
+    [self.geoFenceManager addCircleRegionForMonitoringWithCenter:coordinate radius:radius customID:@"circle_1"];
+}
+
+- (void)addDistrictRegionForMonitoringWithDistrictName:(NSString *)districtName {
+    self.isChooseCity = true;
+    [self.mapView removeOverlays:self.mapView.overlays];
+    [self.geoFenceManager removeAllGeoFenceRegions];
+    [self.geoFenceManager addDistrictRegionForMonitoringWithDistrictName:districtName customID:@"district_1"];
+}
+
+//添加地理围栏对应的Overlay，方便查看。地图上显示圆
+- (MACircle *)showCircleInMap:(CLLocationCoordinate2D )coordinate radius:(NSInteger)radius {
+    MACircle *circleOverlay = [MACircle circleWithCenterCoordinate:coordinate radius:radius];
+    [self.mapView addOverlay:circleOverlay];
+    return circleOverlay;
+}
+    
+- (MAPolygon *)showPolygonInMap:(CLLocationCoordinate2D *)coordinates count:(NSInteger)count {
+    MAPolygon *polygonOverlay = [MAPolygon polygonWithCoordinates:coordinates count:count];
+    [self.mapView addOverlay:polygonOverlay];
+    return polygonOverlay;
+}
+
 #pragma mark -
 #pragma mark - Action
 - (void)ruleClickAction:(id)sender {
@@ -224,8 +284,27 @@
 - (MAMapView *)mapView {
     if (!_mapView) {
         _mapView = [[MAMapView alloc] init];
+        _mapView.delegate = self;
     }
     return _mapView;
+}
+
+- (AMapSearchAPI *)mapSearch {
+    if (!_mapSearch) {
+        _mapSearch = [[AMapSearchAPI alloc] init];
+        _mapSearch.delegate = self;
+    }
+    return _mapSearch;
+}
+    
+- (AMapGeoFenceManager *)geoFenceManager {
+    if (!_geoFenceManager) {
+        _geoFenceManager = [[AMapGeoFenceManager alloc] init];
+        _geoFenceManager.delegate = self;
+        _geoFenceManager.activeAction = AMapGeoFenceActiveActionInside | AMapGeoFenceActiveActionOutside | AMapGeoFenceActiveActionStayed;
+        //        _geoFenceManager.allowsBackgroundLocationUpdates = YES;
+    }
+    return _geoFenceManager;
 }
 
 - (UIButton *)btnExchange {
@@ -283,6 +362,109 @@
         [_btnBottomAds addTarget:self action:@selector(adsBtnAction) forControlEvents:UIControlEventTouchUpInside];
     }
     return _btnBottomAds;
+}
+
+#pragma mark - MAMapViewDelegate
+- (void)mapView:(MAMapView *)mapView regionDidChangeAnimated:(BOOL)animated {
+    if (self.mapView.userTrackingMode == MAUserTrackingModeNone) {
+        [self getPoiInfoWithCoordinate:self.mapView.centerCoordinate];
+    }
+}
+    
+- (MAOverlayRenderer *)mapView:(MAMapView *)mapView rendererForOverlay:(id <MAOverlay>)overlay {
+    if ([overlay isKindOfClass:[MAPolygon class]]) {
+        MAPolygonRenderer *polylineRenderer = [[MAPolygonRenderer alloc] initWithPolygon:overlay];
+        polylineRenderer.lineWidth = 3.0f;
+        polylineRenderer.strokeColor = [kAppThemeColor colorWithAlphaComponent:0.3];
+        UIColor *fillColor = polylineRenderer.fillColor;
+        
+        polylineRenderer.fillColor = [fillColor colorWithAlphaComponent:0.5];
+        
+        return polylineRenderer;
+    } else if ([overlay isKindOfClass:[MACircle class]]) {
+        MACircleRenderer *circleRenderer = [[MACircleRenderer alloc] initWithCircle:overlay];
+        circleRenderer.lineWidth = 3.0f;
+        circleRenderer.strokeColor = [kAppThemeColor colorWithAlphaComponent:0.3];
+        circleRenderer.fillColor = UIColor.clearColor;
+        
+        return circleRenderer;
+    }
+    return nil;
+}
+    
+- (void)mapView:(MAMapView *)mapView didUpdateUserLocation:(MAUserLocation *)userLocation updatingLocation:(BOOL)updatingLocation
+    {
+        if(!updatingLocation)
+        return ;
+        
+        if (userLocation.location.horizontalAccuracy < 0)
+        {
+            return ;
+        }
+        
+        // only the first locate used.
+        if (!self.isLocated)
+        {
+            self.isLocated = YES;
+            self.mapView.userTrackingMode = MAUserTrackingModeFollow;
+            [self.mapView setCenterCoordinate:CLLocationCoordinate2DMake(userLocation.location.coordinate.latitude, userLocation.location.coordinate.longitude)];
+            
+            //        [self actionSearchAroundAt:userLocation.location.coordinate];
+        }
+    }
+    
+- (void)mapView:(MAMapView *)mapView didChangeUserTrackingMode:(MAUserTrackingMode)mode animated:(BOOL)animated
+    {
+        if (mode == MAUserTrackingModeNone){
+            
+        } else {
+            
+        }
+    }
+    
+- (void)mapView:(MAMapView *)mapView didFailToLocateUserWithError:(NSError *)error
+    {
+        NSLog(@"error = %@",error);
+    }
+    
+#pragma mark - AMapSearchDelegate
+- (void)onReGeocodeSearchDone:(AMapReGeocodeSearchRequest *)request response:(AMapReGeocodeSearchResponse *)response {
+    if (response.regeocode != nil) {
+        NSString *formattedAddress = response.regeocode.formattedAddress;
+        AMapAddressComponent *addressComponent = response.regeocode.addressComponent;
+        //        self.chooseLocationScopeView.addressLabel.text = formattedAddress;
+        //        NSString *addressDes = [NSString stringWithFormat:@"%@ %@",addressComponent.streetNumber.street, addressComponent.streetNumber.number];
+        //        self.currentAddress = formattedAddress;
+    }
+}
+    
+#pragma mark - AMapGeoFenceManagerDelegate
+- (void)amapGeoFenceManager:(AMapGeoFenceManager *)manager didAddRegionForMonitoringFinished:(NSArray<AMapGeoFenceRegion *> *)regions customID:(NSString *)customID error:(NSError *)error {
+    if (error) {
+        LELog(@"围栏创建失败 %@",error);
+    } else {
+        LELog(@"围栏创建成功");
+        if ([customID hasPrefix:@"circle_1"]) {
+            AMapGeoFenceCircleRegion *circleRegion = (AMapGeoFenceCircleRegion *)regions.firstObject;  //一次添加一个圆形围栏，只会返回一个
+            MACircle *circleOverlay = [self showCircleInMap:circleRegion.center radius:circleRegion.radius];
+            //            [self.mapView setVisibleMapRect:circleOverlay.boundingMapRect edgePadding:UIEdgeInsetsMake(20, 20, 20, 20) animated:YES];   //设置地图的可见范围，让地图缩放和平移到合适的位置
+        } else if ([customID hasPrefix:@"district_1"]) {
+            AMapGeoFenceDistrictRegion *districtRegion = (AMapGeoFenceDistrictRegion *)regions.firstObject;
+            for (NSArray *arealocation in districtRegion.polylinePoints) {
+                CLLocationCoordinate2D *coorArr = malloc(sizeof(CLLocationCoordinate2D) * arealocation.count);
+                for (int i = 0; i < arealocation.count; i++) {
+                    AMapLocationPoint *point = [arealocation objectAtIndex:i];
+                    coorArr[i] = CLLocationCoordinate2DMake(point.latitude, point.longitude);
+                }
+                MAPolygon *polygonOverlay = [self showPolygonInMap:coorArr count:arealocation.count];
+                [self.mapView setVisibleMapRect:polygonOverlay.boundingMapRect edgePadding:UIEdgeInsetsMake(0, 0, 0, 0) animated:YES];
+                
+                free(coorArr);
+                coorArr = NULL;
+                
+            }
+        }
+    }
 }
 
 @end
