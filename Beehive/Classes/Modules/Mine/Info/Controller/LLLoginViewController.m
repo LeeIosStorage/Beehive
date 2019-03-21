@@ -28,6 +28,8 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     [self setup];
+    
+    [self loginRequest];
 }
 
 - (void)setup {
@@ -39,6 +41,9 @@
     [self.passwordInputView setAttributedPlaceholder:@"输入密码"];
     self.passwordInputView.typeImageView.image = [UIImage imageNamed:@"user_password"];
     
+    self.phoneInputView.textField.text = @"13803833433";
+    self.passwordInputView.textField.text = @"123123";
+    
     self.loginButton.backgroundColor = kAppThemeColor;
     self.loginButton.layer.cornerRadius = 5;
     self.loginButton.layer.masksToBounds = true;
@@ -46,10 +51,52 @@
     [self needTapGestureRecognizer];
 }
 
+- (void)loginRequest{
+    
+    if (self.phoneInputView.textField.text.length == 0 || self.passwordInputView.textField.text.length == 0) {
+        [SVProgressHUD showCustomInfoWithStatus:@"请输入手机号和登录密码"];
+        return;
+    }
+    [SVProgressHUD showCustomWithStatus:@"登录中..."];
+    
+    WEAKSELF
+    NSString *requesUrl = [[WYAPIGenerate sharedInstance] API:@"Login"];
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    [params setObject:self.phoneInputView.textField.text forKey:@"Phone"];
+    [params setObject:self.passwordInputView.textField.text forKey:@"Password"];
+    [self.networkManager POST:requesUrl needCache:NO caCheKey:nil parameters:params responseClass:nil needHeaderAuth:NO success:^(WYRequestType requestType, NSString *message, BOOL isCache, id dataObject) {
+        
+        if (requestType != WYRequestTypeSuccess) {
+            [SVProgressHUD showCustomErrorWithStatus:message];
+            return ;
+        }
+        if ([dataObject isKindOfClass:[NSDictionary class]]) {
+            [LELoginUserManager setUserID:dataObject[@"uid"]];
+            
+            id token = dataObject[@"token"];
+            if ([token isKindOfClass:[NSString class]]) {
+                NSData *data = [token dataUsingEncoding:NSUTF8StringEncoding];
+                NSError *error = nil;
+                id tokenObject = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:&error];
+                if ([tokenObject isKindOfClass:[NSDictionary class]]) {
+                    [LELoginUserManager setAuthToken:tokenObject[@"access_token"]];
+                }
+            }
+//            [WeakSelf refreshUserInfoRequest];
+            
+            AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+            [appDelegate initRootVc];
+        }
+        
+        
+    } failure:^(id responseObject, NSError *error) {
+        [SVProgressHUD showCustomErrorWithStatus:HitoLoginFaiTitle];
+    }];
+    
+}
 #pragma mark - Action
 - (IBAction)loginAction:(id)sender {
-    AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
-    [appDelegate initRootVc];
+    [self loginRequest];
 }
 
 - (IBAction)registereAction:(id)sender {

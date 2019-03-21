@@ -79,9 +79,7 @@
     },
     "Login": {
         "protocol": "http",
-        "module" : "api",
-        "control" : "user",
-        "action"  : "Login"
+        "action"  : "PasswordLogin"
     },
     "Register": {
         "protocol": "http",

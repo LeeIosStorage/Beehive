@@ -37,8 +37,8 @@
     [AMapServices sharedServices].apiKey = AMapKey;
     
     self.window = [[UIWindow alloc] initWithFrame:UIScreen.mainScreen.bounds];
-    [self initRootVc];
-//    [self initLoginVc];
+//    [self initRootVc];
+    [self initLoginVc];
     [self.window makeKeyAndVisible];
     return YES;
 }

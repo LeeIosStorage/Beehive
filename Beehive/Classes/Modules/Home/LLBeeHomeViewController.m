@@ -33,12 +33,13 @@ MAMapViewDelegate,
 AMapSearchDelegate,
 AMapGeoFenceManagerDelegate
 >
+
 @property (nonatomic, strong) LLCityOptionHeaderView *cityOptionHeaderView;
 
 @property (nonatomic, strong) MAMapView *mapView;
 @property (nonatomic, strong) AMapSearchAPI *mapSearch;
 @property (nonatomic, strong) AMapGeoFenceManager *geoFenceManager;
-    
+
 @property (nonatomic, assign) BOOL isLocated;
 
 @property (nonatomic, assign) CLLocationCoordinate2D currentCoordinate;
@@ -224,7 +225,7 @@ AMapGeoFenceManagerDelegate
     [self.mapView addOverlay:circleOverlay];
     return circleOverlay;
 }
-    
+
 - (MAPolygon *)showPolygonInMap:(CLLocationCoordinate2D *)coordinates count:(NSInteger)count {
     MAPolygon *polygonOverlay = [MAPolygon polygonWithCoordinates:coordinates count:count];
     [self.mapView addOverlay:polygonOverlay];
@@ -370,7 +371,7 @@ AMapGeoFenceManagerDelegate
         [self getPoiInfoWithCoordinate:self.mapView.centerCoordinate];
     }
 }
-    
+
 - (MAOverlayRenderer *)mapView:(MAMapView *)mapView rendererForOverlay:(id <MAOverlay>)overlay {
     if ([overlay isKindOfClass:[MAPolygon class]]) {
         MAPolygonRenderer *polylineRenderer = [[MAPolygonRenderer alloc] initWithPolygon:overlay];
@@ -391,42 +392,39 @@ AMapGeoFenceManagerDelegate
     }
     return nil;
 }
+
+- (void)mapView:(MAMapView *)mapView didUpdateUserLocation:(MAUserLocation *)userLocation updatingLocation:(BOOL)updatingLocation {
+    if(!updatingLocation)
+    return ;
     
-- (void)mapView:(MAMapView *)mapView didUpdateUserLocation:(MAUserLocation *)userLocation updatingLocation:(BOOL)updatingLocation
+    if (userLocation.location.horizontalAccuracy < 0)
     {
-        if(!updatingLocation)
         return ;
-        
-        if (userLocation.location.horizontalAccuracy < 0)
-        {
-            return ;
-        }
-        
-        // only the first locate used.
-        if (!self.isLocated)
-        {
-            self.isLocated = YES;
-            self.mapView.userTrackingMode = MAUserTrackingModeFollow;
-            [self.mapView setCenterCoordinate:CLLocationCoordinate2DMake(userLocation.location.coordinate.latitude, userLocation.location.coordinate.longitude)];
-            
-            //        [self actionSearchAroundAt:userLocation.location.coordinate];
-        }
     }
     
-- (void)mapView:(MAMapView *)mapView didChangeUserTrackingMode:(MAUserTrackingMode)mode animated:(BOOL)animated
+    // only the first locate used.
+    if (!self.isLocated)
     {
-        if (mode == MAUserTrackingModeNone){
-            
-        } else {
-            
-        }
+        self.isLocated = YES;
+        self.mapView.userTrackingMode = MAUserTrackingModeFollow;
+        [self.mapView setCenterCoordinate:CLLocationCoordinate2DMake(userLocation.location.coordinate.latitude, userLocation.location.coordinate.longitude)];
+        
+        //        [self actionSearchAroundAt:userLocation.location.coordinate];
     }
-    
-- (void)mapView:(MAMapView *)mapView didFailToLocateUserWithError:(NSError *)error
-    {
-        NSLog(@"error = %@",error);
+}
+
+- (void)mapView:(MAMapView *)mapView didChangeUserTrackingMode:(MAUserTrackingMode)mode animated:(BOOL)animated {
+    if (mode == MAUserTrackingModeNone){
+        
+    } else {
+        
     }
-    
+}
+
+- (void)mapView:(MAMapView *)mapView didFailToLocateUserWithError:(NSError *)error {
+    NSLog(@"error = %@",error);
+}
+
 #pragma mark - AMapSearchDelegate
 - (void)onReGeocodeSearchDone:(AMapReGeocodeSearchRequest *)request response:(AMapReGeocodeSearchResponse *)response {
     if (response.regeocode != nil) {
@@ -437,7 +435,7 @@ AMapGeoFenceManagerDelegate
         //        self.currentAddress = formattedAddress;
     }
 }
-    
+
 #pragma mark - AMapGeoFenceManagerDelegate
 - (void)amapGeoFenceManager:(AMapGeoFenceManager *)manager didAddRegionForMonitoringFinished:(NSArray<AMapGeoFenceRegion *> *)regions customID:(NSString *)customID error:(NSError *)error {
     if (error) {
@@ -466,5 +464,4 @@ AMapGeoFenceManagerDelegate
         }
     }
 }
-
 @end
