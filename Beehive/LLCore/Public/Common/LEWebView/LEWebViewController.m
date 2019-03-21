@@ -16,6 +16,7 @@ WKNavigationDelegate
 >
 @property (strong, nonatomic) NSURL *URL;
 @property (strong, nonatomic) NSString *urlString;
+@property (strong, nonatomic) NSString *htmlString;
 @property (strong, nonatomic) WKWebView *webView;
 
 @property (strong, nonatomic) CALayer *progresslayer;
@@ -54,6 +55,13 @@ WKNavigationDelegate
 - (instancetype)initWithURLString:(NSString *)urlString
 {
     return [self initWithURL:[NSURL URLWithString:urlString]];
+}
+
+- (instancetype)initWithHtmlString:(NSString *)string {
+    if (self = [super init]) {
+        self.htmlString = string;
+    }
+    return self;
 }
 
 #pragma mark -
@@ -118,7 +126,11 @@ WKNavigationDelegate
         make.edges.equalTo(self.view);
     }];
     
-    [self loadURL:self.URL];
+    if (self.htmlString.length > 0) {
+        [self.webView loadHTMLString:self.htmlString baseURL:nil];
+    } else {
+        [self loadURL:self.URL];
+    }
 }
 
 - (void)loadURL:(NSURL *)url{

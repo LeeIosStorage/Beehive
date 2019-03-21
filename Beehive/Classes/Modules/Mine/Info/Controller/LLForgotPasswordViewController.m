@@ -30,6 +30,7 @@
 
 - (void)setup {
     self.title = @"重置密码";
+    self.view.backgroundColor = kAppBackgroundColor;
     self.phoneInputView.inputViewType = LLUserInputViewTypePhone;
     [self.phoneInputView setAttributedPlaceholder:@"输入手机号"];
     self.phoneInputView.typeImageView.image = [UIImage imageNamed:@"user_account"];

@@ -28,12 +28,11 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     [self setup];
-    
-    [self loginRequest];
 }
 
 - (void)setup {
     self.title = @"登录";
+    self.view.backgroundColor = kAppBackgroundColor;
     self.phoneInputView.inputViewType = LLUserInputViewTypePhone;
     [self.phoneInputView setAttributedPlaceholder:@"输入手机号"];
     self.phoneInputView.typeImageView.image = [UIImage imageNamed:@"user_account"];

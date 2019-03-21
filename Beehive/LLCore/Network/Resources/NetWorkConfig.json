@@ -79,13 +79,18 @@
     },
     "Login": {
         "protocol": "http",
+        "module"  : "SessionService.asmx",
         "action"  : "PasswordLogin"
     },
     "Register": {
         "protocol": "http",
-        "module" : "api",
-        "control" : "user",
+        "module"  : "SessionService.asmx",
         "action"  : "Register"
+    },
+    "GetUserAgreement": {
+        "protocol": "http",
+        "module"  : "SessionService.asmx",
+        "action"  : "GetUserAgreement"
     },
     "ChangePwd": {
         "protocol": "http",
@@ -99,11 +104,10 @@
         "control" : "user",
         "action"  : "GetUserDetail"
     },
-    "SmsSend": {
+    "SendSms": {
         "protocol": "http",
-        "module" : "api",
-        "control" : "sms",
-        "action"  : "Send"
+        "module"  : "CommonService.asmx",
+        "action"  : "SendSms"
     },
     "GetFavoriteNews": {
         "protocol": "http",

@@ -9,15 +9,15 @@
 #ifndef WYNetworkHeader_h
 #define WYNetworkHeader_h
 
-static NSString *const kResponseObjectKeyObject = @"content";
-static NSString *const kResponseObjectKeyCode = @"stateCode";
-static NSString *const kResponseObjectKeyResult = @"result";
+static NSString *const kResponseObjectKeyObject = @"Data";
+static NSString *const kResponseObjectKeyCode = @"Code";
+static NSString *const kResponseObjectKeyResult = @"Message";
 
 static NSString *const kParamUserInfoUID = @"userId";
 static NSString *const kParamUserInfoAuthToken = @"token";
 
 typedef NS_ENUM(NSInteger, WYRequestType) {
-    WYRequestTypeSuccess = 100,
+    WYRequestTypeSuccess = 200,
     WYRequestTypeTokenInvalid = -1,//token失效
     WYRequestTypeNotLogin = -4, //未登录
     WYRequestTypeFailed = 404, //主机地址未找到

@@ -12,5 +12,6 @@
 
 - (instancetype)initWithURL:(NSURL *)url;
 - (instancetype)initWithURLString:(NSString *)urlString;
+- (instancetype)initWithHtmlString:(NSString *)string;
 
 @end
