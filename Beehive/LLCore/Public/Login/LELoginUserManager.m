@@ -238,7 +238,7 @@ NSString *const kUserInfoAuthToken = @"kUserInfoAuthToken";
 
 + (void)updateUserInfoWithLoginModel:(LELoginModel *)loginModel{
     
-//    [LELoginUserManager setUserID:loginModel.userID];
+    [LELoginUserManager setUserID:loginModel.userID];
     [LELoginUserManager setNickName:loginModel.nickname];
     [LELoginUserManager setMobile:loginModel.mobile];
     [LELoginUserManager setHeadImgUrl:loginModel.headImgUrl];

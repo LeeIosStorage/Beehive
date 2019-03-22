@@ -58,13 +58,22 @@
     [self.inviteCodeInputView setAttributedPlaceholder:@"邀请码"];
     self.inviteCodeInputView.typeImageView.image = [UIImage imageNamed:@"user_invitecode"];
     
+//    self.phoneInputView.textField.text = @"13803833466";
+//    self.smsCodeInputView.textField.text = @"123456";
+//    self.passwordInputView.textField.text = @"1";
+//    self.passwordConfirmInputView.textField.text = @"1";
+    
     self.registerButton.backgroundColor = kAppThemeColor;
     self.registerButton.layer.cornerRadius = 5;
     self.registerButton.layer.masksToBounds = true;
     
-    [self.agreementButton setTitleColor:kAppThemeColor forState:UIControlStateNormal];
     NSString *attStr = @"注册即表示同意《蜂巢用户注册协议》";
-    [self.agreementButton setAttributedTitle:[WYCommonUtils stringToColorAndFontAttributeString:attStr range:NSMakeRange(0, 7) font:[FontConst PingFangSCRegularWithSize:14] color:[UIColor colorWithHexString:@"a9a9aa"]] forState:UIControlStateNormal];
+    NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:attStr];
+    NSDictionary *attributes = @{NSFontAttributeName:[FontConst PingFangSCRegularWithSize:14], NSForegroundColorAttributeName:[UIColor colorWithHexString:@"a9a9aa"]};
+    [attributedString addAttributes:attributes range:NSMakeRange(0, 7)];
+    NSDictionary *attributes2 = @{NSFontAttributeName:[FontConst PingFangSCRegularWithSize:14], NSForegroundColorAttributeName:kAppThemeColor};
+    [attributedString addAttributes:attributes2 range:NSMakeRange(7, 10)];
+    [self.agreementButton setAttributedTitle:attributedString forState:UIControlStateNormal];
     
     [self needTapGestureRecognizer];
 }
@@ -75,6 +84,10 @@
         [SVProgressHUD showCustomInfoWithStatus:@"请输入手机号、验证码、密码"];
         return;
     }
+//    if (self.inviteCodeInputView.textField.text.length == 0) {
+//        [SVProgressHUD showCustomInfoWithStatus:@"请输入邀请码"];
+//        return;
+//    }
     if (![self.passwordInputView.textField.text isEqualToString:self.passwordConfirmInputView.textField.text]) {
         [SVProgressHUD showCustomInfoWithStatus:@"两次密码不一致"];
         return;
@@ -87,30 +100,24 @@
     [params setObject:self.phoneInputView.textField.text forKey:@"Phone"];
     [params setObject:self.smsCodeInputView.textField.text forKey:@"smsCode"];
     [params setObject:self.passwordInputView.textField.text forKey:@"Password"];
+    
+    NSString *inviteCode = @"";
     if (self.inviteCodeInputView.textField.text.length > 0) {
-        [params setObject:self.passwordInputView.textField.text forKey:@"inviteCode"];
+        inviteCode = self.inviteCodeInputView.textField.text;
     }
+    [params setObject:inviteCode forKey:@"inviteCode"];
+    
     [self.networkManager POST:requesUrl needCache:NO caCheKey:nil parameters:params responseClass:nil needHeaderAuth:NO success:^(WYRequestType requestType, NSString *message, BOOL isCache, id dataObject) {
         
         if (requestType != WYRequestTypeSuccess) {
             [SVProgressHUD showCustomErrorWithStatus:message];
             return ;
         }
-//        if ([dataObject isKindOfClass:[NSDictionary class]]) {
-//            [LELoginUserManager setUserID:dataObject[@"uid"]];
-//            
-//            id token = dataObject[@"token"];
-//            if ([token isKindOfClass:[NSString class]]) {
-//                NSData *data = [token dataUsingEncoding:NSUTF8StringEncoding];
-//                NSError *error = nil;
-//                id tokenObject = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:&error];
-//                if ([tokenObject isKindOfClass:[NSDictionary class]]) {
-//                    [LELoginUserManager setAuthToken:tokenObject[@"access_token"]];
-//                }
-//            }
-//            //            [WeakSelf refreshUserInfoRequest];
-//        }
+        [SVProgressHUD showCustomSuccessWithStatus:message];
         
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [weakSelf.navigationController popViewControllerAnimated:true];
+        });
         
     } failure:^(id responseObject, NSError *error) {
         [SVProgressHUD showCustomErrorWithStatus:HitoFaiNetwork];
@@ -147,7 +154,7 @@
     WEAKSELF
     NSString *requesUrl = [[WYAPIGenerate sharedInstance] API:@"GetUserAgreement"];
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
-    [self.networkManager POST:requesUrl needCache:NO caCheKey:nil parameters:params responseClass:nil needHeaderAuth:NO success:^(WYRequestType requestType, NSString *message, BOOL isCache, id dataObject) {
+    [self.networkManager POST:requesUrl needCache:true caCheKey:@"GetUserAgreement" parameters:params responseClass:nil needHeaderAuth:NO success:^(WYRequestType requestType, NSString *message, BOOL isCache, id dataObject) {
         
         if (requestType != WYRequestTypeSuccess) {
 //            [SVProgressHUD showCustomErrorWithStatus:message];
@@ -156,7 +163,7 @@
         if ([dataObject isKindOfClass:[NSArray class]]) {
             NSArray *object = (NSArray *)dataObject;
             if (object.count > 0) {
-                self.agreementContentHtmlText = object[0];
+                weakSelf.agreementContentHtmlText = object[0];
             }
         }
 //        [SVProgressHUD showCustomSuccessWithStatus:message];

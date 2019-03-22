@@ -11,9 +11,16 @@
 @implementation LELoginModel
 
 + (NSDictionary *)modelCustomPropertyMapper {
-    return @{@"userID":@"userId",
-             @"headImgUrl":@"userHeadImg",
-             @"nickname":@"nickName",
+    return @{@"userID":@"Id",
+             @"headImgUrl":@"HeadImg",
+             @"nickname":@"NickName",
+             @"sessionToken":@"SessionToken",
+             @"name":@"Name",
+             @"mobile":@"Phone",
+             @"payPassWord":@"PayPassWord",
+             @"sex":@"Sex",
+             @"invitationCode":@"InvitationCode",
+             @"birthdayDate":@"BirthdayDate",
              @"regTime":@"reg_time",
              @"wxNickname" : @"wechat",
              @"readDuration" : @"read_duration",

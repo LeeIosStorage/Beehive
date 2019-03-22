@@ -298,7 +298,8 @@
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         LELog(@"failure error: %@",error);
         
-        NSInteger statusCode = [error.userInfo[AFNetworkingOperationFailingURLResponseErrorKey] statusCode];
+        NSHTTPURLResponse *response = error.userInfo[AFNetworkingOperationFailingURLResponseErrorKey];
+        NSInteger statusCode = [response statusCode];
         if (statusCode != WYRequestTypeUnauthorized) {
             [SVProgressHUD showCustomErrorWithStatus:HitoFaiNetwork];
         }

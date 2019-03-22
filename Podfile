@@ -27,6 +27,7 @@ def shared_pods
     pod 'SDCycleScrollView', '~> 1.75' #轮播
     pod 'HXPhotoPicker', '~> 2.1.9' #图片选择器
     pod 'HJTabViewController', '~> 1.0'
+    pod 'CocoaDebug', :configurations => ['Debug']
 end
 
 target 'Beehive' do

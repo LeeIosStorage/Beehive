@@ -15,6 +15,11 @@
 #import <AMapFoundationKit/AMapFoundationKit.h>
 #import "LLLoginViewController.h"
 #import "LLAddShopAddressViewController.h"
+#import "WXApi.h"
+#import "WeiboSDK.h"
+#import <TencentOpenAPI/TencentOAuth.h>
+#import "WYShareManager.h"
+#import "UMSocialWechatHandler.h"
 
 @interface AppDelegate ()
 
@@ -31,10 +36,13 @@
     // iOS
     //热重载
     [[NSBundle bundleWithPath:@"/Applications/InjectionX.app/Contents/Resources/iOSInjection.bundle"] load];
+    //
+    [CocoaDebug enable];
 #endif
     
     [SVProgressHUD setCurrentDefaultStyle];
-    [AMapServices sharedServices].apiKey = AMapKey;
+    
+    [self configPlatforms];
     
     self.window = [[UIWindow alloc] initWithFrame:UIScreen.mainScreen.bounds];
 //    [self initRootVc];
@@ -43,6 +51,47 @@
     return YES;
 }
 
+- (void)configPlatforms {
+    [AMapServices sharedServices].apiKey = AMapKey;
+    
+    [[UMSocialManager defaultManager] setUmSocialAppkey:UMS_APPKEY];
+    [[UMSocialManager defaultManager] setPlaform:UMSocialPlatformType_WechatSession appKey:WX_ID appSecret:WX_Secret redirectURL:nil];
+}
+
+- (BOOL)handleOpenURL:(NSURL *)url {
+    LELog(@"query=%@,scheme=%@,host=%@", url.query, url.scheme, url.host);
+    NSString *scheme = [url scheme];
+    
+    //三方登录
+    BOOL isUMSocial = ([[url absoluteString] hasPrefix:[NSString stringWithFormat:@"tencent%@://qzapp",QQ_ID]] || [[url absoluteString] hasPrefix:[NSString stringWithFormat:@"%@://oauth",WX_ID]]);
+    if (isUMSocial) {
+        //        _isUMSocialLogin = NO;
+        return [[UMSocialManager defaultManager] handleOpenURL:url];
+    }
+    //    [TencentOAuth CanHandleOpenURL:url]
+    
+    if ([scheme hasPrefix:@"wx"]) {
+        return [WXApi handleOpenURL:url delegate:[WYShareManager shareInstance]];
+    }
+    if ([scheme hasPrefix:@"wb"]) {
+        return [WeiboSDK handleOpenURL:url delegate:[WYShareManager shareInstance]];
+    }
+    if ([scheme hasPrefix:@"tencent"]) {
+        return [QQApiInterface handleOpenURL:url delegate:[WYShareManager shareInstance]];
+    }
+    return YES;
+}
+
+- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url
+{
+    return [self handleOpenURL:url];
+}
+
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
+{
+    LELog(@"openURL url=%@, sourceApplication=%@, annotation=%@", url, sourceApplication, annotation);
+    return [self handleOpenURL:url];
+}
 
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.

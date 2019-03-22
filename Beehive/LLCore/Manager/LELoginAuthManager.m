@@ -61,7 +61,7 @@ static LELoginAuthManager *_instance = nil;
             info = [NSDictionary dictionaryWithObject:message forKey:@"error"];
             [SVProgressHUD showCustomInfoWithStatus:message];
             if (success) {
-                success(NO);
+                success(NO, nil);
             }
             
         } else {
@@ -86,10 +86,10 @@ static LELoginAuthManager *_instance = nil;
         
 //            [LELoginUserManager setWxNickname:resp.name];
 //
-//            if (success) {
-//                success(YES);
-//            }
-            [weakSelf saveUserInfoRequestWithWxNickname:resp.name success:success];
+            if (success) {
+                success(YES, info);
+            }
+//            [weakSelf saveUserInfoRequestWithWxNickname:resp.name success:success];
             
         }
     }];
@@ -120,7 +120,7 @@ static LELoginAuthManager *_instance = nil;
         [SVProgressHUD showCustomInfoWithStatus:@"设置成功"];
         [LELoginUserManager setWxNickname:wxNickname];
         if (success) {
-            success(YES);
+            success(YES, nil);
         }
         
 //        [weakSelf updateUserTaskStateRequestWith:@"2" success:^(BOOL success) {

@@ -21,6 +21,7 @@ PODS:
     - AMapFoundation (~> 1.4)
   - AMapSearch (6.6.0):
     - AMapFoundation (~> 1.4)
+  - CocoaDebug (0.5.9)
   - CYLTabBarController (1.17.23)
   - HJTabViewController (1.0.7)
   - HXPhotoPicker (2.1.9):
@@ -63,6 +64,7 @@ DEPENDENCIES:
   - AMap3DMap
   - AMapLocation
   - AMapSearch
+  - CocoaDebug
   - CYLTabBarController (~> 1.17.22)
   - HJTabViewController (~> 1.0)
   - HXPhotoPicker (~> 2.1.9)
@@ -86,6 +88,7 @@ SPEC REPOS:
     - AMapFoundation
     - AMapLocation
     - AMapSearch
+    - CocoaDebug
     - CYLTabBarController
     - HJTabViewController
     - HXPhotoPicker
@@ -106,6 +109,7 @@ SPEC CHECKSUMS:
   AMapFoundation: 20fce2a12cd152e1092afdd04379cdac21932185
   AMapLocation: cf024b53dc03663efb4ea4bcce27d4cce58bb97a
   AMapSearch: def5983c8ca1a6d7430970046dc814f6e337621d
+  CocoaDebug: a9340ab62aff3d42937fe789f810552a14751d52
   CYLTabBarController: 73889c1ccc7685221d85ac2dbf188900543f17d0
   HJTabViewController: 85aaeb7aef5d96f617ff7500f5002d8e288bedf5
   HXPhotoPicker: abe7b21f5439eea491ca5d21903b7dc384ae9f06
@@ -120,6 +124,6 @@ SPEC CHECKSUMS:
   UMengUShare: 370d180101e13ee0227ae657ab119ba97243d2b3
   YYKit: 7cda43304a8dc3696c449041e2cb3107b4e236e7
 
-PODFILE CHECKSUM: cb7e8b7e4c8829d27a2362c8998af5f985189da9
+PODFILE CHECKSUM: abefdc1e85cba34940e935b93c326c6c5e8e8519
 
 COCOAPODS: 1.5.3

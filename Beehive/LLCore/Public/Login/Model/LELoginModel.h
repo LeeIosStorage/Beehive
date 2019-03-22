@@ -12,6 +12,7 @@
 
 @property (strong, nonatomic) NSString *userID;
 @property (strong, nonatomic) NSString *nickname;
+@property (strong, nonatomic) NSString *sessionToken;
 @property (strong, nonatomic) NSString *headImgUrl;
 @property (strong, nonatomic) NSString *name;
 @property (strong, nonatomic) NSString *mobile;
@@ -20,6 +21,11 @@
 @property (strong, nonatomic) NSString *age;
 @property (strong, nonatomic) NSString *regTime;
 @property (strong, nonatomic) NSString *introduction;
+
+@property (strong, nonatomic) NSString *payPassWord;
+@property (strong, nonatomic) NSString *invitationCode;
+
+
 @property (assign, nonatomic) int announcementNum;
 @property (assign, nonatomic) int noticeNum;
 
@@ -27,7 +33,6 @@
 @property (strong, nonatomic) NSString *education;
 @property (strong, nonatomic) NSString *wxNickname;
 
-@property (strong, nonatomic) NSString *invitationCode;
 @property (assign, nonatomic) double readDuration;
 @property (assign, nonatomic) double balance;
 @property (assign, nonatomic) double income;

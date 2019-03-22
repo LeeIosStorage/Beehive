@@ -71,11 +71,10 @@
         "control" : "comment",
         "action"  : "Save"
     },
-    "DoLikeOrUnLike": {
+    "UpdateUserPosition": {
         "protocol": "http",
-        "module" : "api",
-        "control" : "comment",
-        "action"  : "DoLikeOrUnLike"
+        "module"  : "SessionService.asmx",
+        "action"  : "UpdateUserPosition"
     },
     "Login": {
         "protocol": "http",
@@ -92,28 +91,25 @@
         "module"  : "SessionService.asmx",
         "action"  : "GetUserAgreement"
     },
-    "ChangePwd": {
+    "ResetPassword": {
         "protocol": "http",
-        "module" : "api",
-        "control" : "user",
-        "action"  : "ChangePwd"
+        "module"  : "SessionService.asmx",
+        "action"  : "ResetPassword"
     },
-    "GetUserDetail": {
+    "WeChatLogin": {
         "protocol": "http",
-        "module" : "api",
-        "control" : "user",
-        "action"  : "GetUserDetail"
+        "module"  : "SessionService.asmx",
+        "action"  : "WeChatLogin"
     },
     "SendSms": {
         "protocol": "http",
         "module"  : "CommonService.asmx",
         "action"  : "SendSms"
     },
-    "GetFavoriteNews": {
+    "UpdatePwd": {
         "protocol": "http",
-        "module" : "api",
-        "control" : "user",
-        "action"  : "GetFavoriteNews"
+        "module"  : "SessionService.asmx",
+        "action"  : "UpdatePwd"
     },
     "SaveFavoriteNews": {
         "protocol": "http",

@@ -19,7 +19,7 @@
 #define SINA_Secret                 @"3a1c7b67d5bd8265605a0e773358afa7"
 #define Sina_RedirectURL            @"https://api.weibo.com/oauth2/default.html"
 
-#define UMS_APPKEY                  @"5b0fe262f43e481d740001f5"
+#define UMS_APPKEY                  @"5c94804f61f564e0360019b3"
 
 #define JPUSH_APPKEY                @"4cf4260806b72b07ac84edbf"
 #define JPUSH_CHANNLE               @"Apple Store"
@@ -109,6 +109,12 @@
 #else
 
 #   define LELog(fmt, ...) NSLog((@"%s [Line %d] " fmt), __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__);
+#endif
+
+#ifdef DEBUG
+#define NSLog(fmt, ...) [ObjcLog logWithFile:__FILE__ function:__FUNCTION__ line:__LINE__ color:[UIColor whiteColor] unicodeToChinese:NO message:(fmt), ##__VA_ARGS__]
+#else
+#define NSLog(fmt, ...) nil
 #endif
 
 /***************************系统高度*****************************/

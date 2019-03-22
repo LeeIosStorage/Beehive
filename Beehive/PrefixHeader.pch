@@ -22,4 +22,8 @@
 #import <Masonry/Masonry.h>
 #import "LELinkerHandler.h"
 
+#ifdef DEBUG
+@import CocoaDebug;
+#endif
+
 #endif /* PrefixHeader_pch */

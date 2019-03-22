@@ -79,8 +79,10 @@
                     <constraints>
                         <constraint firstAttribute="height" constant="30" id="kaV-YJ-mSQ"/>
                     </constraints>
-                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                    <state key="normal" title="注册即表示同意《蜂巢用户注册协议》"/>
+                    <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="14"/>
+                    <state key="normal" title="注册即表示同意《蜂巢用户注册协议》">
+                        <color key="titleColor" red="1" green="0.68627450980392157" blue="0.0078431372549019607" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
                     <connections>
                         <action selector="agreementAction:" destination="-1" eventType="touchUpInside" id="PLa-b3-sm9"/>
                     </connections>

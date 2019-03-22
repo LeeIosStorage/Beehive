@@ -11,6 +11,8 @@
 #import "LLRegisterViewController.h"
 #import "LLForgotPasswordViewController.h"
 #import "AppDelegate.h"
+#import "LELoginModel.h"
+#import "LELoginAuthManager.h"
 
 @interface LLLoginViewController ()
 
@@ -40,8 +42,8 @@
     [self.passwordInputView setAttributedPlaceholder:@"输入密码"];
     self.passwordInputView.typeImageView.image = [UIImage imageNamed:@"user_password"];
     
-    self.phoneInputView.textField.text = @"13803833433";
-    self.passwordInputView.textField.text = @"123123";
+    self.phoneInputView.textField.text = @"13803833466";
+    self.passwordInputView.textField.text = @"1";
     
     self.loginButton.backgroundColor = kAppThemeColor;
     self.loginButton.layer.cornerRadius = 5;
@@ -63,36 +65,80 @@
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     [params setObject:self.phoneInputView.textField.text forKey:@"Phone"];
     [params setObject:self.passwordInputView.textField.text forKey:@"Password"];
-    [self.networkManager POST:requesUrl needCache:NO caCheKey:nil parameters:params responseClass:nil needHeaderAuth:NO success:^(WYRequestType requestType, NSString *message, BOOL isCache, id dataObject) {
+    [self.networkManager POST:requesUrl needCache:NO caCheKey:nil parameters:params responseClass:[LELoginModel class] needHeaderAuth:NO success:^(WYRequestType requestType, NSString *message, BOOL isCache, id dataObject) {
         
         if (requestType != WYRequestTypeSuccess) {
             [SVProgressHUD showCustomErrorWithStatus:message];
             return ;
         }
-        if ([dataObject isKindOfClass:[NSDictionary class]]) {
-            [LELoginUserManager setUserID:dataObject[@"uid"]];
-            
-            id token = dataObject[@"token"];
-            if ([token isKindOfClass:[NSString class]]) {
-                NSData *data = [token dataUsingEncoding:NSUTF8StringEncoding];
-                NSError *error = nil;
-                id tokenObject = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:&error];
-                if ([tokenObject isKindOfClass:[NSDictionary class]]) {
-                    [LELoginUserManager setAuthToken:tokenObject[@"access_token"]];
-                }
+        if ([dataObject isKindOfClass:[NSArray class]]) {
+            NSArray *data = (NSArray *)dataObject;
+            if (data.count > 0) {
+                LELoginModel *model = data[0];
+                [LELoginUserManager updateUserInfoWithLoginModel:model];
+                [LELoginUserManager setAuthToken:model.sessionToken];
             }
-//            [WeakSelf refreshUserInfoRequest];
-            
-            AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
-            [appDelegate initRootVc];
         }
-        
+        if ([LELoginUserManager hasAccoutLoggedin]) {
+            [SVProgressHUD showCustomSuccessWithStatus:message];
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+                [appDelegate initRootVc];
+            });
+        }
         
     } failure:^(id responseObject, NSError *error) {
         [SVProgressHUD showCustomErrorWithStatus:HitoLoginFaiTitle];
     }];
     
 }
+
+- (void)getWxAuthInfo {
+    WEAKSELF
+    [[LELoginAuthManager sharedInstance] socialAuthBinding:UMSocialPlatformType_WechatSession presentingController:self success:^(BOOL success, NSDictionary *result) {
+        if (success) {
+            [weakSelf wxLoginRequestWith:result[@"openId"] nickName:result[@"username"]];
+        }
+    }];
+}
+
+- (void)wxLoginRequestWith:(NSString *)openId nickName:(NSString *)nickName {
+    
+    [SVProgressHUD showCustomWithStatus:@"登录中..."];
+    WEAKSELF
+    NSString *requesUrl = [[WYAPIGenerate sharedInstance] API:@"WeChatLogin"];
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    if (openId.length > 0) [params setObject:openId forKey:@"openid"];
+    if (nickName.length > 0) [params setObject:nickName forKey:@"nickName"];
+    [self.networkManager POST:requesUrl needCache:NO caCheKey:nil parameters:params responseClass:[LELoginModel class] needHeaderAuth:NO success:^(WYRequestType requestType, NSString *message, BOOL isCache, id dataObject) {
+        
+        if (requestType != WYRequestTypeSuccess) {
+            [SVProgressHUD showCustomErrorWithStatus:message];
+            return;
+        }
+        [SVProgressHUD dismiss];
+        
+        if ([dataObject isKindOfClass:[NSArray class]]) {
+            NSArray *data = (NSArray *)dataObject;
+            if (data.count > 0) {
+                LELoginModel *model = data[0];
+                [LELoginUserManager updateUserInfoWithLoginModel:model];
+                [LELoginUserManager setAuthToken:model.sessionToken];
+            }
+        }
+        if ([LELoginUserManager hasAccoutLoggedin]) {
+            [SVProgressHUD showCustomSuccessWithStatus:message];
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+                [appDelegate initRootVc];
+            });
+        }
+        
+    } failure:^(id responseObject, NSError *error) {
+        [SVProgressHUD showCustomErrorWithStatus:HitoLoginFaiTitle];
+    }];
+}
+
 #pragma mark - Action
 - (IBAction)loginAction:(id)sender {
     [self loginRequest];
@@ -109,7 +155,7 @@
 }
 
 - (IBAction)wxLoginAction:(id)sender {
-    
+    [self getWxAuthInfo];
 }
 
 @end

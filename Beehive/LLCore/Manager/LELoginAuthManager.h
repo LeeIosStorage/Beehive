@@ -11,7 +11,7 @@
 #import "WYNetWorkManager.h"
 //#import "LETaskListModel.h"
 
-typedef void(^LoginAuthBindingSuccessBlock)(BOOL success);
+typedef void(^LoginAuthBindingSuccessBlock)(BOOL success, NSDictionary *result);
 typedef void(^LERequestStatusBlock)(BOOL success);
 
 @interface LELoginAuthManager : NSObject
