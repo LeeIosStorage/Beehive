@@ -43,6 +43,7 @@ AMapGeoFenceManagerDelegate
 @property (nonatomic, assign) BOOL isLocated;
 
 @property (nonatomic, assign) CLLocationCoordinate2D currentCoordinate;
+@property (nonatomic, assign) CLLocationCoordinate2D userLocationCoordinate;
 
 @property (nonatomic, assign) BOOL isChooseCity;
 
@@ -233,6 +234,31 @@ AMapGeoFenceManagerDelegate
 }
 
 #pragma mark -
+#pragma mark - Request
+//上报用户位置
+- (void)updateUserPositionRequest {
+    if (self.userLocationCoordinate.longitude == 0 || self.userLocationCoordinate.latitude == 0) {
+        return;
+    }
+//    WEAKSELF
+    NSString *requesUrl = [[WYAPIGenerate sharedInstance] API:@"UpdateUserPosition"];
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    [params setObject:[NSNumber numberWithDouble:self.userLocationCoordinate.longitude] forKey:@"longitude"];
+    [params setObject:[NSNumber numberWithDouble:self.userLocationCoordinate.latitude] forKey:@"latitude"];
+    [params setObject:[NSNumber numberWithDouble:self.userLocationCoordinate.latitude] forKey:@"latitude"];
+//    [params setObject:[LELoginUserManager authToken] forKey:@"token"];
+    [self.networkManager POST:requesUrl needCache:NO caCheKey:nil parameters:params responseClass:nil needHeaderAuth:YES success:^(WYRequestType requestType, NSString *message, BOOL isCache, id dataObject) {
+        
+        if (requestType != WYRequestTypeSuccess) {
+            return;
+        }
+        
+    } failure:^(id responseObject, NSError *error) {
+        
+    }];
+}
+
+#pragma mark -
 #pragma mark - Action
 - (void)ruleClickAction:(id)sender {
     LLRedRuleViewController *vc = [[LLRedRuleViewController alloc] init];
@@ -401,6 +427,9 @@ AMapGeoFenceManagerDelegate
     {
         return ;
     }
+    
+    self.userLocationCoordinate = userLocation.location.coordinate;
+    [self updateUserPositionRequest];
     
     // only the first locate used.
     if (!self.isLocated)

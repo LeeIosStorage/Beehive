@@ -202,6 +202,7 @@
     jsonReponseSerializer.acceptableContentTypes = nil;
     manager.responseSerializer = jsonReponseSerializer;
     
+    parameters = [self addCommonParamForParams:parameters];
     
 //    [manager.requestSerializer setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
 //    [manager.requestSerializer requestWithMethod:@"POST" URLString:URLString parameters:parameters error:nil];
@@ -424,9 +425,19 @@ responseClass:(Class )classType
     if ([LELoginUserManager authToken] && needHeaderAuth) {
         NSString *authorization = [NSString stringWithFormat:@"Bearer %@",[LELoginUserManager authToken]];
         [manger.requestSerializer setValue:authorization forHTTPHeaderField:@"Authorization"];
+//        [manger.requestSerializer setValue:[LELoginUserManager authToken] forKey:@"token"];
         
     }
     
+}
+
+- (NSMutableDictionary *)addCommonParamForParams:(id)params {
+    NSMutableDictionary *mutParams = [NSMutableDictionary dictionaryWithDictionary:params];
+    NSString *token = [LELoginUserManager authToken];
+    if (token) {
+        [mutParams setObject:token forKey:@"token"];
+    }
+    return mutParams;
 }
 
 - (NSString *)urlStringAddCommonParamForSourceURLString:(NSString *)urlString outUserId:(BOOL)outUserId outToken:(BOOL)outToken
@@ -438,14 +449,14 @@ responseClass:(Class )classType
     NSMutableString *addString = [NSMutableString string];
     //添加uid
     NSString *uid = [LELoginUserManager userID];
-    uid = nil;
+//    uid = nil;
     if (![urlString containsString:kParamUserInfoUID] && uid && !outUserId) {
         [addString appendFormat:@"%@=%@", kParamUserInfoUID, uid];
     }
     
     //添加token
     NSString *token = [LELoginUserManager authToken];
-    token = nil;
+//    token = nil;
     if (![urlString containsString:kParamUserInfoAuthToken] && token && !outToken) {
         [addString appendFormat:@"&%@=%@", kParamUserInfoAuthToken, token];
     }

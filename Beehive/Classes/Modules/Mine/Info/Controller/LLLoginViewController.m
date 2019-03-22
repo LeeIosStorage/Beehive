@@ -43,7 +43,7 @@
     self.passwordInputView.typeImageView.image = [UIImage imageNamed:@"user_password"];
     
     self.phoneInputView.textField.text = @"13803833466";
-    self.passwordInputView.textField.text = @"1";
+    self.passwordInputView.textField.text = @"2";
     
     self.loginButton.backgroundColor = kAppThemeColor;
     self.loginButton.layer.cornerRadius = 5;
