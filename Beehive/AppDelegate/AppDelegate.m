@@ -22,6 +22,9 @@
 #import "UMSocialWechatHandler.h"
 
 @interface AppDelegate ()
+<
+UITabBarControllerDelegate
+>
 
 @property (nonatomic, strong) LLTabBarViewController *tabBarController;
 
@@ -45,8 +48,8 @@
     [self configPlatforms];
     
     self.window = [[UIWindow alloc] initWithFrame:UIScreen.mainScreen.bounds];
-//    [self initRootVc];
-    [self initLoginVc];
+    [self initRootVc];
+//    [self initLoginVc];
     [self.window makeKeyAndVisible];
     return YES;
 }
@@ -141,6 +144,22 @@
     LLLoginViewController *vc = [[LLLoginViewController alloc] init];
     LLNavigationController *loginNav = [[LLNavigationController alloc] initWithRootViewController:vc];
     self.window.rootViewController = loginNav;
+}
+
+#pragma mark - 
+- (BOOL)tabBarController:(UITabBarController *)tabBarController shouldSelectViewController:(UIViewController *)viewController{
+    
+    if ([viewController isKindOfClass:[UINavigationController class]]) {
+        UINavigationController *nav = (UINavigationController *)viewController;
+        UIViewController *currentVc = [nav.viewControllers lastObject];
+        if ([currentVc isKindOfClass:[LLBeeMineViewController class]]) {
+            if ([[LELoginManager sharedInstance] needUserLogin:tabBarController]) {
+                return NO;
+            }
+            return YES;
+        }
+    }
+    return YES;
 }
 
 @end

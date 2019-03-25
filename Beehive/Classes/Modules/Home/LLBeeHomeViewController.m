@@ -237,7 +237,11 @@ AMapGeoFenceManagerDelegate
 #pragma mark - Request
 //上报用户位置
 - (void)updateUserPositionRequest {
+    return;
     if (self.userLocationCoordinate.longitude == 0 || self.userLocationCoordinate.latitude == 0) {
+        return;
+    }
+    if (![LELoginUserManager hasAccoutLoggedin]) {
         return;
     }
 //    WEAKSELF
@@ -245,8 +249,6 @@ AMapGeoFenceManagerDelegate
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     [params setObject:[NSNumber numberWithDouble:self.userLocationCoordinate.longitude] forKey:@"longitude"];
     [params setObject:[NSNumber numberWithDouble:self.userLocationCoordinate.latitude] forKey:@"latitude"];
-    [params setObject:[NSNumber numberWithDouble:self.userLocationCoordinate.latitude] forKey:@"latitude"];
-//    [params setObject:[LELoginUserManager authToken] forKey:@"token"];
     [self.networkManager POST:requesUrl needCache:NO caCheKey:nil parameters:params responseClass:nil needHeaderAuth:YES success:^(WYRequestType requestType, NSString *message, BOOL isCache, id dataObject) {
         
         if (requestType != WYRequestTypeSuccess) {

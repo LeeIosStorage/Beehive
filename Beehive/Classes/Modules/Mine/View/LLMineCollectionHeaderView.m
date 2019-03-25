@@ -36,7 +36,11 @@
 }
 
 - (void)updateHeadViewWithData:(id)node {
-    [WYCommonUtils setImageWithURL:[NSURL URLWithString:kLLAppTestHttpURL] setImage:self.avatarImageView setbitmapImage:nil];
+    [WYCommonUtils setImageWithURL:[NSURL URLWithString:[LELoginUserManager headImgUrl]] setImage:self.avatarImageView setbitmapImage:nil];
+    self.nickNameLabel.text = [LELoginUserManager nickName];
+    self.desLabel.text = [LELoginUserManager introduction];
+    
+    self.incomeLabel.text = [NSString stringWithFormat:@"我的总收益：¥ %.2f",[LELoginUserManager income]];
 }
 
 - (IBAction)messageAction:(id)sender {

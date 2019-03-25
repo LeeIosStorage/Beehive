@@ -53,7 +53,9 @@
 //    __weak UINavigationController *weakVc = viewController;
     LEPublishMenuView *publishMenuView = [[LEPublishMenuView alloc] initWithActionBlock:^(NSInteger index) {
         
-//        [[LELoginManager sharedInstance] needUserLogin:tabBarController];
+        if ([[LELoginManager sharedInstance] needUserLogin:tabBarController]) {
+            return;
+        }
         if (index == 0) {
             LLPublishViewController *vc = [[LLPublishViewController alloc] init];
             vc.publishVcType = LLPublishViewcTypeRedpacket;

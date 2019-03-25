@@ -240,6 +240,9 @@ NSString *const kUserInfoAuthToken = @"kUserInfoAuthToken";
     
     [LELoginUserManager setUserID:loginModel.userID];
     [LELoginUserManager setNickName:loginModel.nickname];
+    if (loginModel.nickname.length == 0) {
+        [LELoginUserManager setNickName:loginModel.name];
+    }
     [LELoginUserManager setMobile:loginModel.mobile];
     [LELoginUserManager setHeadImgUrl:loginModel.headImgUrl];
     [LELoginUserManager setSex:loginModel.sex];

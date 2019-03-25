@@ -9,7 +9,7 @@ def shared_pods
     pod 'Masonry', '~> 1.0.1'
     #####LLCore 依赖库
     pod 'AFNetworking', '~> 3.2.0'
-    pod 'SVProgressHUD', '~> 2.0.3'
+    pod 'SVProgressHUD', '~> 2.2.5'
     pod 'YYKit', '~> 1.0.6'
     pod 'SDWebImage', '~> 4.4.0'
     pod 'JSONModel', '~> 1.7.0'

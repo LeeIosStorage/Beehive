@@ -12,6 +12,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LLAmendPhoneViewController">
             <connections>
+                <outlet property="btnSmsCode" destination="7So-S4-8yy" id="EcM-Od-HLi"/>
                 <outlet property="tfPhone" destination="yKe-gT-GXn" id="3fu-LP-1iZ"/>
                 <outlet property="tfSmsCode" destination="ttI-Zj-Seg" id="KbL-7Q-NMy"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -47,6 +48,9 @@
                             <state key="normal" title="获取">
                                 <color key="titleColor" red="1" green="0.68627450980000004" blue="0.0078431372550000003" alpha="1" colorSpace="calibratedRGB"/>
                             </state>
+                            <connections>
+                                <action selector="smsCodeAction:" destination="-1" eventType="touchUpInside" id="KGr-HV-VeX"/>
+                            </connections>
                         </button>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="X0u-Ka-vby">
                             <rect key="frame" x="314.5" y="8" width="0.5" height="22.5"/>
@@ -126,6 +130,9 @@
                             <integer key="value" value="3"/>
                         </userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>
+                    <connections>
+                        <action selector="affirmAction:" destination="-1" eventType="touchUpInside" id="Pd6-gX-7we"/>
+                    </connections>
                 </button>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

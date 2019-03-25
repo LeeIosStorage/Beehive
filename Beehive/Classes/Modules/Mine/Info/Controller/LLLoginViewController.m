@@ -34,6 +34,9 @@
 
 - (void)setup {
     self.title = @"登录";
+    
+    [self createBarButtonItemAtPosition:LLNavigationBarPositionLeft normalImage:[UIImage imageNamed:@"light_nav_back"] highlightImage:[UIImage imageNamed:@"light_nav_back"] text:@"" action:@selector(backAction:)];
+    
     self.view.backgroundColor = kAppBackgroundColor;
     self.phoneInputView.inputViewType = LLUserInputViewTypePhone;
     [self.phoneInputView setAttributedPlaceholder:@"输入手机号"];
@@ -140,6 +143,10 @@
 }
 
 #pragma mark - Action
+- (void)backAction:(id)sender {
+    [self dismissViewControllerAnimated:true completion:nil];
+}
+
 - (IBAction)loginAction:(id)sender {
     [self loginRequest];
 }

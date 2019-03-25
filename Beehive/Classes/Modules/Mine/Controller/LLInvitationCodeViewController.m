@@ -13,6 +13,7 @@
 @property (nonatomic, weak) IBOutlet UIView *viewQRContainer;
 @property (nonatomic, weak) IBOutlet UIImageView *imgAvatar;
 @property (nonatomic, weak) IBOutlet UILabel *labNickName;
+@property (nonatomic, weak) IBOutlet UILabel *labInvitationCode;
 @property (nonatomic, weak) IBOutlet UIImageView *imgQRCode;
 
 @end
@@ -33,10 +34,11 @@
 - (void)setup {
     self.title = @"邀请码";
     
-    [WYCommonUtils setImageWithURL:[NSURL URLWithString:kLLAppTestHttpURL] setImage:self.imgAvatar setbitmapImage:nil];
+    [WYCommonUtils setImageWithURL:[NSURL URLWithString:[LELoginUserManager headImgUrl]] setImage:self.imgAvatar setbitmapImage:nil];
     
-    self.labNickName.text = @"郑和的二维码";
-    self.imgQRCode.image = [WYCommonUtils getHDQRImgWithString:@"邀请码:AAAAA" size:CGSizeMake(170, 170)];
+    self.labNickName.text = [NSString stringWithFormat:@"%@的二维码", [LELoginUserManager nickName]];
+    self.labInvitationCode.text = [NSString stringWithFormat:@"邀请码:%@",[LELoginUserManager invitationCode]];
+    self.imgQRCode.image = [WYCommonUtils getHDQRImgWithString:[LELoginUserManager invitationCode] size:CGSizeMake(170, 170)];
 }
 
 - (void)saveImage {

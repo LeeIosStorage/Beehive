@@ -25,6 +25,9 @@
 @property (strong, nonatomic) NSString *payPassWord;
 @property (strong, nonatomic) NSString *invitationCode;
 
+@property (assign, nonatomic) double income;
+
+
 
 @property (assign, nonatomic) int announcementNum;
 @property (assign, nonatomic) int noticeNum;
@@ -35,7 +38,6 @@
 
 @property (assign, nonatomic) double readDuration;
 @property (assign, nonatomic) double balance;
-@property (assign, nonatomic) double income;
 @property (assign, nonatomic) NSInteger todayGolds;
 @property (assign, nonatomic) NSInteger totalGolds;
 

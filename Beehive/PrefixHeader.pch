@@ -19,6 +19,7 @@
 #import "WYCommonUtils.h"
 #import "SVProgressHUD+LETools.h"
 #import "LELoginUserManager.h"
+#import "LELoginManager.h"
 #import <Masonry/Masonry.h>
 #import "LELinkerHandler.h"
 

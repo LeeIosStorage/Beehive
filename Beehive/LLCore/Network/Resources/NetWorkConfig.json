@@ -39,6 +39,11 @@
         "module"  : "SessionService.asmx",
         "action"  : "UpdatePwd"
     },
+    "UpdatePhone": {
+        "protocol": "http",
+        "module"  : "SessionService.asmx",
+        "action"  : "UpdatePhone"
+    },
     "SaveFavoriteNews": {
         "protocol": "http",
         "module" : "api",

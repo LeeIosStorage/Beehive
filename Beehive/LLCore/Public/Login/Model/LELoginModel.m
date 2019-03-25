@@ -22,16 +22,16 @@
              @"invitationCode":@"InvitationCode",
              @"birthdayDate":@"BirthdayDate",
              @"regTime":@"reg_time",
-             @"wxNickname" : @"wechat",
+             @"income" : @"IncomeMoney",
              @"readDuration" : @"read_duration",
              @"todayGolds" : @"today_golds",
              @"totalGolds" : @"total_golds",
-//             @"invitationCode" : @"invitation_code",
              };
 }
 
 - (NSString *)headImgUrl{
-    return [_headImgUrl stringByReplacingOccurrencesOfString:@"\\" withString:@"/"];
+    NSString *urlStr = [NSString stringWithFormat:@"%@/%@",[WYAPIGenerate sharedInstance].baseURL, [_headImgUrl stringByReplacingOccurrencesOfString:@"\\" withString:@"/"]];
+    return urlStr;
 }
 
 @end

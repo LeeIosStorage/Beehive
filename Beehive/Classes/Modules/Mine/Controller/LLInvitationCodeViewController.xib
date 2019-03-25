@@ -14,6 +14,7 @@
             <connections>
                 <outlet property="imgAvatar" destination="0X8-JM-UOq" id="aXs-UI-39z"/>
                 <outlet property="imgQRCode" destination="93P-mt-Lms" id="qdR-7O-4r7"/>
+                <outlet property="labInvitationCode" destination="iCk-IV-lc6" id="1LS-b1-ymC"/>
                 <outlet property="labNickName" destination="sjm-EN-TgE" id="MNz-lL-78L"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
                 <outlet property="viewQRContainer" destination="EMm-ZY-E3C" id="ltI-yx-Tr3"/>

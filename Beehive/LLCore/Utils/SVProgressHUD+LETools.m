@@ -50,8 +50,13 @@
 }
 
 + (void)showCustomInfoWithStatus:(NSString *)status{
+    [self showImage:[UIImage imageNamed:@"随便乱写"] status:status];
+    [self setDefaultAnimationType:SVProgressHUDAnimationTypeNative];
+    [self setDefaultStyle:SVProgressHUDStyleDark];
+//    [self dismissWithDelay:2];
+    return;
     [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeNone];
-    [SVProgressHUD setInfoImage:nil];
+    [SVProgressHUD setInfoImage:[UIImage imageNamed:@"111111"]];
 //    UIOffset offset = UIOffsetZero;
 //    offset.vertical = SCREEN_HEIGHT/2-100;
 //    [SVProgressHUD setOffsetFromCenter:offset];

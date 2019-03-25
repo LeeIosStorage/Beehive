@@ -299,6 +299,9 @@
 //失败标识
 #define HitoFailure @"failure"
 
+//loading
+#define HitoRequestLoadingTitle @"请求中..."
+
 //登录状态标识
 #define HitoLoginSucTitle @"登录成功"
 #define HitoLoginFaiTitle @"登录失败"

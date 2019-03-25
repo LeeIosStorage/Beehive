@@ -36,7 +36,7 @@ PODS:
   - SDWebImage (4.4.6):
     - SDWebImage/Core (= 4.4.6)
   - SDWebImage/Core (4.4.6)
-  - SVProgressHUD (2.0.4)
+  - SVProgressHUD (2.2.5)
   - UMengUShare/Core (6.4.8.2):
     - UMengUShare/Network
   - UMengUShare/Network (6.4.8.2)
@@ -75,7 +75,7 @@ DEPENDENCIES:
   - MJRefresh (~> 3.1.15.3)
   - SDCycleScrollView (~> 1.75)
   - SDWebImage (~> 4.4.0)
-  - SVProgressHUD (~> 2.0.3)
+  - SVProgressHUD (~> 2.2.5)
   - UMengUShare/Social/QQ
   - UMengUShare/Social/Sina
   - UMengUShare/Social/WeChat
@@ -120,10 +120,10 @@ SPEC CHECKSUMS:
   MJRefresh: 697f8ec75ebdbe9207767bb682cf0f51b0d8a41f
   SDCycleScrollView: 884b88f0266dd4708a0e1934975c69cb971707b1
   SDWebImage: 3f3f0c02f09798048c47a5ed0a13f17b063572d8
-  SVProgressHUD: bfde85ed6c573ea802b9cb37894ed9b629034f1b
+  SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
   UMengUShare: 370d180101e13ee0227ae657ab119ba97243d2b3
   YYKit: 7cda43304a8dc3696c449041e2cb3107b4e236e7
 
-PODFILE CHECKSUM: abefdc1e85cba34940e935b93c326c6c5e8e8519
+PODFILE CHECKSUM: 82e3120799a570b2be4dbfe4bc4d6920986be4fa
 
 COCOAPODS: 1.5.3

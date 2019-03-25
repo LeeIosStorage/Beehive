@@ -23,7 +23,7 @@
                             <rect key="frame" x="0.0" y="0.0" width="320" height="210"/>
                         </imageView>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LvZ-Xx-UP5">
-                            <rect key="frame" x="0.0" y="22" width="38" height="38"/>
+                            <rect key="frame" x="282" y="22" width="38" height="38"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="38" id="beA-VY-5Kf"/>
                                 <constraint firstAttribute="height" constant="38" id="fZz-iC-Z0p"/>
@@ -83,12 +83,12 @@
                         <constraint firstItem="709-Nc-OxX" firstAttribute="top" secondItem="FD4-gr-KZZ" secondAttribute="bottom" constant="5" id="B9C-BX-yHe"/>
                         <constraint firstItem="709-Nc-OxX" firstAttribute="leading" secondItem="FD4-gr-KZZ" secondAttribute="leading" id="EMb-HK-BYb"/>
                         <constraint firstAttribute="trailing" secondItem="709-Nc-OxX" secondAttribute="trailing" constant="10" id="LXm-CV-dCe"/>
-                        <constraint firstItem="LvZ-Xx-UP5" firstAttribute="leading" secondItem="QEI-VC-ISd" secondAttribute="leading" id="Nn7-bW-cmU"/>
                         <constraint firstItem="22h-Vz-JWY" firstAttribute="leading" secondItem="QEI-VC-ISd" secondAttribute="leading" id="PDK-am-V4T"/>
                         <constraint firstItem="xhe-Vg-rCa" firstAttribute="trailing" secondItem="s3k-NR-gYv" secondAttribute="trailing" id="QZp-2q-9VS"/>
                         <constraint firstItem="aYk-ai-xNt" firstAttribute="centerX" secondItem="QEI-VC-ISd" secondAttribute="centerX" id="RGR-z7-tqW"/>
                         <constraint firstItem="xhe-Vg-rCa" firstAttribute="top" secondItem="s3k-NR-gYv" secondAttribute="top" id="S5w-wC-MGj"/>
                         <constraint firstItem="aYk-ai-xNt" firstAttribute="top" secondItem="s3k-NR-gYv" secondAttribute="bottom" constant="9" id="TLR-Xf-Lph"/>
+                        <constraint firstAttribute="trailing" secondItem="LvZ-Xx-UP5" secondAttribute="trailing" id="UxP-sb-fS2"/>
                         <constraint firstItem="xhe-Vg-rCa" firstAttribute="leading" secondItem="s3k-NR-gYv" secondAttribute="leading" id="bKk-xT-3iL"/>
                         <constraint firstItem="FD4-gr-KZZ" firstAttribute="bottom" secondItem="s3k-NR-gYv" secondAttribute="centerY" constant="-3" id="bat-bC-fIP"/>
                         <constraint firstAttribute="height" constant="210" id="jXj-4S-cQU"/>
