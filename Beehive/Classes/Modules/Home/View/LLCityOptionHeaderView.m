@@ -36,6 +36,11 @@ UICollectionViewDataSource
     self.layer.shadowOffset = CGSizeMake(0, 3);
 }
 
+- (void)setRedCityArray:(NSMutableArray *)redCityArray {
+    _redCityArray = redCityArray;
+    [self.collectionView reloadData];
+}
+
 #pragma mark -
 #pragma mark - SettingAndGetting
 - (LLCollectionView *)collectionView {
@@ -60,13 +65,13 @@ UICollectionViewDataSource
 }
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return 20;
+    return self.redCityArray.count;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     LLCityOptionCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:kLLCityOptionCollectionViewCell forIndexPath:indexPath];
-    [cell updateCellWithData:nil];
+    [cell updateCellWithData:self.redCityArray[indexPath.row]];
     return cell;
 }
 

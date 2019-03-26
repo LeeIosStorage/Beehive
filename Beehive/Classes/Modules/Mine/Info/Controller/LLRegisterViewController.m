@@ -8,7 +8,7 @@
 
 #import "LLRegisterViewController.h"
 #import "LLUserInputView.h"
-#import "LEWebViewController.h"
+#import "LELinkerHandler.h"
 
 @interface LLRegisterViewController ()
 
@@ -31,7 +31,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     [self setup];
-    [self getUserAgreement];
+//    [self getUserAgreement];
 }
 
 - (void)setup {
@@ -179,8 +179,8 @@
 }
 
 - (IBAction)agreementAction:(id)sender {
-    LEWebViewController *vc = [[LEWebViewController alloc] initWithHtmlString:self.agreementContentHtmlText];
-    [self.navigationController pushViewController:vc animated:true];
+    NSString *url = [NSString stringWithFormat:@"%@/Agreement.html",[WYAPIGenerate sharedInstance].baseURL];
+    [LELinkerHandler handleDealWithHref:url From:self.navigationController];
 }
 
 @end

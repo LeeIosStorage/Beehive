@@ -142,7 +142,7 @@ LEShareSheetViewDelegate
     LEShareModel *shareModel = [[LEShareModel alloc] init];
     shareModel.shareTitle = @"领红包";
     shareModel.shareDescription = @"";
-    shareModel.shareWebpageUrl = @"http://www.baidu.com";
+    shareModel.shareWebpageUrl = [NSString stringWithFormat:@"%@/%@",[WYAPIGenerate sharedInstance].baseURL, kLLH5_DownLoad_Html_Url];
     //    shareModel.shareImage = [];
     _shareSheetView = [[LEShareSheetView alloc] init];
     _shareSheetView.owner = self;

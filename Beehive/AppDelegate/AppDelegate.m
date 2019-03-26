@@ -45,6 +45,8 @@ UITabBarControllerDelegate
     
     [SVProgressHUD setCurrentDefaultStyle];
     
+    [WYAPIGenerate sharedInstance].netWorkHost = defaultNetworkHost;
+    
     [self configPlatforms];
     
     self.window = [[UIWindow alloc] initWithFrame:UIScreen.mainScreen.bounds];

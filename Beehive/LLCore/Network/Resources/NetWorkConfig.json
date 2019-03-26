@@ -1,4 +1,10 @@
 {
+    "SaveFavoriteNews": {
+        "protocol": "http",
+        "module" : "api",
+        "control" : "user",
+        "action"  : "SaveFavoriteNews"
+    },
     "UpdateUserPosition": {
         "protocol": "http",
         "module"  : "SessionService.asmx",
@@ -44,10 +50,9 @@
         "module"  : "SessionService.asmx",
         "action"  : "UpdatePhone"
     },
-    "SaveFavoriteNews": {
+    "GetIndexData": {
         "protocol": "http",
-        "module" : "api",
-        "control" : "user",
-        "action"  : "SaveFavoriteNews"
+        "module"  : "IndexService.asmx",
+        "action"  : "GetIndexData"
     },
 }

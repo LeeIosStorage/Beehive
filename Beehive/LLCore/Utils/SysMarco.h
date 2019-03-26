@@ -312,6 +312,8 @@
 
 #define HitoDataFileCatalog @"LEData"
 
+#define kLLH5_DownLoad_Html_Url @"downLoad.html"
+
 #define kLLAppTestHttpURL @"http://img.bimg.126.net/photo/31kQlCGP44-34Q5yxvoqmw==/5770237022569104952.jpg"
 
 #endif /* SysMarco_h */

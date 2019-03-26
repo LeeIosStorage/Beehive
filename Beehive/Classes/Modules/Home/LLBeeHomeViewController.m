@@ -26,6 +26,7 @@
 #import "LLPartnerViewController.h"
 #import "UIButton+WebCache.h"
 #import "LLHomeAdsAlertView.h"
+#import "LLHomeNode.h"
 
 @interface LLBeeHomeViewController ()
 <
@@ -33,6 +34,11 @@ MAMapViewDelegate,
 AMapSearchDelegate,
 AMapGeoFenceManagerDelegate
 >
+
+@property (nonatomic, strong) LLHomeNode *homeNode;
+
+@property (nonatomic, strong) NSMutableArray *redCityList;
+@property (nonatomic, strong) NSMutableArray *mapRedpacketList;
 
 @property (nonatomic, strong) LLCityOptionHeaderView *cityOptionHeaderView;
 
@@ -64,6 +70,8 @@ AMapGeoFenceManagerDelegate
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     [self setup];
+//    [self refreshHomeInfo];
+    
     [self addBottomAds:kLLAppTestHttpURL];
     
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
@@ -78,6 +86,9 @@ AMapGeoFenceManagerDelegate
 #pragma mark - Methods
 - (void)setup {
     
+    self.redCityList = [NSMutableArray array];
+    self.mapRedpacketList = [NSMutableArray array];
+    
     [self createBarButtonItemAtPosition:LLNavigationBarPositionRight normalImage:[UIImage imageNamed:@"home_nav_help"] highlightImage:nil text:@"" action:@selector(ruleClickAction:)];
     
     [self.view addSubview:self.mapView];
@@ -87,6 +98,7 @@ AMapGeoFenceManagerDelegate
         make.left.top.right.equalTo(self.view);
         make.height.mas_equalTo(65);
     }];
+    self.cityOptionHeaderView.redCityArray = [NSMutableArray arrayWithArray:self.homeNode.FirstRowRedList];
     
     [self.mapView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.bottom.equalTo(self.view);
@@ -197,6 +209,9 @@ AMapGeoFenceManagerDelegate
 //    regeo.requireExtension = false;
 //    [self.mapSearch AMapReGoecodeSearch:regeo];
     
+//    [self refreshMapRedpacketList];
+    [self refreshHomeInfo];
+    
     if (self.isChooseCity) {
         self.isChooseCity = false;
         return;
@@ -235,6 +250,32 @@ AMapGeoFenceManagerDelegate
 
 #pragma mark -
 #pragma mark - Request
+- (void)refreshHomeInfo {
+    WEAKSELF
+    NSString *requesUrl = [[WYAPIGenerate sharedInstance] API:@"GetIndexData"];
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    [params setObject:[NSNumber numberWithDouble:30.282141] forKey:@"latitude"];
+    [params setObject:[NSNumber numberWithDouble:120.111456] forKey:@"longitude"];
+    [self.networkManager POST:requesUrl needCache:NO caCheKey:nil parameters:params responseClass:[LLHomeNode class] needHeaderAuth:NO success:^(WYRequestType requestType, NSString *message, BOOL isCache, id dataObject) {
+        
+        if (requestType != WYRequestTypeSuccess) {
+            [SVProgressHUD showCustomErrorWithStatus:message];
+            return ;
+        }
+        if ([dataObject isKindOfClass:[NSArray class]]) {
+            NSArray *data = (NSArray *)dataObject;
+            if (data.count > 0) {
+                weakSelf.homeNode = data[0];
+            }
+        }
+        
+        [weakSelf setData];
+        
+    } failure:^(id responseObject, NSError *error) {
+        [SVProgressHUD showCustomErrorWithStatus:HitoFaiNetwork];
+    }];
+}
+
 //上报用户位置
 - (void)updateUserPositionRequest {
     return;
@@ -258,6 +299,41 @@ AMapGeoFenceManagerDelegate
     } failure:^(id responseObject, NSError *error) {
         
     }];
+}
+
+- (void)setData {
+    
+    self.cityOptionHeaderView.redCityArray = [NSMutableArray arrayWithArray:self.homeNode.FirstRowRedList];
+    
+    //地图上红包
+    NSArray *dataObject = nil;
+    if (self.homeNode.FirstRowRedList.count > 0) {
+        LLRedCityNode *cityNode = self.homeNode.FirstRowRedList[0];
+        if (cityNode.RedList.count > 0) {
+            dataObject = cityNode.RedList[0];
+        }
+    }
+    NSArray *redLists = [NSArray modelArrayWithClass:[LLRedpacketNode class] json:dataObject];
+    self.mapRedpacketList = [NSMutableArray arrayWithArray:redLists];
+    
+    [self refreshMapRedpacketList];
+}
+
+- (void)refreshMapRedpacketList {
+    
+    [self.mapView removeAnnotations:self.mapView.annotations];
+    
+    NSMutableArray *annotations = [NSMutableArray array];
+    for (int i = 0; i < self.mapRedpacketList.count; i ++) {
+        LLRedpacketNode *node = self.mapRedpacketList[i];
+        MAPointAnnotation *pointAnnotation = [[MAPointAnnotation alloc] init];
+        pointAnnotation.coordinate = CLLocationCoordinate2DMake(node.Latitude, node.Longitude);
+        pointAnnotation.title = node.Title;
+        pointAnnotation.subtitle = [NSString stringWithFormat:@"%ld", node.RedType];
+        [annotations addObject:pointAnnotation];
+    }
+    
+    [self.mapView addAnnotations:annotations];
 }
 
 #pragma mark -
@@ -419,6 +495,41 @@ AMapGeoFenceManagerDelegate
         return circleRenderer;
     }
     return nil;
+}
+
+- (MAAnnotationView *)mapView:(MAMapView *)mapView viewForAnnotation:(id<MAAnnotation>)annotation {
+    if ([annotation isKindOfClass:[MAPointAnnotation class]]) {
+        static NSString *reuseIndetifier = @"annotationReuseIndetifier";
+        MAAnnotationView *annotationView = (MAAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:reuseIndetifier];
+        if (annotationView == nil) {
+            annotationView = [[MAAnnotationView alloc] initWithAnnotation:annotation
+                                                          reuseIdentifier:reuseIndetifier];
+        }
+        annotationView.image = [UIImage imageNamed:@"home_redpacket_bule"];
+        if ([annotation.subtitle isEqualToString:@"2"]) {
+            annotationView.image = [UIImage imageNamed:@"home_redpacket_red"];
+        } else if ([annotation.subtitle isEqualToString:@"3"]) {
+            annotationView.image = [UIImage imageNamed:@"home_redpacket_yellow"];
+        }
+        //设置中心点偏移，使得标注底部中间点成为经纬度对应点
+//        annotationView.centerOffset = CGPointMake(0, -18);
+        return annotationView;
+    }
+    return nil;
+}
+
+- (void)mapView:(MAMapView *)mapView didSelectAnnotationView:(MAAnnotationView *)view {
+    NSString *type = view.annotation.subtitle;
+    if ([type isEqualToString:@"3"]) {
+        LLRedpacketDetailsViewController *vc = [[LLRedpacketDetailsViewController alloc] init];
+        vc.vcType = 1;
+        [self.navigationController pushViewController:vc animated:true];
+    } else if ([type isEqualToString:@"2"]) {
+        LLRedpacketDetailsViewController *vc = [[LLRedpacketDetailsViewController alloc] init];
+        vc.vcType = 0;
+        [self.navigationController pushViewController:vc animated:true];
+    }
+    [self.mapView deselectAnnotation:view.annotation animated:false];
 }
 
 - (void)mapView:(MAMapView *)mapView didUpdateUserLocation:(MAUserLocation *)userLocation updatingLocation:(BOOL)updatingLocation {

@@ -50,7 +50,7 @@
 }
 
 + (void)showCustomInfoWithStatus:(NSString *)status{
-    [self showImage:[UIImage imageNamed:@"随便乱写"] status:status];
+    [self showImage:[UIImage imageNamed:@""] status:status];
     [self setDefaultAnimationType:SVProgressHUDAnimationTypeNative];
     [self setDefaultStyle:SVProgressHUDStyleDark];
 //    [self dismissWithDelay:2];

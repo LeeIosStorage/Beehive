@@ -102,6 +102,10 @@
 		8D0E4B5D223FB29C00DA2866 /* LLAuctionUserTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D0E4B5B223FB29C00DA2866 /* LLAuctionUserTableViewCell.xib */; };
 		8D0E4B61223FB2C900DA2866 /* LLPricingTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D0E4B5F223FB2C900DA2866 /* LLPricingTableViewCell.m */; };
 		8D0E4B62223FB2C900DA2866 /* LLPricingTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D0E4B60223FB2C900DA2866 /* LLPricingTableViewCell.xib */; };
+		8D1A88032248D5D0005DD311 /* LLHomeNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D1A88022248D5D0005DD311 /* LLHomeNode.m */; };
+		8D1A88062248E9A4005DD311 /* LLRedpacketNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D1A88052248E9A4005DD311 /* LLRedpacketNode.m */; };
+		8D1A88092248E9C5005DD311 /* LLRedCityNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D1A88082248E9C5005DD311 /* LLRedCityNode.m */; };
+		8D1A880C2248E9E4005DD311 /* LLNoticeNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D1A880B2248E9E4005DD311 /* LLNoticeNode.m */; };
 		8D3F2149222F65020066F5EB /* LLHandleStatusView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D3F2148222F65020066F5EB /* LLHandleStatusView.m */; };
 		8D3F214D222FB4FF0066F5EB /* LLImageItemViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D3F214B222FB4FF0066F5EB /* LLImageItemViewCell.m */; };
 		8D3F214E222FB4FF0066F5EB /* LLImageItemViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D3F214C222FB4FF0066F5EB /* LLImageItemViewCell.xib */; };
@@ -486,6 +490,14 @@
 		8D0E4B5E223FB2C900DA2866 /* LLPricingTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLPricingTableViewCell.h; sourceTree = "<group>"; };
 		8D0E4B5F223FB2C900DA2866 /* LLPricingTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLPricingTableViewCell.m; sourceTree = "<group>"; };
 		8D0E4B60223FB2C900DA2866 /* LLPricingTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LLPricingTableViewCell.xib; sourceTree = "<group>"; };
+		8D1A88012248D5D0005DD311 /* LLHomeNode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLHomeNode.h; sourceTree = "<group>"; };
+		8D1A88022248D5D0005DD311 /* LLHomeNode.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLHomeNode.m; sourceTree = "<group>"; };
+		8D1A88042248E9A4005DD311 /* LLRedpacketNode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLRedpacketNode.h; sourceTree = "<group>"; };
+		8D1A88052248E9A4005DD311 /* LLRedpacketNode.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLRedpacketNode.m; sourceTree = "<group>"; };
+		8D1A88072248E9C5005DD311 /* LLRedCityNode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLRedCityNode.h; sourceTree = "<group>"; };
+		8D1A88082248E9C5005DD311 /* LLRedCityNode.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLRedCityNode.m; sourceTree = "<group>"; };
+		8D1A880A2248E9E4005DD311 /* LLNoticeNode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLNoticeNode.h; sourceTree = "<group>"; };
+		8D1A880B2248E9E4005DD311 /* LLNoticeNode.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLNoticeNode.m; sourceTree = "<group>"; };
 		8D3F2147222F65020066F5EB /* LLHandleStatusView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLHandleStatusView.h; sourceTree = "<group>"; };
 		8D3F2148222F65020066F5EB /* LLHandleStatusView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLHandleStatusView.m; sourceTree = "<group>"; };
 		8D3F214A222FB4FF0066F5EB /* LLImageItemViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLImageItemViewCell.h; sourceTree = "<group>"; };
@@ -1907,6 +1919,14 @@
 		8DCC9AB2222B780700AC3128 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				8D1A88012248D5D0005DD311 /* LLHomeNode.h */,
+				8D1A88022248D5D0005DD311 /* LLHomeNode.m */,
+				8D1A88042248E9A4005DD311 /* LLRedpacketNode.h */,
+				8D1A88052248E9A4005DD311 /* LLRedpacketNode.m */,
+				8D1A88072248E9C5005DD311 /* LLRedCityNode.h */,
+				8D1A88082248E9C5005DD311 /* LLRedCityNode.m */,
+				8D1A880A2248E9E4005DD311 /* LLNoticeNode.h */,
+				8D1A880B2248E9E4005DD311 /* LLNoticeNode.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -2474,6 +2494,7 @@
 				7E1E8A7422315672002766AD /* LLMineCollectionHeaderView.m in Sources */,
 				8D5CB6D722352C0600527DEB /* LLChooseLocationViewController.m in Sources */,
 				8D79E4E1222676FC0019A1BE /* LLBeeMineViewController.m in Sources */,
+				8D1A880C2248E9E4005DD311 /* LLNoticeNode.m in Sources */,
 				8D542A6A222A5BC2008B90B0 /* LEWebViewController.m in Sources */,
 				8DBEAE29223C93E50095D214 /* ZJPayPopupView.m in Sources */,
 				8DF28F96223E4B080074A4D8 /* LLExchangeOrderTableViewCell.m in Sources */,
@@ -2498,6 +2519,7 @@
 				8D0E4B48223F53E200DA2866 /* LLTuiSpecialistViewController.m in Sources */,
 				8DBEAE5C223CB83A0095D214 /* LLPublishHistoryViewController.m in Sources */,
 				8DC02D4A2230E4F6000CAE9C /* LLCommentBottomView.m in Sources */,
+				8D1A88062248E9A4005DD311 /* LLRedpacketNode.m in Sources */,
 				8DBEAE30223C9AB10095D214 /* LLPayPasswordResetViewController.m in Sources */,
 				8DC02D4F22311443000CAE9C /* LLRankTableViewCell.m in Sources */,
 				8D5CB6E922357EA000527DEB /* LLMapAddressViewController.m in Sources */,
@@ -2553,10 +2575,12 @@
 				8D890B67223231BF00CA711A /* LLPublishNormalViewCell.m in Sources */,
 				8D0E4B4C223F686100DA2866 /* LLBeeLobbyHeaderView.m in Sources */,
 				8DBEAE3A223C9F6B0095D214 /* LLPaymentWayNode.m in Sources */,
+				8D1A88032248D5D0005DD311 /* LLHomeNode.m in Sources */,
 				8D542A7B222A5BC2008B90B0 /* WYShareManager.m in Sources */,
 				8D004EE0223B8F3B0029EDE6 /* LLPartnerViewController.m in Sources */,
 				8D3F2149222F65020066F5EB /* LLHandleStatusView.m in Sources */,
 				8DCC9AB9222B810900AC3128 /* LLCollectionView.m in Sources */,
+				8D1A88092248E9C5005DD311 /* LLRedCityNode.m in Sources */,
 				7E561B8E2239518200DA3B20 /* LEAlertMarkView.m in Sources */,
 				8DF28F9B223E61900074A4D8 /* LLNoticeViewController.m in Sources */,
 				8D5CB6C52232D73300527DEB /* ZJToolBar.m in Sources */,

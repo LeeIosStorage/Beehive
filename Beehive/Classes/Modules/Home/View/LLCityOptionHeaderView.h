@@ -12,6 +12,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface LLCityOptionHeaderView : LLView
 
+@property (nonatomic, strong) NSMutableArray *redCityArray;
+
 @end
 
 NS_ASSUME_NONNULL_END

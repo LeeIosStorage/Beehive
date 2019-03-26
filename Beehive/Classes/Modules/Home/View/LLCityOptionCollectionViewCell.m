@@ -7,6 +7,7 @@
 //
 
 #import "LLCityOptionCollectionViewCell.h"
+#import "LLRedCityNode.h"
 
 @interface LLCityOptionCollectionViewCell ()
 
@@ -23,7 +24,8 @@
 }
 
 - (void)updateCellWithData:(id)node {
-    
+    LLRedCityNode *cityNode = (LLRedCityNode *)node;
+    self.nameLabel.text = cityNode.Name;
 }
 
 @end
