@@ -10,9 +10,13 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+typedef void(^LLCityOptionHeaderViewSelectBlock)(id node);
+
 @interface LLCityOptionHeaderView : LLView
 
 @property (nonatomic, strong) NSMutableArray *redCityArray;
+
+@property (nonatomic, strong) LLCityOptionHeaderViewSelectBlock selectBlock;
 
 @end
 

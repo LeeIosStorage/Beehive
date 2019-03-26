@@ -19,7 +19,13 @@ NS_ASSUME_NONNULL_BEGIN
 @property (strong, nonatomic) NSArray *RedEnvelopesList; //圈里
 @property (strong, nonatomic) NSArray *FirstRowRedList;
 @property (strong, nonatomic) NSArray *AdvertInfo;
+
+@property (strong, nonatomic) NSString *ProvinceName;
 @property (strong, nonatomic) NSString *CityName;
+@property (strong, nonatomic) NSString *CountyName;
+
+@property (strong, nonatomic) NSString *QueenName;
+@property (strong, nonatomic) NSString *QueenHeadImg;
 @property (assign, nonatomic) BOOL isHaveQueen;
 
 @end

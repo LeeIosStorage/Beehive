@@ -27,18 +27,25 @@
 #import "UIButton+WebCache.h"
 #import "LLHomeAdsAlertView.h"
 #import "LLHomeNode.h"
+#import "GYRollingNoticeView.h"
+#import "LLHomeNoticeCell.h"
 
 @interface LLBeeHomeViewController ()
 <
 MAMapViewDelegate,
 AMapSearchDelegate,
-AMapGeoFenceManagerDelegate
+AMapGeoFenceManagerDelegate,
+GYRollingNoticeViewDelegate,
+GYRollingNoticeViewDataSource
 >
 
 @property (nonatomic, strong) LLHomeNode *homeNode;
 
 @property (nonatomic, strong) NSMutableArray *redCityList;
 @property (nonatomic, strong) NSMutableArray *mapRedpacketList;
+
+@property (nonatomic, strong) UIView *customNavTitleView;
+@property (nonatomic, strong) GYRollingNoticeView *rollingNoticeView;
 
 @property (nonatomic, strong) LLCityOptionHeaderView *cityOptionHeaderView;
 
@@ -66,6 +73,11 @@ AMapGeoFenceManagerDelegate
 
 @implementation LLBeeHomeViewController
 
+- (void)dealloc
+{
+    [self.rollingNoticeView stopRoll];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
@@ -89,6 +101,7 @@ AMapGeoFenceManagerDelegate
     self.redCityList = [NSMutableArray array];
     self.mapRedpacketList = [NSMutableArray array];
     
+    self.navigationItem.titleView = self.customNavTitleView;
     [self createBarButtonItemAtPosition:LLNavigationBarPositionRight normalImage:[UIImage imageNamed:@"home_nav_help"] highlightImage:nil text:@"" action:@selector(ruleClickAction:)];
     
     [self.view addSubview:self.mapView];
@@ -99,6 +112,16 @@ AMapGeoFenceManagerDelegate
         make.height.mas_equalTo(65);
     }];
     self.cityOptionHeaderView.redCityArray = [NSMutableArray arrayWithArray:self.homeNode.FirstRowRedList];
+    WEAKSELF
+    self.cityOptionHeaderView.selectBlock = ^(id  _Nonnull node) {
+        LLRedCityNode *cityNode = (LLRedCityNode *)node;
+        if (cityNode.RedList.count > 0) {
+            LLRedpacketNode *redNode = cityNode.RedList[0];
+            [weakSelf addCircleRegionForMonitoringWithCityCenter:CLLocationCoordinate2DMake(redNode.Latitude, redNode.Longitude)];
+        } else {
+            [weakSelf addDistrictRegionForMonitoringWithDistrictName:cityNode.Name];
+        }
+    };
     
     [self.mapView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.bottom.equalTo(self.view);
@@ -228,6 +251,15 @@ AMapGeoFenceManagerDelegate
     [self.geoFenceManager addCircleRegionForMonitoringWithCenter:coordinate radius:radius customID:@"circle_1"];
 }
 
+- (void)addCircleRegionForMonitoringWithCityCenter:(CLLocationCoordinate2D)coordinate {
+    self.isChooseCity = true;
+    [self.mapView removeOverlays:self.mapView.overlays];
+    [self.geoFenceManager removeAllGeoFenceRegions];
+    
+    CLLocationDistance radius = 1000;
+    [self.geoFenceManager addCircleRegionForMonitoringWithCenter:coordinate radius:radius customID:@"circle_2"];
+}
+
 - (void)addDistrictRegionForMonitoringWithDistrictName:(NSString *)districtName {
     self.isChooseCity = true;
     [self.mapView removeOverlays:self.mapView.overlays];
@@ -254,8 +286,10 @@ AMapGeoFenceManagerDelegate
     WEAKSELF
     NSString *requesUrl = [[WYAPIGenerate sharedInstance] API:@"GetIndexData"];
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
-    [params setObject:[NSNumber numberWithDouble:30.282141] forKey:@"latitude"];
-    [params setObject:[NSNumber numberWithDouble:120.111456] forKey:@"longitude"];
+//    [params setObject:[NSNumber numberWithDouble:30.282141] forKey:@"latitude"];
+//    [params setObject:[NSNumber numberWithDouble:120.111456] forKey:@"longitude"];
+    [params setObject:[NSNumber numberWithDouble:self.currentCoordinate.latitude] forKey:@"latitude"];
+    [params setObject:[NSNumber numberWithDouble:self.currentCoordinate.longitude] forKey:@"longitude"];
     [self.networkManager POST:requesUrl needCache:NO caCheKey:nil parameters:params responseClass:[LLHomeNode class] needHeaderAuth:NO success:^(WYRequestType requestType, NSString *message, BOOL isCache, id dataObject) {
         
         if (requestType != WYRequestTypeSuccess) {
@@ -303,18 +337,12 @@ AMapGeoFenceManagerDelegate
 
 - (void)setData {
     
+    [self.rollingNoticeView reloadDataAndStartRoll];
+    
     self.cityOptionHeaderView.redCityArray = [NSMutableArray arrayWithArray:self.homeNode.FirstRowRedList];
     
     //地图上红包
-    NSArray *dataObject = nil;
-    if (self.homeNode.FirstRowRedList.count > 0) {
-        LLRedCityNode *cityNode = self.homeNode.FirstRowRedList[0];
-        if (cityNode.RedList.count > 0) {
-            dataObject = cityNode.RedList[0];
-        }
-    }
-    NSArray *redLists = [NSArray modelArrayWithClass:[LLRedpacketNode class] json:dataObject];
-    self.mapRedpacketList = [NSMutableArray arrayWithArray:redLists];
+    self.mapRedpacketList = [NSMutableArray arrayWithArray:self.homeNode.RedEnvelopesList];
     
     [self refreshMapRedpacketList];
 }
@@ -379,6 +407,28 @@ AMapGeoFenceManagerDelegate
 
 #pragma mark -
 #pragma mark - SettingAndGetting
+- (UIView *)customNavTitleView{
+    if (!_customNavTitleView) {
+        _customNavTitleView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH - 60, 44)];
+        
+        self.rollingNoticeView.frame = _customNavTitleView.frame;
+        [_customNavTitleView addSubview:self.rollingNoticeView];
+    }
+    return _customNavTitleView;
+}
+
+- (GYRollingNoticeView *)rollingNoticeView {
+    if (!_rollingNoticeView) {
+        _rollingNoticeView = [[GYRollingNoticeView alloc] init];
+        _rollingNoticeView.delegate = self;
+        _rollingNoticeView.dataSource = self;
+        
+//        [_rollingNoticeView registerNib:[UINib nibWithNibName:@"LLHomeNoticeCell" bundle:nil] forCellReuseIdentifier:@"LLHomeNoticeCell"];
+        [_rollingNoticeView registerClass:[LLHomeNoticeCell class] forCellReuseIdentifier:@"LLHomeNoticeCell"];
+    }
+    return _rollingNoticeView;
+}
+
 - (LLCityOptionHeaderView *)cityOptionHeaderView {
     if (!_cityOptionHeaderView) {
         _cityOptionHeaderView = [[LLCityOptionHeaderView alloc] init];
@@ -469,6 +519,28 @@ AMapGeoFenceManagerDelegate
     return _btnBottomAds;
 }
 
+#pragma mark - GYRollingNoticeViewDelegate
+- (NSInteger)numberOfRowsForRollingNoticeView:(GYRollingNoticeView *)rollingView {
+    return self.homeNode.NoticeList.count;
+}
+
+- (GYNoticeViewCell *)rollingNoticeView:(GYRollingNoticeView *)rollingView cellAtIndex:(NSUInteger)index {
+    LLHomeNoticeCell *cell = [rollingView dequeueReusableCellWithIdentifier:@"LLHomeNoticeCell"];
+    cell.backgroundColor = UIColor.clearColor;
+    LLNoticeNode *node = self.homeNode.NoticeList[index];
+    cell.labTitle.text = node.Title;
+    
+    return cell;
+}
+
+- (void)didClickRollingNoticeView:(GYRollingNoticeView *)rollingView forIndex:(NSUInteger)index {
+    LLNoticeNode *node = self.homeNode.NoticeList[index];
+    LLRedRuleViewController *vc = [[LLRedRuleViewController alloc] init];
+    vc.vcType = LLInfoDetailsVcTypeNotice;
+    vc.text = node.Contents;
+    [self.navigationController pushViewController:vc animated:true];
+}
+
 #pragma mark - MAMapViewDelegate
 - (void)mapView:(MAMapView *)mapView regionDidChangeAnimated:(BOOL)animated {
     if (self.mapView.userTrackingMode == MAUserTrackingModeNone) {
@@ -498,6 +570,16 @@ AMapGeoFenceManagerDelegate
 }
 
 - (MAAnnotationView *)mapView:(MAMapView *)mapView viewForAnnotation:(id<MAAnnotation>)annotation {
+    if ([annotation isKindOfClass:[MAUserLocation class]]) {
+        static NSString *reuseIndetifier = @"UserLocationannotationReuseIndetifier";
+        MAAnnotationView *annotationView = (MAAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:reuseIndetifier];
+        if (annotationView == nil) {
+            annotationView = [[MAAnnotationView alloc] initWithAnnotation:annotation
+                                                          reuseIdentifier:reuseIndetifier];
+        }
+        annotationView.image = [UIImage imageNamed:@""];
+        return annotationView;
+    }
     if ([annotation isKindOfClass:[MAPointAnnotation class]]) {
         static NSString *reuseIndetifier = @"annotationReuseIndetifier";
         MAAnnotationView *annotationView = (MAAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:reuseIndetifier];
@@ -505,9 +587,9 @@ AMapGeoFenceManagerDelegate
             annotationView = [[MAAnnotationView alloc] initWithAnnotation:annotation
                                                           reuseIdentifier:reuseIndetifier];
         }
-        annotationView.image = [UIImage imageNamed:@"home_redpacket_bule"];
+        annotationView.image = [UIImage imageNamed:@"home_redpacket_red"];
         if ([annotation.subtitle isEqualToString:@"2"]) {
-            annotationView.image = [UIImage imageNamed:@"home_redpacket_red"];
+            annotationView.image = [UIImage imageNamed:@"home_redpacket_bule"];
         } else if ([annotation.subtitle isEqualToString:@"3"]) {
             annotationView.image = [UIImage imageNamed:@"home_redpacket_yellow"];
         }
@@ -528,6 +610,8 @@ AMapGeoFenceManagerDelegate
         LLRedpacketDetailsViewController *vc = [[LLRedpacketDetailsViewController alloc] init];
         vc.vcType = 0;
         [self.navigationController pushViewController:vc animated:true];
+    } else if ([type isEqualToString:@"1"]) {
+        
     }
     [self.mapView deselectAnnotation:view.annotation animated:false];
 }
@@ -584,10 +668,12 @@ AMapGeoFenceManagerDelegate
         LELog(@"围栏创建失败 %@",error);
     } else {
         LELog(@"围栏创建成功");
-        if ([customID hasPrefix:@"circle_1"]) {
+        if ([customID hasPrefix:@"circle_1"] || [customID hasPrefix:@"circle_2"]) {
             AMapGeoFenceCircleRegion *circleRegion = (AMapGeoFenceCircleRegion *)regions.firstObject;  //一次添加一个圆形围栏，只会返回一个
             MACircle *circleOverlay = [self showCircleInMap:circleRegion.center radius:circleRegion.radius];
-            //            [self.mapView setVisibleMapRect:circleOverlay.boundingMapRect edgePadding:UIEdgeInsetsMake(20, 20, 20, 20) animated:YES];   //设置地图的可见范围，让地图缩放和平移到合适的位置
+            if ([customID hasPrefix:@"circle_2"]) {
+                [self.mapView setVisibleMapRect:circleOverlay.boundingMapRect edgePadding:UIEdgeInsetsMake(20, 20, 20, 20) animated:YES];   //设置地图的可见范围，让地图缩放和平移到合适的位置
+            }
         } else if ([customID hasPrefix:@"district_1"]) {
             AMapGeoFenceDistrictRegion *districtRegion = (AMapGeoFenceDistrictRegion *)regions.firstObject;
             for (NSArray *arealocation in districtRegion.polylinePoints) {

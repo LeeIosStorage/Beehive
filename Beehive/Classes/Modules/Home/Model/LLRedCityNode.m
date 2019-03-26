@@ -11,10 +11,10 @@
 
 @implementation LLRedCityNode
 
-//+ (NSDictionary *)modelContainerPropertyGenericClass {
-//    return @{
-//             @"RedList"   : [LLRedpacketNode class],
-//             };
-//}
++ (NSDictionary *)modelContainerPropertyGenericClass {
+    return @{
+             @"RedList"   : [LLRedpacketNode class],
+             };
+}
 
 @end

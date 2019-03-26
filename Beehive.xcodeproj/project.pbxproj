@@ -106,6 +106,7 @@
 		8D1A88062248E9A4005DD311 /* LLRedpacketNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D1A88052248E9A4005DD311 /* LLRedpacketNode.m */; };
 		8D1A88092248E9C5005DD311 /* LLRedCityNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D1A88082248E9C5005DD311 /* LLRedCityNode.m */; };
 		8D1A880C2248E9E4005DD311 /* LLNoticeNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D1A880B2248E9E4005DD311 /* LLNoticeNode.m */; };
+		8D1A880F224A02F4005DD311 /* LLHomeNoticeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D1A880E224A02F4005DD311 /* LLHomeNoticeCell.m */; };
 		8D3F2149222F65020066F5EB /* LLHandleStatusView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D3F2148222F65020066F5EB /* LLHandleStatusView.m */; };
 		8D3F214D222FB4FF0066F5EB /* LLImageItemViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D3F214B222FB4FF0066F5EB /* LLImageItemViewCell.m */; };
 		8D3F214E222FB4FF0066F5EB /* LLImageItemViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D3F214C222FB4FF0066F5EB /* LLImageItemViewCell.xib */; };
@@ -498,6 +499,8 @@
 		8D1A88082248E9C5005DD311 /* LLRedCityNode.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLRedCityNode.m; sourceTree = "<group>"; };
 		8D1A880A2248E9E4005DD311 /* LLNoticeNode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLNoticeNode.h; sourceTree = "<group>"; };
 		8D1A880B2248E9E4005DD311 /* LLNoticeNode.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLNoticeNode.m; sourceTree = "<group>"; };
+		8D1A880D224A02F4005DD311 /* LLHomeNoticeCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLHomeNoticeCell.h; sourceTree = "<group>"; };
+		8D1A880E224A02F4005DD311 /* LLHomeNoticeCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLHomeNoticeCell.m; sourceTree = "<group>"; };
 		8D3F2147222F65020066F5EB /* LLHandleStatusView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLHandleStatusView.h; sourceTree = "<group>"; };
 		8D3F2148222F65020066F5EB /* LLHandleStatusView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLHandleStatusView.m; sourceTree = "<group>"; };
 		8D3F214A222FB4FF0066F5EB /* LLImageItemViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLImageItemViewCell.h; sourceTree = "<group>"; };
@@ -1910,6 +1913,8 @@
 				8DF0C289223A501E006175E7 /* LLReceiveRedAlertView.m */,
 				8DF0C28B223A502B006175E7 /* LLReceiveRedAlertView.xib */,
 				7E561BB8224282F100DA3B20 /* LLHomeAdsAlertView.h */,
+				8D1A880D224A02F4005DD311 /* LLHomeNoticeCell.h */,
+				8D1A880E224A02F4005DD311 /* LLHomeNoticeCell.m */,
 				7E561BB9224282F100DA3B20 /* LLHomeAdsAlertView.m */,
 				7E561BBB2242830B00DA3B20 /* LLHomeAdsAlertView.xib */,
 			);
@@ -2333,6 +2338,7 @@
 				"${BUILT_PRODUCTS_DIR}/MBProgressHUD/MBProgressHUD.framework",
 				"${BUILT_PRODUCTS_DIR}/MJRefresh/MJRefresh.framework",
 				"${BUILT_PRODUCTS_DIR}/Masonry/Masonry.framework",
+				"${BUILT_PRODUCTS_DIR}/RollingNotice/RollingNotice.framework",
 				"${BUILT_PRODUCTS_DIR}/SDCycleScrollView/SDCycleScrollView.framework",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
 				"${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework",
@@ -2352,6 +2358,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MBProgressHUD.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MJRefresh.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Masonry.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RollingNotice.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDCycleScrollView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SVProgressHUD.framework",
@@ -2549,6 +2556,7 @@
 				8D016743223A19D700CD21D8 /* LLCommodityPurchaseSucceedView.m in Sources */,
 				8D79E4D82226748D0019A1BE /* LLBaseViewController.m in Sources */,
 				7E561BB6223FEF6000DA3B20 /* LLPersonalInfoViewController.m in Sources */,
+				8D1A880F224A02F4005DD311 /* LLHomeNoticeCell.m in Sources */,
 				8D5F2E5B223698D90049C28F /* LLMapAddressSearchTitleView.m in Sources */,
 				8DF28F7D223E2B620074A4D8 /* LLBeeLobbyViewController.m in Sources */,
 				8D0167362238FB9C00CD21D8 /* LLExchangeBaseViewController.m in Sources */,

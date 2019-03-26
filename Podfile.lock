@@ -31,6 +31,7 @@ PODS:
   - Masonry (1.0.2)
   - MBProgressHUD (1.1.0)
   - MJRefresh (3.1.15.7)
+  - RollingNotice (1.0.6)
   - SDCycleScrollView (1.75):
     - SDWebImage (>= 4.0.0)
   - SDWebImage (4.4.6):
@@ -73,6 +74,7 @@ DEPENDENCIES:
   - Masonry (~> 1.0.1)
   - MBProgressHUD
   - MJRefresh (~> 3.1.15.3)
+  - RollingNotice
   - SDCycleScrollView (~> 1.75)
   - SDWebImage (~> 4.4.0)
   - SVProgressHUD (~> 2.2.5)
@@ -97,6 +99,7 @@ SPEC REPOS:
     - Masonry
     - MBProgressHUD
     - MJRefresh
+    - RollingNotice
     - SDCycleScrollView
     - SDWebImage
     - SVProgressHUD
@@ -118,12 +121,13 @@ SPEC CHECKSUMS:
   Masonry: 7c429b56da9d4ee0bbb3ed77a5ea710d6a5df39e
   MBProgressHUD: e7baa36a220447d8aeb12769bf0585582f3866d9
   MJRefresh: 697f8ec75ebdbe9207767bb682cf0f51b0d8a41f
+  RollingNotice: a4919e3e79f420f7bb8ee9d22ee509470b7ccdce
   SDCycleScrollView: 884b88f0266dd4708a0e1934975c69cb971707b1
   SDWebImage: 3f3f0c02f09798048c47a5ed0a13f17b063572d8
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
   UMengUShare: 370d180101e13ee0227ae657ab119ba97243d2b3
   YYKit: 7cda43304a8dc3696c449041e2cb3107b4e236e7
 
-PODFILE CHECKSUM: 82e3120799a570b2be4dbfe4bc4d6920986be4fa
+PODFILE CHECKSUM: 2966dde088b96b782eb7fe9a4a5fd401925c978e
 
 COCOAPODS: 1.5.3
