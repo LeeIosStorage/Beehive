@@ -33,6 +33,7 @@ UITableViewDataSource
 @property (nonatomic, strong) LLPublishCellNode *currentPublishNode;
 
 //Data
+@property (nonatomic, strong) NSArray *visibleMoldArray;
 @property (nonatomic, strong) NSArray *ageArray;
 @property (nonatomic, strong) NSArray *sexArray;
 @property (nonatomic, strong) NSArray *hobbiesArray;
@@ -208,10 +209,7 @@ UITableViewDataSource
         [newMutArray addObject:[NSMutableArray arrayWithObjects:cellNode8, nil]];
     }
     
-    LLPublishCellNode *cellNode12 = [[LLPublishCellNode alloc] init];
-    cellNode12.title = @"红包任务介绍";
-    cellNode12.placeholder = @"红包任务介绍...";
-    cellNode12.cellType = LLPublishCellTypeIntro;
+    LLPublishCellNode *cellNode12 = [self nodeForCellTypeWithType:LLPublishCellTypeIntro];
     [newMutArray addObject:[NSMutableArray arrayWithObject:cellNode12]];
     
     self.dataSource = [NSMutableArray arrayWithArray:newMutArray];
@@ -241,12 +239,9 @@ UITableViewDataSource
     cellNode3.cellType = LLPublishCellTypeShopAddress;
     [newMutArray addObject:[NSMutableArray arrayWithObject:cellNode3]];
     
-    LLPublishCellNode *cellNode4 = [[LLPublishCellNode alloc] init];
-    cellNode4.title = @"蜂蜜兑换数";
-    cellNode4.placeholder = @"请输入";
-    cellNode4.cellType = LLPublishCellTypeExchangeCount;
-    cellNode4.inputType = LLPublishInputTypeInput;
-    [newMutArray addObject:[NSMutableArray arrayWithObject:cellNode4]];
+    LLPublishCellNode *cellNode40 = [self nodeForCellTypeWithType:LLPublishCellTypeOldPrice];
+    LLPublishCellNode *cellNode4 = [self nodeForCellTypeWithType:LLPublishCellTypeExchangeCount];
+    [newMutArray addObject:[NSMutableArray arrayWithObjects:cellNode40, cellNode4, nil]];
     
     LLPublishCellNode *cellNode6 = [self nodeForCellTypeWithType:LLPublishCellTypePubDate];
     LLPublishCellNode *cellNode7 = [self nodeForCellTypeWithType:LLPublishCellTypeVisible];
@@ -254,7 +249,7 @@ UITableViewDataSource
     
     LLPublishCellNode *cellNode8 = [[LLPublishCellNode alloc] init];
     cellNode8.title = @"设置电子券";
-    cellNode8.placeholder = @"最多选两项";
+//    cellNode8.placeholder = @"最多选两项";
     cellNode8.cellType = LLPublishCellTypeMore;
     LLPublishCellNode *cellNode9 = [[LLPublishCellNode alloc] init];
     cellNode9.title = @"优惠券名称";
@@ -277,6 +272,9 @@ UITableViewDataSource
     } else {
         [newMutArray addObject:[NSMutableArray arrayWithObjects:cellNode8, nil]];
     }
+    
+    LLPublishCellNode *cellNode13 = [self nodeForCellTypeWithType:LLPublishCellTypeIntro];
+    [newMutArray addObject:[NSMutableArray arrayWithObjects:cellNode13, nil]];
     
     self.dataSource = [NSMutableArray arrayWithArray:newMutArray];
     [self.tableView reloadData];
@@ -318,10 +316,7 @@ UITableViewDataSource
     LLPublishCellNode *cellNode7 = [self nodeForCellTypeWithType:LLPublishCellTypeVisible];
     [newMutArray addObject:[NSMutableArray arrayWithObjects:cellNode6, cellNode7, nil]];
     
-    LLPublishCellNode *cellNode12 = [[LLPublishCellNode alloc] init];
-    cellNode12.title = @"红包任务介绍";
-    cellNode12.placeholder = @"红包任务介绍...";
-    cellNode12.cellType = LLPublishCellTypeIntro;
+    LLPublishCellNode *cellNode12 = [self nodeForCellTypeWithType:LLPublishCellTypeIntro];
     [newMutArray addObject:[NSMutableArray arrayWithObject:cellNode12]];
     
     self.dataSource = [NSMutableArray arrayWithArray:newMutArray];
@@ -393,11 +388,7 @@ UITableViewDataSource
         case LLPublishCellTypeVisible:
             cellNode.title = @"可见用户";
             cellNode.placeholder = @"请选择";
-            if (self.currentPublishNode.visibleMold == 0) {
-                cellNode.inputText = @"所有人可见";
-            } else if (self.currentPublishNode.visibleMold == 1) {
-                cellNode.inputText = @"仅自己可见";
-            }
+            cellNode.inputText = self.visibleMoldArray[self.currentPublishNode.visibleMold];
             break;
         case LLPublishCellTypeAge:
             cellNode.title = @"年龄状态";
@@ -461,15 +452,113 @@ UITableViewDataSource
                 cellNode.inputText = self.currentPublishNode.address;
             }
             break;
+        case LLPublishCellTypeExchangeCount:
+            cellNode.title = @"蜂蜜兑换数";
+            cellNode.placeholder = @"请输入";
+            cellNode.inputType = LLPublishInputTypeInput;
+            break;
+        case LLPublishCellTypeOldPrice:
+            cellNode.title = @"商品原价";
+            cellNode.placeholder = @"请输入";
+            cellNode.inputType = LLPublishInputTypeInput;
+            break;
+        case LLPublishCellTypeIntro:
+            if (self.publishVcType == LLPublishViewcTypeExchange) {
+                cellNode.title = @"兑换说明";
+                cellNode.placeholder = @"输入文字...";
+                cellNode.inputMaxCount = 200;
+            } else {
+                cellNode.title = @"红包任务介绍";
+                cellNode.placeholder = @"红包任务介绍...";
+            }
+            break;
         default:
             break;
     }
     return cellNode;
 }
 
+#pragma mark - Request
+- (void)publishGoodsRequest {
+    [SVProgressHUD showCustomWithStatus:@"发布中..."];
+    WEAKSELF
+    NSString *requesUrl = [[WYAPIGenerate sharedInstance] API:@"AddGoodsInfo"];
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    
+    NSString *title = [self nodeForCellTypeWithType:LLPublishCellTypeInputTitle].inputText;
+    if (title.length > 0) [params setObject:title forKey:@"title"];
+    
+    NSArray *imageDatas = [NSArray arrayWithArray:self.currentPublishNode.uploadImageDatas];
+//    NSString *imgUrl = @"http://fengchaohongbao.tzdja.com/upload/QRCode/20190827100838980.jpg";
+//    if (imgUrl.length > 0) [params setObject:imgUrl forKey:@"imgUrl"];
+    
+    NSString *oldPrice = [self nodeForCellTypeWithType:LLPublishCellTypeOldPrice].inputText;
+    if (oldPrice.length > 0) [params setObject:oldPrice forKey:@"oldPrice"];
+    NSString *nowPrice = [self nodeForCellTypeWithType:LLPublishCellTypeExchangeCount].inputText;
+    if (nowPrice.length > 0) [params setObject:nowPrice forKey:@"nowPrice"];
+    [params setObject:[NSNumber numberWithInteger:self.currentPublishNode.visibleMold] forKey:@"visualUser"];
+    
+    [params setObject:@"13803833411" forKey:@"phone"];
+    [params setObject:@"Lee" forKey:@"contacts"];
+    [params setObject:@"杭州凌波苑" forKey:@"address"];
+    [params setObject:@"120.05721" forKey:@"longitude"];
+    [params setObject:@"30.282549" forKey:@"latitude"];
+    NSString *couponName = [self nodeForCellTypeWithType:LLPublishCellTypeCouponName].inputText;
+    if (couponName.length > 0) [params setObject:couponName forKey:@"couponName"];
+    NSString *couponExplain = [self nodeForCellTypeWithType:LLPublishCellTypeCouponExplain].inputText;
+    if (couponExplain.length > 0) [params setObject:couponExplain forKey:@"couponExplain"];
+    if (self.currentPublishNode.couponPrice.length > 0) [params setObject:self.currentPublishNode.couponPrice forKey:@"couponPrice"];
+    NSString *convertExplain = [self nodeForCellTypeWithType:LLPublishCellTypeIntro].inputText;
+    if (convertExplain.length > 0) [params setObject:convertExplain forKey:@"convertExplain"];
+    [params setObject:@"2019-03-30" forKey:@"release"];
+    [params setObject:@"2019-03-30" forKey:@"starTime"];
+    [params setObject:@"2019-03-31" forKey:@"endTime"];
+    
+    [self.networkManager POST:requesUrl formFileName:@"imgUrl" fileName:@"img.jpg" fileData:imageDatas mimeType:@"image/jpeg" parameters:nil responseClass:nil success:^(WYRequestType requestType, NSString *message, BOOL isCache, id dataObject) {
+        
+        [SVProgressHUD dismiss];
+        if (requestType != WYRequestTypeSuccess) {
+            [SVProgressHUD showCustomErrorWithStatus:message];
+            return ;
+        }
+        if ([dataObject isKindOfClass:[NSArray class]]) {
+            NSArray *data = (NSArray *)dataObject;
+            if (data.count > 0) {
+                NSDictionary *dic = data[0];
+            }
+        }
+        
+    } progress:^(NSProgress * _Nonnull uploadProgress) {
+        
+    } failure:^(id responseObject, NSError *error) {
+        [SVProgressHUD showCustomErrorWithStatus:HitoFaiNetwork];
+    }];
+    
+    return;
+    [self.networkManager POST:requesUrl needCache:NO caCheKey:nil parameters:params responseClass:nil needHeaderAuth:NO success:^(WYRequestType requestType, NSString *message, BOOL isCache, id dataObject) {
+        
+        [SVProgressHUD dismiss];
+        if (requestType != WYRequestTypeSuccess) {
+            [SVProgressHUD showCustomErrorWithStatus:message];
+            return ;
+        }
+        if ([dataObject isKindOfClass:[NSArray class]]) {
+            NSArray *data = (NSArray *)dataObject;
+            if (data.count > 0) {
+                NSDictionary *dic = data[0];
+            }
+        }
+        
+    } failure:^(id responseObject, NSError *error) {
+        [SVProgressHUD showCustomErrorWithStatus:HitoFaiNetwork];
+    }];
+}
+
 #pragma mark - Action
 - (void)publishAction:(id)sender {
-    [self.tableView reloadData];
+    if (self.publishVcType == LLPublishViewcTypeExchange) {
+        [self publishGoodsRequest];
+    }
 }
 
 - (void)chooseRedMold {
@@ -535,8 +624,7 @@ UITableViewDataSource
 
 - (void)chooseVisibleMold {
     WEAKSELF
-    NSArray *dataArray = @[@"所有人可见", @"仅自己可见"];
-    [ZJUsefulPickerView showSingleColPickerWithToolBarText:@"可见用户" withData:dataArray withDefaultIndex:weakSelf.currentPublishNode.visibleMold withCancelHandler:^{
+    [ZJUsefulPickerView showSingleColPickerWithToolBarText:@"可见用户" withData:self.visibleMoldArray withDefaultIndex:weakSelf.currentPublishNode.visibleMold withCancelHandler:^{
         
     } withDoneHandler:^(NSInteger selectedIndex, NSString *selectedValue) {
         weakSelf.currentPublishNode.visibleMold = selectedIndex;
@@ -663,6 +751,13 @@ UITableViewDataSource
 
 #pragma mark -
 #pragma mark - DataSource
+- (NSArray *)visibleMoldArray {
+    if (!_visibleMoldArray) {
+        _visibleMoldArray = @[@"所有人可见", @"本省可见", @"本市可见", @"本县区可见", @"关注自己可见"];
+    }
+    return _visibleMoldArray;
+}
+
 - (NSArray *)ageArray {
     if (!_ageArray) {
         _ageArray = @[@"16~20",@"21~30",@"31~40",@"41~50",@"50以上"];

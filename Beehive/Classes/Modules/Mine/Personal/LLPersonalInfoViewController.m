@@ -12,6 +12,8 @@
 #import "LLPublishIDCardViewCell.h"
 #import "ZJUsefulPickerView.h"
 #import "LEFeedbackViewController.h"
+#import "NSString+Unwrapped.h"
+#import "UIButton+WebCache.h"
 
 @interface LLPersonalInfoViewController ()
 <
@@ -49,7 +51,8 @@ UITableViewDataSource
     }];
     
     self.currentPublishNode = [[LLPublishCellNode alloc] init];
-    self.currentPublishNode.sexMold = -1;
+    self.currentPublishNode.sexMold = [[LELoginUserManager sex] integerValue];
+//    self.currentPublishNode.hobbiesIndexs = [LELoginUserManager ];
     
     [self refreshDataSource];
 }
@@ -92,10 +95,14 @@ UITableViewDataSource
     switch (type) {
         case LLPublishCellTypeAvatar:
             cellNode.title = @"头像";
+            if (!cellNode.uploadImageDatas) {
+                cellNode.uploadImageDatas = [NSMutableArray array];
+            }
             break;
         case LLPublishCellTypeNickName:
             cellNode.title = @"昵称";
             cellNode.placeholder = @"请输入";
+            cellNode.inputText = [LELoginUserManager nickName];
             cellNode.inputType = LLPublishInputTypeInput;
             break;
         case LLPublishCellTypeSex:
@@ -129,6 +136,7 @@ UITableViewDataSource
         case LLPublishCellTypeSignature:
             cellNode.title = @"签名";
             cellNode.placeholder = @"未设置";
+//            cellNode.inputText = [LELoginUserManager ];
             break;
         default:
             break;
@@ -136,9 +144,67 @@ UITableViewDataSource
     return cellNode;
 }
 
+#pragma mark - Request
+- (void)updateUserInfoReqeust {
+    [SVProgressHUD showCustomWithStatus:@"保存中..."];
+    WEAKSELF
+    NSString *requesUrl = [[WYAPIGenerate sharedInstance] API:@"UpdateUserInfo"];
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    
+    NSMutableArray *imageDatas = [NSMutableArray array];
+    NSArray *uploadImages = [self nodeForCellTypeWithType:LLPublishCellTypeAvatar].uploadImageDatas;
+    for (UIImage *image in uploadImages) {
+        NSData *imageData = UIImageJPEGRepresentation(image, WY_IMAGE_COMPRESSION_QUALITY);
+        NSString *dataStr = [imageData base64EncodedStringWithOptions:0];
+        [imageDatas addObject:[NSString stringWithFormat:@"data:image/jpeg;base64,%@",dataStr]];
+    }
+    
+    
+    NSData *data = [NSJSONSerialization dataWithJSONObject:imageDatas options:NSJSONWritingPrettyPrinted error:nil];
+    NSString *jsonStr = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+    
+    [params setObject:jsonStr forKey:@"headImg"];
+    
+    [params setObject:[self nodeForCellTypeWithType:LLPublishCellTypeBirthdayDate].inputText ? [self nodeForCellTypeWithType:LLPublishCellTypeBirthdayDate].inputText : @"" forKey:@"birthday"];
+    NSString *name = [self nodeForCellTypeWithType:LLPublishCellTypeNickName].inputText;
+    if (!name) name = @"";
+    [params setObject:name forKey:@"name"];
+    NSString *autograph = [self nodeForCellTypeWithType:LLPublishCellTypeSignature].inputText;
+    if (!autograph) autograph = @"";
+    [params setObject:autograph forKey:@"autograph"];
+    NSString *hobbiesIndexs = @"";
+    if (self.currentPublishNode.hobbiesIndexs.count > 0) {
+        hobbiesIndexs = [self.currentPublishNode.hobbiesIndexs componentsJoinedByString:@","];
+    }
+    [params setObject:hobbiesIndexs forKey:@"hobbyIds"];
+    [params setObject:[NSNumber numberWithInteger:self.currentPublishNode.sexMold] forKey:@"sex"];
+    
+    [self.networkManager POST:requesUrl needCache:NO caCheKey:nil parameters:params responseClass:nil needHeaderAuth:NO success:^(WYRequestType requestType, NSString *message, BOOL isCache, id dataObject) {
+
+        [SVProgressHUD dismiss];
+        if (requestType != WYRequestTypeSuccess) {
+            [SVProgressHUD showCustomErrorWithStatus:message];
+            return ;
+        }
+        [SVProgressHUD showCustomSuccessWithStatus:message];
+        if ([dataObject isKindOfClass:[NSArray class]]) {
+            NSArray *data = (NSArray *)dataObject;
+            if (data.count > 0) {
+                NSDictionary *dic = data[0];
+            }
+        }
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [weakSelf.navigationController popViewControllerAnimated:true];
+        });
+
+    } failure:^(id responseObject, NSError *error) {
+        [SVProgressHUD showCustomErrorWithStatus:HitoFaiNetwork];
+    }];
+}
+
 #pragma mark - Action
 - (void)saveAction:(id)sender {
-    
+    [self updateUserInfoReqeust];
 }
 
 - (void)chooseSex {
@@ -293,9 +359,14 @@ UITableViewDataSource
         if (!cell) {
             NSArray* cells = [[NSBundle mainBundle] loadNibNamed:cellIdentifier owner:nil options:nil];
             cell = [cells objectAtIndex:0];
+            cell.btn2.layer.cornerRadius = 32.5;
+            cell.btn2.layer.masksToBounds = true;
         }
         cell.vc = self;
         [cell updateCellWithData:cellNode];
+        if (cellNode.uploadImageDatas.count <= 0) {
+            [cell.btn2 sd_setImageWithURL:[NSURL URLWithString:[LELoginUserManager headImgUrl]] forState:UIControlStateNormal];
+        }
         return cell;
         
     } else {

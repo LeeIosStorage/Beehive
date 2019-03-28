@@ -14,6 +14,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, weak) UIViewController *vc;
 
+@property (nonatomic, weak) IBOutlet UIButton *btn2;
+
 @end
 
 NS_ASSUME_NONNULL_END

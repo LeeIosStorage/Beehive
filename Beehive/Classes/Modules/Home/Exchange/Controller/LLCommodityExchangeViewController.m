@@ -56,6 +56,11 @@ SDCycleScrollViewDelegate
 //    [self reloadData];
 }
 
+#pragma mark - Request
+- (void)refreshExchangeCenterRequest {
+    
+}
+
 #pragma mark - Action
 - (void)backAction:(id)sender {
     [self.navigationController popViewControllerAnimated:true];

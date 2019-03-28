@@ -26,6 +26,7 @@ typedef NS_ENUM(NSInteger, LLPublishCellType) {
     LLPublishCellTypeRedAmount,      //红包金额
     LLPublishCellTypeRedCount,       //红包个数
     LLPublishCellTypeShopAddress,    //商店地址
+    LLPublishCellTypeOldPrice,       //商品原价
     LLPublishCellTypeExchangeCount,  //蜂蜜兑换数
     LLPublishCellTypePubDate,        //发布时间
     LLPublishCellTypeVisible,        //可见用户

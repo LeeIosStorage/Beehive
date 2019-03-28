@@ -192,8 +192,8 @@
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     
     NSString *urlPath = [[NSURL URLWithString:URLString] path];
-    if ([urlPath isEqualToString:@"/api/user/SaveUserDetail"]) {
-        manager.requestSerializer = [AFJSONRequestSerializer serializer];
+    if ([urlPath isEqualToString:@"/MyService.asmx/UpdateUserInfo"]) {
+//        manager.requestSerializer = [AFJSONRequestSerializer serializer];
     }
 //    manager.securityPolicy.allowInvalidCertificates = YES;
     [self setHttpHeader:manager needHeaderAuth:needHeaderAuth];
@@ -338,7 +338,8 @@ responseClass:(Class )classType
     
     NSMutableURLRequest *request = [[AFHTTPRequestSerializer serializer] multipartFormRequestWithMethod:@"POST" URLString:requestURLString parameters:parameters constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
         for (NSData *data in fileData) {
-            [formData appendPartWithFileData:data name:formFileName fileName:fileName mimeType:mimeType];
+//            [formData appendPartWithFileData:data name:formFileName fileName:fileName mimeType:mimeType];
+            [formData appendPartWithFormData:data name:formFileName];
         }
     } error:nil];
     //将Token封装入请求头
@@ -358,7 +359,8 @@ responseClass:(Class )classType
         NSString *message = nil;
 //        NSError *parserError = nil;
         NSInteger status = WYRequestTypeFailed;
-//        NSDictionary *jsonValue = [NSJSONSerialization JSONObjectWithData:responseObject options:kNilOptions error:&parserError];
+//        NSString *data = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
+//        NSDictionary *jsonValue = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingAllowFragments error:&parserError];
         LELog(@"\nPOST url = %@\n responseObject=%@",response.URL,responseObject);
         id responseDataObject = nil;
         if (responseObject) {
@@ -449,14 +451,14 @@ responseClass:(Class )classType
     NSMutableString *addString = [NSMutableString string];
     //添加uid
     NSString *uid = [LELoginUserManager userID];
-//    uid = nil;
+    uid = nil;
     if (![urlString containsString:kParamUserInfoUID] && uid && !outUserId) {
         [addString appendFormat:@"%@=%@", kParamUserInfoUID, uid];
     }
     
     //添加token
     NSString *token = [LELoginUserManager authToken];
-//    token = nil;
+    token = nil;
     if (![urlString containsString:kParamUserInfoAuthToken] && token && !outToken) {
         [addString appendFormat:@"&%@=%@", kParamUserInfoAuthToken, token];
     }

@@ -192,6 +192,7 @@
 		8D5F2E5D223698E60049C28F /* LLMapAddressSearchTitleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D5F2E5C223698E60049C28F /* LLMapAddressSearchTitleView.xib */; };
 		8D5F2E602236D2F80049C28F /* LLChooseLocationScopeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D5F2E5F2236D2F80049C28F /* LLChooseLocationScopeView.m */; };
 		8D5F2E622236D3040049C28F /* LLChooseLocationScopeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D5F2E612236D3040049C28F /* LLChooseLocationScopeView.xib */; };
+		8D65E1A7224C88DC000A344D /* NSString+Unwrapped.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D65E1A6224C88DC000A344D /* NSString+Unwrapped.m */; };
 		8D79E4D2222672A20019A1BE /* LLTabBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D79E4D1222672A20019A1BE /* LLTabBarViewController.m */; };
 		8D79E4D5222672CA0019A1BE /* LLNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D79E4D4222672CA0019A1BE /* LLNavigationController.m */; };
 		8D79E4D82226748D0019A1BE /* LLBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D79E4D72226748D0019A1BE /* LLBaseViewController.m */; };
@@ -654,6 +655,8 @@
 		8D5F2E5E2236D2F80049C28F /* LLChooseLocationScopeView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLChooseLocationScopeView.h; sourceTree = "<group>"; };
 		8D5F2E5F2236D2F80049C28F /* LLChooseLocationScopeView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLChooseLocationScopeView.m; sourceTree = "<group>"; };
 		8D5F2E612236D3040049C28F /* LLChooseLocationScopeView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LLChooseLocationScopeView.xib; sourceTree = "<group>"; };
+		8D65E1A5224C88DC000A344D /* NSString+Unwrapped.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSString+Unwrapped.h"; sourceTree = "<group>"; };
+		8D65E1A6224C88DC000A344D /* NSString+Unwrapped.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSString+Unwrapped.m"; sourceTree = "<group>"; };
 		8D79E4D0222672A20019A1BE /* LLTabBarViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLTabBarViewController.h; sourceTree = "<group>"; };
 		8D79E4D1222672A20019A1BE /* LLTabBarViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLTabBarViewController.m; sourceTree = "<group>"; };
 		8D79E4D3222672CA0019A1BE /* LLNavigationController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLNavigationController.h; sourceTree = "<group>"; };
@@ -956,6 +959,7 @@
 		7E2E7007223801F500F185A7 /* Exchange */ = {
 			isa = PBXGroup;
 			children = (
+				8D65E1A4224BE27E000A344D /* Model */,
 				8D01672E2238ED4500CD21D8 /* View */,
 				7E2E70082238020C00F185A7 /* Controller */,
 			);
@@ -1328,6 +1332,8 @@
 				8D542A4C222A5BC2008B90B0 /* UIImage+LEAdd.m */,
 				8D542A49222A5BC2008B90B0 /* UIImage+ProportionalFill.h */,
 				8D542A51222A5BC2008B90B0 /* UIImage+ProportionalFill.m */,
+				8D65E1A5224C88DC000A344D /* NSString+Unwrapped.h */,
+				8D65E1A6224C88DC000A344D /* NSString+Unwrapped.m */,
 				8DE588662227C76F002C1576 /* FontConst.swift */,
 			);
 			path = Utils;
@@ -1512,6 +1518,13 @@
 				8D5F2E612236D3040049C28F /* LLChooseLocationScopeView.xib */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		8D65E1A4224BE27E000A344D /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		8D79E4C822266ECC0019A1BE /* AppDelegate */ = {
@@ -2588,6 +2601,7 @@
 				8D004EE0223B8F3B0029EDE6 /* LLPartnerViewController.m in Sources */,
 				8D3F2149222F65020066F5EB /* LLHandleStatusView.m in Sources */,
 				8DCC9AB9222B810900AC3128 /* LLCollectionView.m in Sources */,
+				8D65E1A7224C88DC000A344D /* NSString+Unwrapped.m in Sources */,
 				8D1A88092248E9C5005DD311 /* LLRedCityNode.m in Sources */,
 				7E561B8E2239518200DA3B20 /* LEAlertMarkView.m in Sources */,
 				8DF28F9B223E61900074A4D8 /* LLNoticeViewController.m in Sources */,

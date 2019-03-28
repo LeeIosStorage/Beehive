@@ -29,6 +29,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     [self setup];
+    [self refreshData];
 }
 
 - (void)setup {
@@ -39,6 +40,33 @@
     self.labNickName.text = [NSString stringWithFormat:@"%@的二维码", [LELoginUserManager nickName]];
     self.labInvitationCode.text = [NSString stringWithFormat:@"邀请码:%@",[LELoginUserManager invitationCode]];
     self.imgQRCode.image = [WYCommonUtils getHDQRImgWithString:[LELoginUserManager invitationCode] size:CGSizeMake(170, 170)];
+}
+
+- (void)refreshData {
+    [SVProgressHUD showCustomWithStatus:@"请求中..."];
+    WEAKSELF
+    NSString *requesUrl = [[WYAPIGenerate sharedInstance] API:@"GetInvitationInfo"];
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    [self.networkManager POST:requesUrl needCache:NO caCheKey:nil parameters:params responseClass:nil needHeaderAuth:NO success:^(WYRequestType requestType, NSString *message, BOOL isCache, id dataObject) {
+        
+        [SVProgressHUD dismiss];
+        if (requestType != WYRequestTypeSuccess) {
+            [SVProgressHUD showCustomErrorWithStatus:message];
+            return ;
+        }
+        if ([dataObject isKindOfClass:[NSArray class]]) {
+            NSArray *data = (NSArray *)dataObject;
+            if (data.count > 0) {
+                NSDictionary *dic = data[0];
+                weakSelf.labInvitationCode.text = [NSString stringWithFormat:@"邀请码:%@",dic[@"InvitationCode"]];
+                [WYCommonUtils setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",[WYAPIGenerate sharedInstance].baseURL, dic[@"QrCodeImg"]]] setImage:weakSelf.imgQRCode setbitmapImage:nil];
+//                weakSelf.imgQRCode.image = [WYCommonUtils getHDQRImgWithString:[LELoginUserManager invitationCode] size:CGSizeMake(170, 170)];
+            }
+        }
+        
+    } failure:^(id responseObject, NSError *error) {
+        [SVProgressHUD showCustomErrorWithStatus:HitoFaiNetwork];
+    }];
 }
 
 - (void)saveImage {

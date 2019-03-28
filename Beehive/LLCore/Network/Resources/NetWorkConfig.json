@@ -55,4 +55,19 @@
         "module"  : "IndexService.asmx",
         "action"  : "GetIndexData"
     },
+    "GetInvitationInfo": {
+        "protocol": "http",
+        "module"  : "MyService.asmx",
+        "action"  : "GetInvitationInfo"
+    },
+    "AddGoodsInfo": {
+        "protocol": "http",
+        "module"  : "MyService.asmx",
+        "action"  : "AddGoodsInfo"
+    },
+    "UpdateUserInfo": {
+        "protocol": "http",
+        "module"  : "MyService.asmx",
+        "action"  : "UpdateUserInfo"
+    },
 }

@@ -17,7 +17,6 @@
 
 @property (nonatomic, weak) IBOutlet UILabel *labTitle;
 @property (nonatomic, weak) IBOutlet UIButton *btn1;
-@property (nonatomic, weak) IBOutlet UIButton *btn2;
 
 @end
 

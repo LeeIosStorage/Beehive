@@ -30,7 +30,7 @@
 }
 
 - (NSString *)headImgUrl{
-    NSString *urlStr = [NSString stringWithFormat:@"%@/%@",[WYAPIGenerate sharedInstance].baseURL, [_headImgUrl stringByReplacingOccurrencesOfString:@"\\" withString:@"/"]];
+    NSString *urlStr = [NSString stringWithFormat:@"%@%@",[WYAPIGenerate sharedInstance].baseURL, [_headImgUrl stringByReplacingOccurrencesOfString:@"\\" withString:@"/"]];
     return urlStr;
 }
 
