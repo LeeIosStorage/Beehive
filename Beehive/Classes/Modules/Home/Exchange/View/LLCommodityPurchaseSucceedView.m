@@ -15,12 +15,6 @@
     self.backgroundColor = [UIColor clearColor];
 }
 
-- (IBAction)backAction:(id)sender {
-    if (self.clickBlock) {
-        self.clickBlock(0);
-    }
-}
-
 - (IBAction)orderAction:(id)sender {
     if (self.clickBlock) {
         self.clickBlock(1);

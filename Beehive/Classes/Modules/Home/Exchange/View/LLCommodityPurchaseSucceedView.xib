@@ -40,27 +40,6 @@
                                 <constraint firstAttribute="width" constant="110" id="j91-KR-26n"/>
                             </constraints>
                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                            <state key="normal" title="返回商家">
-                                <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </state>
-                            <userDefinedRuntimeAttributes>
-                                <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
-                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                    <integer key="value" value="14"/>
-                                </userDefinedRuntimeAttribute>
-                            </userDefinedRuntimeAttributes>
-                            <connections>
-                                <action selector="backAction:" destination="XUJ-3w-2N4" eventType="touchUpInside" id="hZH-jf-UpA"/>
-                            </connections>
-                        </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lfe-lh-afC">
-                            <rect key="frame" x="60" y="198" width="110" height="28"/>
-                            <color key="backgroundColor" red="1" green="0.68627450980000004" blue="0.0078431372550000003" alpha="1" colorSpace="calibratedRGB"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="28" id="8iM-UZ-xiF"/>
-                                <constraint firstAttribute="width" constant="110" id="Gp1-Bq-vQB"/>
-                            </constraints>
-                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
                             <state key="normal" title="查看订单">
                                 <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </state>
@@ -71,7 +50,7 @@
                                 </userDefinedRuntimeAttribute>
                             </userDefinedRuntimeAttributes>
                             <connections>
-                                <action selector="orderAction:" destination="XUJ-3w-2N4" eventType="touchUpInside" id="Te8-t7-ATK"/>
+                                <action selector="orderAction:" destination="XUJ-3w-2N4" eventType="touchUpInside" id="Nes-ho-cmO"/>
                             </connections>
                         </button>
                     </subviews>
@@ -82,10 +61,8 @@
                         <constraint firstItem="30j-1b-6S7" firstAttribute="leading" secondItem="VdE-2L-2OI" secondAttribute="leading" constant="10" id="O9z-b9-Km7"/>
                         <constraint firstItem="zEY-JR-3eT" firstAttribute="centerX" secondItem="VdE-2L-2OI" secondAttribute="centerX" id="P0h-VV-tec"/>
                         <constraint firstItem="30j-1b-6S7" firstAttribute="top" secondItem="zEY-JR-3eT" secondAttribute="bottom" constant="11" id="T1U-ku-mKe"/>
-                        <constraint firstItem="lfe-lh-afC" firstAttribute="centerX" secondItem="DMw-R4-jxL" secondAttribute="centerX" id="bJG-AV-2Hc"/>
                         <constraint firstItem="DMw-R4-jxL" firstAttribute="top" secondItem="30j-1b-6S7" secondAttribute="bottom" constant="25" id="bOO-HJ-Gwc"/>
                         <constraint firstAttribute="trailing" secondItem="30j-1b-6S7" secondAttribute="trailing" constant="10" id="ikc-HK-WGx"/>
-                        <constraint firstItem="lfe-lh-afC" firstAttribute="top" secondItem="DMw-R4-jxL" secondAttribute="bottom" constant="10" id="lnB-W1-lIv"/>
                     </constraints>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>

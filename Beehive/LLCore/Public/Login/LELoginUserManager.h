@@ -73,6 +73,9 @@ typedef void(^LELoginUserInfoBlock)(BOOL isSuccess, NSString *message);
 + (NSInteger)totalGolds;
 + (void)setTotalGolds:(NSInteger)totalGolds;
 
+//蜂巢币：CNY汇率 目前固定
++ (CGFloat)exchangeRate;
+
 /**
  *  用户登录后授权令牌
  *

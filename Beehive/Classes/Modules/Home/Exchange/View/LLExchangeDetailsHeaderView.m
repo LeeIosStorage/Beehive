@@ -72,6 +72,8 @@ SDCycleScrollViewDelegate
     [WYCommonUtils setImageWithURL:[NSURL URLWithString:self.goodsNode.HeadImg] setImage:self.avatarImageView setbitmapImage:nil];
     self.signLabel.text = self.goodsNode.Autograph;
     self.exchangeInfoLabel.text = self.goodsNode.ConvertExplain;
+    self.timeLabel.text = self.goodsNode.ReleaseTime;
+    
     self.images = [NSMutableArray arrayWithArray:self.goodsNode.ImgUrls];
     if (self.images.count > 0) {
         self.gridImageViewConstraintH.constant = 225;
@@ -91,7 +93,7 @@ SDCycleScrollViewDelegate
     self.labBeeCoin.text = [NSString stringWithFormat:@"%@蜂蜜",self.goodsNode.NowPrice];
     self.labExchange.text = [NSString stringWithFormat:@"已兑换%d",self.goodsNode.ConvertCount];
     
-    NSString *oldPrice = [NSString stringWithFormat:@"¥ %@",self.goodsNode.OldPrice];
+    NSString *oldPrice = [NSString stringWithFormat:@"%@蜂蜜",self.goodsNode.OldPrice];
     NSDictionary *attribtDic = @{NSStrikethroughStyleAttributeName: [NSNumber numberWithInteger:NSUnderlineStyleSingle]};
     NSMutableAttributedString *attribtStr = [[NSMutableAttributedString alloc]initWithString:oldPrice attributes:attribtDic];
     self.labPrice.attributedText = attribtStr;

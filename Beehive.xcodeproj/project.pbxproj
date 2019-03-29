@@ -195,6 +195,7 @@
 		8D65E1A7224C88DC000A344D /* NSString+Unwrapped.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D65E1A6224C88DC000A344D /* NSString+Unwrapped.m */; };
 		8D65E1CA224D1224000A344D /* LLBannerNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D65E1C9224D1224000A344D /* LLBannerNode.m */; };
 		8D65E1CD224D124C000A344D /* LLExchangeGoodsNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D65E1CC224D124C000A344D /* LLExchangeGoodsNode.m */; };
+		8D65E1D1224E429C000A344D /* LLWalletDetailsNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D65E1D0224E429C000A344D /* LLWalletDetailsNode.m */; };
 		8D79E4D2222672A20019A1BE /* LLTabBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D79E4D1222672A20019A1BE /* LLTabBarViewController.m */; };
 		8D79E4D5222672CA0019A1BE /* LLNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D79E4D4222672CA0019A1BE /* LLNavigationController.m */; };
 		8D79E4D82226748D0019A1BE /* LLBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D79E4D72226748D0019A1BE /* LLBaseViewController.m */; };
@@ -663,6 +664,8 @@
 		8D65E1C9224D1224000A344D /* LLBannerNode.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLBannerNode.m; sourceTree = "<group>"; };
 		8D65E1CB224D124C000A344D /* LLExchangeGoodsNode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLExchangeGoodsNode.h; sourceTree = "<group>"; };
 		8D65E1CC224D124C000A344D /* LLExchangeGoodsNode.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLExchangeGoodsNode.m; sourceTree = "<group>"; };
+		8D65E1CF224E429C000A344D /* LLWalletDetailsNode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLWalletDetailsNode.h; sourceTree = "<group>"; };
+		8D65E1D0224E429C000A344D /* LLWalletDetailsNode.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLWalletDetailsNode.m; sourceTree = "<group>"; };
 		8D79E4D0222672A20019A1BE /* LLTabBarViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLTabBarViewController.h; sourceTree = "<group>"; };
 		8D79E4D1222672A20019A1BE /* LLTabBarViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLTabBarViewController.m; sourceTree = "<group>"; };
 		8D79E4D3222672CA0019A1BE /* LLNavigationController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLNavigationController.h; sourceTree = "<group>"; };
@@ -1537,6 +1540,15 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		8D65E1CE224E4260000A344D /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				8D65E1CF224E429C000A344D /* LLWalletDetailsNode.h */,
+				8D65E1D0224E429C000A344D /* LLWalletDetailsNode.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		8D79E4C822266ECC0019A1BE /* AppDelegate */ = {
 			isa = PBXGroup;
 			children = (
@@ -1786,6 +1798,7 @@
 		8DBEAE66223D02340095D214 /* Wallet */ = {
 			isa = PBXGroup;
 			children = (
+				8D65E1CE224E4260000A344D /* Model */,
 				8DBEAE68223D02430095D214 /* View */,
 				8DBEAE67223D023E0095D214 /* Controller */,
 			);
@@ -2666,6 +2679,7 @@
 				8D542A7A222A5BC2008B90B0 /* LEBaseModel.m in Sources */,
 				8D5CB6C22232D73300527DEB /* ZJDatePickerView.m in Sources */,
 				8D890B6C2232344500CA711A /* LLPublishInputViewCell.m in Sources */,
+				8D65E1D1224E429C000A344D /* LLWalletDetailsNode.m in Sources */,
 				8DF28F8C223E4A0F0074A4D8 /* LLExchangeOrderViewController.m in Sources */,
 				8D3F2157222FCD8B0066F5EB /* LLFilterDistanceView.m in Sources */,
 				8D542A75222A5BC2008B90B0 /* WYCommonUtils.m in Sources */,

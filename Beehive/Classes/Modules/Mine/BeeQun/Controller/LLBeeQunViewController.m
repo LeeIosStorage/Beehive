@@ -8,6 +8,7 @@
 
 #import "LLBeeQunViewController.h"
 #import "LLBeeQunPersonsViewController.h"
+#import "LLInvitationCodeViewController.h"
 
 @interface LLBeeQunViewController ()
 
@@ -58,7 +59,8 @@
 }
 
 - (IBAction)inviteAction:(id)sender {
-    
+    LLInvitationCodeViewController *vc = [[LLInvitationCodeViewController alloc] init];
+    [self.navigationController pushViewController:vc animated:true];
 }
 
 @end

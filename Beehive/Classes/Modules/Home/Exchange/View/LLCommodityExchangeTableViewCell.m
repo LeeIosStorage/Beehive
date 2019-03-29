@@ -46,7 +46,7 @@
     self.labBeeCoin.text = [NSString stringWithFormat:@"%@蜂蜜",goodsNode.NowPrice];
     self.labExchange.text = [NSString stringWithFormat:@"已兑换%d",goodsNode.ConvertCount];
     
-    NSString *oldPrice = [NSString stringWithFormat:@"¥ %@",goodsNode.OldPrice];
+    NSString *oldPrice = [NSString stringWithFormat:@"%@蜂蜜",goodsNode.OldPrice];
     NSDictionary *attribtDic = @{NSStrikethroughStyleAttributeName: [NSNumber numberWithInteger:NSUnderlineStyleSingle]};
     NSMutableAttributedString *attribtStr = [[NSMutableAttributedString alloc] initWithString:oldPrice attributes:attribtDic];
     self.labPrice.attributedText = attribtStr;

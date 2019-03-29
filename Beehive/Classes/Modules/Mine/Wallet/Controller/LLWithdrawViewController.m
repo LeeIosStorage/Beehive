@@ -10,12 +10,15 @@
 #import "LLFundHandleHeaderView.h"
 #import "LLBeePresentAffirmView.h"
 #import "LEAlertMarkView.h"
+#import "LLWalletDetailsNode.h"
 
 @interface LLWithdrawViewController ()
 
 @property (nonatomic, strong) LLFundHandleHeaderView *fundHandleHeaderView;
 
 @property (nonatomic, weak) IBOutlet UITableView *tableView;
+
+@property (nonatomic, strong) LLWalletDetailsNode *walletDetailsNode;
 
 @end
 
@@ -26,6 +29,11 @@
     // Do any additional setup after loading the view from its nib.
     [self setup];
     [self refreshData];
+    if (self.vcType == LLFundHandleVCTypeWithdraw) {
+        [self getCashWithdrawalExplain];
+    } else if (self.vcType == LLFundHandleVCTypePresent) {
+        [self getGiveExplain];
+    }
 }
 
 - (void)setup {
@@ -58,7 +66,7 @@
 - (void)refreshData {
     
     self.fundHandleHeaderView.vcType = self.vcType;
-    [self.fundHandleHeaderView updateCellWithData:nil];
+    [self.fundHandleHeaderView updateCellWithData:self.walletDetailsNode];
     
     LLFundHandleHeaderView *headView = (LLFundHandleHeaderView *)self.tableView.tableHeaderView;
     [self.tableView layoutIfNeeded];
@@ -84,6 +92,58 @@
     };
     LEAlertMarkView *alert = [[LEAlertMarkView alloc] initWithCustomView:tipView type:LEAlertMarkViewTypeCenter];
     [alert show];
+}
+
+#pragma mark -
+#pragma mark - Request
+- (void)getCashWithdrawalExplain {
+    [SVProgressHUD showCustomWithStatus:@"请求中..."];
+    WEAKSELF
+    NSString *requesUrl = [[WYAPIGenerate sharedInstance] API:@"GetCashWithdrawalExplain"];
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    [self.networkManager POST:requesUrl needCache:YES caCheKey:@"GetCashWithdrawalExplain" parameters:params responseClass:[LLWalletDetailsNode class] needHeaderAuth:NO success:^(WYRequestType requestType, NSString *message, BOOL isCache, id dataObject) {
+        
+        [SVProgressHUD dismiss];
+        if (requestType != WYRequestTypeSuccess) {
+            [SVProgressHUD showCustomErrorWithStatus:message];
+            return ;
+        }
+        if ([dataObject isKindOfClass:[NSArray class]]) {
+            NSArray *data = (NSArray *)dataObject;
+            if (data.count > 0) {
+                self.walletDetailsNode = data[0];
+            }
+        }
+        [weakSelf refreshData];
+        
+    } failure:^(id responseObject, NSError *error) {
+        [SVProgressHUD showCustomErrorWithStatus:HitoFaiNetwork];
+    }];
+}
+
+- (void)getGiveExplain {
+    [SVProgressHUD showCustomWithStatus:@"请求中..."];
+    WEAKSELF
+    NSString *requesUrl = [[WYAPIGenerate sharedInstance] API:@"GetGiveExplain"];
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    [self.networkManager POST:requesUrl needCache:YES caCheKey:@"GetGiveExplain" parameters:params responseClass:[LLWalletDetailsNode class] needHeaderAuth:NO success:^(WYRequestType requestType, NSString *message, BOOL isCache, id dataObject) {
+        
+        [SVProgressHUD dismiss];
+        if (requestType != WYRequestTypeSuccess) {
+            [SVProgressHUD showCustomErrorWithStatus:message];
+            return ;
+        }
+        if ([dataObject isKindOfClass:[NSArray class]]) {
+            NSArray *data = (NSArray *)dataObject;
+            if (data.count > 0) {
+                self.walletDetailsNode = data[0];
+            }
+        }
+        [weakSelf refreshData];
+        
+    } failure:^(id responseObject, NSError *error) {
+        [SVProgressHUD showCustomErrorWithStatus:HitoFaiNetwork];
+    }];
 }
 
 #pragma mark - set

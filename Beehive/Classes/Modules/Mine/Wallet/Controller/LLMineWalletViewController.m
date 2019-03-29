@@ -21,8 +21,10 @@ UITableViewDataSource
 @property (nonatomic, weak) IBOutlet UITableView *tableView;
 
 @property (nonatomic, weak) IBOutlet UIView *headerView;
+@property (nonatomic, weak) IBOutlet UILabel *labMoney;
 
 @property (nonatomic, strong) NSMutableArray *dataLists;
+@property (nonatomic, strong) NSString *userMoney;
 
 @end
 
@@ -32,14 +34,17 @@ UITableViewDataSource
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     [self setup];
+    [self refreshDataRequest];
 }
 
 #pragma mark -
 #pragma mark - Private
 - (void)setup {
     self.title = @"钱包";
-    self.headerView.height = 225;
+    self.headerView.height = 232;
     self.tableView.tableHeaderView = self.headerView;
+    
+    self.userMoney = @"0";
     
     self.dataLists = [NSMutableArray array];
     LLMineNode *node = [[LLMineNode alloc] init];
@@ -61,8 +66,45 @@ UITableViewDataSource
     [self.dataLists addObject:node2];
     
     [self.tableView reloadData];
+    
+    [self refreshHeadViewUI];
 }
 
+- (void)refreshHeadViewUI {
+    NSString *money = [NSString stringWithFormat:@"%@蜂蜜",self.userMoney];
+    self.labMoney.attributedText = [WYCommonUtils stringToColorAndFontAttributeString:money range:NSMakeRange(0, self.userMoney.length) font:[FontConst PingFangSCRegularWithSize:18] color:kAppTitleColor];
+}
+
+#pragma mark -
+#pragma mark - Request
+- (void)refreshDataRequest {
+    [SVProgressHUD showCustomWithStatus:@"请求中..."];
+    WEAKSELF
+    NSString *requesUrl = [[WYAPIGenerate sharedInstance] API:@"GetMyMoneyInfo"];
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    
+    [self.networkManager POST:requesUrl needCache:YES caCheKey:@"GetMyMoneyInfo" parameters:params responseClass:nil needHeaderAuth:NO success:^(WYRequestType requestType, NSString *message, BOOL isCache, id dataObject) {
+        
+        [SVProgressHUD dismiss];
+        if (requestType != WYRequestTypeSuccess) {
+            [SVProgressHUD showCustomErrorWithStatus:message];
+            return ;
+        }
+        if ([dataObject isKindOfClass:[NSArray class]]) {
+            NSArray *data = (NSArray *)dataObject;
+            if (data.count > 0) {
+                NSDictionary *dic = data[0];
+                weakSelf.userMoney = [dic[@"Money"] description];
+            }
+        }
+        [weakSelf refreshHeadViewUI];
+        
+    } failure:^(id responseObject, NSError *error) {
+        [SVProgressHUD showCustomErrorWithStatus:HitoFaiNetwork];
+    }];
+}
+
+#pragma mark - Action
 - (IBAction)withdrawAction:(id)sender {
     LLWithdrawViewController *vc = [[LLWithdrawViewController alloc] init];
     vc.vcType = LLFundHandleVCTypeWithdraw;

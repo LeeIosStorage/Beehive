@@ -12,6 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface LLFundAmountCollectionViewCell : LLCollectionViewCell
 
+@property (nonatomic, weak) IBOutlet UILabel *labBeeCount;
 @property (nonatomic, weak) IBOutlet UILabel *labAmount;
 
 @end

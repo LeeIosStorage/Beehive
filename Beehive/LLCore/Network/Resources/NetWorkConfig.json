@@ -70,6 +70,11 @@
         "module"  : "IndexService.asmx",
         "action"  : "RedEnvelopesCollection"
     },
+    "BuyGoods": {
+        "protocol": "http",
+        "module"  : "IndexService.asmx",
+        "action"  : "BuyGoods"
+    },
     "GetInvitationInfo": {
         "protocol": "http",
         "module"  : "MyService.asmx",
@@ -84,5 +89,20 @@
         "protocol": "http",
         "module"  : "MyService.asmx",
         "action"  : "UpdateUserInfo"
+    },
+    "GetMyMoneyInfo": {
+        "protocol": "http",
+        "module"  : "MyService.asmx",
+        "action"  : "GetMyMoneyInfo"
+    },
+    "GetCashWithdrawalExplain": {
+        "protocol": "http",
+        "module"  : "MyService.asmx",
+        "action"  : "GetCashWithdrawalExplain"
+    },
+    "GetGiveExplain": {
+        "protocol": "http",
+        "module"  : "MyService.asmx",
+        "action"  : "GetGiveExplain"
     },
 }

@@ -19,22 +19,33 @@
                 <rect key="frame" x="0.0" y="0.0" width="65" height="50"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L04-Xf-fXW">
-                        <rect key="frame" x="29.5" y="18" width="6" height="14.5"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1元" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L04-Xf-fXW">
+                        <rect key="frame" x="24.5" y="28" width="16.5" height="13.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                        <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="蜂蜜" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="t9m-aa-s9v">
+                        <rect key="frame" x="3" y="10" width="59" height="16"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
                         <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
             </view>
             <constraints>
+                <constraint firstItem="L04-Xf-fXW" firstAttribute="top" secondItem="t9m-aa-s9v" secondAttribute="bottom" constant="2" id="JEK-iN-XlX"/>
+                <constraint firstAttribute="trailing" secondItem="t9m-aa-s9v" secondAttribute="trailing" constant="3" id="QFG-cQ-Zu2"/>
+                <constraint firstItem="t9m-aa-s9v" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="S68-qy-ai4"/>
+                <constraint firstItem="t9m-aa-s9v" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="3" id="frN-v2-cgN"/>
                 <constraint firstItem="L04-Xf-fXW" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="loh-Qq-KZ6"/>
-                <constraint firstItem="L04-Xf-fXW" firstAttribute="centerY" secondItem="gTV-IL-0wX" secondAttribute="centerY" id="veg-ko-421"/>
+                <constraint firstItem="L04-Xf-fXW" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="centerY" constant="3" id="veg-ko-421"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="SEy-5g-ep8"/>
             <size key="customSize" width="65" height="50"/>
             <connections>
                 <outlet property="labAmount" destination="L04-Xf-fXW" id="wbe-dQ-2Mv"/>
+                <outlet property="labBeeCount" destination="t9m-aa-s9v" id="m76-P0-GI3"/>
             </connections>
             <point key="canvasLocation" x="149.59999999999999" y="126.83658170914543"/>
         </collectionViewCell>

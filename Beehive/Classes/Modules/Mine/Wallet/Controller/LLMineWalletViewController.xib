@@ -13,6 +13,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LLMineWalletViewController">
             <connections>
                 <outlet property="headerView" destination="dqC-HD-uUz" id="wKT-1y-P69"/>
+                <outlet property="labMoney" destination="a3z-Il-6qy" id="yX4-Af-TPw"/>
                 <outlet property="tableView" destination="twV-Ld-tVy" id="IhH-K9-QyF"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -41,7 +42,7 @@
             <viewLayoutGuide key="safeArea" id="Q5M-cg-NOt"/>
         </view>
         <view contentMode="scaleToFill" id="dqC-HD-uUz">
-            <rect key="frame" x="0.0" y="0.0" width="375" height="225"/>
+            <rect key="frame" x="0.0" y="0.0" width="375" height="222"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="5_5_0.1" translatesAutoresizingMaskIntoConstraints="NO" id="4p5-BW-di6">
@@ -51,14 +52,14 @@
                         <constraint firstAttribute="height" constant="75" id="wmX-sU-zkm"/>
                     </constraints>
                 </imageView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="¥ 100.00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a3z-Il-6qy">
-                    <rect key="frame" x="157.5" y="107" width="60.5" height="18"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="--" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a3z-Il-6qy">
+                    <rect key="frame" x="182" y="107" width="11.5" height="14.5"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
                     <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kXl-6U-gVE">
-                    <rect key="frame" x="0.0" y="150" width="375" height="65"/>
+                    <rect key="frame" x="0.0" y="146.5" width="375" height="65"/>
                     <subviews>
                         <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BTC-Ba-NtZ">
                             <rect key="frame" x="0.0" y="0.0" width="375" height="65"/>
@@ -230,7 +231,7 @@
                     <viewLayoutGuide key="safeArea" id="Dbh-Cx-be4"/>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Pc0-g9-Zug">
-                    <rect key="frame" x="0.0" y="215" width="375" height="10"/>
+                    <rect key="frame" x="0.0" y="211.5" width="375" height="10"/>
                     <subviews>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="hbn-P2-l6c">
                             <rect key="frame" x="0.0" y="9.5" width="375" height="0.5"/>
@@ -265,7 +266,7 @@
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="YqU-BN-5UA"/>
-            <point key="canvasLocation" x="-287.19999999999999" y="518.59070464767615"/>
+            <point key="canvasLocation" x="-287.19999999999999" y="516.34182908545733"/>
         </view>
     </objects>
     <resources>

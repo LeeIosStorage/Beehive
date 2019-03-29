@@ -8,6 +8,7 @@
 
 #import "LLFundHandleHeaderView.h"
 #import "LLFundAmountCollectionViewCell.h"
+#import "LLWalletDetailsNode.h"
 
 static NSString *const kLLFundAmountViewCell = @"LLFundAmountCollectionViewCell";
 
@@ -16,6 +17,8 @@ static NSString *const kLLFundAmountViewCell = @"LLFundAmountCollectionViewCell"
 UICollectionViewDelegate,
 UICollectionViewDataSource
 >
+
+@property (nonatomic, strong) LLWalletDetailsNode *walletDetailsNode;
 
 @property (nonatomic, weak) IBOutlet UIView *viewBalance;
 @property (nonatomic, weak) IBOutlet NSLayoutConstraint *viewBalanceConstraintH;
@@ -74,13 +77,25 @@ UICollectionViewDataSource
 }
 
 - (void)updateCellWithData:(id)node {
+    self.walletDetailsNode = (LLWalletDetailsNode *)node;
+    
+    int cny = [self.walletDetailsNode.Money intValue]*[LELoginUserManager exchangeRate];
+    NSString *labBalance = [NSString stringWithFormat:@"%@蜂蜜(%d元)",self.walletDetailsNode.Money, cny];
+    self.labBalance.text = labBalance;
+    
     if (_vcType == LLFundHandleVCTypeWithdraw) {
         self.textFieldConstraintH.constant = 0;
         self.labTipBalance.text = @"钱包余额";
         self.labTipAmount.text = @"提现金额";
         self.labTipExplain.text = @"提现说明";
         [self.btnSubmit setTitle:@"确认提现" forState:UIControlStateNormal];
-        self.labExplain.text = @"1. 提现说明提现说明提现说明提现说明。 \n2.提现说明提现说明提现说明提现说明提现说明提现说明。";
+        
+        NSString *withdrawWayName = @"立即绑定";
+        if (self.walletDetailsNode.NickName.length > 0) {
+            withdrawWayName = self.walletDetailsNode.NickName;
+        }
+        self.labWithdrawWayName.text = withdrawWayName;
+        self.labExplain.text = self.walletDetailsNode.WithdrawalExplain;
     } else if (_vcType == LLFundHandleVCTypeDeposit) {
         self.viewBalanceConstraintH.constant = 0;
         self.viewWithdrawWayConstraintH.constant = 0;
@@ -98,7 +113,7 @@ UICollectionViewDataSource
         self.labTipAmount.text = @"赠送金额";
         self.labTipExplain.text = @"赠送说明";
         [self.btnSubmit setTitle:@"确认赠送" forState:UIControlStateNormal];
-        self.labExplain.text = @"1. 赠送说明。 \n2.赠送说明赠送说明赠送说明赠送说明赠送说明赠送说明赠送说明赠送说明赠送说明赠送说明赠送说明赠送说明赠送说明。";
+        self.labExplain.text = self.walletDetailsNode.Explain;
     }
 }
 
@@ -110,7 +125,7 @@ UICollectionViewDataSource
 
 - (CGSize)calculateGridImageViewSize {
     CGFloat viewWidth = (SCREEN_WIDTH-10*5)/4;
-    return CGSizeMake(viewWidth, 38);
+    return CGSizeMake(viewWidth, 48);
 }
 
 #pragma mark
@@ -129,13 +144,17 @@ UICollectionViewDataSource
     LLFundAmountCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:kLLFundAmountViewCell forIndexPath:indexPath];
     
     cell.layer.borderColor = LineColor.CGColor;
-    cell.labAmount.textColor = kAppTitleColor;
+    cell.labAmount.textColor = kAppSubTitleColor;
+    cell.labBeeCount.textColor = kAppTitleColor;
     if (self.currentAmountId == indexPath.row) {
         cell.layer.borderColor = kAppThemeColor.CGColor;
         cell.labAmount.textColor = kAppThemeColor;
+        cell.labBeeCount.textColor = kAppThemeColor;
     }
     NSString *amount = self.amountArray[indexPath.row];
+    NSString *beeCount = [NSString stringWithFormat:@"%.0f蜂蜜",[amount intValue]/[LELoginUserManager exchangeRate]];
     cell.labAmount.text = [NSString stringWithFormat:@"%@元",amount];
+    cell.labBeeCount.text = beeCount;
     return cell;
 }
 

@@ -174,6 +174,10 @@ NSString *const kUserInfoAuthToken = @"kUserInfoAuthToken";
     [self saveToUserDefaultsObject:[NSNumber numberWithInteger:totalGolds] forKey:kUserInfoTotalGolds];
 }
 
++ (CGFloat)exchangeRate {
+    return 0.01;
+}
+
 + (NSString *)authToken{
     return [self objectFromUserDefaultsKey:kUserInfoAuthToken];
 }

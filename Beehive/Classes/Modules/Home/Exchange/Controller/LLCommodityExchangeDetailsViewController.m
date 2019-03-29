@@ -155,6 +155,33 @@ LEShareSheetViewDelegate
     }];
 }
 
+- (void)buyGoods {
+    WEAKSELF
+    NSString *requesUrl = [[WYAPIGenerate sharedInstance] API:@"BuyGoods"];
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    [params setObject:self.exchangeGoodsNode.Id forKey:@"id"];
+    [self.networkManager POST:requesUrl needCache:NO caCheKey:nil parameters:params responseClass:nil needHeaderAuth:NO success:^(WYRequestType requestType, NSString *message, BOOL isCache, id dataObject) {
+        
+        [SVProgressHUD dismiss];
+        if (requestType != WYRequestTypeSuccess) {
+            [SVProgressHUD showCustomErrorWithStatus:message];
+            return ;
+        }
+        [SVProgressHUD showCustomSuccessWithStatus:message];
+        if ([dataObject isKindOfClass:[NSArray class]]) {
+            NSArray *data = (NSArray *)dataObject;
+            if (data.count > 0) {
+                
+            }
+        }
+        [weakSelf exchangeSucceedView];
+        
+    } failure:^(id responseObject, NSError *error) {
+        [SVProgressHUD showCustomErrorWithStatus:HitoFaiNetwork];
+        [weakSelf exchangeSucceedView];
+    }];
+}
+
 #pragma mark - Action
 - (void)moreAction:(id)sender {
     LEMenuView *menuView = [[LEMenuView alloc] initWithFrame:CGRectMake(SCREEN_WIDTH-90, HitoTopHeight, 80, 67)];
@@ -187,14 +214,14 @@ LEShareSheetViewDelegate
 }
 
 - (void)exchangeAction {
-    [self.commodityExchangeconfirmView updateCellWithData:nil];
+    [self.commodityExchangeconfirmView updateCellWithData:self.exchangeGoodsNode];
     WEAKSELF
     self.commodityExchangeconfirmView.submitBlock = ^{
         if ([weakSelf.commodityExchangeconfirmView.superview isKindOfClass:[LEAlertMarkView class]]) {
             LEAlertMarkView *alert = (LEAlertMarkView *)weakSelf.commodityExchangeconfirmView.superview;
             [alert dismiss];
         }
-        [weakSelf exchangeSucceedView];
+        [weakSelf buyGoods];
     };
     
     LEAlertMarkView *alert = [[LEAlertMarkView alloc] initWithCustomView:self.commodityExchangeconfirmView type:LEAlertMarkViewTypeBottom];
@@ -203,7 +230,7 @@ LEShareSheetViewDelegate
 
 - (void)exchangeSucceedView {
     LLCommodityPurchaseSucceedView *tipView = [[[NSBundle mainBundle] loadNibNamed:@"LLCommodityPurchaseSucceedView" owner:self options:nil] firstObject];
-    tipView.frame = CGRectMake(0, 0, 248, 288);
+    tipView.frame = CGRectMake(0, 0, 230, 240);
     __weak UIView *weakView = tipView;
     WEAKSELF
     tipView.clickBlock = ^(NSInteger index) {
