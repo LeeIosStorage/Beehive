@@ -8,11 +8,14 @@
 
 #import "LLExchangeDetailsHeaderView.h"
 #import <SDCycleScrollView/SDCycleScrollView.h>
+#import "LLExchangeGoodsNode.h"
 
 @interface LLExchangeDetailsHeaderView ()
 <
 SDCycleScrollViewDelegate
 >
+
+@property (nonatomic, strong) LLExchangeGoodsNode *goodsNode;
 
 @property (nonatomic, weak) IBOutlet UIImageView *avatarImageView;
 @property (nonatomic, weak) IBOutlet UIImageView *sexImageView;
@@ -60,17 +63,16 @@ SDCycleScrollViewDelegate
 }
 
 - (IBAction)callTelAction:(id)sender {
-    [WYCommonUtils callTelephone:@"10086"];
+    [WYCommonUtils callTelephone:self.goodsNode.Phone];
 }
 
 - (void)updateCellWithData:(id)node {
-    [WYCommonUtils setImageWithURL:[NSURL URLWithString:kLLAppTestHttpURL] setImage:self.avatarImageView setbitmapImage:nil];
-    self.signLabel.text = @"个性签名吧";
-    self.exchangeInfoLabel.text = @"1哈哈哈哈哈哈哈哈哈哈哈哈哈哈\n2哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈\n3哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈";
-    [self.images removeAllObjects];
-    [self.images addObject:kLLAppTestHttpURL];
-    [self.images addObject:kLLAppTestHttpURL];
-    [self.images addObject:kLLAppTestHttpURL];
+    self.goodsNode = (LLExchangeGoodsNode *)node;
+    
+    [WYCommonUtils setImageWithURL:[NSURL URLWithString:self.goodsNode.HeadImg] setImage:self.avatarImageView setbitmapImage:nil];
+    self.signLabel.text = self.goodsNode.Autograph;
+    self.exchangeInfoLabel.text = self.goodsNode.ConvertExplain;
+    self.images = [NSMutableArray arrayWithArray:self.goodsNode.ImgUrls];
     if (self.images.count > 0) {
         self.gridImageViewConstraintH.constant = 225;
         [self.imagePageView setHidden:false];
@@ -83,14 +85,15 @@ SDCycleScrollViewDelegate
     
     self.imagePageLabel.text = [NSString stringWithFormat:@"%d/%ld",1,self.images.count];
     
-    self.labTitle.text = @"11";
-    self.labRead.text = @"11";
-    self.labAddress.text = @"11";
-    self.labBeeCoin.text = @"11";
-    self.labExchange.text = @"11";
+    self.labTitle.text = self.goodsNode.Name;
+    self.labRead.text = [NSString stringWithFormat:@"浏览%d",self.goodsNode.LookCount];
+    self.labAddress.text = self.goodsNode.Address;
+    self.labBeeCoin.text = [NSString stringWithFormat:@"%@蜂蜜",self.goodsNode.NowPrice];
+    self.labExchange.text = [NSString stringWithFormat:@"已兑换%d",self.goodsNode.ConvertCount];
     
+    NSString *oldPrice = [NSString stringWithFormat:@"¥ %@",self.goodsNode.OldPrice];
     NSDictionary *attribtDic = @{NSStrikethroughStyleAttributeName: [NSNumber numberWithInteger:NSUnderlineStyleSingle]};
-    NSMutableAttributedString *attribtStr = [[NSMutableAttributedString alloc]initWithString:@"¥ 40.00" attributes:attribtDic];
+    NSMutableAttributedString *attribtStr = [[NSMutableAttributedString alloc]initWithString:oldPrice attributes:attribtDic];
     self.labPrice.attributedText = attribtStr;
 }
 

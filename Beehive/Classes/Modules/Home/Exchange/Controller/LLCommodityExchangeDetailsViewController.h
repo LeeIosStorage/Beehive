@@ -7,10 +7,13 @@
 //
 
 #import "LLBaseViewController.h"
+#import "LLExchangeGoodsNode.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface LLCommodityExchangeDetailsViewController : LLBaseViewController
+
+@property (nonatomic, strong) LLExchangeGoodsNode *exchangeGoodsNode;
 
 @end
 

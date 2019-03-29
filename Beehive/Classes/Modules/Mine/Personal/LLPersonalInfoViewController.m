@@ -158,11 +158,8 @@ UITableViewDataSource
         NSString *dataStr = [imageData base64EncodedStringWithOptions:0];
         [imageDatas addObject:[NSString stringWithFormat:@"data:image/jpeg;base64,%@",dataStr]];
     }
-    
-    
     NSData *data = [NSJSONSerialization dataWithJSONObject:imageDatas options:NSJSONWritingPrettyPrinted error:nil];
     NSString *jsonStr = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-    
     [params setObject:jsonStr forKey:@"headImg"];
     
     [params setObject:[self nodeForCellTypeWithType:LLPublishCellTypeBirthdayDate].inputText ? [self nodeForCellTypeWithType:LLPublishCellTypeBirthdayDate].inputText : @"" forKey:@"birthday"];

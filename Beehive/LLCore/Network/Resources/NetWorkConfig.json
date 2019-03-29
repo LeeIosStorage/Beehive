@@ -55,6 +55,21 @@
         "module"  : "IndexService.asmx",
         "action"  : "GetIndexData"
     },
+    "GetGoodsList": {
+        "protocol": "http",
+        "module"  : "IndexService.asmx",
+        "action"  : "GetGoodsList"
+    },
+    "GetGoodsDetail": {
+        "protocol": "http",
+        "module"  : "IndexService.asmx",
+        "action"  : "GetGoodsDetail"
+    },
+    "RedEnvelopesCollection": {
+        "protocol": "http",
+        "module"  : "IndexService.asmx",
+        "action"  : "RedEnvelopesCollection"
+    },
     "GetInvitationInfo": {
         "protocol": "http",
         "module"  : "MyService.asmx",

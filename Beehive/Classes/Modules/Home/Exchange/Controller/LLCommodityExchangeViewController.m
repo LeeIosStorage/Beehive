@@ -14,16 +14,21 @@
 #import <HJTabViewController/HJTabViewControllerPlugin_TabViewBar.h>
 #import <HJTabViewController/HJTabViewControllerPlugin_HeaderScroll.h>
 #import "UIViewController+LLNavigationBar.h"
+#import "LLBannerNode.h"
+#import "LLCommodityExchangeDetailsViewController.h"
 
 @interface LLCommodityExchangeViewController ()
 <
 HJTabViewControllerDelagate,
 HJTabViewControllerDataSource,
-SDCycleScrollViewDelegate
+SDCycleScrollViewDelegate,
+LLExchangeBaseViewControllerDelegate
 >
 @property (nonatomic, strong) UIView *headerView;
 @property (nonatomic, strong) SDCycleScrollView *bannerView;
 @property (nonatomic, strong) LLSegmentedHeadView *segmentedHeadView;
+
+@property (nonatomic, strong) NSMutableArray *bannerList;
 
 @end
 
@@ -43,7 +48,8 @@ SDCycleScrollViewDelegate
     self.tabDataSource = self;
     self.tabDelegate = self;
     
-    self.bannerView.imageURLStringsGroup = @[kLLAppTestHttpURL,kLLAppTestHttpURL,kLLAppTestHttpURL];
+    self.bannerList = [NSMutableArray array];
+    self.bannerView.imageURLStringsGroup = self.bannerList;
     
 //    HJDefaultTabViewBar *tabViewBar = [HJDefaultTabViewBar new];
 //    tabViewBar.normalColor = kAppTitleColor;
@@ -54,11 +60,6 @@ SDCycleScrollViewDelegate
 //    [self enablePlugin:tabViewBarPlugin];
     [self enablePlugin:[HJTabViewControllerPlugin_HeaderScroll new]];
 //    [self reloadData];
-}
-
-#pragma mark - Request
-- (void)refreshExchangeCenterRequest {
-    
 }
 
 #pragma mark - Action
@@ -124,6 +125,7 @@ SDCycleScrollViewDelegate
 - (UIViewController *)tabViewController:(HJTabViewController *)tabViewController viewControllerForIndex:(NSInteger)index {
     LLExchangeBaseViewController *vc = [[LLExchangeBaseViewController alloc] init];
     vc.vcType = index;
+    vc.delegate = self;
     return vc;
 }
 
@@ -143,10 +145,27 @@ SDCycleScrollViewDelegate
 #pragma mark - SDCycleScrollViewDelegate
 - (void)cycleScrollView:(SDCycleScrollView *)cycleScrollView didSelectItemAtIndex:(NSInteger)index {
 //    LELog(@"点击了图片%ld",index);
+    LLBannerNode *bannerNode = self.bannerList[index];
+    LLCommodityExchangeDetailsViewController *vc = [[LLCommodityExchangeDetailsViewController alloc] init];
+    LLExchangeGoodsNode *node = [[LLExchangeGoodsNode alloc] init];
+    node.Id = bannerNode.Id;
+    vc.exchangeGoodsNode = node;
+    [self.navigationController pushViewController:vc animated:true];
 }
 
 - (void)cycleScrollView:(SDCycleScrollView *)cycleScrollView didScrollToIndex:(NSInteger)index {
     //    LELog(@"图片滑动到%ld",index);
+}
+
+#pragma mark - LLExchangeBaseViewControllerDelegate
+- (void)refreshExchangeBanners:(NSArray *)banners {
+    self.bannerList = [NSMutableArray arrayWithArray:banners];
+    
+    NSMutableArray *bannerImages = [NSMutableArray array];
+    for (LLBannerNode *node in self.bannerList) {
+        [bannerImages addObject:node.ImageSrc];
+    }
+    self.bannerView.imageURLStringsGroup = bannerImages;
 }
 
 @end

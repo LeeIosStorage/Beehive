@@ -42,6 +42,7 @@ LEShareSheetViewDelegate
     // Do any additional setup after loading the view from its nib.
     [self setup];
     [self refreshData];
+    [self refreshDataRequest];
 }
 
 - (void)setup {
@@ -77,13 +78,81 @@ LEShareSheetViewDelegate
 
 - (void)refreshData {
     
-    [self.exchangeDetailsHeaderView updateCellWithData:nil];
+    [self.exchangeDetailsHeaderView updateCellWithData:self.exchangeGoodsNode];
     
     LLExchangeDetailsHeaderView *headView = (LLExchangeDetailsHeaderView *)self.tableView.tableHeaderView;
     [self.tableView layoutIfNeeded];
     self.tableView.tableHeaderView = headView;
     
     [self.tableView reloadData];
+    
+    [self refreshStateUI];
+}
+
+- (void)refreshStateUI {
+    self.exchangeDetailsBottomView.collectionButton.selected = self.exchangeGoodsNode.IsCollection;
+}
+
+#pragma mark - Request
+- (void)refreshDataRequest {
+    [SVProgressHUD showCustomWithStatus:@"请求中..."];
+    WEAKSELF
+    NSString *requesUrl = [[WYAPIGenerate sharedInstance] API:@"GetGoodsDetail"];
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    [params setObject:self.exchangeGoodsNode.Id forKey:@"id"];
+    NSString *caCheKey = [NSString stringWithFormat:@"GetGoodsDetail-%@",self.exchangeGoodsNode.Id];
+    [self.networkManager POST:requesUrl needCache:YES caCheKey:caCheKey parameters:params responseClass:[LLExchangeGoodsNode class] needHeaderAuth:NO success:^(WYRequestType requestType, NSString *message, BOOL isCache, id dataObject) {
+        
+        [SVProgressHUD dismiss];
+        if (requestType != WYRequestTypeSuccess) {
+            [SVProgressHUD showCustomErrorWithStatus:message];
+            return ;
+        }
+        
+        if ([dataObject isKindOfClass:[NSArray class]]) {
+            NSArray *data = (NSArray *)dataObject;
+            if (data.count > 0) {
+                weakSelf.exchangeGoodsNode = data[0];
+            }
+        }
+        [weakSelf refreshData];
+        
+    } failure:^(id responseObject, NSError *error) {
+        [SVProgressHUD showCustomErrorWithStatus:HitoFaiNetwork];
+    }];
+}
+
+- (void)collectionRequest {
+    if (self.exchangeGoodsNode.IsCollection) {
+        return;
+    }
+    [SVProgressHUD showCustomWithStatus:@"请求中..."];
+    WEAKSELF
+    NSString *requesUrl = [[WYAPIGenerate sharedInstance] API:@"RedEnvelopesCollection"];
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    [params setObject:self.exchangeGoodsNode.Id forKey:@"id"];
+    //type：类别（0：商品；1：红包；2：便民信息）
+    [params setObject:[NSNumber numberWithInt:0] forKey:@"type"];
+    [self.networkManager POST:requesUrl needCache:NO caCheKey:nil parameters:params responseClass:nil needHeaderAuth:NO success:^(WYRequestType requestType, NSString *message, BOOL isCache, id dataObject) {
+        
+        [SVProgressHUD dismiss];
+        if (requestType != WYRequestTypeSuccess) {
+            [SVProgressHUD showCustomErrorWithStatus:message];
+            return ;
+        }
+        [SVProgressHUD showCustomSuccessWithStatus:message];
+        if ([dataObject isKindOfClass:[NSArray class]]) {
+            NSArray *data = (NSArray *)dataObject;
+            if (data.count > 0) {
+                
+            }
+        }
+        weakSelf.exchangeGoodsNode.IsCollection = true;
+        [weakSelf refreshStateUI];
+        
+    } failure:^(id responseObject, NSError *error) {
+        [SVProgressHUD showCustomErrorWithStatus:HitoFaiNetwork];
+    }];
 }
 
 #pragma mark - Action
@@ -114,7 +183,7 @@ LEShareSheetViewDelegate
 }
 
 - (void)collectAction {
-    
+    [self collectionRequest];
 }
 
 - (void)exchangeAction {

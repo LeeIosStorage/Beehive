@@ -208,7 +208,7 @@
 //    [manager.requestSerializer requestWithMethod:@"POST" URLString:URLString parameters:parameters error:nil];
     
     NSString *requestURLString = [self urlStringAddCommonParamForSourceURLString:URLString outUserId:NO outToken:NO];
-    LELog(@"POST  url   %@",requestURLString);
+    LELog(@"\nPOST URL: %@ \nparameters:%@",requestURLString, parameters);
     YYCache *cache = [YTCache sharedCache].commonCache;
     //缓存处理
     if (needCache && URLString && success) {

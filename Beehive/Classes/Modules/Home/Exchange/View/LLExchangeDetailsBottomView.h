@@ -14,6 +14,8 @@ typedef void(^LLExchangeDetailsBottomViewClickBlock)(NSInteger index);
 
 @interface LLExchangeDetailsBottomView : LLView
 
+@property (nonatomic, weak) IBOutlet UIButton *collectionButton;
+
 @property (nonatomic, strong) LLExchangeDetailsBottomViewClickBlock clickBlock;
 
 @end

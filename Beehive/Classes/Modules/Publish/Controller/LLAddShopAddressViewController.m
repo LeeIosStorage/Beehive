@@ -7,7 +7,6 @@
 //
 
 #import "LLAddShopAddressViewController.h"
-#import "LLPublishCellNode.h"
 #import "LLPublishNormalViewCell.h"
 #import "LLPublishChooseViewCell.h"
 #import "LLMapAddressViewController.h"
@@ -64,8 +63,8 @@ UITableViewDataSource
     LLPublishCellNode *cellNode1 = [self nodeForCellTypeWithType:LLPublishCellTypePhone];
     [newMutArray addObject:[NSMutableArray arrayWithObjects:cellNode, cellNode1, nil]];
     
-    LLPublishCellNode *cellNode2 = [self nodeForCellTypeWithType:LLPublishCellTypeSex];
-    [newMutArray addObject:[NSMutableArray arrayWithObjects:cellNode2, nil]];
+//    LLPublishCellNode *cellNode2 = [self nodeForCellTypeWithType:LLPublishCellTypeSex];
+//    [newMutArray addObject:[NSMutableArray arrayWithObjects:cellNode2, nil]];
     
     LLPublishCellNode *cellNode3 = [self nodeForCellTypeWithType:LLPublishCellTypeShipAddress];
     LLPublishCellNode *cellNode4 = [self nodeForCellTypeWithType:LLPublishCellTypeHouseNumber];
@@ -124,7 +123,14 @@ UITableViewDataSource
 
 #pragma mark - Action
 - (void)saveAction:(id)sender {
-    
+//    NSString *houseNumber
+    self.currentPublishNode.phone = [self nodeForCellTypeWithType:LLPublishCellTypePhone].inputText;
+    self.currentPublishNode.contacts = [self nodeForCellTypeWithType:LLPublishCellTypeContacts].inputText;
+    self.currentPublishNode.houseNumber = [self nodeForCellTypeWithType:LLPublishCellTypeHouseNumber].inputText;
+    if (self.addShopAddressBlock) {
+        self.addShopAddressBlock(self.currentPublishNode);
+    }
+    [self.navigationController popViewControllerAnimated:true];
 }
 
 - (void)chooseShipAddress {

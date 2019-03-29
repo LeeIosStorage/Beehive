@@ -14,7 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (strong, nonatomic) NSString *Id;
 @property (strong, nonatomic) NSString *Title;
-@property (assign, nonatomic) NSInteger RedType;//1：普通红包 2：提问红包 3：任务红包
+@property (assign, nonatomic) NSInteger RedType;//1：普通红包 3：提问红包 2：任务红包
 @property (assign, nonatomic) CGFloat Latitude;
 @property (assign, nonatomic) CGFloat Longitude;
 @property (assign, nonatomic) CGFloat Distance;

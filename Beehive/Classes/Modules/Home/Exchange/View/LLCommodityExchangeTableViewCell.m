@@ -7,6 +7,7 @@
 //
 
 #import "LLCommodityExchangeTableViewCell.h"
+#import "LLExchangeGoodsNode.h"
 
 @interface LLCommodityExchangeTableViewCell ()
 
@@ -34,15 +35,20 @@
 }
 
 - (void)updateCellWithData:(id)node {
-    [WYCommonUtils setImageWithURL:[NSURL URLWithString:kLLAppTestHttpURL] setImage:self.imgIcon setbitmapImage:nil];
-    self.labTitle.text = @"11";
-    self.labRead.text = @"11";
-    self.labAddress.text = @"11";
-    self.labBeeCoin.text = @"11";
-    self.labExchange.text = @"11";
+    LLExchangeGoodsNode *goodsNode = (LLExchangeGoodsNode *)node;
+    if (goodsNode.ImgUrls.count > 0) {
+        NSString *url = goodsNode.ImgUrls[0];
+        [WYCommonUtils setImageWithURL:[NSURL URLWithString:url] setImage:self.imgIcon setbitmapImage:nil];
+    }
+    self.labTitle.text = goodsNode.Name;
+    self.labRead.text = [NSString stringWithFormat:@"浏览%d",goodsNode.LookCount];
+    self.labAddress.text = goodsNode.Address;
+    self.labBeeCoin.text = [NSString stringWithFormat:@"%@蜂蜜",goodsNode.NowPrice];
+    self.labExchange.text = [NSString stringWithFormat:@"已兑换%d",goodsNode.ConvertCount];
     
+    NSString *oldPrice = [NSString stringWithFormat:@"¥ %@",goodsNode.OldPrice];
     NSDictionary *attribtDic = @{NSStrikethroughStyleAttributeName: [NSNumber numberWithInteger:NSUnderlineStyleSingle]};
-    NSMutableAttributedString *attribtStr = [[NSMutableAttributedString alloc]initWithString:@"¥ 40.00" attributes:attribtDic];
+    NSMutableAttributedString *attribtStr = [[NSMutableAttributedString alloc] initWithString:oldPrice attributes:attribtDic];
     self.labPrice.attributedText = attribtStr;
 }
 

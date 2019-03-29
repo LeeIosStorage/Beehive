@@ -125,10 +125,7 @@ UITableViewDataSource
         cellNode1.cellType = LLPublishCellTypeInputTitle;
         [newMutArray addObject:[NSMutableArray arrayWithObject:cellNode1]];
         
-        LLPublishCellNode *cellNode2 = [[LLPublishCellNode alloc] init];
-        cellNode2.title = @"添加照片";
-        cellNode2.placeholder = @"最多9张";
-        cellNode2.cellType = LLPublishCellTypeImage;
+        LLPublishCellNode *cellNode2 = [self nodeForCellTypeWithType:LLPublishCellTypeImage];
         [newMutArray addObject:[NSMutableArray arrayWithObject:cellNode2]];
         
     } else if (self.currentPublishNode.redMold == 1) {
@@ -162,10 +159,7 @@ UITableViewDataSource
             cellNode1.cellType = LLPublishCellTypeInputTitle;
             [newMutArray addObject:[NSMutableArray arrayWithObject:cellNode1]];
             
-            LLPublishCellNode *cellNode2 = [[LLPublishCellNode alloc] init];
-            cellNode2.title = @"添加照片";
-            cellNode2.placeholder = @"最多9张";
-            cellNode2.cellType = LLPublishCellTypeImage;
+            LLPublishCellNode *cellNode2 = [self nodeForCellTypeWithType:LLPublishCellTypeImage];
             [newMutArray addObject:[NSMutableArray arrayWithObject:cellNode2]];
             
         } else if (self.currentPublishNode.taskMold == 1) {
@@ -227,16 +221,10 @@ UITableViewDataSource
     cellNode1.cellType = LLPublishCellTypeInputTitle;
     [newMutArray addObject:[NSMutableArray arrayWithObject:cellNode1]];
     
-    LLPublishCellNode *cellNode2 = [[LLPublishCellNode alloc] init];
-    cellNode2.title = @"添加照片";
-    cellNode2.placeholder = @"最多9张";
-    cellNode2.cellType = LLPublishCellTypeImage;
+    LLPublishCellNode *cellNode2 = [self nodeForCellTypeWithType:LLPublishCellTypeImage];
     [newMutArray addObject:[NSMutableArray arrayWithObject:cellNode2]];
     
-    LLPublishCellNode *cellNode3 = [[LLPublishCellNode alloc] init];
-    cellNode3.title = @"到点地址";
-    cellNode3.placeholder = @"请添加";
-    cellNode3.cellType = LLPublishCellTypeShopAddress;
+    LLPublishCellNode *cellNode3 = [self nodeForCellTypeWithType:LLPublishCellTypeShopAddress];
     [newMutArray addObject:[NSMutableArray arrayWithObject:cellNode3]];
     
     LLPublishCellNode *cellNode40 = [self nodeForCellTypeWithType:LLPublishCellTypeOldPrice];
@@ -291,10 +279,7 @@ UITableViewDataSource
     cellNode1.cellType = LLPublishCellTypeInputTitle;
     [newMutArray addObject:[NSMutableArray arrayWithObject:cellNode1]];
     
-    LLPublishCellNode *cellNode2 = [[LLPublishCellNode alloc] init];
-    cellNode2.title = @"添加照片";
-    cellNode2.placeholder = @"最多9张";
-    cellNode2.cellType = LLPublishCellTypeImage;
+    LLPublishCellNode *cellNode2 = [self nodeForCellTypeWithType:LLPublishCellTypeImage];
     [newMutArray addObject:[NSMutableArray arrayWithObject:cellNode2]];
     
     LLPublishCellNode *cellNode3 = [self nodeForCellTypeWithType:LLPublishCellTypeLocation];
@@ -472,6 +457,21 @@ UITableViewDataSource
                 cellNode.placeholder = @"红包任务介绍...";
             }
             break;
+        case LLPublishCellTypeImage:
+            cellNode.title = @"添加照片";
+            cellNode.placeholder = @"最多9张";
+            break;
+        case LLPublishCellTypeShopAddress:{
+            cellNode.title = @"到点地址";
+            cellNode.placeholder = @"请添加";
+            NSMutableString *addressText = [NSMutableString string];
+            if (self.currentPublishNode.contacts.length > 0) [addressText appendString:self.currentPublishNode.contacts];
+            if (self.currentPublishNode.phone.length > 0) [addressText appendFormat:@" %@",self.currentPublishNode.phone];
+            if (self.currentPublishNode.address.length > 0) [addressText appendFormat:@" %@",self.currentPublishNode.address];
+            if (self.currentPublishNode.houseNumber.length > 0) [addressText appendFormat:@" %@",self.currentPublishNode.houseNumber];
+            cellNode.inputText = addressText;
+        }
+            break;
         default:
             break;
     }
@@ -488,9 +488,14 @@ UITableViewDataSource
     NSString *title = [self nodeForCellTypeWithType:LLPublishCellTypeInputTitle].inputText;
     if (title.length > 0) [params setObject:title forKey:@"title"];
     
-    NSArray *imageDatas = [NSArray arrayWithArray:self.currentPublishNode.uploadImageDatas];
-//    NSString *imgUrl = @"http://fengchaohongbao.tzdja.com/upload/QRCode/20190827100838980.jpg";
-//    if (imgUrl.length > 0) [params setObject:imgUrl forKey:@"imgUrl"];
+    NSMutableArray *imageDatas = [NSMutableArray array];
+    for (NSData *imageData in [self nodeForCellTypeWithType:LLPublishCellTypeImage].uploadImageDatas) {
+        NSString *dataStr = [imageData base64EncodedStringWithOptions:0];
+        [imageDatas addObject:[NSString stringWithFormat:@"data:image/jpeg;base64,%@",dataStr]];
+    }
+    NSData *data = [NSJSONSerialization dataWithJSONObject:imageDatas options:NSJSONWritingPrettyPrinted error:nil];
+    NSString *jsonStr = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+    [params setObject:jsonStr forKey:@"imgUrl"];
     
     NSString *oldPrice = [self nodeForCellTypeWithType:LLPublishCellTypeOldPrice].inputText;
     if (oldPrice.length > 0) [params setObject:oldPrice forKey:@"oldPrice"];
@@ -498,11 +503,18 @@ UITableViewDataSource
     if (nowPrice.length > 0) [params setObject:nowPrice forKey:@"nowPrice"];
     [params setObject:[NSNumber numberWithInteger:self.currentPublishNode.visibleMold] forKey:@"visualUser"];
     
-    [params setObject:@"13803833411" forKey:@"phone"];
-    [params setObject:@"Lee" forKey:@"contacts"];
-    [params setObject:@"杭州凌波苑" forKey:@"address"];
-    [params setObject:@"120.05721" forKey:@"longitude"];
-    [params setObject:@"30.282549" forKey:@"latitude"];
+    if (self.currentPublishNode.phone.length > 0) [params setObject:self.currentPublishNode.phone forKey:@"phone"];
+    if (self.currentPublishNode.contacts.length > 0) [params setObject:self.currentPublishNode.contacts forKey:@"contacts"];
+    if (self.currentPublishNode.address.length > 0) {
+        NSString *address = self.currentPublishNode.address;
+        if (self.currentPublishNode.houseNumber.length > 0) {
+            address = [NSString stringWithFormat:@"%@ %@",self.currentPublishNode.address, self.currentPublishNode.houseNumber];
+        }
+        [params setObject:address forKey:@"address"];
+    }
+    [params setObject:[NSNumber numberWithFloat:self.currentPublishNode.coordinate.longitude] forKey:@"longitude"];
+    [params setObject:[NSNumber numberWithFloat:self.currentPublishNode.coordinate.latitude] forKey:@"latitude"];
+    
     NSString *couponName = [self nodeForCellTypeWithType:LLPublishCellTypeCouponName].inputText;
     if (couponName.length > 0) [params setObject:couponName forKey:@"couponName"];
     NSString *couponExplain = [self nodeForCellTypeWithType:LLPublishCellTypeCouponExplain].inputText;
@@ -510,31 +522,26 @@ UITableViewDataSource
     if (self.currentPublishNode.couponPrice.length > 0) [params setObject:self.currentPublishNode.couponPrice forKey:@"couponPrice"];
     NSString *convertExplain = [self nodeForCellTypeWithType:LLPublishCellTypeIntro].inputText;
     if (convertExplain.length > 0) [params setObject:convertExplain forKey:@"convertExplain"];
-    [params setObject:@"2019-03-30" forKey:@"release"];
-    [params setObject:@"2019-03-30" forKey:@"starTime"];
-    [params setObject:@"2019-03-31" forKey:@"endTime"];
+
+    NSString *releaseTime = @"";
+    if (self.currentPublishNode.date) {
+        releaseTime = [WYCommonUtils dateYearToDayDiscriptionFromDate:self.currentPublishNode.date];
+    }
+    if (releaseTime.length > 0) [params setObject:releaseTime forKey:@"release"];
     
-    [self.networkManager POST:requesUrl formFileName:@"imgUrl" fileName:@"img.jpg" fileData:imageDatas mimeType:@"image/jpeg" parameters:nil responseClass:nil success:^(WYRequestType requestType, NSString *message, BOOL isCache, id dataObject) {
-        
-        [SVProgressHUD dismiss];
-        if (requestType != WYRequestTypeSuccess) {
-            [SVProgressHUD showCustomErrorWithStatus:message];
-            return ;
-        }
-        if ([dataObject isKindOfClass:[NSArray class]]) {
-            NSArray *data = (NSArray *)dataObject;
-            if (data.count > 0) {
-                NSDictionary *dic = data[0];
-            }
-        }
-        
-    } progress:^(NSProgress * _Nonnull uploadProgress) {
-        
-    } failure:^(id responseObject, NSError *error) {
-        [SVProgressHUD showCustomErrorWithStatus:HitoFaiNetwork];
-    }];
+    NSString *starTime = @"";
+    if (self.currentPublishNode.couponBeginDate) {
+        starTime = [WYCommonUtils dateYearToDayDiscriptionFromDate:self.currentPublishNode.couponBeginDate];
+    }
+    if (starTime.length > 0) [params setObject:starTime forKey:@"starTime"];
     
-    return;
+    NSString *endTime = @"";
+    if (self.currentPublishNode.couponEndDate) {
+        endTime = [WYCommonUtils dateYearToDayDiscriptionFromDate:self.currentPublishNode.couponEndDate];
+    }
+    if (endTime.length > 0) [params setObject:endTime forKey:@"endTime"];
+    
+    
     [self.networkManager POST:requesUrl needCache:NO caCheKey:nil parameters:params responseClass:nil needHeaderAuth:NO success:^(WYRequestType requestType, NSString *message, BOOL isCache, id dataObject) {
         
         [SVProgressHUD dismiss];
@@ -542,12 +549,16 @@ UITableViewDataSource
             [SVProgressHUD showCustomErrorWithStatus:message];
             return ;
         }
-        if ([dataObject isKindOfClass:[NSArray class]]) {
-            NSArray *data = (NSArray *)dataObject;
-            if (data.count > 0) {
-                NSDictionary *dic = data[0];
-            }
-        }
+        [SVProgressHUD showCustomSuccessWithStatus:message];
+//        if ([dataObject isKindOfClass:[NSArray class]]) {
+//            NSArray *data = (NSArray *)dataObject;
+//            if (data.count > 0) {
+//                NSDictionary *dic = data[0];
+//            }
+//        }
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [weakSelf.navigationController popViewControllerAnimated:true];
+        });
         
     } failure:^(id responseObject, NSError *error) {
         [SVProgressHUD showCustomErrorWithStatus:HitoFaiNetwork];
@@ -747,6 +758,15 @@ UITableViewDataSource
 - (void)chooseShopAddress {
     LLAddShopAddressViewController *vc = [[LLAddShopAddressViewController alloc] init];
     [self.navigationController pushViewController:vc animated:true];
+    WEAKSELF
+    vc.addShopAddressBlock = ^(LLPublishCellNode * _Nonnull shopAddressNode) {
+        weakSelf.currentPublishNode.phone = shopAddressNode.phone;
+        weakSelf.currentPublishNode.address = shopAddressNode.address;
+        weakSelf.currentPublishNode.contacts = shopAddressNode.contacts;
+        weakSelf.currentPublishNode.houseNumber = shopAddressNode.houseNumber;
+        weakSelf.currentPublishNode.coordinate = shopAddressNode.coordinate;
+        [weakSelf refreshDataSource];
+    };
 }
 
 #pragma mark -

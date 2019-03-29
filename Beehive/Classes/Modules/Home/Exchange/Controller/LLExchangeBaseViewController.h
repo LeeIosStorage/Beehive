@@ -10,7 +10,15 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+@protocol LLExchangeBaseViewControllerDelegate <NSObject>
+
+- (void)refreshExchangeBanners:(NSArray *)banners;
+
+@end
+
 @interface LLExchangeBaseViewController : LLBaseViewController
+
+@property (nonatomic, weak) id <LLExchangeBaseViewControllerDelegate> delegate;
 
 @property (nonatomic, assign) NSInteger vcType;
 

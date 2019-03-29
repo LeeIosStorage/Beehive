@@ -93,6 +93,9 @@ typedef NS_ENUM(NSInteger, LLPublishInputType) {
 
 @property (nonatomic, assign) CLLocationCoordinate2D coordinate;//经纬度
 @property (nonatomic, strong) NSString *address;//地址
+@property (nonatomic, strong) NSString *houseNumber;
+@property (nonatomic, strong) NSString *phone;//手机号
+@property (nonatomic, strong) NSString *contacts;//联系人
 
 @end
 

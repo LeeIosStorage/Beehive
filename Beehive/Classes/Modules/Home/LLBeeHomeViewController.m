@@ -604,11 +604,11 @@ GYRollingNoticeViewDataSource
     NSString *type = view.annotation.subtitle;
     if ([type isEqualToString:@"3"]) {
         LLRedpacketDetailsViewController *vc = [[LLRedpacketDetailsViewController alloc] init];
-        vc.vcType = 1;
+        vc.vcType = 0;
         [self.navigationController pushViewController:vc animated:true];
     } else if ([type isEqualToString:@"2"]) {
         LLRedpacketDetailsViewController *vc = [[LLRedpacketDetailsViewController alloc] init];
-        vc.vcType = 0;
+        vc.vcType = 1;
         [self.navigationController pushViewController:vc animated:true];
     } else if ([type isEqualToString:@"1"]) {
         

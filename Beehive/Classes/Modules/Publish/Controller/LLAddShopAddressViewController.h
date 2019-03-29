@@ -7,10 +7,15 @@
 //
 
 #import "LLBaseViewController.h"
+#import "LLPublishCellNode.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
+typedef void(^LLAddShopAddressViewControllerBlock)(LLPublishCellNode * shopAddressNode);
+
 @interface LLAddShopAddressViewController : LLBaseViewController
+
+@property (nonatomic, strong) LLAddShopAddressViewControllerBlock addShopAddressBlock;
 
 @end
 

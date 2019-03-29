@@ -41,9 +41,10 @@
                         <constraint firstAttribute="width" constant="70" id="0FA-wi-bsX"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="11"/>
-                    <state key="normal" title=" 收藏" image="1_2_2.6">
+                    <state key="normal" title=" 收藏" image="message_shoucang_n">
                         <color key="titleColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                     </state>
+                    <state key="selected" image="message_shoucang_s"/>
                     <connections>
                         <action selector="collectAction:" destination="3a1-6C-WgG" eventType="touchUpInside" id="fzS-KG-adq"/>
                     </connections>
@@ -78,11 +79,15 @@
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="pbI-6V-wvn"/>
+            <connections>
+                <outlet property="collectionButton" destination="dFj-ei-ZEA" id="imo-ih-don"/>
+            </connections>
             <point key="canvasLocation" x="138.40000000000001" y="31.03448275862069"/>
         </view>
     </objects>
     <resources>
         <image name="1_2_2.5" width="15" height="15"/>
-        <image name="1_2_2.6" width="15" height="15"/>
+        <image name="message_shoucang_n" width="16" height="16"/>
+        <image name="message_shoucang_s" width="16" height="16"/>
     </resources>
 </document>
