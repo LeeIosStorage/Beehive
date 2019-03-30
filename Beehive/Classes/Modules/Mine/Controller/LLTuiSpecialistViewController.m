@@ -65,10 +65,39 @@
     [self.tableView reloadData];
 }
 
+#pragma mark - Reqeust
+- (void)applyPromotionReqeust {
+    [SVProgressHUD showCustomWithStatus:@"请求中..."];
+    WEAKSELF
+    NSString *requesUrl = [[WYAPIGenerate sharedInstance] API:@"ApplyPromotion"];
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    [self.networkManager POST:requesUrl needCache:NO caCheKey:nil parameters:params responseClass:nil needHeaderAuth:NO success:^(WYRequestType requestType, NSString *message, BOOL isCache, id dataObject) {
+        
+        [SVProgressHUD dismiss];
+        if (requestType != WYRequestTypeSuccess) {
+            [SVProgressHUD showCustomErrorWithStatus:message];
+            return ;
+        }
+        [SVProgressHUD showCustomSuccessWithStatus:message];
+        if ([dataObject isKindOfClass:[NSArray class]]) {
+            NSArray *data = (NSArray *)dataObject;
+            if (data.count > 0) {
+                
+            }
+        }
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [weakSelf.navigationController popViewControllerAnimated:true];
+        });
+        
+    } failure:^(id responseObject, NSError *error) {
+        [SVProgressHUD showCustomErrorWithStatus:HitoFaiNetwork];
+    }];
+}
+
 - (IBAction)submitAction:(id)sender {
-    
-    self.labReject.text = @"申请被绝  拒绝原因：原因是";
-    self.rejectView.hidden = false;
+    [self applyPromotionReqeust];
+//    self.labReject.text = @"申请被绝  拒绝原因：原因是";
+//    self.rejectView.hidden = false;
 }
 
 @end

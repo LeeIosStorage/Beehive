@@ -322,6 +322,9 @@
 		8DF28FB5223E95B00074A4D8 /* LLVerifyIdentityViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8DF28FB3223E95B00074A4D8 /* LLVerifyIdentityViewController.xib */; };
 		8DF28FB9223E95DF0074A4D8 /* LLSetPayPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DF28FB7223E95DF0074A4D8 /* LLSetPayPasswordViewController.m */; };
 		8DF28FBA223E95DF0074A4D8 /* LLSetPayPasswordViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8DF28FB8223E95DF0074A4D8 /* LLSetPayPasswordViewController.xib */; };
+		8DF8EEED224E71CC00EF89FE /* LLExchangeOrderNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DF8EEEC224E71CC00EF89FE /* LLExchangeOrderNode.m */; };
+		8DF8EEF0224E897400EF89FE /* WYPayManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DF8EEEE224E897400EF89FE /* WYPayManager.m */; };
+		8DF8EF55224F08E400EF89FE /* WYWeakArray.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DF8EF53224F08E400EF89FE /* WYWeakArray.m */; };
 		A78A3C5E8FBF200497ED12F0 /* Pods_BeehiveTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A98A37B880E16C6C709CB88A /* Pods_BeehiveTests.framework */; };
 		BE3EF924D54032F1DFDF5383 /* Pods_BeehiveUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0DB97A8E569F793FB5ABD125 /* Pods_BeehiveUITests.framework */; };
 		E0E531C080DEB8E8705299CF /* Pods_Beehive.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA9C64AC55444CFD230537D9 /* Pods_Beehive.framework */; };
@@ -868,6 +871,12 @@
 		8DF28FB6223E95DF0074A4D8 /* LLSetPayPasswordViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLSetPayPasswordViewController.h; sourceTree = "<group>"; };
 		8DF28FB7223E95DF0074A4D8 /* LLSetPayPasswordViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLSetPayPasswordViewController.m; sourceTree = "<group>"; };
 		8DF28FB8223E95DF0074A4D8 /* LLSetPayPasswordViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LLSetPayPasswordViewController.xib; sourceTree = "<group>"; };
+		8DF8EEEB224E71CC00EF89FE /* LLExchangeOrderNode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLExchangeOrderNode.h; sourceTree = "<group>"; };
+		8DF8EEEC224E71CC00EF89FE /* LLExchangeOrderNode.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLExchangeOrderNode.m; sourceTree = "<group>"; };
+		8DF8EEEE224E897400EF89FE /* WYPayManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYPayManager.m; sourceTree = "<group>"; };
+		8DF8EEEF224E897400EF89FE /* WYPayManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYPayManager.h; sourceTree = "<group>"; };
+		8DF8EF53224F08E400EF89FE /* WYWeakArray.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYWeakArray.m; sourceTree = "<group>"; };
+		8DF8EF54224F08E400EF89FE /* WYWeakArray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYWeakArray.h; sourceTree = "<group>"; };
 		A64954C5C3CAB5F3221F123D /* Pods-BeehiveTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BeehiveTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BeehiveTests/Pods-BeehiveTests.debug.xcconfig"; sourceTree = "<group>"; };
 		A98A37B880E16C6C709CB88A /* Pods_BeehiveTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BeehiveTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BA9C64AC55444CFD230537D9 /* Pods_Beehive.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Beehive.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1343,6 +1352,8 @@
 				8D542A51222A5BC2008B90B0 /* UIImage+ProportionalFill.m */,
 				8D65E1A5224C88DC000A344D /* NSString+Unwrapped.h */,
 				8D65E1A6224C88DC000A344D /* NSString+Unwrapped.m */,
+				8DF8EF54224F08E400EF89FE /* WYWeakArray.h */,
+				8DF8EF53224F08E400EF89FE /* WYWeakArray.m */,
 				8DE588662227C76F002C1576 /* FontConst.swift */,
 			);
 			path = Utils;
@@ -1362,6 +1373,8 @@
 			children = (
 				8D542A5A222A5BC2008B90B0 /* WYShareManager.h */,
 				8D542A56222A5BC2008B90B0 /* WYShareManager.m */,
+				8DF8EEEF224E897400EF89FE /* WYPayManager.h */,
+				8DF8EEEE224E897400EF89FE /* WYPayManager.m */,
 				8D542A57222A5BC2008B90B0 /* LEDataStoreManager.h */,
 				8D542A5B222A5BC2008B90B0 /* LEDataStoreManager.m */,
 				8D542A5D222A5BC2008B90B0 /* LELoginAuthManager.h */,
@@ -1536,6 +1549,8 @@
 				8D65E1C9224D1224000A344D /* LLBannerNode.m */,
 				8D65E1CB224D124C000A344D /* LLExchangeGoodsNode.h */,
 				8D65E1CC224D124C000A344D /* LLExchangeGoodsNode.m */,
+				8DF8EEEB224E71CC00EF89FE /* LLExchangeOrderNode.h */,
+				8DF8EEEC224E71CC00EF89FE /* LLExchangeOrderNode.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -2415,6 +2430,7 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-Beehive/Pods-Beehive-resources.sh",
 				"${PODS_ROOT}/AMap3DMap/MAMapKit.framework/AMap.bundle",
+				"${PODS_ROOT}/AlipaySDK-iOS/AlipaySDK.bundle",
 				"${PODS_ROOT}/UMengUShare/UShareSDK/UMSocialSDK/UMSocialSDKPromptResources.bundle",
 				"${PODS_ROOT}/UMengUShare/UShareSDK/SocialLibraries/QQ/QQSDK/TencentOpenApi_IOS_Bundle.bundle",
 				"${PODS_ROOT}/UMengUShare/UShareSDK/SocialLibraries/Sina/SinaSDK/WeiboSDK.bundle",
@@ -2424,6 +2440,7 @@
 			);
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/AMap.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/AlipaySDK.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/UMSocialSDKPromptResources.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/TencentOpenApi_IOS_Bundle.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/WeiboSDK.bundle",
@@ -2529,6 +2546,7 @@
 				8D004EC8223B71650029EDE6 /* LLRedrReceiveDetailsHeaderView.m in Sources */,
 				8D3F2153222FCB050066F5EB /* LLMessageDetailsViewController.m in Sources */,
 				8DF0C273223A25D4006175E7 /* LLRedTaskViewController.m in Sources */,
+				8DF8EEED224E71CC00EF89FE /* LLExchangeOrderNode.m in Sources */,
 				8D542A6D222A5BC2008B90B0 /* LEShareSheetView.m in Sources */,
 				8D5CB6E022352F3900527DEB /* LLTradeMoldNode.m in Sources */,
 				8DD290E52229450D00E4338D /* UINavigationBar+LLFixSpace.m in Sources */,
@@ -2555,6 +2573,7 @@
 				8D542A6E222A5BC2008B90B0 /* LERefreshHeader.m in Sources */,
 				7E561B7E22392FAC00DA3B20 /* LLExchangeDetailsHeaderView.m in Sources */,
 				7E561BA0223FD68800DA3B20 /* LLBeeAffirmBidView.m in Sources */,
+				8DF8EEF0224E897400EF89FE /* WYPayManager.m in Sources */,
 				8DCC9AC9222BF81A00AC3128 /* LLCityOptionCollectionViewCell.m in Sources */,
 				8D58D4BB2226355900803985 /* ViewController.m in Sources */,
 				8D0167222238DEC100CD21D8 /* LLReceiveFavourViewController.m in Sources */,
@@ -2626,6 +2645,7 @@
 				8D3F2149222F65020066F5EB /* LLHandleStatusView.m in Sources */,
 				8DCC9AB9222B810900AC3128 /* LLCollectionView.m in Sources */,
 				8D65E1A7224C88DC000A344D /* NSString+Unwrapped.m in Sources */,
+				8DF8EF55224F08E400EF89FE /* WYWeakArray.m in Sources */,
 				8D1A88092248E9C5005DD311 /* LLRedCityNode.m in Sources */,
 				7E561B8E2239518200DA3B20 /* LEAlertMarkView.m in Sources */,
 				8DF28F9B223E61900074A4D8 /* LLNoticeViewController.m in Sources */,
@@ -2877,12 +2897,26 @@
 				DEVELOPMENT_TEAM = GZ42KLGZ8K;
 				EMBED_ASSET_PACKS_IN_PRODUCT_BUNDLE = NO;
 				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Beehive/LLCore/Public/External/AlipaySDK",
+				);
 				GCC_PREFIX_HEADER = Beehive/PrefixHeader.pch;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"${PODS_ROOT}/Headers/Public\"",
+					"$(SRCROOT)/Beehive",
+					"\"${PODS_ROOT}/Headers/Public/UMengUShare\"",
+				);
 				INFOPLIST_FILE = Beehive/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Beehive/LLCore/Public/External/AlipaySDK",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.saas.Beehive;
 				PRODUCT_MODULE_NAME = Beehive;
@@ -2905,12 +2939,26 @@
 				DEVELOPMENT_TEAM = GZ42KLGZ8K;
 				EMBED_ASSET_PACKS_IN_PRODUCT_BUNDLE = NO;
 				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Beehive/LLCore/Public/External/AlipaySDK",
+				);
 				GCC_PREFIX_HEADER = Beehive/PrefixHeader.pch;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"${PODS_ROOT}/Headers/Public\"",
+					"$(SRCROOT)/Beehive",
+					"\"${PODS_ROOT}/Headers/Public/UMengUShare\"",
+				);
 				INFOPLIST_FILE = Beehive/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Beehive/LLCore/Public/External/AlipaySDK",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.saas.Beehive;
 				PRODUCT_MODULE_NAME = Beehive;

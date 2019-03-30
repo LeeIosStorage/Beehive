@@ -50,6 +50,8 @@ typedef enum : NSUInteger {
 #pragma mark - 富文本
 //颜色 字体
 +(NSMutableAttributedString *)stringToColorAndFontAttributeString:(NSString *)text range:(NSRange)range font:(UIFont *)font color:(UIColor *)color;
+//HTML标签解析
++(NSMutableAttributedString *)HTMLStringToColorAndFontAttributeString:(NSString *)HTMLString font:(UIFont *)font color:(UIColor *)color;
 
 #pragma mark -
 #pragma mark - Time

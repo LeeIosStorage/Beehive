@@ -69,6 +69,24 @@
     return attStr;
 }
 
++(NSMutableAttributedString *)HTMLStringToColorAndFontAttributeString:(NSString *)HTMLString font:(UIFont *)font color:(UIColor *)color{
+    
+    NSDictionary *options = @{NSDocumentTypeDocumentAttribute : NSHTMLTextDocumentType, NSCharacterEncodingDocumentAttribute : @(NSUTF8StringEncoding)};
+    NSData *data = [HTMLString dataUsingEncoding:NSUTF8StringEncoding];
+    NSMutableAttributedString *mutAttributedString = [[NSMutableAttributedString alloc] initWithData:data options:options documentAttributes:nil error:nil];
+    //        NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
+    //        paragraphStyle.lineSpacing = 1.0;
+    //        paragraphStyle.alignment = NSTextAlignmentJustified;
+    //        [mutAttributedString addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0, mutAttributedString.length)];
+    [mutAttributedString addAttribute:NSFontAttributeName
+                                value:[FontConst PingFangSCRegularWithSize:13]
+                                range:NSMakeRange(0, mutAttributedString.length)];
+    [mutAttributedString addAttribute:NSForegroundColorAttributeName
+                                value:kAppTitleColor
+                                range:NSMakeRange(0, mutAttributedString.length)];
+    return mutAttributedString;
+}
+
 #pragma mark -
 #pragma mark - Time
 static NSDateFormatter *s_dateFormatterOFUS = nil;

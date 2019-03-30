@@ -14,6 +14,7 @@ PODS:
   - AFNetworking/Serialization (3.2.1)
   - AFNetworking/UIKit (3.2.1):
     - AFNetworking/NSURLSession
+  - AlipaySDK-iOS (15.5.9)
   - AMap3DMap (6.7.0):
     - AMapFoundation (~> 1.5)
   - AMapFoundation (1.5.6)
@@ -21,7 +22,7 @@ PODS:
     - AMapFoundation (~> 1.4)
   - AMapSearch (6.6.0):
     - AMapFoundation (~> 1.4)
-  - CocoaDebug (0.5.9)
+  - CocoaDebug (0.6.0)
   - CYLTabBarController (1.17.23)
   - HJTabViewController (1.0.7)
   - HXPhotoPicker (2.1.9):
@@ -53,15 +54,14 @@ PODS:
   - UMengUShare/Social/Sina (6.4.8.2):
     - UMengUShare/Core
     - UMengUShare/Social/ReducedSina
-  - UMengUShare/Social/WeChat (6.4.8.2):
-    - UMengUShare/Core
-    - UMengUShare/Social/ReducedWeChat
+  - WechatOpenSDK (1.8.4)
   - YYKit (1.0.9):
     - YYKit/no-arc (= 1.0.9)
   - YYKit/no-arc (1.0.9)
 
 DEPENDENCIES:
   - AFNetworking (~> 3.2.0)
+  - AlipaySDK-iOS
   - AMap3DMap
   - AMapLocation
   - AMapSearch
@@ -79,13 +79,15 @@ DEPENDENCIES:
   - SDWebImage (~> 4.4.0)
   - SVProgressHUD (~> 2.2.5)
   - UMengUShare/Social/QQ
+  - UMengUShare/Social/ReducedWeChat
   - UMengUShare/Social/Sina
-  - UMengUShare/Social/WeChat
+  - WechatOpenSDK
   - YYKit (~> 1.0.6)
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - AFNetworking
+    - AlipaySDK-iOS
     - AMap3DMap
     - AMapFoundation
     - AMapLocation
@@ -104,15 +106,17 @@ SPEC REPOS:
     - SDWebImage
     - SVProgressHUD
     - UMengUShare
+    - WechatOpenSDK
     - YYKit
 
 SPEC CHECKSUMS:
   AFNetworking: b6f891fdfaed196b46c7a83cf209e09697b94057
+  AlipaySDK-iOS: 1c5283b30977a24acecc0114662697f7dc78f618
   AMap3DMap: 7bb992e6bfb99e34e6c7a368958dde9d743a23f1
   AMapFoundation: 20fce2a12cd152e1092afdd04379cdac21932185
   AMapLocation: cf024b53dc03663efb4ea4bcce27d4cce58bb97a
   AMapSearch: def5983c8ca1a6d7430970046dc814f6e337621d
-  CocoaDebug: a9340ab62aff3d42937fe789f810552a14751d52
+  CocoaDebug: 32e6e78409d461b5a88f95e2f677be6ad158084c
   CYLTabBarController: 73889c1ccc7685221d85ac2dbf188900543f17d0
   HJTabViewController: 85aaeb7aef5d96f617ff7500f5002d8e288bedf5
   HXPhotoPicker: abe7b21f5439eea491ca5d21903b7dc384ae9f06
@@ -126,8 +130,9 @@ SPEC CHECKSUMS:
   SDWebImage: 3f3f0c02f09798048c47a5ed0a13f17b063572d8
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
   UMengUShare: 370d180101e13ee0227ae657ab119ba97243d2b3
+  WechatOpenSDK: 9b721089507c895d05f997408c30bb6e6f5f9b60
   YYKit: 7cda43304a8dc3696c449041e2cb3107b4e236e7
 
-PODFILE CHECKSUM: 2966dde088b96b782eb7fe9a4a5fd401925c978e
+PODFILE CHECKSUM: ae42ffc2dc7364b21828dc2716f6303c00df7932
 
 COCOAPODS: 1.5.3

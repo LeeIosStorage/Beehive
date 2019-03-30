@@ -13,7 +13,9 @@ def shared_pods
     pod 'YYKit', '~> 1.0.6'
     pod 'SDWebImage', '~> 4.4.0'
     pod 'JSONModel', '~> 1.7.0'
-    pod 'UMengUShare/Social/WeChat'
+    
+    pod 'WechatOpenSDK'
+    pod 'UMengUShare/Social/ReducedWeChat'
     pod 'UMengUShare/Social/QQ'
     pod 'UMengUShare/Social/Sina'
     pod 'MJRefresh', '~> 3.1.15.3'
@@ -29,6 +31,7 @@ def shared_pods
     pod 'HXPhotoPicker', '~> 2.1.9' #图片选择器
     pod 'HJTabViewController', '~> 1.0'
     pod 'CocoaDebug', :configurations => ['Debug']
+    pod 'AlipaySDK-iOS'
 end
 
 target 'Beehive' do

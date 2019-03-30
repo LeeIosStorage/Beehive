@@ -95,7 +95,7 @@ UICollectionViewDataSource
             withdrawWayName = self.walletDetailsNode.NickName;
         }
         self.labWithdrawWayName.text = withdrawWayName;
-        self.labExplain.text = self.walletDetailsNode.WithdrawalExplain;
+        self.labExplain.attributedText = [WYCommonUtils HTMLStringToColorAndFontAttributeString:self.walletDetailsNode.WithdrawalExplain font:[FontConst PingFangSCRegularWithSize:13] color:kAppTitleColor];
     } else if (_vcType == LLFundHandleVCTypeDeposit) {
         self.viewBalanceConstraintH.constant = 0;
         self.viewWithdrawWayConstraintH.constant = 0;
@@ -113,7 +113,7 @@ UICollectionViewDataSource
         self.labTipAmount.text = @"赠送金额";
         self.labTipExplain.text = @"赠送说明";
         [self.btnSubmit setTitle:@"确认赠送" forState:UIControlStateNormal];
-        self.labExplain.text = self.walletDetailsNode.Explain;
+        self.labExplain.attributedText = [WYCommonUtils HTMLStringToColorAndFontAttributeString:self.walletDetailsNode.Explain font:[FontConst PingFangSCRegularWithSize:13] color:kAppTitleColor];
     }
 }
 

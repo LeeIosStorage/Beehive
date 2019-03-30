@@ -29,14 +29,22 @@ UITableViewDataSource
 
 - (void)setup {
     [super setup];
-    
+}
+
+- (void)setWayType:(LLPaymentWayType *)wayType {
+    _wayType = wayType;
+}
+
+- (void)refreshPaymentWay {
     self.paymentWayLists = [NSMutableArray array];
-    LLPaymentWayNode *node = [[LLPaymentWayNode alloc] init];
-    node.type = 0;
-    node.name = @"钱包支付";
-    node.des = @"可用余额0元";
-    node.icon = @"1_7_4.1";
-    [self.paymentWayLists addObject:node];
+    if (_wayType == LLPaymentWayTypeNormal) {
+        LLPaymentWayNode *node = [[LLPaymentWayNode alloc] init];
+        node.type = 0;
+        node.name = @"钱包支付";
+        node.des = @"可用余额0元";
+        node.icon = @"1_7_4.1";
+        [self.paymentWayLists addObject:node];
+    }
     
     LLPaymentWayNode *node1 = [[LLPaymentWayNode alloc] init];
     node1.type = 1;
@@ -56,7 +64,20 @@ UITableViewDataSource
 }
 
 - (void)updateCellWithData:(id)node {
-    [self.paymentButton setTitle:@"支付213.8元" forState:UIControlStateNormal];
+    
+    [self refreshPaymentWay];
+    if (self.wayType == LLPaymentWayTypeNormal) {
+        [self.paymentButton setTitle:@"支付213.8元" forState:UIControlStateNormal];
+    } else if (self.wayType == LLPaymentWayTypeVIP) {
+        CAGradientLayer *gradientLayer =  [CAGradientLayer layer];
+        gradientLayer.frame = CGRectMake(0, 0, SCREEN_WIDTH, 44);
+        gradientLayer.startPoint = CGPointMake(0, 0);
+        gradientLayer.endPoint = CGPointMake(1, 0);
+        gradientLayer.locations = @[@(0.0),@(1.0)];//渐变点
+        [gradientLayer setColors:@[(id)[[UIColor colorWithHexString:@"#7680fe"] CGColor],(id)[[UIColor colorWithHexString:@"#a779ff"] CGColor]]];//渐变数组
+        [self.paymentButton.layer addSublayer:gradientLayer];
+        [self.paymentButton setTitle:@"确认支付" forState:UIControlStateNormal];
+    }
 }
 
 - (IBAction)paymentAction:(id)sender {

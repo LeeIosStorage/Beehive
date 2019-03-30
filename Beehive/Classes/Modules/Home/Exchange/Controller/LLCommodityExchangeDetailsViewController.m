@@ -156,6 +156,7 @@ LEShareSheetViewDelegate
 }
 
 - (void)buyGoods {
+    [SVProgressHUD showCustomWithStatus:@"请求中..."];
     WEAKSELF
     NSString *requesUrl = [[WYAPIGenerate sharedInstance] API:@"BuyGoods"];
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
@@ -178,7 +179,6 @@ LEShareSheetViewDelegate
         
     } failure:^(id responseObject, NSError *error) {
         [SVProgressHUD showCustomErrorWithStatus:HitoFaiNetwork];
-        [weakSelf exchangeSucceedView];
     }];
 }
 

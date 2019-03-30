@@ -35,8 +35,9 @@
     if (self.vcType == LLInfoDetailsVcTypeRule) {
         self.ruleTextView.text = @"1.签到抽奖规则，签到抽奖规则\n2.签到抽奖规则，签到抽奖规则";
     } else if (self.vcType == LLInfoDetailsVcTypeNotice) {
-        self.ruleTextView.text = self.text;
+        self.ruleTextView.attributedText = [WYCommonUtils HTMLStringToColorAndFontAttributeString:self.text font:[FontConst PingFangSCRegularWithSize:13] color:kAppTitleColor];
     } else if (self.vcType == LLInfoDetailsVcTypeAbout) {
+        
         self.ruleTextView.text = @"关于蜂巢关于蜂巢关于蜂巢关于蜂巢关于蜂巢关于蜂巢关于蜂巢关于蜂巢关于蜂巢关于蜂巢关于蜂巢关于蜂巢关于蜂巢关于蜂巢关于蜂巢关于蜂巢关于蜂巢关于蜂巢关于蜂巢关于蜂巢关于蜂巢关于蜂巢关于蜂巢关于蜂巢关于蜂巢关于蜂巢关于蜂巢关于蜂巢关于蜂巢关于蜂巢";
     }
 }

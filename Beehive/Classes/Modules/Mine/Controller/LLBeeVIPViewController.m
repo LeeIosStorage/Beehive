@@ -7,6 +7,9 @@
 //
 
 #import "LLBeeVIPViewController.h"
+#import "LLPaymentWayView.h"
+#import "LEAlertMarkView.h"
+#import "WYPayManager.h"
 
 @interface LLBeeVIPViewController ()
 
@@ -17,6 +20,8 @@
 @property (nonatomic, weak) IBOutlet UILabel *labEquityDes;
 
 @property (nonatomic, weak) IBOutlet UIButton *btnSubmit;
+
+@property (nonatomic, assign) NSInteger paymentWay;
 
 @end
 
@@ -61,8 +66,61 @@
     [self.tableView reloadData];
 }
 
+- (void)paymentWayViewShow {
+    [self.view endEditing:true];
+    LLPaymentWayView *tipView = [[[NSBundle mainBundle] loadNibNamed:@"LLPaymentWayView" owner:self options:nil] firstObject];
+    tipView.frame = CGRectMake(0, 0, SCREEN_WIDTH, 265);
+    tipView.wayType = LLPaymentWayTypeVIP;
+    [tipView updateCellWithData:nil];
+    __weak UIView *weakView = tipView;
+    WEAKSELF
+    tipView.paymentBlock = ^(NSInteger type) {
+        if ([weakView.superview isKindOfClass:[LEAlertMarkView class]]) {
+            LEAlertMarkView *alert = (LEAlertMarkView *)weakView.superview;
+            [alert dismiss];
+        }
+        weakSelf.paymentWay = type;
+        [weakSelf buyVIPReqeust];
+    };
+    LEAlertMarkView *alert = [[LEAlertMarkView alloc] initWithCustomView:tipView type:LEAlertMarkViewTypeBottom];
+    [alert show];
+}
+
+#pragma mark - Reqeust
+- (void)buyVIPReqeust {
+    [SVProgressHUD showCustomWithStatus:@"请求中..."];
+    WEAKSELF
+    NSString *requesUrl = [[WYAPIGenerate sharedInstance] API:@"BuyVIP"];
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    [params setObject:[NSNumber numberWithInteger:self.paymentWay] forKey:@"payType"];
+    [self.networkManager POST:requesUrl needCache:NO caCheKey:nil parameters:params responseClass:nil needHeaderAuth:NO success:^(WYRequestType requestType, NSString *message, BOOL isCache, id dataObject) {
+        
+        [SVProgressHUD dismiss];
+        if (requestType != WYRequestTypeSuccess) {
+            [SVProgressHUD showCustomErrorWithStatus:message];
+            return ;
+        }
+        [SVProgressHUD showCustomSuccessWithStatus:message];
+        NSDictionary *dic = nil;
+        if ([dataObject isKindOfClass:[NSArray class]]) {
+            NSArray *data = (NSArray *)dataObject;
+            if (data.count > 0) {
+                dic = data[0];
+            }
+        }
+        if (weakSelf.paymentWay == 1) {
+            [[WYPayManager shareInstance] payForWinxinWith:dic];
+        } else if (weakSelf.paymentWay == 2) {
+            [[WYPayManager shareInstance] payForAlipayWith:dic];
+        }
+        
+    } failure:^(id responseObject, NSError *error) {
+        [SVProgressHUD showCustomErrorWithStatus:HitoFaiNetwork];
+    }];
+}
+
 - (IBAction)submitAction:(id)sender {
-    
+    [self paymentWayViewShow];
 }
 
 @end

@@ -46,6 +46,7 @@ UITableViewDataSource
     // Do any additional setup after loading the view from its nib.
     [self setup];
     [self refreshData];
+    [self refreshDataRequest];
 }
 
 - (void)setup {
@@ -73,6 +74,35 @@ UITableViewDataSource
 - (void)refreshHeadViewUI {
     [WYCommonUtils setImageWithURL:[NSURL URLWithString:kLLAppTestHttpURL] setImage:self.imgAvatar setbitmapImage:nil];
     [WYCommonUtils setImageWithURL:[NSURL URLWithString:kLLAppTestHttpURL] setImage:self.imgIcon setbitmapImage:nil];
+}
+
+#pragma mark - Request
+- (void)refreshDataRequest {
+    [SVProgressHUD showCustomWithStatus:@"请求中..."];
+    WEAKSELF
+    NSString *requesUrl = [[WYAPIGenerate sharedInstance] API:@"GetBuyDetail"];
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    [params setObject:self.exchangeOrderNode.Id forKey:@"id"];
+    NSString *caCheKey = [NSString stringWithFormat:@"GetBuyDetail-%@",self.exchangeOrderNode.Id];
+    [self.networkManager POST:requesUrl needCache:YES caCheKey:caCheKey parameters:params responseClass:[LLExchangeOrderNode class] needHeaderAuth:NO success:^(WYRequestType requestType, NSString *message, BOOL isCache, id dataObject) {
+        
+        [SVProgressHUD dismiss];
+        if (requestType != WYRequestTypeSuccess) {
+            [SVProgressHUD showCustomErrorWithStatus:message];
+            return ;
+        }
+        
+        if ([dataObject isKindOfClass:[NSArray class]]) {
+            NSArray *data = (NSArray *)dataObject;
+            if (data.count > 0) {
+                weakSelf.exchangeOrderNode = data[0];
+            }
+        }
+        [weakSelf refreshData];
+        
+    } failure:^(id responseObject, NSError *error) {
+        [SVProgressHUD showCustomErrorWithStatus:HitoFaiNetwork];
+    }];
 }
 
 - (IBAction)callTelAction:(id)sender {

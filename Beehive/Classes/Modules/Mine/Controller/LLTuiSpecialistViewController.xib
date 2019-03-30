@@ -121,7 +121,7 @@
                         <constraint firstItem="VtN-Dk-ukE" firstAttribute="top" secondItem="czA-hE-2WH" secondAttribute="top" id="uq8-f8-iB0"/>
                     </constraints>
                 </view>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="开通蜂巢勋章VIP后，你将享受VIP特权高佣金特权，更多优惠活动等着您哦" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ij8-m1-tkp">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="开通蜂巢勋章VIP后，你将享受VIP特权高佣金特权，更多优惠活动等着您哦" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ij8-m1-tkp">
                     <rect key="frame" x="60" y="159" width="250" height="29"/>
                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="12"/>
                     <color key="textColor" red="0.87058823529411766" green="0.14117647058823529" blue="0.45882352941176469" alpha="1" colorSpace="calibratedRGB"/>

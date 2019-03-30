@@ -9,6 +9,7 @@
 #import "LLExchangeOrderViewController.h"
 #import "LLExchangeOrderTableViewCell.h"
 #import "LLExchangeOrderDetailsViewController.h"
+#import "LLExchangeOrderNode.h"
 
 @interface LLExchangeOrderViewController ()
 <
@@ -19,6 +20,8 @@ UITableViewDataSource
 
 @property (nonatomic, strong) NSMutableArray *dataLists;
 
+@property (assign, nonatomic) int nextCursor;
+
 @end
 
 @implementation LLExchangeOrderViewController
@@ -27,7 +30,6 @@ UITableViewDataSource
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     [self setup];
-    [self refreshData];
 }
 
 - (void)setup {
@@ -42,17 +44,71 @@ UITableViewDataSource
         make.left.top.right.bottom.equalTo(self.view);
     }];
     
-    [self.tableView reloadData];
+    self.nextCursor = 1;
+    [self addMJ];
 }
 
-- (void)refreshData {
-    self.dataLists = [NSMutableArray array];
-    [self.dataLists addObject:@""];
-    [self.dataLists addObject:@""];
-    [self.dataLists addObject:@""];
-    [self.dataLists addObject:@""];
+#pragma mark - mj
+- (void)addMJ {
+    //下拉刷新
+    WEAKSELF;
+    self.tableView.mj_header = [LERefreshHeader headerWithRefreshingBlock:^{
+        weakSelf.nextCursor = 1;
+        [weakSelf refreshExchangeCenterRequest];
+    }];
+    [self.tableView.mj_header beginRefreshing];
     
-    [self.tableView reloadData];
+    //上啦加载
+    self.tableView.mj_footer = [LERefreshFooter footerWithRefreshingBlock:^{
+        [weakSelf refreshExchangeCenterRequest];
+    }];
+    self.tableView.mj_footer.hidden = YES;
+    
+}
+
+#pragma mark - Request
+- (void)refreshExchangeCenterRequest {
+    WEAKSELF
+    NSString *requesUrl = [[WYAPIGenerate sharedInstance] API:@"GetBuyRecordList"];
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    [params setObject:[NSNumber numberWithInteger:self.nextCursor] forKey:@"pageIndex"];
+    [params setObject:[NSNumber numberWithInteger:DATA_LOAD_PAGESIZE_COUNT] forKey:@"pageSize"];
+    
+    [self.networkManager POST:requesUrl needCache:NO caCheKey:nil parameters:params responseClass:[LLExchangeOrderNode class] needHeaderAuth:NO success:^(WYRequestType requestType, NSString *message, BOOL isCache, id dataObject) {
+        
+        [weakSelf.tableView.mj_header endRefreshing];
+        [weakSelf.tableView.mj_footer endRefreshing];
+        
+        if (requestType != WYRequestTypeSuccess) {
+            [SVProgressHUD showCustomErrorWithStatus:message];
+            return ;
+        }
+        
+        NSArray *tmpListArray = [NSArray array];
+        if ([dataObject isKindOfClass:[NSArray class]]) {
+            tmpListArray = (NSArray *)dataObject;
+        }
+        if (weakSelf.nextCursor == 1) {
+            weakSelf.dataLists = [NSMutableArray array];
+        }
+        [weakSelf.dataLists addObjectsFromArray:tmpListArray];
+        
+        if (!isCache) {
+            if (tmpListArray.count < DATA_LOAD_PAGESIZE_COUNT) {
+                [weakSelf.tableView.mj_footer setHidden:YES];
+            }else{
+                [weakSelf.tableView.mj_footer setHidden:NO];
+                weakSelf.nextCursor ++;
+            }
+        }
+        
+        [weakSelf.tableView reloadData];
+        
+    } failure:^(id responseObject, NSError *error) {
+        [SVProgressHUD showCustomErrorWithStatus:HitoFaiNetwork];
+        [weakSelf.tableView.mj_header endRefreshing];
+        [weakSelf.tableView.mj_footer endRefreshing];
+    }];
 }
 
 #pragma mark - SetGet
@@ -76,7 +132,7 @@ UITableViewDataSource
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return self.dataLists.count;
+    return 3;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -96,6 +152,9 @@ UITableViewDataSource
     NSIndexPath* selIndexPath = [tableView indexPathForSelectedRow];
     [tableView deselectRowAtIndexPath:selIndexPath animated:YES];
     LLExchangeOrderDetailsViewController *vc = [[LLExchangeOrderDetailsViewController alloc] init];
+    LLExchangeOrderNode *node = [[LLExchangeOrderNode alloc] init];
+    node.Id = @"0";
+    vc.exchangeOrderNode = node;
     [self.navigationController pushViewController:vc animated:true];
 }
 

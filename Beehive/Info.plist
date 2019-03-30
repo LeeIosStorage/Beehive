@@ -54,10 +54,10 @@
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>CFBundleURLName</key>
-			<string>lett</string>
+			<string>beehive</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>lett</string>
+				<string>beehive</string>
 			</array>
 		</dict>
 	</array>

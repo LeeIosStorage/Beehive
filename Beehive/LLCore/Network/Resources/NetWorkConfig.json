@@ -105,4 +105,25 @@
         "module"  : "MyService.asmx",
         "action"  : "GetGiveExplain"
     },
+    "GetBuyRecordList": {
+        "protocol": "http",
+        "module"  : "MyService.asmx",
+        "action"  : "GetBuyRecordList"
+    },
+    "GetBuyDetail": {
+        "protocol": "http",
+        "module"  : "MyService.asmx",
+        "action"  : "GetBuyDetail"
+    },
+    "ApplyPromotion": {
+        "protocol": "http",
+        "module"  : "MyService.asmx",
+        "action"  : "ApplyPromotion"
+    },
+    "BuyVIP": {
+        "protocol": "http",
+        "module"  : "MyService.asmx",
+        "action"  : "BuyVIP"
+    },
+    
 }

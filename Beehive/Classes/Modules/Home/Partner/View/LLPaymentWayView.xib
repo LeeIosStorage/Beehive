@@ -16,8 +16,8 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="262"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="支付方式" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xRx-Ji-BJt">
-                    <rect key="frame" x="10" y="10" width="53.5" height="29"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="选择支付方式" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xRx-Ji-BJt">
+                    <rect key="frame" x="10" y="10" width="80" height="29"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="29" id="LXx-44-gbF"/>
                     </constraints>

@@ -6,7 +6,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
-        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -63,22 +62,21 @@
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
-                <constraint firstItem="KSv-w2-Kk0" firstAttribute="bottom" secondItem="pbI-6V-wvn" secondAttribute="bottom" id="1l9-IB-aKJ"/>
+                <constraint firstItem="KSv-w2-Kk0" firstAttribute="bottom" secondItem="3a1-6C-WgG" secondAttribute="bottom" id="1l9-IB-aKJ"/>
                 <constraint firstItem="ULZ-aP-nUI" firstAttribute="top" secondItem="3a1-6C-WgG" secondAttribute="top" id="Awk-Xd-pie"/>
-                <constraint firstItem="pbI-6V-wvn" firstAttribute="trailing" secondItem="KSv-w2-Kk0" secondAttribute="trailing" id="EuO-IH-R68"/>
+                <constraint firstAttribute="trailing" secondItem="KSv-w2-Kk0" secondAttribute="trailing" id="EuO-IH-R68"/>
                 <constraint firstItem="KSv-w2-Kk0" firstAttribute="leading" secondItem="dFj-ei-ZEA" secondAttribute="trailing" id="Oky-XN-pZg"/>
-                <constraint firstItem="pbI-6V-wvn" firstAttribute="trailing" secondItem="ULZ-aP-nUI" secondAttribute="trailing" id="S3s-AP-8Qx"/>
-                <constraint firstItem="pbI-6V-wvn" firstAttribute="bottom" secondItem="SmB-mN-jty" secondAttribute="bottom" id="aKE-to-1SD"/>
+                <constraint firstAttribute="trailing" secondItem="ULZ-aP-nUI" secondAttribute="trailing" id="S3s-AP-8Qx"/>
+                <constraint firstAttribute="bottom" secondItem="SmB-mN-jty" secondAttribute="bottom" id="aKE-to-1SD"/>
                 <constraint firstItem="dFj-ei-ZEA" firstAttribute="leading" secondItem="SmB-mN-jty" secondAttribute="trailing" id="bGB-cz-BBp"/>
-                <constraint firstItem="KSv-w2-Kk0" firstAttribute="top" secondItem="pbI-6V-wvn" secondAttribute="top" id="gGL-3d-rUg"/>
-                <constraint firstItem="pbI-6V-wvn" firstAttribute="bottom" secondItem="dFj-ei-ZEA" secondAttribute="bottom" id="pJu-EP-Vg8"/>
-                <constraint firstItem="ULZ-aP-nUI" firstAttribute="leading" secondItem="pbI-6V-wvn" secondAttribute="leading" id="rHd-Eg-BFO"/>
-                <constraint firstItem="SmB-mN-jty" firstAttribute="leading" secondItem="pbI-6V-wvn" secondAttribute="leading" id="sVw-u7-dtr"/>
-                <constraint firstItem="dFj-ei-ZEA" firstAttribute="top" secondItem="pbI-6V-wvn" secondAttribute="top" id="yww-fS-ebe"/>
+                <constraint firstItem="KSv-w2-Kk0" firstAttribute="top" secondItem="3a1-6C-WgG" secondAttribute="top" id="gGL-3d-rUg"/>
+                <constraint firstAttribute="bottom" secondItem="dFj-ei-ZEA" secondAttribute="bottom" id="pJu-EP-Vg8"/>
+                <constraint firstItem="ULZ-aP-nUI" firstAttribute="leading" secondItem="3a1-6C-WgG" secondAttribute="leading" id="rHd-Eg-BFO"/>
+                <constraint firstItem="SmB-mN-jty" firstAttribute="leading" secondItem="3a1-6C-WgG" secondAttribute="leading" id="sVw-u7-dtr"/>
+                <constraint firstItem="dFj-ei-ZEA" firstAttribute="top" secondItem="3a1-6C-WgG" secondAttribute="top" id="yww-fS-ebe"/>
                 <constraint firstItem="SmB-mN-jty" firstAttribute="top" secondItem="ULZ-aP-nUI" secondAttribute="bottom" id="zkO-aY-fwA"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <viewLayoutGuide key="safeArea" id="pbI-6V-wvn"/>
             <connections>
                 <outlet property="collectionButton" destination="dFj-ei-ZEA" id="imo-ih-don"/>
             </connections>
