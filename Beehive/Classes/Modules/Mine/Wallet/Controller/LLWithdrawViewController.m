@@ -11,14 +11,22 @@
 #import "LLBeePresentAffirmView.h"
 #import "LEAlertMarkView.h"
 #import "LLWalletDetailsNode.h"
+#import "ZJPayPopupView.h"
+#import "LLPayPasswordResetViewController.h"
 
 @interface LLWithdrawViewController ()
+<
+ZJPayPopupViewDelegate
+>
+@property (nonatomic, strong) ZJPayPopupView *payPopupView;
 
 @property (nonatomic, strong) LLFundHandleHeaderView *fundHandleHeaderView;
 
 @property (nonatomic, weak) IBOutlet UITableView *tableView;
 
 @property (nonatomic, strong) LLWalletDetailsNode *walletDetailsNode;
+
+@property (nonatomic, strong) NSString *chooseMoney;
 
 @end
 
@@ -54,12 +62,15 @@
     WEAKSELF
     self.fundHandleHeaderView.affirmBlock = ^{
         if (weakSelf.vcType == LLFundHandleVCTypeWithdraw) {
-            
+            [weakSelf payPopupViewShow];
         } else if (weakSelf.vcType == LLFundHandleVCTypeDeposit) {
             
         } else if (weakSelf.vcType == LLFundHandleVCTypePresent) {
             [weakSelf showBeePresentAffirmView];
         }
+    };
+    self.fundHandleHeaderView.chooseAmountBlock = ^(NSString * _Nonnull money) {
+        weakSelf.chooseMoney = money;
     };
 }
 
@@ -92,6 +103,12 @@
     };
     LEAlertMarkView *alert = [[LEAlertMarkView alloc] initWithCustomView:tipView type:LEAlertMarkViewTypeCenter];
     [alert show];
+}
+
+- (void)payPopupViewShow {
+    self.payPopupView = [[ZJPayPopupView alloc] init];
+    self.payPopupView.delegate = self;
+    [self.payPopupView showPayPopView];
 }
 
 #pragma mark -
@@ -146,12 +163,57 @@
     }];
 }
 
+- (void)cashWithdrawalRequestPwd:(NSString *)password {
+    [SVProgressHUD showCustomWithStatus:@"请求中..."];
+    if (self.chooseMoney.length == 0) {
+        [SVProgressHUD showCustomInfoWithStatus:@"请选择提现金额"];
+        return;
+    }
+    WEAKSELF
+    NSString *requesUrl = [[WYAPIGenerate sharedInstance] API:@"CashWithdrawal"];
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    [params setObject:self.chooseMoney forKey:@"money"];
+    [params setObject:password forKey:@"payPassWord"];
+    [self.networkManager POST:requesUrl needCache:NO caCheKey:nil parameters:params responseClass:nil needHeaderAuth:NO success:^(WYRequestType requestType, NSString *message, BOOL isCache, id dataObject) {
+        
+        [SVProgressHUD dismiss];
+        if (requestType != WYRequestTypeSuccess) {
+            [SVProgressHUD showCustomErrorWithStatus:message];
+            return ;
+        }
+        [SVProgressHUD showCustomSuccessWithStatus:message];
+        NSDictionary *dic = nil;
+        if ([dataObject isKindOfClass:[NSArray class]]) {
+            NSArray *data = (NSArray *)dataObject;
+            if (data.count > 0) {
+                dic = data[0];
+            }
+        }
+        
+    } failure:^(id responseObject, NSError *error) {
+        [SVProgressHUD showCustomErrorWithStatus:HitoFaiNetwork];
+    }];
+}
+
 #pragma mark - set
 - (LLFundHandleHeaderView *)fundHandleHeaderView {
     if (!_fundHandleHeaderView) {
         _fundHandleHeaderView = [[[NSBundle mainBundle] loadNibNamed:@"LLFundHandleHeaderView" owner:self options:nil] firstObject];
     }
     return _fundHandleHeaderView;
+}
+
+#pragma mark - ZJPayPopupViewDelegate
+- (void)didClickForgetPasswordButton
+{
+    LLPayPasswordResetViewController *vc = [[LLPayPasswordResetViewController alloc] init];
+    [self.navigationController pushViewController:vc animated:true];
+}
+
+- (void)didPasswordInputFinished:(NSString *)password
+{
+    [self.payPopupView hidePayPopView];
+    [self cashWithdrawalRequestPwd:password];
 }
 
 #pragma mark - Table view data source

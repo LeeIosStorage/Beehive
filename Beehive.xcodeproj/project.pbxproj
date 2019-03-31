@@ -196,6 +196,7 @@
 		8D65E1CA224D1224000A344D /* LLBannerNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D65E1C9224D1224000A344D /* LLBannerNode.m */; };
 		8D65E1CD224D124C000A344D /* LLExchangeGoodsNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D65E1CC224D124C000A344D /* LLExchangeGoodsNode.m */; };
 		8D65E1D1224E429C000A344D /* LLWalletDetailsNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D65E1D0224E429C000A344D /* LLWalletDetailsNode.m */; };
+		8D72C1512251165D00B032C2 /* LLFollowUserNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D72C1502251165D00B032C2 /* LLFollowUserNode.m */; };
 		8D79E4D2222672A20019A1BE /* LLTabBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D79E4D1222672A20019A1BE /* LLTabBarViewController.m */; };
 		8D79E4D5222672CA0019A1BE /* LLNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D79E4D4222672CA0019A1BE /* LLNavigationController.m */; };
 		8D79E4D82226748D0019A1BE /* LLBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D79E4D72226748D0019A1BE /* LLBaseViewController.m */; };
@@ -669,6 +670,8 @@
 		8D65E1CC224D124C000A344D /* LLExchangeGoodsNode.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLExchangeGoodsNode.m; sourceTree = "<group>"; };
 		8D65E1CF224E429C000A344D /* LLWalletDetailsNode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLWalletDetailsNode.h; sourceTree = "<group>"; };
 		8D65E1D0224E429C000A344D /* LLWalletDetailsNode.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLWalletDetailsNode.m; sourceTree = "<group>"; };
+		8D72C14F2251165D00B032C2 /* LLFollowUserNode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLFollowUserNode.h; sourceTree = "<group>"; };
+		8D72C1502251165D00B032C2 /* LLFollowUserNode.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLFollowUserNode.m; sourceTree = "<group>"; };
 		8D79E4D0222672A20019A1BE /* LLTabBarViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLTabBarViewController.h; sourceTree = "<group>"; };
 		8D79E4D1222672A20019A1BE /* LLTabBarViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLTabBarViewController.m; sourceTree = "<group>"; };
 		8D79E4D3222672CA0019A1BE /* LLNavigationController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLNavigationController.h; sourceTree = "<group>"; };
@@ -970,6 +973,8 @@
 			children = (
 				7E1E8A7722317338002766AD /* LLMineNode.h */,
 				7E1E8A7822317338002766AD /* LLMineNode.m */,
+				8D72C14F2251165D00B032C2 /* LLFollowUserNode.h */,
+				8D72C1502251165D00B032C2 /* LLFollowUserNode.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -2664,6 +2669,7 @@
 				8D542A7E222A5BC2008B90B0 /* LEDataStoreManager.m in Sources */,
 				8DC02D5522313731000CAE9C /* LLMineCollectionViewCell.m in Sources */,
 				8D5CB6BF2232D73300527DEB /* ZJMultipleAssociatedPickerView.m in Sources */,
+				8D72C1512251165D00B032C2 /* LLFollowUserNode.m in Sources */,
 				7E561BA6223FE4B600DA3B20 /* LLBeeWelfareViewController.m in Sources */,
 				8D542A65222A5BC2008B90B0 /* HotUpButton.m in Sources */,
 				8DF0C27E223A2EB1006175E7 /* LLRedTaskHistoryTableViewCell.m in Sources */,

@@ -125,5 +125,20 @@
         "module"  : "MyService.asmx",
         "action"  : "BuyVIP"
     },
+    "CashWithdrawal": {
+        "protocol": "http",
+        "module"  : "MyService.asmx",
+        "action"  : "CashWithdrawal"
+    },
+    "GetAppVersion": {
+        "protocol": "http",
+        "module"  : "MyService.asmx",
+        "action"  : "GetAppVersion"
+    },
+    "GetFollowList": {
+        "protocol": "http",
+        "module"  : "MyService.asmx",
+        "action"  : "GetFollowList"
+    },
     
 }

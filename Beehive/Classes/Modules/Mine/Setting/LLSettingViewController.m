@@ -79,7 +79,8 @@ UITableViewDataSource
     node6.vcType = LLMineNodeTypeSetClearCache;
     LLMineNode *node7 = [[LLMineNode alloc] init];
     node7.title = @"版本更新";
-    node7.des = @"V1.0.0";
+    NSString *localVserion = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
+    node7.des = [NSString stringWithFormat:@"V%@",localVserion];
     node7.vcType = LLMineNodeTypeSetVersion;
     [self.dataLists addObject:[NSArray arrayWithObjects:node6, node7, nil]];
     
@@ -104,6 +105,30 @@ UITableViewDataSource
 
 - (void)switchRedRound:(BOOL)on {
     LELog(@"-----------%d",on);
+}
+
+#pragma mark - Request
+- (void)getAppVersion {
+    [SVProgressHUD showCustomWithStatus:@"请求中..."];
+    WEAKSELF
+    NSString *requesUrl = [[WYAPIGenerate sharedInstance] API:@"GetAppVersion"];
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    [self.networkManager POST:requesUrl needCache:NO caCheKey:nil parameters:params responseClass:nil needHeaderAuth:NO success:^(WYRequestType requestType, NSString *message, BOOL isCache, id dataObject) {
+        
+        [SVProgressHUD dismiss];
+        if (requestType != WYRequestTypeSuccess) {
+            [SVProgressHUD showCustomErrorWithStatus:message];
+            return ;
+        }
+        if ([dataObject isKindOfClass:[NSArray class]]) {
+            NSArray *data = (NSArray *)dataObject;
+            if (data.count > 0) {
+            }
+        }
+        
+    } failure:^(id responseObject, NSError *error) {
+        [SVProgressHUD showCustomErrorWithStatus:HitoFaiNetwork];
+    }];
 }
 
 #pragma mark - setget
@@ -245,7 +270,7 @@ UITableViewDataSource
         }
             break;
         case LLMineNodeTypeSetVersion: {
-            
+            [self getAppVersion];
         }
             break;
         default:

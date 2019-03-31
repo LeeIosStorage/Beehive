@@ -74,6 +74,9 @@ UICollectionViewDataSource
     if (_vcType == LLFundHandleVCTypeDeposit) {
         self.amountArray = [NSMutableArray arrayWithArray:@[@"10",@"20",@"30",@"40",@"50",@"100",@"200",@"500"]];
     }
+    if (self.chooseAmountBlock) {
+        self.chooseAmountBlock(self.amountArray[0]);
+    }
 }
 
 - (void)updateCellWithData:(id)node {
@@ -166,6 +169,10 @@ UICollectionViewDataSource
     [collectionView deselectItemAtIndexPath:indexPath animated:YES];
     self.currentAmountId = indexPath.row;
     [self.amountCollectionView reloadData];
+    NSString *money = self.amountArray[indexPath.row];
+    if (self.chooseAmountBlock) {
+        self.chooseAmountBlock(money);
+    }
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath

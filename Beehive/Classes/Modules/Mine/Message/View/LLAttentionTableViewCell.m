@@ -7,6 +7,7 @@
 //
 
 #import "LLAttentionTableViewCell.h"
+#import "LLFollowUserNode.h"
 
 @interface LLAttentionTableViewCell ()
 
@@ -36,16 +37,17 @@
 }
 
 - (void)updateCellWithData:(id)node {
-    [WYCommonUtils setImageWithURL:[NSURL URLWithString:kLLAppTestHttpURL] setImage:self.imgIcon setbitmapImage:nil];
-    self.labTitle.text = @"11";
-    self.labDes.text = @"11";
+    LLFollowUserNode *someNode = (LLFollowUserNode *)node;
+    
+    [WYCommonUtils setImageWithURL:[NSURL URLWithString:someNode.HeadImg] setImage:self.imgIcon setbitmapImage:nil];
+    self.labTitle.text = someNode.UserName;
+    self.labDes.text = someNode.Autograph;
     self.rightButton.backgroundColor = kAppThemeColor;
     [self.rightButton setTitleColor:UIColor.whiteColor forState:UIControlStateNormal];
     self.rightButton.titleLabel.font = [FontConst PingFangSCRegularWithSize:12];
     [self.rightButton setTitle:@" +关注 " forState:UIControlStateNormal];
     self.rightButton.enabled = true;
-    return;
-    if (1) {
+    if (someNode.IsMutualFollow) {
         self.rightButton.enabled = false;
         self.rightButton.backgroundColor = UIColor.clearColor;
         [self.rightButton setTitleColor:kAppLightTitleColor forState:UIControlStateNormal];
