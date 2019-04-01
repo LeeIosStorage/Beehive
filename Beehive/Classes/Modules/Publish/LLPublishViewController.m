@@ -118,11 +118,7 @@ UITableViewDataSource
     
     if (self.currentPublishNode.redMold == 0) {
         
-        LLPublishCellNode *cellNode1 = [[LLPublishCellNode alloc] init];
-        cellNode1.title = @"标题";
-        cellNode1.inputMaxCount = 200;
-        cellNode1.placeholder = @"输入文字...";
-        cellNode1.cellType = LLPublishCellTypeInputTitle;
+        LLPublishCellNode *cellNode1 = [self nodeForCellTypeWithType:LLPublishCellTypeInputTitle];
         [newMutArray addObject:[NSMutableArray arrayWithObject:cellNode1]];
         
         LLPublishCellNode *cellNode2 = [self nodeForCellTypeWithType:LLPublishCellTypeImage];
@@ -139,24 +135,13 @@ UITableViewDataSource
         cellNode.cellType = LLPublishCellTypeTaskMold;
         [newMutArray addObject:[NSMutableArray arrayWithObject:cellNode]];
         
-        LLPublishCellNode *cellNode1 = [[LLPublishCellNode alloc] init];
-        cellNode1.title = @"任务名称";
-        cellNode1.placeholder = @"请输入";
-        cellNode1.cellType = LLPublishCellTypeTaskName;
-        cellNode1.inputType = LLPublishInputTypeInput;
-        LLPublishCellNode *cellNode2 = [[LLPublishCellNode alloc] init];
-        cellNode2.title = @"任务说明";
-        cellNode2.placeholder = @"输入文字...";
-        cellNode2.cellType = LLPublishCellTypeTaskExplain;
+        LLPublishCellNode *cellNode1 = [self nodeForCellTypeWithType:LLPublishCellTypeTaskName];
+        LLPublishCellNode *cellNode2 = [self nodeForCellTypeWithType:LLPublishCellTypeTaskExplain];
         [newMutArray addObject:[NSMutableArray arrayWithObjects:cellNode1, cellNode2, nil]];
         
         if (self.currentPublishNode.taskMold == 0) {
             
-            LLPublishCellNode *cellNode1 = [[LLPublishCellNode alloc] init];
-            cellNode1.title = @"标题";
-            cellNode1.inputMaxCount = 200;
-            cellNode1.placeholder = @"输入文字...";
-            cellNode1.cellType = LLPublishCellTypeInputTitle;
+            LLPublishCellNode *cellNode1 = [self nodeForCellTypeWithType:LLPublishCellTypeInputTitle];
             [newMutArray addObject:[NSMutableArray arrayWithObject:cellNode1]];
             
             LLPublishCellNode *cellNode2 = [self nodeForCellTypeWithType:LLPublishCellTypeImage];
@@ -174,16 +159,8 @@ UITableViewDataSource
     LLPublishCellNode *cellNode3 = [self nodeForCellTypeWithType:LLPublishCellTypeLocation];
     [newMutArray addObject:[NSMutableArray arrayWithObject:cellNode3]];
     
-    LLPublishCellNode *cellNode4 = [[LLPublishCellNode alloc] init];
-    cellNode4.title = @"红包金额";
-    cellNode4.placeholder = @"请输入";
-    cellNode4.cellType = LLPublishCellTypeRedAmount;
-    cellNode4.inputType = LLPublishInputTypeInput;
-    LLPublishCellNode *cellNode5 = [[LLPublishCellNode alloc] init];
-    cellNode5.title = @"红包个数";
-    cellNode5.placeholder = @"请输入";
-    cellNode5.cellType = LLPublishCellTypeRedCount;
-    cellNode5.inputType = LLPublishInputTypeInput;
+    LLPublishCellNode *cellNode4 = [self nodeForCellTypeWithType:LLPublishCellTypeRedAmount];
+    LLPublishCellNode *cellNode5 = [self nodeForCellTypeWithType:LLPublishCellTypeRedCount];
     [newMutArray addObject:[NSMutableArray arrayWithObjects:cellNode4, cellNode5, nil]];
     
     LLPublishCellNode *cellNode6 = [self nodeForCellTypeWithType:LLPublishCellTypePubDate];
@@ -214,11 +191,7 @@ UITableViewDataSource
     
     NSMutableArray *newMutArray = [NSMutableArray array];
     
-    LLPublishCellNode *cellNode1 = [[LLPublishCellNode alloc] init];
-    cellNode1.title = @"标题";
-    cellNode1.inputMaxCount = 200;
-    cellNode1.placeholder = @"输入文字...";
-    cellNode1.cellType = LLPublishCellTypeInputTitle;
+    LLPublishCellNode *cellNode1 = [self nodeForCellTypeWithType:LLPublishCellTypeInputTitle];
     [newMutArray addObject:[NSMutableArray arrayWithObject:cellNode1]];
     
     LLPublishCellNode *cellNode2 = [self nodeForCellTypeWithType:LLPublishCellTypeImage];
@@ -239,20 +212,8 @@ UITableViewDataSource
     cellNode8.title = @"设置电子券";
 //    cellNode8.placeholder = @"最多选两项";
     cellNode8.cellType = LLPublishCellTypeMore;
-    LLPublishCellNode *cellNode9 = [[LLPublishCellNode alloc] init];
-    cellNode9.title = @"优惠券名称";
-    cellNode9.titleFont = [FontConst PingFangSCRegularWithSize:12];
-    cellNode9.placeholder = @"请输入";
-    cellNode9.inputMaxCount = 20;
-    cellNode9.cellType = LLPublishCellTypeCouponName;
-    cellNode9.inputType = LLPublishInputTypeInput;
-    LLPublishCellNode *cellNode10 = [[LLPublishCellNode alloc] init];
-    cellNode10.title = @"优惠券说明";
-    cellNode10.titleFont = [FontConst PingFangSCRegularWithSize:12];
-    cellNode10.placeholder = @"请输入";
-    cellNode10.inputMaxCount = 10;
-    cellNode10.cellType = LLPublishCellTypeCouponExplain;
-    cellNode10.inputType = LLPublishInputTypeInput;
+    LLPublishCellNode *cellNode9 = [self nodeForCellTypeWithType:LLPublishCellTypeCouponName];
+    LLPublishCellNode *cellNode10 = [self nodeForCellTypeWithType:LLPublishCellTypeCouponExplain];
     LLPublishCellNode *cellNode11 = [self nodeForCellTypeWithType:LLPublishCellTypeCouponPrice];
     LLPublishCellNode *cellNode12 = [self nodeForCellTypeWithType:LLPublishCellTypeCouponDate];
     if (self.currentPublishNode.isMore) {
@@ -272,11 +233,7 @@ UITableViewDataSource
     
     NSMutableArray *newMutArray = [NSMutableArray array];
     
-    LLPublishCellNode *cellNode1 = [[LLPublishCellNode alloc] init];
-    cellNode1.title = @"标题";
-    cellNode1.inputMaxCount = 200;
-    cellNode1.placeholder = @"输入文字...";
-    cellNode1.cellType = LLPublishCellTypeInputTitle;
+    LLPublishCellNode *cellNode1 = [self nodeForCellTypeWithType:LLPublishCellTypeInputTitle];
     [newMutArray addObject:[NSMutableArray arrayWithObject:cellNode1]];
     
     LLPublishCellNode *cellNode2 = [self nodeForCellTypeWithType:LLPublishCellTypeImage];
@@ -285,16 +242,8 @@ UITableViewDataSource
     LLPublishCellNode *cellNode3 = [self nodeForCellTypeWithType:LLPublishCellTypeLocation];
     [newMutArray addObject:[NSMutableArray arrayWithObject:cellNode3]];
     
-    LLPublishCellNode *cellNode4 = [[LLPublishCellNode alloc] init];
-    cellNode4.title = @"红包金额";
-    cellNode4.placeholder = @"请输入";
-    cellNode4.cellType = LLPublishCellTypeRedAmount;
-    cellNode4.inputType = LLPublishInputTypeInput;
-    LLPublishCellNode *cellNode5 = [[LLPublishCellNode alloc] init];
-    cellNode5.title = @"红包个数";
-    cellNode5.placeholder = @"请输入";
-    cellNode5.cellType = LLPublishCellTypeRedCount;
-    cellNode5.inputType = LLPublishInputTypeInput;
+    LLPublishCellNode *cellNode4 = [self nodeForCellTypeWithType:LLPublishCellTypeRedAmount];
+    LLPublishCellNode *cellNode5 = [self nodeForCellTypeWithType:LLPublishCellTypeRedCount];
     [newMutArray addObject:[NSMutableArray arrayWithObjects:cellNode4, cellNode5, nil]];
     
     LLPublishCellNode *cellNode6 = [self nodeForCellTypeWithType:LLPublishCellTypePubDate];
@@ -322,21 +271,13 @@ UITableViewDataSource
     cellNode1.cellType = LLPublishCellTypeCompanyMold;
     [newMutArray addObject:[NSMutableArray arrayWithObjects:cellNode, cellNode1, nil]];
     
-    LLPublishCellNode *cellNode2 = [[LLPublishCellNode alloc] init];
-    cellNode2.title = @"手机号";
-    cellNode2.placeholder = @"请输入";
-    cellNode2.cellType = LLPublishCellTypePhone;
-    cellNode2.inputType = LLPublishInputTypeInput;
+    LLPublishCellNode *cellNode2 = [self nodeForCellTypeWithType:LLPublishCellTypePhone];
     [newMutArray addObject:[NSMutableArray arrayWithObjects:cellNode2, nil]];
     
     LLPublishCellNode *cellNode3 = [self nodeForCellTypeWithType:LLPublishCellTypeLocation];
     [newMutArray addObject:[NSMutableArray arrayWithObject:cellNode3]];
     
-    LLPublishCellNode *cellNode4 = [[LLPublishCellNode alloc] init];
-    cellNode4.title = @"标题";
-    cellNode4.inputMaxCount = 200;
-    cellNode4.placeholder = @"输入文字...";
-    cellNode4.cellType = LLPublishCellTypeInputTitle;
+    LLPublishCellNode *cellNode4 = [self nodeForCellTypeWithType:LLPublishCellTypeInputTitle];
     [newMutArray addObject:[NSMutableArray arrayWithObject:cellNode4]];
     
     LLPublishCellNode *cellNode5 = [[LLPublishCellNode alloc] init];
@@ -472,6 +413,49 @@ UITableViewDataSource
             cellNode.inputText = addressText;
         }
             break;
+        case LLPublishCellTypePhone:
+            cellNode.title = @"手机号";
+            cellNode.placeholder = @"请输入";
+            cellNode.inputType = LLPublishInputTypeInput;
+            break;
+        case LLPublishCellTypeInputTitle:
+            cellNode.title = @"标题";
+            cellNode.inputMaxCount = 200;
+            cellNode.placeholder = @"输入文字...";
+            break;
+        case LLPublishCellTypeTaskName:
+            cellNode.title = @"任务名称";
+            cellNode.placeholder = @"请输入";
+            cellNode.inputType = LLPublishInputTypeInput;
+            break;
+        case LLPublishCellTypeTaskExplain:
+            cellNode.title = @"任务说明";
+            cellNode.placeholder = @"输入文字...";
+            break;
+        case LLPublishCellTypeRedAmount:
+            cellNode.title = @"红包金额";
+            cellNode.placeholder = @"请输入";
+            cellNode.inputType = LLPublishInputTypeInput;
+            break;
+        case LLPublishCellTypeRedCount:
+            cellNode.title = @"红包个数";
+            cellNode.placeholder = @"请输入";
+            cellNode.inputType = LLPublishInputTypeInput;
+            break;
+        case LLPublishCellTypeCouponName:
+            cellNode.title = @"优惠券名称";
+            cellNode.titleFont = [FontConst PingFangSCRegularWithSize:12];
+            cellNode.placeholder = @"请输入";
+            cellNode.inputMaxCount = 20;
+            cellNode.inputType = LLPublishInputTypeInput;
+            break;
+        case LLPublishCellTypeCouponExplain:
+            cellNode.title = @"优惠券说明";
+            cellNode.titleFont = [FontConst PingFangSCRegularWithSize:12];
+            cellNode.placeholder = @"请输入";
+            cellNode.inputMaxCount = 10;
+            cellNode.inputType = LLPublishInputTypeInput;
+            break;
         default:
             break;
     }
@@ -565,10 +549,155 @@ UITableViewDataSource
     }];
 }
 
+//便民
+- (void)addFacilitateRequest {
+    [SVProgressHUD showCustomWithStatus:@"发布中..."];
+    WEAKSELF
+    NSString *requesUrl = [[WYAPIGenerate sharedInstance] API:@"AddFacilitate"];
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    
+    NSString *title = [self nodeForCellTypeWithType:LLPublishCellTypeInputTitle].inputText;
+    if (title.length > 0) [params setObject:title forKey:@"title"];
+    
+    NSMutableArray *imageDatas = [NSMutableArray array];
+    for (NSData *imageData in [self nodeForCellTypeWithType:LLPublishCellTypeImage].uploadImageDatas) {
+        NSString *dataStr = [imageData base64EncodedStringWithOptions:0];
+        [imageDatas addObject:[NSString stringWithFormat:@"data:image/jpeg;base64,%@",dataStr]];
+    }
+    NSData *data = [NSJSONSerialization dataWithJSONObject:imageDatas options:NSJSONWritingPrettyPrinted error:nil];
+    NSString *jsonStr = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+    [params setObject:jsonStr forKey:@"imgUrl"];
+    
+    NSString *oneTypeId = [self.currentPublishNode.tradeMoldNode1.tId description];
+    if (oneTypeId.length > 0) [params setObject:oneTypeId forKey:@"oneTypeId"];
+    NSString *twoTypeId = [self.currentPublishNode.tradeMoldNode2.tId description];
+    if (twoTypeId.length > 0) [params setObject:twoTypeId forKey:@"twoTypeId"];
+    [params setObject:[NSNumber numberWithInteger:self.currentPublishNode.companyMold + 1] forKey:@"type"];
+    
+    NSString *phone = [self nodeForCellTypeWithType:LLPublishCellTypePhone].inputText;
+    if (phone.length > 0) [params setObject:phone forKey:@"phone"];
+    
+    NSString *address = self.currentPublishNode.address;
+    if (address.length > 0) [params setObject:address forKey:@"address"];
+    [params setObject:[NSNumber numberWithFloat:self.currentPublishNode.coordinate.longitude] forKey:@"longitude"];
+    [params setObject:[NSNumber numberWithFloat:self.currentPublishNode.coordinate.latitude] forKey:@"latitude"];
+    
+    [self.networkManager POST:requesUrl needCache:NO caCheKey:nil parameters:params responseClass:nil needHeaderAuth:NO success:^(WYRequestType requestType, NSString *message, BOOL isCache, id dataObject) {
+        
+        [SVProgressHUD dismiss];
+        if (requestType != WYRequestTypeSuccess) {
+            [SVProgressHUD showCustomErrorWithStatus:message];
+            return ;
+        }
+        [SVProgressHUD showCustomSuccessWithStatus:message];
+        //        if ([dataObject isKindOfClass:[NSArray class]]) {
+        //            NSArray *data = (NSArray *)dataObject;
+        //            if (data.count > 0) {
+        //                NSDictionary *dic = data[0];
+        //            }
+        //        }
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [weakSelf.navigationController popViewControllerAnimated:true];
+        });
+        
+    } failure:^(id responseObject, NSError *error) {
+        [SVProgressHUD showCustomErrorWithStatus:HitoFaiNetwork];
+    }];
+}
+
+//发布红包
+- (void)addRedEnvelopesRequest {
+    [SVProgressHUD showCustomWithStatus:@"发布中..."];
+    WEAKSELF
+    NSString *requesUrl = [[WYAPIGenerate sharedInstance] API:@"AddRedEnvelopes"];
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    
+    NSString *title = [self nodeForCellTypeWithType:LLPublishCellTypeInputTitle].inputText;
+    if (title.length > 0) [params setObject:title forKey:@"title"];
+    
+    NSMutableArray *imageDatas = [NSMutableArray array];
+    for (NSData *imageData in [self nodeForCellTypeWithType:LLPublishCellTypeImage].uploadImageDatas) {
+        NSString *dataStr = [imageData base64EncodedStringWithOptions:0];
+        [imageDatas addObject:[NSString stringWithFormat:@"data:image/jpeg;base64,%@",dataStr]];
+    }
+    NSData *data = [NSJSONSerialization dataWithJSONObject:imageDatas options:NSJSONWritingPrettyPrinted error:nil];
+    NSString *jsonStr = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+    [params setObject:jsonStr forKey:@"imgUrl"];
+    
+    NSInteger redMold = self.currentPublishNode.redMold + 1;
+    if (self.publishVcType == LLPublishViewcTypeAsk) {
+        redMold = 3;
+    }
+    [params setObject:[NSNumber numberWithInteger:redMold] forKey:@"redType"];
+    [params setObject:[NSNumber numberWithInteger:self.currentPublishNode.taskMold + 1] forKey:@"type"];
+    
+    NSString *taskName = [self nodeForCellTypeWithType:LLPublishCellTypeTaskName].inputText;
+    if (taskName.length > 0) [params setObject:taskName forKey:@"taskName"];
+    NSString *taskSummary = [self nodeForCellTypeWithType:LLPublishCellTypeTaskExplain].inputText;
+    if (taskSummary.length > 0) [params setObject:taskSummary forKey:@"taskSummary"];
+    [params setObject:[NSNumber numberWithInteger:self.currentPublishNode.visibleMold] forKey:@"visibleUser"];
+    
+    [params setObject:[NSNumber numberWithInteger:self.currentPublishNode.radiusType] forKey:@"radiusType"];
+    NSString *address = self.currentPublishNode.address;
+    if (address.length > 0) [params setObject:address forKey:@"address"];
+    [params setObject:[NSNumber numberWithFloat:self.currentPublishNode.coordinate.longitude] forKey:@"longitude"];
+    [params setObject:[NSNumber numberWithFloat:self.currentPublishNode.coordinate.latitude] forKey:@"latitude"];
+    
+    NSString *money = [self nodeForCellTypeWithType:LLPublishCellTypeRedAmount].inputText;
+    if (money.length > 0) [params setObject:money forKey:@"money"];
+    NSString *count = [self nodeForCellTypeWithType:LLPublishCellTypeRedCount].inputText;
+    if (count.length > 0) [params setObject:count forKey:@"count"];
+    
+    [params setObject:[NSNumber numberWithInteger:self.currentPublishNode.ageMold] forKey:@"screenAge"];
+    [params setObject:[NSNumber numberWithInteger:self.currentPublishNode.sexMold] forKey:@"screenSex"];
+    NSString *hobbiesIndexs = @"";
+    if (self.currentPublishNode.hobbiesIndexs.count > 0) {
+        hobbiesIndexs = [self.currentPublishNode.hobbiesIndexs componentsJoinedByString:@","];
+    }
+    [params setObject:hobbiesIndexs forKey:@"screenHobby"];
+    
+    NSString *releaseTime = @"0001-01-01";
+    if (self.currentPublishNode.date) {
+        releaseTime = [WYCommonUtils dateYearToDayDiscriptionFromDate:self.currentPublishNode.date];
+    }
+    if (releaseTime.length > 0) [params setObject:releaseTime forKey:@"releaseTime"];
+    
+    NSString *summary = [self nodeForCellTypeWithType:LLPublishCellTypeIntro].inputText;
+    if (summary.length > 0) [params setObject:summary forKey:@"summary"];
+    
+    
+    
+    [self.networkManager POST:requesUrl needCache:NO caCheKey:nil parameters:params responseClass:nil needHeaderAuth:NO success:^(WYRequestType requestType, NSString *message, BOOL isCache, id dataObject) {
+        
+        [SVProgressHUD dismiss];
+        if (requestType != WYRequestTypeSuccess) {
+            [SVProgressHUD showCustomErrorWithStatus:message];
+            return ;
+        }
+        [SVProgressHUD showCustomSuccessWithStatus:message];
+        //        if ([dataObject isKindOfClass:[NSArray class]]) {
+        //            NSArray *data = (NSArray *)dataObject;
+        //            if (data.count > 0) {
+        //                NSDictionary *dic = data[0];
+        //            }
+        //        }
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [weakSelf.navigationController popViewControllerAnimated:true];
+        });
+        
+    } failure:^(id responseObject, NSError *error) {
+        [SVProgressHUD showCustomErrorWithStatus:HitoFaiNetwork];
+    }];
+}
+
 #pragma mark - Action
 - (void)publishAction:(id)sender {
     if (self.publishVcType == LLPublishViewcTypeExchange) {
         [self publishGoodsRequest];
+    } else if (self.publishVcType == LLPublishViewcTypeConvenience) {
+        [self addFacilitateRequest];
+    } else {
+        [self addRedEnvelopesRequest];
     }
 }
 
@@ -748,9 +877,10 @@ UITableViewDataSource
     [self.navigationController pushViewController:vc animated:true];
     
     WEAKSELF
-    vc.chooseLocationCoordinateBlock = ^(CLLocationCoordinate2D currentCoordinate, NSString * _Nonnull address) {
+    vc.chooseLocationCoordinateBlock = ^(CLLocationCoordinate2D currentCoordinate, NSString * _Nonnull address, NSInteger radiusType) {
         weakSelf.currentPublishNode.coordinate = currentCoordinate;
         weakSelf.currentPublishNode.address = address;
+        weakSelf.currentPublishNode.radiusType = radiusType;
         [weakSelf refreshDataSource];
     };
 }

@@ -91,6 +91,7 @@ typedef NS_ENUM(NSInteger, LLPublishInputType) {
 @property (nonatomic, strong) LLTradeMoldNode *tradeMoldNode1;
 @property (nonatomic, strong) LLTradeMoldNode *tradeMoldNode2;
 
+@property (nonatomic, assign) NSInteger radiusType;
 @property (nonatomic, assign) CLLocationCoordinate2D coordinate;//经纬度
 @property (nonatomic, strong) NSString *address;//地址
 @property (nonatomic, strong) NSString *houseNumber;

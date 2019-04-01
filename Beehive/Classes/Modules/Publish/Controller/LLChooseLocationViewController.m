@@ -187,7 +187,7 @@ AMapGeoFenceManagerDelegate
         return;
     }
     if (self.chooseLocationCoordinateBlock) {
-        self.chooseLocationCoordinateBlock(self.currentCoordinate, self.currentAddress);
+        self.chooseLocationCoordinateBlock(self.currentCoordinate, self.currentAddress, self.selScopeIndex + 1);
     }
     [self.navigationController popViewControllerAnimated:true];
 }

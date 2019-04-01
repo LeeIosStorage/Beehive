@@ -140,5 +140,34 @@
         "module"  : "MyService.asmx",
         "action"  : "GetFollowList"
     },
-    
+    "GetFansMoney": {
+        "protocol": "http",
+        "module"  : "MyService.asmx",
+        "action"  : "GetFansMoney"
+    },
+    "JoinMoney": {
+        "protocol": "http",
+        "module"  : "MyService.asmx",
+        "action"  : "JoinMoney"
+    },
+    "GetParentFansList": {
+        "protocol": "http",
+        "module"  : "MyService.asmx",
+        "action"  : "GetParentFansList"
+    },
+    "GetGrandFansList": {
+        "protocol": "http",
+        "module"  : "MyService.asmx",
+        "action"  : "GetGrandFansList"
+    },
+    "AddRedEnvelopes": {
+        "protocol": "http",
+        "module"  : "BusinessService.asmx",
+        "action"  : "AddRedEnvelopes"
+    },
+    "AddFacilitate": {
+        "protocol": "http",
+        "module"  : "BusinessService.asmx",
+        "action"  : "AddFacilitate"
+    },
 }

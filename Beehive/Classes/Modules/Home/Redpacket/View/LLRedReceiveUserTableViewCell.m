@@ -7,6 +7,7 @@
 //
 
 #import "LLRedReceiveUserTableViewCell.h"
+#import "LLUserInfoNode.h"
 
 @interface LLRedReceiveUserTableViewCell ()
 
@@ -31,10 +32,12 @@
 }
 
 - (void)updateCellWithData:(id)node {
-    [WYCommonUtils setImageWithURL:[NSURL URLWithString:kLLAppTestHttpURL] setImage:self.avatarImageView setbitmapImage:nil];
-    self.nickNameLabel.text = @"奶茶三兄弟";
-    self.timeLabel.text = @"198月";
-    self.moneyLabel.text = @"0.3";
+    LLUserInfoNode *userInfo = (LLUserInfoNode *)node;
+    
+    [WYCommonUtils setImageWithURL:[NSURL URLWithString:userInfo.HeadImg] setImage:self.avatarImageView setbitmapImage:nil];
+    self.nickNameLabel.text = userInfo.UserName;
+    self.timeLabel.text = userInfo.AddTime;
+    self.moneyLabel.text = [NSString stringWithFormat:@"%.2f",userInfo.Money];
 }
 
 @end

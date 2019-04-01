@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-typedef void(^LLChooseLocationCoordinateBlock) (CLLocationCoordinate2D currentCoordinate, NSString *address);
+typedef void(^LLChooseLocationCoordinateBlock) (CLLocationCoordinate2D currentCoordinate, NSString *address, NSInteger radiusType);
 
 @interface LLChooseLocationViewController : LLBaseViewController
 

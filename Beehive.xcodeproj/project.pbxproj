@@ -197,6 +197,8 @@
 		8D65E1CD224D124C000A344D /* LLExchangeGoodsNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D65E1CC224D124C000A344D /* LLExchangeGoodsNode.m */; };
 		8D65E1D1224E429C000A344D /* LLWalletDetailsNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D65E1D0224E429C000A344D /* LLWalletDetailsNode.m */; };
 		8D72C1512251165D00B032C2 /* LLFollowUserNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D72C1502251165D00B032C2 /* LLFollowUserNode.m */; };
+		8D72C1552251D0FF00B032C2 /* LLBeeQunMoneyNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D72C1542251D0FF00B032C2 /* LLBeeQunMoneyNode.m */; };
+		8D72C1582251D8B500B032C2 /* LLUserInfoNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D72C1572251D8B500B032C2 /* LLUserInfoNode.m */; };
 		8D79E4D2222672A20019A1BE /* LLTabBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D79E4D1222672A20019A1BE /* LLTabBarViewController.m */; };
 		8D79E4D5222672CA0019A1BE /* LLNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D79E4D4222672CA0019A1BE /* LLNavigationController.m */; };
 		8D79E4D82226748D0019A1BE /* LLBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D79E4D72226748D0019A1BE /* LLBaseViewController.m */; };
@@ -672,6 +674,10 @@
 		8D65E1D0224E429C000A344D /* LLWalletDetailsNode.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLWalletDetailsNode.m; sourceTree = "<group>"; };
 		8D72C14F2251165D00B032C2 /* LLFollowUserNode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLFollowUserNode.h; sourceTree = "<group>"; };
 		8D72C1502251165D00B032C2 /* LLFollowUserNode.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLFollowUserNode.m; sourceTree = "<group>"; };
+		8D72C1532251D0FF00B032C2 /* LLBeeQunMoneyNode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLBeeQunMoneyNode.h; sourceTree = "<group>"; };
+		8D72C1542251D0FF00B032C2 /* LLBeeQunMoneyNode.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLBeeQunMoneyNode.m; sourceTree = "<group>"; };
+		8D72C1562251D8B500B032C2 /* LLUserInfoNode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLUserInfoNode.h; sourceTree = "<group>"; };
+		8D72C1572251D8B500B032C2 /* LLUserInfoNode.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLUserInfoNode.m; sourceTree = "<group>"; };
 		8D79E4D0222672A20019A1BE /* LLTabBarViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLTabBarViewController.h; sourceTree = "<group>"; };
 		8D79E4D1222672A20019A1BE /* LLTabBarViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLTabBarViewController.m; sourceTree = "<group>"; };
 		8D79E4D3222672CA0019A1BE /* LLNavigationController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLNavigationController.h; sourceTree = "<group>"; };
@@ -975,6 +981,8 @@
 				7E1E8A7822317338002766AD /* LLMineNode.m */,
 				8D72C14F2251165D00B032C2 /* LLFollowUserNode.h */,
 				8D72C1502251165D00B032C2 /* LLFollowUserNode.m */,
+				8D72C1562251D8B500B032C2 /* LLUserInfoNode.h */,
+				8D72C1572251D8B500B032C2 /* LLUserInfoNode.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1569,6 +1577,15 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		8D72C1522251D0E100B032C2 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				8D72C1532251D0FF00B032C2 /* LLBeeQunMoneyNode.h */,
+				8D72C1542251D0FF00B032C2 /* LLBeeQunMoneyNode.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		8D79E4C822266ECC0019A1BE /* AppDelegate */ = {
 			isa = PBXGroup;
 			children = (
@@ -1863,6 +1880,7 @@
 		8DBEAE87223E16790095D214 /* BeeQun */ = {
 			isa = PBXGroup;
 			children = (
+				8D72C1522251D0E100B032C2 /* Model */,
 				8DBEAE89223E168B0095D214 /* View */,
 				8DBEAE88223E16850095D214 /* Controller */,
 			);
@@ -2596,6 +2614,7 @@
 				8DCC9AC2222B815E00AC3128 /* LLTableViewCell.m in Sources */,
 				8D542A64222A5BC2008B90B0 /* WYAPIGenerate.m in Sources */,
 				8D004ECE223B7ADC0029EDE6 /* LLRedReceiveUserTableViewCell.m in Sources */,
+				8D72C1582251D8B500B032C2 /* LLUserInfoNode.m in Sources */,
 				8DBEAE76223DEA870095D214 /* LLFundAmountCollectionViewCell.m in Sources */,
 				8D004EE4223B90780029EDE6 /* LLPartnerHeaderView.m in Sources */,
 				8D01670E2238C05F00CD21D8 /* LLMessageWarnTableViewCell.m in Sources */,
@@ -2703,6 +2722,7 @@
 				8D5CB6CD2234E65000527DEB /* LLMultipleSelectedPickerView.m in Sources */,
 				8D004EC4223B71400029EDE6 /* LLRedrReceiveDetailsViewController.m in Sources */,
 				8D542A7A222A5BC2008B90B0 /* LEBaseModel.m in Sources */,
+				8D72C1552251D0FF00B032C2 /* LLBeeQunMoneyNode.m in Sources */,
 				8D5CB6C22232D73300527DEB /* ZJDatePickerView.m in Sources */,
 				8D890B6C2232344500CA711A /* LLPublishInputViewCell.m in Sources */,
 				8D65E1D1224E429C000A344D /* LLWalletDetailsNode.m in Sources */,
