@@ -74,6 +74,7 @@
                 <constraints>
                     <constraint firstItem="jTF-Tb-WPX" firstAttribute="centerY" secondItem="EX7-df-H4e" secondAttribute="centerY" id="1UP-Uc-Rh3"/>
                     <constraint firstItem="Zk3-LD-AT2" firstAttribute="centerY" secondItem="HIh-rW-5jR" secondAttribute="centerY" id="66C-7J-7ab"/>
+                    <constraint firstItem="K2b-vE-gSt" firstAttribute="top" secondItem="jTF-Tb-WPX" secondAttribute="bottom" constant="4" id="74e-bS-Yl3"/>
                     <constraint firstItem="HIh-rW-5jR" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="ET6-kF-dA0"/>
                     <constraint firstItem="G6R-pC-DUI" firstAttribute="top" secondItem="kkQ-Qp-4u7" secondAttribute="centerY" constant="2" id="GRF-3X-PBJ"/>
                     <constraint firstItem="7zs-MM-Ecx" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="XFh-5r-TFs"/>
@@ -82,7 +83,6 @@
                     <constraint firstAttribute="trailing" secondItem="7zs-MM-Ecx" secondAttribute="trailing" id="dfq-Sd-mEp"/>
                     <constraint firstItem="G6R-pC-DUI" firstAttribute="leading" secondItem="EX7-df-H4e" secondAttribute="leading" id="ggT-6V-T87"/>
                     <constraint firstAttribute="bottom" secondItem="7zs-MM-Ecx" secondAttribute="bottom" id="gkA-3u-Sxg"/>
-                    <constraint firstItem="K2b-vE-gSt" firstAttribute="centerY" secondItem="G6R-pC-DUI" secondAttribute="centerY" id="hGe-7l-twH"/>
                     <constraint firstItem="EX7-df-H4e" firstAttribute="bottom" secondItem="kkQ-Qp-4u7" secondAttribute="centerY" constant="-2" id="hPV-gy-m6u"/>
                     <constraint firstItem="kkQ-Qp-4u7" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="k6L-D6-6eW"/>
                     <constraint firstAttribute="trailing" secondItem="K2b-vE-gSt" secondAttribute="trailing" constant="10" id="lV7-vp-JwM"/>

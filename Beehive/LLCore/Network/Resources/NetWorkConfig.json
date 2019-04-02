@@ -170,6 +170,11 @@
         "module"  : "MyService.asmx",
         "action"  : "GetGrandFansList"
     },
+    "GetRedEnvelopesHistoryList": {
+        "protocol": "http",
+        "module"  : "MyService.asmx",
+        "action"  : "GetRedEnvelopesHistoryList"
+    },
     "GetDataInfo": {
         "protocol": "http",
         "module"  : "BusinessService.asmx",
@@ -184,6 +189,31 @@
         "protocol": "http",
         "module"  : "BusinessService.asmx",
         "action"  : "AddFacilitate"
+    },
+    "GetFacilitateList": {
+        "protocol": "http",
+        "module"  : "BusinessService.asmx",
+        "action"  : "GetFacilitateList"
+    },
+    "GetRedTaskList": {
+        "protocol": "http",
+        "module"  : "BusinessService.asmx",
+        "action"  : "GetRedTaskList"
+    },
+    "GetAskRedList": {
+        "protocol": "http",
+        "module"  : "BusinessService.asmx",
+        "action"  : "GetAskRedList"
+    },
+    "GetRedDetail": {
+        "protocol": "http",
+        "module"  : "BusinessService.asmx",
+        "action"  : "GetRedDetail"
+    },
+    "GetGoodHistoryList": {
+        "protocol": "http",
+        "module"  : "BusinessService.asmx",
+        "action"  : "GetGoodsList"
     },
     "GetMessageList": {
         "protocol": "http",
@@ -204,5 +234,10 @@
         "protocol": "http",
         "module"  : "QueenBeeService.asmx",
         "action"  : "GetIndustryList"
+    },
+    "GetUserRankList": {
+        "protocol": "http",
+        "module"  : "QueenBeeService.asmx",
+        "action"  : "GetUserRankList"
     },
 }

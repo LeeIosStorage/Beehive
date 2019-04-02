@@ -15,6 +15,7 @@
 #import "LEAlertMarkView.h"
 #import "LLRedrReceiveDetailsViewController.h"
 #import "LLPersonalHomeViewController.h"
+#import "LLRedpacketNode.h"
 
 @interface LLRedpacketDetailsViewController ()
 <
@@ -49,6 +50,7 @@ LEShareSheetViewDelegate
     // Do any additional setup after loading the view from its nib.
     [self setup];
     [self refreshData];
+    [self getRedDetail];
 }
 
 - (void)setup {
@@ -133,6 +135,34 @@ LEShareSheetViewDelegate
 }
 
 #pragma mark - Request
+- (void)getRedDetail {
+    [SVProgressHUD showCustomWithStatus:@"请求中..."];
+    WEAKSELF
+    NSString *requesUrl = [[WYAPIGenerate sharedInstance] API:@"GetRedDetail"];
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    [params setValue:self.redpacketNode.Id forKey:@"id"];
+    NSString *caCheKey = [NSString stringWithFormat:@"GetRedDetail-%@",self.redpacketNode.Id];
+    [self.networkManager POST:requesUrl needCache:YES caCheKey:caCheKey parameters:params responseClass:[LLRedpacketNode class] needHeaderAuth:NO success:^(WYRequestType requestType, NSString *message, BOOL isCache, id dataObject) {
+        
+        [SVProgressHUD dismiss];
+        if (requestType != WYRequestTypeSuccess) {
+            [SVProgressHUD showCustomErrorWithStatus:message];
+            return ;
+        }
+        
+        if ([dataObject isKindOfClass:[NSArray class]]) {
+            NSArray *data = (NSArray *)dataObject;
+            if (data.count > 0) {
+                weakSelf.redpacketNode = data[0];
+            }
+        }
+        [weakSelf refreshData];
+        
+    } failure:^(id responseObject, NSError *error) {
+        [SVProgressHUD showCustomErrorWithStatus:HitoFaiNetwork];
+    }];
+}
+
 - (void)sendComment:(NSString *)content {
     [self.view endEditing:true];
     [SVProgressHUD showCustomWithStatus:@"发送中..."];

@@ -661,7 +661,7 @@ UITableViewDataSource
     }
     NSData *data = [NSJSONSerialization dataWithJSONObject:imageDatas options:NSJSONWritingPrettyPrinted error:nil];
     NSString *jsonStr = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-    [params setObject:jsonStr forKey:@"imgUrl"];
+//    [params setObject:jsonStr forKey:@"imgUrl"];
     
     NSInteger redMold = self.currentPublishNode.redMold + 1;
     if (self.publishVcType == LLPublishViewcTypeAsk) {

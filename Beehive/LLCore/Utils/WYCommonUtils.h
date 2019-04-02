@@ -63,8 +63,12 @@ typedef enum : NSUInteger {
 + (NSString *)dateDiscriptionFromDate:(NSDate *)date;
 //显示时间格式:yyyy-MM-dd
 + (NSString*)dateYearToDayDiscriptionFromDate:(NSDate*)date;
+//显示时间格式:yyyy.MM.dd
++ (NSString*)dateYearToDayDotDiscriptionFromDate:(NSDate*)date;
 //显示时间格式:yyyy-MM-dd HH:mm:ss
 + (NSString*)dateYearToSecondDiscriptionFromDate:(NSDate*)date;
+//显示时间格式:MM-dd
++ (NSString*)dateMonthToDayDiscriptionFromDate:(NSDate*)date;
 //显示时间格式:HH:mm
 + (NSString*)dateHourToMinuteDiscriptionFromDate:(NSDate*)date;
 //显示格式:今天,昨天

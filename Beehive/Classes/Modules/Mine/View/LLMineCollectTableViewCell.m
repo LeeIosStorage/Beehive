@@ -8,6 +8,8 @@
 
 #import "LLMineCollectTableViewCell.h"
 #import "LLHandleStatusView.h"
+#import "LLRedpacketNode.h"
+#import "LLMessageListNode.h"
 
 @interface LLMineCollectTableViewCell ()
 
@@ -33,9 +35,33 @@
 }
 
 - (void)updateCellWithData:(id)node {
-    [WYCommonUtils setImageWithURL:[NSURL URLWithString:kLLAppTestHttpURL] setImage:self.imgIcon setbitmapImage:[UIImage imageNamed:@""]];
-    self.labTitle.text = @"奶茶三兄弟";
-    [self.handleStatusView updateWithData:nil];
+    if ([node isKindOfClass:[LLRedpacketNode class]]) {
+        LLRedpacketNode *redNode = (LLRedpacketNode *)node;
+        NSString *url = @"";
+        if (redNode.ImgList.count > 0) {
+            url = redNode.ImgList[0];
+        }
+        [WYCommonUtils setImageWithURL:[NSURL URLWithString:url] setImage:self.imgIcon setbitmapImage:[UIImage imageNamed:@""]];
+        self.labTitle.text = redNode.Title;
+        
+        [self.handleStatusView.readButton setTitle:[NSString stringWithFormat:@" %d", redNode.LookCount] forState:UIControlStateNormal];
+        [self.handleStatusView.commentButton setTitle:[NSString stringWithFormat:@" %d", redNode.CommentCount] forState:UIControlStateNormal];
+        [self.handleStatusView.favourButton setTitle:[NSString stringWithFormat:@" %d", redNode.GoodCount] forState:UIControlStateNormal];
+        
+    } else if ([node isKindOfClass:[LLMessageListNode class]]) {
+        LLMessageListNode *msgNode = (LLMessageListNode *)node;
+        
+        NSString *url = @"";
+        if (msgNode.ImgUrls.count > 0) {
+            url = msgNode.ImgUrls[0];
+        }
+        [WYCommonUtils setImageWithURL:[NSURL URLWithString:url] setImage:self.imgIcon setbitmapImage:[UIImage imageNamed:@""]];
+        self.labTitle.text = msgNode.Title;
+        
+        [self.handleStatusView.readButton setTitle:[NSString stringWithFormat:@" %d", msgNode.LookCount] forState:UIControlStateNormal];
+        [self.handleStatusView.commentButton setTitle:[NSString stringWithFormat:@" %d", msgNode.CommentCount] forState:UIControlStateNormal];
+        [self.handleStatusView.favourButton setTitle:[NSString stringWithFormat:@" %d", msgNode.GoodCount] forState:UIControlStateNormal];
+    }
 }
 
 @end

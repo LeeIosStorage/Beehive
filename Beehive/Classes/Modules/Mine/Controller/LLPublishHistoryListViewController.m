@@ -12,6 +12,7 @@
 #import "LLRedpacketDetailsViewController.h"
 #import "LLCommodityExchangeDetailsViewController.h"
 #import "LLMessageDetailsViewController.h"
+#import "LLPublishHistoryTimeNode.h"
 
 @interface LLPublishHistoryListViewController ()
 <
@@ -22,6 +23,8 @@ UITableViewDelegate
 @property (nonatomic, strong) UITableView *tableView;
 
 @property (nonatomic, strong) NSMutableArray *dataLists;
+
+@property (assign, nonatomic) int nextCursor;
 
 @end
 
@@ -53,17 +56,227 @@ UITableViewDelegate
     }];
     
     [self.tableView reloadData];
+    
+    self.nextCursor = 1;
+    [self addMJ];
 }
 
 - (void)refreshData {
-    self.dataLists = [NSMutableArray array];
-    [self.dataLists addObject:@[@""]];
-    [self.dataLists addObject:@[@"",@"",@"",@""]];
-    [self.dataLists addObject:@[@""]];
-    
-    [self.tableView reloadData];
+    if (self.publishVcType == LLPublishViewcTypeExchange) {
+        [self getExchangeList];
+    } else if (self.publishVcType == LLPublishViewcTypeAsk) {
+        [self getAskRedList];
+    } else if (self.publishVcType == LLPublishViewcTypeConvenience) {
+        [self getFacilitateList];
+    } else {
+        [self getRedTaskList];
+    }
 }
 
+#pragma mark - mj
+- (void)addMJ {
+    //下拉刷新
+    WEAKSELF;
+    self.tableView.mj_header = [LERefreshHeader headerWithRefreshingBlock:^{
+        weakSelf.nextCursor = 1;
+        [weakSelf refreshData];
+    }];
+    [self.tableView.mj_header beginRefreshing];
+    
+    //上啦加载
+    self.tableView.mj_footer = [LERefreshFooter footerWithRefreshingBlock:^{
+        [weakSelf refreshData];
+    }];
+    self.tableView.mj_footer.hidden = YES;
+    
+}
+
+#pragma mark - Request
+- (void)getExchangeList {
+    WEAKSELF
+    NSString *requesUrl = [[WYAPIGenerate sharedInstance] API:@"GetGoodHistoryList"];
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    [params setObject:[NSNumber numberWithInteger:self.nextCursor] forKey:@"pageIndex"];
+    [params setObject:[NSNumber numberWithInteger:DATA_LOAD_PAGESIZE_COUNT] forKey:@"pageSize"];
+    
+    [self.networkManager POST:requesUrl needCache:NO caCheKey:nil parameters:params responseClass:[LLPublishHistoryTimeNode class] needHeaderAuth:NO success:^(WYRequestType requestType, NSString *message, BOOL isCache, id dataObject) {
+        
+        [weakSelf.tableView.mj_header endRefreshing];
+        [weakSelf.tableView.mj_footer endRefreshing];
+        [SVProgressHUD dismiss];
+        
+        if (requestType != WYRequestTypeSuccess) {
+            [SVProgressHUD showCustomErrorWithStatus:message];
+            return ;
+        }
+        
+        NSArray *tmpListArray = [NSArray array];
+        if ([dataObject isKindOfClass:[NSArray class]]) {
+            tmpListArray = (NSArray *)dataObject;
+        }
+        if (weakSelf.nextCursor == 1) {
+            weakSelf.dataLists = [NSMutableArray array];
+        }
+        [weakSelf.dataLists addObjectsFromArray:tmpListArray];
+        
+        if (!isCache) {
+            if (tmpListArray.count < DATA_LOAD_PAGESIZE_COUNT) {
+                [weakSelf.tableView.mj_footer setHidden:YES];
+            }else{
+                [weakSelf.tableView.mj_footer setHidden:NO];
+                weakSelf.nextCursor ++;
+            }
+        }
+        
+        [weakSelf.tableView reloadData];
+        
+    } failure:^(id responseObject, NSError *error) {
+        [SVProgressHUD showCustomErrorWithStatus:HitoFaiNetwork];
+        [weakSelf.tableView.mj_header endRefreshing];
+        [weakSelf.tableView.mj_footer endRefreshing];
+    }];
+}
+
+- (void)getAskRedList {
+    WEAKSELF
+    NSString *requesUrl = [[WYAPIGenerate sharedInstance] API:@"GetAskRedList"];
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    [params setObject:[NSNumber numberWithInteger:self.nextCursor] forKey:@"pageIndex"];
+    [params setObject:[NSNumber numberWithInteger:DATA_LOAD_PAGESIZE_COUNT] forKey:@"pageSize"];
+    
+    [self.networkManager POST:requesUrl needCache:NO caCheKey:nil parameters:params responseClass:[LLPublishHistoryTimeNode class] needHeaderAuth:NO success:^(WYRequestType requestType, NSString *message, BOOL isCache, id dataObject) {
+        
+        [weakSelf.tableView.mj_header endRefreshing];
+        [weakSelf.tableView.mj_footer endRefreshing];
+        [SVProgressHUD dismiss];
+        
+        if (requestType != WYRequestTypeSuccess) {
+            [SVProgressHUD showCustomErrorWithStatus:message];
+            return ;
+        }
+        
+        NSArray *tmpListArray = [NSArray array];
+        if ([dataObject isKindOfClass:[NSArray class]]) {
+            tmpListArray = (NSArray *)dataObject;
+        }
+        if (weakSelf.nextCursor == 1) {
+            weakSelf.dataLists = [NSMutableArray array];
+        }
+        [weakSelf.dataLists addObjectsFromArray:tmpListArray];
+        
+        if (!isCache) {
+            if (tmpListArray.count < DATA_LOAD_PAGESIZE_COUNT) {
+                [weakSelf.tableView.mj_footer setHidden:YES];
+            }else{
+                [weakSelf.tableView.mj_footer setHidden:NO];
+                weakSelf.nextCursor ++;
+            }
+        }
+        
+        [weakSelf.tableView reloadData];
+        
+    } failure:^(id responseObject, NSError *error) {
+        [SVProgressHUD showCustomErrorWithStatus:HitoFaiNetwork];
+        [weakSelf.tableView.mj_header endRefreshing];
+        [weakSelf.tableView.mj_footer endRefreshing];
+    }];
+}
+
+- (void)getRedTaskList {
+    WEAKSELF
+    NSString *requesUrl = [[WYAPIGenerate sharedInstance] API:@"GetRedTaskList"];
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    [params setObject:[NSNumber numberWithInteger:self.nextCursor] forKey:@"pageIndex"];
+    [params setObject:[NSNumber numberWithInteger:DATA_LOAD_PAGESIZE_COUNT] forKey:@"pageSize"];
+    
+    [self.networkManager POST:requesUrl needCache:NO caCheKey:nil parameters:params responseClass:[LLPublishHistoryTimeNode class] needHeaderAuth:NO success:^(WYRequestType requestType, NSString *message, BOOL isCache, id dataObject) {
+        
+        [weakSelf.tableView.mj_header endRefreshing];
+        [weakSelf.tableView.mj_footer endRefreshing];
+        [SVProgressHUD dismiss];
+        
+        if (requestType != WYRequestTypeSuccess) {
+            [SVProgressHUD showCustomErrorWithStatus:message];
+            return ;
+        }
+        
+        NSArray *tmpListArray = [NSArray array];
+        if ([dataObject isKindOfClass:[NSArray class]]) {
+            tmpListArray = (NSArray *)dataObject;
+        }
+        if (weakSelf.nextCursor == 1) {
+            weakSelf.dataLists = [NSMutableArray array];
+        }
+        [weakSelf.dataLists addObjectsFromArray:tmpListArray];
+        
+        if (!isCache) {
+            if (tmpListArray.count < DATA_LOAD_PAGESIZE_COUNT) {
+                [weakSelf.tableView.mj_footer setHidden:YES];
+//                [weakSelf.tableView.mj_footer setHidden:NO];
+//                weakSelf.nextCursor ++;
+            }else{
+                [weakSelf.tableView.mj_footer setHidden:NO];
+                weakSelf.nextCursor ++;
+            }
+        }
+        
+        [weakSelf.tableView reloadData];
+        
+    } failure:^(id responseObject, NSError *error) {
+        [SVProgressHUD showCustomErrorWithStatus:HitoFaiNetwork];
+        [weakSelf.tableView.mj_header endRefreshing];
+        [weakSelf.tableView.mj_footer endRefreshing];
+    }];
+}
+
+- (void)getFacilitateList {
+    WEAKSELF
+    NSString *requesUrl = [[WYAPIGenerate sharedInstance] API:@"GetFacilitateList"];
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    [params setObject:[NSNumber numberWithInteger:self.nextCursor] forKey:@"pageIndex"];
+    [params setObject:[NSNumber numberWithInteger:DATA_LOAD_PAGESIZE_COUNT] forKey:@"pageSize"];
+    
+    [self.networkManager POST:requesUrl needCache:NO caCheKey:nil parameters:params responseClass:[LLPublishHistoryTimeNode class] needHeaderAuth:NO success:^(WYRequestType requestType, NSString *message, BOOL isCache, id dataObject) {
+        
+        [weakSelf.tableView.mj_header endRefreshing];
+        [weakSelf.tableView.mj_footer endRefreshing];
+        [SVProgressHUD dismiss];
+        
+        if (requestType != WYRequestTypeSuccess) {
+            [SVProgressHUD showCustomErrorWithStatus:message];
+            return ;
+        }
+        
+        NSArray *tmpListArray = [NSArray array];
+        if ([dataObject isKindOfClass:[NSArray class]]) {
+            tmpListArray = (NSArray *)dataObject;
+        }
+        if (weakSelf.nextCursor == 1) {
+            weakSelf.dataLists = [NSMutableArray array];
+        }
+        [weakSelf.dataLists addObjectsFromArray:tmpListArray];
+        
+        if (!isCache) {
+            if (tmpListArray.count < DATA_LOAD_PAGESIZE_COUNT) {
+                [weakSelf.tableView.mj_footer setHidden:YES];
+//                [weakSelf.tableView.mj_footer setHidden:NO];
+//                weakSelf.nextCursor ++;
+            }else{
+                [weakSelf.tableView.mj_footer setHidden:NO];
+                weakSelf.nextCursor ++;
+            }
+        }
+        
+        [weakSelf.tableView reloadData];
+        
+    } failure:^(id responseObject, NSError *error) {
+        [SVProgressHUD showCustomErrorWithStatus:HitoFaiNetwork];
+        [weakSelf.tableView.mj_header endRefreshing];
+        [weakSelf.tableView.mj_footer endRefreshing];
+    }];
+}
+
+#pragma mark - setget
 - (UITableView *)tableView {
     if (!_tableView) {
         _tableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
@@ -84,8 +297,15 @@ UITableViewDelegate
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    NSArray *array = self.dataLists[section];
-    return array.count;
+    LLPublishHistoryTimeNode *node = self.dataLists[section];
+    if (self.publishVcType == LLPublishViewcTypeConvenience) {
+        return node.FacList.count;
+    } else if (self.publishVcType == LLPublishViewcTypeRedpacket) {
+        return node.RedList.count;
+    } else if (self.publishVcType == LLPublishViewcTypeExchange) {
+        return node.GoodList.count;
+    }
+    return 0;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
@@ -121,7 +341,12 @@ UITableViewDelegate
         }];
     }
     UILabel *label = (UILabel *)[header viewWithTag:201];
-    label.text = @"2019.1.20";
+    LLPublishHistoryTimeNode *node = self.dataLists[section];
+    if (self.publishVcType == LLPublishViewcTypeConvenience) {
+        label.text = node.TimeName;
+    } else {
+        label.text = node.YearName;
+    }
     
     return header;
 }
@@ -143,7 +368,8 @@ UITableViewDelegate
             NSArray* cells = [[NSBundle mainBundle] loadNibNamed:cellIdentifier owner:nil options:nil];
             cell = [cells objectAtIndex:0];
         }
-        [cell updateCellWithData:nil];
+        LLPublishHistoryTimeNode *node = self.dataLists[indexPath.section];
+        [cell updateCellWithData:node.GoodList[indexPath.row]];
         return cell;
     }
     static NSString *cellIdentifier = @"LLMineCollectTableViewCell";
@@ -153,7 +379,14 @@ UITableViewDelegate
         cell = [cells objectAtIndex:0];
     }
     cell.indexPath = indexPath;
-    [cell updateCellWithData:nil];
+    LLPublishHistoryTimeNode *node = self.dataLists[indexPath.section];
+    id cellNode;
+    if (self.publishVcType == LLPublishViewcTypeConvenience) {
+        cellNode = node.FacList[indexPath.row];
+    } else if (self.publishVcType == LLPublishViewcTypeRedpacket) {
+        cellNode = node.RedList[indexPath.row];
+    }
+    [cell updateCellWithData:cellNode];
     return cell;
 }
 
@@ -161,21 +394,27 @@ UITableViewDelegate
 {
     NSIndexPath* selIndexPath = [tableView indexPathForSelectedRow];
     [tableView deselectRowAtIndexPath:selIndexPath animated:YES];
-    NSArray *array = self.dataLists[indexPath.section];
+    LLPublishHistoryTimeNode *node = self.dataLists[indexPath.section];
     
     if (self.publishVcType == LLPublishViewcTypeRedpacket) {
+        LLRedpacketNode *cellNode = node.RedList[indexPath.row];
         LLRedpacketDetailsViewController *vc = [[LLRedpacketDetailsViewController alloc] init];
+        vc.redpacketNode = cellNode;
         vc.vcType = 1;
         [self.navigationController pushViewController:vc animated:true];
     } else if (self.publishVcType == LLPublishViewcTypeExchange) {
         LLCommodityExchangeDetailsViewController *vc = [[LLCommodityExchangeDetailsViewController alloc] init];
         [self.navigationController pushViewController:vc animated:true];
     } else if (self.publishVcType == LLPublishViewcTypeAsk) {
+        LLRedpacketNode *cellNode = node.RedList[indexPath.row];
         LLRedpacketDetailsViewController *vc = [[LLRedpacketDetailsViewController alloc] init];
         vc.vcType = 0;
+        vc.redpacketNode = cellNode;
         [self.navigationController pushViewController:vc animated:true];
     } else if (self.publishVcType == LLPublishViewcTypeConvenience) {
+        LLMessageListNode *cellNode = node.FacList[indexPath.row];
         LLMessageDetailsViewController *vc = [[LLMessageDetailsViewController alloc] init];
+        vc.messageListNode = cellNode;
         [self.navigationController pushViewController:vc animated:true];
     }
 }

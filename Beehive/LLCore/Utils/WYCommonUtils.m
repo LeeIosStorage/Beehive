@@ -195,6 +195,21 @@ static bool dateFormatterOFUSInvalid;
     return _timestamp;
 }
 
++ (NSString*)dateYearToDayDotDiscriptionFromDate:(NSDate*)date {
+    NSString *_timestamp = nil;
+    if (date == nil) {
+        return @"";
+    }
+    NSCalendar * calender = [NSCalendar currentCalendar];
+    unsigned unitFlags = NSCalendarUnitYear | NSCalendarUnitMonth |  NSCalendarUnitDay |
+    NSCalendarUnitHour | NSCalendarUnitMinute |NSCalendarUnitSecond | NSCalendarUnitWeekday;
+    NSDateComponents *comps = [calender components:unitFlags fromDate:date];
+    
+    _timestamp = [NSString stringWithFormat:@"%04d.%02d.%02d", (int)comps.year, (int)comps.month, (int)comps.day];
+    
+    return _timestamp;
+}
+
 + (NSString*)dateYearToSecondDiscriptionFromDate:(NSDate*)date{
     NSString *_timestamp = nil;
     if (date == nil) {
@@ -206,6 +221,21 @@ static bool dateFormatterOFUSInvalid;
     NSDateComponents *comps = [calender components:unitFlags fromDate:date];
     
     _timestamp = [NSString stringWithFormat:@"%04d-%02d-%02d %02d:%02d:%02d", (int)comps.year, (int)comps.month, (int)comps.day, (int)comps.hour, (int)comps.minute,(int)comps.second];
+    
+    return _timestamp;
+}
+
++ (NSString*)dateMonthToDayDiscriptionFromDate:(NSDate*)date {
+    NSString *_timestamp = nil;
+    if (date == nil) {
+        return @"";
+    }
+    NSCalendar * calender = [NSCalendar currentCalendar];
+    unsigned unitFlags = NSCalendarUnitYear | NSCalendarUnitMonth |  NSCalendarUnitDay |
+    NSCalendarUnitHour | NSCalendarUnitMinute |NSCalendarUnitSecond | NSCalendarUnitWeekday;
+    NSDateComponents *comps = [calender components:unitFlags fromDate:date];
+    
+    _timestamp = [NSString stringWithFormat:@"%d-%02d", (int)comps.month, (int)comps.day];
     
     return _timestamp;
 }

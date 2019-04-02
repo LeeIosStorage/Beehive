@@ -7,6 +7,7 @@
 //
 
 #import "LLRankTableViewCell.h"
+#import "LLRankUserNode.h"
 
 @interface LLRankTableViewCell ()
 
@@ -38,6 +39,7 @@
 }
 
 - (void)updateCellWithData:(id)node {
+    LLRankUserNode *userNode = (LLRankUserNode *)node;
     
     self.rankImageView.hidden = false;
     self.rankLabel.hidden = true;
@@ -53,11 +55,16 @@
     }
     self.rankLabel.text = [NSString stringWithFormat:@"%ld",self.indexPath.row + 1];
     
-    [WYCommonUtils setImageWithURL:[NSURL URLWithString:kLLAppTestHttpURL] setImage:self.avatarImageView setbitmapImage:nil];
-    self.nickNameLabel.text = @"郑和";
-    self.leftDesLabel.text = @"河南省郑州";
-    self.rightLabel.text = [NSString stringWithFormat:@"%d人",1000];
-    self.rightDesLabel.text = @"蜂群人数";
+    [WYCommonUtils setImageWithURL:[NSURL URLWithString:userNode.HeadImg] setImage:self.avatarImageView setbitmapImage:nil];
+    self.nickNameLabel.text = userNode.Name;
+    self.leftDesLabel.text = userNode.Autograph;
+    
+    self.rightLabel.text = [NSString stringWithFormat:@"%.2f元",userNode.IncomeMoney];
+    self.rightDesLabel.text = @"当前收益";
+    if (self.type == 1) {
+        self.rightLabel.text = [NSString stringWithFormat:@"%d人",userNode.FansCount];
+        self.rightDesLabel.text = @"蜂群人数";
+    }
 }
 
 @end

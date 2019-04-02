@@ -88,6 +88,7 @@
 		8D016740223A052500CD21D8 /* LLCommodityExchangeconfirmView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D01673F223A052500CD21D8 /* LLCommodityExchangeconfirmView.xib */; };
 		8D016743223A19D700CD21D8 /* LLCommodityPurchaseSucceedView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D016742223A19D600CD21D8 /* LLCommodityPurchaseSucceedView.m */; };
 		8D016745223A19EF00CD21D8 /* LLCommodityPurchaseSucceedView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D016744223A19EF00CD21D8 /* LLCommodityPurchaseSucceedView.xib */; };
+		8D08CDE72253B5E000AD406E /* LLRedTaskHistoryNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D08CDE62253B5E000AD406E /* LLRedTaskHistoryNode.m */; };
 		8D0E4B43223F53CE00DA2866 /* LLBeeVIPViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D0E4B41223F53CE00DA2866 /* LLBeeVIPViewController.m */; };
 		8D0E4B44223F53CE00DA2866 /* LLBeeVIPViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D0E4B42223F53CE00DA2866 /* LLBeeVIPViewController.xib */; };
 		8D0E4B48223F53E200DA2866 /* LLTuiSpecialistViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D0E4B46223F53E200DA2866 /* LLTuiSpecialistViewController.m */; };
@@ -280,6 +281,8 @@
 		8DD290E52229450D00E4338D /* UINavigationBar+LLFixSpace.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DD290E42229450D00E4338D /* UINavigationBar+LLFixSpace.m */; };
 		8DD3993822532A6500B8DAE2 /* LLLocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DD3993722532A6500B8DAE2 /* LLLocationManager.m */; };
 		8DD3993B22532F9700B8DAE2 /* LLCommentNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DD3993A22532F9700B8DAE2 /* LLCommentNode.m */; };
+		8DD3993E22539BF400B8DAE2 /* LLPublishHistoryTimeNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DD3993D22539BF400B8DAE2 /* LLPublishHistoryTimeNode.m */; };
+		8DD399422253AD8D00B8DAE2 /* LLRankUserNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DD399412253AD8D00B8DAE2 /* LLRankUserNode.m */; };
 		8DE588592227A4B3002C1576 /* LLBeeMessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DE588572227A4B3002C1576 /* LLBeeMessageViewController.m */; };
 		8DE5885A2227A4B3002C1576 /* LLBeeMessageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8DE588582227A4B3002C1576 /* LLBeeMessageViewController.xib */; };
 		8DE5885E2227A4CC002C1576 /* LLBeeRankingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DE5885C2227A4CC002C1576 /* LLBeeRankingViewController.m */; };
@@ -484,6 +487,8 @@
 		8D016741223A19D600CD21D8 /* LLCommodityPurchaseSucceedView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLCommodityPurchaseSucceedView.h; sourceTree = "<group>"; };
 		8D016742223A19D600CD21D8 /* LLCommodityPurchaseSucceedView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLCommodityPurchaseSucceedView.m; sourceTree = "<group>"; };
 		8D016744223A19EF00CD21D8 /* LLCommodityPurchaseSucceedView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LLCommodityPurchaseSucceedView.xib; sourceTree = "<group>"; };
+		8D08CDE52253B5E000AD406E /* LLRedTaskHistoryNode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLRedTaskHistoryNode.h; sourceTree = "<group>"; };
+		8D08CDE62253B5E000AD406E /* LLRedTaskHistoryNode.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLRedTaskHistoryNode.m; sourceTree = "<group>"; };
 		8D0E4B40223F53CE00DA2866 /* LLBeeVIPViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLBeeVIPViewController.h; sourceTree = "<group>"; };
 		8D0E4B41223F53CE00DA2866 /* LLBeeVIPViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLBeeVIPViewController.m; sourceTree = "<group>"; };
 		8D0E4B42223F53CE00DA2866 /* LLBeeVIPViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LLBeeVIPViewController.xib; sourceTree = "<group>"; };
@@ -816,6 +821,10 @@
 		8DD3993722532A6500B8DAE2 /* LLLocationManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLLocationManager.m; sourceTree = "<group>"; };
 		8DD3993922532F9700B8DAE2 /* LLCommentNode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLCommentNode.h; sourceTree = "<group>"; };
 		8DD3993A22532F9700B8DAE2 /* LLCommentNode.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLCommentNode.m; sourceTree = "<group>"; };
+		8DD3993C22539BF400B8DAE2 /* LLPublishHistoryTimeNode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLPublishHistoryTimeNode.h; sourceTree = "<group>"; };
+		8DD3993D22539BF400B8DAE2 /* LLPublishHistoryTimeNode.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLPublishHistoryTimeNode.m; sourceTree = "<group>"; };
+		8DD399402253AD8D00B8DAE2 /* LLRankUserNode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLRankUserNode.h; sourceTree = "<group>"; };
+		8DD399412253AD8D00B8DAE2 /* LLRankUserNode.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLRankUserNode.m; sourceTree = "<group>"; };
 		8DE588562227A4B3002C1576 /* LLBeeMessageViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLBeeMessageViewController.h; sourceTree = "<group>"; };
 		8DE588572227A4B3002C1576 /* LLBeeMessageViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLBeeMessageViewController.m; sourceTree = "<group>"; };
 		8DE588582227A4B3002C1576 /* LLBeeMessageViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LLBeeMessageViewController.xib; sourceTree = "<group>"; };
@@ -995,6 +1004,8 @@
 				8D72C1502251165D00B032C2 /* LLFollowUserNode.m */,
 				8D72C1562251D8B500B032C2 /* LLUserInfoNode.h */,
 				8D72C1572251D8B500B032C2 /* LLUserInfoNode.m */,
+				8DD3993C22539BF400B8DAE2 /* LLPublishHistoryTimeNode.h */,
+				8DD3993D22539BF400B8DAE2 /* LLPublishHistoryTimeNode.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1163,6 +1174,15 @@
 				8DF28F95223E4B080074A4D8 /* LLExchangeOrderTableViewCell.xib */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		8D08CDE42253B5CE00AD406E /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				8D08CDE52253B5E000AD406E /* LLRedTaskHistoryNode.h */,
+				8D08CDE62253B5E000AD406E /* LLRedTaskHistoryNode.m */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		8D3F214F222FC8790066F5EB /* Details */ = {
@@ -1968,6 +1988,7 @@
 		8DCC9AAA222B719100AC3128 /* Redpacket */ = {
 			isa = PBXGroup;
 			children = (
+				8D08CDE42253B5CE00AD406E /* Model */,
 				8DF0C275223A2980006175E7 /* View */,
 				8DCC9AB0222B77D600AC3128 /* Controller */,
 			);
@@ -2062,6 +2083,15 @@
 			path = Manager;
 			sourceTree = "<group>";
 		};
+		8DD3993F2253AD2900B8DAE2 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				8DD399402253AD8D00B8DAE2 /* LLRankUserNode.h */,
+				8DD399412253AD8D00B8DAE2 /* LLRankUserNode.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		8DE588542227A45C002C1576 /* Message */ = {
 			isa = PBXGroup;
 			children = (
@@ -2078,6 +2108,7 @@
 		8DE588552227A476002C1576 /* Ranking */ = {
 			isa = PBXGroup;
 			children = (
+				8DD3993F2253AD2900B8DAE2 /* Model */,
 				8DC02D4B2231141C000CAE9C /* View */,
 				8DE5885B2227A4CC002C1576 /* LLBeeRankingViewController.h */,
 				8DE5885C2227A4CC002C1576 /* LLBeeRankingViewController.m */,
@@ -2645,6 +2676,7 @@
 				8D1A88062248E9A4005DD311 /* LLRedpacketNode.m in Sources */,
 				8DBEAE30223C9AB10095D214 /* LLPayPasswordResetViewController.m in Sources */,
 				8DC02D4F22311443000CAE9C /* LLRankTableViewCell.m in Sources */,
+				8DD3993E22539BF400B8DAE2 /* LLPublishHistoryTimeNode.m in Sources */,
 				8D5CB6E922357EA000527DEB /* LLMapAddressViewController.m in Sources */,
 				8D79E4D5222672CA0019A1BE /* LLNavigationController.m in Sources */,
 				8D004ED3223B80C50029EDE6 /* LLPersonalHomeViewController.m in Sources */,
@@ -2669,6 +2701,7 @@
 				8D542A74222A5BC2008B90B0 /* PathHelper.m in Sources */,
 				7E2E700C2238023300F185A7 /* LLCommodityExchangeViewController.m in Sources */,
 				8D0167092238BFDB00CD21D8 /* LLAttentionTableViewCell.m in Sources */,
+				8DD399422253AD8D00B8DAE2 /* LLRankUserNode.m in Sources */,
 				8D01673E223A04F900CD21D8 /* LLCommodityExchangeconfirmView.m in Sources */,
 				8D016743223A19D700CD21D8 /* LLCommodityPurchaseSucceedView.m in Sources */,
 				8D79E4D82226748D0019A1BE /* LLBaseViewController.m in Sources */,
@@ -2695,6 +2728,7 @@
 				8DBEAE80223DF9CA0095D214 /* LLFundDetailTableViewCell.m in Sources */,
 				8D72C33A2252385100B032C2 /* LLPubDataInfoNode.m in Sources */,
 				8D01671D2238DE8500CD21D8 /* LLReceiveCommentViewController.m in Sources */,
+				8D08CDE72253B5E000AD406E /* LLRedTaskHistoryNode.m in Sources */,
 				8D542A7D222A5BC2008B90B0 /* LELinkerHandler.m in Sources */,
 				8D79E4D2222672A20019A1BE /* LLTabBarViewController.m in Sources */,
 				8D542A61222A5BC2008B90B0 /* WYNetWorkExceptionHandling.m in Sources */,

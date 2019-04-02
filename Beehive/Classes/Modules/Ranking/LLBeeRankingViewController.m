@@ -9,9 +9,13 @@
 #import "LLBeeRankingViewController.h"
 #import "LLSegmentedHeadView.h"
 #import "LLRankTableViewCell.h"
+#import "LLRankUserNode.h"
 
 @interface LLBeeRankingViewController ()
-
+<
+UITableViewDelegate,
+UITableViewDataSource
+>
 @property (nonatomic, strong) LLSegmentedHeadView *segmentedHeadView;
 
 @property (nonatomic, strong) UITableView *tableView;
@@ -19,6 +23,8 @@
 @property (nonatomic, strong) NSMutableArray *dataLists;
 
 @property (nonatomic, assign) NSInteger currentPage;
+
+@property (nonatomic, assign) int nextCursor;
 
 @end
 
@@ -28,7 +34,6 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     [self setup];
-    [self refreshData];
 }
 
 - (void)setup {
@@ -53,16 +58,78 @@
     }];
     
     [self.tableView reloadData];
+    
+    self.nextCursor = 1;
+    [self addMJ];
 }
 
 - (void)refreshData {
-    self.dataLists = [NSMutableArray array];
-    [self.dataLists addObject:@""];
-    [self.dataLists addObject:@""];
-    [self.dataLists addObject:@""];
-    [self.dataLists addObject:@""];
+    [self.tableView.mj_header beginRefreshing];
+}
+
+#pragma mark - mj
+- (void)addMJ {
+    //下拉刷新
+    WEAKSELF;
+    self.tableView.mj_header = [LERefreshHeader headerWithRefreshingBlock:^{
+        weakSelf.nextCursor = 1;
+        [weakSelf getUserRankList];
+    }];
+    [self.tableView.mj_header beginRefreshing];
     
-    [self.tableView reloadData];
+    //上啦加载
+    self.tableView.mj_footer = [LERefreshFooter footerWithRefreshingBlock:^{
+        [weakSelf getUserRankList];
+    }];
+    self.tableView.mj_footer.hidden = YES;
+    
+}
+
+#pragma mark - Request
+- (void)getUserRankList {
+    WEAKSELF
+    NSString *requesUrl = [[WYAPIGenerate sharedInstance] API:@"GetUserRankList"];
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    [params setObject:[NSNumber numberWithInteger:self.nextCursor] forKey:@"pageIndex"];
+    [params setObject:[NSNumber numberWithInteger:DATA_LOAD_PAGESIZE_COUNT] forKey:@"pageSize"];
+    [params setObject:[NSNumber numberWithInteger:self.currentPage] forKey:@"type"];
+    
+    [self.networkManager POST:requesUrl needCache:NO caCheKey:nil parameters:params responseClass:[LLRankUserNode class] needHeaderAuth:NO success:^(WYRequestType requestType, NSString *message, BOOL isCache, id dataObject) {
+        
+        [weakSelf.tableView.mj_header endRefreshing];
+        [weakSelf.tableView.mj_footer endRefreshing];
+        [SVProgressHUD dismiss];
+        
+        if (requestType != WYRequestTypeSuccess) {
+            [SVProgressHUD showCustomErrorWithStatus:message];
+            return ;
+        }
+        
+        NSArray *tmpListArray = [NSArray array];
+        if ([dataObject isKindOfClass:[NSArray class]]) {
+            tmpListArray = (NSArray *)dataObject;
+        }
+        if (weakSelf.nextCursor == 1) {
+            weakSelf.dataLists = [NSMutableArray array];
+        }
+        [weakSelf.dataLists addObjectsFromArray:tmpListArray];
+        
+        if (!isCache) {
+            if (tmpListArray.count < DATA_LOAD_PAGESIZE_COUNT) {
+                [weakSelf.tableView.mj_footer setHidden:YES];
+            }else{
+                [weakSelf.tableView.mj_footer setHidden:NO];
+                weakSelf.nextCursor ++;
+            }
+        }
+        
+        [weakSelf.tableView reloadData];
+        
+    } failure:^(id responseObject, NSError *error) {
+        [SVProgressHUD showCustomErrorWithStatus:HitoFaiNetwork];
+        [weakSelf.tableView.mj_header endRefreshing];
+        [weakSelf.tableView.mj_footer endRefreshing];
+    }];
 }
 
 #pragma mark - SetGet
@@ -146,9 +213,11 @@
     }
     UILabel *label = (UILabel *)[header viewWithTag:201];
     if (self.currentPage == 0) {
-        label.text = @"本榜收益排行2019.02.09已更新";
+        NSString *dateStr = [WYCommonUtils dateYearToDayDotDiscriptionFromDate:[NSDate date]];
+        label.text = [NSString stringWithFormat:@"本榜收益排行%@已更新",dateStr];
     } else {
-        label.text = @"本榜蜂群人数2018.12.09已更新";
+        NSString *dateStr = [WYCommonUtils dateYearToDayDotDiscriptionFromDate:[NSDate date]];
+        label.text = [NSString stringWithFormat:@"本榜蜂群人数%@已更新",dateStr];
     }
     return header;
 }
@@ -162,7 +231,8 @@
         cell = [cells objectAtIndex:0];
     }
     cell.indexPath = indexPath;
-    [cell updateCellWithData:nil];
+    cell.type = self.currentPage;
+    [cell updateCellWithData:self.dataLists[indexPath.row]];
     return cell;
 }
 

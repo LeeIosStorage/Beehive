@@ -10,6 +10,8 @@
 #import "LLSegmentedHeadView.h"
 #import "LLRedTaskHistoryTableViewCell.h"
 #import "LLRedTaskHistoryHeaderView.h"
+#import "LLRedTaskHistoryNode.h"
+#import "LLRedpacketDetailsViewController.h"
 
 @interface LLRedTaskHistoryViewController ()
 <
@@ -21,9 +23,12 @@ UITableViewDelegate
 @property (nonatomic, strong) LLRedTaskHistoryHeaderView *redTaskHistoryHeaderView;
 @property (nonatomic, strong) UITableView *tableView;
 
+@property (nonatomic, strong) LLRedTaskHistoryNode *redTaskHistoryNode;
 @property (nonatomic, strong) NSMutableArray *dataLists;
 
 @property (nonatomic, assign) NSInteger currentPage;
+
+@property (nonatomic, assign) int nextCursor;
 
 @end
 
@@ -33,7 +38,7 @@ UITableViewDelegate
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     [self setup];
-    [self refreshData];
+    [self refreshHeaderViewUI];
 }
 
 - (void)setup {
@@ -60,35 +65,101 @@ UITableViewDelegate
     self.tableView.tableHeaderView = self.redTaskHistoryHeaderView;
     
     [self.tableView reloadData];
+    
+    self.nextCursor = 1;
+    [self addMJ];
 }
 
 - (void)refreshData {
-    self.dataLists = [NSMutableArray array];
-    [self.dataLists addObject:@""];
-    [self.dataLists addObject:@""];
-    [self.dataLists addObject:@""];
-    [self.dataLists addObject:@""];
-    
-    [self refreshHeaderViewUI];
-    [self.tableView reloadData];
+    [self.tableView.mj_header beginRefreshing];
 }
 
 - (void)refreshHeaderViewUI {
     if (self.currentPage == 0) {
-        self.redTaskHistoryHeaderView.labTotalAmount.text = @"12.08";
+        self.redTaskHistoryHeaderView.labTotalAmount.text = [NSString stringWithFormat:@"%.2f",self.redTaskHistoryNode.SumGrabMoney];
         self.redTaskHistoryHeaderView.labTotalType.text = @"元";
         self.redTaskHistoryHeaderView.labTotalTip.text = @"抢到的总金额";
-        self.redTaskHistoryHeaderView.labDayAmount.text = @"1.08";
+        self.redTaskHistoryHeaderView.labDayAmount.text = [NSString stringWithFormat:@"%.2f",self.redTaskHistoryNode.DaySumGrabMoney];
         self.redTaskHistoryHeaderView.labDayType.text = @"元";
         self.redTaskHistoryHeaderView.labDayTip.text = @"当日抢金额";
     } else {
-        self.redTaskHistoryHeaderView.labTotalAmount.text = @"12.08";
+        self.redTaskHistoryHeaderView.labTotalAmount.text = [NSString stringWithFormat:@"%.2f",self.redTaskHistoryNode.SumMoney];
         self.redTaskHistoryHeaderView.labTotalType.text = @"元";
         self.redTaskHistoryHeaderView.labTotalTip.text = @"发布总金额";
-        self.redTaskHistoryHeaderView.labDayAmount.text = @"99";
+        self.redTaskHistoryHeaderView.labDayAmount.text = [NSString stringWithFormat:@"%d",self.redTaskHistoryNode.SumUserCount];
         self.redTaskHistoryHeaderView.labDayType.text = @"人";
         self.redTaskHistoryHeaderView.labDayTip.text = @"累计影响人数";
     }
+}
+
+#pragma mark - mj
+- (void)addMJ {
+    //下拉刷新
+    WEAKSELF;
+    self.tableView.mj_header = [LERefreshHeader headerWithRefreshingBlock:^{
+        weakSelf.nextCursor = 1;
+        [weakSelf getRedEnvelopesHistoryList];
+    }];
+    [self.tableView.mj_header beginRefreshing];
+    
+    //上啦加载
+    self.tableView.mj_footer = [LERefreshFooter footerWithRefreshingBlock:^{
+        [weakSelf getRedEnvelopesHistoryList];
+    }];
+    self.tableView.mj_footer.hidden = YES;
+    
+}
+
+#pragma mark - Request
+- (void)getRedEnvelopesHistoryList {
+    WEAKSELF
+    NSString *requesUrl = [[WYAPIGenerate sharedInstance] API:@"GetRedEnvelopesHistoryList"];
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    [params setObject:[NSNumber numberWithInteger:self.nextCursor] forKey:@"pageIndex"];
+    [params setObject:[NSNumber numberWithInteger:DATA_LOAD_PAGESIZE_COUNT] forKey:@"pageSize"];
+    [params setObject:[NSNumber numberWithInteger:self.currentPage] forKey:@"type"];
+    
+    [self.networkManager POST:requesUrl needCache:NO caCheKey:nil parameters:params responseClass:[LLRedTaskHistoryNode class] needHeaderAuth:NO success:^(WYRequestType requestType, NSString *message, BOOL isCache, id dataObject) {
+        
+        [weakSelf.tableView.mj_header endRefreshing];
+        [weakSelf.tableView.mj_footer endRefreshing];
+        [SVProgressHUD dismiss];
+        
+        if (requestType != WYRequestTypeSuccess) {
+            [SVProgressHUD showCustomErrorWithStatus:message];
+            return ;
+        }
+        
+        NSArray *tmpListArray = [NSArray array];
+        if ([dataObject isKindOfClass:[NSArray class]]) {
+            NSArray *data = (NSArray *)dataObject;
+            if (data.count > 0) {
+                weakSelf.redTaskHistoryNode = data[0];
+                tmpListArray = weakSelf.redTaskHistoryNode.RedEnvelopeList;
+            }
+        }
+        if (weakSelf.nextCursor == 1) {
+            weakSelf.dataLists = [NSMutableArray array];
+        }
+        [weakSelf.dataLists addObjectsFromArray:tmpListArray];
+        
+        if (!isCache) {
+            if (tmpListArray.count < DATA_LOAD_PAGESIZE_COUNT) {
+                [weakSelf.tableView.mj_footer setHidden:YES];
+            }else{
+                [weakSelf.tableView.mj_footer setHidden:NO];
+                weakSelf.nextCursor ++;
+            }
+        }
+        
+        [weakSelf refreshHeaderViewUI];
+        [weakSelf.tableView reloadData];
+        
+    } failure:^(id responseObject, NSError *error) {
+        [SVProgressHUD showCustomErrorWithStatus:HitoFaiNetwork];
+        [weakSelf.tableView.mj_header endRefreshing];
+        [weakSelf.tableView.mj_footer endRefreshing];
+    }];
 }
 
 #pragma mark - SetGet
@@ -154,7 +225,7 @@ UITableViewDelegate
         cell = [cells objectAtIndex:0];
     }
     cell.indexPath = indexPath;
-    [cell updateCellWithData:nil];
+    [cell updateCellWithData:self.dataLists[indexPath.row]];
     return cell;
 }
 
@@ -162,7 +233,11 @@ UITableViewDelegate
 {
     NSIndexPath* selIndexPath = [tableView indexPathForSelectedRow];
     [tableView deselectRowAtIndexPath:selIndexPath animated:YES];
-    
+    LLRedpacketNode *cellNode = self.dataLists[indexPath.row];
+    LLRedpacketDetailsViewController *vc = [[LLRedpacketDetailsViewController alloc] init];
+    vc.redpacketNode = cellNode;
+    vc.vcType = 1;
+    [self.navigationController pushViewController:vc animated:true];
 }
 
 @end
