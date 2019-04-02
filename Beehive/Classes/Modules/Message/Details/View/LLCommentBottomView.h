@@ -11,12 +11,18 @@
 NS_ASSUME_NONNULL_BEGIN
 
 typedef void (^LLCommentBottomViewHandleBlock) (NSInteger index);
-typedef void (^LLCommentBottomViewSendBlock) (void);
+typedef void (^LLCommentBottomViewSendBlock) (NSString *commentText);
 
 @interface LLCommentBottomView : LLView
 
 @property (nonatomic, strong) LLCommentBottomViewHandleBlock commentBottomViewHandleBlock;
 @property (nonatomic, strong) LLCommentBottomViewSendBlock commentBottomViewSendBlock;
+
+@property (nonatomic, strong) UIButton *btnShare;
+@property (nonatomic, strong) UIButton *btnLike;
+@property (nonatomic, strong) UIButton *btnCollect;
+
+@property (nonatomic, strong) UITextField *textField;
 
 @end
 

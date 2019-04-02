@@ -7,10 +7,13 @@
 //
 
 #import "LLBaseViewController.h"
+#import "LLMessageListNode.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface LLMessageDetailsViewController : LLBaseViewController
+
+@property (nonatomic, strong) LLMessageListNode *messageListNode;
 
 @end
 

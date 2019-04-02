@@ -10,9 +10,12 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+typedef void(^LLFilterDistanceViewSelectBlock)(NSInteger index);
+
 @interface LLFilterDistanceView : LLView
 
 @property (nonatomic, assign) NSInteger selectIndex;
+@property (nonatomic, copy) LLFilterDistanceViewSelectBlock selectBlock;
 
 - (void)show;
 - (void)dismiss;

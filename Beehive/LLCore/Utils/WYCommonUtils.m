@@ -397,6 +397,14 @@ static bool dateFormatterOFUSInvalid;
     return numStr;
 }
 
++(NSString *)distanceFormatWithDistance:(CGFloat)distance {
+    NSString *distanceStr = [NSString stringWithFormat:@"%.0fm",distance];
+    if (distance >= 1000) {
+        distanceStr = [NSString stringWithFormat:@"%.2fkm",distance/1000.0];
+    }
+    return distanceStr;
+}
+
 #pragma mark -
 #pragma mark - 动画
 //👍

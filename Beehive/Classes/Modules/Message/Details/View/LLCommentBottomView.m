@@ -12,13 +12,8 @@
 
 @property (nonatomic, strong) UIImageView *imgLine;
 
-@property (nonatomic, strong) UIButton *btnShare;
-@property (nonatomic, strong) UIButton *btnLike;
-@property (nonatomic, strong) UIButton *btnCollect;
-
 @property (nonatomic, strong) UIView *viewComment;
 @property (nonatomic, strong) UIImageView *imgInput;
-@property (nonatomic, strong) UITextField *textField;
 
 @property (nonatomic, strong) UIButton *btnPublish;
 
@@ -90,7 +85,7 @@
 
 - (void)publishAction:(id)sender {
     if (self.commentBottomViewSendBlock) {
-        self.commentBottomViewSendBlock();
+        self.commentBottomViewSendBlock(self.textField.text);
     }
 }
 
@@ -117,6 +112,7 @@
         _btnLike = [UIButton buttonWithType:UIButtonTypeCustom];
         [_btnLike setImage:[UIImage imageNamed:@"message_zan_n"] forState:UIControlStateNormal];
         [_btnLike setImage:[UIImage imageNamed:@"message_zan_s"] forState:UIControlStateHighlighted];
+        [_btnLike setImage:[UIImage imageNamed:@"message_zan_s"] forState:UIControlStateSelected];
         [_btnLike addTarget:self action:@selector(likeAction:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _btnLike;
@@ -127,6 +123,7 @@
         _btnCollect = [UIButton buttonWithType:UIButtonTypeCustom];
         [_btnCollect setImage:[UIImage imageNamed:@"message_shoucang_n"] forState:UIControlStateNormal];
         [_btnCollect setImage:[UIImage imageNamed:@"message_shoucang_s"] forState:UIControlStateHighlighted];
+        [_btnCollect setImage:[UIImage imageNamed:@"message_shoucang_s"] forState:UIControlStateSelected];
         [_btnCollect addTarget:self action:@selector(collectAction:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _btnCollect;

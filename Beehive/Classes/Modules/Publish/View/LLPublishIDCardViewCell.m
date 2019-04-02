@@ -47,12 +47,13 @@
         [self.btn2 setImage:cellNode.uploadImageDatas[1] forState:UIControlStateNormal];
     }
     
-    if (cellNode.cellType == LLPublishCellTypeADImage || cellNode.cellType == LLPublishCellTypeAvatar) {
-        self.btn1.hidden = true;
-        if (cellNode.uploadImageDatas.count > 0) {
-            [self.btn2 setImage:cellNode.uploadImageDatas[0] forState:UIControlStateNormal];
-        }
+    self.btn1.hidden = true;
+    if (cellNode.uploadImageDatas.count > 0) {
+        [self.btn2 setImage:cellNode.uploadImageDatas[0] forState:UIControlStateNormal];
     }
+//    if (cellNode.cellType == LLPublishCellTypeADImage || cellNode.cellType == LLPublishCellTypeAvatar) {
+//
+//    }
 }
 
 - (IBAction)btn1Action:(id)sender {

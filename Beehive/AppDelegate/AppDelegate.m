@@ -13,6 +13,7 @@
 #import "LLBeeHomeViewController.h"
 #import "LLBeeMineViewController.h"
 #import <AMapFoundationKit/AMapFoundationKit.h>
+#import <AMapLocationKit/AMapLocationKit.h>
 #import "LLLoginViewController.h"
 #import "LLAddShopAddressViewController.h"
 #import "WXApi.h"
@@ -21,6 +22,7 @@
 #import "WYShareManager.h"
 #import "UMSocialWechatHandler.h"
 #import <AlipaySDK/AlipaySDK.h>
+#import "LLLocationManager.h"
 
 @interface AppDelegate ()
 <
@@ -47,6 +49,7 @@ UITabBarControllerDelegate
     [SVProgressHUD setCurrentDefaultStyle];
     
     [WYAPIGenerate sharedInstance].netWorkHost = defaultNetworkHost;
+    [[LLLocationManager sharedInstance] login];
     
     [self configPlatforms];
     

@@ -199,6 +199,8 @@
 		8D72C1512251165D00B032C2 /* LLFollowUserNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D72C1502251165D00B032C2 /* LLFollowUserNode.m */; };
 		8D72C1552251D0FF00B032C2 /* LLBeeQunMoneyNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D72C1542251D0FF00B032C2 /* LLBeeQunMoneyNode.m */; };
 		8D72C1582251D8B500B032C2 /* LLUserInfoNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D72C1572251D8B500B032C2 /* LLUserInfoNode.m */; };
+		8D72C33A2252385100B032C2 /* LLPubDataInfoNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D72C3392252385100B032C2 /* LLPubDataInfoNode.m */; };
+		8D72C33E22526D0F00B032C2 /* LLMessageListNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D72C33D22526D0F00B032C2 /* LLMessageListNode.m */; };
 		8D79E4D2222672A20019A1BE /* LLTabBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D79E4D1222672A20019A1BE /* LLTabBarViewController.m */; };
 		8D79E4D5222672CA0019A1BE /* LLNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D79E4D4222672CA0019A1BE /* LLNavigationController.m */; };
 		8D79E4D82226748D0019A1BE /* LLBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D79E4D72226748D0019A1BE /* LLBaseViewController.m */; };
@@ -276,6 +278,8 @@
 		8DD290D92228D72200E4338D /* UIViewController+LLNavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DD290D82228D72200E4338D /* UIViewController+LLNavigationBar.m */; };
 		8DD290E22229442D00E4338D /* NSObject+LLRuntime.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DD290E12229442D00E4338D /* NSObject+LLRuntime.m */; };
 		8DD290E52229450D00E4338D /* UINavigationBar+LLFixSpace.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DD290E42229450D00E4338D /* UINavigationBar+LLFixSpace.m */; };
+		8DD3993822532A6500B8DAE2 /* LLLocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DD3993722532A6500B8DAE2 /* LLLocationManager.m */; };
+		8DD3993B22532F9700B8DAE2 /* LLCommentNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DD3993A22532F9700B8DAE2 /* LLCommentNode.m */; };
 		8DE588592227A4B3002C1576 /* LLBeeMessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DE588572227A4B3002C1576 /* LLBeeMessageViewController.m */; };
 		8DE5885A2227A4B3002C1576 /* LLBeeMessageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8DE588582227A4B3002C1576 /* LLBeeMessageViewController.xib */; };
 		8DE5885E2227A4CC002C1576 /* LLBeeRankingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DE5885C2227A4CC002C1576 /* LLBeeRankingViewController.m */; };
@@ -678,6 +682,10 @@
 		8D72C1542251D0FF00B032C2 /* LLBeeQunMoneyNode.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLBeeQunMoneyNode.m; sourceTree = "<group>"; };
 		8D72C1562251D8B500B032C2 /* LLUserInfoNode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLUserInfoNode.h; sourceTree = "<group>"; };
 		8D72C1572251D8B500B032C2 /* LLUserInfoNode.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLUserInfoNode.m; sourceTree = "<group>"; };
+		8D72C3382252385100B032C2 /* LLPubDataInfoNode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLPubDataInfoNode.h; sourceTree = "<group>"; };
+		8D72C3392252385100B032C2 /* LLPubDataInfoNode.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLPubDataInfoNode.m; sourceTree = "<group>"; };
+		8D72C33C22526D0F00B032C2 /* LLMessageListNode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLMessageListNode.h; sourceTree = "<group>"; };
+		8D72C33D22526D0F00B032C2 /* LLMessageListNode.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLMessageListNode.m; sourceTree = "<group>"; };
 		8D79E4D0222672A20019A1BE /* LLTabBarViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLTabBarViewController.h; sourceTree = "<group>"; };
 		8D79E4D1222672A20019A1BE /* LLTabBarViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLTabBarViewController.m; sourceTree = "<group>"; };
 		8D79E4D3222672CA0019A1BE /* LLNavigationController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLNavigationController.h; sourceTree = "<group>"; };
@@ -804,6 +812,10 @@
 		8DD290E12229442D00E4338D /* NSObject+LLRuntime.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSObject+LLRuntime.m"; sourceTree = "<group>"; };
 		8DD290E32229450D00E4338D /* UINavigationBar+LLFixSpace.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UINavigationBar+LLFixSpace.h"; sourceTree = "<group>"; };
 		8DD290E42229450D00E4338D /* UINavigationBar+LLFixSpace.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UINavigationBar+LLFixSpace.m"; sourceTree = "<group>"; };
+		8DD3993622532A6500B8DAE2 /* LLLocationManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLLocationManager.h; sourceTree = "<group>"; };
+		8DD3993722532A6500B8DAE2 /* LLLocationManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLLocationManager.m; sourceTree = "<group>"; };
+		8DD3993922532F9700B8DAE2 /* LLCommentNode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLCommentNode.h; sourceTree = "<group>"; };
+		8DD3993A22532F9700B8DAE2 /* LLCommentNode.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLCommentNode.m; sourceTree = "<group>"; };
 		8DE588562227A4B3002C1576 /* LLBeeMessageViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLBeeMessageViewController.h; sourceTree = "<group>"; };
 		8DE588572227A4B3002C1576 /* LLBeeMessageViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLBeeMessageViewController.m; sourceTree = "<group>"; };
 		8DE588582227A4B3002C1576 /* LLBeeMessageViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LLBeeMessageViewController.xib; sourceTree = "<group>"; };
@@ -1586,6 +1598,17 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		8D72C33B22526CE700B032C2 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				8D72C33C22526D0F00B032C2 /* LLMessageListNode.h */,
+				8D72C33D22526D0F00B032C2 /* LLMessageListNode.m */,
+				8DD3993922532F9700B8DAE2 /* LLCommentNode.h */,
+				8DD3993A22532F9700B8DAE2 /* LLCommentNode.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		8D79E4C822266ECC0019A1BE /* AppDelegate */ = {
 			isa = PBXGroup;
 			children = (
@@ -1628,6 +1651,7 @@
 		8D79E4CC222670200019A1BE /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				8DD3993522532A0C00B8DAE2 /* Manager */,
 				7E1E8A5C222EB238002766AD /* Views */,
 				8D79E4CF222672130019A1BE /* Base */,
 			);
@@ -1771,6 +1795,8 @@
 				8D890B6222322C2100CA711A /* LLPublishCellNode.m */,
 				8D5CB6DE22352F3900527DEB /* LLTradeMoldNode.h */,
 				8D5CB6DF22352F3900527DEB /* LLTradeMoldNode.m */,
+				8D72C3382252385100B032C2 /* LLPubDataInfoNode.h */,
+				8D72C3392252385100B032C2 /* LLPubDataInfoNode.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -2027,9 +2053,19 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		8DD3993522532A0C00B8DAE2 /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+				8DD3993622532A6500B8DAE2 /* LLLocationManager.h */,
+				8DD3993722532A6500B8DAE2 /* LLLocationManager.m */,
+			);
+			path = Manager;
+			sourceTree = "<group>";
+		};
 		8DE588542227A45C002C1576 /* Message */ = {
 			isa = PBXGroup;
 			children = (
+				8D72C33B22526CE700B032C2 /* Model */,
 				8D3F214F222FC8790066F5EB /* Details */,
 				7E1E8A60222ED09F002766AD /* View */,
 				8DE588562227A4B3002C1576 /* LLBeeMessageViewController.h */,
@@ -2593,6 +2629,7 @@
 				8DF28FA5223E7EEE0074A4D8 /* LEFeedbackViewController.m in Sources */,
 				8D01673A22391EC000CD21D8 /* LLCommodityExchangeDetailsViewController.m in Sources */,
 				8DBEAE84223DFF5F0095D214 /* LLBeePresentAffirmView.m in Sources */,
+				8DD3993B22532F9700B8DAE2 /* LLCommentNode.m in Sources */,
 				8D542A6E222A5BC2008B90B0 /* LERefreshHeader.m in Sources */,
 				7E561B7E22392FAC00DA3B20 /* LLExchangeDetailsHeaderView.m in Sources */,
 				7E561BA0223FD68800DA3B20 /* LLBeeAffirmBidView.m in Sources */,
@@ -2656,6 +2693,7 @@
 				7E561BAB223FE5E700DA3B20 /* LLAdsBidViewController.m in Sources */,
 				8DBEAE57223CB73B0095D214 /* LLMineCollectTableViewCell.m in Sources */,
 				8DBEAE80223DF9CA0095D214 /* LLFundDetailTableViewCell.m in Sources */,
+				8D72C33A2252385100B032C2 /* LLPubDataInfoNode.m in Sources */,
 				8D01671D2238DE8500CD21D8 /* LLReceiveCommentViewController.m in Sources */,
 				8D542A7D222A5BC2008B90B0 /* LELinkerHandler.m in Sources */,
 				8D79E4D2222672A20019A1BE /* LLTabBarViewController.m in Sources */,
@@ -2698,6 +2736,7 @@
 				8DBEAE34223C9BBB0095D214 /* LLPaymentWayView.m in Sources */,
 				8D542A73222A5BC2008B90B0 /* SVProgressHUD+LETools.m in Sources */,
 				8D542A77222A5BC2008B90B0 /* YTCache.m in Sources */,
+				8D72C33E22526D0F00B032C2 /* LLMessageListNode.m in Sources */,
 				8D0167172238CE9400CD21D8 /* LLCellOriginalContentView.m in Sources */,
 				7E561B9B223A9D2F00DA3B20 /* LLRedpacketDetailsHeaderView.m in Sources */,
 				8D4C6127222D555800024840 /* LLRegisterViewController.m in Sources */,
@@ -2713,6 +2752,7 @@
 				8DF28F87223E31400074A4D8 /* LLInvitationCodeViewController.m in Sources */,
 				8DD290D92228D72200E4338D /* UIViewController+LLNavigationBar.m in Sources */,
 				8D5CB6C92233AF2400527DEB /* LLPublishIDCardViewCell.m in Sources */,
+				8DD3993822532A6500B8DAE2 /* LLLocationManager.m in Sources */,
 				8DCC9AB6222B7D5700AC3128 /* LLView.m in Sources */,
 				8D0167272238E1EE00CD21D8 /* LLReceiveCommentTableViewCell.m in Sources */,
 				8DBEAE70223D6CC70095D214 /* LLFundHandleHeaderView.m in Sources */,

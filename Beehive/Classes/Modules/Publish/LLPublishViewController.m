@@ -16,6 +16,7 @@
 #import "LLTradeMoldViewController.h"
 #import "LLChooseLocationViewController.h"
 #import "LLAddShopAddressViewController.h"
+#import "LLPubDataInfoNode.h"
 
 @interface LLPublishViewController ()
 <
@@ -39,6 +40,9 @@ UITableViewDataSource
 @property (nonatomic, strong) NSArray *hobbiesArray;
 @property (nonatomic, strong) NSArray *couponPriceArray;
 
+@property (nonatomic, assign) NSInteger payType;
+@property (nonatomic, strong) NSString *payPwd;
+
 @end
 
 @implementation LLPublishViewController
@@ -60,9 +64,11 @@ UITableViewDataSource
     if (self.publishVcType == LLPublishViewcTypeExchange) {
         self.title = @"发布商品";
     } else if (self.publishVcType == LLPublishViewcTypeAsk) {
-        
+        [self getRedDataInfo];
     } else if (self.publishVcType == LLPublishViewcTypeConvenience) {
         self.title = @"发布信息";
+    } else {
+        [self getRedDataInfo];
     }
     
     self.automaticallyAdjustsScrollViewInsets = NO;
@@ -148,10 +154,7 @@ UITableViewDataSource
             [newMutArray addObject:[NSMutableArray arrayWithObject:cellNode2]];
             
         } else if (self.currentPublishNode.taskMold == 1) {
-            LLPublishCellNode *cellNode2 = [[LLPublishCellNode alloc] init];
-            cellNode2.title = @"跳转链接地址";
-            cellNode2.placeholder = @"输入链接地址...";
-            cellNode2.cellType = LLPublishCellTypeLinkAddress;
+            LLPublishCellNode *cellNode2 = [self nodeForCellTypeWithType:LLPublishCellTypeLinkAddress];
             [newMutArray addObject:[NSMutableArray arrayWithObjects:cellNode2, nil]];
         }
     }
@@ -281,7 +284,7 @@ UITableViewDataSource
     [newMutArray addObject:[NSMutableArray arrayWithObject:cellNode4]];
     
     LLPublishCellNode *cellNode5 = [[LLPublishCellNode alloc] init];
-    cellNode5.title = @"身份证正反面";
+    cellNode5.title = @"上传图片";
     cellNode5.uploadImageDatas = [NSMutableArray array];
     cellNode5.cellType = LLPublishCellTypeIDCard;
     [newMutArray addObject:[NSMutableArray arrayWithObject:cellNode5]];
@@ -320,8 +323,9 @@ UITableViewDataSource
             cellNode.title = @"年龄状态";
             cellNode.titleFont = [FontConst PingFangSCRegularWithSize:12];
             cellNode.placeholder = @"请选择";
-            if (self.currentPublishNode.ageMold >= 0) {
-                cellNode.inputText = self.ageArray[self.currentPublishNode.ageMold];
+            if (self.currentPublishNode.ageMold >= 0 && self.ageArray.count > 0) {
+                LLPubDataInfoNode *node = self.ageArray[self.currentPublishNode.ageMold];
+                cellNode.inputText = node.DataContent;
             }
             break;
         case LLPublishCellTypeSex:
@@ -340,8 +344,8 @@ UITableViewDataSource
                 NSMutableString *mStr = [NSMutableString string];
                 for (int i = 0; i < self.currentPublishNode.hobbiesIndexs.count; i ++) {
                     NSInteger row = [self.currentPublishNode.hobbiesIndexs[i] integerValue];
-                    NSString *string = self.hobbiesArray[row];
-                    [mStr appendString:string];
+                    LLPubDataInfoNode *node = self.hobbiesArray[row];
+                    [mStr appendString:node.DataContent];
                     [mStr appendString:@" "];
                 }
                 cellNode.inputText = mStr;
@@ -456,6 +460,10 @@ UITableViewDataSource
             cellNode.inputMaxCount = 10;
             cellNode.inputType = LLPublishInputTypeInput;
             break;
+        case LLPublishCellTypeLinkAddress:
+            cellNode.title = @"跳转链接地址";
+            cellNode.placeholder = @"输入链接地址...";
+            break;
         default:
             break;
     }
@@ -463,6 +471,35 @@ UITableViewDataSource
 }
 
 #pragma mark - Request
+- (void)getRedDataInfo {
+//    [SVProgressHUD showCustomWithStatus:@"发布中..."];
+    WEAKSELF
+    NSString *requesUrl = [[WYAPIGenerate sharedInstance] API:@"GetDataInfo"];
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    [self.networkManager POST:requesUrl needCache:NO caCheKey:nil parameters:params responseClass:nil needHeaderAuth:NO success:^(WYRequestType requestType, NSString *message, BOOL isCache, id dataObject) {
+        
+//        [SVProgressHUD dismiss];
+//        if (requestType != WYRequestTypeSuccess) {
+//            [SVProgressHUD showCustomErrorWithStatus:message];
+//            return ;
+//        }
+        if ([dataObject isKindOfClass:[NSArray class]]) {
+            NSArray *data = (NSArray *)dataObject;
+            if (data.count > 0) {
+                NSDictionary *dic = data[0];
+                id ageArray = dic[@"AgeList"];
+                weakSelf.ageArray = [NSArray modelArrayWithClass:[LLPubDataInfoNode class] json:ageArray];
+                id hobbyList = dic[@"HobbyList"];
+                weakSelf.hobbiesArray = [NSArray modelArrayWithClass:[LLPubDataInfoNode class] json:hobbyList];
+            }
+        }
+        
+    } failure:^(id responseObject, NSError *error) {
+        [SVProgressHUD showCustomErrorWithStatus:HitoFaiNetwork];
+    }];
+
+}
+
 - (void)publishGoodsRequest {
     [SVProgressHUD showCustomWithStatus:@"发布中..."];
     WEAKSELF
@@ -560,7 +597,9 @@ UITableViewDataSource
     if (title.length > 0) [params setObject:title forKey:@"title"];
     
     NSMutableArray *imageDatas = [NSMutableArray array];
-    for (NSData *imageData in [self nodeForCellTypeWithType:LLPublishCellTypeImage].uploadImageDatas) {
+    NSArray *uploadImages = [self nodeForCellTypeWithType:LLPublishCellTypeIDCard].uploadImageDatas;
+    for (UIImage *image in uploadImages) {
+        NSData *imageData = UIImageJPEGRepresentation(image, WY_IMAGE_COMPRESSION_QUALITY);
         NSString *dataStr = [imageData base64EncodedStringWithOptions:0];
         [imageDatas addObject:[NSString stringWithFormat:@"data:image/jpeg;base64,%@",dataStr]];
     }
@@ -644,15 +683,24 @@ UITableViewDataSource
     [params setObject:[NSNumber numberWithFloat:self.currentPublishNode.coordinate.latitude] forKey:@"latitude"];
     
     NSString *money = [self nodeForCellTypeWithType:LLPublishCellTypeRedAmount].inputText;
-    if (money.length > 0) [params setObject:money forKey:@"money"];
+    if (money.length > 0) [params setObject:[NSNumber numberWithInt:3] forKey:@"money"];
     NSString *count = [self nodeForCellTypeWithType:LLPublishCellTypeRedCount].inputText;
-    if (count.length > 0) [params setObject:count forKey:@"count"];
+    if (count.length > 0) [params setObject:[NSNumber numberWithInt:5] forKey:@"count"];
     
-    [params setObject:[NSNumber numberWithInteger:self.currentPublishNode.ageMold] forKey:@"screenAge"];
+    if (self.currentPublishNode.ageMold >= 0 && self.ageArray.count > 0) {
+        LLPubDataInfoNode *node = self.ageArray[self.currentPublishNode.ageMold];
+        if (node.Id) [params setObject:node.Id forKey:@"screenAge"];
+    }
     [params setObject:[NSNumber numberWithInteger:self.currentPublishNode.sexMold] forKey:@"screenSex"];
-    NSString *hobbiesIndexs = @"";
-    if (self.currentPublishNode.hobbiesIndexs.count > 0) {
-        hobbiesIndexs = [self.currentPublishNode.hobbiesIndexs componentsJoinedByString:@","];
+    
+    NSString *hobbiesIndexs = @"||";
+    NSMutableArray *hobbiesIds = [NSMutableArray array];
+    for (id index in self.currentPublishNode.hobbiesIndexs) {
+        LLPubDataInfoNode *node = [self.hobbiesArray objectAtIndex:[index integerValue]];
+        [hobbiesIds addObject:node.Id];
+    }
+    if (hobbiesIds.count > 0) {
+        hobbiesIndexs = [NSString stringWithFormat:@"|%@|",[hobbiesIds componentsJoinedByString:@"|"]];
     }
     [params setObject:hobbiesIndexs forKey:@"screenHobby"];
     
@@ -665,7 +713,13 @@ UITableViewDataSource
     NSString *summary = [self nodeForCellTypeWithType:LLPublishCellTypeIntro].inputText;
     if (summary.length > 0) [params setObject:summary forKey:@"summary"];
     
+    NSString *linkAddress = [self nodeForCellTypeWithType:LLPublishCellTypeLinkAddress].inputText;
+    if (linkAddress.length > 0) [params setObject:linkAddress forKey:@"urlAddress"];
     
+    self.payType = 0;
+    self.payPwd = @"123456";
+    [params setObject:[NSNumber numberWithInteger:self.payType] forKey:@"payType"];
+    [params setObject:self.payPwd forKey:@"payPwd"];
     
     [self.networkManager POST:requesUrl needCache:NO caCheKey:nil parameters:params responseClass:nil needHeaderAuth:NO success:^(WYRequestType requestType, NSString *message, BOOL isCache, id dataObject) {
         
@@ -773,8 +827,12 @@ UITableViewDataSource
 }
 
 - (void)chooseAge {
+    NSMutableArray *tmpAgeArray = [NSMutableArray array];
+    for (LLPubDataInfoNode *node in self.ageArray) {
+        [tmpAgeArray addObject:node.DataContent];
+    }
     WEAKSELF
-    [ZJUsefulPickerView showSingleColPickerWithToolBarText:@"选择年龄阶段" withData:self.ageArray withDefaultIndex:self.currentPublishNode.ageMold withCancelHandler:^{
+    [ZJUsefulPickerView showSingleColPickerWithToolBarText:@"选择年龄阶段" withData:tmpAgeArray withDefaultIndex:self.currentPublishNode.ageMold withCancelHandler:^{
         
     } withDoneHandler:^(NSInteger selectedIndex, NSString *selectedValue) {
         weakSelf.currentPublishNode.ageMold = selectedIndex;
@@ -793,8 +851,12 @@ UITableViewDataSource
 }
 
 - (void)chooseHobbies {
+    NSMutableArray *hobbiesTitles = [NSMutableArray array];
+    for (LLPubDataInfoNode *node in self.hobbiesArray) {
+        [hobbiesTitles addObject:node.DataContent];
+    }
     WEAKSELF
-    [ZJUsefulPickerView showMultipleSelPickerWithToolBarText:@"选择兴趣爱好" withData:self.hobbiesArray withDefaultIndexs:self.currentPublishNode.hobbiesIndexs withCancelHandler:^{
+    [ZJUsefulPickerView showMultipleSelPickerWithToolBarText:@"选择兴趣爱好" withData:hobbiesTitles withDefaultIndexs:self.currentPublishNode.hobbiesIndexs withCancelHandler:^{
         
     } withDoneHandler:^(NSArray *selectedIndexs, NSArray *selectedValues) {
         weakSelf.currentPublishNode.hobbiesIndexs = selectedIndexs;
@@ -910,7 +972,7 @@ UITableViewDataSource
 
 - (NSArray *)ageArray {
     if (!_ageArray) {
-        _ageArray = @[@"16~20",@"21~30",@"31~40",@"41~50",@"50以上"];
+        _ageArray = [NSArray array];
     }
     return _ageArray;
 }
@@ -924,7 +986,7 @@ UITableViewDataSource
 
 - (NSArray *)hobbiesArray {
     if (!_hobbiesArray) {
-        _hobbiesArray = @[@"爬山", @"运动", @"音乐", @"读书"];
+        _hobbiesArray = [NSArray array];
     }
     return _hobbiesArray;
 }

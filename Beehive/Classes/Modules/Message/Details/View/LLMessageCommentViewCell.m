@@ -7,6 +7,7 @@
 //
 
 #import "LLMessageCommentViewCell.h"
+#import "LLCommentNode.h"
 
 @interface LLMessageCommentViewCell ()
 
@@ -35,7 +36,11 @@
 }
 
 - (void)updateCellWithData:(id)node {
-    [WYCommonUtils setImageWithURL:[NSURL URLWithString:kLLAppTestHttpURL] setImage:self.avatarImageView setbitmapImage:nil];
+    LLCommentNode *commentNode = (LLCommentNode *)node;
+    [WYCommonUtils setImageWithURL:[NSURL URLWithString:commentNode.HeadImg] setImage:self.avatarImageView setbitmapImage:nil];
+    self.nickNameLabel.text = commentNode.UserName;
+    self.timeLabel.text = [WYCommonUtils dateDiscriptionFromNowBk:[WYCommonUtils dateFromUSDateString:commentNode.AddTime]];
+    self.contentLabel.text = commentNode.Contents;
 }
 
 @end

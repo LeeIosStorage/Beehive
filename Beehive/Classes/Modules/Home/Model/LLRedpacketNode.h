@@ -18,6 +18,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (assign, nonatomic) CGFloat Latitude;
 @property (assign, nonatomic) CGFloat Longitude;
 @property (assign, nonatomic) CGFloat Distance;
+@property (nonatomic, assign) BOOL IsGood;
+@property (nonatomic, assign) BOOL IsCollection;
 
 @end
 

@@ -10,6 +10,7 @@
 #import "LLHandleStatusView.h"
 #import "LLCollectionView.h"
 #import "LLImageItemViewCell.h"
+#import "LLMessageListNode.h"
 
 static NSString *const kLLImageItemViewCell = @"LLImageItemViewCell";
 
@@ -68,13 +69,21 @@ UICollectionViewDataSource
 }
 
 - (void)updateCellWithData:(id)node {
-    [WYCommonUtils setImageWithURL:[NSURL URLWithString:@""] setImage:self.avatarImageView setbitmapImage:[UIImage imageNamed:@"app_def"]];
-    self.contentLabel.text = @"信息正文信息正文信息正文信息正文信息正文信息正文信息正文信息正文";
-//    self.gridImageView.backgroundColor = kAppThemeColor;
-    self.images = [NSMutableArray array];
-    for (int i = 0; i < 4; i ++) {
-        [self.images addObject:kLLAppTestHttpURL];
+    LLMessageListNode *messageNode = (LLMessageListNode *)node;
+    
+    [WYCommonUtils setImageWithURL:[NSURL URLWithString:messageNode.HeadImg] setImage:self.avatarImageView setbitmapImage:[UIImage imageNamed:@""]];
+    UIImage *sexImage = [UIImage imageNamed:@"user_sex_man"];
+    if (messageNode.Sex == 1) {
+        sexImage = [UIImage imageNamed:@"user_sex_woman"];
     }
+    self.sexImageView.image = sexImage;
+    
+    self.nickNameLabel.text = messageNode.UserName;
+    self.timeLabel.text = [WYCommonUtils dateDiscriptionFromNowBk:[WYCommonUtils dateFromUSDateString:messageNode.AddTime]];
+    self.distanceLabel.text = [WYCommonUtils distanceFormatWithDistance:messageNode.Distance];
+    
+    self.contentLabel.text = messageNode.Title;
+    self.images = [NSMutableArray arrayWithArray:messageNode.ImgUrls];
     [self.gridImageView reloadData];
     
     NSInteger row = self.images.count/3;
@@ -86,6 +95,10 @@ UICollectionViewDataSource
         height = 0;
     }
     self.gridImageViewConstraintH.constant = height;
+    
+    [self.handleStatusView.readButton setTitle:[NSString stringWithFormat:@" %d", messageNode.LookCount] forState:UIControlStateNormal];
+    [self.handleStatusView.commentButton setTitle:[NSString stringWithFormat:@" %d", messageNode.CommentCount] forState:UIControlStateNormal];
+    [self.handleStatusView.favourButton setTitle:[NSString stringWithFormat:@" %d", messageNode.GoodCount] forState:UIControlStateNormal];
 }
 
 - (CGSize)calculateGridImageViewSize {

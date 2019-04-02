@@ -75,6 +75,16 @@
         "module"  : "IndexService.asmx",
         "action"  : "BuyGoods"
     },
+    "CommentRedEnvelopes": {
+        "protocol": "http",
+        "module"  : "IndexService.asmx",
+        "action"  : "CommentRedEnvelopes"
+    },
+    "RedEnvelopesGood": {
+        "protocol": "http",
+        "module"  : "IndexService.asmx",
+        "action"  : "RedEnvelopesGood"
+    },
     "GetInvitationInfo": {
         "protocol": "http",
         "module"  : "MyService.asmx",
@@ -160,6 +170,11 @@
         "module"  : "MyService.asmx",
         "action"  : "GetGrandFansList"
     },
+    "GetDataInfo": {
+        "protocol": "http",
+        "module"  : "BusinessService.asmx",
+        "action"  : "GetDataInfo"
+    },
     "AddRedEnvelopes": {
         "protocol": "http",
         "module"  : "BusinessService.asmx",
@@ -169,5 +184,25 @@
         "protocol": "http",
         "module"  : "BusinessService.asmx",
         "action"  : "AddFacilitate"
+    },
+    "GetMessageList": {
+        "protocol": "http",
+        "module"  : "QueenBeeService.asmx",
+        "action"  : "GetMessageList"
+    },
+    "GetFacilitateDetail": {
+        "protocol": "http",
+        "module"  : "QueenBeeService.asmx",
+        "action"  : "GetFacilitateDetail"
+    },
+    "GetCommentList": {
+        "protocol": "http",
+        "module"  : "QueenBeeService.asmx",
+        "action"  : "GetCommentList"
+    },
+    "GetIndustryList": {
+        "protocol": "http",
+        "module"  : "QueenBeeService.asmx",
+        "action"  : "GetIndustryList"
     },
 }

@@ -8,11 +8,15 @@
 
 #import "LLMessageDetailsHeaderView.h"
 #import <SDCycleScrollView/SDCycleScrollView.h>
+#import "LLMessageListNode.h"
 
 @interface LLMessageDetailsHeaderView ()
 <
 SDCycleScrollViewDelegate
 >
+
+@property (nonatomic, strong) LLMessageListNode *messageListNode;
+
 @property (nonatomic, weak) IBOutlet UIImageView *avatarImageView;
 @property (nonatomic, weak) IBOutlet UIImageView *sexImageView;
 
@@ -57,13 +61,16 @@ SDCycleScrollViewDelegate
 }
 
 - (void)updateCellWithData:(id)node {
-    [WYCommonUtils setImageWithURL:[NSURL URLWithString:kLLAppTestHttpURL] setImage:self.avatarImageView setbitmapImage:nil];
-    self.signLabel.text = @"个性签名吧";
-    self.contentLabel.text = @"哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈";
-    [self.images removeAllObjects];
-    [self.images addObject:kLLAppTestHttpURL];
-    [self.images addObject:kLLAppTestHttpURL];
-    [self.images addObject:kLLAppTestHttpURL];
+    self.messageListNode = (LLMessageListNode *)node;
+    
+    [WYCommonUtils setImageWithURL:[NSURL URLWithString:self.messageListNode.HeadImg] setImage:self.avatarImageView setbitmapImage:nil];
+    self.signLabel.text = self.messageListNode.Autograph;
+    self.contentLabel.text = self.messageListNode.Title;
+    
+    self.timeLabel.text = [WYCommonUtils dateDiscriptionFromNowBk:[WYCommonUtils dateFromUSDateString:self.messageListNode.AddTime]];
+    self.distanceLabel.text = [WYCommonUtils distanceFormatWithDistance:self.messageListNode.Distance];
+    
+    self.images = [NSMutableArray arrayWithArray:self.messageListNode.ImgUrls];
     if (self.images.count > 0) {
         self.gridImageViewConstraintH.constant = 225;
         [self.imagePageView setHidden:false];
@@ -76,7 +83,10 @@ SDCycleScrollViewDelegate
     
     self.imagePageLabel.text = [NSString stringWithFormat:@"%d/%ld",1,self.images.count];
     
-    NSString *commentText = [NSString stringWithFormat:@"评论（%d）",20];
+    [self.readButton setTitle:[NSString stringWithFormat:@" %d", self.messageListNode.LookCount] forState:UIControlStateNormal];
+    [self.favourButton setTitle:[NSString stringWithFormat:@" %d", self.messageListNode.GoodCount] forState:UIControlStateNormal];
+    
+    NSString *commentText = [NSString stringWithFormat:@"评论（%d）",self.messageListNode.CommentCount];
     self.commentLabel.attributedText = [WYCommonUtils stringToColorAndFontAttributeString:commentText range:NSMakeRange(0, 2) font:[FontConst PingFangSCRegularWithSize:13] color:kAppTitleColor];
 }
 

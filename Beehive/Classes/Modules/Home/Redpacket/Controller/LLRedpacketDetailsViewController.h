@@ -7,10 +7,13 @@
 //
 
 #import "LLBaseViewController.h"
+#import "LLRedpacketNode.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface LLRedpacketDetailsViewController : LLBaseViewController
+
+@property (nonatomic, strong) LLRedpacketNode *redpacketNode;
 
 @property (nonatomic, assign) NSInteger vcType;//0提问红包1任务红包
 

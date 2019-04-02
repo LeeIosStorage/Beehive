@@ -14,12 +14,21 @@
 #import "LLMessageDetailsViewController.h"
 #import "LLFilterDistanceView.h"
 #import "CYLTabBarController.h"
+#import "LLMessageListNode.h"
+#import <AMapLocationKit/AMapLocationKit.h>
+#import "LLLocationManager.h"
 
 @interface LLBeeMessageViewController ()
 <
 UITableViewDelegate,
-UITableViewDataSource
+UITableViewDataSource,
+AMapLocationManagerDelegate,
+UISearchBarDelegate
 >
+
+@property (nonatomic, strong) AMapLocationManager *locationManager;
+@property (nonatomic, assign) CLLocationCoordinate2D currentCoordinate;
+
 @property (nonatomic, strong) UIView *customTitleView;
 @property (nonatomic, strong) LESearchBar *searchBar;
 
@@ -30,6 +39,8 @@ UITableViewDataSource
 @property (nonatomic, strong) UITableView *tableView;
 
 @property (nonatomic, strong) NSMutableArray *messageLists;
+
+@property (assign, nonatomic) int nextCursor;
 
 @end
 
@@ -45,6 +56,9 @@ UITableViewDataSource
 //    self.navigationItem.title = @"信息";
     self.view.backgroundColor = kAppSectionBackgroundColor;
     self.automaticallyAdjustsScrollViewInsets = NO;
+    
+    self.currentCoordinate = [LLLocationManager sharedInstance].currentCoordinate;
+    [self.locationManager startUpdatingLocation];
     
     self.messageLists = [NSMutableArray array];
     
@@ -69,7 +83,8 @@ UITableViewDataSource
 
     [self.tableView reloadData];
     
-    
+    self.nextCursor = 1;
+    [self addMJ];
 }
 
 - (void)showFilterDistanceView {
@@ -86,6 +101,78 @@ UITableViewDataSource
     [self.filterDistanceView show];
 }
 
+#pragma mark - mj
+- (void)addMJ {
+    //下拉刷新
+    WEAKSELF;
+    self.tableView.mj_header = [LERefreshHeader headerWithRefreshingBlock:^{
+        weakSelf.nextCursor = 1;
+        [weakSelf getMessageList];
+    }];
+    [self.tableView.mj_header beginRefreshing];
+    
+    //上啦加载
+    self.tableView.mj_footer = [LERefreshFooter footerWithRefreshingBlock:^{
+        [weakSelf getMessageList];
+    }];
+    self.tableView.mj_footer.hidden = YES;
+    
+}
+
+#pragma mark - Request
+- (void)getMessageList {
+    WEAKSELF
+    NSString *requesUrl = [[WYAPIGenerate sharedInstance] API:@"GetMessageList"];
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    [params setObject:[NSNumber numberWithInteger:self.nextCursor] forKey:@"pageIndex"];
+    [params setObject:[NSNumber numberWithInteger:DATA_LOAD_PAGESIZE_COUNT] forKey:@"pageSize"];
+    [params setObject:[NSNumber numberWithInteger:self.filterDistanceView.selectIndex + 1] forKey:@"type"];
+    NSString *searchName = @"";
+    if (self.searchBar.text.length > 0) {
+        searchName = self.searchBar.text;
+    }
+    [params setValue:searchName forKey:@"searchName"];
+    [params setValue:[NSNumber numberWithDouble:self.currentCoordinate.latitude] forKey:@"latitude"];
+    [params setValue:[NSNumber numberWithDouble:self.currentCoordinate.longitude] forKey:@"longitude"];
+    
+    [self.networkManager POST:requesUrl needCache:NO caCheKey:nil parameters:params responseClass:[LLMessageListNode class] needHeaderAuth:NO success:^(WYRequestType requestType, NSString *message, BOOL isCache, id dataObject) {
+        
+        [weakSelf.tableView.mj_header endRefreshing];
+        [weakSelf.tableView.mj_footer endRefreshing];
+        [SVProgressHUD dismiss];
+        
+        if (requestType != WYRequestTypeSuccess) {
+            [SVProgressHUD showCustomErrorWithStatus:message];
+            return ;
+        }
+        
+        NSArray *tmpListArray = [NSArray array];
+        if ([dataObject isKindOfClass:[NSArray class]]) {
+            tmpListArray = (NSArray *)dataObject;
+        }
+        if (weakSelf.nextCursor == 1) {
+            weakSelf.messageLists = [NSMutableArray array];
+        }
+        [weakSelf.messageLists addObjectsFromArray:tmpListArray];
+        
+        if (!isCache) {
+            if (tmpListArray.count < DATA_LOAD_PAGESIZE_COUNT) {
+                [weakSelf.tableView.mj_footer setHidden:YES];
+            }else{
+                [weakSelf.tableView.mj_footer setHidden:NO];
+                weakSelf.nextCursor ++;
+            }
+        }
+        
+        [weakSelf.tableView reloadData];
+        
+    } failure:^(id responseObject, NSError *error) {
+        [SVProgressHUD showCustomErrorWithStatus:HitoFaiNetwork];
+        [weakSelf.tableView.mj_header endRefreshing];
+        [weakSelf.tableView.mj_footer endRefreshing];
+    }];
+}
+
 #pragma mark - Action
 - (void)searchBarResign {
     [self.searchBar resignFirstResponder];
@@ -93,10 +180,21 @@ UITableViewDataSource
 
 - (void)searchAction:(id)sender {
     [self searchBarResign];
-//    [SVProgressHUD showCustomWithStatus:@"搜索中"];
+    self.nextCursor = 1;
+    [SVProgressHUD showCustomWithStatus:@"请求中"];
+    [self getMessageList];
 }
 
 #pragma mark - SetAndGet
+- (AMapLocationManager *)locationManager {
+    if (!_locationManager) {
+        _locationManager = [[AMapLocationManager alloc] init];
+        _locationManager.delegate = self;
+        _locationManager.distanceFilter = 200;
+    }
+    return _locationManager;
+}
+
 - (UIView *)customTitleView {
     if (!_customTitleView) {
         _customTitleView = [[UIView alloc] init];
@@ -106,6 +204,7 @@ UITableViewDataSource
         _customTitleView.layer.masksToBounds = true;
         
         self.searchBar = [[LESearchBar alloc] initWithFrame:_customTitleView.frame];
+        self.searchBar.delegate = self;
         NSString *placeholder = @"输入信息内容";
         self.searchBar.attributedPlaceholder = [WYCommonUtils stringToColorAndFontAttributeString:placeholder range:NSMakeRange(0, placeholder.length) font:[FontConst PingFangSCRegularWithSize:14] color:[UIColor colorWithHexString:@"a9a9aa"]];
         [_customTitleView addSubview:self.searchBar];
@@ -148,8 +247,23 @@ UITableViewDataSource
     if (!_filterDistanceView) {
         _filterDistanceView = [[LLFilterDistanceView alloc] init];
         [_filterDistanceView setHidden:true];
+        WEAKSELF
+        _filterDistanceView.selectBlock = ^(NSInteger index) {
+            [weakSelf.tableView.mj_header beginRefreshing];
+        };
     }
     return _filterDistanceView;
+}
+
+#pragma mark - UISearchBarDelegate
+- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
+    [self searchAction:nil];
+}
+
+#pragma mark - AMapLocationManagerDelegate
+- (void)amapLocationManager:(AMapLocationManager *)manager didUpdateLocation:(CLLocation *)location reGeocode:(AMapLocationReGeocode *)reGeocode
+{
+    self.currentCoordinate = location.coordinate;
 }
 
 #pragma mark - Table view data source
@@ -159,7 +273,7 @@ UITableViewDataSource
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 20;
+    return self.messageLists.count;
 }
 
 //- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -175,7 +289,7 @@ UITableViewDataSource
         NSArray* cells = [[NSBundle mainBundle] loadNibNamed:cellIdentifier owner:nil options:nil];
         cell = [cells objectAtIndex:0];
     }
-    [cell updateCellWithData:nil];
+    [cell updateCellWithData:self.messageLists[indexPath.row]];
     return cell;
 }
 
@@ -183,7 +297,9 @@ UITableViewDataSource
 {
 //    NSIndexPath* selIndexPath = [tableView indexPathForSelectedRow];
 //    [tableView deselectRowAtIndexPath:selIndexPath animated:YES];
+    LLMessageListNode *node = self.messageLists[indexPath.row];
     LLMessageDetailsViewController *vc = [[LLMessageDetailsViewController alloc] init];
+    vc.messageListNode = node;
     [self.navigationController pushViewController:vc animated:true];
 }
 

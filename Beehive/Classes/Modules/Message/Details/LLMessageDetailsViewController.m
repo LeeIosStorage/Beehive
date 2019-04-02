@@ -10,6 +10,8 @@
 #import "LLMessageDetailsHeaderView.h"
 #import "LLMessageCommentViewCell.h"
 #import "LLCommentBottomView.h"
+#import "LLLocationManager.h"
+#import "LLCommentNode.h"
 
 @interface LLMessageDetailsViewController ()
 <
@@ -25,6 +27,8 @@ UITableViewDataSource
 
 @property (nonatomic, strong) LLCommentBottomView *commentBottomView;
 
+@property (assign, nonatomic) int nextCursor;
+
 @end
 
 @implementation LLMessageDetailsViewController
@@ -39,6 +43,7 @@ UITableViewDataSource
     // Do any additional setup after loading the view from its nib.
     [self setup];
     [self refreshData];
+    [self getFacilitateDetail];
 }
 
 - (void)setup {
@@ -78,29 +83,222 @@ UITableViewDataSource
         make.left.right.bottom.equalTo(self.view);
         make.height.mas_equalTo(49);
     }];
+    
+    self.nextCursor = 1;
+    [self addMJ];
 }
 
 - (void)refreshData {
-    [self.commentLists addObject:@""];
-    [self.commentLists addObject:@""];
-    [self.commentLists addObject:@""];
     
-    [self.messageDetailsHeaderView updateCellWithData:nil];
+    [self.messageDetailsHeaderView updateCellWithData:self.messageListNode];
     
     LLMessageDetailsHeaderView *headView = (LLMessageDetailsHeaderView *)self.tableView.tableHeaderView;
     [self.tableView layoutIfNeeded];
     self.tableView.tableHeaderView = headView;
     
     [self.tableView reloadData];
+    
+    [self refreshStateUI];
+}
+
+- (void)refreshStateUI {
+    self.commentBottomView.btnCollect.selected = self.messageListNode.IsCollection;
+    self.commentBottomView.btnLike.selected = self.messageListNode.IsGood;
+}
+
+#pragma mark - mj
+- (void)addMJ {
+    //下拉刷新
+    WEAKSELF;
+    self.tableView.mj_header = [LERefreshHeader headerWithRefreshingBlock:^{
+        weakSelf.nextCursor = 1;
+        [weakSelf getCommentList];
+    }];
+    [self.tableView.mj_header beginRefreshing];
+    
+    //上啦加载
+    self.tableView.mj_footer = [LERefreshFooter footerWithRefreshingBlock:^{
+        [weakSelf getCommentList];
+    }];
+    self.tableView.mj_footer.hidden = YES;
+    
+}
+
+#pragma mark - Request
+- (void)getFacilitateDetail {
+    [SVProgressHUD showCustomWithStatus:@"请求中..."];
+    WEAKSELF
+    NSString *requesUrl = [[WYAPIGenerate sharedInstance] API:@"GetFacilitateDetail"];
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    [params setValue:self.messageListNode.Id forKey:@"id"];
+    [params setValue:[NSNumber numberWithDouble:[LLLocationManager sharedInstance].currentCoordinate.latitude] forKey:@"latitude"];
+    [params setValue:[NSNumber numberWithDouble:[LLLocationManager sharedInstance].currentCoordinate.longitude] forKey:@"longitude"];
+    NSString *caCheKey = [NSString stringWithFormat:@"GetFacilitateDetail-%@",self.messageListNode.Id];
+    [self.networkManager POST:requesUrl needCache:YES caCheKey:caCheKey parameters:params responseClass:[LLMessageListNode class] needHeaderAuth:NO success:^(WYRequestType requestType, NSString *message, BOOL isCache, id dataObject) {
+        
+        [SVProgressHUD dismiss];
+        
+        if (requestType != WYRequestTypeSuccess) {
+            [SVProgressHUD showCustomErrorWithStatus:message];
+            return ;
+        }
+        
+        if ([dataObject isKindOfClass:[NSArray class]]) {
+            NSArray *data = (NSArray *)dataObject;
+            if (data.count > 0) {
+                LLMessageListNode *node = data[0];
+                NSString *Id = weakSelf.messageListNode.Id;
+                int commentCount = weakSelf.messageListNode.CommentCount;
+                
+                weakSelf.messageListNode = node;
+                weakSelf.messageListNode.Id = Id;
+                weakSelf.messageListNode.CommentCount = commentCount;
+            }
+        }
+        [weakSelf refreshData];
+        
+    } failure:^(id responseObject, NSError *error) {
+        [SVProgressHUD showCustomErrorWithStatus:HitoFaiNetwork];
+    }];
+}
+
+- (void)getCommentList {
+    WEAKSELF
+    NSString *requesUrl = [[WYAPIGenerate sharedInstance] API:@"GetCommentList"];
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    [params setValue:self.messageListNode.Id forKey:@"id"];
+    [params setObject:[NSNumber numberWithInteger:self.nextCursor] forKey:@"pageIndex"];
+    [params setObject:[NSNumber numberWithInteger:DATA_LOAD_PAGESIZE_COUNT] forKey:@"pageSize"];
+    //type：类别（1：普通红包；2：红包任务；3：提问红包；4：便民信息）；
+    [params setObject:[NSNumber numberWithInteger:4] forKey:@"type"];
+    
+    NSString *caCheKey = [NSString stringWithFormat:@"GetFacilitateDetail-4-%@",self.messageListNode.Id];
+    [self.networkManager POST:requesUrl needCache:YES caCheKey:caCheKey parameters:params responseClass:[LLCommentNode class] needHeaderAuth:NO success:^(WYRequestType requestType, NSString *message, BOOL isCache, id dataObject) {
+        
+        [weakSelf.tableView.mj_header endRefreshing];
+        [weakSelf.tableView.mj_footer endRefreshing];
+        
+        if (requestType != WYRequestTypeSuccess) {
+            [SVProgressHUD showCustomErrorWithStatus:message];
+            return ;
+        }
+        
+        NSArray *tmpListArray = [NSArray array];
+        if ([dataObject isKindOfClass:[NSArray class]]) {
+            tmpListArray = (NSArray *)dataObject;
+        }
+        if (weakSelf.nextCursor == 1) {
+            weakSelf.commentLists = [NSMutableArray array];
+        }
+        [weakSelf.commentLists addObjectsFromArray:tmpListArray];
+        
+        if (!isCache) {
+            if (tmpListArray.count < DATA_LOAD_PAGESIZE_COUNT) {
+                [weakSelf.tableView.mj_footer setHidden:YES];
+            }else{
+                [weakSelf.tableView.mj_footer setHidden:NO];
+                weakSelf.nextCursor ++;
+            }
+        }
+        
+        [weakSelf.tableView reloadData];
+        
+    } failure:^(id responseObject, NSError *error) {
+        [SVProgressHUD showCustomErrorWithStatus:HitoFaiNetwork];
+        [weakSelf.tableView.mj_header endRefreshing];
+        [weakSelf.tableView.mj_footer endRefreshing];
+    }];
+}
+
+- (void)sendComment:(NSString *)content {
+    [self.view endEditing:true];
+    [SVProgressHUD showCustomWithStatus:@"发送中..."];
+    WEAKSELF
+    NSString *requesUrl = [[WYAPIGenerate sharedInstance] API:@"CommentRedEnvelopes"];
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    [params setValue:self.messageListNode.Id forKey:@"id"];
+    [params setValue:content forKey:@"contents"];
+    //type：类别（0：红包；1：便民信息）
+    [params setObject:[NSNumber numberWithInteger:1] forKey:@"type"];
+    
+    [self.networkManager POST:requesUrl needCache:NO caCheKey:nil parameters:params responseClass:[LLCommentNode class] needHeaderAuth:NO success:^(WYRequestType requestType, NSString *message, BOOL isCache, id dataObject) {
+        
+        if (requestType != WYRequestTypeSuccess) {
+            [SVProgressHUD showCustomErrorWithStatus:message];
+            return ;
+        }
+        [SVProgressHUD showCustomSuccessWithStatus:message];
+        weakSelf.commentBottomView.textField.text = nil;
+        [weakSelf.tableView.mj_header beginRefreshing];
+        
+    } failure:^(id responseObject, NSError *error) {
+        [SVProgressHUD showCustomErrorWithStatus:HitoFaiNetwork];
+    }];
+}
+
+- (void)collectionRequest {
+    [SVProgressHUD showCustomWithStatus:@"请求中..."];
+    WEAKSELF
+    NSString *requesUrl = [[WYAPIGenerate sharedInstance] API:@"RedEnvelopesCollection"];
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    [params setObject:self.messageListNode.Id forKey:@"id"];
+    //type：类别（0：商品；1：红包；2：便民信息）
+    [params setObject:[NSNumber numberWithInt:2] forKey:@"type"];
+    [self.networkManager POST:requesUrl needCache:NO caCheKey:nil parameters:params responseClass:nil needHeaderAuth:NO success:^(WYRequestType requestType, NSString *message, BOOL isCache, id dataObject) {
+        
+        [SVProgressHUD dismiss];
+        if (requestType != WYRequestTypeSuccess) {
+            [SVProgressHUD showCustomErrorWithStatus:message];
+            return ;
+        }
+        [SVProgressHUD showCustomSuccessWithStatus:message];
+        if ([dataObject isKindOfClass:[NSArray class]]) {
+            NSArray *data = (NSArray *)dataObject;
+            if (data.count > 0) {
+                
+            }
+        }
+        weakSelf.messageListNode.IsCollection = !weakSelf.messageListNode.IsCollection;
+        [weakSelf refreshStateUI];
+        
+    } failure:^(id responseObject, NSError *error) {
+        [SVProgressHUD showCustomErrorWithStatus:HitoFaiNetwork];
+    }];
+}
+
+- (void)likeRequest {
+    [SVProgressHUD showCustomWithStatus:@"请求中..."];
+    WEAKSELF
+    NSString *requesUrl = [[WYAPIGenerate sharedInstance] API:@"RedEnvelopesGood"];
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    [params setObject:self.messageListNode.Id forKey:@"id"];
+    //type：类别（0：红包；1：便民信息）
+    [params setObject:[NSNumber numberWithInt:1] forKey:@"type"];
+    [self.networkManager POST:requesUrl needCache:NO caCheKey:nil parameters:params responseClass:nil needHeaderAuth:NO success:^(WYRequestType requestType, NSString *message, BOOL isCache, id dataObject) {
+        
+        [SVProgressHUD dismiss];
+        if (requestType != WYRequestTypeSuccess) {
+            [SVProgressHUD showCustomErrorWithStatus:message];
+            return ;
+        }
+        [SVProgressHUD showCustomSuccessWithStatus:message];
+        if ([dataObject isKindOfClass:[NSArray class]]) {
+            NSArray *data = (NSArray *)dataObject;
+            if (data.count > 0) {
+                
+            }
+        }
+        weakSelf.messageListNode.IsGood = !weakSelf.messageListNode.IsGood;
+        [weakSelf refreshStateUI];
+        
+    } failure:^(id responseObject, NSError *error) {
+        [SVProgressHUD showCustomErrorWithStatus:HitoFaiNetwork];
+    }];
 }
 
 #pragma mark - Action
 - (void)moreAction:(id)sender {
     
-}
-
-- (void)sendComment {
-    [self.view endEditing:true];
 }
 
 #pragma mark -
@@ -147,8 +345,17 @@ UITableViewDataSource
         _commentBottomView = [[LLCommentBottomView alloc] init];
         
         WEAKSELF
-        _commentBottomView.commentBottomViewSendBlock = ^{
-            [weakSelf sendComment];
+        _commentBottomView.commentBottomViewSendBlock = ^(NSString * _Nonnull commentText) {
+            [weakSelf sendComment:commentText];
+        };
+        _commentBottomView.commentBottomViewHandleBlock = ^(NSInteger index) {
+            if (index == 0) {
+                
+            } else if (index == 1) {
+                [weakSelf likeRequest];
+            } else if (index == 2) {
+                [weakSelf collectionRequest];
+            }
         };
     }
     return _commentBottomView;
@@ -172,7 +379,7 @@ UITableViewDataSource
         NSArray* cells = [[NSBundle mainBundle] loadNibNamed:cellIdentifier owner:nil options:nil];
         cell = [cells objectAtIndex:0];
     }
-    [cell updateCellWithData:nil];
+    [cell updateCellWithData:self.commentLists[indexPath.row]];
     return cell;
 }
 

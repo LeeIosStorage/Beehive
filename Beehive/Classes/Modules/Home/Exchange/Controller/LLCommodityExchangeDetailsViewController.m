@@ -123,9 +123,6 @@ LEShareSheetViewDelegate
 }
 
 - (void)collectionRequest {
-    if (self.exchangeGoodsNode.IsCollection) {
-        return;
-    }
     [SVProgressHUD showCustomWithStatus:@"请求中..."];
     WEAKSELF
     NSString *requesUrl = [[WYAPIGenerate sharedInstance] API:@"RedEnvelopesCollection"];
@@ -147,7 +144,7 @@ LEShareSheetViewDelegate
                 
             }
         }
-        weakSelf.exchangeGoodsNode.IsCollection = true;
+        weakSelf.exchangeGoodsNode.IsCollection = !weakSelf.exchangeGoodsNode.IsCollection;
         [weakSelf refreshStateUI];
         
     } failure:^(id responseObject, NSError *error) {

@@ -114,27 +114,115 @@ LEShareSheetViewDelegate
 }
 
 - (void)refreshData {
-    [self.commentLists addObject:@""];
-    [self.commentLists addObject:@""];
-    [self.commentLists addObject:@""];
     
     self.redpacketDetailsHeaderView.type = self.vcType;
-    [self.redpacketDetailsHeaderView updateCellWithData:nil];
+    [self.redpacketDetailsHeaderView updateCellWithData:self.redpacketNode];
     
     LLRedpacketDetailsHeaderView *headView = (LLRedpacketDetailsHeaderView *)self.tableView.tableHeaderView;
     [self.tableView layoutIfNeeded];
     self.tableView.tableHeaderView = headView;
     
     [self.tableView reloadData];
+    
+    [self refreshStateUI];
+}
+
+- (void)refreshStateUI {
+    self.commentBottomView.btnCollect.selected = self.redpacketNode.IsCollection;
+    self.commentBottomView.btnLike.selected = self.redpacketNode.IsGood;
+}
+
+#pragma mark - Request
+- (void)sendComment:(NSString *)content {
+    [self.view endEditing:true];
+    [SVProgressHUD showCustomWithStatus:@"发送中..."];
+    WEAKSELF
+    NSString *requesUrl = [[WYAPIGenerate sharedInstance] API:@"CommentRedEnvelopes"];
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    [params setValue:self.redpacketNode.Id forKey:@"id"];
+    [params setValue:content forKey:@"contents"];
+    //type：类别（0：红包；1：便民信息）
+    [params setObject:[NSNumber numberWithInteger:0] forKey:@"type"];
+    
+    [self.networkManager POST:requesUrl needCache:NO caCheKey:nil parameters:params responseClass:[LLRedpacketNode class] needHeaderAuth:NO success:^(WYRequestType requestType, NSString *message, BOOL isCache, id dataObject) {
+        
+        [SVProgressHUD dismiss];
+        if (requestType != WYRequestTypeSuccess) {
+            [SVProgressHUD showCustomErrorWithStatus:message];
+            return ;
+        }
+        [SVProgressHUD showCustomSuccessWithStatus:message];
+        weakSelf.commentBottomView.textField.text = nil;
+        [weakSelf.tableView.mj_header beginRefreshing];
+        
+    } failure:^(id responseObject, NSError *error) {
+        [SVProgressHUD showCustomErrorWithStatus:HitoFaiNetwork];
+    }];
+}
+
+- (void)collectionRequest {
+    [SVProgressHUD showCustomWithStatus:@"请求中..."];
+    WEAKSELF
+    NSString *requesUrl = [[WYAPIGenerate sharedInstance] API:@"RedEnvelopesCollection"];
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    [params setObject:self.redpacketNode.Id forKey:@"id"];
+    //type：类别（0：商品；1：红包；2：便民信息）
+    [params setObject:[NSNumber numberWithInt:1] forKey:@"type"];
+    [self.networkManager POST:requesUrl needCache:NO caCheKey:nil parameters:params responseClass:nil needHeaderAuth:NO success:^(WYRequestType requestType, NSString *message, BOOL isCache, id dataObject) {
+        
+        [SVProgressHUD dismiss];
+        if (requestType != WYRequestTypeSuccess) {
+            [SVProgressHUD showCustomErrorWithStatus:message];
+            return ;
+        }
+        [SVProgressHUD showCustomSuccessWithStatus:message];
+        if ([dataObject isKindOfClass:[NSArray class]]) {
+            NSArray *data = (NSArray *)dataObject;
+            if (data.count > 0) {
+                
+            }
+        }
+        weakSelf.redpacketNode.IsCollection = !weakSelf.redpacketNode.IsCollection;
+        [weakSelf refreshStateUI];
+        
+    } failure:^(id responseObject, NSError *error) {
+        [SVProgressHUD showCustomErrorWithStatus:HitoFaiNetwork];
+    }];
+}
+
+- (void)likeRequest {
+    [SVProgressHUD showCustomWithStatus:@"请求中..."];
+    WEAKSELF
+    NSString *requesUrl = [[WYAPIGenerate sharedInstance] API:@"RedEnvelopesGood"];
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    [params setObject:self.redpacketNode.Id forKey:@"id"];
+    //type：类别（0：红包；1：便民信息）
+    [params setObject:[NSNumber numberWithInt:0] forKey:@"type"];
+    [self.networkManager POST:requesUrl needCache:NO caCheKey:nil parameters:params responseClass:nil needHeaderAuth:NO success:^(WYRequestType requestType, NSString *message, BOOL isCache, id dataObject) {
+        
+        [SVProgressHUD dismiss];
+        if (requestType != WYRequestTypeSuccess) {
+            [SVProgressHUD showCustomErrorWithStatus:message];
+            return ;
+        }
+        [SVProgressHUD showCustomSuccessWithStatus:message];
+        if ([dataObject isKindOfClass:[NSArray class]]) {
+            NSArray *data = (NSArray *)dataObject;
+            if (data.count > 0) {
+                
+            }
+        }
+        weakSelf.redpacketNode.IsGood = !weakSelf.redpacketNode.IsGood;
+        [weakSelf refreshStateUI];
+        
+    } failure:^(id responseObject, NSError *error) {
+        [SVProgressHUD showCustomErrorWithStatus:HitoFaiNetwork];
+    }];
 }
 
 #pragma mark - Action
 - (void)moreAction:(id)sender {
     [self redTaskAlertViewShow];
-}
-
-- (void)sendComment {
-    [self.view endEditing:true];
 }
 
 - (void)shareAction {
@@ -210,12 +298,16 @@ LEShareSheetViewDelegate
         _commentBottomView = [[LLCommentBottomView alloc] init];
         
         WEAKSELF
-        _commentBottomView.commentBottomViewSendBlock = ^{
-            [weakSelf sendComment];
+        _commentBottomView.commentBottomViewSendBlock = ^(NSString * _Nonnull commentText) {
+            [weakSelf sendComment:commentText];
         };
         _commentBottomView.commentBottomViewHandleBlock = ^(NSInteger index) {
             if (index == 0) {
                 [weakSelf shareAction];
+            } else if (index == 1) {
+                [weakSelf likeRequest];
+            } else if (index == 2) {
+                [weakSelf collectionRequest];
             }
         };
     }

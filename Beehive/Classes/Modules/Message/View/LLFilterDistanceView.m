@@ -135,6 +135,9 @@ UITableViewDataSource
     [tableView deselectRowAtIndexPath:selIndexPath animated:YES];
     _selectIndex = indexPath.row;
     [self.tableView reloadData];
+    if (self.selectBlock) {
+        self.selectBlock(_selectIndex);
+    }
     [self dismiss];
 }
 

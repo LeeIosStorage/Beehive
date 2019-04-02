@@ -88,6 +88,9 @@ typedef enum : NSUInteger {
 
 +(NSString *)numberFormatWithNum:(int)num;
 
+//距离格式化
++(NSString *)distanceFormatWithDistance:(CGFloat)distance;
+
 #pragma mark -
 #pragma mark - 动画
 //👍

@@ -10,12 +10,6 @@
 
 @interface LLHandleStatusView ()
 
-@property (nonatomic, strong) UIButton *readButton;
-
-@property (nonatomic, strong) UIButton *commentButton;
-
-@property (nonatomic, strong) UIButton *favourButton;
-
 @end
 
 @implementation LLHandleStatusView
@@ -44,9 +38,9 @@
 }
 
 - (void)updateWithData:(id)node {
-    [self.readButton setTitle:@" 4" forState:UIControlStateNormal];
-    [self.commentButton setTitle:@" 99" forState:UIControlStateNormal];
-    [self.favourButton setTitle:@" 2" forState:UIControlStateNormal];
+//    [self.readButton setTitle:@" 4" forState:UIControlStateNormal];
+//    [self.commentButton setTitle:@" 99" forState:UIControlStateNormal];
+//    [self.favourButton setTitle:@" 2" forState:UIControlStateNormal];
 }
 
 - (UIButton *)readButton {

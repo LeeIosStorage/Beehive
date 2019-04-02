@@ -12,6 +12,12 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface LLHandleStatusView : LLView
 
+@property (nonatomic, strong) UIButton *readButton;
+
+@property (nonatomic, strong) UIButton *commentButton;
+
+@property (nonatomic, strong) UIButton *favourButton;
+
 - (void)updateWithData:(id)node;
 
 @end
