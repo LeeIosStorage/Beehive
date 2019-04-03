@@ -72,8 +72,35 @@ UITableViewDataSource
 }
 
 - (void)refreshHeadViewUI {
-    [WYCommonUtils setImageWithURL:[NSURL URLWithString:kLLAppTestHttpURL] setImage:self.imgAvatar setbitmapImage:nil];
-    [WYCommonUtils setImageWithURL:[NSURL URLWithString:kLLAppTestHttpURL] setImage:self.imgIcon setbitmapImage:nil];
+    
+    [WYCommonUtils setImageWithURL:[NSURL URLWithString:self.exchangeOrderNode.HeadImg] setImage:self.imgAvatar setbitmapImage:nil];
+    [WYCommonUtils setImageWithURL:[NSURL URLWithString:self.exchangeOrderNode.GoodsImg] setImage:self.imgIcon setbitmapImage:nil];
+    UIImage *sexImage = [UIImage imageNamed:@"user_sex_man"];
+    if (self.exchangeOrderNode.Sex == 1) {
+        sexImage = [UIImage imageNamed:@"user_sex_woman"];
+    }
+    self.imgSex.image = sexImage;
+    self.labNickName.text = self.exchangeOrderNode.UserName;
+    
+    self.labShopName.text = self.exchangeOrderNode.GoodsName;
+    self.labShopTipName.text = [NSString stringWithFormat:@"实付%@蜂蜜",self.exchangeOrderNode.Money];
+    
+    NSString *buyType = @"";
+    if (self.exchangeOrderNode.BuyType == 1) {
+        buyType = @"电子券";
+    }
+    self.labExchangeType.text = [NSString stringWithFormat:@"兑换类型：%@", buyType];
+    self.labExchangePhone.text = [NSString stringWithFormat:@"商家电话：%@", self.exchangeOrderNode.Phone];
+    self.labExchangeDate.text = [NSString stringWithFormat:@"兑换时间：%@", self.exchangeOrderNode.AddTime];
+    
+    self.labAddress.text = self.exchangeOrderNode.Address;
+    
+    self.labQuanPrice.text = [NSString stringWithFormat:@"¥ %@",self.exchangeOrderNode.CouponMoney];
+    self.labFull.text = self.exchangeOrderNode.CouponExplain;
+    self.labScope.text = self.exchangeOrderNode.CouponName;
+    self.labTime.text = self.exchangeOrderNode.CouponTime;
+    self.labValidity.text = [NSString stringWithFormat:@"有效期%ld天",self.exchangeOrderNode.Days];
+    
 }
 
 #pragma mark - Request
@@ -106,7 +133,7 @@ UITableViewDataSource
 }
 
 - (IBAction)callTelAction:(id)sender {
-    [WYCommonUtils callTelephone:@"10086"];
+    [WYCommonUtils callTelephone:self.exchangeOrderNode.Phone];
 }
 
 #pragma mark - SetGet

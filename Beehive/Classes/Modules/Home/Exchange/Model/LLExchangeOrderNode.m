@@ -10,4 +10,14 @@
 
 @implementation LLExchangeOrderNode
 
+- (NSString *)HeadImg {
+    NSString *urlStr = [NSString stringWithFormat:@"%@%@",[WYAPIGenerate sharedInstance].baseURL, _HeadImg];
+    return urlStr;
+}
+
+- (NSString *)GoodsImg {
+    NSString *urlStr = [NSString stringWithFormat:@"%@%@",[WYAPIGenerate sharedInstance].baseURL, _GoodsImg];
+    return urlStr;
+}
+
 @end

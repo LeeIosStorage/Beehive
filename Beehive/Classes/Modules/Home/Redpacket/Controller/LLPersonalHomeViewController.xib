@@ -12,6 +12,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LLPersonalHomeViewController">
             <connections>
+                <outlet property="btnFollow" destination="KoI-Jp-Cii" id="K8k-lD-EUf"/>
                 <outlet property="tableView" destination="FCY-DV-mIQ" id="c3l-LV-6Rv"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -22,20 +23,35 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="FCY-DV-mIQ">
-                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="623"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <connections>
                         <outlet property="dataSource" destination="-1" id="nfL-MW-LGK"/>
                         <outlet property="delegate" destination="-1" id="aVW-6W-aOU"/>
                     </connections>
                 </tableView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KoI-Jp-Cii">
+                    <rect key="frame" x="0.0" y="623" width="375" height="44"/>
+                    <color key="backgroundColor" red="1" green="0.68627450980000004" blue="0.0078431372550000003" alpha="1" colorSpace="calibratedRGB"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                    <state key="normal" title="+关注">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </state>
+                    <connections>
+                        <action selector="btnFollowAction:" destination="-1" eventType="touchUpInside" id="9PC-u7-QT6"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
+                <constraint firstItem="KoI-Jp-Cii" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" id="0s0-CJ-ayV"/>
                 <constraint firstItem="FCY-DV-mIQ" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="1OQ-8c-dcU"/>
+                <constraint firstItem="KoI-Jp-Cii" firstAttribute="top" secondItem="FCY-DV-mIQ" secondAttribute="bottom" id="I7l-Ar-H5V"/>
                 <constraint firstItem="Q5M-cg-NOt" firstAttribute="trailing" secondItem="FCY-DV-mIQ" secondAttribute="trailing" id="KUe-0n-NPy"/>
                 <constraint firstItem="FCY-DV-mIQ" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="VnE-JU-oqC"/>
-                <constraint firstItem="Q5M-cg-NOt" firstAttribute="bottom" secondItem="FCY-DV-mIQ" secondAttribute="bottom" id="zTq-DH-M1U"/>
+                <constraint firstItem="Q5M-cg-NOt" firstAttribute="bottom" secondItem="KoI-Jp-Cii" secondAttribute="bottom" id="W9l-Zz-2ZP"/>
+                <constraint firstItem="Q5M-cg-NOt" firstAttribute="trailing" secondItem="KoI-Jp-Cii" secondAttribute="trailing" id="fja-VW-9a6"/>
+                <constraint firstItem="Q5M-cg-NOt" firstAttribute="bottom" secondItem="FCY-DV-mIQ" secondAttribute="bottom" constant="44" id="zTq-DH-M1U"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="Q5M-cg-NOt"/>
         </view>

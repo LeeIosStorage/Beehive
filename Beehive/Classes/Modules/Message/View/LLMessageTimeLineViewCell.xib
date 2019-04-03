@@ -26,6 +26,12 @@
                             <constraint firstAttribute="height" constant="40" id="TbN-Yy-PIm"/>
                         </constraints>
                     </imageView>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zmY-uh-2vH">
+                        <rect key="frame" x="10" y="13" width="40" height="40"/>
+                        <connections>
+                            <action selector="avatarAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="K3W-yA-tGQ"/>
+                        </connections>
+                    </button>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="昵称" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SA9-Re-lHb">
                         <rect key="frame" x="57" y="16" width="27" height="16"/>
                         <constraints>
@@ -94,7 +100,9 @@
                     <constraint firstItem="SA9-Re-lHb" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="16" id="LSD-dQ-uTB"/>
                     <constraint firstItem="9Kx-Rp-qjl" firstAttribute="leading" secondItem="LUh-fH-3uh" secondAttribute="leading" id="OTc-5n-qSv"/>
                     <constraint firstItem="Mb8-dq-qU4" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="TDT-ir-1Vs"/>
+                    <constraint firstItem="zmY-uh-2vH" firstAttribute="bottom" secondItem="Maz-Gx-dVM" secondAttribute="bottom" id="TcM-75-2zr"/>
                     <constraint firstItem="Maz-Gx-dVM" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="13" id="UV5-1g-PrQ"/>
+                    <constraint firstItem="zmY-uh-2vH" firstAttribute="trailing" secondItem="Maz-Gx-dVM" secondAttribute="trailing" id="XKK-75-Myj"/>
                     <constraint firstAttribute="trailing" secondItem="uF8-Ca-9L0" secondAttribute="trailing" constant="10" id="aKz-12-Kym"/>
                     <constraint firstItem="Maz-Gx-dVM" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="bpd-m3-sei"/>
                     <constraint firstItem="RLQ-v6-tVi" firstAttribute="leading" secondItem="9Kx-Rp-qjl" secondAttribute="leading" id="fWX-LM-j25"/>
@@ -103,7 +111,9 @@
                     <constraint firstAttribute="bottom" secondItem="Mb8-dq-qU4" secondAttribute="bottom" id="l7t-sv-MAx"/>
                     <constraint firstAttribute="trailing" secondItem="Mb8-dq-qU4" secondAttribute="trailing" id="qSJ-ea-ubp"/>
                     <constraint firstAttribute="trailing" secondItem="LUh-fH-3uh" secondAttribute="trailing" constant="10" id="qWH-Xl-Ppc"/>
+                    <constraint firstItem="zmY-uh-2vH" firstAttribute="leading" secondItem="Maz-Gx-dVM" secondAttribute="leading" id="sEl-Lh-6O1"/>
                     <constraint firstAttribute="trailing" secondItem="9Kx-Rp-qjl" secondAttribute="trailing" constant="10" id="sUu-Cw-xIE"/>
+                    <constraint firstItem="zmY-uh-2vH" firstAttribute="top" secondItem="Maz-Gx-dVM" secondAttribute="top" id="uPu-oN-YZh"/>
                     <constraint firstItem="Mb8-dq-qU4" firstAttribute="top" secondItem="RLQ-v6-tVi" secondAttribute="bottom" constant="10" id="vPF-Gi-Ybx"/>
                     <constraint firstItem="185-uR-Yom" firstAttribute="top" secondItem="SA9-Re-lHb" secondAttribute="bottom" constant="2" id="za5-4i-sGK"/>
                 </constraints>

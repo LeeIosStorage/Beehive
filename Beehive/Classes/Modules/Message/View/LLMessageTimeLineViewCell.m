@@ -68,6 +68,12 @@ UICollectionViewDataSource
     // Configure the view for the selected state
 }
 
+- (IBAction)avatarAction:(id)sender {
+    if (self.avatarBlock) {
+        self.avatarBlock(self);
+    }
+}
+
 - (void)updateCellWithData:(id)node {
     LLMessageListNode *messageNode = (LLMessageListNode *)node;
     

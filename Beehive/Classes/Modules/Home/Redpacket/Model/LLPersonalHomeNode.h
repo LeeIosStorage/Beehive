@@ -16,7 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign) int FollowCount;
 @property (nonatomic, assign) int BeFollowCount;
 @property (nonatomic, assign) int ReleaseCount;
-@property (nonatomic, assign) int IsFollow;
+@property (nonatomic, assign) BOOL IsFollow;
 
 @end
 

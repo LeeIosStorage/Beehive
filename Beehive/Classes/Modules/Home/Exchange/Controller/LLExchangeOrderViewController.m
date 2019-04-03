@@ -132,7 +132,7 @@ UITableViewDataSource
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 3;
+    return self.dataLists.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -143,7 +143,7 @@ UITableViewDataSource
         NSArray* cells = [[NSBundle mainBundle] loadNibNamed:cellIdentifier owner:nil options:nil];
         cell = [cells objectAtIndex:0];
     }
-    [cell updateCellWithData:nil];
+    [cell updateCellWithData:self.dataLists[indexPath.row]];
     return cell;
 }
 
@@ -152,9 +152,7 @@ UITableViewDataSource
     NSIndexPath* selIndexPath = [tableView indexPathForSelectedRow];
     [tableView deselectRowAtIndexPath:selIndexPath animated:YES];
     LLExchangeOrderDetailsViewController *vc = [[LLExchangeOrderDetailsViewController alloc] init];
-    LLExchangeOrderNode *node = [[LLExchangeOrderNode alloc] init];
-    node.Id = @"0";
-    vc.exchangeOrderNode = node;
+    vc.exchangeOrderNode = self.dataLists[indexPath.row];
     [self.navigationController pushViewController:vc animated:true];
 }
 

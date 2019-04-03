@@ -7,6 +7,7 @@
 //
 
 #import "LLReceiveRedAlertView.h"
+#import "LLRedpacketNode.h"
 
 @interface LLReceiveRedAlertView ()
 
@@ -30,9 +31,17 @@
 }
 
 - (void)updateCellWithData:(id)node {
-    [WYCommonUtils setImageWithURL:[NSURL URLWithString:kLLAppTestHttpURL] setImage:self.avatarImageView setbitmapImage:nil];
-    [WYCommonUtils setImageWithURL:[NSURL URLWithString:kLLAppTestHttpURL] setImage:self.imgIcon setbitmapImage:nil];
-    self.nickNameLabel.text = @"郑和";
+    LLRedpacketNode *someNode = (LLRedpacketNode *)node;
+    
+    [WYCommonUtils setImageWithURL:[NSURL URLWithString:someNode.HeadImg] setImage:self.avatarImageView setbitmapImage:nil];
+    
+    NSString *url = @"";
+    if (someNode.ImgUrls.count > 0) {
+        url = someNode.ImgUrls[0];
+    }
+    [WYCommonUtils setImageWithURL:[NSURL URLWithString:url] setImage:self.imgIcon setbitmapImage:nil];
+    
+    self.nickNameLabel.text = someNode.UserName;
 }
 
 @end

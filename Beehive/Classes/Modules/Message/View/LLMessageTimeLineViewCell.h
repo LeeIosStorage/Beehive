@@ -10,7 +10,11 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+typedef void(^LLMessageTimeLineViewCellAvatarBlock)(id cell);
+
 @interface LLMessageTimeLineViewCell : LLTableViewCell
+
+@property (nonatomic, copy) LLMessageTimeLineViewCellAvatarBlock avatarBlock;
 
 @end
 

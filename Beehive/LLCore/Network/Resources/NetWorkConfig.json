@@ -145,6 +145,11 @@
         "module"  : "MyService.asmx",
         "action"  : "GetAppVersion"
     },
+    "FollowUser": {
+        "protocol": "http",
+        "module"  : "MyService.asmx",
+        "action"  : "FollowUser"
+    },
     "GetFollowList": {
         "protocol": "http",
         "module"  : "MyService.asmx",

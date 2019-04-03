@@ -26,6 +26,8 @@ UITableViewDataSource
 @property (nonatomic, strong) NSMutableArray *dataLists;
 @property (assign, nonatomic) int nextCursor;
 
+@property (nonatomic, weak) IBOutlet UIButton *btnFollow;
+
 @end
 
 @implementation LLPersonalHomeViewController
@@ -51,7 +53,34 @@ UITableViewDataSource
 }
 
 - (void)refreshData {
+    if ([self isSelf]) {
+        self.title = @"我的主页";
+    } else {
+        self.title = [NSString stringWithFormat:@"%@的主页",self.personalHomeNode.UserName];
+    }
     [self.personalHomeHeaderView updateCellWithData:self.personalHomeNode];
+    
+    [self refreshBottomStatus];
+}
+
+- (void)refreshBottomStatus {
+    if ([self isSelf]) {
+        self.btnFollow.hidden = true;
+    } else {
+        self.btnFollow.hidden = false;
+        self.btnFollow.enabled = true;
+        self.btnFollow.backgroundColor = kAppThemeColor;
+        [self.btnFollow setTitle:@"+关注" forState:UIControlStateNormal];
+        if (self.personalHomeNode.IsFollow) {
+            self.btnFollow.enabled = false;
+            self.btnFollow.backgroundColor = LineColor;
+            [self.btnFollow setTitle:@"已关注" forState:UIControlStateNormal];
+        }
+    }
+}
+
+- (BOOL)isSelf {
+    return [self.userId isEqualToString:[LELoginUserManager userID]];
 }
 
 #pragma mark - mj
@@ -149,6 +178,40 @@ UITableViewDataSource
         [weakSelf.tableView.mj_header endRefreshing];
         [weakSelf.tableView.mj_footer endRefreshing];
     }];
+}
+
+- (void)followRequest {
+    [SVProgressHUD showCustomWithStatus:@"请求中..."];
+    WEAKSELF
+    NSString *requesUrl = [[WYAPIGenerate sharedInstance] API:@"FollowUser"];
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    [params setValue:self.userId forKey:@"userId"];
+    
+    [self.networkManager POST:requesUrl needCache:NO caCheKey:nil parameters:params responseClass:nil needHeaderAuth:NO success:^(WYRequestType requestType, NSString *message, BOOL isCache, id dataObject) {
+        
+        [SVProgressHUD dismiss];
+        if (requestType != WYRequestTypeSuccess) {
+            [SVProgressHUD showCustomErrorWithStatus:message];
+            return ;
+        }
+        
+        if ([dataObject isKindOfClass:[NSArray class]]) {
+            NSArray *data = (NSArray *)dataObject;
+            if (data.count > 0) {
+                weakSelf.personalHomeNode = data[0];
+            }
+        }
+        weakSelf.personalHomeNode.IsFollow = !weakSelf.personalHomeNode.IsFollow;
+        [weakSelf refreshBottomStatus];
+        
+    } failure:^(id responseObject, NSError *error) {
+        [SVProgressHUD showCustomErrorWithStatus:HitoFaiNetwork];
+    }];
+}
+
+#pragma mark - Action
+- (IBAction)btnFollowAction:(id)sender {
+    [self followRequest];
 }
 
 #pragma mark - set

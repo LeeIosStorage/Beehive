@@ -17,6 +17,7 @@
 #import "LLMessageListNode.h"
 #import <AMapLocationKit/AMapLocationKit.h>
 #import "LLLocationManager.h"
+#import "LLPersonalHomeViewController.h"
 
 @interface LLBeeMessageViewController ()
 <
@@ -99,6 +100,16 @@ UISearchBarDelegate
         make.top.mas_equalTo(40 + HitoTopHeight);
     }];
     [self.filterDistanceView show];
+}
+
+- (void)avatarWithCell:(LLMessageTimeLineViewCell *)cell {
+    NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
+    if (indexPath) {
+        LLMessageListNode *node = self.messageLists[indexPath.row];
+        LLPersonalHomeViewController *vc = [[LLPersonalHomeViewController alloc] init];
+        vc.userId = [node.UserId description];
+        [self.navigationController pushViewController:vc animated:true];
+    }
 }
 
 #pragma mark - mj
@@ -289,6 +300,10 @@ UISearchBarDelegate
         NSArray* cells = [[NSBundle mainBundle] loadNibNamed:cellIdentifier owner:nil options:nil];
         cell = [cells objectAtIndex:0];
     }
+    WEAKSELF
+    cell.avatarBlock = ^(id  _Nonnull cell) {
+        [weakSelf avatarWithCell:cell];
+    };
     [cell updateCellWithData:self.messageLists[indexPath.row]];
     return cell;
 }

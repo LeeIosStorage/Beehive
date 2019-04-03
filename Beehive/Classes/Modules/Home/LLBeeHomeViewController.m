@@ -40,6 +40,7 @@ GYRollingNoticeViewDataSource
 >
 
 @property (nonatomic, strong) LLHomeNode *homeNode;
+@property (nonatomic, strong) LLRedpacketNode *selRedpacketNode;
 
 @property (nonatomic, strong) NSMutableArray *redCityList;
 @property (nonatomic, strong) NSMutableArray *mapRedpacketList;
@@ -171,10 +172,39 @@ GYRollingNoticeViewDataSource
     self.mapView.userTrackingMode = MAUserTrackingModeFollow;
 }
 
+- (void)setData {
+    
+    [self.rollingNoticeView reloadDataAndStartRoll];
+    
+    self.cityOptionHeaderView.redCityArray = [NSMutableArray arrayWithArray:self.homeNode.FirstRowRedList];
+    
+    //地图上红包
+    self.mapRedpacketList = [NSMutableArray arrayWithArray:self.homeNode.RedEnvelopesList];
+    
+    [self refreshMapRedpacketList];
+}
+
+- (void)refreshMapRedpacketList {
+    
+    [self.mapView removeAnnotations:self.mapView.annotations];
+    
+    NSMutableArray *annotations = [NSMutableArray array];
+    for (int i = 0; i < self.mapRedpacketList.count; i ++) {
+        LLRedpacketNode *node = self.mapRedpacketList[i];
+        MAPointAnnotation *pointAnnotation = [[MAPointAnnotation alloc] init];
+        pointAnnotation.coordinate = CLLocationCoordinate2DMake(node.Latitude, node.Longitude);
+        pointAnnotation.title = node.Title;
+        pointAnnotation.subtitle = [NSString stringWithFormat:@"%d", i];
+        [annotations addObject:pointAnnotation];
+    }
+    
+    [self.mapView addAnnotations:annotations];
+}
+
 - (void)receiveRedAlertViewShow {
     LLReceiveRedAlertView *tipView = [[[NSBundle mainBundle] loadNibNamed:@"LLReceiveRedAlertView" owner:self options:nil] firstObject];
     tipView.frame = CGRectMake(0, 0, 186, 280);
-    [tipView updateCellWithData:nil];
+    [tipView updateCellWithData:self.selRedpacketNode];
     __weak UIView *weakView = tipView;
     WEAKSELF
     tipView.clickBlock = ^(NSInteger index) {
@@ -183,7 +213,7 @@ GYRollingNoticeViewDataSource
             [alert dismiss];
         }
         if (index == 0) {
-            [weakSelf gotoRedpacketDetailsVc];
+            [weakSelf robRedEnvelopes];
         }
     };
     LEAlertMarkView *alert = [[LEAlertMarkView alloc] initWithCustomView:tipView type:LEAlertMarkViewTypeCenter];
@@ -210,8 +240,13 @@ GYRollingNoticeViewDataSource
 }
 
 - (void)gotoRedpacketDetailsVc {
+    LLRedpacketDetailsVcType vcType = LLRedpacketDetailsVcTypeAsk;
+    if (self.selRedpacketNode.RedType == 1 || self.selRedpacketNode.RedType == 2) {
+        vcType = LLRedpacketDetailsVcTypeTask;
+    }
     LLRedpacketDetailsViewController *vc = [[LLRedpacketDetailsViewController alloc] init];
-    vc.vcType = 1;
+    vc.vcType = vcType;
+    vc.redpacketNode = self.selRedpacketNode;
     [self.navigationController pushViewController:vc animated:true];
 }
 
@@ -310,6 +345,35 @@ GYRollingNoticeViewDataSource
     }];
 }
 
+- (void)robRedEnvelopes {
+    [SVProgressHUD showCustomWithStatus:@"红包领取中..."];
+    WEAKSELF
+    NSString *requesUrl = [[WYAPIGenerate sharedInstance] API:@"RobRedEnvelopes"];
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    [params setValue:self.selRedpacketNode.Id forKey:@"id"];
+    [self.networkManager POST:requesUrl needCache:NO caCheKey:nil parameters:params responseClass:nil needHeaderAuth:NO success:^(WYRequestType requestType, NSString *message, BOOL isCache, id dataObject) {
+        
+        if (requestType != WYRequestTypeSuccess) {
+            [SVProgressHUD showCustomErrorWithStatus:message];
+            return ;
+        }
+        [SVProgressHUD showCustomSuccessWithStatus:message];
+        if ([dataObject isKindOfClass:[NSArray class]]) {
+            NSArray *data = (NSArray *)dataObject;
+            if (data.count > 0) {
+                
+            }
+        }
+        [weakSelf refreshHomeInfo];
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [weakSelf gotoRedpacketDetailsVc];
+        });
+        
+    } failure:^(id responseObject, NSError *error) {
+        [SVProgressHUD showCustomErrorWithStatus:HitoFaiNetwork];
+    }];
+}
+
 //上报用户位置
 - (void)updateUserPositionRequest {
     return;
@@ -335,34 +399,6 @@ GYRollingNoticeViewDataSource
     }];
 }
 
-- (void)setData {
-    
-    [self.rollingNoticeView reloadDataAndStartRoll];
-    
-    self.cityOptionHeaderView.redCityArray = [NSMutableArray arrayWithArray:self.homeNode.FirstRowRedList];
-    
-    //地图上红包
-    self.mapRedpacketList = [NSMutableArray arrayWithArray:self.homeNode.RedEnvelopesList];
-    
-    [self refreshMapRedpacketList];
-}
-
-- (void)refreshMapRedpacketList {
-    
-    [self.mapView removeAnnotations:self.mapView.annotations];
-    
-    NSMutableArray *annotations = [NSMutableArray array];
-    for (int i = 0; i < self.mapRedpacketList.count; i ++) {
-        LLRedpacketNode *node = self.mapRedpacketList[i];
-        MAPointAnnotation *pointAnnotation = [[MAPointAnnotation alloc] init];
-        pointAnnotation.coordinate = CLLocationCoordinate2DMake(node.Latitude, node.Longitude);
-        pointAnnotation.title = node.Title;
-        pointAnnotation.subtitle = [NSString stringWithFormat:@"%d", i];
-        [annotations addObject:pointAnnotation];
-    }
-    
-    [self.mapView addAnnotations:annotations];
-}
 
 #pragma mark -
 #pragma mark - Action
@@ -397,7 +433,7 @@ GYRollingNoticeViewDataSource
 }
 
 - (void)shareAction:(id)sender {
-    [self receiveRedAlertViewShow];
+    
 }
 
 - (void)adsBtnAction {
@@ -605,17 +641,12 @@ GYRollingNoticeViewDataSource
 - (void)mapView:(MAMapView *)mapView didSelectAnnotationView:(MAAnnotationView *)view {
     NSInteger index = [view.annotation.subtitle integerValue];
     LLRedpacketNode *redNode = self.mapRedpacketList[index];
-//    if (redNode.RedType < 1 && redNode.RedType > 3) {
-//        return;
-//    }
-    LLRedpacketDetailsVcType vcType = LLRedpacketDetailsVcTypeAsk;
-    if (redNode.RedType == 1 || redNode.RedType == 2) {
-        vcType = LLRedpacketDetailsVcTypeTask;
+    if (redNode.RedType < 1 && redNode.RedType > 3) {
+        [SVProgressHUD showCustomInfoWithStatus:@"红包类型不匹配"];
+        return;
     }
-    LLRedpacketDetailsViewController *vc = [[LLRedpacketDetailsViewController alloc] init];
-    vc.vcType = vcType;
-    vc.redpacketNode = redNode;
-    [self.navigationController pushViewController:vc animated:true];
+    self.selRedpacketNode = redNode;
+    [self receiveRedAlertViewShow];
     
     [self.mapView deselectAnnotation:view.annotation animated:false];
 }
