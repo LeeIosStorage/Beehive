@@ -18,6 +18,8 @@ UITableViewDataSource
 
 @property (nonatomic, strong) NSMutableArray *dataLists;
 
+@property (assign, nonatomic) int nextCursor;
+
 @end
 
 @implementation LLAwardRecordViewController
@@ -26,7 +28,6 @@ UITableViewDataSource
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     [self setup];
-    [self refreshData];
 }
 
 - (void)setup {
@@ -40,18 +41,75 @@ UITableViewDataSource
     }];
     
     [self.tableView reloadData];
-}
-
-- (void)refreshData {
-    self.dataLists = [NSMutableArray array];
-    [self.dataLists addObject:@""];
-    [self.dataLists addObject:@""];
-    [self.dataLists addObject:@""];
-    [self.dataLists addObject:@""];
     
-    [self.tableView reloadData];
+    self.nextCursor = 1;
+    [self addMJ];
 }
 
+#pragma mark - mj
+- (void)addMJ {
+    //下拉刷新
+    WEAKSELF;
+    self.tableView.mj_header = [LERefreshHeader headerWithRefreshingBlock:^{
+        weakSelf.nextCursor = 1;
+        [weakSelf getWinningList];
+    }];
+    [self.tableView.mj_header beginRefreshing];
+    
+    //上啦加载
+    self.tableView.mj_footer = [LERefreshFooter footerWithRefreshingBlock:^{
+        [weakSelf getWinningList];
+    }];
+    self.tableView.mj_footer.hidden = YES;
+    
+}
+
+#pragma mark - Request
+- (void)getWinningList {
+    WEAKSELF
+    NSString *requesUrl = [[WYAPIGenerate sharedInstance] API:@"GetWinningList"];
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    [params setObject:[NSNumber numberWithInteger:self.nextCursor] forKey:@"pageIndex"];
+    [params setObject:[NSNumber numberWithInteger:DATA_LOAD_PAGESIZE_COUNT] forKey:@"pageSize"];
+    
+    [self.networkManager POST:requesUrl needCache:NO caCheKey:nil parameters:params responseClass:nil needHeaderAuth:NO success:^(WYRequestType requestType, NSString *message, BOOL isCache, id dataObject) {
+        
+        [weakSelf.tableView.mj_header endRefreshing];
+        [weakSelf.tableView.mj_footer endRefreshing];
+        
+        if (requestType != WYRequestTypeSuccess) {
+            [SVProgressHUD showCustomErrorWithStatus:message];
+            return ;
+        }
+        
+        NSArray *tmpListArray = [NSArray array];
+        if ([dataObject isKindOfClass:[NSArray class]]) {
+            tmpListArray = (NSArray *)dataObject;
+        }
+        if (weakSelf.nextCursor == 1) {
+            weakSelf.dataLists = [NSMutableArray array];
+        }
+        [weakSelf.dataLists addObjectsFromArray:tmpListArray];
+        
+        if (!isCache) {
+            if (tmpListArray.count < DATA_LOAD_PAGESIZE_COUNT) {
+                [weakSelf.tableView.mj_footer setHidden:YES];
+            }else{
+                [weakSelf.tableView.mj_footer setHidden:NO];
+                weakSelf.nextCursor ++;
+            }
+        }
+        
+        [weakSelf.tableView reloadData];
+        
+    } failure:^(id responseObject, NSError *error) {
+        [SVProgressHUD showCustomErrorWithStatus:HitoFaiNetwork];
+        [weakSelf.tableView.mj_header endRefreshing];
+        [weakSelf.tableView.mj_footer endRefreshing];
+    }];
+}
+
+#pragma mark - setget
 - (UITableView *)tableView {
     if (!_tableView) {
         _tableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
@@ -117,8 +175,9 @@ static int label_tag = 201, des_tag = 202;
     
     UILabel *lable = (UILabel *)[cell.contentView viewWithTag:label_tag];
     UILabel *desLable = (UILabel *)[cell.contentView viewWithTag:des_tag];
-    lable.text = @"2018-09-18 12:11";
-    desLable.text = @"1.11";
+    NSDictionary *dic = self.dataLists[indexPath.row];
+    lable.text = dic[@"AddTime"];
+    desLable.text = dic[@"Money"];
     
     return cell;
 }

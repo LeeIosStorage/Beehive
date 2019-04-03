@@ -54,6 +54,12 @@ UITableViewDelegate
     [self.tableView reloadData];
 }
 
+#pragma mark - Request
+- (void)getMyCollectionList {
+    //type:类别（0：商品；1：红包；2：便民信息）
+}
+
+#pragma mark - setget
 - (UITableView *)tableView {
     if (!_tableView) {
         _tableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];

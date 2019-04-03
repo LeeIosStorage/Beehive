@@ -15,6 +15,8 @@
 #import "LLCommodityExchangeconfirmView.h"
 #import "LEAlertMarkView.h"
 #import "LLCommodityPurchaseSucceedView.h"
+#import "LLExchangeOrderDetailsViewController.h"
+#import "LLExchangeOrderViewController.h"
 
 @interface LLCommodityExchangeDetailsViewController ()
 <
@@ -236,7 +238,11 @@ LEShareSheetViewDelegate
             [alert dismiss];
         }
         if (index == 1) {
-            LELog(@"查看订单");
+            LLExchangeOrderViewController *vc = [[LLExchangeOrderViewController alloc] init];
+            [weakSelf.navigationController pushViewController:vc animated:true];
+//            LLExchangeOrderDetailsViewController *vc = [[LLExchangeOrderDetailsViewController alloc] init];
+//            vc.exchangeOrderNode = self.dataLists[indexPath.row];
+//            [self.navigationController pushViewController:vc animated:true];
         }
     };
     LEAlertMarkView *alert = [[LEAlertMarkView alloc] initWithCustomView:tipView type:LEAlertMarkViewTypeCenter];
