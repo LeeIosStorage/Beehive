@@ -185,7 +185,10 @@
             <viewLayoutGuide key="safeArea" id="Syf-gf-mf0"/>
             <connections>
                 <outlet property="avatarImageView" destination="Bbl-Bd-IKv" id="sBe-tx-xq1"/>
+                <outlet property="labBeFollowCount" destination="5kd-fR-szB" id="ysQ-tN-FpE"/>
                 <outlet property="labDes" destination="HSU-ze-0KQ" id="pUd-5f-24Y"/>
+                <outlet property="labFollowCount" destination="uXW-lz-gbh" id="QTQ-2g-KF5"/>
+                <outlet property="labReleaseCount" destination="Bqt-1D-an2" id="gNr-iy-5CA"/>
                 <outlet property="nickNameLabel" destination="ibB-2g-kiH" id="Vwq-hn-dO1"/>
                 <outlet property="sexImageView" destination="BgU-Hl-zUs" id="Flv-tU-Ch9"/>
             </connections>

@@ -7,6 +7,7 @@
 //
 
 #import "LLRedrReceiveDetailsHeaderView.h"
+#import "LLRedReceiveDetailNode.h"
 
 @interface LLRedrReceiveDetailsHeaderView ()
 
@@ -16,6 +17,9 @@
 
 @property (nonatomic, strong) IBOutlet UILabel *labRule1;
 @property (nonatomic, strong) IBOutlet UILabel *labRule2;
+
+@property (nonatomic, strong) IBOutlet UILabel *labMoney;
+@property (nonatomic, strong) IBOutlet UILabel *labCount;
 
 @end
 
@@ -28,11 +32,31 @@
     self.labRule1.layer.borderColor = kAppLightTitleColor.CGColor;
     self.labRule2.layer.borderWidth = 0.5;
     self.labRule2.layer.borderColor = kAppLightTitleColor.CGColor;
+    self.labRule1.text = @"";
+    self.labRule2.text = @"";
 }
 
 - (void)updateCellWithData:(id)node {
-    [WYCommonUtils setImageWithURL:[NSURL URLWithString:kLLAppTestHttpURL] setImage:self.avatarImageView setbitmapImage:[UIImage imageNamed:@""]];
-    self.nickNameLabel.text = @"郑和";
+    LLRedReceiveDetailNode *someNode = (LLRedReceiveDetailNode *)node;
+    
+    [WYCommonUtils setImageWithURL:[NSURL URLWithString:someNode.HeadImg] setImage:self.avatarImageView setbitmapImage:[UIImage imageNamed:@""]];
+    UIImage *sexImage = [UIImage imageNamed:@"user_sex_man"];
+    if (someNode.Sex == 1) {
+        sexImage = [UIImage imageNamed:@"user_sex_woman"];
+    }
+    self.sexImageView.image = sexImage;
+    self.nickNameLabel.text = someNode.UserName;
+    for (int i = 0; i < someNode.ReceiveCondition.count; i ++) {
+        NSString *title = someNode.ReceiveCondition[i];
+        if (i == 0) {
+            self.labRule1.text = title;
+        } else if (i == 1) {
+            self.labRule2.text = title;
+        }
+    }
+    
+    self.labMoney.text = [NSString stringWithFormat:@"%.2f蜂蜜",someNode.Money];
+    self.labCount.text = [NSString stringWithFormat:@"已领取%d份/总%d份",someNode.ReceiveCount, someNode.SumCount];
 }
 
 @end

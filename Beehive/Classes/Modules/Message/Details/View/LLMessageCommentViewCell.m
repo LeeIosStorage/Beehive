@@ -17,6 +17,9 @@
 @property (nonatomic, weak) IBOutlet UILabel *timeLabel;
 @property (nonatomic, weak) IBOutlet UILabel *contentLabel;
 
+@property (nonatomic, weak) IBOutlet UIButton *btnAdoptAnswer;
+@property (nonatomic, weak) IBOutlet NSLayoutConstraint *contentLabBottom;
+
 @end
 
 @implementation LLMessageCommentViewCell
@@ -35,12 +38,33 @@
     // Configure the view for the selected state
 }
 
+- (IBAction)adoptAnswer:(id)sender {
+    if (self.adoptAnswerBlock) {
+        self.adoptAnswerBlock(self);
+    }
+}
+
 - (void)updateCellWithData:(id)node {
     LLCommentNode *commentNode = (LLCommentNode *)node;
     [WYCommonUtils setImageWithURL:[NSURL URLWithString:commentNode.HeadImg] setImage:self.avatarImageView setbitmapImage:nil];
     self.nickNameLabel.text = commentNode.UserName;
     self.timeLabel.text = [WYCommonUtils dateDiscriptionFromNowBk:[WYCommonUtils dateFromUSDateString:commentNode.AddTime]];
     self.contentLabel.text = commentNode.Contents;
+    
+    self.contentLabBottom.constant = 14;
+    self.btnAdoptAnswer.hidden = true;
+    if (commentNode.DataType == 3) {
+        self.btnAdoptAnswer.hidden = false;
+        self.contentLabBottom.constant = 50;
+        self.btnAdoptAnswer.enabled = true;
+        self.btnAdoptAnswer.backgroundColor = kAppThemeColor;
+        [self.btnAdoptAnswer setTitle:@"采纳答案" forState:UIControlStateNormal];
+        if (commentNode.IsOptimum) {
+            self.btnAdoptAnswer.enabled = false;
+            self.btnAdoptAnswer.backgroundColor = kAppLightTitleColor;
+            [self.btnAdoptAnswer setTitle:@"已采纳" forState:UIControlStateNormal];
+        }
+    }
 }
 
 @end

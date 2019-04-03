@@ -357,7 +357,7 @@ GYRollingNoticeViewDataSource
         MAPointAnnotation *pointAnnotation = [[MAPointAnnotation alloc] init];
         pointAnnotation.coordinate = CLLocationCoordinate2DMake(node.Latitude, node.Longitude);
         pointAnnotation.title = node.Title;
-        pointAnnotation.subtitle = [NSString stringWithFormat:@"%ld", node.RedType];
+        pointAnnotation.subtitle = [NSString stringWithFormat:@"%d", i];
         [annotations addObject:pointAnnotation];
     }
     
@@ -587,10 +587,12 @@ GYRollingNoticeViewDataSource
             annotationView = [[MAAnnotationView alloc] initWithAnnotation:annotation
                                                           reuseIdentifier:reuseIndetifier];
         }
+        NSInteger index = [annotation.subtitle integerValue];
+        LLRedpacketNode *redNode = self.mapRedpacketList[index];
         annotationView.image = [UIImage imageNamed:@"home_redpacket_red"];
-        if ([annotation.subtitle isEqualToString:@"2"]) {
+        if (redNode.RedType == 2) {
             annotationView.image = [UIImage imageNamed:@"home_redpacket_bule"];
-        } else if ([annotation.subtitle isEqualToString:@"3"]) {
+        } else if (redNode.RedType == 3) {
             annotationView.image = [UIImage imageNamed:@"home_redpacket_yellow"];
         }
         //设置中心点偏移，使得标注底部中间点成为经纬度对应点
@@ -601,18 +603,20 @@ GYRollingNoticeViewDataSource
 }
 
 - (void)mapView:(MAMapView *)mapView didSelectAnnotationView:(MAAnnotationView *)view {
-    NSString *type = view.annotation.subtitle;
-    if ([type isEqualToString:@"3"]) {
-        LLRedpacketDetailsViewController *vc = [[LLRedpacketDetailsViewController alloc] init];
-        vc.vcType = 0;
-        [self.navigationController pushViewController:vc animated:true];
-    } else if ([type isEqualToString:@"2"]) {
-        LLRedpacketDetailsViewController *vc = [[LLRedpacketDetailsViewController alloc] init];
-        vc.vcType = 1;
-        [self.navigationController pushViewController:vc animated:true];
-    } else if ([type isEqualToString:@"1"]) {
-        
+    NSInteger index = [view.annotation.subtitle integerValue];
+    LLRedpacketNode *redNode = self.mapRedpacketList[index];
+//    if (redNode.RedType < 1 && redNode.RedType > 3) {
+//        return;
+//    }
+    LLRedpacketDetailsVcType vcType = LLRedpacketDetailsVcTypeAsk;
+    if (redNode.RedType == 1 || redNode.RedType == 2) {
+        vcType = LLRedpacketDetailsVcTypeTask;
     }
+    LLRedpacketDetailsViewController *vc = [[LLRedpacketDetailsViewController alloc] init];
+    vc.vcType = vcType;
+    vc.redpacketNode = redNode;
+    [self.navigationController pushViewController:vc animated:true];
+    
     [self.mapView deselectAnnotation:view.annotation animated:false];
 }
 

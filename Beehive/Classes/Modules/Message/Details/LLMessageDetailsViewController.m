@@ -12,13 +12,17 @@
 #import "LLCommentBottomView.h"
 #import "LLLocationManager.h"
 #import "LLCommentNode.h"
+#import "LEShareSheetView.h"
 
 @interface LLMessageDetailsViewController ()
 <
 UITableViewDelegate,
-UITableViewDataSource
+UITableViewDataSource,
+LEShareSheetViewDelegate
 >
-
+{
+    LEShareSheetView *_shareSheetView;
+}
 @property (nonatomic, strong) NSMutableArray *commentLists;
 
 @property (nonatomic, strong) IBOutlet UITableView *tableView;
@@ -172,8 +176,10 @@ UITableViewDataSource
     //type：类别（1：普通红包；2：红包任务；3：提问红包；4：便民信息）；
     [params setObject:[NSNumber numberWithInteger:4] forKey:@"type"];
     
-    NSString *caCheKey = [NSString stringWithFormat:@"GetFacilitateDetail-4-%@",self.messageListNode.Id];
-    [self.networkManager POST:requesUrl needCache:YES caCheKey:caCheKey parameters:params responseClass:[LLCommentNode class] needHeaderAuth:NO success:^(WYRequestType requestType, NSString *message, BOOL isCache, id dataObject) {
+    NSString *caCheKey = [NSString stringWithFormat:@"GetCommentList-4-%@",self.messageListNode.Id];
+    BOOL needCache = false;
+    if (self.nextCursor == 1) needCache = true;
+    [self.networkManager POST:requesUrl needCache:needCache caCheKey:caCheKey parameters:params responseClass:[LLCommentNode class] needHeaderAuth:NO success:^(WYRequestType requestType, NSString *message, BOOL isCache, id dataObject) {
         
         [weakSelf.tableView.mj_header endRefreshing];
         [weakSelf.tableView.mj_footer endRefreshing];
@@ -301,6 +307,19 @@ UITableViewDataSource
     
 }
 
+- (void)shareAction {
+    [self.view endEditing:true];
+    LEShareModel *shareModel = [[LEShareModel alloc] init];
+    shareModel.shareTitle = self.messageListNode.Title;
+    shareModel.shareDescription = @"";
+    shareModel.shareWebpageUrl = [NSString stringWithFormat:@"%@/%@",[WYAPIGenerate sharedInstance].baseURL, kLLH5_DownLoad_Html_Url];
+    //    shareModel.shareImage = [];
+    _shareSheetView = [[LEShareSheetView alloc] init];
+    _shareSheetView.owner = self;
+    _shareSheetView.shareModel = shareModel;
+    [_shareSheetView showShareAction];
+}
+
 #pragma mark -
 #pragma mark - NSNotification
 - (void)keyboardWillShow:(NSNotification *)aNotification
@@ -350,7 +369,7 @@ UITableViewDataSource
         };
         _commentBottomView.commentBottomViewHandleBlock = ^(NSInteger index) {
             if (index == 0) {
-                
+                [weakSelf shareAction];
             } else if (index == 1) {
                 [weakSelf likeRequest];
             } else if (index == 2) {

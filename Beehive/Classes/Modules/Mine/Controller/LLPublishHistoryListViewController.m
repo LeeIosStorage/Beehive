@@ -300,7 +300,7 @@ UITableViewDelegate
     LLPublishHistoryTimeNode *node = self.dataLists[section];
     if (self.publishVcType == LLPublishViewcTypeConvenience) {
         return node.FacList.count;
-    } else if (self.publishVcType == LLPublishViewcTypeRedpacket) {
+    } else if (self.publishVcType == LLPublishViewcTypeRedpacket || self.publishVcType == LLPublishViewcTypeAsk) {
         return node.RedList.count;
     } else if (self.publishVcType == LLPublishViewcTypeExchange) {
         return node.GoodList.count;
@@ -383,7 +383,7 @@ UITableViewDelegate
     id cellNode;
     if (self.publishVcType == LLPublishViewcTypeConvenience) {
         cellNode = node.FacList[indexPath.row];
-    } else if (self.publishVcType == LLPublishViewcTypeRedpacket) {
+    } else if (self.publishVcType == LLPublishViewcTypeRedpacket || self.publishVcType == LLPublishViewcTypeAsk) {
         cellNode = node.RedList[indexPath.row];
     }
     [cell updateCellWithData:cellNode];

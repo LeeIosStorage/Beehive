@@ -12,6 +12,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface LLRedrReceiveDetailsViewController : LLBaseViewController
 
+@property (nonatomic, strong) NSString *redId;
+
 @end
 
 NS_ASSUME_NONNULL_END

@@ -12,6 +12,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface LLPersonalHomeViewController : LLBaseViewController
 
+@property (nonatomic, strong) NSString *userId;
+
 @end
 
 NS_ASSUME_NONNULL_END

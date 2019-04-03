@@ -77,7 +77,9 @@ UITableViewDataSource
     [params setObject:[NSNumber numberWithInteger:self.nextCursor] forKey:@"pageIndex"];
     [params setObject:[NSNumber numberWithInteger:DATA_LOAD_PAGESIZE_COUNT] forKey:@"pageSize"];
     NSString *caCheKey = [NSString stringWithFormat:@"GetParentFansList"];
-    [self.networkManager POST:requesUrl needCache:YES caCheKey:caCheKey parameters:params responseClass:[LLUserInfoNode class] needHeaderAuth:NO success:^(WYRequestType requestType, NSString *message, BOOL isCache, id dataObject) {
+    BOOL needCache = false;
+    if (self.nextCursor == 1) needCache = true;
+    [self.networkManager POST:requesUrl needCache:needCache caCheKey:caCheKey parameters:params responseClass:[LLUserInfoNode class] needHeaderAuth:NO success:^(WYRequestType requestType, NSString *message, BOOL isCache, id dataObject) {
         
         [weakSelf.tableView.mj_header endRefreshing];
         [weakSelf.tableView.mj_footer endRefreshing];
@@ -122,7 +124,9 @@ UITableViewDataSource
     [params setObject:[NSNumber numberWithInteger:self.nextCursor] forKey:@"pageIndex"];
     [params setObject:[NSNumber numberWithInteger:DATA_LOAD_PAGESIZE_COUNT] forKey:@"pageSize"];
     NSString *caCheKey = [NSString stringWithFormat:@"GetGrandFansList"];
-    [self.networkManager POST:requesUrl needCache:YES caCheKey:caCheKey parameters:params responseClass:[LLUserInfoNode class] needHeaderAuth:NO success:^(WYRequestType requestType, NSString *message, BOOL isCache, id dataObject) {
+    BOOL needCache = false;
+    if (self.nextCursor == 1) needCache = true;
+    [self.networkManager POST:requesUrl needCache:needCache caCheKey:caCheKey parameters:params responseClass:[LLUserInfoNode class] needHeaderAuth:NO success:^(WYRequestType requestType, NSString *message, BOOL isCache, id dataObject) {
         
         [weakSelf.tableView.mj_header endRefreshing];
         [weakSelf.tableView.mj_footer endRefreshing];

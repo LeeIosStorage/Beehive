@@ -15,7 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSString *Id;
 @property (nonatomic, strong) NSString *ReceivedId;
 @property (nonatomic, strong) NSString *DataId;
-@property (nonatomic, assign) int DataType;
+@property (nonatomic, assign) int DataType; //（1：普通红包；2：红包任务；3：提问红包；4：便民信息）；
 @property (nonatomic, assign) int CommnetType;
 @property (nonatomic, assign) BOOL IsRead;
 @property (nonatomic, assign) BOOL IsOptimum;

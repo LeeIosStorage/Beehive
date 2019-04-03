@@ -9,6 +9,8 @@
 #import "LLPersonalHomeViewController.h"
 #import "LLPersonalHomeHeaderView.h"
 #import "LLRedTaskHistoryTableViewCell.h"
+#import "LLRedpacketNode.h"
+#import "LLPersonalHomeNode.h"
 
 @interface LLPersonalHomeViewController ()
 <
@@ -18,8 +20,11 @@ UITableViewDataSource
 
 @property (nonatomic, strong) LLPersonalHomeHeaderView *personalHomeHeaderView;
 
+@property (nonatomic, strong) LLPersonalHomeNode *personalHomeNode;
+
 @property (nonatomic, weak) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) NSMutableArray *dataLists;
+@property (assign, nonatomic) int nextCursor;
 
 @end
 
@@ -30,6 +35,7 @@ UITableViewDataSource
     // Do any additional setup after loading the view from its nib.
     [self setup];
     [self refreshData];
+    [self getPublisherInfo];
 }
 
 - (void)setup {
@@ -39,18 +45,110 @@ UITableViewDataSource
     
     self.personalHomeHeaderView.height = 228;
     self.tableView.tableHeaderView = self.personalHomeHeaderView;
+    
+    self.nextCursor = 1;
+    [self addMJ];
 }
 
 - (void)refreshData {
-    self.dataLists = [NSMutableArray array];
-    [self.dataLists addObject:@""];
-    [self.dataLists addObject:@""];
-    [self.dataLists addObject:@""];
-    [self.dataLists addObject:@""];
+    [self.personalHomeHeaderView updateCellWithData:self.personalHomeNode];
+}
+
+#pragma mark - mj
+- (void)addMJ {
+    //下拉刷新
+    WEAKSELF;
+    self.tableView.mj_header = [LERefreshHeader headerWithRefreshingBlock:^{
+        weakSelf.nextCursor = 1;
+        [weakSelf getRedEnvelopesReleaseList];
+    }];
+    [self.tableView.mj_header beginRefreshing];
     
-    [self.personalHomeHeaderView updateCellWithData:nil];
+    //上啦加载
+    self.tableView.mj_footer = [LERefreshFooter footerWithRefreshingBlock:^{
+        [weakSelf getRedEnvelopesReleaseList];
+    }];
+    self.tableView.mj_footer.hidden = YES;
     
-    [self.tableView reloadData];
+}
+
+#pragma mark - Request
+- (void)getPublisherInfo {
+    [SVProgressHUD showCustomWithStatus:@"请求中..."];
+    WEAKSELF
+    NSString *requesUrl = [[WYAPIGenerate sharedInstance] API:@"GetPublisherInfo"];
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    [params setValue:self.userId forKey:@"id"];
+    [params setObject:[NSNumber numberWithInteger:1] forKey:@"pageIndex"];
+    [params setObject:[NSNumber numberWithInteger:1] forKey:@"pageSize"];
+    
+    NSString *caCheKey = @"GetPublisherInfo";
+    [self.networkManager POST:requesUrl needCache:YES caCheKey:caCheKey parameters:params responseClass:[LLPersonalHomeNode class] needHeaderAuth:NO success:^(WYRequestType requestType, NSString *message, BOOL isCache, id dataObject) {
+        
+        [SVProgressHUD dismiss];
+        if (requestType != WYRequestTypeSuccess) {
+            [SVProgressHUD showCustomErrorWithStatus:message];
+            return ;
+        }
+        
+        if ([dataObject isKindOfClass:[NSArray class]]) {
+            NSArray *data = (NSArray *)dataObject;
+            if (data.count > 0) {
+                weakSelf.personalHomeNode = data[0];
+            }
+        }
+        [weakSelf refreshData];
+        
+    } failure:^(id responseObject, NSError *error) {
+        [SVProgressHUD showCustomErrorWithStatus:HitoFaiNetwork];
+    }];
+}
+
+- (void)getRedEnvelopesReleaseList {
+    WEAKSELF
+    NSString *requesUrl = [[WYAPIGenerate sharedInstance] API:@"GetRedEnvelopesReleaseList"];
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    [params setValue:self.userId forKey:@"id"];
+    [params setObject:[NSNumber numberWithInteger:self.nextCursor] forKey:@"pageIndex"];
+    [params setObject:[NSNumber numberWithInteger:DATA_LOAD_PAGESIZE_COUNT] forKey:@"pageSize"];
+    
+    NSString *caCheKey = @"GetRedEnvelopesReleaseList";
+    BOOL needCache = false;
+    if (self.nextCursor == 1) needCache = true;
+    [self.networkManager POST:requesUrl needCache:needCache caCheKey:caCheKey parameters:params responseClass:[LLRedpacketNode class] needHeaderAuth:NO success:^(WYRequestType requestType, NSString *message, BOOL isCache, id dataObject) {
+        
+        [weakSelf.tableView.mj_header endRefreshing];
+        [weakSelf.tableView.mj_footer endRefreshing];
+        if (requestType != WYRequestTypeSuccess) {
+            [SVProgressHUD showCustomErrorWithStatus:message];
+            return ;
+        }
+        
+        NSArray *tmpListArray = [NSArray array];
+        if ([dataObject isKindOfClass:[NSArray class]]) {
+            tmpListArray = (NSArray *)dataObject;
+        }
+        if (weakSelf.nextCursor == 1) {
+            weakSelf.dataLists = [NSMutableArray array];
+        }
+        [weakSelf.dataLists addObjectsFromArray:tmpListArray];
+        
+        if (!isCache) {
+            if (tmpListArray.count < DATA_LOAD_PAGESIZE_COUNT) {
+                [weakSelf.tableView.mj_footer setHidden:YES];
+            }else{
+                [weakSelf.tableView.mj_footer setHidden:NO];
+                weakSelf.nextCursor ++;
+            }
+        }
+        
+        [weakSelf.tableView reloadData];
+        
+    } failure:^(id responseObject, NSError *error) {
+        [SVProgressHUD showCustomErrorWithStatus:HitoFaiNetwork];
+        [weakSelf.tableView.mj_header endRefreshing];
+        [weakSelf.tableView.mj_footer endRefreshing];
+    }];
 }
 
 #pragma mark - set
@@ -85,7 +183,7 @@ UITableViewDataSource
         cell = [cells objectAtIndex:0];
     }
     cell.indexPath = indexPath;
-    [cell updateCellWithData:nil];
+    [cell updateCellWithData:self.dataLists[indexPath.row]];
     return cell;
 }
 

@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "LLUserInfoNode.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -14,7 +15,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (strong, nonatomic) NSString *Id;
 @property (strong, nonatomic) NSString *Title;
-@property (assign, nonatomic) NSInteger RedType;//1：普通红包 3：提问红包 2：任务红包
+@property (assign, nonatomic) NSInteger RedType;//1：普通红包 2：任务红包 3：提问红包
+@property (assign, nonatomic) int RedClassify;//0默认 1：上传图片；2：添加链接
 @property (assign, nonatomic) CGFloat Latitude;
 @property (assign, nonatomic) CGFloat Longitude;
 @property (assign, nonatomic) CGFloat Distance;
@@ -39,7 +41,6 @@ NS_ASSUME_NONNULL_BEGIN
 @property (assign, nonatomic) int CommentCount;
 @property (assign, nonatomic) int LookCount;
 @property (assign, nonatomic) int GoodCount;
-@property (assign, nonatomic) int RedClassify;
 @property (strong, nonatomic) NSString *TaskName;
 @property (strong, nonatomic) NSString *TaskExplain;
 @property (strong, nonatomic) NSString *TaskSummary;
@@ -49,7 +50,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (strong, nonatomic) NSString *UserName;
 @property (strong, nonatomic) NSString *HeadImg;
 @property (assign, nonatomic) int Sex;
-@property (strong, nonatomic) NSArray *ImgList;
+@property (strong, nonatomic) id ImgList;
+@property (strong, nonatomic) NSArray *ImgUrls;
 @property (assign, nonatomic) CGFloat MyRedMoney;
 @property (strong, nonatomic) NSArray *RedList;
 

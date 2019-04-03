@@ -114,6 +114,8 @@
 		8D3F2153222FCB050066F5EB /* LLMessageDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D3F2151222FCB050066F5EB /* LLMessageDetailsViewController.m */; };
 		8D3F2154222FCB050066F5EB /* LLMessageDetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D3F2152222FCB050066F5EB /* LLMessageDetailsViewController.xib */; };
 		8D3F2157222FCD8B0066F5EB /* LLFilterDistanceView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D3F2156222FCD8B0066F5EB /* LLFilterDistanceView.m */; };
+		8D42DADE2254AF6800914E0E /* LLRedReceiveDetailNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D42DADD2254AF6800914E0E /* LLRedReceiveDetailNode.m */; };
+		8D42DAE12254BA3C00914E0E /* LLPersonalHomeNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D42DAE02254BA3C00914E0E /* LLPersonalHomeNode.m */; };
 		8D4C611E222D058C00024840 /* LLUserInputView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D4C611D222D058C00024840 /* LLUserInputView.m */; };
 		8D4C6122222D553A00024840 /* LLForgotPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D4C6120222D553A00024840 /* LLForgotPasswordViewController.m */; };
 		8D4C6123222D553A00024840 /* LLForgotPasswordViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D4C6121222D553A00024840 /* LLForgotPasswordViewController.xib */; };
@@ -530,6 +532,10 @@
 		8D3F2152222FCB050066F5EB /* LLMessageDetailsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LLMessageDetailsViewController.xib; sourceTree = "<group>"; };
 		8D3F2155222FCD8B0066F5EB /* LLFilterDistanceView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLFilterDistanceView.h; sourceTree = "<group>"; };
 		8D3F2156222FCD8B0066F5EB /* LLFilterDistanceView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLFilterDistanceView.m; sourceTree = "<group>"; };
+		8D42DADC2254AF6800914E0E /* LLRedReceiveDetailNode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLRedReceiveDetailNode.h; sourceTree = "<group>"; };
+		8D42DADD2254AF6800914E0E /* LLRedReceiveDetailNode.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLRedReceiveDetailNode.m; sourceTree = "<group>"; };
+		8D42DADF2254BA3C00914E0E /* LLPersonalHomeNode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLPersonalHomeNode.h; sourceTree = "<group>"; };
+		8D42DAE02254BA3C00914E0E /* LLPersonalHomeNode.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLPersonalHomeNode.m; sourceTree = "<group>"; };
 		8D4C611C222D058C00024840 /* LLUserInputView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLUserInputView.h; sourceTree = "<group>"; };
 		8D4C611D222D058C00024840 /* LLUserInputView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLUserInputView.m; sourceTree = "<group>"; };
 		8D4C611F222D553A00024840 /* LLForgotPasswordViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLForgotPasswordViewController.h; sourceTree = "<group>"; };
@@ -1181,6 +1187,10 @@
 			children = (
 				8D08CDE52253B5E000AD406E /* LLRedTaskHistoryNode.h */,
 				8D08CDE62253B5E000AD406E /* LLRedTaskHistoryNode.m */,
+				8D42DADC2254AF6800914E0E /* LLRedReceiveDetailNode.h */,
+				8D42DADD2254AF6800914E0E /* LLRedReceiveDetailNode.m */,
+				8D42DADF2254BA3C00914E0E /* LLPersonalHomeNode.h */,
+				8D42DAE02254BA3C00914E0E /* LLPersonalHomeNode.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -2679,6 +2689,7 @@
 				8DD3993E22539BF400B8DAE2 /* LLPublishHistoryTimeNode.m in Sources */,
 				8D5CB6E922357EA000527DEB /* LLMapAddressViewController.m in Sources */,
 				8D79E4D5222672CA0019A1BE /* LLNavigationController.m in Sources */,
+				8D42DADE2254AF6800914E0E /* LLRedReceiveDetailNode.m in Sources */,
 				8D004ED3223B80C50029EDE6 /* LLPersonalHomeViewController.m in Sources */,
 				8DCC9AC2222B815E00AC3128 /* LLTableViewCell.m in Sources */,
 				8D542A64222A5BC2008B90B0 /* WYAPIGenerate.m in Sources */,
@@ -2725,6 +2736,7 @@
 				8D01672C2238E20A00CD21D8 /* LLReceiveFavourTableViewCell.m in Sources */,
 				7E561BAB223FE5E700DA3B20 /* LLAdsBidViewController.m in Sources */,
 				8DBEAE57223CB73B0095D214 /* LLMineCollectTableViewCell.m in Sources */,
+				8D42DAE12254BA3C00914E0E /* LLPersonalHomeNode.m in Sources */,
 				8DBEAE80223DF9CA0095D214 /* LLFundDetailTableViewCell.m in Sources */,
 				8D72C33A2252385100B032C2 /* LLPubDataInfoNode.m in Sources */,
 				8D01671D2238DE8500CD21D8 /* LLReceiveCommentViewController.m in Sources */,

@@ -75,7 +75,9 @@ UITableViewDelegate
     [params setObject:[NSNumber numberWithInt:0] forKey:@"type"];
     
     NSString *caCheKey = [NSString stringWithFormat:@"GetFollowList-0"];
-    [self.networkManager POST:requesUrl needCache:YES caCheKey:caCheKey parameters:params responseClass:[LLFollowUserNode class] needHeaderAuth:NO success:^(WYRequestType requestType, NSString *message, BOOL isCache, id dataObject) {
+    BOOL needCache = false;
+    if (self.nextCursor == 1) needCache = true;
+    [self.networkManager POST:requesUrl needCache:needCache caCheKey:caCheKey parameters:params responseClass:[LLFollowUserNode class] needHeaderAuth:NO success:^(WYRequestType requestType, NSString *message, BOOL isCache, id dataObject) {
         
         [weakSelf.tableView.mj_header endRefreshing];
         [weakSelf.tableView.mj_footer endRefreshing];

@@ -38,8 +38,8 @@
     if ([node isKindOfClass:[LLRedpacketNode class]]) {
         LLRedpacketNode *redNode = (LLRedpacketNode *)node;
         NSString *url = @"";
-        if (redNode.ImgList.count > 0) {
-            url = redNode.ImgList[0];
+        if (redNode.ImgUrls.count > 0) {
+            url = redNode.ImgUrls[0];
         }
         [WYCommonUtils setImageWithURL:[NSURL URLWithString:url] setImage:self.imgIcon setbitmapImage:[UIImage imageNamed:@""]];
         self.labTitle.text = redNode.Title;

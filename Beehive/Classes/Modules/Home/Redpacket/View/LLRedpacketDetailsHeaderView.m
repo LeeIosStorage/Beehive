@@ -17,6 +17,8 @@ UICollectionViewDelegate,
 UICollectionViewDataSource
 >
 
+@property (nonatomic, strong) LLRedpacketNode *redpacketNode;
+
 @property (nonatomic, weak) IBOutlet UIImageView *avatarImageView;
 @property (nonatomic, weak) IBOutlet UIImageView *sexImageView;
 
@@ -49,6 +51,10 @@ UICollectionViewDataSource
 
 - (void)setup {
     [super setup];
+    self.adsImageView.userInteractionEnabled = true;
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(viewTapped)];
+    [self.adsImageView addGestureRecognizer:tap];
+    
     self.images = [NSMutableArray array];
     self.users = [NSMutableArray array];
     
@@ -82,14 +88,28 @@ UICollectionViewDataSource
     }
 }
 
-- (void)updateCellWithData:(id)node {
-    [WYCommonUtils setImageWithURL:[NSURL URLWithString:@""] setImage:self.avatarImageView setbitmapImage:[UIImage imageNamed:@"app_def"]];
-    self.contentLabel.text = @"信息正文信息正文信息正文信息正文信息正文信息正文信息正文信息正文";
-    //    self.gridImageView.backgroundColor = kAppThemeColor;
-    self.images = [NSMutableArray array];
-    for (int i = 0; i < 3; i ++) {
-        [self.images addObject:kLLAppTestHttpURL];
+- (void)viewTapped {
+    if (self.advertBlock) {
+        self.advertBlock();
     }
+}
+
+- (void)updateCellWithData:(id)node {
+    self.redpacketNode = (LLRedpacketNode *)node;
+    
+    [WYCommonUtils setImageWithURL:[NSURL URLWithString:self.redpacketNode.HeadImg] setImage:self.avatarImageView setbitmapImage:[UIImage imageNamed:@""]];
+    self.nickNameLabel.text = self.redpacketNode.UserName;
+    UIImage *sexImage = [UIImage imageNamed:@"user_sex_man"];
+    if (self.redpacketNode.Sex == 1) {
+        sexImage = [UIImage imageNamed:@"user_sex_woman"];
+    }
+    self.sexImageView.image = sexImage;
+    self.timeLabel.text = self.redpacketNode.ReleaseTime;
+    self.likeCountLabel.text = [NSString stringWithFormat:@"%d",self.redpacketNode.GoodCount];
+    self.redPriceLabel.text = [NSString stringWithFormat:@"%.2f",self.redpacketNode.MyRedMoney];
+    
+    self.contentLabel.text = self.redpacketNode.Title;
+    self.images = [NSMutableArray arrayWithArray:self.redpacketNode.ImgUrls];
     [self.gridImageView reloadData];
     
     NSInteger row = self.images.count/3;
@@ -102,36 +122,35 @@ UICollectionViewDataSource
     }
     self.gridImageViewConstraintH.constant = height;
     
-    self.users = [NSMutableArray array];
-    for (int i = 0; i < 14; i ++) {
-        [self.users addObject:kLLAppTestHttpURL];
-    }
+    self.users = [NSMutableArray arrayWithArray:self.redpacketNode.RedList];
     [self.allowCollectionView reloadData];
     
     NSArray *items = nil;
-    if (self.type == 0) {
+    if (self.type == LLRedpacketDetailsVcTypeAsk) {
         self.acceptViewConstraintH.constant = 48;
         self.acceptView.hidden = false;
         self.adsViewConstraintH.constant = 0;
         self.allowViewConstraintH.constant = 0;
         self.adsView.hidden = true;
         self.allowView.hidden = true;
-        NSString *acceptMoney = @"20";
+        NSString *acceptMoney = [NSString stringWithFormat:@"%.f",self.redpacketNode.Money];
         NSString *acceptText = [NSString stringWithFormat:@"回答被采纳后将获得%@元红包",acceptMoney];
         self.acceptRedLabel.attributedText = [WYCommonUtils stringToColorAndFontAttributeString:acceptText range:NSMakeRange(9, acceptMoney.length) font:[FontConst PingFangSCRegularWithSize:13] color:UIColor.redColor];
         
-        items = @[@{kllSegmentedTitle:@"全部答案",kllSegmentedType:@(0)},@{kllSegmentedTitle:@"红包任务介绍",kllSegmentedType:@(0)}];
+        NSString *oneTitle = [NSString stringWithFormat:@"全部答案（%d条）",self.redpacketNode.CommentCount];
+        items = @[@{kllSegmentedTitle:oneTitle,kllSegmentedType:@(0)},@{kllSegmentedTitle:@"红包任务介绍",kllSegmentedType:@(0)}];
         
-    } else if (self.type == 1) {
+    } else if (self.type == LLRedpacketDetailsVcTypeTask) {
         self.acceptViewConstraintH.constant = 0;
         self.acceptView.hidden = true;
         self.adsViewConstraintH.constant = 180;
         self.adsView.hidden = false;
         self.allowViewConstraintH.constant = 106;
         self.allowView.hidden = false;
-        [WYCommonUtils setImageWithURL:[NSURL URLWithString:kLLAppTestHttpURL] setImage:self.adsImageView setbitmapImage:nil];
+        [WYCommonUtils setImageWithURL:[NSURL URLWithString:self.redpacketNode.AdvertImg] setImage:self.adsImageView setbitmapImage:nil];
         
-        items = @[@{kllSegmentedTitle:@"评论",kllSegmentedType:@(0)},@{kllSegmentedTitle:@"红包任务介绍",kllSegmentedType:@(0)}];
+        NSString *oneTitle = [NSString stringWithFormat:@"评论（%d条）",self.redpacketNode.CommentCount];
+        items = @[@{kllSegmentedTitle:oneTitle,kllSegmentedType:@(0)},@{kllSegmentedTitle:@"红包任务介绍",kllSegmentedType:@(0)}];
     }
     
     [self.segmentedHeadView setItems:items];
@@ -163,7 +182,8 @@ UICollectionViewDataSource
         cell.imageView.layer.cornerRadius = 20;
         cell.imageView.layer.masksToBounds = true;
         
-        [cell updateCellWithData:self.users[indexPath.row]];
+        LLUserInfoNode *userNode = self.users[indexPath.row];
+        [cell updateCellWithData:userNode.HeadImg];
         return cell;
     }
     LLImageItemViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:kLLImageItemViewCell forIndexPath:indexPath];

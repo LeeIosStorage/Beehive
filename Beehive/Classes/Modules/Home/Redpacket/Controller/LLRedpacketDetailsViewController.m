@@ -16,6 +16,7 @@
 #import "LLRedrReceiveDetailsViewController.h"
 #import "LLPersonalHomeViewController.h"
 #import "LLRedpacketNode.h"
+#import "LLCommentNode.h"
 
 @interface LLRedpacketDetailsViewController ()
 <
@@ -35,6 +36,8 @@ LEShareSheetViewDelegate
 @property (nonatomic, strong) LLCommentBottomView *commentBottomView;
 
 @property (nonatomic, assign) NSInteger currentPage;
+
+@property (assign, nonatomic) int nextCursor;
 
 @end
 
@@ -78,8 +81,12 @@ LEShareSheetViewDelegate
     _tableView.sectionFooterHeight = UITableViewAutomaticDimension;
     
     self.currentPage = 0;
-    
     self.commentLists = [NSMutableArray array];
+    if (self.redpacketNode.RedType == 3) {
+        self.vcType = LLRedpacketDetailsVcTypeAsk;
+    } else {
+        self.vcType = LLRedpacketDetailsVcTypeTask;
+    }
     
     self.tableView.tableHeaderView = self.redpacketDetailsHeaderView;
     [self.redpacketDetailsHeaderView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -107,12 +114,22 @@ LEShareSheetViewDelegate
     };
     self.redpacketDetailsHeaderView.redReceiveBlock = ^{
         LLRedrReceiveDetailsViewController *vc = [[LLRedrReceiveDetailsViewController alloc] init];
+        vc.redId = [weakSelf.redpacketNode.Id description];
         [weakSelf.navigationController pushViewController:vc animated:true];
     };
     self.redpacketDetailsHeaderView.avatarBlock = ^{
         LLPersonalHomeViewController *vc = [[LLPersonalHomeViewController alloc] init];
+        vc.userId = [weakSelf.redpacketNode.UserId description];
         [weakSelf.navigationController pushViewController:vc animated:true];
     };
+    self.redpacketDetailsHeaderView.advertBlock = ^{
+        if (weakSelf.redpacketNode.UrlAddress.length > 0) {
+            [LELinkerHandler handleDealWithHref:weakSelf.redpacketNode.UrlAddress From:weakSelf.navigationController];
+        }
+    };
+    
+    self.nextCursor = 1;
+    [self addMJ];
 }
 
 - (void)refreshData {
@@ -132,6 +149,24 @@ LEShareSheetViewDelegate
 - (void)refreshStateUI {
     self.commentBottomView.btnCollect.selected = self.redpacketNode.IsCollection;
     self.commentBottomView.btnLike.selected = self.redpacketNode.IsGood;
+}
+
+#pragma mark - mj
+- (void)addMJ {
+    //下拉刷新
+    WEAKSELF;
+    self.tableView.mj_header = [LERefreshHeader headerWithRefreshingBlock:^{
+        weakSelf.nextCursor = 1;
+        [weakSelf getCommentList];
+    }];
+    [self.tableView.mj_header beginRefreshing];
+    
+    //上啦加载
+    self.tableView.mj_footer = [LERefreshFooter footerWithRefreshingBlock:^{
+        [weakSelf getCommentList];
+    }];
+    self.tableView.mj_footer.hidden = YES;
+    
 }
 
 #pragma mark - Request
@@ -160,6 +195,60 @@ LEShareSheetViewDelegate
         
     } failure:^(id responseObject, NSError *error) {
         [SVProgressHUD showCustomErrorWithStatus:HitoFaiNetwork];
+    }];
+}
+
+- (void)getCommentList {
+    WEAKSELF
+    NSString *requesUrl = [[WYAPIGenerate sharedInstance] API:@"GetCommentList"];
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    [params setValue:self.redpacketNode.Id forKey:@"id"];
+    [params setObject:[NSNumber numberWithInteger:self.nextCursor] forKey:@"pageIndex"];
+    [params setObject:[NSNumber numberWithInteger:DATA_LOAD_PAGESIZE_COUNT] forKey:@"pageSize"];
+    //type：类别（1：普通红包；2：红包任务；3：提问红包；4：便民信息）；
+    NSInteger type = 0;
+    if (self.redpacketNode.RedType > 0) {
+        type = self.redpacketNode.RedType;
+    }
+    [params setObject:[NSNumber numberWithInteger:type] forKey:@"type"];
+    
+    NSString *caCheKey = [NSString stringWithFormat:@"GetCommentList-%ld-%@", type,self.redpacketNode.Id];
+    BOOL needCache = false;
+    if (self.nextCursor == 1) needCache = true;
+    [self.networkManager POST:requesUrl needCache:needCache caCheKey:caCheKey parameters:params responseClass:[LLCommentNode class] needHeaderAuth:NO success:^(WYRequestType requestType, NSString *message, BOOL isCache, id dataObject) {
+        
+        [weakSelf.tableView.mj_header endRefreshing];
+        [weakSelf.tableView.mj_footer endRefreshing];
+        
+        if (requestType != WYRequestTypeSuccess) {
+            [SVProgressHUD showCustomErrorWithStatus:message];
+            return ;
+        }
+        
+        NSArray *tmpListArray = [NSArray array];
+        if ([dataObject isKindOfClass:[NSArray class]]) {
+            tmpListArray = (NSArray *)dataObject;
+        }
+        if (weakSelf.nextCursor == 1) {
+            weakSelf.commentLists = [NSMutableArray array];
+        }
+        [weakSelf.commentLists addObjectsFromArray:tmpListArray];
+        
+        if (!isCache) {
+            if (tmpListArray.count < DATA_LOAD_PAGESIZE_COUNT) {
+                [weakSelf.tableView.mj_footer setHidden:YES];
+            }else{
+                [weakSelf.tableView.mj_footer setHidden:NO];
+                weakSelf.nextCursor ++;
+            }
+        }
+        
+        [weakSelf.tableView reloadData];
+        
+    } failure:^(id responseObject, NSError *error) {
+        [SVProgressHUD showCustomErrorWithStatus:HitoFaiNetwork];
+        [weakSelf.tableView.mj_header endRefreshing];
+        [weakSelf.tableView.mj_footer endRefreshing];
     }];
 }
 
@@ -250,13 +339,41 @@ LEShareSheetViewDelegate
     }];
 }
 
+- (void)adoptAnswerRequest:(LLCommentNode *)commentNode {
+    [SVProgressHUD showCustomWithStatus:@"请求中..."];
+    WEAKSELF
+    NSString *requesUrl = [[WYAPIGenerate sharedInstance] API:@"AdoptAnswer"];
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    [params setObject:commentNode.Id forKey:@"id"];
+    [self.networkManager POST:requesUrl needCache:NO caCheKey:nil parameters:params responseClass:nil needHeaderAuth:NO success:^(WYRequestType requestType, NSString *message, BOOL isCache, id dataObject) {
+        
+        [SVProgressHUD dismiss];
+        if (requestType != WYRequestTypeSuccess) {
+            [SVProgressHUD showCustomErrorWithStatus:message];
+            return ;
+        }
+        [SVProgressHUD showCustomSuccessWithStatus:message];
+        if ([dataObject isKindOfClass:[NSArray class]]) {
+            NSArray *data = (NSArray *)dataObject;
+            if (data.count > 0) {
+                
+            }
+        }
+        commentNode.IsOptimum = true;
+        [weakSelf.tableView reloadData];
+        
+    } failure:^(id responseObject, NSError *error) {
+        [SVProgressHUD showCustomErrorWithStatus:HitoFaiNetwork];
+    }];
+}
+
 #pragma mark - Action
 - (void)moreAction:(id)sender {
     [self redTaskAlertViewShow];
 }
 
 - (void)shareAction {
-    
+    [self.view endEditing:true];
     LEShareModel *shareModel = [[LEShareModel alloc] init];
     shareModel.shareTitle = @"领红包";
     shareModel.shareDescription = @"";
@@ -282,6 +399,14 @@ LEShareSheetViewDelegate
     };
     LEAlertMarkView *alert = [[LEAlertMarkView alloc] initWithCustomView:tipView type:LEAlertMarkViewTypeCenter];
     [alert show];
+}
+
+- (void)adoptAnswerWithCell:(LLMessageCommentViewCell *)cell {
+    NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
+    if (indexPath) {
+        LLCommentNode *node = self.commentLists[indexPath.row];
+        [self adoptAnswerRequest:node];
+    }
 }
 
 #pragma mark -
@@ -398,7 +523,7 @@ LEShareSheetViewDelegate
         }];
     }
     UILabel *label = (UILabel *)[header.contentView viewWithTag:201];
-    label.text = @"红包任务介绍红包任务介绍红包任务介绍红包任务介绍红包任务介绍红包任务介绍红包任务介绍红包任务介绍红包任务介绍红包任务介绍红包任务介绍红包任务介绍红包任务介绍红包任务介绍红包任务介绍红包任务介绍红包任务介绍";
+    label.text = self.redpacketNode.TaskSummary;
     return header;
 }
 
@@ -410,7 +535,12 @@ LEShareSheetViewDelegate
         NSArray* cells = [[NSBundle mainBundle] loadNibNamed:cellIdentifier owner:nil options:nil];
         cell = [cells objectAtIndex:0];
     }
-    [cell updateCellWithData:nil];
+    
+    WEAKSELF
+    cell.adoptAnswerBlock = ^(id  _Nonnull cell) {
+        [weakSelf adoptAnswerWithCell:cell];
+    };
+    [cell updateCellWithData:self.commentLists[indexPath.row]];
     return cell;
 }
 

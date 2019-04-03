@@ -11,11 +11,16 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+typedef NS_ENUM(NSInteger, LLRedpacketDetailsVcType) {
+    LLRedpacketDetailsVcTypeAsk = 0, //提问红包
+    LLRedpacketDetailsVcTypeTask = 1, //任务红包
+};
+
 @interface LLRedpacketDetailsViewController : LLBaseViewController
 
 @property (nonatomic, strong) LLRedpacketNode *redpacketNode;
 
-@property (nonatomic, assign) NSInteger vcType;//0提问红包1任务红包
+@property (nonatomic, assign) LLRedpacketDetailsVcType vcType;//0提问红包1任务红包
 
 @end
 

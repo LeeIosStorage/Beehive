@@ -50,6 +50,27 @@
                         <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0ho-2d-AR3">
+                        <rect key="frame" x="245" y="35.5" width="62" height="28"/>
+                        <color key="backgroundColor" red="1" green="0.68627450980000004" blue="0.0078431372550000003" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="62" id="jO4-th-wA2"/>
+                            <constraint firstAttribute="height" constant="28" id="tqV-Xr-JrC"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <state key="normal" title="采纳答案">
+                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </state>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                <integer key="value" value="3"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                        <connections>
+                            <action selector="adoptAnswer:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="qgG-3Z-SC4"/>
+                        </connections>
+                    </button>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="XgL-uE-bRV">
                         <rect key="frame" x="53" y="75" width="257" height="0.5"/>
                         <color key="backgroundColor" red="0.88235294119999996" green="0.88235294119999996" blue="0.88235294119999996" alpha="1" colorSpace="calibratedRGB"/>
@@ -70,6 +91,8 @@
                     <constraint firstItem="Eq7-fh-Ex3" firstAttribute="leading" secondItem="Vhf-Wy-Bci" secondAttribute="leading" id="guE-Nl-esA"/>
                     <constraint firstItem="Vhf-Wy-Bci" firstAttribute="leading" secondItem="XUr-02-ciG" secondAttribute="trailing" constant="10" id="hmV-rN-r6b"/>
                     <constraint firstAttribute="bottom" secondItem="Eq7-fh-Ex3" secondAttribute="bottom" constant="14" id="orE-ae-Kx2"/>
+                    <constraint firstAttribute="bottom" secondItem="0ho-2d-AR3" secondAttribute="bottom" constant="12" id="r9k-cq-SNS"/>
+                    <constraint firstAttribute="trailing" secondItem="0ho-2d-AR3" secondAttribute="trailing" constant="13" id="tTh-Hd-ahL"/>
                     <constraint firstItem="Vhf-Wy-Bci" firstAttribute="top" secondItem="XUr-02-ciG" secondAttribute="top" constant="4" id="w42-yg-cyj"/>
                     <constraint firstAttribute="trailing" secondItem="l4p-Tn-xUd" secondAttribute="trailing" constant="10" id="xM8-Xg-2v2"/>
                 </constraints>
@@ -77,6 +100,8 @@
             <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
             <connections>
                 <outlet property="avatarImageView" destination="XUr-02-ciG" id="P3d-W4-3Ta"/>
+                <outlet property="btnAdoptAnswer" destination="0ho-2d-AR3" id="c4u-bB-Ibg"/>
+                <outlet property="contentLabBottom" destination="orE-ae-Kx2" id="5fs-Ai-sLJ"/>
                 <outlet property="contentLabel" destination="Eq7-fh-Ex3" id="WeV-T4-wtG"/>
                 <outlet property="nickNameLabel" destination="Vhf-Wy-Bci" id="QkI-Pu-FgB"/>
                 <outlet property="timeLabel" destination="l4p-Tn-xUd" id="Km4-7Y-CDI"/>

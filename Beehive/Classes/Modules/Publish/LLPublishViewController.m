@@ -652,7 +652,11 @@ UITableViewDataSource
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     
     NSString *title = [self nodeForCellTypeWithType:LLPublishCellTypeInputTitle].inputText;
-    if (title.length > 0) [params setObject:title forKey:@"title"];
+    if (self.currentPublishNode.taskMold == 1) {
+        title = [self nodeForCellTypeWithType:LLPublishCellTypeTaskName].inputText;
+    }
+    if (title.length == 0) title = @"";
+    [params setObject:title forKey:@"title"];
     
     NSMutableArray *imageDatas = [NSMutableArray array];
     for (NSData *imageData in [self nodeForCellTypeWithType:LLPublishCellTypeImage].uploadImageDatas) {
@@ -661,36 +665,48 @@ UITableViewDataSource
     }
     NSData *data = [NSJSONSerialization dataWithJSONObject:imageDatas options:NSJSONWritingPrettyPrinted error:nil];
     NSString *jsonStr = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-//    [params setObject:jsonStr forKey:@"imgUrl"];
+    [params setObject:jsonStr forKey:@"imgUrl"];
     
     NSInteger redMold = self.currentPublishNode.redMold + 1;
     if (self.publishVcType == LLPublishViewcTypeAsk) {
         redMold = 3;
     }
     [params setObject:[NSNumber numberWithInteger:redMold] forKey:@"redType"];
-    [params setObject:[NSNumber numberWithInteger:self.currentPublishNode.taskMold + 1] forKey:@"type"];
+    
+    NSInteger type = 0;//默认0
+    if (self.currentPublishNode.redMold == 1) {
+        type = self.currentPublishNode.taskMold + 1;
+    }
+    [params setObject:[NSNumber numberWithInteger:type] forKey:@"type"];
     
     NSString *taskName = [self nodeForCellTypeWithType:LLPublishCellTypeTaskName].inputText;
-    if (taskName.length > 0) [params setObject:taskName forKey:@"taskName"];
+    if (taskName.length == 0) taskName = @"";
+    [params setValue:taskName forKey:@"taskName"];
     NSString *taskSummary = [self nodeForCellTypeWithType:LLPublishCellTypeTaskExplain].inputText;
-    if (taskSummary.length > 0) [params setObject:taskSummary forKey:@"taskSummary"];
+    if (taskSummary.length == 0) taskSummary = @"";
+    [params setValue:taskSummary forKey:@"taskSummary"];
     [params setObject:[NSNumber numberWithInteger:self.currentPublishNode.visibleMold] forKey:@"visibleUser"];
     
     [params setObject:[NSNumber numberWithInteger:self.currentPublishNode.radiusType] forKey:@"radiusType"];
     NSString *address = self.currentPublishNode.address;
     if (address.length > 0) [params setObject:address forKey:@"address"];
-    [params setObject:[NSNumber numberWithFloat:self.currentPublishNode.coordinate.longitude] forKey:@"longitude"];
-    [params setObject:[NSNumber numberWithFloat:self.currentPublishNode.coordinate.latitude] forKey:@"latitude"];
+    NSDecimalNumber *longitude = [[NSDecimalNumber alloc] initWithDouble:self.currentPublishNode.coordinate.longitude];
+    NSDecimalNumber *latitude = [[NSDecimalNumber alloc] initWithDouble:self.currentPublishNode.coordinate.latitude];
+    [params setValue:longitude forKey:@"longitude"];
+    [params setValue:latitude forKey:@"latitude"];
     
     NSString *money = [self nodeForCellTypeWithType:LLPublishCellTypeRedAmount].inputText;
-    if (money.length > 0) [params setObject:[NSNumber numberWithInt:3] forKey:@"money"];
+    if (money.length > 0) [params setObject:money forKey:@"money"];
     NSString *count = [self nodeForCellTypeWithType:LLPublishCellTypeRedCount].inputText;
-    if (count.length > 0) [params setObject:[NSNumber numberWithInt:5] forKey:@"count"];
+    if (count.length > 0) [params setObject:count forKey:@"count"];
     
+    NSString *screenAge = @"";
     if (self.currentPublishNode.ageMold >= 0 && self.ageArray.count > 0) {
         LLPubDataInfoNode *node = self.ageArray[self.currentPublishNode.ageMold];
-        if (node.Id) [params setObject:node.Id forKey:@"screenAge"];
+        if (node.DataContent) screenAge = node.DataContent;
     }
+    [params setObject:screenAge forKey:@"screenAge"];
+    
     [params setObject:[NSNumber numberWithInteger:self.currentPublishNode.sexMold] forKey:@"screenSex"];
     
     NSString *hobbiesIndexs = @"||";
@@ -714,7 +730,8 @@ UITableViewDataSource
     if (summary.length > 0) [params setObject:summary forKey:@"summary"];
     
     NSString *linkAddress = [self nodeForCellTypeWithType:LLPublishCellTypeLinkAddress].inputText;
-    if (linkAddress.length > 0) [params setObject:linkAddress forKey:@"urlAddress"];
+    if (linkAddress.length == 0) linkAddress = @"";
+    [params setValue:linkAddress forKey:@"urlAddress"];
     
     self.payType = 0;
     self.payPwd = @"123456";

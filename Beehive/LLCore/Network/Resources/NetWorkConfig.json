@@ -215,6 +215,36 @@
         "module"  : "BusinessService.asmx",
         "action"  : "GetGoodsList"
     },
+    "AdoptAnswer": {
+        "protocol": "http",
+        "module"  : "BusinessService.asmx",
+        "action"  : "AdoptAnswer"
+    },
+    "RobRedEnvelopes": {
+        "protocol": "http",
+        "module"  : "BusinessService.asmx",
+        "action"  : "RobRedEnvelopes"
+    },
+    "RedEnvelopesReceiveDetail": {
+        "protocol": "http",
+        "module"  : "BusinessService.asmx",
+        "action"  : "RedEnvelopesReceiveDetail"
+    },
+    "GetRedEnvelopesReceiveList": {
+        "protocol": "http",
+        "module"  : "BusinessService.asmx",
+        "action"  : "GetRedEnvelopesReceiveList"
+    },
+    "GetPublisherInfo": {
+        "protocol": "http",
+        "module"  : "BusinessService.asmx",
+        "action"  : "GetPublisherInfo"
+    },
+    "GetRedEnvelopesReleaseList": {
+        "protocol": "http",
+        "module"  : "BusinessService.asmx",
+        "action"  : "GetRedEnvelopesReleaseList"
+    },
     "GetMessageList": {
         "protocol": "http",
         "module"  : "QueenBeeService.asmx",

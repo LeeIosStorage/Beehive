@@ -185,6 +185,8 @@
             <viewLayoutGuide key="safeArea" id="fhK-J7-a6W"/>
             <connections>
                 <outlet property="avatarImageView" destination="J0Z-8u-SOj" id="ue5-us-zor"/>
+                <outlet property="labCount" destination="WPd-nf-ojt" id="Pxi-6g-HOf"/>
+                <outlet property="labMoney" destination="lTF-Cw-XCJ" id="ka7-Tx-Y8k"/>
                 <outlet property="labRule1" destination="2Rm-zZ-AyA" id="Xkh-Oe-R6D"/>
                 <outlet property="labRule2" destination="6uP-Ka-Lp5" id="FuZ-tf-mfC"/>
                 <outlet property="nickNameLabel" destination="PkJ-Vu-8Wt" id="Gib-4Z-XOO"/>
