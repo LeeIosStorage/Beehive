@@ -14,6 +14,7 @@
 #import "LLEditAdViewController.h"
 #import "LLBeeKingViewController.h"
 #import "LLBeeKingIntroViewController.h"
+#import "LLRedRuleViewController.h"
 
 @interface LLPartnerViewController ()
 <
@@ -39,6 +40,8 @@ UITableViewDataSource
 - (void)setup {
     self.title = @"广告位";
     self.tableView.backgroundColor = self.view.backgroundColor;
+    
+    [self createBarButtonItemAtPosition:LLNavigationBarPositionRight normalImage:[UIImage imageNamed:@"home_nav_help"] highlightImage:nil text:@"" action:@selector(ruleClickAction:)];
     
     self.partnerHeaderView.height = 679;
     self.tableView.tableHeaderView = self.partnerHeaderView;
@@ -96,6 +99,12 @@ UITableViewDataSource
     
 //    LLBeeKingViewController *vc = [[LLBeeKingViewController alloc] init];
 //    [self.navigationController pushViewController:vc animated:true];
+}
+
+- (void)ruleClickAction:(id)sender {
+    LLRedRuleViewController *vc = [[LLRedRuleViewController alloc] init];
+    vc.vcType = LLInfoDetailsVcTypeAdsBuyRule;
+    [self.navigationController pushViewController:vc animated:true];
 }
 
 #pragma mark - set

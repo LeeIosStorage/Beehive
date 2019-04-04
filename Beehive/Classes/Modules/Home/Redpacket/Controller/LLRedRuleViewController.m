@@ -26,13 +26,17 @@
     self.title = @"规则";
     if (self.vcType == LLInfoDetailsVcTypeNotice) {
         self.title = @"详情";
-    } else if (self.vcType ==LLInfoDetailsVcTypeAbout) {
+    } else if (self.vcType == LLInfoDetailsVcTypeAbout) {
         self.title = @"关于蜂巢";
+    } else if (self.vcType == LLInfoDetailsVcTypeAdsBuyRule){
+        self.title = @"购买规则";
+        [self getBuyRule];
     }
+    
     self.view.backgroundColor = kAppBackgroundColor;
     self.ruleTextView.textColor = kAppTitleColor;
     
-    if (self.vcType == LLInfoDetailsVcTypeRule) {
+    if (self.vcType == LLInfoDetailsVcTypeSignRule) {
         self.ruleTextView.text = @"1.签到抽奖规则，签到抽奖规则\n2.签到抽奖规则，签到抽奖规则";
     } else if (self.vcType == LLInfoDetailsVcTypeNotice) {
         self.ruleTextView.attributedText = [WYCommonUtils HTMLStringToColorAndFontAttributeString:self.text font:[FontConst PingFangSCRegularWithSize:13] color:kAppTitleColor];
@@ -40,6 +44,38 @@
         
         self.ruleTextView.text = @"关于蜂巢关于蜂巢关于蜂巢关于蜂巢关于蜂巢关于蜂巢关于蜂巢关于蜂巢关于蜂巢关于蜂巢关于蜂巢关于蜂巢关于蜂巢关于蜂巢关于蜂巢关于蜂巢关于蜂巢关于蜂巢关于蜂巢关于蜂巢关于蜂巢关于蜂巢关于蜂巢关于蜂巢关于蜂巢关于蜂巢关于蜂巢关于蜂巢关于蜂巢关于蜂巢";
     }
+}
+
+- (void)refreshData {
+    self.ruleTextView.attributedText = [WYCommonUtils HTMLStringToColorAndFontAttributeString:self.text font:[FontConst PingFangSCRegularWithSize:13] color:kAppTitleColor];
+}
+
+#pragma mark - Request
+- (void)getBuyRule {
+    [SVProgressHUD showCustomWithStatus:@"请求中..."];
+    WEAKSELF
+    NSString *requesUrl = [[WYAPIGenerate sharedInstance] API:@"GetBuyRule"];
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    NSString *caCheKey = @"GetBuyRule";
+    [self.networkManager POST:requesUrl needCache:YES caCheKey:caCheKey parameters:params responseClass:nil needHeaderAuth:NO success:^(WYRequestType requestType, NSString *message, BOOL isCache, id dataObject) {
+        
+        [SVProgressHUD dismiss];
+        if (requestType != WYRequestTypeSuccess) {
+            [SVProgressHUD showCustomErrorWithStatus:message];
+            return ;
+        }
+        
+        if ([dataObject isKindOfClass:[NSArray class]]) {
+            NSArray *data = (NSArray *)dataObject;
+            if (data.count > 0) {
+                weakSelf.text = data[0];
+            }
+        }
+        [weakSelf refreshData];
+        
+    } failure:^(id responseObject, NSError *error) {
+        [SVProgressHUD showCustomErrorWithStatus:HitoFaiNetwork];
+    }];
 }
 
 @end

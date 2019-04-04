@@ -212,6 +212,8 @@
 		8D79E4DD222676E20019A1BE /* LLBeeHomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D79E4DB222676E20019A1BE /* LLBeeHomeViewController.xib */; };
 		8D79E4E1222676FC0019A1BE /* LLBeeMineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D79E4DF222676FC0019A1BE /* LLBeeMineViewController.m */; };
 		8D79E4E2222676FC0019A1BE /* LLBeeMineViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D79E4E0222676FC0019A1BE /* LLBeeMineViewController.xib */; };
+		8D7D89442255CE7200D97333 /* LLMineMessageNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D7D89432255CE7200D97333 /* LLMineMessageNode.m */; };
+		8D7D89472255D5E900D97333 /* LLBadgeNumberView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D7D89462255D5E900D97333 /* LLBadgeNumberView.m */; };
 		8D890B4C2232060100CA711A /* LLMessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D890B4A2232060100CA711A /* LLMessageViewController.m */; };
 		8D890B4D2232060100CA711A /* LLMessageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D890B4B2232060100CA711A /* LLMessageViewController.xib */; };
 		8D890B522232077D00CA711A /* LLMineWalletViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D890B502232077D00CA711A /* LLMineWalletViewController.m */; };
@@ -712,6 +714,10 @@
 		8D79E4DE222676FC0019A1BE /* LLBeeMineViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLBeeMineViewController.h; sourceTree = "<group>"; };
 		8D79E4DF222676FC0019A1BE /* LLBeeMineViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLBeeMineViewController.m; sourceTree = "<group>"; };
 		8D79E4E0222676FC0019A1BE /* LLBeeMineViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LLBeeMineViewController.xib; sourceTree = "<group>"; };
+		8D7D89422255CE7200D97333 /* LLMineMessageNode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLMineMessageNode.h; sourceTree = "<group>"; };
+		8D7D89432255CE7200D97333 /* LLMineMessageNode.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLMineMessageNode.m; sourceTree = "<group>"; };
+		8D7D89452255D5E900D97333 /* LLBadgeNumberView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLBadgeNumberView.h; sourceTree = "<group>"; };
+		8D7D89462255D5E900D97333 /* LLBadgeNumberView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLBadgeNumberView.m; sourceTree = "<group>"; };
 		8D890B492232060100CA711A /* LLMessageViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLMessageViewController.h; sourceTree = "<group>"; };
 		8D890B4A2232060100CA711A /* LLMessageViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLMessageViewController.m; sourceTree = "<group>"; };
 		8D890B4B2232060100CA711A /* LLMessageViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LLMessageViewController.xib; sourceTree = "<group>"; };
@@ -965,6 +971,8 @@
 			children = (
 				7E1E8A5D222EB2F5002766AD /* LLSegmentedHeadView.h */,
 				7E1E8A5E222EB2F5002766AD /* LLSegmentedHeadView.m */,
+				8D7D89452255D5E900D97333 /* LLBadgeNumberView.h */,
+				8D7D89462255D5E900D97333 /* LLBadgeNumberView.m */,
 				7E561B8F223955CB00DA3B20 /* LLReportSucceedView.h */,
 				7E561B90223955CB00DA3B20 /* LLReportSucceedView.m */,
 				7E561B92223955D900DA3B20 /* LLReportSucceedView.xib */,
@@ -1739,9 +1747,19 @@
 			path = Base;
 			sourceTree = "<group>";
 		};
+		8D7D89412255CE0D00D97333 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				8D7D89422255CE7200D97333 /* LLMineMessageNode.h */,
+				8D7D89432255CE7200D97333 /* LLMineMessageNode.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		8D890B48223205E200CA711A /* Message */ = {
 			isa = PBXGroup;
 			children = (
+				8D7D89412255CE0D00D97333 /* Model */,
 				8D0167052238B3F200CD21D8 /* View */,
 				8D890B492232060100CA711A /* LLMessageViewController.h */,
 				8D890B4A2232060100CA711A /* LLMessageViewController.m */,
@@ -2709,6 +2727,7 @@
 				8DBEAE3E223CA0150095D214 /* LLPaymentWayTableViewCell.m in Sources */,
 				8D542A66222A5BC2008B90B0 /* WYActionSheet.m in Sources */,
 				8DE588592227A4B3002C1576 /* LLBeeMessageViewController.m in Sources */,
+				8D7D89442255CE7200D97333 /* LLMineMessageNode.m in Sources */,
 				8D542A7C222A5BC2008B90B0 /* LELoginAuthManager.m in Sources */,
 				8DBEAE4D223CB6BD0095D214 /* LLCollectListViewController.m in Sources */,
 				8DBEAE7B223DF2A40095D214 /* LLFundDetailViewController.m in Sources */,
@@ -2776,6 +2795,7 @@
 				7E2E7016223802D800F185A7 /* LLRedTaskHistoryViewController.m in Sources */,
 				7E1E8A6F22301AF2002766AD /* LLMessageCommentViewCell.m in Sources */,
 				8D542A7E222A5BC2008B90B0 /* LEDataStoreManager.m in Sources */,
+				8D7D89472255D5E900D97333 /* LLBadgeNumberView.m in Sources */,
 				8DC02D5522313731000CAE9C /* LLMineCollectionViewCell.m in Sources */,
 				8D5CB6BF2232D73300527DEB /* ZJMultipleAssociatedPickerView.m in Sources */,
 				8D72C1512251165D00B032C2 /* LLFollowUserNode.m in Sources */,

@@ -13,6 +13,8 @@
 #import "LLMsgTickTableViewCell.h"
 #import "LLReceiveCommentViewController.h"
 #import "LLReceiveFavourViewController.h"
+#import "LLMineMessageNode.h"
+#import "LLFollowUserNode.h"
 
 @interface LLMessageViewController ()
 <
@@ -21,13 +23,18 @@ UITableViewDataSource
 >
 @property (nonatomic, strong) LLSegmentedHeadView *segmentedHeadView;
 
+@property (nonatomic, strong) LLMineMessageNode *mineMessageNode;
+
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) UITableView *attentionTableView;
 
 @property (nonatomic, strong) NSMutableArray *dataLists;
 @property (nonatomic, strong) NSMutableArray *attentionLists;
+@property (nonatomic, assign) int nextCursor;
+@property (nonatomic, assign) int attentionNextCursor;
 
 @property (nonatomic, assign) NSInteger currentPage;
+
 
 @end
 
@@ -68,8 +75,13 @@ UITableViewDataSource
     self.attentionTableView.hidden = true;
 
     self.dataLists = [NSMutableArray array];
-    [_dataLists addObject:@[@{@"title":@"收到的评论", @"icon":@"1_1_0.1", @"action":@"comment"}, @{@"title":@"收到的赞", @"icon":@"1_1_0.2", @"action":@"favour"}, @{@"title":@"蜂巢客服", @"icon":@"1_1_0.3", @"action":@"service"}]];
+    [self.dataLists addObject:@[@{@"title":@"收到的评论", @"icon":@"1_1_0.1", @"action":@"comment"}, @{@"title":@"收到的赞", @"icon":@"1_1_0.2", @"action":@"favour"}]];
+    [self.dataLists addObject:@[]];
     [self.tableView reloadData];
+    
+    self.nextCursor = 1;
+    self.attentionNextCursor = 1;
+    [self addMJ];
     
     [self refreshData];
 }
@@ -78,21 +90,167 @@ UITableViewDataSource
     if (self.currentPage == 0) {
         self.tableView.hidden = false;
         self.attentionTableView.hidden = true;
-        [self.dataLists addObject:@[@"",@""]];
-        [self.tableView reloadData];
+        [self.tableView.mj_header beginRefreshing];
         return;
     }
     
     self.tableView.hidden = true;
     self.attentionTableView.hidden = false;
     
-    self.attentionLists = [NSMutableArray array];
-    [self.attentionLists addObject:@""];
-    [self.attentionLists addObject:@""];
-    [self.attentionLists addObject:@""];
-    [self.attentionLists addObject:@""];
+    [self.attentionTableView.mj_header beginRefreshing];
+}
+
+#pragma mark - mj
+- (void)addMJ {
+    //下拉刷新
+    WEAKSELF;
+    self.tableView.mj_header = [LERefreshHeader headerWithRefreshingBlock:^{
+        weakSelf.nextCursor = 1;
+        [weakSelf getMessage];
+    }];
+    [self.tableView.mj_header beginRefreshing];
+    //上拉加载
+//    self.tableView.mj_footer = [LERefreshFooter footerWithRefreshingBlock:^{
+//        [weakSelf getMessage];
+//    }];
+//    self.tableView.mj_footer.hidden = YES;
     
-    [self.attentionTableView reloadData];
+    self.attentionTableView.mj_header = [LERefreshHeader headerWithRefreshingBlock:^{
+        weakSelf.attentionNextCursor = 1;
+        [weakSelf getFollowList];
+    }];
+    self.attentionTableView.mj_footer = [LERefreshFooter footerWithRefreshingBlock:^{
+        [weakSelf getFollowList];
+    }];
+    self.attentionTableView.mj_footer.hidden = YES;
+    
+}
+
+#pragma mark - Request
+- (void)getMessage {
+    WEAKSELF
+    NSString *requesUrl = [[WYAPIGenerate sharedInstance] API:@"GetMessage"];
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+//    [params setObject:[NSNumber numberWithInteger:self.nextCursor] forKey:@"pageIndex"];
+//    [params setObject:[NSNumber numberWithInteger:DATA_LOAD_PAGESIZE_COUNT] forKey:@"pageSize"];
+    
+    [self.networkManager POST:requesUrl needCache:NO caCheKey:nil parameters:params responseClass:[LLMineMessageNode class] needHeaderAuth:NO success:^(WYRequestType requestType, NSString *message, BOOL isCache, id dataObject) {
+        
+        [weakSelf.tableView.mj_header endRefreshing];
+        [weakSelf.tableView.mj_footer endRefreshing];
+        [SVProgressHUD dismiss];
+        if (requestType != WYRequestTypeSuccess) {
+            [SVProgressHUD showCustomErrorWithStatus:message];
+            return ;
+        }
+        
+        NSArray *tmpListArray = [NSArray array];
+        if ([dataObject isKindOfClass:[NSArray class]]) {
+            tmpListArray = (NSArray *)dataObject;
+            if (tmpListArray.count > 0) {
+                self.mineMessageNode = tmpListArray[0];
+            }
+        }
+        
+        [self.dataLists replaceObjectAtIndex:1 withObject:self.mineMessageNode.NoticeList];
+        
+//        if (weakSelf.nextCursor == 1) {
+//            weakSelf.dataLists = [NSMutableArray array];
+//        }
+//        [weakSelf.dataLists addObjectsFromArray:tmpListArray];
+        
+//        if (!isCache) {
+//            if (tmpListArray.count < DATA_LOAD_PAGESIZE_COUNT) {
+//                [weakSelf.tableView.mj_footer setHidden:YES];
+//            }else{
+//                [weakSelf.tableView.mj_footer setHidden:NO];
+//                weakSelf.nextCursor ++;
+//            }
+//        }
+        
+        [weakSelf.tableView reloadData];
+        
+    } failure:^(id responseObject, NSError *error) {
+        [SVProgressHUD showCustomErrorWithStatus:HitoFaiNetwork];
+        [weakSelf.tableView.mj_header endRefreshing];
+        [weakSelf.tableView.mj_footer endRefreshing];
+    }];
+}
+
+- (void)getFollowList {
+    WEAKSELF
+    NSString *requesUrl = [[WYAPIGenerate sharedInstance] API:@"GetFollowList"];
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    [params setObject:[NSNumber numberWithInteger:self.attentionNextCursor] forKey:@"pageIndex"];
+    [params setObject:[NSNumber numberWithInteger:DATA_LOAD_PAGESIZE_COUNT] forKey:@"pageSize"];
+    [params setObject:[NSNumber numberWithInt:1] forKey:@"type"];
+    
+    NSString *caCheKey = [NSString stringWithFormat:@"GetFollowList-1"];
+    BOOL needCache = false;
+    if (self.attentionNextCursor == 1) needCache = true;
+    [self.networkManager POST:requesUrl needCache:needCache caCheKey:caCheKey parameters:params responseClass:[LLFollowUserNode class] needHeaderAuth:NO success:^(WYRequestType requestType, NSString *message, BOOL isCache, id dataObject) {
+        
+        [weakSelf.attentionTableView.mj_header endRefreshing];
+        [weakSelf.attentionTableView.mj_footer endRefreshing];
+        
+        if (requestType != WYRequestTypeSuccess) {
+            [SVProgressHUD showCustomErrorWithStatus:message];
+            return ;
+        }
+        
+        NSArray *tmpListArray = [NSArray array];
+        if ([dataObject isKindOfClass:[NSArray class]]) {
+            tmpListArray = (NSArray *)dataObject;
+        }
+        if (weakSelf.attentionNextCursor == 1) {
+            weakSelf.attentionLists = [NSMutableArray array];
+        }
+        [weakSelf.attentionLists addObjectsFromArray:tmpListArray];
+        
+        if (!isCache) {
+            if (tmpListArray.count < DATA_LOAD_PAGESIZE_COUNT) {
+                [weakSelf.tableView.mj_footer setHidden:YES];
+            }else{
+                [weakSelf.tableView.mj_footer setHidden:NO];
+                weakSelf.nextCursor ++;
+            }
+        }
+        
+        [weakSelf.attentionTableView reloadData];
+        
+    } failure:^(id responseObject, NSError *error) {
+        [SVProgressHUD showCustomErrorWithStatus:HitoFaiNetwork];
+        [weakSelf.attentionTableView.mj_header endRefreshing];
+        [weakSelf.attentionTableView.mj_footer endRefreshing];
+    }];
+}
+
+- (void)followRequest:(LLFollowUserNode *)userNode {
+    [SVProgressHUD showCustomWithStatus:@"请求中..."];
+    WEAKSELF
+    NSString *requesUrl = [[WYAPIGenerate sharedInstance] API:@"FollowUser"];
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    [params setValue:userNode.UserId forKey:@"userId"];
+    
+    [self.networkManager POST:requesUrl needCache:NO caCheKey:nil parameters:params responseClass:nil needHeaderAuth:NO success:^(WYRequestType requestType, NSString *message, BOOL isCache, id dataObject) {
+        
+        [SVProgressHUD dismiss];
+        if (requestType != WYRequestTypeSuccess) {
+            [SVProgressHUD showCustomErrorWithStatus:message];
+            return ;
+        }
+        
+        if ([dataObject isKindOfClass:[NSArray class]]) {
+            NSArray *data = (NSArray *)dataObject;
+            if (data.count > 0) {
+            }
+        }
+        userNode.IsMutualFollow = !userNode.IsMutualFollow;
+        [weakSelf.attentionTableView reloadData];
+        
+    } failure:^(id responseObject, NSError *error) {
+        [SVProgressHUD showCustomErrorWithStatus:HitoFaiNetwork];
+    }];
 }
 
 #pragma mark - SetGet
@@ -210,8 +368,9 @@ UITableViewDataSource
         if (!cell) {
             NSArray* cells = [[NSBundle mainBundle] loadNibNamed:cellIdentifier owner:nil options:nil];
             cell = [cells objectAtIndex:0];
+            [cell.rightButton addTarget:self action:@selector(handleClickAt:event:) forControlEvents:UIControlEventTouchUpInside];
         }
-        [cell updateCellWithData:nil];
+        [cell updateCellWithData:self.attentionLists[indexPath.row]];
         return cell;
     }
     NSArray *array = self.dataLists[indexPath.section];
@@ -224,6 +383,11 @@ UITableViewDataSource
         }
         NSDictionary *dic = array[indexPath.row];
         [cell updateCellWithData:dic];
+        if (indexPath.row == 0) {
+            [cell.badgeNumberView setBadge:self.mineMessageNode.CommentCount];
+        } else if (indexPath.row == 1) {
+            [cell.badgeNumberView setBadge:self.mineMessageNode.GoodCount];
+        }
         return cell;
     } else {
         static NSString *cellIdentifier = @"LLMsgTickTableViewCell";
@@ -232,7 +396,7 @@ UITableViewDataSource
             NSArray* cells = [[NSBundle mainBundle] loadNibNamed:cellIdentifier owner:nil options:nil];
             cell = [cells objectAtIndex:0];
         }
-        [cell updateCellWithData:nil];
+        [cell updateCellWithData:array[indexPath.row]];
         return cell;
     }
 }
@@ -259,6 +423,18 @@ UITableViewDataSource
         }
     } else {
         
+    }
+}
+
+-(void)handleClickAt:(id)sender event:(id)event{
+    
+    NSSet *touches = [event allTouches];
+    UITouch *touch = [touches anyObject];
+    CGPoint currentTouchPosition = [touch locationInView:self.tableView];
+    NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint:currentTouchPosition];
+    if (indexPath) {
+        LLFollowUserNode *node = self.attentionLists[indexPath.row];
+        [self followRequest:node];
     }
 }
 

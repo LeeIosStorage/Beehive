@@ -39,6 +39,14 @@
                             <constraint firstAttribute="width" constant="11" id="me2-bz-URd"/>
                         </constraints>
                     </imageView>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vUH-6m-GJc" customClass="LLBadgeNumberView">
+                        <rect key="frame" x="269" y="20.5" width="20" height="20"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="20" id="BRA-yl-01r"/>
+                            <constraint firstAttribute="height" constant="20" id="NDl-Tk-SHO"/>
+                        </constraints>
+                    </view>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="TQX-FN-v1l">
                         <rect key="frame" x="0.0" y="60" width="320" height="0.5"/>
                         <color key="backgroundColor" red="0.88235294117647056" green="0.88235294117647056" blue="0.88235294117647056" alpha="1" colorSpace="calibratedRGB"/>
@@ -49,6 +57,7 @@
                 </subviews>
                 <constraints>
                     <constraint firstAttribute="trailing" secondItem="oku-mC-Ou7" secondAttribute="trailing" constant="10" id="1rE-gE-Bkq"/>
+                    <constraint firstItem="oku-mC-Ou7" firstAttribute="leading" secondItem="vUH-6m-GJc" secondAttribute="trailing" constant="10" id="LQn-v3-iAx"/>
                     <constraint firstItem="3nT-rR-ok1" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="LZ5-vd-3ZJ"/>
                     <constraint firstItem="TQX-FN-v1l" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="MVG-VL-QPr"/>
                     <constraint firstItem="31U-yO-HGy" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="Qp0-Oj-f9f"/>
@@ -57,12 +66,14 @@
                     <constraint firstItem="3nT-rR-ok1" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="YYD-v6-sQ6"/>
                     <constraint firstItem="3nT-rR-ok1" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="d3k-ou-Pyc"/>
                     <constraint firstItem="31U-yO-HGy" firstAttribute="leading" secondItem="3nT-rR-ok1" secondAttribute="trailing" constant="10" id="eEB-ng-sVv"/>
+                    <constraint firstItem="vUH-6m-GJc" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="j6m-M7-2Oa"/>
                     <constraint firstAttribute="bottom" secondItem="3nT-rR-ok1" secondAttribute="bottom" constant="10" id="j98-WU-VcV"/>
                     <constraint firstItem="oku-mC-Ou7" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="weN-jm-YhD"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
             <connections>
+                <outlet property="badgeNumberView" destination="vUH-6m-GJc" id="w1E-IO-ApQ"/>
                 <outlet property="imgIcon" destination="3nT-rR-ok1" id="ivJ-2W-G2U"/>
                 <outlet property="labTitle" destination="31U-yO-HGy" id="Bd7-yT-0Le"/>
             </connections>

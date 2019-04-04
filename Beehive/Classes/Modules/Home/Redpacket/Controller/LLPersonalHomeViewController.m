@@ -11,6 +11,7 @@
 #import "LLRedTaskHistoryTableViewCell.h"
 #import "LLRedpacketNode.h"
 #import "LLPersonalHomeNode.h"
+#import "LLRedpacketDetailsViewController.h"
 
 @interface LLPersonalHomeViewController ()
 <
@@ -198,7 +199,6 @@ UITableViewDataSource
         if ([dataObject isKindOfClass:[NSArray class]]) {
             NSArray *data = (NSArray *)dataObject;
             if (data.count > 0) {
-                weakSelf.personalHomeNode = data[0];
             }
         }
         weakSelf.personalHomeNode.IsFollow = !weakSelf.personalHomeNode.IsFollow;
@@ -254,7 +254,15 @@ UITableViewDataSource
 {
     NSIndexPath* selIndexPath = [tableView indexPathForSelectedRow];
     [tableView deselectRowAtIndexPath:selIndexPath animated:YES];
-    
+    LLRedpacketNode *node = self.dataLists[indexPath.row];
+    LLRedpacketDetailsVcType vcType = LLRedpacketDetailsVcTypeAsk;
+    if (node.RedType == 1 || node.RedType == 2) {
+        vcType = LLRedpacketDetailsVcTypeTask;
+    }
+    LLRedpacketDetailsViewController *vc = [[LLRedpacketDetailsViewController alloc] init];
+    vc.vcType = vcType;
+    vc.redpacketNode = node;
+    [self.navigationController pushViewController:vc animated:true];
 }
 
 @end

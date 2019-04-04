@@ -55,6 +55,11 @@
         "module"  : "IndexService.asmx",
         "action"  : "GetIndexData"
     },
+    "GetFirstRowsRedList": {
+        "protocol": "http",
+        "module"  : "IndexService.asmx",
+        "action"  : "GetFirstRowsRedList"
+    },
     "GetGoodsList": {
         "protocol": "http",
         "module"  : "IndexService.asmx",
@@ -84,6 +89,26 @@
         "protocol": "http",
         "module"  : "IndexService.asmx",
         "action"  : "RedEnvelopesGood"
+    },
+    "GetBuyRule": {
+        "protocol": "http",
+        "module"  : "IndexService.asmx",
+        "action"  : "GetBuyRule"
+    },
+    "GetMessage": {
+        "protocol": "http",
+        "module"  : "IndexService.asmx",
+        "action"  : "GetMessage"
+    },
+    "GetReceivedCommentList": {
+        "protocol": "http",
+        "module"  : "IndexService.asmx",
+        "action"  : "GetReceivedCommentList"
+    },
+    "GetGiveTheThumbsList": {
+        "protocol": "http",
+        "module"  : "IndexService.asmx",
+        "action"  : "GetGiveTheThumbsList"
     },
     "GetInvitationInfo": {
         "protocol": "http",

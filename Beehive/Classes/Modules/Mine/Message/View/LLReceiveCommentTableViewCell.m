@@ -8,6 +8,7 @@
 
 #import "LLReceiveCommentTableViewCell.h"
 #import "LLCellOriginalContentView.h"
+#import "LLCommentNode.h"
 
 @interface LLReceiveCommentTableViewCell ()
 
@@ -35,15 +36,21 @@
 }
 
 - (void)updateCellWithData:(id)node {
-    [WYCommonUtils setImageWithURL:[NSURL URLWithString:kLLAppTestHttpURL] setImage:self.imgIcon setbitmapImage:nil];
-    self.labTitle.text = @"11";
-    self.labTime.text = @"2018-12-09";
+    LLCommentNode *someNode = (LLCommentNode *)node;
     
-    self.labContent.text = @"11";
+    [WYCommonUtils setImageWithURL:[NSURL URLWithString:someNode.HeadImg] setImage:self.imgIcon setbitmapImage:nil];
+    self.labTitle.text = someNode.UserName;
+    self.labTime.text = someNode.AddTime;
     
-    [WYCommonUtils setImageWithURL:[NSURL URLWithString:kLLAppTestHttpURL] setImage:self.oriContentView.imgIcon setbitmapImage:nil];
-    self.oriContentView.labTitle.text = @"22";
-    self.oriContentView.labDes.text = @"14:40:33";
+    self.labContent.text = someNode.Contents;
+    
+    NSString *url = @"";
+    if (someNode.ImgUrls.count > 0) {
+        url = someNode.ImgUrls[0];
+    }
+    [WYCommonUtils setImageWithURL:[NSURL URLWithString:url] setImage:self.oriContentView.imgIcon setbitmapImage:nil];
+    self.oriContentView.labTitle.text = @"";
+    self.oriContentView.labDes.text = @"";
 }
 
 @end

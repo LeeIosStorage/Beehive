@@ -7,10 +7,13 @@
 //
 
 #import "LLTableViewCell.h"
+#import "LLBadgeNumberView.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface LLMessageWarnTableViewCell : LLTableViewCell
+
+@property (nonatomic, weak) IBOutlet LLBadgeNumberView *badgeNumberView;
 
 @end
 

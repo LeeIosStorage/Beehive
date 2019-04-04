@@ -85,7 +85,7 @@ GYRollingNoticeViewDataSource
     [self setup];
 //    [self refreshHomeInfo];
     
-//    [self addBottomAds:kLLAppTestHttpURL];
+    [self addBottomAds:kLLAppTestHttpURL];
     
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         [self showHomeAdsAlertView];
@@ -112,16 +112,20 @@ GYRollingNoticeViewDataSource
         make.left.top.right.equalTo(self.view);
         make.height.mas_equalTo(65);
     }];
-    self.cityOptionHeaderView.redCityArray = [NSMutableArray arrayWithArray:self.homeNode.FirstRowRedList];
+    self.cityOptionHeaderView.redCityArray = [NSMutableArray arrayWithArray:self.redCityList];
     WEAKSELF
     self.cityOptionHeaderView.selectBlock = ^(id  _Nonnull node) {
-        LLRedCityNode *cityNode = (LLRedCityNode *)node;
-        if (cityNode.RedList.count > 0) {
-            LLRedpacketNode *redNode = cityNode.RedList[0];
-            [weakSelf addCircleRegionForMonitoringWithCityCenter:CLLocationCoordinate2DMake(redNode.Latitude, redNode.Longitude)];
-        } else {
-            [weakSelf addDistrictRegionForMonitoringWithDistrictName:cityNode.Name];
-        }
+        weakSelf.selRedpacketNode = (LLRedpacketNode *)node;
+        [weakSelf receiveRedAlertViewShow];
+//        [weakSelf gotoRedpacketDetailsVc];
+        
+//        LLRedCityNode *cityNode = (LLRedCityNode *)node;
+//        if (cityNode.RedList.count > 0) {
+//            LLRedpacketNode *redNode = cityNode.RedList[0];
+//            [weakSelf addCircleRegionForMonitoringWithCityCenter:CLLocationCoordinate2DMake(redNode.Latitude, redNode.Longitude)];
+//        } else {
+//            [weakSelf addDistrictRegionForMonitoringWithDistrictName:cityNode.Name];
+//        }
     };
     
     [self.mapView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -176,7 +180,7 @@ GYRollingNoticeViewDataSource
     
     [self.rollingNoticeView reloadDataAndStartRoll];
     
-    self.cityOptionHeaderView.redCityArray = [NSMutableArray arrayWithArray:self.homeNode.FirstRowRedList];
+    self.cityOptionHeaderView.redCityArray = [NSMutableArray arrayWithArray:self.redCityList];
     
     //地图上红包
     self.mapRedpacketList = [NSMutableArray arrayWithArray:self.homeNode.RedEnvelopesList];
@@ -337,6 +341,37 @@ GYRollingNoticeViewDataSource
                 weakSelf.homeNode = data[0];
             }
         }
+//        weakSelf.redCityList = [NSMutableArray arrayWithArray:weakSelf.homeNode.FirstRowRedList];
+        
+        [weakSelf setData];
+        
+    } failure:^(id responseObject, NSError *error) {
+        [SVProgressHUD showCustomErrorWithStatus:HitoFaiNetwork];
+    }];
+    
+    [self getFirstRowsRedList];
+}
+
+- (void)getFirstRowsRedList {
+    WEAKSELF
+    NSString *requesUrl = [[WYAPIGenerate sharedInstance] API:@"GetFirstRowsRedList"];
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    [params setObject:[NSNumber numberWithDouble:self.currentCoordinate.latitude] forKey:@"latitude"];
+    [params setObject:[NSNumber numberWithDouble:self.currentCoordinate.longitude] forKey:@"longitude"];
+    NSString *caCheKey = @"GetFirstRowsRedList";
+    [self.networkManager POST:requesUrl needCache:YES caCheKey:caCheKey parameters:params responseClass:[LLRedCityNode class] needHeaderAuth:NO success:^(WYRequestType requestType, NSString *message, BOOL isCache, id dataObject) {
+        
+        if (requestType != WYRequestTypeSuccess) {
+            [SVProgressHUD showCustomErrorWithStatus:message];
+            return ;
+        }
+        if ([dataObject isKindOfClass:[NSArray class]]) {
+            NSArray *data = (NSArray *)dataObject;
+            weakSelf.redCityList = [NSMutableArray arrayWithArray:data];
+            if (data.count > 0) {
+                
+            }
+        }
         
         [weakSelf setData];
         
@@ -404,6 +439,7 @@ GYRollingNoticeViewDataSource
 #pragma mark - Action
 - (void)ruleClickAction:(id)sender {
     LLRedRuleViewController *vc = [[LLRedRuleViewController alloc] init];
+    vc.vcType = LLInfoDetailsVcTypeSignRule;
     [self.navigationController pushViewController:vc animated:true];
 }
 

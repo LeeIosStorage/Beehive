@@ -8,6 +8,7 @@
 
 #import "LLCityOptionCollectionViewCell.h"
 #import "LLRedCityNode.h"
+#import "LLRedpacketNode.h"
 
 @interface LLCityOptionCollectionViewCell ()
 
@@ -24,8 +25,15 @@
 }
 
 - (void)updateCellWithData:(id)node {
-    LLRedCityNode *cityNode = (LLRedCityNode *)node;
-    self.nameLabel.text = cityNode.Name;
+    LLRedpacketNode *someNode = (LLRedpacketNode *)node;
+    self.nameLabel.text = someNode.Title;
+    self.nameLabel.text = @"红包";
+    self.imageView.image = [UIImage imageNamed:@"home_redpacket_red"];
+    if (someNode.RedType == 2) {
+        self.imageView.image = [UIImage imageNamed:@"home_redpacket_bule"];
+    } else if (someNode.RedType == 3) {
+        self.imageView.image = [UIImage imageNamed:@"home_redpacket_yellow"];
+    }
 }
 
 @end

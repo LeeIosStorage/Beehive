@@ -63,6 +63,7 @@
     }
     [SVProgressHUD showCustomWithStatus:@"登录中..."];
     
+    [self.view endEditing:YES];
     WEAKSELF
     NSString *requesUrl = [[WYAPIGenerate sharedInstance] API:@"Login"];
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
@@ -107,6 +108,7 @@
 
 - (void)wxLoginRequestWith:(NSString *)openId nickName:(NSString *)nickName {
     
+    [self.view endEditing:YES];
     [SVProgressHUD showCustomWithStatus:@"登录中..."];
     WEAKSELF
     NSString *requesUrl = [[WYAPIGenerate sharedInstance] API:@"WeChatLogin"];

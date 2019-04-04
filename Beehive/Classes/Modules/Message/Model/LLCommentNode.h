@@ -26,6 +26,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSString *HeadImg;
 @property (nonatomic, assign) NSInteger Sex;
 
+@property (nonatomic, strong) id ImgList1;
+@property (strong, nonatomic) NSArray *ImgUrls;
+
 @end
 
 NS_ASSUME_NONNULL_END

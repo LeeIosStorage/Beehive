@@ -76,6 +76,7 @@
                 <outlet property="labDes" destination="wY0-ff-BIu" id="hsw-qa-hHt"/>
                 <outlet property="labTitle" destination="r2l-xl-w1g" id="yR5-HW-jaf"/>
                 <outlet property="oriContentView" destination="IpT-xW-Dpx" id="9Mn-YY-RYK"/>
+                <outlet property="oriContentViewConstraintH" destination="AyH-Nj-kIz" id="Ygz-4r-b9v"/>
             </connections>
             <point key="canvasLocation" x="-200" y="26.53673163418291"/>
         </tableViewCell>

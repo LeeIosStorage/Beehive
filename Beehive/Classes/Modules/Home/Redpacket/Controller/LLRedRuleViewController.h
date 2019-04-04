@@ -11,9 +11,10 @@
 NS_ASSUME_NONNULL_BEGIN
 
 typedef NS_ENUM(NSInteger, LLInfoDetailsVcType) {
-    LLInfoDetailsVcTypeRule, //规则
+    LLInfoDetailsVcTypeSignRule, //签到抽奖规则
     LLInfoDetailsVcTypeNotice, //公告
     LLInfoDetailsVcTypeAbout, //关于蜂巢
+    LLInfoDetailsVcTypeAdsBuyRule, //广告位购买规则
 };
 
 @interface LLRedRuleViewController : LLBaseViewController

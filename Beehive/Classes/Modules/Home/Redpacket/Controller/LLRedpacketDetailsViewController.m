@@ -134,6 +134,11 @@ LEShareSheetViewDelegate
 
 - (void)refreshData {
     
+    if (self.redpacketNode.RedType == 3) {
+        self.vcType = LLRedpacketDetailsVcTypeAsk;
+    } else {
+        self.vcType = LLRedpacketDetailsVcTypeTask;
+    }
     self.redpacketDetailsHeaderView.type = self.vcType;
     [self.redpacketDetailsHeaderView updateCellWithData:self.redpacketNode];
     

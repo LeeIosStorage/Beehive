@@ -7,6 +7,7 @@
 //
 
 #import "LLReceiveFavourTableViewCell.h"
+#import "LLCommentNode.h"
 
 @interface LLReceiveFavourTableViewCell ()
 
@@ -31,11 +32,17 @@
 }
 
 - (void)updateCellWithData:(id)node {
-    [WYCommonUtils setImageWithURL:[NSURL URLWithString:kLLAppTestHttpURL] setImage:self.imgIcon setbitmapImage:nil];
-    self.labTitle.text = @"11";
-    self.labTime.text = @"2018-12-09";
+    LLCommentNode *someNode = (LLCommentNode *)node;
     
-    [WYCommonUtils setImageWithURL:[NSURL URLWithString:kLLAppTestHttpURL] setImage:self.imgContent setbitmapImage:nil];
+    [WYCommonUtils setImageWithURL:[NSURL URLWithString:someNode.HeadImg] setImage:self.imgIcon setbitmapImage:nil];
+    self.labTitle.text = someNode.UserName;
+    self.labTime.text = someNode.AddTime;
+    
+    NSString *url = @"";
+    if (someNode.ImgUrls.count > 0) {
+        url = someNode.ImgUrls[0];
+    }
+    [WYCommonUtils setImageWithURL:[NSURL URLWithString:url] setImage:self.imgContent setbitmapImage:nil];
 }
 
 @end

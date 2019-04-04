@@ -8,6 +8,7 @@
 
 #import "LLMsgTickTableViewCell.h"
 #import "LLCellOriginalContentView.h"
+#import "LLNoticeNode.h"
 
 @interface LLMsgTickTableViewCell ()
 
@@ -15,6 +16,7 @@
 @property (nonatomic, weak) IBOutlet UILabel *labTitle;
 @property (nonatomic, weak) IBOutlet UILabel *labDes;
 @property (nonatomic, weak) IBOutlet LLCellOriginalContentView *oriContentView;
+@property (nonatomic, weak) IBOutlet NSLayoutConstraint *oriContentViewConstraintH;
 
 @end
 
@@ -34,13 +36,29 @@
 }
 
 - (void)updateCellWithData:(id)node {
-    [WYCommonUtils setImageWithURL:[NSURL URLWithString:kLLAppTestHttpURL] setImage:self.imgIcon setbitmapImage:nil];
-    self.labTitle.text = @"老夫 已采纳你的意见";
-    self.labDes.text = @"2018-12-09";
+    LLNoticeNode *someNode = (LLNoticeNode *)node;
     
-    [WYCommonUtils setImageWithURL:[NSURL URLWithString:kLLAppTestHttpURL] setImage:self.oriContentView.imgIcon setbitmapImage:nil];
-    self.oriContentView.labTitle.text = @"22";
-    self.oriContentView.labDes.text = @"14:40:33";
+    [WYCommonUtils setImageWithURL:[NSURL URLWithString:someNode.HeadImg] setImage:self.imgIcon setbitmapImage:nil];
+    NSString *userName = someNode.UserName;
+    self.labTitle.attributedText = [WYCommonUtils stringToColorAndFontAttributeString:[NSString stringWithFormat:@"%@ %@",userName, someNode.Title] range:NSMakeRange(0, userName.length) font:self.labTitle.font color:[UIColor colorWithHexString:@"#a597fe"]];
+//    self.labTitle.text = someNode.UserName;
+    self.labDes.text = someNode.AddTime;
+    
+    NSString *url = @"";
+    if (someNode.ImgUrls.count > 0) {
+        url = someNode.ImgUrls[0];
+    }
+    [WYCommonUtils setImageWithURL:[NSURL URLWithString:url] setImage:self.oriContentView.imgIcon setbitmapImage:nil];
+    self.oriContentView.labTitle.text = someNode.DataTitle;
+    self.oriContentView.labDes.text = someNode.DataAddTime;
+    
+    if (someNode.NoticeType == 1) {
+        self.oriContentViewConstraintH.constant = 85;
+        self.oriContentView.hidden = false;
+    } else {
+        self.oriContentViewConstraintH.constant = 0;
+        self.oriContentView.hidden = true;
+    }
 }
 
 @end
