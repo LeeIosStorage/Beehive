@@ -116,6 +116,7 @@
 		8D3F2157222FCD8B0066F5EB /* LLFilterDistanceView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D3F2156222FCD8B0066F5EB /* LLFilterDistanceView.m */; };
 		8D42DADE2254AF6800914E0E /* LLRedReceiveDetailNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D42DADD2254AF6800914E0E /* LLRedReceiveDetailNode.m */; };
 		8D42DAE12254BA3C00914E0E /* LLPersonalHomeNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D42DAE02254BA3C00914E0E /* LLPersonalHomeNode.m */; };
+		8D42DAE422559FB900914E0E /* LLCollectionListNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D42DAE322559FB900914E0E /* LLCollectionListNode.m */; };
 		8D4C611E222D058C00024840 /* LLUserInputView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D4C611D222D058C00024840 /* LLUserInputView.m */; };
 		8D4C6122222D553A00024840 /* LLForgotPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D4C6120222D553A00024840 /* LLForgotPasswordViewController.m */; };
 		8D4C6123222D553A00024840 /* LLForgotPasswordViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D4C6121222D553A00024840 /* LLForgotPasswordViewController.xib */; };
@@ -536,6 +537,8 @@
 		8D42DADD2254AF6800914E0E /* LLRedReceiveDetailNode.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLRedReceiveDetailNode.m; sourceTree = "<group>"; };
 		8D42DADF2254BA3C00914E0E /* LLPersonalHomeNode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLPersonalHomeNode.h; sourceTree = "<group>"; };
 		8D42DAE02254BA3C00914E0E /* LLPersonalHomeNode.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLPersonalHomeNode.m; sourceTree = "<group>"; };
+		8D42DAE222559FB900914E0E /* LLCollectionListNode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLCollectionListNode.h; sourceTree = "<group>"; };
+		8D42DAE322559FB900914E0E /* LLCollectionListNode.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLCollectionListNode.m; sourceTree = "<group>"; };
 		8D4C611C222D058C00024840 /* LLUserInputView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLUserInputView.h; sourceTree = "<group>"; };
 		8D4C611D222D058C00024840 /* LLUserInputView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLUserInputView.m; sourceTree = "<group>"; };
 		8D4C611F222D553A00024840 /* LLForgotPasswordViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLForgotPasswordViewController.h; sourceTree = "<group>"; };
@@ -1012,6 +1015,8 @@
 				8D72C1572251D8B500B032C2 /* LLUserInfoNode.m */,
 				8DD3993C22539BF400B8DAE2 /* LLPublishHistoryTimeNode.h */,
 				8DD3993D22539BF400B8DAE2 /* LLPublishHistoryTimeNode.m */,
+				8D42DAE222559FB900914E0E /* LLCollectionListNode.h */,
+				8D42DAE322559FB900914E0E /* LLCollectionListNode.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -2722,6 +2727,7 @@
 				8DF28F7D223E2B620074A4D8 /* LLBeeLobbyViewController.m in Sources */,
 				8D0167362238FB9C00CD21D8 /* LLExchangeBaseViewController.m in Sources */,
 				8D0E4B52223F68F100DA2866 /* LLBeeLobbyTableViewCell.m in Sources */,
+				8D42DAE422559FB900914E0E /* LLCollectionListNode.m in Sources */,
 				8D890B4C2232060100CA711A /* LLMessageViewController.m in Sources */,
 				8DF0C282223A3D40006175E7 /* LLRedTaskHistoryHeaderView.m in Sources */,
 				8DE588672227C76F002C1576 /* FontConst.swift in Sources */,

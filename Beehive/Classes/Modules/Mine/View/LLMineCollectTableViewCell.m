@@ -10,6 +10,7 @@
 #import "LLHandleStatusView.h"
 #import "LLRedpacketNode.h"
 #import "LLMessageListNode.h"
+#import "LLCollectionListNode.h"
 
 @interface LLMineCollectTableViewCell ()
 
@@ -61,6 +62,18 @@
         [self.handleStatusView.readButton setTitle:[NSString stringWithFormat:@" %d", msgNode.LookCount] forState:UIControlStateNormal];
         [self.handleStatusView.commentButton setTitle:[NSString stringWithFormat:@" %d", msgNode.CommentCount] forState:UIControlStateNormal];
         [self.handleStatusView.favourButton setTitle:[NSString stringWithFormat:@" %d", msgNode.GoodCount] forState:UIControlStateNormal];
+    } else if ([node isKindOfClass:[LLCollectionListNode class]]) {
+        LLCollectionListNode *someNode = (LLCollectionListNode *)node;
+        NSString *url = @"";
+        if (someNode.ImgUrls.count > 0) {
+            url = someNode.ImgUrls[0];
+        }
+        [WYCommonUtils setImageWithURL:[NSURL URLWithString:url] setImage:self.imgIcon setbitmapImage:[UIImage imageNamed:@""]];
+        self.labTitle.text = someNode.Title;
+        
+        [self.handleStatusView.readButton setTitle:[NSString stringWithFormat:@" %d", someNode.LookCount] forState:UIControlStateNormal];
+        [self.handleStatusView.commentButton setTitle:[NSString stringWithFormat:@" %d", someNode.CommentCount] forState:UIControlStateNormal];
+        [self.handleStatusView.favourButton setTitle:[NSString stringWithFormat:@" %d", someNode.GoodsCount] forState:UIControlStateNormal];
     }
 }
 
