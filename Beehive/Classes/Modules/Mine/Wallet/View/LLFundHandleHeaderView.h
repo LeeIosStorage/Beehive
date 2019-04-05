@@ -11,6 +11,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+typedef void(^LLFundHandleBindWXBlock)(BOOL needBind);
 typedef void(^LLFundHandleChooseAmountBlock)(NSString *money);
 typedef void(^LLFundHandleAffirmBlock)(void);
 
@@ -18,6 +19,7 @@ typedef void(^LLFundHandleAffirmBlock)(void);
 
 @property (nonatomic, assign) LLFundHandleVCType vcType;
 
+@property (nonatomic, strong) LLFundHandleBindWXBlock bindWXBlock;
 @property (nonatomic, strong) LLFundHandleChooseAmountBlock chooseAmountBlock;
 @property (nonatomic, strong) LLFundHandleAffirmBlock affirmBlock;
 

@@ -71,8 +71,8 @@ UITableViewDataSource
 }
 
 - (void)refreshHeadViewUI {
-    NSString *money = [NSString stringWithFormat:@"%@蜂蜜",self.userMoney];
-    self.labMoney.attributedText = [WYCommonUtils stringToColorAndFontAttributeString:money range:NSMakeRange(0, self.userMoney.length) font:[FontConst PingFangSCRegularWithSize:18] color:kAppTitleColor];
+    NSString *money = [NSString stringWithFormat:@"%.2f",[self.userMoney floatValue]];
+    self.labMoney.attributedText = [WYCommonUtils stringToColorAndFontAttributeString:[NSString stringWithFormat:@"%@蜂蜜",money] range:NSMakeRange(0, money.length) font:[FontConst PingFangSCRegularWithSize:18] color:kAppTitleColor];
 }
 
 #pragma mark -

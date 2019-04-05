@@ -50,6 +50,11 @@
         "module"  : "SessionService.asmx",
         "action"  : "UpdatePhone"
     },
+    "BindingWechat": {
+        "protocol": "http",
+        "module"  : "SessionService.asmx",
+        "action"  : "BindingWechat"
+    },
     "GetIndexData": {
         "protocol": "http",
         "module"  : "IndexService.asmx",
@@ -214,6 +219,21 @@
         "protocol": "http",
         "module"  : "MyService.asmx",
         "action"  : "GetMyCollectionList"
+    },
+    "AboutMRedEnvelope": {
+        "protocol": "http",
+        "module"  : "MyService.asmx",
+        "action"  : "AboutMRedEnvelope"
+    },
+    "GetIncomeList": {
+        "protocol": "http",
+        "module"  : "MyService.asmx",
+        "action"  : "GetIncomeList"
+    },
+    "GetWithdrawList": {
+        "protocol": "http",
+        "module"  : "MyService.asmx",
+        "action"  : "GetWithdrawList"
     },
     "GetDataInfo": {
         "protocol": "http",

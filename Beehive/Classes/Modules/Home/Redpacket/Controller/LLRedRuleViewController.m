@@ -28,6 +28,7 @@
         self.title = @"详情";
     } else if (self.vcType == LLInfoDetailsVcTypeAbout) {
         self.title = @"关于蜂巢";
+        [self aboutMRedEnvelope];
     } else if (self.vcType == LLInfoDetailsVcTypeAdsBuyRule){
         self.title = @"购买规则";
         [self getBuyRule];
@@ -41,8 +42,7 @@
     } else if (self.vcType == LLInfoDetailsVcTypeNotice) {
         self.ruleTextView.attributedText = [WYCommonUtils HTMLStringToColorAndFontAttributeString:self.text font:[FontConst PingFangSCRegularWithSize:13] color:kAppTitleColor];
     } else if (self.vcType == LLInfoDetailsVcTypeAbout) {
-        
-        self.ruleTextView.text = @"关于蜂巢关于蜂巢关于蜂巢关于蜂巢关于蜂巢关于蜂巢关于蜂巢关于蜂巢关于蜂巢关于蜂巢关于蜂巢关于蜂巢关于蜂巢关于蜂巢关于蜂巢关于蜂巢关于蜂巢关于蜂巢关于蜂巢关于蜂巢关于蜂巢关于蜂巢关于蜂巢关于蜂巢关于蜂巢关于蜂巢关于蜂巢关于蜂巢关于蜂巢关于蜂巢";
+        self.ruleTextView.text = @"";
     }
 }
 
@@ -57,6 +57,33 @@
     NSString *requesUrl = [[WYAPIGenerate sharedInstance] API:@"GetBuyRule"];
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     NSString *caCheKey = @"GetBuyRule";
+    [self.networkManager POST:requesUrl needCache:YES caCheKey:caCheKey parameters:params responseClass:nil needHeaderAuth:NO success:^(WYRequestType requestType, NSString *message, BOOL isCache, id dataObject) {
+        
+        [SVProgressHUD dismiss];
+        if (requestType != WYRequestTypeSuccess) {
+            [SVProgressHUD showCustomErrorWithStatus:message];
+            return ;
+        }
+        
+        if ([dataObject isKindOfClass:[NSArray class]]) {
+            NSArray *data = (NSArray *)dataObject;
+            if (data.count > 0) {
+                weakSelf.text = data[0];
+            }
+        }
+        [weakSelf refreshData];
+        
+    } failure:^(id responseObject, NSError *error) {
+        [SVProgressHUD showCustomErrorWithStatus:HitoFaiNetwork];
+    }];
+}
+
+- (void)aboutMRedEnvelope {
+    [SVProgressHUD showCustomWithStatus:@"请求中..."];
+    WEAKSELF
+    NSString *requesUrl = [[WYAPIGenerate sharedInstance] API:@"AboutMRedEnvelope"];
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    NSString *caCheKey = @"AboutMRedEnvelope";
     [self.networkManager POST:requesUrl needCache:YES caCheKey:caCheKey parameters:params responseClass:nil needHeaderAuth:NO success:^(WYRequestType requestType, NSString *message, BOOL isCache, id dataObject) {
         
         [SVProgressHUD dismiss];

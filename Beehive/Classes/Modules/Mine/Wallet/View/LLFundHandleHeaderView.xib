@@ -67,6 +67,12 @@
                             <color key="textColor" red="0.066666666666666666" green="0.066666666666666666" blue="0.066666666666666666" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lhe-W8-SVZ">
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="40"/>
+                            <connections>
+                                <action selector="bindAction:" destination="ZEL-Oe-47G" eventType="touchUpInside" id="jse-Qt-uhT"/>
+                            </connections>
+                        </button>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="4Zt-51-pZW">
                             <rect key="frame" x="0.0" y="39.5" width="375" height="0.5"/>
                             <color key="backgroundColor" red="0.88235294119999996" green="0.88235294119999996" blue="0.88235294119999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -77,14 +83,18 @@
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
+                        <constraint firstItem="lhe-W8-SVZ" firstAttribute="leading" secondItem="MRb-c7-x5s" secondAttribute="leading" id="5gu-Rh-bWd"/>
                         <constraint firstAttribute="bottom" secondItem="4Zt-51-pZW" secondAttribute="bottom" id="8Ti-FB-TiO"/>
                         <constraint firstAttribute="height" constant="40" id="FPX-t0-7Bj"/>
+                        <constraint firstItem="lhe-W8-SVZ" firstAttribute="bottom" secondItem="MRb-c7-x5s" secondAttribute="bottom" id="Ii5-9a-95I"/>
                         <constraint firstItem="ePp-H9-8xw" firstAttribute="leading" secondItem="MRb-c7-x5s" secondAttribute="leading" constant="10" id="QAa-fx-t8d"/>
                         <constraint firstItem="MRb-c7-x5s" firstAttribute="trailing" secondItem="OhT-Cs-Q8a" secondAttribute="trailing" constant="10" id="eeP-Ns-xgA"/>
                         <constraint firstItem="OhT-Cs-Q8a" firstAttribute="centerY" secondItem="ePp-H9-8xw" secondAttribute="centerY" id="fL3-Tv-xt2"/>
+                        <constraint firstItem="lhe-W8-SVZ" firstAttribute="top" secondItem="MRb-c7-x5s" secondAttribute="top" id="g0O-NG-dxy"/>
                         <constraint firstItem="4Zt-51-pZW" firstAttribute="leading" secondItem="MRb-c7-x5s" secondAttribute="leading" id="jLe-Ki-1wj"/>
                         <constraint firstItem="ePp-H9-8xw" firstAttribute="centerY" secondItem="Y0e-mF-08a" secondAttribute="centerY" id="lAj-7D-S0R"/>
                         <constraint firstAttribute="trailing" secondItem="4Zt-51-pZW" secondAttribute="trailing" id="n6G-CA-Nol"/>
+                        <constraint firstItem="lhe-W8-SVZ" firstAttribute="trailing" secondItem="MRb-c7-x5s" secondAttribute="trailing" id="tmc-88-4i3"/>
                     </constraints>
                     <viewLayoutGuide key="safeArea" id="MRb-c7-x5s"/>
                 </view>

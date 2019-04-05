@@ -13,6 +13,7 @@
 #import "LLWalletDetailsNode.h"
 #import "ZJPayPopupView.h"
 #import "LLPayPasswordResetViewController.h"
+#import "LELoginAuthManager.h"
 
 @interface LLWithdrawViewController ()
 <
@@ -71,6 +72,11 @@ ZJPayPopupViewDelegate
     };
     self.fundHandleHeaderView.chooseAmountBlock = ^(NSString * _Nonnull money) {
         weakSelf.chooseMoney = money;
+    };
+    self.fundHandleHeaderView.bindWXBlock = ^(BOOL needBind) {
+        if (needBind) {
+            [weakSelf getWxAuthInfo];
+        }
     };
 }
 
@@ -192,6 +198,43 @@ ZJPayPopupViewDelegate
         
     } failure:^(id responseObject, NSError *error) {
         [SVProgressHUD showCustomErrorWithStatus:HitoFaiNetwork];
+    }];
+}
+
+- (void)getWxAuthInfo {
+    WEAKSELF
+    [[LELoginAuthManager sharedInstance] socialAuthBinding:UMSocialPlatformType_WechatSession presentingController:self success:^(BOOL success, NSDictionary *result) {
+        if (success) {
+            [weakSelf wxBindRequestWith:result[@"openId"] nickName:result[@"username"]];
+        }
+    }];
+}
+
+- (void)wxBindRequestWith:(NSString *)openId nickName:(NSString *)nickName {
+    
+    [self.view endEditing:YES];
+    [SVProgressHUD showCustomWithStatus:@"登录中..."];
+    WEAKSELF
+    NSString *requesUrl = [[WYAPIGenerate sharedInstance] API:@"BindingWechat"];
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    if (openId.length > 0) [params setObject:openId forKey:@"openid"];
+    if (nickName.length > 0) [params setObject:nickName forKey:@"nickName"];
+    [self.networkManager POST:requesUrl needCache:NO caCheKey:nil parameters:params responseClass:nil needHeaderAuth:NO success:^(WYRequestType requestType, NSString *message, BOOL isCache, id dataObject) {
+        
+        [SVProgressHUD dismiss];
+        if (requestType != WYRequestTypeSuccess) {
+            [SVProgressHUD showCustomErrorWithStatus:message];
+            return;
+        }
+        [SVProgressHUD showCustomSuccessWithStatus:message];
+        if ([dataObject isKindOfClass:[NSArray class]]) {
+            NSArray *data = (NSArray *)dataObject;
+            if (data.count > 0) {
+            }
+        }
+        
+    } failure:^(id responseObject, NSError *error) {
+        [SVProgressHUD showCustomErrorWithStatus:HitoLoginFaiTitle];
     }];
 }
 

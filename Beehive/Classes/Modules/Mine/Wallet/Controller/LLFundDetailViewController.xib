@@ -12,7 +12,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LLFundDetailViewController">
             <connections>
-                <outlet property="tableView" destination="T2d-cX-Oi2" id="MhN-WA-2Rt"/>
+                <outlet property="tableView" destination="T2d-cX-Oi2" id="s0k-rk-D7r"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -22,7 +22,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="T2d-cX-Oi2">
-                    <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <connections>
                         <outlet property="dataSource" destination="-1" id="48j-UH-tvG"/>
@@ -35,7 +35,7 @@
                 <constraint firstItem="T2d-cX-Oi2" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" id="P1R-Gx-h0a"/>
                 <constraint firstItem="Q5M-cg-NOt" firstAttribute="bottom" secondItem="T2d-cX-Oi2" secondAttribute="bottom" id="bvR-h9-2gk"/>
                 <constraint firstItem="Q5M-cg-NOt" firstAttribute="trailing" secondItem="T2d-cX-Oi2" secondAttribute="trailing" id="fY4-Wh-6FU"/>
-                <constraint firstItem="T2d-cX-Oi2" firstAttribute="top" secondItem="Q5M-cg-NOt" secondAttribute="top" id="r5D-P9-asM"/>
+                <constraint firstItem="T2d-cX-Oi2" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="r5D-P9-asM"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="Q5M-cg-NOt"/>
         </view>

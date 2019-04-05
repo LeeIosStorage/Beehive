@@ -82,8 +82,10 @@ UICollectionViewDataSource
 - (void)updateCellWithData:(id)node {
     self.walletDetailsNode = (LLWalletDetailsNode *)node;
     
+    [self refreshRateTipLabel:[self.amountArray[0] floatValue]];
+    
     int cny = [self.walletDetailsNode.Money intValue]*[LELoginUserManager exchangeRate];
-    NSString *labBalance = [NSString stringWithFormat:@"%@蜂蜜(%d元)",self.walletDetailsNode.Money, cny];
+    NSString *labBalance = [NSString stringWithFormat:@"%.2f蜂蜜(%d元)",[self.walletDetailsNode.Money floatValue], cny];
     self.labBalance.text = labBalance;
     
     if (_vcType == LLFundHandleVCTypeWithdraw) {
@@ -120,9 +122,25 @@ UICollectionViewDataSource
     }
 }
 
+- (void)refreshRateTipLabel:(CGFloat)money {
+    CGFloat deduct = (self.walletDetailsNode.Ratio/100.0)*money;
+    CGFloat account = money - deduct;
+    self.labRateTip.text = [NSString stringWithFormat:@"扣除¥ %.2f（费率%d%%），实际到账%.2f", deduct, self.walletDetailsNode.Ratio, account];
+}
+
 - (IBAction)affirmAction:(id)sender {
     if (self.affirmBlock) {
         self.affirmBlock();
+    }
+}
+
+- (IBAction)bindAction:(id)sender {
+    if (self.bindWXBlock) {
+        BOOL need = YES;
+        if (self.walletDetailsNode.NickName.length > 0) {
+            need = NO;
+        }
+        self.bindWXBlock(need);
     }
 }
 
@@ -170,6 +188,7 @@ UICollectionViewDataSource
     self.currentAmountId = indexPath.row;
     [self.amountCollectionView reloadData];
     NSString *money = self.amountArray[indexPath.row];
+    [self refreshRateTipLabel:[money floatValue]];
     if (self.chooseAmountBlock) {
         self.chooseAmountBlock(money);
     }

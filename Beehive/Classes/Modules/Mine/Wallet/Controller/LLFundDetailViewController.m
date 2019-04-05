@@ -8,14 +8,17 @@
 
 #import "LLFundDetailViewController.h"
 #import "LLFundDetailTableViewCell.h"
+#import "LLFundHistoryNode.h"
+#import "LLWithdrawHistoryNode.h"
 
 @interface LLFundDetailViewController ()
 <
 UITableViewDelegate,
 UITableViewDataSource
 >
-@property (nonatomic, strong) IBOutlet UITableView *tableView;
+@property (nonatomic, weak) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) NSMutableArray *dataLists;
+@property (assign, nonatomic) int nextCursor;
 
 @end
 
@@ -35,16 +38,129 @@ UITableViewDataSource
     }
     self.tableView.backgroundColor = self.view.backgroundColor;
     
+    self.nextCursor = 1;
+    [self addMJ];
 }
 
 - (void)refreshData {
-    self.dataLists = [NSMutableArray array];
-    [self.dataLists addObject:@""];
-    [self.dataLists addObject:@""];
-    [self.dataLists addObject:@""];
-    [self.dataLists addObject:@""];
+    if (self.vcType == LLFundDetailVCTypeAll) {
+        [self getIncomeList];
+    } else if (self.vcType == LLFundDetailVCTypeWithdraw) {
+        [self getWithdrawList];
+    }
+}
+
+#pragma mark - mj
+- (void)addMJ {
+    //下拉刷新
+    WEAKSELF;
+    self.tableView.mj_header = [LERefreshHeader headerWithRefreshingBlock:^{
+        weakSelf.nextCursor = 1;
+        [weakSelf refreshData];
+    }];
+    [self.tableView.mj_header beginRefreshing];
     
-    [self.tableView reloadData];
+    //上啦加载
+    self.tableView.mj_footer = [LERefreshFooter footerWithRefreshingBlock:^{
+        [weakSelf refreshData];
+    }];
+    self.tableView.mj_footer.hidden = YES;
+    
+}
+
+#pragma mark - Request
+- (void)getIncomeList {
+    WEAKSELF
+    NSString *requesUrl = [[WYAPIGenerate sharedInstance] API:@"GetIncomeList"];
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    [params setObject:[NSNumber numberWithInteger:self.nextCursor] forKey:@"pageIndex"];
+    [params setObject:[NSNumber numberWithInteger:DATA_LOAD_PAGESIZE_COUNT] forKey:@"pageSize"];
+    
+    NSString *caCheKey = [NSString stringWithFormat:@"GetIncomeList"];
+    BOOL needCache = false;
+    if (self.nextCursor == 1) needCache = true;
+    [self.networkManager POST:requesUrl needCache:needCache caCheKey:caCheKey parameters:params responseClass:[LLFundHistoryNode class] needHeaderAuth:NO success:^(WYRequestType requestType, NSString *message, BOOL isCache, id dataObject) {
+        
+        [weakSelf.tableView.mj_header endRefreshing];
+        [weakSelf.tableView.mj_footer endRefreshing];
+        
+        if (requestType != WYRequestTypeSuccess) {
+            [SVProgressHUD showCustomErrorWithStatus:message];
+            return ;
+        }
+        
+        NSArray *tmpListArray = [NSArray array];
+        if ([dataObject isKindOfClass:[NSArray class]]) {
+            tmpListArray = (NSArray *)dataObject;
+        }
+        if (weakSelf.nextCursor == 1) {
+            weakSelf.dataLists = [NSMutableArray array];
+        }
+        [weakSelf.dataLists addObjectsFromArray:tmpListArray];
+        
+        if (!isCache) {
+            if (tmpListArray.count < DATA_LOAD_PAGESIZE_COUNT) {
+                [weakSelf.tableView.mj_footer setHidden:YES];
+            }else{
+                [weakSelf.tableView.mj_footer setHidden:NO];
+                weakSelf.nextCursor ++;
+            }
+        }
+        
+        [weakSelf.tableView reloadData];
+        
+    } failure:^(id responseObject, NSError *error) {
+        [SVProgressHUD showCustomErrorWithStatus:HitoFaiNetwork];
+        [weakSelf.tableView.mj_header endRefreshing];
+        [weakSelf.tableView.mj_footer endRefreshing];
+    }];
+}
+
+- (void)getWithdrawList {
+    WEAKSELF
+    NSString *requesUrl = [[WYAPIGenerate sharedInstance] API:@"GetWithdrawList"];
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    [params setObject:[NSNumber numberWithInteger:self.nextCursor] forKey:@"pageIndex"];
+    [params setObject:[NSNumber numberWithInteger:DATA_LOAD_PAGESIZE_COUNT] forKey:@"pageSize"];
+    
+    NSString *caCheKey = [NSString stringWithFormat:@"GetWithdrawList"];
+    BOOL needCache = false;
+    if (self.nextCursor == 1) needCache = true;
+    [self.networkManager POST:requesUrl needCache:needCache caCheKey:caCheKey parameters:params responseClass:[LLWithdrawHistoryNode class] needHeaderAuth:NO success:^(WYRequestType requestType, NSString *message, BOOL isCache, id dataObject) {
+        
+        [weakSelf.tableView.mj_header endRefreshing];
+        [weakSelf.tableView.mj_footer endRefreshing];
+        
+        if (requestType != WYRequestTypeSuccess) {
+            [SVProgressHUD showCustomErrorWithStatus:message];
+            return ;
+        }
+        
+        NSArray *tmpListArray = [NSArray array];
+        if ([dataObject isKindOfClass:[NSArray class]]) {
+            tmpListArray = (NSArray *)dataObject;
+        }
+        if (weakSelf.nextCursor == 1) {
+            weakSelf.dataLists = [NSMutableArray array];
+        }
+        [weakSelf.dataLists addObjectsFromArray:tmpListArray];
+        
+        if (!isCache) {
+            if (tmpListArray.count < DATA_LOAD_PAGESIZE_COUNT) {
+                [weakSelf.tableView.mj_footer setHidden:YES];
+            }else{
+                [weakSelf.tableView.mj_footer setHidden:NO];
+                weakSelf.nextCursor ++;
+            }
+        }
+        
+        [weakSelf.tableView reloadData];
+        
+    } failure:^(id responseObject, NSError *error) {
+        [SVProgressHUD showCustomErrorWithStatus:HitoFaiNetwork];
+        [weakSelf.tableView.mj_header endRefreshing];
+        [weakSelf.tableView.mj_footer endRefreshing];
+    }];
 }
 
 #pragma mark - Table view data source
@@ -71,9 +187,9 @@ UITableViewDataSource
         cell = [cells objectAtIndex:0];
     }
     if (self.vcType == LLFundDetailVCTypeWithdraw) {
-        [cell updateCellWithData:nil];
+        [cell updateCellWithData:self.dataLists[indexPath.row]];
     } else if (self.vcType == LLFundDetailVCTypeAll) {
-        [cell updateCellWithData:@"home_redpacket_red"];
+        [cell updateCellWithData:self.dataLists[indexPath.row]];
     }
     return cell;
 }
