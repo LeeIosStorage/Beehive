@@ -14,6 +14,8 @@
 #import "LEFeedbackViewController.h"
 #import "NSString+Unwrapped.h"
 #import "UIButton+WebCache.h"
+#import "LELoginModel.h"
+#import "LLPubDataInfoNode.h"
 
 @interface LLPersonalInfoViewController ()
 <
@@ -37,6 +39,7 @@ UITableViewDataSource
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     [self setup];
+    [self getRedDataInfo];
 }
 
 - (void)setup {
@@ -52,7 +55,8 @@ UITableViewDataSource
     
     self.currentPublishNode = [[LLPublishCellNode alloc] init];
     self.currentPublishNode.sexMold = [[LELoginUserManager sex] integerValue];
-//    self.currentPublishNode.hobbiesIndexs = [LELoginUserManager ];
+    self.currentPublishNode.date = [WYCommonUtils dateFromUSDateString:[LELoginUserManager loginModel].birthdayDate];
+    self.currentPublishNode.autograph = [LELoginUserManager loginModel].Autograph;
     
     [self refreshDataSource];
 }
@@ -126,8 +130,8 @@ UITableViewDataSource
                 NSMutableString *mStr = [NSMutableString string];
                 for (int i = 0; i < self.currentPublishNode.hobbiesIndexs.count; i ++) {
                     NSInteger row = [self.currentPublishNode.hobbiesIndexs[i] integerValue];
-                    NSString *string = self.hobbiesArray[row];
-                    [mStr appendString:string];
+                    LLPubDataInfoNode *node = self.hobbiesArray[row];
+                    [mStr appendString:node.DataContent];
                     [mStr appendString:@" "];
                 }
                 cellNode.inputText = mStr;
@@ -136,7 +140,7 @@ UITableViewDataSource
         case LLPublishCellTypeSignature:
             cellNode.title = @"签名";
             cellNode.placeholder = @"未设置";
-//            cellNode.inputText = [LELoginUserManager ];
+            cellNode.inputText = self.currentPublishNode.autograph;
             break;
         default:
             break;
@@ -145,6 +149,44 @@ UITableViewDataSource
 }
 
 #pragma mark - Request
+- (void)getRedDataInfo {
+    WEAKSELF
+    NSString *requesUrl = [[WYAPIGenerate sharedInstance] API:@"GetDataInfo"];
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    NSString *caCheKey = @"GetDataInfo";
+    [self.networkManager POST:requesUrl needCache:YES caCheKey:caCheKey parameters:params responseClass:nil needHeaderAuth:NO success:^(WYRequestType requestType, NSString *message, BOOL isCache, id dataObject) {
+        
+        if ([dataObject isKindOfClass:[NSArray class]]) {
+            NSArray *data = (NSArray *)dataObject;
+            if (data.count > 0) {
+                NSDictionary *dic = data[0];
+                id hobbyList = dic[@"HobbyList"];
+                weakSelf.hobbiesArray = [NSArray modelArrayWithClass:[LLPubDataInfoNode class] json:hobbyList];
+            }
+        }
+        
+        NSArray *tmpHobbyIds = [[LELoginUserManager loginModel].HobbyIds componentsSeparatedByString:@"|"];
+        NSMutableArray *hobbyIndexs = [NSMutableArray array];
+        [weakSelf.hobbiesArray enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            if ([obj isKindOfClass:[LLPubDataInfoNode class]]) {
+                LLPubDataInfoNode *node = (LLPubDataInfoNode *)obj;
+                for (NSString *Id in tmpHobbyIds) {
+                    if ([[node.Id description] isEqual:Id]) {
+                        [hobbyIndexs addObject:[NSNumber numberWithInteger:idx]];
+                    }
+                }
+            }
+        }];
+        
+        weakSelf.currentPublishNode.hobbiesIndexs = hobbyIndexs;
+        [weakSelf refreshDataSource];
+        
+    } failure:^(id responseObject, NSError *error) {
+        [SVProgressHUD showCustomErrorWithStatus:HitoFaiNetwork];
+    }];
+    
+}
+
 - (void)updateUserInfoReqeust {
     [SVProgressHUD showCustomWithStatus:@"保存中..."];
     WEAKSELF
@@ -160,6 +202,9 @@ UITableViewDataSource
     }
     NSData *data = [NSJSONSerialization dataWithJSONObject:imageDatas options:NSJSONWritingPrettyPrinted error:nil];
     NSString *jsonStr = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+//    if (uploadImages.count > 0) {
+//
+//    }
     [params setObject:jsonStr forKey:@"headImg"];
     
     [params setObject:[self nodeForCellTypeWithType:LLPublishCellTypeBirthdayDate].inputText ? [self nodeForCellTypeWithType:LLPublishCellTypeBirthdayDate].inputText : @"" forKey:@"birthday"];
@@ -169,11 +214,18 @@ UITableViewDataSource
     NSString *autograph = [self nodeForCellTypeWithType:LLPublishCellTypeSignature].inputText;
     if (!autograph) autograph = @"";
     [params setObject:autograph forKey:@"autograph"];
-    NSString *hobbiesIndexs = @"";
-    if (self.currentPublishNode.hobbiesIndexs.count > 0) {
-        hobbiesIndexs = [self.currentPublishNode.hobbiesIndexs componentsJoinedByString:@","];
+    
+    NSString *hobbiesIndexs = @"||";
+    NSMutableArray *hobbiesIds = [NSMutableArray array];
+    for (id index in self.currentPublishNode.hobbiesIndexs) {
+        LLPubDataInfoNode *node = [self.hobbiesArray objectAtIndex:[index integerValue]];
+        [hobbiesIds addObject:node.Id];
+    }
+    if (hobbiesIds.count > 0) {
+        hobbiesIndexs = [NSString stringWithFormat:@"|%@|",[hobbiesIds componentsJoinedByString:@"|"]];
     }
     [params setObject:hobbiesIndexs forKey:@"hobbyIds"];
+    
     [params setObject:[NSNumber numberWithInteger:self.currentPublishNode.sexMold] forKey:@"sex"];
     
     [self.networkManager POST:requesUrl needCache:NO caCheKey:nil parameters:params responseClass:nil needHeaderAuth:NO success:^(WYRequestType requestType, NSString *message, BOOL isCache, id dataObject) {
@@ -190,6 +242,9 @@ UITableViewDataSource
                 NSDictionary *dic = data[0];
             }
         }
+        [LELoginUserManager refreshUserInfoRequestSuccess:^(BOOL isSuccess, NSString *message) {
+            
+        }];
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             [weakSelf.navigationController popViewControllerAnimated:true];
         });
@@ -240,8 +295,12 @@ UITableViewDataSource
 }
 
 - (void)chooseHobbies {
+    NSMutableArray *hobbiesTitles = [NSMutableArray array];
+    for (LLPubDataInfoNode *node in self.hobbiesArray) {
+        [hobbiesTitles addObject:node.DataContent];
+    }
     WEAKSELF
-    [ZJUsefulPickerView showMultipleSelPickerWithToolBarText:@"选择兴趣爱好" withData:self.hobbiesArray withDefaultIndexs:self.currentPublishNode.hobbiesIndexs withCancelHandler:^{
+    [ZJUsefulPickerView showMultipleSelPickerWithToolBarText:@"选择兴趣爱好" withData:hobbiesTitles withDefaultIndexs:self.currentPublishNode.hobbiesIndexs withCancelHandler:^{
         
     } withDoneHandler:^(NSArray *selectedIndexs, NSArray *selectedValues) {
         weakSelf.currentPublishNode.hobbiesIndexs = selectedIndexs;
@@ -256,8 +315,9 @@ UITableViewDataSource
     
     WEAKSELF
     vc.submitBlock = ^(NSString *text) {
-        [weakSelf nodeForCellTypeWithType:LLPublishCellTypeSignature].inputText = text;
-        [weakSelf.tableView reloadData];
+//        [weakSelf nodeForCellTypeWithType:LLPublishCellTypeSignature].inputText = text;
+        weakSelf.currentPublishNode.autograph = text;
+        [weakSelf refreshDataSource];
     };
 }
 
@@ -284,7 +344,7 @@ UITableViewDataSource
 
 - (NSArray *)hobbiesArray {
     if (!_hobbiesArray) {
-        _hobbiesArray = @[@"爬山", @"运动", @"音乐", @"读书"];
+        _hobbiesArray = [NSArray array];
     }
     return _hobbiesArray;
 }

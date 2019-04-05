@@ -10,6 +10,11 @@
 
 @implementation LLUserInfoNode
 
++ (NSDictionary *)modelCustomPropertyMapper {
+    return @{@"UserName":@[@"UserName",@"Name"],
+             };
+}
+
 - (NSString *)HeadImg {
     NSString *urlStr = [NSString stringWithFormat:@"%@%@",[WYAPIGenerate sharedInstance].baseURL, _HeadImg];
     return urlStr;

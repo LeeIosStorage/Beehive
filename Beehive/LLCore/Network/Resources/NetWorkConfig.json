@@ -55,6 +55,16 @@
         "module"  : "SessionService.asmx",
         "action"  : "BindingWechat"
     },
+    "GetPromotionExplain": {
+        "protocol": "http",
+        "module"  : "SessionService.asmx",
+        "action"  : "GetPromotionExplain"
+    },
+    "GetVipExplain": {
+        "protocol": "http",
+        "module"  : "SessionService.asmx",
+        "action"  : "GetVipExplain"
+    },
     "GetIndexData": {
         "protocol": "http",
         "module"  : "IndexService.asmx",
@@ -195,6 +205,16 @@
         "module"  : "MyService.asmx",
         "action"  : "JoinMoney"
     },
+    "Recharge": {
+        "protocol": "http",
+        "module"  : "MyService.asmx",
+        "action"  : "Recharge"
+    },
+    "ReleaseFeedBack": {
+        "protocol": "http",
+        "module"  : "MyService.asmx",
+        "action"  : "ReleaseFeedBack"
+    },
     "GetParentFansList": {
         "protocol": "http",
         "module"  : "MyService.asmx",
@@ -234,6 +254,46 @@
         "protocol": "http",
         "module"  : "MyService.asmx",
         "action"  : "GetWithdrawList"
+    },
+    "GetReportList": {
+        "protocol": "http",
+        "module"  : "MyService.asmx",
+        "action"  : "GetReportList"
+    },
+    "SendReport": {
+        "protocol": "http",
+        "module"  : "MyService.asmx",
+        "action"  : "SendReport"
+    },
+    "GetSystemMessageList": {
+        "protocol": "http",
+        "module"  : "MyService.asmx",
+        "action"  : "GetSystemMessageList"
+    },
+    "GetSystemNoticeDetail": {
+        "protocol": "http",
+        "module"  : "MyService.asmx",
+        "action"  : "GetSystemNoticeDetail"
+    },
+    "GetUserInfo": {
+        "protocol": "http",
+        "module"  : "MyService.asmx",
+        "action"  : "GetUserInfo"
+    },
+    "GetVipPrice": {
+        "protocol": "http",
+        "module"  : "MyService.asmx",
+        "action"  : "GetVipPrice"
+    },
+    "GetUserList": {
+        "protocol": "http",
+        "module"  : "MyService.asmx",
+        "action"  : "GetUserList"
+    },
+    "GiveMoney": {
+        "protocol": "http",
+        "module"  : "MyService.asmx",
+        "action"  : "GiveMoney"
     },
     "GetDataInfo": {
         "protocol": "http",

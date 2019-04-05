@@ -9,6 +9,7 @@
 #import "LLReportViewController.h"
 #import "LEAlertMarkView.h"
 #import "LLReportSucceedView.h"
+#import "LLPubDataInfoNode.h"
 
 @interface LLReportViewController ()
 <
@@ -31,6 +32,7 @@ UITableViewDataSource
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     [self setup];
+    [self getReportList];
 }
 
 - (void)setup {
@@ -52,21 +54,95 @@ UITableViewDataSource
     self.selectedValues = [NSMutableArray array];
     
     self.dataList = [NSMutableArray array];
-    [self.dataList addObject:@"发布色情骚扰信息"];
-    [self.dataList addObject:@"发布暴力恐怖信息"];
-    [self.dataList addObject:@"发布政治敏感信息"];
-    [self.dataList addObject:@"发布其他违法信息"];
     
     [self.tableView reloadData];
 }
 
+#pragma mark - Request
+- (void)getReportList {
+    [SVProgressHUD showCustomWithStatus:@"请求中..."];
+    WEAKSELF
+    NSString *requesUrl = [[WYAPIGenerate sharedInstance] API:@"GetReportList"];
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    
+    NSString *caCheKey = @"GetReportList";
+    [self.networkManager POST:requesUrl needCache:YES caCheKey:caCheKey parameters:params responseClass:[LLPubDataInfoNode class] needHeaderAuth:NO success:^(WYRequestType requestType, NSString *message, BOOL isCache, id dataObject) {
+        
+        [SVProgressHUD dismiss];
+        if (requestType != WYRequestTypeSuccess) {
+            [SVProgressHUD showCustomErrorWithStatus:message];
+            return ;
+        }
+        
+        NSArray *tmpListArray = [NSArray array];
+        if ([dataObject isKindOfClass:[NSArray class]]) {
+            tmpListArray = (NSArray *)dataObject;
+        }
+        weakSelf.dataList = [NSMutableArray array];
+        [weakSelf.dataList addObjectsFromArray:tmpListArray];
+        
+        [weakSelf.tableView reloadData];
+        
+    } failure:^(id responseObject, NSError *error) {
+        [SVProgressHUD showCustomErrorWithStatus:HitoFaiNetwork];
+        [weakSelf.tableView.mj_header endRefreshing];
+        [weakSelf.tableView.mj_footer endRefreshing];
+    }];
+}
+
+- (void)sendReport {
+    [SVProgressHUD showCustomWithStatus:@"请求中..."];
+    WEAKSELF
+    NSString *requesUrl = [[WYAPIGenerate sharedInstance] API:@"SendReport"];
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    [params setValue:self.dataId forKey:@"dataId"];
+    
+    NSMutableArray *resonIds = [NSMutableArray array];
+    for (LLPubDataInfoNode *node in self.selectedValues) {
+        [resonIds addObject:node.Id];
+    }
+    [params setValue:[resonIds componentsJoinedByString:@","] forKey:@"resonId"];
+    [params setValue:[NSNumber numberWithInteger:self.type] forKey:@"type"];
+    
+    [self.networkManager POST:requesUrl needCache:NO caCheKey:nil parameters:params responseClass:[LLPubDataInfoNode class] needHeaderAuth:NO success:^(WYRequestType requestType, NSString *message, BOOL isCache, id dataObject) {
+        
+        [SVProgressHUD dismiss];
+        if (requestType != WYRequestTypeSuccess) {
+            [SVProgressHUD showCustomErrorWithStatus:message];
+            return ;
+        }
+//        [SVProgressHUD showCustomSuccessWithStatus:message];
+        NSArray *tmpListArray = [NSArray array];
+        if ([dataObject isKindOfClass:[NSArray class]]) {
+            tmpListArray = (NSArray *)dataObject;
+        }
+        
+        LLReportSucceedView *tipView = [[[NSBundle mainBundle] loadNibNamed:@"LLReportSucceedView" owner:self options:nil] firstObject];
+        tipView.layer.cornerRadius = 3;
+        tipView.layer.masksToBounds = true;
+        tipView.frame = CGRectMake(0, 0, 260, 247);
+        __weak UIView *weakView = tipView;
+        WEAKSELF
+        tipView.closeBlock = ^{
+            if ([weakView.superview isKindOfClass:[LEAlertMarkView class]]) {
+                LEAlertMarkView *alert = (LEAlertMarkView *)weakView.superview;
+                [alert dismiss];
+            }
+            [weakSelf.navigationController popViewControllerAnimated:YES];
+        };
+        LEAlertMarkView *alert = [[LEAlertMarkView alloc] initWithCustomView:tipView type:LEAlertMarkViewTypeCenter];
+        [alert show];
+        
+    } failure:^(id responseObject, NSError *error) {
+        [SVProgressHUD showCustomErrorWithStatus:HitoFaiNetwork];
+        [weakSelf.tableView.mj_header endRefreshing];
+        [weakSelf.tableView.mj_footer endRefreshing];
+    }];
+}
+
+#pragma mark - Action
 - (void)publishAction:(id)sender {
-    LLReportSucceedView *tipView = [[[NSBundle mainBundle] loadNibNamed:@"LLReportSucceedView" owner:self options:nil] firstObject];
-    tipView.layer.cornerRadius = 3;
-    tipView.layer.masksToBounds = true;
-    tipView.frame = CGRectMake(0, 0, 260, 247);
-    LEAlertMarkView *alert = [[LEAlertMarkView alloc] initWithCustomView:tipView type:LEAlertMarkViewTypeCenter];
-    [alert show];
+    [self sendReport];
 }
 
 #pragma mark - setget
@@ -146,12 +222,13 @@ static int label_tag = 201, image_tag = 202;
         }];
         
     }
-    NSString *title = self.dataList[indexPath.row];
+    LLPubDataInfoNode *someNode = self.dataList[indexPath.row];
+    NSString *title = someNode.DataContent;
     UILabel *lable = (UILabel *)[cell.contentView viewWithTag:label_tag];
     UIImageView *selImg = (UIImageView *)[cell.contentView viewWithTag:image_tag];
     selImg.image = [UIImage imageNamed:@"1_2_4.1"];
     lable.text = title;
-    if ([self.selectedValues containsObject:title]) {
+    if ([self.selectedValues containsObject:someNode]) {
         selImg.image = [UIImage imageNamed:@"1_2_4.2"];
     }
     
@@ -163,11 +240,11 @@ static int label_tag = 201, image_tag = 202;
     //    NSIndexPath* selIndexPath = [tableView indexPathForSelectedRow];
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
-    NSString *title = self.dataList[indexPath.row];
-    if ([self.selectedValues containsObject:title]) {
-        [self.selectedValues removeObject:title];
+    LLPubDataInfoNode *someNode = self.dataList[indexPath.row];
+    if ([self.selectedValues containsObject:someNode]) {
+        [self.selectedValues removeObject:someNode];
     } else {
-        [self.selectedValues addObject:title];
+        [self.selectedValues addObject:someNode];
     }
     [self.tableView reloadData];
 }

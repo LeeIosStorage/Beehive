@@ -190,6 +190,8 @@ LEShareSheetViewDelegate
     menuView.menuViewClickBlock = ^(NSInteger index) {
         if (index == 0) {
             LLReportViewController *vc = [[LLReportViewController alloc] init];
+            vc.dataId = self.exchangeGoodsNode.Id;
+            vc.type = 1;
             [weakSelf.navigationController pushViewController:vc animated:true];
         }
     };

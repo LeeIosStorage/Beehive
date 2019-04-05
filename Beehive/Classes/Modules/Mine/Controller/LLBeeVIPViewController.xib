@@ -16,6 +16,7 @@
                 <outlet property="headerView" destination="Ega-Ud-X4u" id="YTf-KO-p7p"/>
                 <outlet property="labEquity" destination="gJM-4B-bq7" id="H12-yC-zLo"/>
                 <outlet property="labEquityDes" destination="RUb-Fo-Rjd" id="R4G-bi-Wwr"/>
+                <outlet property="labVIPPrice" destination="bTD-2h-yDz" id="klS-Ci-cN0"/>
                 <outlet property="tableView" destination="0DE-va-dKq" id="AiC-em-8fi"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>

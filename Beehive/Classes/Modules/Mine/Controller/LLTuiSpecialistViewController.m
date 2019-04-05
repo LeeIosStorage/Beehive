@@ -7,8 +7,11 @@
 //
 
 #import "LLTuiSpecialistViewController.h"
+#import "LLPromotionExplainNode.h"
 
 @interface LLTuiSpecialistViewController ()
+
+@property (nonatomic, strong) LLPromotionExplainNode *promotionExplainNode;
 
 @property (nonatomic, weak) IBOutlet UITableView *tableView;
 
@@ -30,6 +33,7 @@
     // Do any additional setup after loading the view from its nib.
     [self setup];
     [self refreshData];
+    [self getPromotionExplain];
 }
 
 - (void)setup {
@@ -55,8 +59,16 @@
 
 - (void)refreshData {
     
+    self.rejectView.hidden = true;
+    if (self.promotionExplainNode.Reason.length > 0) {
+        self.labReject.text = [NSString stringWithFormat:@"申请被绝  拒绝原因：%@",self.promotionExplainNode.Reason];
+        self.rejectView.hidden = false;
+    }
+    
     self.labEquity.text = @"领取红包无限\n邀请注册返佣金";
-    self.labEquityDes.text = @"权益说明权益说明权益说明权益说明权益说明权益说明权益说明权益说明权益说明权益说明权益说明权益说明权益说明权益说明权益说明权益说明权益说明权益说明权益说明";
+    self.labEquityDes.attributedText = [WYCommonUtils HTMLStringToColorAndFontAttributeString:self.promotionExplainNode.VipExplain font:[FontConst PingFangSCRegularWithSize:12] color:kAppSubTitleColor];
+    
+    [self refreshBottomStatus];
     
     UIView *headView = self.tableView.tableHeaderView;
     [self.tableView layoutIfNeeded];
@@ -65,7 +77,50 @@
     [self.tableView reloadData];
 }
 
+- (void)refreshBottomStatus {
+    self.btnSubmit.hidden = false;
+    self.btnSubmit.enabled = true;
+    [self.btnSubmit setTitle:@"立即申请" forState:UIControlStateNormal];
+    if (self.promotionExplainNode.Reason.length > 0) {
+        [self.btnSubmit setTitle:@"重新申请" forState:UIControlStateNormal];
+        return;
+    }
+    
+    if (self.promotionExplainNode.IsPromotion == 0) {
+        self.btnSubmit.enabled = false;
+        [self.btnSubmit setTitle:@"审核中，请耐心等待" forState:UIControlStateNormal];
+        return;
+    }
+}
+
 #pragma mark - Reqeust
+- (void)getPromotionExplain {
+    [SVProgressHUD showCustomWithStatus:@"请求中..."];
+    WEAKSELF
+    NSString *requesUrl = [[WYAPIGenerate sharedInstance] API:@"GetPromotionExplain"];
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    NSString *caCheKey = @"GetPromotionExplain";
+    [self.networkManager POST:requesUrl needCache:YES caCheKey:caCheKey parameters:params responseClass:[LLPromotionExplainNode class] needHeaderAuth:NO success:^(WYRequestType requestType, NSString *message, BOOL isCache, id dataObject) {
+        
+        [SVProgressHUD dismiss];
+        if (requestType != WYRequestTypeSuccess) {
+            [SVProgressHUD showCustomErrorWithStatus:message];
+            return ;
+        }
+        if ([dataObject isKindOfClass:[NSArray class]]) {
+            NSArray *data = (NSArray *)dataObject;
+            if (data.count > 0) {
+                weakSelf.promotionExplainNode = data[0];
+            }
+        }
+        
+        [weakSelf refreshData];
+        
+    } failure:^(id responseObject, NSError *error) {
+        [SVProgressHUD showCustomErrorWithStatus:HitoFaiNetwork];
+    }];
+}
+
 - (void)applyPromotionReqeust {
     [SVProgressHUD showCustomWithStatus:@"请求中..."];
     WEAKSELF
@@ -96,8 +151,6 @@
 
 - (IBAction)submitAction:(id)sender {
     [self applyPromotionReqeust];
-//    self.labReject.text = @"申请被绝  拒绝原因：原因是";
-//    self.rejectView.hidden = false;
 }
 
 @end

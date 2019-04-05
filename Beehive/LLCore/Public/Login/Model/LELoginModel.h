@@ -21,12 +21,12 @@
 @property (strong, nonatomic) NSString *age;
 @property (strong, nonatomic) NSString *regTime;
 @property (strong, nonatomic) NSString *introduction;
-
 @property (strong, nonatomic) NSString *payPassWord;
 @property (strong, nonatomic) NSString *invitationCode;
-
 @property (assign, nonatomic) double income;
 
+@property (strong, nonatomic) NSString *Autograph;
+@property (strong, nonatomic) NSString *HobbyIds;
 
 
 @property (assign, nonatomic) int announcementNum;

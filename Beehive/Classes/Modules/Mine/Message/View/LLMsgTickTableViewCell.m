@@ -58,6 +58,7 @@
     } else {
         self.oriContentViewConstraintH.constant = 0;
         self.oriContentView.hidden = true;
+        self.labTitle.text = someNode.Title;
     }
 }
 

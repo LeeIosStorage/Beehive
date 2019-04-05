@@ -75,7 +75,8 @@ UICollectionViewDataSource
         self.amountArray = [NSMutableArray arrayWithArray:@[@"10",@"20",@"30",@"40",@"50",@"100",@"200",@"500"]];
     }
     if (self.chooseAmountBlock) {
-        self.chooseAmountBlock(self.amountArray[0]);
+        NSString *amount = [NSString stringWithFormat:@"%.0f",[self.amountArray[0] intValue]/[LELoginUserManager exchangeRate]];
+        self.chooseAmountBlock(amount);
     }
 }
 
@@ -190,7 +191,8 @@ UICollectionViewDataSource
     NSString *money = self.amountArray[indexPath.row];
     [self refreshRateTipLabel:[money floatValue]];
     if (self.chooseAmountBlock) {
-        self.chooseAmountBlock(money);
+        NSString *amount = [NSString stringWithFormat:@"%.0f",[money intValue]/[LELoginUserManager exchangeRate]];
+        self.chooseAmountBlock(amount);
     }
 }
 

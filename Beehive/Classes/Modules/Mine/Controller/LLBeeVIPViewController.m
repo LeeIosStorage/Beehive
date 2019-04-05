@@ -10,12 +10,16 @@
 #import "LLPaymentWayView.h"
 #import "LEAlertMarkView.h"
 #import "WYPayManager.h"
+#import "LLPromotionExplainNode.h"
 
 @interface LLBeeVIPViewController ()
+
+@property (nonatomic, strong) LLPromotionExplainNode *promotionExplainNode;
 
 @property (nonatomic, weak) IBOutlet UITableView *tableView;
 
 @property (nonatomic, weak) IBOutlet UIView *headerView;
+@property (nonatomic, weak) IBOutlet UILabel *labVIPPrice;
 @property (nonatomic, weak) IBOutlet UILabel *labEquity;
 @property (nonatomic, weak) IBOutlet UILabel *labEquityDes;
 
@@ -32,6 +36,8 @@
     // Do any additional setup after loading the view from its nib.
     [self setup];
     [self refreshData];
+//    [self getVipPrice];
+    [self getVipExplain];
 }
 
 - (void)setup {
@@ -57,7 +63,9 @@
 - (void)refreshData {
     
     self.labEquity.text = @"领取红包无限\n邀请注册返佣金";
-    self.labEquityDes.text = @"权益说明权益说明权益说明权益说明权益说明权益说明权益说明权益说明权益说明权益说明权益说明权益说明权益说明权益说明权益说明权益说明权益说明权益说明权益说明";
+    self.labEquityDes.attributedText = [WYCommonUtils HTMLStringToColorAndFontAttributeString:self.promotionExplainNode.VipExplain font:[FontConst PingFangSCRegularWithSize:12] color:kAppSubTitleColor];
+    
+    self.labVIPPrice.text = [NSString stringWithFormat:@"¥ %@", self.promotionExplainNode.VipPrice];
     
     UIView *headView = self.tableView.tableHeaderView;
     [self.tableView layoutIfNeeded];
@@ -87,6 +95,59 @@
 }
 
 #pragma mark - Reqeust
+- (void)getVipExplain {
+    [SVProgressHUD showCustomWithStatus:@"请求中..."];
+    WEAKSELF
+    NSString *requesUrl = [[WYAPIGenerate sharedInstance] API:@"GetVipExplain"];
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    NSString *caCheKey = @"GetPromotionExplain";
+    [self.networkManager POST:requesUrl needCache:YES caCheKey:caCheKey parameters:params responseClass:[LLPromotionExplainNode class] needHeaderAuth:NO success:^(WYRequestType requestType, NSString *message, BOOL isCache, id dataObject) {
+        
+        [SVProgressHUD dismiss];
+        if (requestType != WYRequestTypeSuccess) {
+            [SVProgressHUD showCustomErrorWithStatus:message];
+            return ;
+        }
+        if ([dataObject isKindOfClass:[NSArray class]]) {
+            NSArray *data = (NSArray *)dataObject;
+            if (data.count > 0) {
+                weakSelf.promotionExplainNode = data[0];
+            }
+        }
+        
+        [weakSelf refreshData];
+        
+    } failure:^(id responseObject, NSError *error) {
+        [SVProgressHUD showCustomErrorWithStatus:HitoFaiNetwork];
+    }];
+}
+
+- (void)getVipPrice {
+    [SVProgressHUD showCustomWithStatus:@"请求中..."];
+    WEAKSELF
+    NSString *requesUrl = [[WYAPIGenerate sharedInstance] API:@"GetVipPrice"];
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    NSString *caCheKey = @"GetVipPrice";
+    [self.networkManager POST:requesUrl needCache:YES caCheKey:caCheKey parameters:params responseClass:nil needHeaderAuth:NO success:^(WYRequestType requestType, NSString *message, BOOL isCache, id dataObject) {
+        
+        [SVProgressHUD dismiss];
+        if (requestType != WYRequestTypeSuccess) {
+            [SVProgressHUD showCustomErrorWithStatus:message];
+            return ;
+        }
+        if ([dataObject isKindOfClass:[NSArray class]]) {
+            NSArray *data = (NSArray *)dataObject;
+            if (data.count > 0) {
+                NSString *price = data[0];
+                self.labVIPPrice.text = [NSString stringWithFormat:@"¥ %@", price];
+            }
+        }
+        
+    } failure:^(id responseObject, NSError *error) {
+        [SVProgressHUD showCustomErrorWithStatus:HitoFaiNetwork];
+    }];
+}
+
 - (void)buyVIPReqeust {
     [SVProgressHUD showCustomWithStatus:@"请求中..."];
     WEAKSELF

@@ -12,6 +12,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface LLReportViewController : LLBaseViewController
 
+@property (nonatomic, strong) NSString *dataId;
+@property (nonatomic, assign) NSInteger type;//type 1：商品；2：红包
+
 @end
 
 NS_ASSUME_NONNULL_END

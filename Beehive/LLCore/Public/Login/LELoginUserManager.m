@@ -11,6 +11,7 @@
 #import "WYNetWorkManager.h"
 #import "LELoginAuthManager.h"
 
+NSString *const kUserInfoJson = @"kUserInfoJson";
 NSString *const kUserInfoUserID = @"kUserInfoUserID";
 NSString *const kUserInfoNickname = @"kUserInfoNickname";
 NSString *const kUserInfoAvatar = @"kUserInfoAvatar";
@@ -30,6 +31,7 @@ NSString *const kUserInfoTodayGolds = @"kUserInfoTodayGolds";
 NSString *const kUserInfoTotalGolds = @"kUserInfoTotalGolds";
 NSString *const kUserInfoBalance = @"kUserInfoBalance";
 NSString *const kUserInfoIncome = @"kUserInfoIncome";
+NSString *const kUserInfoPayPassWord = @"kUserInfoPayPassWord";
 
 NSString *const kUserInfoAuthToken = @"kUserInfoAuthToken";
 
@@ -37,6 +39,16 @@ NSString *const kUserInfoAuthToken = @"kUserInfoAuthToken";
 
 #pragma mark -
 #pragma mark - User Base info
++ (LELoginModel *)loginModel {
+    id jsonObject = [self objectFromUserDefaultsKey:kUserInfoJson];
+    return [LELoginModel modelWithJSON:jsonObject];
+}
+
++ (void)setLoginModel:(LELoginModel *)model {
+    id json = [model modelToJSONString];
+    [self saveToUserDefaultsObject:json forKey:kUserInfoJson];
+}
+
 + (NSString *)userID{
     return [self objectFromUserDefaultsKey:kUserInfoUserID];
 }
@@ -139,6 +151,13 @@ NSString *const kUserInfoAuthToken = @"kUserInfoAuthToken";
     [self saveToUserDefaultsObject:invitationCode forKey:kUserInfoInvitationCode];
 }
 
++ (NSString *)payPassWord {
+    return [self objectFromUserDefaultsKey:kUserInfoPayPassWord];
+}
++ (void)setPayPassWord:(NSString *)payPassWord {
+    [self saveToUserDefaultsObject:payPassWord forKey:kUserInfoPayPassWord];
+}
+
 + (double)readDuration{
     return [[self objectFromUserDefaultsKey:kUserInfoReadDuration] doubleValue];
 }
@@ -207,11 +226,10 @@ NSString *const kUserInfoAuthToken = @"kUserInfoAuthToken";
     
     WYNetWorkManager *netWorkManager = [[WYNetWorkManager alloc] init];
     WEAKSELF;
-    NSString *requesUrl = [[WYAPIGenerate sharedInstance] API:@"GetUserDetail"];
+    NSString *requesUrl = [[WYAPIGenerate sharedInstance] API:@"GetUserInfo"];
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
-    if ([self userID]) [params setObject:[self userID] forKey:@"uid"];
-    requesUrl = [NSString stringWithFormat:@"%@uid=%@",requesUrl,[self userID]];
-    [netWorkManager POST:requesUrl needCache:NO caCheKey:nil parameters:params responseClass:nil needHeaderAuth:YES success:^(WYRequestType requestType, NSString *message, BOOL isCache, id dataObject) {
+//    requesUrl = [NSString stringWithFormat:@"%@uid=%@",requesUrl,[self userID]];
+    [netWorkManager POST:requesUrl needCache:NO caCheKey:nil parameters:params responseClass:[LELoginModel class] needHeaderAuth:YES success:^(WYRequestType requestType, NSString *message, BOOL isCache, id dataObject) {
         
         if (requestType != WYRequestTypeSuccess) {
             if (success) {
@@ -219,9 +237,12 @@ NSString *const kUserInfoAuthToken = @"kUserInfoAuthToken";
             }
             return;
         }
-        
-        LELoginModel *loginModel = [LELoginModel modelWithJSON:dataObject];
-        [weakSelf updateUserInfoWithLoginModel:loginModel];
+        if ([dataObject isKindOfClass:[NSArray class]]) {
+            NSArray *data = (NSArray *)dataObject;
+            if (data.count > 0) {
+                [weakSelf updateUserInfoWithLoginModel:data[0]];
+            }
+        }
         [[NSNotificationCenter defaultCenter] postNotificationName:kRefreshUILoginNotificationKey object:nil];
         
 //        [[LELoginAuthManager sharedInstance] getGlobalTaskConfigRequestSuccess:^(BOOL success) {
@@ -229,7 +250,7 @@ NSString *const kUserInfoAuthToken = @"kUserInfoAuthToken";
 //        }];
         
         if (success) {
-            success(YES,dataObject);
+            success(YES, message);
         }
         
     } failure:^(id responseObject, NSError *error) {
@@ -263,7 +284,9 @@ NSString *const kUserInfoAuthToken = @"kUserInfoAuthToken";
     [LELoginUserManager setIncome:loginModel.income];
     [LELoginUserManager setTodayGolds:loginModel.todayGolds];
     [LELoginUserManager setTotalGolds:loginModel.totalGolds];
+    [LELoginUserManager setPayPassWord:loginModel.payPassWord];
     
+    [LELoginUserManager setLoginModel:loginModel];
 }
 
 + (void)clearUserInfo{
@@ -287,6 +310,9 @@ NSString *const kUserInfoAuthToken = @"kUserInfoAuthToken";
     [LELoginUserManager setIncome:0.0];
     [LELoginUserManager setTodayGolds:0];
     [LELoginUserManager setTotalGolds:0];
+    [LELoginUserManager setPayPassWord:nil];
+    
+    [LELoginUserManager setLoginModel:nil];
 }
 
 #pragma mark -

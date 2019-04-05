@@ -10,7 +10,11 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+typedef void(^LLReportSucceedViewCloseBlock)(void);
+
 @interface LLReportSucceedView : LLView
+
+@property (nonatomic, strong) LLReportSucceedViewCloseBlock closeBlock;
 
 @end
 

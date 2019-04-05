@@ -98,6 +98,8 @@ typedef NS_ENUM(NSInteger, LLPublishInputType) {
 @property (nonatomic, strong) NSString *phone;//手机号
 @property (nonatomic, strong) NSString *contacts;//联系人
 
+@property (nonatomic, strong) NSString *autograph;//签名
+
 @end
 
 NS_ASSUME_NONNULL_END

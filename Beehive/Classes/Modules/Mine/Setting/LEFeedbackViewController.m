@@ -62,17 +62,17 @@ UITextViewDelegate
     self.publishButton.enabled = NO;
     [SVProgressHUD showCustomWithStatus:nil];
     WEAKSELF;
-    NSString *requesUrl = [[WYAPIGenerate sharedInstance] API:@"SaveFeedback"];
+    NSString *requesUrl = [[WYAPIGenerate sharedInstance] API:@"ReleaseFeedBack"];
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
-    [params setObject:self.textView.text forKey:@"content"];
-//    [params setObject:[LELoginUserManager userID] forKey:@"userId"];
+    [params setObject:self.textView.text forKey:@"contents"];
+    [params setObject:self.textView.text forKey:@"title"];
     [self.networkManager POST:requesUrl needCache:NO caCheKey:nil parameters:params responseClass:nil needHeaderAuth:YES success:^(WYRequestType requestType, NSString *message, BOOL isCache, id dataObject) {
         
         self.publishButton.enabled = YES;
         if (requestType != WYRequestTypeSuccess) {
             return ;
         }
-        [SVProgressHUD showCustomInfoWithStatus:@"感谢您的反馈，我们会尽快处理"];
+        [SVProgressHUD showCustomInfoWithStatus:message];
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             [weakSelf.navigationController popViewControllerAnimated:YES];
         });

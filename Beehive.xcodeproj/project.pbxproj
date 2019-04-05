@@ -110,6 +110,9 @@
 		8D1A880F224A02F4005DD311 /* LLHomeNoticeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D1A880E224A02F4005DD311 /* LLHomeNoticeCell.m */; };
 		8D26040022566EAF0097B707 /* LLFundHistoryNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D2603FF22566EAF0097B707 /* LLFundHistoryNode.m */; };
 		8D26040322566FA50097B707 /* LLWithdrawHistoryNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D26040222566FA50097B707 /* LLWithdrawHistoryNode.m */; };
+		8D260407225720AE0097B707 /* LLSelectUserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D260405225720AE0097B707 /* LLSelectUserViewController.m */; };
+		8D260408225720AE0097B707 /* LLSelectUserViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D260406225720AE0097B707 /* LLSelectUserViewController.xib */; };
+		8D26040B22574E080097B707 /* LLPromotionExplainNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D26040A22574E080097B707 /* LLPromotionExplainNode.m */; };
 		8D3F2149222F65020066F5EB /* LLHandleStatusView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D3F2148222F65020066F5EB /* LLHandleStatusView.m */; };
 		8D3F214D222FB4FF0066F5EB /* LLImageItemViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D3F214B222FB4FF0066F5EB /* LLImageItemViewCell.m */; };
 		8D3F214E222FB4FF0066F5EB /* LLImageItemViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D3F214C222FB4FF0066F5EB /* LLImageItemViewCell.xib */; };
@@ -531,6 +534,11 @@
 		8D2603FF22566EAF0097B707 /* LLFundHistoryNode.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLFundHistoryNode.m; sourceTree = "<group>"; };
 		8D26040122566FA50097B707 /* LLWithdrawHistoryNode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLWithdrawHistoryNode.h; sourceTree = "<group>"; };
 		8D26040222566FA50097B707 /* LLWithdrawHistoryNode.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLWithdrawHistoryNode.m; sourceTree = "<group>"; };
+		8D260404225720AE0097B707 /* LLSelectUserViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLSelectUserViewController.h; sourceTree = "<group>"; };
+		8D260405225720AE0097B707 /* LLSelectUserViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLSelectUserViewController.m; sourceTree = "<group>"; };
+		8D260406225720AE0097B707 /* LLSelectUserViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LLSelectUserViewController.xib; sourceTree = "<group>"; };
+		8D26040922574E080097B707 /* LLPromotionExplainNode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLPromotionExplainNode.h; sourceTree = "<group>"; };
+		8D26040A22574E080097B707 /* LLPromotionExplainNode.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLPromotionExplainNode.m; sourceTree = "<group>"; };
 		8D3F2147222F65020066F5EB /* LLHandleStatusView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLHandleStatusView.h; sourceTree = "<group>"; };
 		8D3F2148222F65020066F5EB /* LLHandleStatusView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLHandleStatusView.m; sourceTree = "<group>"; };
 		8D3F214A222FB4FF0066F5EB /* LLImageItemViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLImageItemViewCell.h; sourceTree = "<group>"; };
@@ -1031,6 +1039,8 @@
 				8DD3993D22539BF400B8DAE2 /* LLPublishHistoryTimeNode.m */,
 				8D42DAE222559FB900914E0E /* LLCollectionListNode.h */,
 				8D42DAE322559FB900914E0E /* LLCollectionListNode.m */,
+				8D26040922574E080097B707 /* LLPromotionExplainNode.h */,
+				8D26040A22574E080097B707 /* LLPromotionExplainNode.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1943,6 +1953,9 @@
 				8DBEAE78223DF2A40095D214 /* LLFundDetailViewController.h */,
 				8DBEAE79223DF2A40095D214 /* LLFundDetailViewController.m */,
 				8DBEAE7A223DF2A40095D214 /* LLFundDetailViewController.xib */,
+				8D260404225720AE0097B707 /* LLSelectUserViewController.h */,
+				8D260405225720AE0097B707 /* LLSelectUserViewController.m */,
+				8D260406225720AE0097B707 /* LLSelectUserViewController.xib */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -2433,6 +2446,7 @@
 				8DF28F7E223E2B620074A4D8 /* LLBeeLobbyViewController.xib in Resources */,
 				8DBEAE86223DFF6B0095D214 /* LLBeePresentAffirmView.xib in Resources */,
 				8D004ED9223B813F0029EDE6 /* LLPersonalHomeHeaderView.xib in Resources */,
+				8D260408225720AE0097B707 /* LLSelectUserViewController.xib in Resources */,
 				8D58D4C32226355B00803985 /* LaunchScreen.storyboard in Resources */,
 				8DBEAE4E223CB6BD0095D214 /* LLCollectListViewController.xib in Resources */,
 				8D4C6128222D555800024840 /* LLRegisterViewController.xib in Resources */,
@@ -2697,6 +2711,7 @@
 				8D542A6B222A5BC2008B90B0 /* LEShareModel.m in Sources */,
 				8D26040022566EAF0097B707 /* LLFundHistoryNode.m in Sources */,
 				8DF28FA0223E6CC10074A4D8 /* LLSettingViewController.m in Sources */,
+				8D260407225720AE0097B707 /* LLSelectUserViewController.m in Sources */,
 				8D0E4B56223FAFC400DA2866 /* LLBeeKingAuctionHeadView.m in Sources */,
 				8D004EEF223BED150029EDE6 /* LLBuyAdViewController.m in Sources */,
 				8D79E4DC222676E20019A1BE /* LLBeeHomeViewController.m in Sources */,
@@ -2752,6 +2767,7 @@
 				8D01673E223A04F900CD21D8 /* LLCommodityExchangeconfirmView.m in Sources */,
 				8D016743223A19D700CD21D8 /* LLCommodityPurchaseSucceedView.m in Sources */,
 				8D79E4D82226748D0019A1BE /* LLBaseViewController.m in Sources */,
+				8D26040B22574E080097B707 /* LLPromotionExplainNode.m in Sources */,
 				7E561BB6223FEF6000DA3B20 /* LLPersonalInfoViewController.m in Sources */,
 				8D1A880F224A02F4005DD311 /* LLHomeNoticeCell.m in Sources */,
 				8D5F2E5B223698D90049C28F /* LLMapAddressSearchTitleView.m in Sources */,

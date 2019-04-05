@@ -14,6 +14,8 @@ typedef void(^LLMineCellSwitchBlock)(BOOL on);
 
 @interface LLMineTableViewCell : LLTableViewCell
 
+@property (nonatomic, weak) IBOutlet UILabel *labDes;
+
 @property (nonatomic, strong) LLMineCellSwitchBlock switchBlock;
 
 @end

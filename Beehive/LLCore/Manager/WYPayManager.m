@@ -176,7 +176,7 @@ static WYPayManager* wy_payManager = nil;
     
      */
     // NOTE: 如果加签成功，则继续执行支付
-    NSString *signedString = @"";
+    NSString *signedString = [dictionary objectForKey:@"BillNumber"];
     NSString *orderInfoEncoded = @"";
     if (signedString != nil) {
         //应用注册scheme,在AliSDKDemo-Info.plist定义URL types

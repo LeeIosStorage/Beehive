@@ -21,6 +21,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign) CGFloat Money;
 @property (nonatomic, assign) int Sex;
 
+@property (nonatomic, strong) NSString *Phone;
+
 @end
 
 NS_ASSUME_NONNULL_END

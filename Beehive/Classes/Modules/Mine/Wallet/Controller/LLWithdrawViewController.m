@@ -14,6 +14,10 @@
 #import "ZJPayPopupView.h"
 #import "LLPayPasswordResetViewController.h"
 #import "LELoginAuthManager.h"
+#import "LLSelectUserViewController.h"
+#import "LLPaymentWayView.h"
+#import "LEAlertMarkView.h"
+#import "WYPayManager.h"
 
 @interface LLWithdrawViewController ()
 <
@@ -28,6 +32,10 @@ ZJPayPopupViewDelegate
 @property (nonatomic, strong) LLWalletDetailsNode *walletDetailsNode;
 
 @property (nonatomic, strong) NSString *chooseMoney;
+
+@property (nonatomic, strong) LLUserInfoNode *selectUserNode;
+
+@property (nonatomic, assign) NSInteger paymentWay;
 
 @end
 
@@ -65,9 +73,10 @@ ZJPayPopupViewDelegate
         if (weakSelf.vcType == LLFundHandleVCTypeWithdraw) {
             [weakSelf payPopupViewShow];
         } else if (weakSelf.vcType == LLFundHandleVCTypeDeposit) {
-            
+            [weakSelf paymentWayViewShow];
         } else if (weakSelf.vcType == LLFundHandleVCTypePresent) {
-            [weakSelf showBeePresentAffirmView];
+//            [weakSelf showBeePresentAffirmView];
+            [weakSelf gotoSelectUserVc];
         }
     };
     self.fundHandleHeaderView.chooseAmountBlock = ^(NSString * _Nonnull money) {
@@ -92,10 +101,21 @@ ZJPayPopupViewDelegate
     [self.tableView reloadData];
 }
 
+- (void)gotoSelectUserVc {
+    LLSelectUserViewController *vc = [[LLSelectUserViewController alloc] init];
+    [self.navigationController pushViewController:vc animated:true];
+    WEAKSELF
+    vc.selectUserNodeBlock = ^(LLUserInfoNode * _Nonnull node) {
+        weakSelf.selectUserNode = node;
+        weakSelf.selectUserNode.Money = [weakSelf.chooseMoney floatValue];
+        [weakSelf showBeePresentAffirmView];
+    };
+}
+
 - (void)showBeePresentAffirmView {
     LLBeePresentAffirmView *tipView = [[[NSBundle mainBundle] loadNibNamed:@"LLBeePresentAffirmView" owner:self options:nil] firstObject];
     tipView.frame = CGRectMake(0, 0, 260, 280);
-    [tipView updateCellWithData:nil];
+    [tipView updateCellWithData:self.selectUserNode];
     __weak UIView *weakView = tipView;
     WEAKSELF
     tipView.clickBlock = ^(NSInteger index) {
@@ -104,10 +124,30 @@ ZJPayPopupViewDelegate
             [alert dismiss];
         }
         if (index == 1) {
-            
+            [weakSelf payPopupViewShow];
         }
     };
     LEAlertMarkView *alert = [[LEAlertMarkView alloc] initWithCustomView:tipView type:LEAlertMarkViewTypeCenter];
+    [alert show];
+}
+
+- (void)paymentWayViewShow {
+    [self.view endEditing:true];
+    LLPaymentWayView *tipView = [[[NSBundle mainBundle] loadNibNamed:@"LLPaymentWayView" owner:self options:nil] firstObject];
+    tipView.frame = CGRectMake(0, 0, SCREEN_WIDTH, 265);
+    tipView.wayType = LLPaymentWayTypeVIP;
+    [tipView updateCellWithData:nil];
+    __weak UIView *weakView = tipView;
+    WEAKSELF
+    tipView.paymentBlock = ^(NSInteger type) {
+        if ([weakView.superview isKindOfClass:[LEAlertMarkView class]]) {
+            LEAlertMarkView *alert = (LEAlertMarkView *)weakView.superview;
+            [alert dismiss];
+        }
+        weakSelf.paymentWay = type;
+        [weakSelf rechargeRequest];
+    };
+    LEAlertMarkView *alert = [[LEAlertMarkView alloc] initWithCustomView:tipView type:LEAlertMarkViewTypeBottom];
     [alert show];
 }
 
@@ -238,6 +278,72 @@ ZJPayPopupViewDelegate
     }];
 }
 
+- (void)giveMoneyRequestWithPwd:(NSString *)password {
+    [SVProgressHUD showCustomWithStatus:@"赠送中..."];
+    if (self.chooseMoney.length == 0) {
+        [SVProgressHUD showCustomInfoWithStatus:@"请选择金额"];
+        return;
+    }
+    WEAKSELF
+    NSString *requesUrl = [[WYAPIGenerate sharedInstance] API:@"GiveMoney"];
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    [params setObject:self.chooseMoney forKey:@"money"];
+    [params setObject:password forKey:@"payPassWord"];
+    [params setObject:self.selectUserNode.Id forKey:@"userId"];
+    [self.networkManager POST:requesUrl needCache:NO caCheKey:nil parameters:params responseClass:nil needHeaderAuth:NO success:^(WYRequestType requestType, NSString *message, BOOL isCache, id dataObject) {
+        
+        [SVProgressHUD dismiss];
+        if (requestType != WYRequestTypeSuccess) {
+            [SVProgressHUD showCustomErrorWithStatus:message];
+            return ;
+        }
+        [SVProgressHUD showCustomSuccessWithStatus:message];
+        NSDictionary *dic = nil;
+        if ([dataObject isKindOfClass:[NSArray class]]) {
+            NSArray *data = (NSArray *)dataObject;
+            if (data.count > 0) {
+                dic = data[0];
+            }
+        }
+        
+    } failure:^(id responseObject, NSError *error) {
+        [SVProgressHUD showCustomErrorWithStatus:HitoFaiNetwork];
+    }];
+}
+
+- (void)rechargeRequest {
+    [SVProgressHUD showCustomWithStatus:@"请求中..."];
+    WEAKSELF
+    NSString *requesUrl = [[WYAPIGenerate sharedInstance] API:@"Recharge"];
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    [params setObject:self.chooseMoney forKey:@"money"];
+    [params setObject:[NSNumber numberWithInteger:self.paymentWay] forKey:@"payType"];
+    [self.networkManager POST:requesUrl needCache:NO caCheKey:nil parameters:params responseClass:nil needHeaderAuth:NO success:^(WYRequestType requestType, NSString *message, BOOL isCache, id dataObject) {
+        
+        [SVProgressHUD dismiss];
+        if (requestType != WYRequestTypeSuccess) {
+            [SVProgressHUD showCustomErrorWithStatus:message];
+            return ;
+        }
+        [SVProgressHUD showCustomSuccessWithStatus:message];
+        NSDictionary *dic = nil;
+        if ([dataObject isKindOfClass:[NSArray class]]) {
+            NSArray *data = (NSArray *)dataObject;
+            if (data.count > 0) {
+                dic = data[0];
+            }
+        }
+        if (weakSelf.paymentWay == 1) {
+            [[WYPayManager shareInstance] payForWinxinWith:dic];
+        } else if (weakSelf.paymentWay == 2) {
+            [[WYPayManager shareInstance] payForAlipayWith:dic];
+        }
+        
+    } failure:^(id responseObject, NSError *error) {
+        [SVProgressHUD showCustomErrorWithStatus:HitoFaiNetwork];
+    }];
+}
+
 #pragma mark - set
 - (LLFundHandleHeaderView *)fundHandleHeaderView {
     if (!_fundHandleHeaderView) {
@@ -256,7 +362,11 @@ ZJPayPopupViewDelegate
 - (void)didPasswordInputFinished:(NSString *)password
 {
     [self.payPopupView hidePayPopView];
-    [self cashWithdrawalRequestPwd:password];
+    if (self.vcType == LLFundHandleVCTypeWithdraw) {
+        [self cashWithdrawalRequestPwd:password];
+    } else if (self.vcType == LLFundHandleVCTypePresent) {
+        [self giveMoneyRequestWithPwd:password];
+    }
 }
 
 #pragma mark - Table view data source

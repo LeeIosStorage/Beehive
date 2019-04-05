@@ -14,6 +14,7 @@
 #import "LEFeedbackViewController.h"
 #import "LLLoginPasswordResetViewController.h"
 #import "LLAmendPhoneViewController.h"
+#import "UIImageView+WebCache.h"
 
 @interface LLSettingViewController ()
 <
@@ -27,6 +28,8 @@ UITableViewDataSource
 @property (nonatomic, strong) UIView *footerView;
 @property (nonatomic, strong) UIButton *saveButton;
 
+@property (assign, nonatomic) unsigned long long cacheSize;
+
 @end
 
 @implementation LLSettingViewController
@@ -35,6 +38,7 @@ UITableViewDataSource
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     [self setup];
+    [self getCacheSize];
 }
 
 #pragma mark -
@@ -87,6 +91,25 @@ UITableViewDataSource
     [self.tableView reloadData];
 }
 
+- (void)getCacheSize{
+    //获取缓存文件大小
+    self.cacheSize = UINT64_MAX;
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        unsigned long long size = 0;
+        size += [[SDImageCache sharedImageCache] getSize];
+        //        NSUInteger memorySize = [YYWebImageManager sharedManager].cache.memoryCache.totalCost;
+        //        size += memorySize;
+        NSUInteger diskSize = [YYWebImageManager sharedManager].cache.diskCache.totalCost;
+        size += diskSize;
+        
+        WEAKSELF;
+        dispatch_async(dispatch_get_main_queue(), ^{
+            weakSelf.cacheSize = size;
+            [weakSelf.tableView reloadData];
+        });
+    });
+}
+
 - (void)quitAction:(id)sender {
     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"提示" message:@"确定退出登录么?" preferredStyle:UIAlertControllerStyleAlert];
     WEAKSELF
@@ -105,6 +128,25 @@ UITableViewDataSource
 
 - (void)switchRedRound:(BOOL)on {
     LELog(@"-----------%d",on);
+}
+
+- (void)clearCacheAction{
+    
+    [SVProgressHUD setDefaultAnimationType:SVProgressHUDAnimationTypeFlat];
+    [SVProgressHUD showCustomWithStatus:nil];
+    
+    [[YYWebImageManager sharedManager].cache.memoryCache removeAllObjects];
+    [[YYWebImageManager sharedManager].cache.diskCache removeAllObjects];
+    [[SDImageCache sharedImageCache] clearMemory];
+    WEAKSELF;
+    [[SDImageCache sharedImageCache] clearDiskOnCompletion:^{
+        
+        [SVProgressHUD setCurrentDefaultStyle];
+        [SVProgressHUD showCustomInfoWithStatus:@"缓存已清空"];
+        weakSelf.cacheSize = 0;
+        [weakSelf.tableView reloadData];
+    }];
+    
 }
 
 #pragma mark - Request
@@ -224,7 +266,21 @@ UITableViewDataSource
         [weakSelf switchRedRound:on];
     };
     NSArray *array = self.dataLists[indexPath.section];
-    [cell updateCellWithData:array[indexPath.row]];
+    LLMineNode *mineNode = array[indexPath.row];
+    [cell updateCellWithData:mineNode];
+    if (mineNode.vcType == LLMineNodeTypeSetClearCache) {
+        if (self.cacheSize != UINT64_MAX) {
+            NSString* cacheSizeStr = @"";
+            if (self.cacheSize > 1024*1024*1024) {
+                cacheSizeStr = [NSString stringWithFormat:@"%.2f GB", self.cacheSize*1.0/(1024*1024*1024)];
+            } else {
+                cacheSizeStr = [NSString stringWithFormat:@"%.2f MB", self.cacheSize*1.0/(1024*1024)];
+            }
+            cell.labDes.text = cacheSizeStr;
+        }else{
+            cell.labDes.text = @"正在计算...";
+        }
+    }
     return cell;
 }
 
@@ -266,7 +322,7 @@ UITableViewDataSource
         }
             break;
         case LLMineNodeTypeSetClearCache: {
-            
+            [self clearCacheAction];
         }
             break;
         case LLMineNodeTypeSetVersion: {

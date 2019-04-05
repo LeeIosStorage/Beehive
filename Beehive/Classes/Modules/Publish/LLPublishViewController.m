@@ -476,7 +476,8 @@ UITableViewDataSource
     WEAKSELF
     NSString *requesUrl = [[WYAPIGenerate sharedInstance] API:@"GetDataInfo"];
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
-    [self.networkManager POST:requesUrl needCache:NO caCheKey:nil parameters:params responseClass:nil needHeaderAuth:NO success:^(WYRequestType requestType, NSString *message, BOOL isCache, id dataObject) {
+    NSString *caCheKey = @"GetDataInfo";
+    [self.networkManager POST:requesUrl needCache:YES caCheKey:caCheKey parameters:params responseClass:nil needHeaderAuth:NO success:^(WYRequestType requestType, NSString *message, BOOL isCache, id dataObject) {
         
 //        [SVProgressHUD dismiss];
 //        if (requestType != WYRequestTypeSuccess) {

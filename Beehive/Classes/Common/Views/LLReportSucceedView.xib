@@ -35,7 +35,7 @@
                     <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0oo-Sb-cNb">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0oo-Sb-cNb">
                     <rect key="frame" x="0.0" y="302" width="230" height="45"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="45" id="vYG-a4-QfS"/>
@@ -44,6 +44,9 @@
                     <state key="normal" title="关闭">
                         <color key="titleColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                     </state>
+                    <connections>
+                        <action selector="closeAction:" destination="PCd-rj-fSr" eventType="touchUpInside" id="x9f-wK-Gin"/>
+                    </connections>
                 </button>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="QWd-XV-noV">
                     <rect key="frame" x="0.0" y="301.5" width="230" height="0.5"/>

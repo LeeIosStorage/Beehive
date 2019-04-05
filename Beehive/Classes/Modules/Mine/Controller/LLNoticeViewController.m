@@ -8,6 +8,7 @@
 
 #import "LLNoticeViewController.h"
 #import "LLRedRuleViewController.h"
+#import "LLNoticeNode.h"
 
 @interface LLNoticeViewController ()
 <
@@ -19,6 +20,8 @@ UITableViewDataSource
 
 @property (nonatomic, strong) NSMutableArray *dataLists;
 
+@property (assign, nonatomic) int nextCursor;
+
 @end
 
 @implementation LLNoticeViewController
@@ -27,7 +30,6 @@ UITableViewDataSource
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     [self setup];
-    [self refreshData];
 }
 
 - (void)setup {
@@ -39,24 +41,98 @@ UITableViewDataSource
     
 //    self.dataLists = [NSMutableArray array];
 //    [self.tableView reloadData];
+    
+    self.nextCursor = 1;
+    [self addMJ];
 }
 
-- (void)refreshData {
-    self.dataLists = [NSMutableArray array];
-    [self.dataLists addObject:@"公告？"];
-    [self.dataLists addObject:@"公告？"];
-    [self.dataLists addObject:@"公告？"];
-    [self.dataLists addObject:@"如何获得抽奖机会？"];
+#pragma mark - mj
+- (void)addMJ {
+    //下拉刷新
+    WEAKSELF;
+    self.tableView.mj_header = [LERefreshHeader headerWithRefreshingBlock:^{
+        weakSelf.nextCursor = 1;
+        [weakSelf getSystemMessageList];
+    }];
+    [self.tableView.mj_header beginRefreshing];
     
-    if (self.vcType == LLNoticeVcTypeHelp) {
-        self.dataLists = [NSMutableArray array];
-        [self.dataLists addObject:@"如何获得抽奖机会？"];
-        [self.dataLists addObject:@"如何获得抽奖机会？"];
-        [self.dataLists addObject:@"如何获得抽奖机会？"];
-        [self.dataLists addObject:@"如何获得抽奖机会？"];
-    }
+    //上啦加载
+    self.tableView.mj_footer = [LERefreshFooter footerWithRefreshingBlock:^{
+        [weakSelf getSystemMessageList];
+    }];
+    self.tableView.mj_footer.hidden = YES;
     
-    [self.tableView reloadData];
+}
+
+#pragma mark - Request
+- (void)getSystemMessageList {
+    WEAKSELF
+    NSString *requesUrl = [[WYAPIGenerate sharedInstance] API:@"GetSystemMessageList"];
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    [params setObject:[NSNumber numberWithInteger:self.nextCursor] forKey:@"pageIndex"];
+    [params setObject:[NSNumber numberWithInteger:DATA_LOAD_PAGESIZE_COUNT] forKey:@"pageSize"];
+    [params setObject:[NSNumber numberWithInt:self.vcType + 1] forKey:@"type"];
+    
+    NSString *caCheKey = [NSString stringWithFormat:@"GetSystemMessageList-%ld", self.vcType + 1];
+    BOOL needCache = false;
+    if (self.nextCursor == 1) needCache = true;
+    [self.networkManager POST:requesUrl needCache:needCache caCheKey:caCheKey parameters:params responseClass:[LLNoticeNode class] needHeaderAuth:NO success:^(WYRequestType requestType, NSString *message, BOOL isCache, id dataObject) {
+        
+        [weakSelf.tableView.mj_header endRefreshing];
+        [weakSelf.tableView.mj_footer endRefreshing];
+        
+        if (requestType != WYRequestTypeSuccess) {
+            [SVProgressHUD showCustomErrorWithStatus:message];
+            return ;
+        }
+        
+        NSArray *tmpListArray = [NSArray array];
+        if ([dataObject isKindOfClass:[NSArray class]]) {
+            tmpListArray = (NSArray *)dataObject;
+        }
+        if (weakSelf.nextCursor == 1) {
+            weakSelf.dataLists = [NSMutableArray array];
+        }
+        [weakSelf.dataLists addObjectsFromArray:tmpListArray];
+        
+        if (!isCache) {
+            if (tmpListArray.count < DATA_LOAD_PAGESIZE_COUNT) {
+                [weakSelf.tableView.mj_footer setHidden:YES];
+            }else{
+                [weakSelf.tableView.mj_footer setHidden:NO];
+                weakSelf.nextCursor ++;
+            }
+        }
+        
+        [weakSelf.tableView reloadData];
+        
+    } failure:^(id responseObject, NSError *error) {
+        [SVProgressHUD showCustomErrorWithStatus:HitoFaiNetwork];
+        [weakSelf.tableView.mj_header endRefreshing];
+        [weakSelf.tableView.mj_footer endRefreshing];
+    }];
+}
+
+- (void)getSystemNoticeDetail:(NSString *)Id {
+    WEAKSELF
+    NSString *requesUrl = [[WYAPIGenerate sharedInstance] API:@"GetSystemNoticeDetail"];
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    [params setObject:Id forKey:@"id"];
+    [self.networkManager POST:requesUrl needCache:NO caCheKey:nil parameters:params responseClass:nil needHeaderAuth:NO success:^(WYRequestType requestType, NSString *message, BOOL isCache, id dataObject) {
+        
+        if (requestType != WYRequestTypeSuccess) {
+            [SVProgressHUD showCustomErrorWithStatus:message];
+            return ;
+        }
+        
+        NSArray *tmpListArray = [NSArray array];
+        if ([dataObject isKindOfClass:[NSArray class]]) {
+            tmpListArray = (NSArray *)dataObject;
+        }
+        
+    } failure:^(id responseObject, NSError *error) {
+        [SVProgressHUD showCustomErrorWithStatus:HitoFaiNetwork];
+    }];
 }
 
 #pragma mark - Table view data source
@@ -107,9 +183,9 @@ static int label_tag = 201;
         }];
         
     }
-    NSString *title = self.dataLists[indexPath.row];
+    LLNoticeNode *node = self.dataLists[indexPath.row];
     UILabel *lable = (UILabel *)[cell.contentView viewWithTag:label_tag];
-    lable.text = title;
+    lable.text = node.Summary;
     return cell;
 }
 
@@ -117,12 +193,17 @@ static int label_tag = 201;
 {
     NSIndexPath* selIndexPath = [tableView indexPathForSelectedRow];
     [tableView deselectRowAtIndexPath:selIndexPath animated:YES];
-    NSString *title = self.dataLists[indexPath.row];
+    LLNoticeNode *node = self.dataLists[indexPath.row];
     
     LLRedRuleViewController *vc = [[LLRedRuleViewController alloc] init];
     vc.vcType = LLInfoDetailsVcTypeNotice;
-    vc.text = title;
+    vc.text = node.Contents;
     [self.navigationController pushViewController:vc animated:true];
+    
+    //阅读公告
+    if (self.vcType == LLNoticeVcTypeNotice && node.IsRead == false) {
+        [self getSystemNoticeDetail:node.Id];
+    }
 }
 
 @end

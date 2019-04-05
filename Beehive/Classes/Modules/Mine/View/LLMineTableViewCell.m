@@ -14,7 +14,6 @@
 @property (nonatomic, weak) IBOutlet UIImageView *imgIcon;
 @property (nonatomic, weak) IBOutlet NSLayoutConstraint *imgIconConstraintL;
 @property (nonatomic, weak) IBOutlet UILabel *labTitle;
-@property (nonatomic, weak) IBOutlet UILabel *labDes;
 @property (nonatomic, weak) IBOutlet UIImageView *imgRight;
 @property (nonatomic, weak) IBOutlet UISwitch *rightSwitch;
 

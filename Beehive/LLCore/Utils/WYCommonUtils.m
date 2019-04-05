@@ -79,10 +79,10 @@
     //        paragraphStyle.alignment = NSTextAlignmentJustified;
     //        [mutAttributedString addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0, mutAttributedString.length)];
     [mutAttributedString addAttribute:NSFontAttributeName
-                                value:[FontConst PingFangSCRegularWithSize:13]
+                                value:font
                                 range:NSMakeRange(0, mutAttributedString.length)];
     [mutAttributedString addAttribute:NSForegroundColorAttributeName
-                                value:kAppTitleColor
+                                value:color
                                 range:NSMakeRange(0, mutAttributedString.length)];
     return mutAttributedString;
 }

@@ -7,6 +7,7 @@
 //
 
 #import "LLBeePresentAffirmView.h"
+#import "LLUserInfoNode.h"
 
 @interface LLBeePresentAffirmView ()
 
@@ -36,10 +37,13 @@
 }
 
 - (void)updateCellWithData:(id)node {
-    [WYCommonUtils setImageWithURL:[NSURL URLWithString:kLLAppTestHttpURL] setImage:self.avatarImageView setbitmapImage:nil];
-    self.nickNameLabel.text = @"郑和";
+    LLUserInfoNode *someNode = (LLUserInfoNode *)node;
     
-    NSString *beeStr = [NSString stringWithFormat:@"赠送蜂蜜：¥ %@",@"100.00"];
+    [WYCommonUtils setImageWithURL:[NSURL URLWithString:someNode.HeadImg] setImage:self.avatarImageView setbitmapImage:nil];
+    self.nickNameLabel.text = someNode.UserName;
+    self.phoneLabel.text = someNode.Phone;
+    
+    NSString *beeStr = [NSString stringWithFormat:@"赠送蜂蜜：¥ %.0f",someNode.Money];
     self.beeLabel.attributedText = [WYCommonUtils stringToColorAndFontAttributeString:beeStr range:NSMakeRange(0, 5) font:[FontConst PingFangSCRegularWithSize:13] color:kAppTitleColor];
     
 }

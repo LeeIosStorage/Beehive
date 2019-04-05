@@ -16,6 +16,8 @@ typedef void(^LELoginUserInfoBlock)(BOOL isSuccess, NSString *message);
 
 #pragma mark -
 #pragma mark - User Base info
++ (LELoginModel *)loginModel;
+
 + (NSString *)userID;
 + (void)setUserID:(NSString *)userID;
 
@@ -57,6 +59,9 @@ typedef void(^LELoginUserInfoBlock)(BOOL isSuccess, NSString *message);
 
 + (NSString *)invitationCode;
 + (void)setInvitationCode:(NSString *)invitationCode;
+
++ (NSString *)payPassWord;
++ (void)setPayPassWord:(NSString *)payPassWord;
 
 + (double)readDuration;
 + (void)setReadDuration:(double)readDuration;

@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
-        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -98,23 +97,22 @@
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
-                        <constraint firstItem="YWJ-Na-yIg" firstAttribute="leading" secondItem="rUA-Ft-Dld" secondAttribute="leading" id="9jg-tT-Sec"/>
-                        <constraint firstItem="fmB-Pl-EhG" firstAttribute="top" secondItem="rUA-Ft-Dld" secondAttribute="top" id="9uh-sx-EN4"/>
+                        <constraint firstItem="YWJ-Na-yIg" firstAttribute="leading" secondItem="and-pg-Ozz" secondAttribute="leading" id="9jg-tT-Sec"/>
+                        <constraint firstItem="fmB-Pl-EhG" firstAttribute="top" secondItem="and-pg-Ozz" secondAttribute="top" id="9uh-sx-EN4"/>
                         <constraint firstItem="XEa-bD-XxC" firstAttribute="width" secondItem="and-pg-Ozz" secondAttribute="width" multiplier="0.5" id="FJH-K0-CsU"/>
-                        <constraint firstItem="rUA-Ft-Dld" firstAttribute="bottom" secondItem="Ezb-xk-fqK" secondAttribute="bottom" id="Fy8-8t-HH0"/>
+                        <constraint firstAttribute="bottom" secondItem="Ezb-xk-fqK" secondAttribute="bottom" id="Fy8-8t-HH0"/>
                         <constraint firstItem="fmB-Pl-EhG" firstAttribute="leading" secondItem="XEa-bD-XxC" secondAttribute="trailing" id="Iag-Rr-oPD"/>
                         <constraint firstAttribute="height" constant="48" id="Inr-Q6-uQl"/>
-                        <constraint firstItem="XEa-bD-XxC" firstAttribute="leading" secondItem="rUA-Ft-Dld" secondAttribute="leading" id="LCu-vk-SVc"/>
-                        <constraint firstItem="rUA-Ft-Dld" firstAttribute="bottom" secondItem="XEa-bD-XxC" secondAttribute="bottom" id="LfP-Zh-jC2"/>
+                        <constraint firstItem="XEa-bD-XxC" firstAttribute="leading" secondItem="and-pg-Ozz" secondAttribute="leading" id="LCu-vk-SVc"/>
+                        <constraint firstAttribute="bottom" secondItem="XEa-bD-XxC" secondAttribute="bottom" id="LfP-Zh-jC2"/>
                         <constraint firstItem="YWJ-Na-yIg" firstAttribute="top" secondItem="and-pg-Ozz" secondAttribute="top" id="Qle-Mc-Apv"/>
-                        <constraint firstItem="fmB-Pl-EhG" firstAttribute="bottom" secondItem="rUA-Ft-Dld" secondAttribute="bottom" id="aw8-jx-QPL"/>
-                        <constraint firstItem="XEa-bD-XxC" firstAttribute="top" secondItem="rUA-Ft-Dld" secondAttribute="top" id="eTg-ml-UOW"/>
+                        <constraint firstItem="fmB-Pl-EhG" firstAttribute="bottom" secondItem="and-pg-Ozz" secondAttribute="bottom" id="aw8-jx-QPL"/>
+                        <constraint firstItem="XEa-bD-XxC" firstAttribute="top" secondItem="and-pg-Ozz" secondAttribute="top" id="eTg-ml-UOW"/>
                         <constraint firstItem="Ezb-xk-fqK" firstAttribute="top" secondItem="YWJ-Na-yIg" secondAttribute="bottom" id="fjE-xN-qD1"/>
-                        <constraint firstItem="rUA-Ft-Dld" firstAttribute="trailing" secondItem="fmB-Pl-EhG" secondAttribute="trailing" id="iFT-cz-Ja9"/>
-                        <constraint firstItem="rUA-Ft-Dld" firstAttribute="trailing" secondItem="YWJ-Na-yIg" secondAttribute="trailing" id="sqo-ri-Wob"/>
+                        <constraint firstAttribute="trailing" secondItem="fmB-Pl-EhG" secondAttribute="trailing" id="iFT-cz-Ja9"/>
+                        <constraint firstAttribute="trailing" secondItem="YWJ-Na-yIg" secondAttribute="trailing" id="sqo-ri-Wob"/>
                         <constraint firstItem="Ezb-xk-fqK" firstAttribute="centerX" secondItem="and-pg-Ozz" secondAttribute="centerX" id="yjH-I0-2Cc"/>
                     </constraints>
-                    <viewLayoutGuide key="safeArea" id="rUA-Ft-Dld"/>
                 </view>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -123,17 +121,16 @@
                 <constraint firstItem="w2Z-h3-TO2" firstAttribute="centerX" secondItem="xHB-Xp-yix" secondAttribute="centerX" id="EAO-tI-ZTv"/>
                 <constraint firstItem="h3O-7y-aNg" firstAttribute="centerX" secondItem="w2Z-h3-TO2" secondAttribute="centerX" id="Jkd-4S-zRw"/>
                 <constraint firstAttribute="trailing" secondItem="and-pg-Ozz" secondAttribute="trailing" id="LUl-V0-ADn"/>
-                <constraint firstItem="T2f-dD-Idr" firstAttribute="trailing" secondItem="KF4-cy-oVR" secondAttribute="trailing" constant="30" id="VfV-Te-Hd9"/>
+                <constraint firstAttribute="trailing" secondItem="KF4-cy-oVR" secondAttribute="trailing" constant="30" id="VfV-Te-Hd9"/>
                 <constraint firstItem="I6d-JH-K0t" firstAttribute="top" secondItem="h3O-7y-aNg" secondAttribute="bottom" constant="2" id="hwG-mx-Za8"/>
                 <constraint firstItem="KF4-cy-oVR" firstAttribute="top" secondItem="I6d-JH-K0t" secondAttribute="bottom" constant="25" id="jrp-7Q-ieP"/>
                 <constraint firstItem="I6d-JH-K0t" firstAttribute="centerX" secondItem="h3O-7y-aNg" secondAttribute="centerX" id="pNc-eS-6td"/>
                 <constraint firstItem="and-pg-Ozz" firstAttribute="leading" secondItem="xHB-Xp-yix" secondAttribute="leading" id="pR2-CP-nzz"/>
-                <constraint firstItem="KF4-cy-oVR" firstAttribute="leading" secondItem="T2f-dD-Idr" secondAttribute="leading" constant="30" id="qDc-Oh-tRO"/>
+                <constraint firstItem="KF4-cy-oVR" firstAttribute="leading" secondItem="xHB-Xp-yix" secondAttribute="leading" constant="30" id="qDc-Oh-tRO"/>
                 <constraint firstItem="and-pg-Ozz" firstAttribute="top" secondItem="KF4-cy-oVR" secondAttribute="bottom" constant="33" id="sd9-AK-8hw"/>
-                <constraint firstItem="w2Z-h3-TO2" firstAttribute="top" secondItem="T2f-dD-Idr" secondAttribute="top" constant="25" id="xOP-NZ-1dL"/>
+                <constraint firstItem="w2Z-h3-TO2" firstAttribute="top" secondItem="xHB-Xp-yix" secondAttribute="top" constant="25" id="xOP-NZ-1dL"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <viewLayoutGuide key="safeArea" id="T2f-dD-Idr"/>
             <userDefinedRuntimeAttributes>
                 <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
                 <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
