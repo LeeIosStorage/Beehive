@@ -12,6 +12,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface LLPricingTableViewCell : LLTableViewCell
 
+@property (nonatomic, weak) IBOutlet UIButton *buyButton;
+
 @end
 
 NS_ASSUME_NONNULL_END

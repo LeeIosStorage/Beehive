@@ -112,6 +112,7 @@
             <viewLayoutGuide key="safeArea" id="5FN-5l-Mgh"/>
             <connections>
                 <outlet property="labPrice" destination="Lp1-wQ-HLy" id="RZf-6L-jXY"/>
+                <outlet property="labTipDes" destination="r1a-2N-M5V" id="tCj-Qe-lGl"/>
                 <outlet property="textField" destination="NLQ-9m-en3" id="4ZG-Gt-Ay5"/>
             </connections>
             <point key="canvasLocation" x="151" y="-137"/>

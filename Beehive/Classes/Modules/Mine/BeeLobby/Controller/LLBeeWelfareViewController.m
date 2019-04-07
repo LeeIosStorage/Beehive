@@ -25,6 +25,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     [self setup];
+    [self getQueenWelfareExplain];
 }
 
 - (void)setup {
@@ -37,6 +38,43 @@
     
     CGFloat height = [self.viewContent systemLayoutSizeFittingSize:UILayoutFittingCompressedSize].height;
     self.viewContentH.constant = height;
+}
+
+- (void)refreshData {
+    
+}
+
+- (void)getQueenWelfareExplain {
+    [SVProgressHUD showCustomWithStatus:@"请求中..."];
+    WEAKSELF
+    NSString *requesUrl = [[WYAPIGenerate sharedInstance] API:@"GetQueenWelfareExplain"];
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    NSString *caCheKey = @"GetQueenWelfareExplain";
+    [self.networkManager POST:requesUrl needCache:YES caCheKey:caCheKey parameters:params responseClass:nil needHeaderAuth:NO success:^(WYRequestType requestType, NSString *message, BOOL isCache, id dataObject) {
+        
+        [SVProgressHUD dismiss];
+        if (requestType != WYRequestTypeSuccess) {
+            [SVProgressHUD showCustomErrorWithStatus:message];
+            return ;
+        }
+        
+        if ([dataObject isKindOfClass:[NSArray class]]) {
+            NSArray *data = (NSArray *)dataObject;
+            if (data.count > 0) {
+                NSDictionary *dic = data[0];
+                NSString *welfareOne = dic[@"WelfareOne"];
+                NSString *welfareTwo = dic[@"WelfareTwo"];
+                NSString *welfareThree = dic[@"WelfareThree"];
+                weakSelf.labDes1.attributedText = [WYCommonUtils HTMLStringToColorAndFontAttributeString:welfareOne font:[FontConst PingFangSCRegularWithSize:13] color:kAppTitleColor];
+                weakSelf.labDes2.attributedText = [WYCommonUtils HTMLStringToColorAndFontAttributeString:welfareTwo font:[FontConst PingFangSCRegularWithSize:13] color:kAppTitleColor];
+                weakSelf.labDes3.attributedText = [WYCommonUtils HTMLStringToColorAndFontAttributeString:welfareThree font:[FontConst PingFangSCRegularWithSize:13] color:kAppTitleColor];
+            }
+        }
+//        [weakSelf refreshData];
+        
+    } failure:^(id responseObject, NSError *error) {
+        [SVProgressHUD showCustomErrorWithStatus:HitoFaiNetwork];
+    }];
 }
 
 @end

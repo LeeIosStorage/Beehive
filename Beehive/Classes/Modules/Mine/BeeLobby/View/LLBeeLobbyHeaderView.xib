@@ -35,8 +35,8 @@
                                 </userDefinedRuntimeAttribute>
                             </userDefinedRuntimeAttributes>
                         </imageView>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="蜂王总收益" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h9N-u2-ZYr">
-                            <rect key="frame" x="85" y="71" width="66.5" height="16"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="我的蜂王总收益" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h9N-u2-ZYr">
+                            <rect key="frame" x="85" y="71" width="93" height="16"/>
                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <nil key="highlightedColor"/>
@@ -47,12 +47,12 @@
                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Asb-jQ-G9B">
+                        <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Asb-jQ-G9B">
                             <rect key="frame" x="300" y="76.5" width="50" height="27"/>
                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                             <state key="normal" title="查看详情"/>
                         </button>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="5_7_1.1" translatesAutoresizingMaskIntoConstraints="NO" id="6lY-7P-5oa">
+                        <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="5_7_1.1" translatesAutoresizingMaskIntoConstraints="NO" id="6lY-7P-5oa">
                             <rect key="frame" x="355" y="85" width="10" height="10"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="10" id="Dc4-nE-iah"/>
@@ -197,6 +197,7 @@
             <viewLayoutGuide key="safeArea" id="Do3-Ki-rD6"/>
             <connections>
                 <outlet property="avatarImageView" destination="RNQ-m3-OmP" id="fXZ-1h-eai"/>
+                <outlet property="moneyLabel" destination="g7L-BC-SQc" id="Gkb-Ca-tBq"/>
             </connections>
             <point key="canvasLocation" x="138.40000000000001" y="1.7991004497751126"/>
         </view>

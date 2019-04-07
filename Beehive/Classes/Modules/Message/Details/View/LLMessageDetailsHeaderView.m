@@ -65,6 +65,13 @@ SDCycleScrollViewDelegate
     
     [WYCommonUtils setImageWithURL:[NSURL URLWithString:self.messageListNode.HeadImg] setImage:self.avatarImageView setbitmapImage:nil];
     self.signLabel.text = self.messageListNode.Autograph;
+    
+    UIImage *sexImage = [UIImage imageNamed:@"user_sex_man"];
+    if (self.messageListNode.Sex == 1) {
+        sexImage = [UIImage imageNamed:@"user_sex_woman"];
+    }
+    self.sexImageView.image = sexImage;
+    
     self.contentLabel.text = self.messageListNode.Title;
     
     self.timeLabel.text = [WYCommonUtils dateDiscriptionFromNowBk:[WYCommonUtils dateFromUSDateString:self.messageListNode.AddTime]];

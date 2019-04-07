@@ -390,4 +390,74 @@
         "module"  : "QueenBeeService.asmx",
         "action"  : "GetUserRankList"
     },
+    "GetQueenBeeeExplain": {
+        "protocol": "http",
+        "module"  : "QueenBeeService.asmx",
+        "action"  : "GetQueenBeeeExplain"
+    },
+    "GetAdvertInfo": {
+        "protocol": "http",
+        "module"  : "QueenBeeService.asmx",
+        "action"  : "GetAdvertInfo"
+    },
+    "GetQueenBeeInfo": {
+        "protocol": "http",
+        "module"  : "QueenBeeService.asmx",
+        "action"  : "GetQueenBeeInfo"
+    },
+    "BuyAdvert": {
+        "protocol": "http",
+        "module"  : "QueenBeeService.asmx",
+        "action"  : "BuyAdvert"
+    },
+    "ReleaseAdvertis": {
+        "protocol": "http",
+        "module"  : "QueenBeeService.asmx",
+        "action"  : "ReleaseAdvertis"
+    },
+    "UpdateAdvert": {
+        "protocol": "http",
+        "module"  : "QueenBeeService.asmx",
+        "action"  : "UpdateAdvert"
+    },
+    "DeleteAdvert": {
+        "protocol": "http",
+        "module"  : "QueenBeeService.asmx",
+        "action"  : "DeleteAdvert"
+    },
+    "GetAllAreaList": {
+        "protocol": "http",
+        "module"  : "QueenBeeService.asmx",
+        "action"  : "GetAllAreaList"
+    },
+    "GetQueenList": {
+        "protocol": "http",
+        "module"  : "QueenBeeService.asmx",
+        "action"  : "GetQueenList"
+    },
+    "GetBidQueenList": {
+        "protocol": "http",
+        "module"  : "QueenBeeService.asmx",
+        "action"  : "GetBidQueenList"
+    },
+    "BuyQueenBee": {
+        "protocol": "http",
+        "module"  : "QueenBeeService.asmx",
+        "action"  : "BuyQueenBee"
+    },
+    "BidPriceQueenBee": {
+        "protocol": "http",
+        "module"  : "QueenBeeService.asmx",
+        "action"  : "BidPriceQueenBee"
+    },
+    "AddImgUrl": {
+        "protocol": "http",
+        "module"  : "QueenBeeService.asmx",
+        "action"  : "AddImgUrl"
+    },
+    "GetQueenWelfareExplain": {
+        "protocol": "http",
+        "module"  : "QueenBeeService.asmx",
+        "action"  : "GetQueenWelfareExplain"
+    },
 }

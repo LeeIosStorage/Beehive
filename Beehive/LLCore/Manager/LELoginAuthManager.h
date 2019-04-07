@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <UMSocialCore/UMSocialCore.h>
 #import "WYNetWorkManager.h"
-//#import "LETaskListModel.h"
+#import "LLAreaNode.h"
 
 typedef void(^LoginAuthBindingSuccessBlock)(BOOL success, NSDictionary *result);
 typedef void(^LERequestStatusBlock)(BOOL success);
@@ -19,12 +19,17 @@ typedef void(^LERequestStatusBlock)(BOOL success);
 @property (strong, nonatomic) NSMutableArray *taskList;
 @property (strong, nonatomic) NSDictionary *globalTaskConfig;
 
+@property (strong, nonatomic) NSMutableArray *allAreaList;
+
 @property (assign, nonatomic) BOOL isInReviewVersion;
 
 + (LELoginAuthManager *)sharedInstance;
 
 //微信授权绑定
 - (void)socialAuthBinding:(UMSocialPlatformType)loginType presentingController:(UIViewController *)presentingController success:(LoginAuthBindingSuccessBlock)success;
+
+//三级联动区域 数据请求
+- (void)refreshAllAreaList;
 
 /*********
 //任务配置信息

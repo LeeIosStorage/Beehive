@@ -7,6 +7,7 @@
 //
 
 #import "LLBeeKingIntroViewController.h"
+#import "LLBeeKingViewController.h"
 
 @interface LLBeeKingIntroViewController ()
 
@@ -32,6 +33,12 @@
     self.labDes2.text = @"成功推荐他人购买广告位";
     self.labDes3.text = @"1. 格子店铺收益\n2. 格子店铺收益";
     self.labDes4.text = @"除上述收益外，平台将创造更多收益渠道和形式，为蜂王打造“家人级”服务。优秀蜂王有机会获得蜂巢APP平台收益和股权！";
+}
+
+- (IBAction)beeKingAction:(id)sender {
+    LLBeeKingViewController *vc = [[LLBeeKingViewController alloc] init];
+    vc.currentPage = 1;
+    [self.navigationController pushViewController:vc animated:true];
 }
 
 @end

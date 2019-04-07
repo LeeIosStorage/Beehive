@@ -12,6 +12,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface LLRedReceiveUserTableViewCell : LLTableViewCell
 
+@property (nonatomic, weak) IBOutlet UILabel *moneyLabel;
+
 - (void)updateUserCellWithData:(id)node;
 
 @end

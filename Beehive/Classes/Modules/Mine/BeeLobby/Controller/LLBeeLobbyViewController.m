@@ -13,6 +13,7 @@
 #import "LEWebViewController.h"
 #import "LLBeeWelfareViewController.h"
 #import "LLAdsBidViewController.h"
+#import "LLQueenBeeInfoNode.h"
 
 @interface LLBeeLobbyViewController ()
 <
@@ -24,6 +25,7 @@ UITableViewDataSource
 
 @property (nonatomic, weak) IBOutlet UITableView *tableView;
 
+@property (nonatomic, strong) LLQueenBeeInfoNode *queenBeeInfoNode;
 @property (nonatomic, strong) LLBeeLobbyHeaderView *beeLobbyHeaderView;
 
 @end
@@ -35,6 +37,7 @@ UITableViewDataSource
     // Do any additional setup after loading the view from its nib.
     [self setup];
     [self refreshData];
+    [self getQueenBeeInfo];
 }
 
 - (void)setup {
@@ -57,6 +60,7 @@ UITableViewDataSource
     WEAKSELF
     self.beeLobbyHeaderView.beeKingBlock = ^{
         LLBeeKingViewController *vc = [[LLBeeKingViewController alloc] init];
+        vc.currentPage = 1;
         [weakSelf.navigationController pushViewController:vc animated:true];
     };
     self.beeLobbyHeaderView.handleBlock = ^(NSInteger index) {
@@ -72,16 +76,13 @@ UITableViewDataSource
 
 - (void)refreshData {
     
-    [self.beeLobbyHeaderView updateHeadViewWithData:nil];
+    [self.beeLobbyHeaderView updateHeadViewWithData:self.queenBeeInfoNode];
     
     LLBeeLobbyHeaderView *headView = (LLBeeLobbyHeaderView *)self.tableView.tableHeaderView;
     [self.tableView layoutIfNeeded];
     self.tableView.tableHeaderView = headView;
     
-    self.dataLists = [NSMutableArray array];
-    [self.dataLists addObject:@"1111"];
-    [self.dataLists addObject:@"1111"];
-    [self.dataLists addObject:@"1111"];
+    self.dataLists = [NSMutableArray arrayWithArray:self.queenBeeInfoNode.AdvertList];
     
     [self.tableView reloadData];
 }
@@ -94,6 +95,33 @@ UITableViewDataSource
 - (void)beeWelfareVc {
     LLBeeWelfareViewController *vc = [[LLBeeWelfareViewController alloc] init];
     [self.navigationController pushViewController:vc animated:true];
+}
+
+- (void)getQueenBeeInfo {
+    [SVProgressHUD showCustomWithStatus:@"请求中..."];
+    WEAKSELF
+    NSString *requesUrl = [[WYAPIGenerate sharedInstance] API:@"GetQueenBeeInfo"];
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    NSString *caCheKey = @"GetQueenBeeInfo";
+    [self.networkManager POST:requesUrl needCache:YES caCheKey:caCheKey parameters:params responseClass:[LLQueenBeeInfoNode class] needHeaderAuth:NO success:^(WYRequestType requestType, NSString *message, BOOL isCache, id dataObject) {
+        
+        [SVProgressHUD dismiss];
+        if (requestType != WYRequestTypeSuccess) {
+            [SVProgressHUD showCustomErrorWithStatus:message];
+            return ;
+        }
+        
+        if ([dataObject isKindOfClass:[NSArray class]]) {
+            NSArray *data = (NSArray *)dataObject;
+            if (data.count > 0) {
+                weakSelf.queenBeeInfoNode = data[0];
+            }
+        }
+        [weakSelf refreshData];
+        
+    } failure:^(id responseObject, NSError *error) {
+        [SVProgressHUD showCustomErrorWithStatus:HitoFaiNetwork];
+    }];
 }
 
 #pragma mark - setget
@@ -122,7 +150,7 @@ UITableViewDataSource
         NSArray* cells = [[NSBundle mainBundle] loadNibNamed:cellIdentifier owner:nil options:nil];
         cell = [cells objectAtIndex:0];
     }
-    [cell updateCellWithData:nil];
+    [cell updateCellWithData:self.dataLists[indexPath.row]];
     return cell;
 }
 
@@ -131,8 +159,8 @@ UITableViewDataSource
     NSIndexPath* selIndexPath = [tableView indexPathForSelectedRow];
     [tableView deselectRowAtIndexPath:selIndexPath animated:YES];
     
-    LEWebViewController *vc = [[LEWebViewController alloc] initWithURLString:@"http://www.baidu.com"];
-    [self.navigationController pushViewController:vc animated:true];
+//    LEWebViewController *vc = [[LEWebViewController alloc] initWithURLString:@"http://www.baidu.com"];
+//    [self.navigationController pushViewController:vc animated:true];
 }
 
 @end

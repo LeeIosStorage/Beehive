@@ -14,7 +14,6 @@
 @property (nonatomic, weak) IBOutlet UIImageView *avatarImageView;
 @property (nonatomic, weak) IBOutlet UILabel *nickNameLabel;
 @property (nonatomic, weak) IBOutlet UILabel *timeLabel;
-@property (nonatomic, weak) IBOutlet UILabel *moneyLabel;
 
 @end
 

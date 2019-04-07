@@ -14,6 +14,7 @@
             <connections>
                 <outlet property="adsImageView" destination="Tkm-Ez-DpS" id="aam-1g-vRF"/>
                 <outlet property="adsLabel" destination="vUY-wj-vnA" id="KDb-XK-dQI"/>
+                <outlet property="adsPriceLabel" destination="3f2-H6-ETr" id="YGU-rW-g9S"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>

@@ -15,6 +15,11 @@
 #import "LLBeeAffirmBidView.h"
 #import "LEAlertMarkView.h"
 #import "ZJUsefulPickerView.h"
+#import "LLRedRuleViewController.h"
+#import "LELoginAuthManager.h"
+#import "LLPaymentWayView.h"
+#import "LEAlertMarkView.h"
+#import "WYPayManager.h"
 
 @interface LLBeeKingViewController ()
 <
@@ -33,11 +38,16 @@ UITableViewDataSource
 @property (nonatomic, strong) NSMutableArray *dataLists;
 @property (nonatomic, strong) NSMutableArray *pricingDataLists;
 
-@property (nonatomic, assign) NSInteger currentPage;
-
 @property (nonatomic, strong) UIButton *btnBid;
 
 @property (nonatomic, strong) LLBeeAffirmBidView *beeAffirmBidView;
+
+@property (nonatomic, strong) NSMutableArray *allAreaNameList;
+
+@property (nonatomic, assign) NSInteger paymentWay;
+@property (nonatomic, strong) NSString *bidPrice;
+
+@property (assign, nonatomic) int nextCursor;
 
 @end
 
@@ -55,14 +65,16 @@ UITableViewDataSource
     self.pricingTableView.backgroundColor = self.view.backgroundColor;
     self.auctionTableView.backgroundColor = self.view.backgroundColor;
     
-    self.currentPage = 0;
+    [self createBarButtonItemAtPosition:LLNavigationBarPositionRight normalImage:[UIImage imageNamed:@"home_nav_help"] highlightImage:nil text:@"" action:@selector(ruleClickAction:)];
+    
+//    self.currentPage = 1;
     self.dataLists = [NSMutableArray array];
     
-    [self.view addSubview:self.segmentedHeadView];
-    [self.segmentedHeadView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.right.top.equalTo(self.view);
-        make.height.mas_equalTo(40);
-    }];
+//    [self.view addSubview:self.segmentedHeadView];
+//    [self.segmentedHeadView mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.left.right.top.equalTo(self.view);
+//        make.height.mas_equalTo(40);
+//    }];
     
     [self.view addSubview:self.btnBid];
     [self.btnBid mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -74,14 +86,14 @@ UITableViewDataSource
     self.pricingTableView.hidden = true;
     [self.pricingTableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.bottom.equalTo(self.view);
-        make.top.equalTo(self.segmentedHeadView.mas_bottom).offset(0);
+        make.top.equalTo(self.view).offset(0);
     }];
     
     [self.view addSubview:self.auctionTableView];
     [self.auctionTableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.equalTo(self.view);
         make.bottom.equalTo(self.btnBid.mas_top);
-        make.top.equalTo(self.segmentedHeadView.mas_bottom).offset(0);
+        make.top.equalTo(self.view).offset(0);
     }];
     
     self.auctionTableView.tableHeaderView = self.beeKingAuctionHeadView;
@@ -93,6 +105,11 @@ UITableViewDataSource
     self.pricingTableView.tableHeaderView = self.pricingHeadView;
     
     [self.auctionTableView reloadData];
+    
+    if (self.currentPage == 0) {
+        self.nextCursor = 1;
+        [self addMJ];
+    }
 }
 
 - (void)refreshData {
@@ -100,11 +117,6 @@ UITableViewDataSource
         self.auctionTableView.hidden = false;
         self.pricingTableView.hidden = true;
         self.btnBid.hidden = false;
-        self.dataLists = [NSMutableArray array];
-        [self.dataLists addObject:@""];
-        [self.dataLists addObject:@""];
-        [self.dataLists addObject:@""];
-        [self.dataLists addObject:@""];
         
         LLBeeKingAuctionHeadView *headView = (LLBeeKingAuctionHeadView *)self.auctionTableView.tableHeaderView;
         [self.auctionTableView layoutIfNeeded];
@@ -117,12 +129,6 @@ UITableViewDataSource
         self.pricingTableView.hidden = false;
         self.btnBid.hidden = true;
         
-        self.pricingDataLists = [NSMutableArray array];
-        [self.pricingDataLists addObject:@""];
-        [self.pricingDataLists addObject:@""];
-        [self.pricingDataLists addObject:@""];
-        [self.pricingDataLists addObject:@""];
-        
         [self.pricingTableView reloadData];
     }
     
@@ -130,41 +136,248 @@ UITableViewDataSource
 }
 
 - (void)refreshHeadViewUI {
-    self.beeKingAuctionHeadView.labTitle.text = @"中原区蜂王";
+    self.beeKingAuctionHeadView.labTitle.text = [NSString stringWithFormat:@"%@蜂王",self.beeKingNode.AreaName];
     
-    NSString *price = @"100";
-    NSString *priceText = [NSString stringWithFormat:@"¥ %@ (10天)",price];
+    NSString *price = [NSString stringWithFormat:@"%.0f",self.beeKingNode.StartPrice];
+    NSString *priceText = [NSString stringWithFormat:@"¥ %@ (%d天)",price, self.beeKingNode.Days];
     self.beeKingAuctionHeadView.labPrice.attributedText = [WYCommonUtils stringToColorAndFontAttributeString:priceText range:NSMakeRange(2, price.length) font:[FontConst PingFangSCRegularWithSize:20] color:kAppThemeColor];
+    
+    self.beeKingAuctionHeadView.labDate.text = [NSString stringWithFormat:@"竞价时间：%@~%@",[WYCommonUtils dateYearToDayDotDiscriptionFromDate:[WYCommonUtils dateFromUSDateString:self.beeKingNode.StartTime]], [WYCommonUtils dateYearToDayDotDiscriptionFromDate:[WYCommonUtils dateFromUSDateString:self.beeKingNode.EndTime]]];
+    
+    [self changeCity];
 }
 
 - (void)affirmPay {
     [SVProgressHUD showCustomSuccessWithStatus:@"支付成功"];
 }
 
-- (void)changeCity:(NSString *)city {
-    self.labCity.text = city;
+- (void)changeCity {
+    if (self.areaNode.ProvinceName.length > 0 && self.areaNode.CityName.length > 0) {
+        self.labCity.text = [NSString stringWithFormat:@"%@%@",self.areaNode.ProvinceName, self.areaNode.CityName];
+    } else {
+        self.labCity.text = @"";
+    }
 }
 
+- (void)paymentWayViewShow {
+    [self.view endEditing:true];
+    LLPaymentWayView *tipView = [[[NSBundle mainBundle] loadNibNamed:@"LLPaymentWayView" owner:self options:nil] firstObject];
+    tipView.frame = CGRectMake(0, 0, SCREEN_WIDTH, 265);
+    tipView.wayType = LLPaymentWayTypeVIP;
+    [tipView updateCellWithData:nil];
+    __weak UIView *weakView = tipView;
+    WEAKSELF
+    tipView.paymentBlock = ^(NSInteger type) {
+        if ([weakView.superview isKindOfClass:[LEAlertMarkView class]]) {
+            LEAlertMarkView *alert = (LEAlertMarkView *)weakView.superview;
+            [alert dismiss];
+        }
+        weakSelf.paymentWay = type;
+        if (weakSelf.currentPage == 0) {
+            [weakSelf bidPriceQueenBee];
+        } else if (weakSelf.currentPage == 1) {
+            [weakSelf buyQueenBee];
+        }
+    };
+    LEAlertMarkView *alert = [[LEAlertMarkView alloc] initWithCustomView:tipView type:LEAlertMarkViewTypeBottom];
+    [alert show];
+}
+
+#pragma mark - mj
+- (void)addMJ {
+    //下拉刷新
+    WEAKSELF;
+    self.auctionTableView.mj_header = [LERefreshHeader headerWithRefreshingBlock:^{
+        weakSelf.nextCursor = 1;
+        [weakSelf getBidQueenList];
+    }];
+    [self.auctionTableView.mj_header beginRefreshing];
+    
+    //上啦加载
+    self.auctionTableView.mj_footer = [LERefreshFooter footerWithRefreshingBlock:^{
+        [weakSelf getBidQueenList];
+    }];
+    self.auctionTableView.mj_footer.hidden = YES;
+    
+}
+
+#pragma mark - Request
+- (void)getQueenList {
+    [SVProgressHUD showCustomWithStatus:@"请求中..."];
+    WEAKSELF
+    NSString *requesUrl = [[WYAPIGenerate sharedInstance] API:@"GetQueenList"];
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    [params setValue:self.areaNode.ProvinceId forKey:@"provinceId"];
+    [params setValue:self.areaNode.CityId forKey:@"cityId"];
+    //    NSString *caCheKey = @"GetQueenList";
+    [self.networkManager POST:requesUrl needCache:NO caCheKey:nil parameters:params responseClass:[LLBeeKingNode class] needHeaderAuth:NO success:^(WYRequestType requestType, NSString *message, BOOL isCache, id dataObject) {
+        
+        [SVProgressHUD dismiss];
+        if (requestType != WYRequestTypeSuccess) {
+            [SVProgressHUD showCustomErrorWithStatus:message];
+            return ;
+        }
+        
+        if ([dataObject isKindOfClass:[NSArray class]]) {
+            NSArray *data = (NSArray *)dataObject;
+            weakSelf.pricingDataLists = [NSMutableArray arrayWithArray:data];
+        }
+        [weakSelf refreshData];
+        
+    } failure:^(id responseObject, NSError *error) {
+        [SVProgressHUD showCustomErrorWithStatus:HitoFaiNetwork];
+    }];
+}
+
+- (void)buyQueenBee {
+    [SVProgressHUD showCustomWithStatus:@"请求中..."];
+    WEAKSELF
+    NSString *requesUrl = [[WYAPIGenerate sharedInstance] API:@"BuyQueenBee"];
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    [params setValue:self.beeKingNode.Id forKey:@"id"];
+    [params setValue:[NSNumber numberWithInteger:self.paymentWay] forKey:@"payType"];
+    [self.networkManager POST:requesUrl needCache:NO caCheKey:nil parameters:params responseClass:[LLBeeKingNode class] needHeaderAuth:NO success:^(WYRequestType requestType, NSString *message, BOOL isCache, id dataObject) {
+        
+        [SVProgressHUD dismiss];
+        if (requestType != WYRequestTypeSuccess) {
+            [SVProgressHUD showCustomErrorWithStatus:message];
+            return ;
+        }
+        
+        if ([dataObject isKindOfClass:[NSArray class]]) {
+            NSArray *data = (NSArray *)dataObject;
+            weakSelf.pricingDataLists = [NSMutableArray arrayWithArray:data];
+        }
+        [weakSelf refreshData];
+        
+    } failure:^(id responseObject, NSError *error) {
+        [SVProgressHUD showCustomErrorWithStatus:HitoFaiNetwork];
+    }];
+}
+
+- (void)bidPriceQueenBee {
+    [SVProgressHUD showCustomWithStatus:@"请求中..."];
+    WEAKSELF
+    NSString *requesUrl = [[WYAPIGenerate sharedInstance] API:@"BidPriceQueenBee"];
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    [params setValue:self.beeKingNode.Id forKey:@"id"];
+    [params setValue:self.bidPrice forKey:@"money"];
+    [params setValue:[NSNumber numberWithInteger:self.paymentWay] forKey:@"payType"];
+    [self.networkManager POST:requesUrl needCache:NO caCheKey:nil parameters:params responseClass:[LLBeeKingNode class] needHeaderAuth:NO success:^(WYRequestType requestType, NSString *message, BOOL isCache, id dataObject) {
+        
+        [SVProgressHUD dismiss];
+        if (requestType != WYRequestTypeSuccess) {
+            [SVProgressHUD showCustomErrorWithStatus:message];
+            return ;
+        }
+        
+        if ([dataObject isKindOfClass:[NSArray class]]) {
+            NSArray *data = (NSArray *)dataObject;
+            weakSelf.pricingDataLists = [NSMutableArray arrayWithArray:data];
+        }
+        [weakSelf refreshData];
+        
+    } failure:^(id responseObject, NSError *error) {
+        [SVProgressHUD showCustomErrorWithStatus:HitoFaiNetwork];
+    }];
+}
+
+- (void)getBidQueenList {
+    WEAKSELF
+    NSString *requesUrl = [[WYAPIGenerate sharedInstance] API:@"GetBidQueenList"];
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    [params setObject:[NSNumber numberWithInteger:self.nextCursor] forKey:@"pageIndex"];
+    [params setObject:[NSNumber numberWithInteger:DATA_LOAD_PAGESIZE_COUNT] forKey:@"pageSize"];
+    [params setObject:self.beeKingNode.CountyId forKey:@"id"];
+    
+    [self.networkManager POST:requesUrl needCache:NO caCheKey:nil parameters:params responseClass:[LLUserInfoNode class] needHeaderAuth:NO success:^(WYRequestType requestType, NSString *message, BOOL isCache, id dataObject) {
+        
+        [weakSelf.auctionTableView.mj_header endRefreshing];
+        [weakSelf.auctionTableView.mj_footer endRefreshing];
+        
+        if (requestType != WYRequestTypeSuccess) {
+            [SVProgressHUD showCustomErrorWithStatus:message];
+            return ;
+        }
+        
+        NSArray *tmpListArray = [NSArray array];
+        if ([dataObject isKindOfClass:[NSArray class]]) {
+            tmpListArray = (NSArray *)dataObject;
+        }
+        if (weakSelf.nextCursor == 1) {
+            weakSelf.dataLists = [NSMutableArray array];
+        }
+        [weakSelf.dataLists addObjectsFromArray:tmpListArray];
+        
+        if (!isCache) {
+            if (tmpListArray.count < DATA_LOAD_PAGESIZE_COUNT) {
+                [weakSelf.auctionTableView.mj_footer setHidden:YES];
+            }else{
+                [weakSelf.auctionTableView.mj_footer setHidden:NO];
+                weakSelf.nextCursor ++;
+            }
+        }
+        
+        [weakSelf.auctionTableView reloadData];
+        
+    } failure:^(id responseObject, NSError *error) {
+        [SVProgressHUD showCustomErrorWithStatus:HitoFaiNetwork];
+        [weakSelf.auctionTableView.mj_header endRefreshing];
+        [weakSelf.auctionTableView.mj_footer endRefreshing];
+    }];
+}
+
+#pragma mark - Action
 - (IBAction)chooseCityAction:(id)sender {
     WEAKSELF
-    NSString *provincePath = [[NSBundle mainBundle] pathForResource:@"Province" ofType:@"plist"];
-    NSString *cityPath = [[NSBundle mainBundle] pathForResource:@"City" ofType:@"plist"];
-    NSArray *provinceArray = [NSArray arrayWithContentsOfFile:provincePath];
-    NSDictionary *cityDic = [NSDictionary dictionaryWithContentsOfFile:cityPath];
-    
-    NSArray *dataArray = @[provinceArray, cityDic];
-    [ZJUsefulPickerView showMultipleAssociatedColPickerWithToolBarText:@"切换城市" withDefaultValues:nil withData:dataArray withCancelHandler:^{
+    [ZJUsefulPickerView showMultipleAssociatedColPickerWithToolBarText:@"切换城市" withDefaultValues:nil withData:self.allAreaNameList withCancelHandler:^{
         
     } withDoneHandler:^(NSArray *selectedValues) {
-        NSString *cityName = [NSString stringWithFormat:@"%@%@",selectedValues[0],selectedValues[1]];
-        [weakSelf changeCity:cityName];
+        NSString *provinceName = selectedValues[0];
+        NSString *cityName = selectedValues[1];
+//        NSString *countyName = selectedValues[2];
+        NSString *provinceId = @"";
+        NSString *cityId = @"";
+//        NSString *countyId = @"";
+        for (LLAreaNode *provinceNode in [LELoginAuthManager sharedInstance].allAreaList) {
+            if ([provinceNode.FullName isEqualToString:provinceName]) {
+                provinceId = provinceNode.Id;
+                for (LLAreaNode *cityNode in provinceNode.Children) {
+                    if ([cityNode.FullName isEqualToString:cityName]) {
+                        cityId = cityNode.Id;
+//                        for (LLAreaNode *areaNode in cityNode.Children) {
+//                            if ([areaNode.FullName isEqualToString:countyName]) {
+//                                countyId = areaNode.Id;
+//                                break;
+//                            }
+//                        }
+                    }
+                }
+            }
+        }
+        weakSelf.areaNode = [[LLHomeNode alloc] init];
+        weakSelf.areaNode.ProvinceName = provinceName;
+        weakSelf.areaNode.ProvinceId = provinceId;
+        weakSelf.areaNode.CityName = cityName;
+        weakSelf.areaNode.CityId = cityId;
+//        weakSelf.areaNode.CountyName = countyName;
+//        weakSelf.areaNode.CountyId = countyId;
+        
+        [weakSelf getQueenList];
     }];
 }
 
 - (void)bidAction:(id)sender {
-    [self.beeAffirmBidView updateViewWithData:nil];
+    [self.beeAffirmBidView updateViewWithData:self
+     .beeKingNode];
     LEAlertMarkView *alert = [[LEAlertMarkView alloc] initWithCustomView:self.beeAffirmBidView type:LEAlertMarkViewTypeBottom];
     [alert show];
+}
+
+- (void)ruleClickAction:(id)sender {
+    LLRedRuleViewController *vc = [[LLRedRuleViewController alloc] init];
+    vc.vcType = LLInfoDetailsVcTypeQueenBeeExplain;
+    [self.navigationController pushViewController:vc animated:true];
 }
 
 #pragma mark - SetGet
@@ -184,6 +397,32 @@ UITableViewDataSource
         };
     }
     return _segmentedHeadView;
+}
+
+- (NSMutableArray *)allAreaNameList {
+    if (!_allAreaNameList) {
+        _allAreaNameList = [NSMutableArray array];
+        
+        NSMutableArray *provinceArray = [NSMutableArray array];
+        NSMutableDictionary *cityDic = [NSMutableDictionary dictionary];
+//        NSMutableDictionary *areaDic = [NSMutableDictionary dictionary];
+        for (LLAreaNode *provinceNode in [LELoginAuthManager sharedInstance].allAreaList) {
+            NSMutableArray *cityArray = [NSMutableArray array];
+            for (LLAreaNode *cityNode in provinceNode.Children) {
+//                NSMutableArray *areaArray = [NSMutableArray array];
+//                for (LLAreaNode *areaNode in cityNode.Children) {
+//                    [areaArray addObject:areaNode.FullName];
+//                }
+                [cityArray addObject:cityNode.FullName];
+//                [areaDic setObject:areaArray forKey:cityNode.FullName];
+            }
+            [provinceArray addObject:provinceNode.FullName];
+            [cityDic setObject:cityArray forKey:provinceNode.FullName];
+        }
+        
+        _allAreaNameList = [NSMutableArray arrayWithArray:@[provinceArray, cityDic]];
+    }
+    return _allAreaNameList;
 }
 
 - (LLBeeKingAuctionHeadView *)beeKingAuctionHeadView {
@@ -242,7 +481,8 @@ UITableViewDataSource
                 LEAlertMarkView *alert = (LEAlertMarkView *)weakView.superview;
                 [alert dismiss];
             }
-            [weakSelf affirmPay];
+            weakSelf.bidPrice = price;
+            [weakSelf paymentWayViewShow];
         };
     }
     return _beeAffirmBidView;
@@ -277,9 +517,10 @@ UITableViewDataSource
         if (!cell) {
             NSArray* cells = [[NSBundle mainBundle] loadNibNamed:cellIdentifier owner:nil options:nil];
             cell = [cells objectAtIndex:0];
+            [cell.buyButton addTarget:self action:@selector(handleClickAt:event:) forControlEvents:UIControlEventTouchUpInside];
         }
         cell.indexPath = indexPath;
-        [cell updateCellWithData:nil];
+        [cell updateCellWithData:self.pricingDataLists[indexPath.row]];
         return cell;
     }
     static NSString *cellIdentifier = @"LLRedReceiveUserTableViewCell";
@@ -288,8 +529,12 @@ UITableViewDataSource
         NSArray* cells = [[NSBundle mainBundle] loadNibNamed:cellIdentifier owner:nil options:nil];
         cell = [cells objectAtIndex:0];
     }
-    cell.indexPath = indexPath;
-    [cell updateCellWithData:nil];
+    LLUserInfoNode *node = self.dataLists[indexPath.row];
+    [cell updateCellWithData:node];
+    
+    cell.moneyLabel.textColor = kAppLightTitleColor;
+    NSString *price = [NSString stringWithFormat:@"¥%.2f",node.Money];
+    cell.moneyLabel.attributedText = [WYCommonUtils stringToColorAndFontAttributeString:[NSString stringWithFormat:@"出价%@",price] range:NSMakeRange(2, price.length) font:cell.moneyLabel.font color:kAppThemeColor];
     return cell;
 }
 
@@ -298,6 +543,26 @@ UITableViewDataSource
     NSIndexPath* selIndexPath = [tableView indexPathForSelectedRow];
     [tableView deselectRowAtIndexPath:selIndexPath animated:YES];
     
+}
+
+-(void)handleClickAt:(id)sender event:(id)event{
+    
+    NSSet *touches = [event allTouches];
+    UITouch *touch = [touches anyObject];
+    CGPoint currentTouchPosition = [touch locationInView:self.pricingTableView];
+    NSIndexPath *indexPath = [self.pricingTableView indexPathForRowAtPoint:currentTouchPosition];
+    if (indexPath) {
+        self.beeKingNode = self.pricingDataLists[indexPath.row];
+        if (self.beeKingNode.IsBiddingPrice == true) {
+            LLBeeKingViewController *vc = [[LLBeeKingViewController alloc] init];
+            vc.areaNode = self.areaNode;
+            vc.beeKingNode = self.beeKingNode;
+            vc.currentPage = 0;
+            [self.navigationController pushViewController:vc animated:true];
+        } else {
+            [self paymentWayViewShow];
+        }
+    }
 }
 
 @end

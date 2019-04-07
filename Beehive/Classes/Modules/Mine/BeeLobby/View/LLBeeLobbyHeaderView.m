@@ -7,10 +7,12 @@
 //
 
 #import "LLBeeLobbyHeaderView.h"
+#import "LLQueenBeeInfoNode.h"
 
 @interface LLBeeLobbyHeaderView ()
 
 @property (nonatomic, weak) IBOutlet UIImageView *avatarImageView;
+@property (nonatomic, weak) IBOutlet UILabel *moneyLabel;
 
 @end
 
@@ -45,7 +47,11 @@
 }
 
 - (void)updateHeadViewWithData:(id)node {
-    [WYCommonUtils setImageWithURL:[NSURL URLWithString:kLLAppTestHttpURL] setImage:self.avatarImageView setbitmapImage:nil];
+    LLQueenBeeInfoNode *someNode = (LLQueenBeeInfoNode *)node;
+    
+    [WYCommonUtils setImageWithURL:[NSURL URLWithString:[LELoginUserManager headImgUrl]] setImage:self.avatarImageView setbitmapImage:nil];
+    NSString *money = [NSString stringWithFormat:@"%.2f",someNode.Money];
+    self.moneyLabel.attributedText = [WYCommonUtils stringToColorAndFontAttributeString:[NSString stringWithFormat:@"%@元",money] range:NSMakeRange(money.length, 1) font:[FontConst PingFangSCRegularWithSize:12] color:kAppBackgroundColor];
 }
 
 @end

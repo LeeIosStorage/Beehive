@@ -7,6 +7,7 @@
 //
 
 #import "LLBeeLobbyTableViewCell.h"
+#import "LLAdvertNode.h"
 
 @interface LLBeeLobbyTableViewCell ()
 
@@ -29,8 +30,9 @@
 }
 
 - (void)updateCellWithData:(id)node {
-    [WYCommonUtils setImageWithURL:[NSURL URLWithString:kLLAppTestHttpURL] setImage:self.iconImageView setbitmapImage:nil];
-    self.labTitle.text = @"11111";
+    LLAdvertNode *someNode = (LLAdvertNode *)node;
+    [WYCommonUtils setImageWithURL:[NSURL URLWithString:someNode.DataImg] setImage:self.iconImageView setbitmapImage:nil];
+    self.labTitle.text = someNode.DataTitle;
 }
 
 @end

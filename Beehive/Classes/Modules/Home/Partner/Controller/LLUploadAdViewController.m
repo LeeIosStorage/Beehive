@@ -43,6 +43,8 @@ UITableViewDataSource
         self.title = @"首页底部广告位";
     }  else if (self.vcType == LLUploadAdTypePopup) {
         self.title = @"首页弹出广告位";
+    } else if (self.vcType == LLUploadAdTypeEdit) {
+        self.title = @"编辑广告图";
     }
     
     self.tableView.backgroundColor = kAppSectionBackgroundColor;
@@ -70,12 +72,14 @@ UITableViewDataSource
     NSMutableArray *newMutArray = [NSMutableArray array];
     //配置发布信息
     LLPublishCellNode *cellNode = [self nodeForCellTypeWithType:LLPublishCellTypeInputTitle];
+    cellNode.inputText = self.advertNode.DataTitle;
     [newMutArray addObject:[NSMutableArray arrayWithObjects:cellNode, nil]];
     
     LLPublishCellNode *cellNode2 = [self nodeForCellTypeWithType:LLPublishCellTypeADImage];
     [newMutArray addObject:[NSMutableArray arrayWithObjects:cellNode2, nil]];
     
     LLPublishCellNode *cellNode3 = [self nodeForCellTypeWithType:LLPublishCellTypeLinkAddress];
+    cellNode3.inputText = self.advertNode.DataUrl;
     [newMutArray addObject:[NSMutableArray arrayWithObjects:cellNode3, nil]];
     
     if (self.vcType == LLUploadAdTypeLaunch || self.vcType == LLUploadAdTypeHome || self.vcType == LLUploadAdTypePopup) {
@@ -110,10 +114,12 @@ UITableViewDataSource
             break;
         case LLPublishCellTypeADImage:
             cellNode.title = @"添加广告图";
-            if (self.vcType != LLUploadAdTypeNone) {
+            if (self.vcType > LLUploadAdTypeEdit) {
                 cellNode.title = @"添加照片";
             }
-            cellNode.uploadImageDatas = [NSMutableArray array];
+            if (!cellNode.uploadImageDatas) {
+                cellNode.uploadImageDatas = [NSMutableArray array];
+            }
             break;
         case LLPublishCellTypeLinkAddress:
             cellNode.title = @"跳转链接地址";
@@ -125,9 +131,178 @@ UITableViewDataSource
     return cellNode;
 }
 
+#pragma mark - Request
+- (void)releaseAdvertis {
+    [SVProgressHUD showCustomWithStatus:@"上传中..."];
+    WEAKSELF
+    NSString *requesUrl = [[WYAPIGenerate sharedInstance] API:@"ReleaseAdvertis"];
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    [params setValue:self.advertNode.Id forKey:@"id"];
+    
+    NSString *title = [self nodeForCellTypeWithType:LLPublishCellTypeInputTitle].inputText;
+    if (title.length > 0) [params setObject:title forKey:@"title"];
+    
+    NSMutableArray *imageDatas = [NSMutableArray array];
+    NSArray *uploadImages = [self nodeForCellTypeWithType:LLPublishCellTypeADImage].uploadImageDatas;
+    for (UIImage *image in uploadImages) {
+        NSData *imageData = UIImageJPEGRepresentation(image, WY_IMAGE_COMPRESSION_QUALITY);
+        NSString *dataStr = [imageData base64EncodedStringWithOptions:0];
+        [imageDatas addObject:[NSString stringWithFormat:@"data:image/jpeg;base64,%@",dataStr]];
+    }
+    NSData *data = [NSJSONSerialization dataWithJSONObject:imageDatas options:NSJSONWritingPrettyPrinted error:nil];
+    NSString *jsonStr = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+    [params setObject:jsonStr forKey:@"coverImg"];
+    
+    NSString *linkAddress = [self nodeForCellTypeWithType:LLPublishCellTypeLinkAddress].inputText;
+    if (linkAddress.length > 0) [params setObject:linkAddress forKey:@"urlAddress"];
+    
+    [self.networkManager POST:requesUrl needCache:NO caCheKey:nil parameters:params responseClass:nil needHeaderAuth:NO success:^(WYRequestType requestType, NSString *message, BOOL isCache, id dataObject) {
+        
+        [SVProgressHUD dismiss];
+        if (requestType != WYRequestTypeSuccess) {
+            [SVProgressHUD showCustomErrorWithStatus:message];
+            return ;
+        }
+        [SVProgressHUD showCustomSuccessWithStatus:message];
+        NSDictionary *dic = nil;
+        if ([dataObject isKindOfClass:[NSArray class]]) {
+            NSArray *data = (NSArray *)dataObject;
+            if (data.count > 0) {
+                dic = data[0];
+            }
+        }
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            if (weakSelf.successBlock) {
+                weakSelf.successBlock();
+            }
+            [weakSelf.navigationController popViewControllerAnimated:true];
+        });
+        
+    } failure:^(id responseObject, NSError *error) {
+        [SVProgressHUD showCustomErrorWithStatus:HitoFaiNetwork];
+    }];
+}
+
+- (void)updateAdvert {
+    [SVProgressHUD showCustomWithStatus:@"上传中..."];
+    WEAKSELF
+    NSString *requesUrl = [[WYAPIGenerate sharedInstance] API:@"UpdateAdvert"];
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    [params setValue:self.advertNode.Id forKey:@"id"];
+    
+    NSString *title = [self nodeForCellTypeWithType:LLPublishCellTypeInputTitle].inputText;
+    if (title.length > 0) [params setObject:title forKey:@"title"];
+    
+    NSMutableArray *imageDatas = [NSMutableArray array];
+    NSArray *uploadImages = [self nodeForCellTypeWithType:LLPublishCellTypeADImage].uploadImageDatas;
+    for (UIImage *image in uploadImages) {
+        NSData *imageData = UIImageJPEGRepresentation(image, WY_IMAGE_COMPRESSION_QUALITY);
+        NSString *dataStr = [imageData base64EncodedStringWithOptions:0];
+        [imageDatas addObject:[NSString stringWithFormat:@"data:image/jpeg;base64,%@",dataStr]];
+    }
+    NSData *data = [NSJSONSerialization dataWithJSONObject:imageDatas options:NSJSONWritingPrettyPrinted error:nil];
+    NSString *jsonStr = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+    [params setObject:jsonStr forKey:@"imgUrl"];
+    
+    NSString *linkAddress = [self nodeForCellTypeWithType:LLPublishCellTypeLinkAddress].inputText;
+    if (linkAddress.length > 0) [params setObject:linkAddress forKey:@"urlAddress"];
+    
+    [self.networkManager POST:requesUrl needCache:NO caCheKey:nil parameters:params responseClass:nil needHeaderAuth:NO success:^(WYRequestType requestType, NSString *message, BOOL isCache, id dataObject) {
+        
+        [SVProgressHUD dismiss];
+        if (requestType != WYRequestTypeSuccess) {
+            [SVProgressHUD showCustomErrorWithStatus:message];
+            return ;
+        }
+        [SVProgressHUD showCustomSuccessWithStatus:message];
+        NSDictionary *dic = nil;
+        if ([dataObject isKindOfClass:[NSArray class]]) {
+            NSArray *data = (NSArray *)dataObject;
+            if (data.count > 0) {
+                dic = data[0];
+            }
+        }
+        if (weakSelf.successBlock) {
+            weakSelf.successBlock();
+        }
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [weakSelf.navigationController popViewControllerAnimated:true];
+        });
+        
+    } failure:^(id responseObject, NSError *error) {
+        [SVProgressHUD showCustomErrorWithStatus:HitoFaiNetwork];
+    }];
+}
+
+- (void)addImgUrl {
+    [SVProgressHUD showCustomWithStatus:@"上传中..."];
+    WEAKSELF
+    NSString *requesUrl = [[WYAPIGenerate sharedInstance] API:@"AddImgUrl"];
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    
+    NSInteger typeId = 0;
+    if (self.vcType == LLUploadAdTypeLaunch) typeId = 1;
+    if (self.vcType == LLUploadAdTypeHome) typeId = 3;
+    if (self.vcType == LLUploadAdTypePopup) typeId = 2;
+    
+    [params setValue:[NSNumber numberWithInteger:typeId] forKey:@"id"];
+    
+    NSMutableArray *imageDatas = [NSMutableArray array];
+    NSArray *uploadImages = [self nodeForCellTypeWithType:LLPublishCellTypeADImage].uploadImageDatas;
+    for (UIImage *image in uploadImages) {
+        NSData *imageData = UIImageJPEGRepresentation(image, WY_IMAGE_COMPRESSION_QUALITY);
+        NSString *dataStr = [imageData base64EncodedStringWithOptions:0];
+        [imageDatas addObject:[NSString stringWithFormat:@"data:image/jpeg;base64,%@",dataStr]];
+    }
+    NSData *data = [NSJSONSerialization dataWithJSONObject:imageDatas options:NSJSONWritingPrettyPrinted error:nil];
+    NSString *jsonStr = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+    [params setObject:jsonStr forKey:@"imgUrl"];
+    
+    [self.networkManager POST:requesUrl needCache:NO caCheKey:nil parameters:params responseClass:nil needHeaderAuth:NO success:^(WYRequestType requestType, NSString *message, BOOL isCache, id dataObject) {
+        
+        [SVProgressHUD dismiss];
+        if (requestType != WYRequestTypeSuccess) {
+            [SVProgressHUD showCustomErrorWithStatus:message];
+            return ;
+        }
+        [SVProgressHUD showCustomSuccessWithStatus:message];
+        NSDictionary *dic = nil;
+        if ([dataObject isKindOfClass:[NSArray class]]) {
+            NSArray *data = (NSArray *)dataObject;
+            if (data.count > 0) {
+                dic = data[0];
+            }
+        }
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            if (weakSelf.successBlock) {
+                weakSelf.successBlock();
+            }
+            [weakSelf.navigationController popViewControllerAnimated:true];
+        });
+        
+    } failure:^(id responseObject, NSError *error) {
+        [SVProgressHUD showCustomErrorWithStatus:HitoFaiNetwork];
+    }];
+}
+
 #pragma mark - Action
 - (void)saveAction:(id)sender {
-    
+    NSArray *uploadImages = [self nodeForCellTypeWithType:LLPublishCellTypeADImage].uploadImageDatas;
+    if (uploadImages.count == 0) {
+        [SVProgressHUD showCustomInfoWithStatus:@"请添加图片"];
+        return;
+    }
+    if (self.vcType == LLUploadAdTypeNone) {
+        [self releaseAdvertis];
+    } else if (self.vcType == LLUploadAdTypeEdit) {
+        [self updateAdvert];
+    } else if (self.vcType == LLUploadAdTypeLaunch) {
+        [self addImgUrl];
+    } else if (self.vcType == LLUploadAdTypeHome) {
+        [self addImgUrl];
+    }  else if (self.vcType == LLUploadAdTypePopup) {
+        [self addImgUrl];
+    }
 }
 
 #pragma mark - SetGet

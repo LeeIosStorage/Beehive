@@ -40,6 +40,12 @@
     self.nickNameLabel.text = [LELoginUserManager nickName];
     self.desLabel.text = [LELoginUserManager introduction];
     
+    UIImage *sexImage = [UIImage imageNamed:@"user_sex_man"];
+    if ([[LELoginUserManager sex] intValue] == 1) {
+        sexImage = [UIImage imageNamed:@"user_sex_woman"];
+    }
+    self.sexImageView.image = sexImage;
+    
     self.incomeLabel.text = [NSString stringWithFormat:@"我的总收益：¥ %.2f",[LELoginUserManager income]];
 }
 

@@ -113,6 +113,9 @@
 		8D260407225720AE0097B707 /* LLSelectUserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D260405225720AE0097B707 /* LLSelectUserViewController.m */; };
 		8D260408225720AE0097B707 /* LLSelectUserViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D260406225720AE0097B707 /* LLSelectUserViewController.xib */; };
 		8D26040B22574E080097B707 /* LLPromotionExplainNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D26040A22574E080097B707 /* LLPromotionExplainNode.m */; };
+		8D35B241225901BE001EB059 /* LLAdvertNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D35B240225901BE001EB059 /* LLAdvertNode.m */; };
+		8D35B244225901F0001EB059 /* LLAdvertDetailsNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D35B243225901F0001EB059 /* LLAdvertDetailsNode.m */; };
+		8D35B2482259883A001EB059 /* LLQueenBeeInfoNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D35B2472259883A001EB059 /* LLQueenBeeInfoNode.m */; };
 		8D3F2149222F65020066F5EB /* LLHandleStatusView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D3F2148222F65020066F5EB /* LLHandleStatusView.m */; };
 		8D3F214D222FB4FF0066F5EB /* LLImageItemViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D3F214B222FB4FF0066F5EB /* LLImageItemViewCell.m */; };
 		8D3F214E222FB4FF0066F5EB /* LLImageItemViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D3F214C222FB4FF0066F5EB /* LLImageItemViewCell.xib */; };
@@ -345,6 +348,8 @@
 		8DF8EEED224E71CC00EF89FE /* LLExchangeOrderNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DF8EEEC224E71CC00EF89FE /* LLExchangeOrderNode.m */; };
 		8DF8EEF0224E897400EF89FE /* WYPayManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DF8EEEE224E897400EF89FE /* WYPayManager.m */; };
 		8DF8EF55224F08E400EF89FE /* WYWeakArray.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DF8EF53224F08E400EF89FE /* WYWeakArray.m */; };
+		8DFCC841225A09E5001EB1B9 /* LLAreaNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DFCC840225A09E5001EB1B9 /* LLAreaNode.m */; };
+		8DFCC844225A1D60001EB1B9 /* LLBeeKingNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DFCC843225A1D60001EB1B9 /* LLBeeKingNode.m */; };
 		A78A3C5E8FBF200497ED12F0 /* Pods_BeehiveTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A98A37B880E16C6C709CB88A /* Pods_BeehiveTests.framework */; };
 		BE3EF924D54032F1DFDF5383 /* Pods_BeehiveUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0DB97A8E569F793FB5ABD125 /* Pods_BeehiveUITests.framework */; };
 		E0E531C080DEB8E8705299CF /* Pods_Beehive.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA9C64AC55444CFD230537D9 /* Pods_Beehive.framework */; };
@@ -539,6 +544,12 @@
 		8D260406225720AE0097B707 /* LLSelectUserViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LLSelectUserViewController.xib; sourceTree = "<group>"; };
 		8D26040922574E080097B707 /* LLPromotionExplainNode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLPromotionExplainNode.h; sourceTree = "<group>"; };
 		8D26040A22574E080097B707 /* LLPromotionExplainNode.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLPromotionExplainNode.m; sourceTree = "<group>"; };
+		8D35B23F225901BE001EB059 /* LLAdvertNode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLAdvertNode.h; sourceTree = "<group>"; };
+		8D35B240225901BE001EB059 /* LLAdvertNode.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLAdvertNode.m; sourceTree = "<group>"; };
+		8D35B242225901F0001EB059 /* LLAdvertDetailsNode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLAdvertDetailsNode.h; sourceTree = "<group>"; };
+		8D35B243225901F0001EB059 /* LLAdvertDetailsNode.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLAdvertDetailsNode.m; sourceTree = "<group>"; };
+		8D35B2462259883A001EB059 /* LLQueenBeeInfoNode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLQueenBeeInfoNode.h; sourceTree = "<group>"; };
+		8D35B2472259883A001EB059 /* LLQueenBeeInfoNode.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLQueenBeeInfoNode.m; sourceTree = "<group>"; };
 		8D3F2147222F65020066F5EB /* LLHandleStatusView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLHandleStatusView.h; sourceTree = "<group>"; };
 		8D3F2148222F65020066F5EB /* LLHandleStatusView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLHandleStatusView.m; sourceTree = "<group>"; };
 		8D3F214A222FB4FF0066F5EB /* LLImageItemViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLImageItemViewCell.h; sourceTree = "<group>"; };
@@ -936,6 +947,10 @@
 		8DF8EEEF224E897400EF89FE /* WYPayManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYPayManager.h; sourceTree = "<group>"; };
 		8DF8EF53224F08E400EF89FE /* WYWeakArray.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYWeakArray.m; sourceTree = "<group>"; };
 		8DF8EF54224F08E400EF89FE /* WYWeakArray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYWeakArray.h; sourceTree = "<group>"; };
+		8DFCC83F225A09E5001EB1B9 /* LLAreaNode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLAreaNode.h; sourceTree = "<group>"; };
+		8DFCC840225A09E5001EB1B9 /* LLAreaNode.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLAreaNode.m; sourceTree = "<group>"; };
+		8DFCC842225A1D60001EB1B9 /* LLBeeKingNode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLBeeKingNode.h; sourceTree = "<group>"; };
+		8DFCC843225A1D60001EB1B9 /* LLBeeKingNode.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLBeeKingNode.m; sourceTree = "<group>"; };
 		A64954C5C3CAB5F3221F123D /* Pods-BeehiveTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BeehiveTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BeehiveTests/Pods-BeehiveTests.debug.xcconfig"; sourceTree = "<group>"; };
 		A98A37B880E16C6C709CB88A /* Pods_BeehiveTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BeehiveTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BA9C64AC55444CFD230537D9 /* Pods_Beehive.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Beehive.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1220,6 +1235,15 @@
 				8D42DADD2254AF6800914E0E /* LLRedReceiveDetailNode.m */,
 				8D42DADF2254BA3C00914E0E /* LLPersonalHomeNode.h */,
 				8D42DAE02254BA3C00914E0E /* LLPersonalHomeNode.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		8D35B24522598811001EB059 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				8D35B2462259883A001EB059 /* LLQueenBeeInfoNode.h */,
+				8D35B2472259883A001EB059 /* LLQueenBeeInfoNode.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1927,6 +1951,12 @@
 			children = (
 				8DBEAE38223C9F6B0095D214 /* LLPaymentWayNode.h */,
 				8DBEAE39223C9F6B0095D214 /* LLPaymentWayNode.m */,
+				8D35B242225901F0001EB059 /* LLAdvertDetailsNode.h */,
+				8D35B243225901F0001EB059 /* LLAdvertDetailsNode.m */,
+				8D35B23F225901BE001EB059 /* LLAdvertNode.h */,
+				8D35B240225901BE001EB059 /* LLAdvertNode.m */,
+				8DFCC842225A1D60001EB1B9 /* LLBeeKingNode.h */,
+				8DFCC843225A1D60001EB1B9 /* LLBeeKingNode.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -2109,6 +2139,8 @@
 				8D1A88082248E9C5005DD311 /* LLRedCityNode.m */,
 				8D1A880A2248E9E4005DD311 /* LLNoticeNode.h */,
 				8D1A880B2248E9E4005DD311 /* LLNoticeNode.m */,
+				8DFCC83F225A09E5001EB1B9 /* LLAreaNode.h */,
+				8DFCC840225A09E5001EB1B9 /* LLAreaNode.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -2220,6 +2252,7 @@
 		8DF28F77223E2B330074A4D8 /* BeeLobby */ = {
 			isa = PBXGroup;
 			children = (
+				8D35B24522598811001EB059 /* Model */,
 				8DF28F79223E2B4F0074A4D8 /* View */,
 				8DF28F78223E2B470074A4D8 /* Controller */,
 			);
@@ -2682,6 +2715,7 @@
 				8D5CB6BE2232D73300527DEB /* ZJSelectedTextField.m in Sources */,
 				8D890B522232077D00CA711A /* LLMineWalletViewController.m in Sources */,
 				8D0E4B5C223FB29C00DA2866 /* LLAuctionUserTableViewCell.m in Sources */,
+				8D35B244225901F0001EB059 /* LLAdvertDetailsNode.m in Sources */,
 				8D5F2E56223662E50049C28F /* LLMapAddressShowView.m in Sources */,
 				8DF0C279223A29A2006175E7 /* LLRedTaskTableViewCell.m in Sources */,
 				8DF28F82223E2DF00074A4D8 /* LLBeeTaskTableViewCell.m in Sources */,
@@ -2719,6 +2753,7 @@
 				7E1E8A7922317338002766AD /* LLMineNode.m in Sources */,
 				8DF28FA5223E7EEE0074A4D8 /* LEFeedbackViewController.m in Sources */,
 				8D01673A22391EC000CD21D8 /* LLCommodityExchangeDetailsViewController.m in Sources */,
+				8DFCC841225A09E5001EB1B9 /* LLAreaNode.m in Sources */,
 				8DBEAE84223DFF5F0095D214 /* LLBeePresentAffirmView.m in Sources */,
 				8DD3993B22532F9700B8DAE2 /* LLCommentNode.m in Sources */,
 				8D542A6E222A5BC2008B90B0 /* LERefreshHeader.m in Sources */,
@@ -2757,6 +2792,7 @@
 				8D7D89442255CE7200D97333 /* LLMineMessageNode.m in Sources */,
 				8D542A7C222A5BC2008B90B0 /* LELoginAuthManager.m in Sources */,
 				8DBEAE4D223CB6BD0095D214 /* LLCollectListViewController.m in Sources */,
+				8D35B241225901BE001EB059 /* LLAdvertNode.m in Sources */,
 				8DBEAE7B223DF2A40095D214 /* LLFundDetailViewController.m in Sources */,
 				8DF28F75223E27ED0074A4D8 /* LLBeeTaskViewController.m in Sources */,
 				8D5CB6C42232D73300527DEB /* ZJSinglePickerView.m in Sources */,
@@ -2775,6 +2811,7 @@
 				8D0167362238FB9C00CD21D8 /* LLExchangeBaseViewController.m in Sources */,
 				8D0E4B52223F68F100DA2866 /* LLBeeLobbyTableViewCell.m in Sources */,
 				8D42DAE422559FB900914E0E /* LLCollectionListNode.m in Sources */,
+				8D35B2482259883A001EB059 /* LLQueenBeeInfoNode.m in Sources */,
 				8D890B4C2232060100CA711A /* LLMessageViewController.m in Sources */,
 				8DF0C282223A3D40006175E7 /* LLRedTaskHistoryHeaderView.m in Sources */,
 				8DE588672227C76F002C1576 /* FontConst.swift in Sources */,
@@ -2866,6 +2903,7 @@
 				8D5CB6C22232D73300527DEB /* ZJDatePickerView.m in Sources */,
 				8D890B6C2232344500CA711A /* LLPublishInputViewCell.m in Sources */,
 				8D65E1D1224E429C000A344D /* LLWalletDetailsNode.m in Sources */,
+				8DFCC844225A1D60001EB1B9 /* LLBeeKingNode.m in Sources */,
 				8DF28F8C223E4A0F0074A4D8 /* LLExchangeOrderViewController.m in Sources */,
 				8D3F2157222FCD8B0066F5EB /* LLFilterDistanceView.m in Sources */,
 				8D542A75222A5BC2008B90B0 /* WYCommonUtils.m in Sources */,

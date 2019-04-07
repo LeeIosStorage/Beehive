@@ -87,4 +87,8 @@ static LEDataStoreManager *_instance = nil;
     
 }
 
+- (void)refreshAllAreaList {
+    
+}
+
 @end

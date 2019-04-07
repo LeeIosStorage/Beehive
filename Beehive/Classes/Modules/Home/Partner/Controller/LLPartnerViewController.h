@@ -7,10 +7,13 @@
 //
 
 #import "LLBaseViewController.h"
+#import "LLHomeNode.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface LLPartnerViewController : LLBaseViewController
+
+@property (nonatomic, strong) LLHomeNode *areaNode;
 
 @end
 

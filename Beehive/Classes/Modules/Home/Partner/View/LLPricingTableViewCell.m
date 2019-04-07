@@ -7,8 +7,13 @@
 //
 
 #import "LLPricingTableViewCell.h"
+#import "LLBeeKingNode.h"
 
 @interface LLPricingTableViewCell ()
+
+@property (nonatomic, weak) IBOutlet UILabel *typeLabel;
+@property (nonatomic, weak) IBOutlet UILabel *areaNameLabel;
+@property (nonatomic, weak) IBOutlet UILabel *priceLabel;
 
 @end
 
@@ -17,6 +22,9 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
+    self.typeLabel.layer.cornerRadius = 2;
+    self.typeLabel.layer.masksToBounds = true;
+    self.typeLabel.layer.borderWidth = 0.5;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
@@ -26,7 +34,19 @@
 }
 
 - (void)updateCellWithData:(id)node {
-    
+    LLBeeKingNode *someNode = (LLBeeKingNode *)node;
+    self.typeLabel.text = @"定价";
+    self.typeLabel.layer.borderColor = kAppThemeColor.CGColor;
+    self.typeLabel.textColor = kAppThemeColor;
+    self.areaNameLabel.text = someNode.AreaName;
+    self.priceLabel.text = [NSString stringWithFormat:@"¥ %.2f/年",someNode.CostMoeny];
+    self.buyButton.backgroundColor = kAppThemeColor;
+    if (someNode.IsBiddingPrice) {
+        self.typeLabel.text = @"竞拍";
+        self.typeLabel.layer.borderColor = [UIColor colorWithHexString:@"#FC5751"].CGColor;
+        self.buyButton.backgroundColor = [UIColor colorWithHexString:@"#FC5751"];
+        self.typeLabel.textColor = [UIColor colorWithHexString:@"#FC5751"];
+    }
 }
 
 @end

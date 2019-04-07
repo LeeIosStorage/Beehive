@@ -7,11 +7,15 @@
 //
 
 #import "LLBeeAffirmBidView.h"
+#import "LLBeeKingNode.h"
 
 @interface LLBeeAffirmBidView ()
 
+@property (nonatomic, strong) LLBeeKingNode *beeKingNode;
+
 @property (nonatomic, weak) IBOutlet UILabel *labPrice;
 @property (nonatomic, weak) IBOutlet UITextField *textField;
+@property (nonatomic, weak) IBOutlet UILabel *labTipDes;
 
 @end
 
@@ -28,9 +32,13 @@
 }
 
 - (void)updateViewWithData:(id)node {
-    NSString *price = @"100";
-    NSString *priceText = [NSString stringWithFormat:@"¥ %@ (10天)",price];
+    self.beeKingNode = (LLBeeKingNode *)node;
+    
+    NSString *price = [NSString stringWithFormat:@"%.0f",self.beeKingNode.StartPrice];
+    NSString *priceText = [NSString stringWithFormat:@"¥ %@ (%d天)",price, self.beeKingNode.Days];
     self.labPrice.attributedText = [WYCommonUtils stringToColorAndFontAttributeString:priceText range:NSMakeRange(2, price.length) font:[FontConst PingFangSCRegularWithSize:20] color:kAppThemeColor];
+    self.textField.placeholder = [NSString stringWithFormat:@"¥ %@起",price];
+    self.labTipDes.text = [NSString stringWithFormat:@"竞拍价格不能低于%@元低价，价高者得！", price];
 }
 
 @end

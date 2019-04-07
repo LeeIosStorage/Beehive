@@ -74,6 +74,12 @@ SDCycleScrollViewDelegate
     self.exchangeInfoLabel.text = self.goodsNode.ConvertExplain;
     self.timeLabel.text = self.goodsNode.ReleaseTime;
     
+    UIImage *sexImage = [UIImage imageNamed:@"user_sex_man"];
+    if (self.goodsNode.Sex == 1) {
+        sexImage = [UIImage imageNamed:@"user_sex_woman"];
+    }
+    self.sexImageView.image = sexImage;
+    
     self.images = [NSMutableArray arrayWithArray:self.goodsNode.ImgUrls];
     if (self.images.count > 0) {
         self.gridImageViewConstraintH.constant = 225;

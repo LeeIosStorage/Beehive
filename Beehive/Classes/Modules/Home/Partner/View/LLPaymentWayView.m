@@ -31,7 +31,7 @@ UITableViewDataSource
     [super setup];
 }
 
-- (void)setWayType:(LLPaymentWayType *)wayType {
+- (void)setWayType:(LLPaymentWayType )wayType {
     _wayType = wayType;
 }
 
@@ -47,14 +47,14 @@ UITableViewDataSource
     }
     
     LLPaymentWayNode *node1 = [[LLPaymentWayNode alloc] init];
-    node1.type = 1;
+    node1.type = 2;
     node1.name = @"微信支付";
     node1.des = @"推荐微信用户使用";
     node1.icon = @"1_7_4.2";
     [self.paymentWayLists addObject:node1];
     
     LLPaymentWayNode *node2 = [[LLPaymentWayNode alloc] init];
-    node2.type = 2;
+    node2.type = 1;
     node2.name = @"支付宝支付";
     node2.des = @"推荐支付宝用户使用";
     node2.icon = @"1_7_4.3";
@@ -64,10 +64,10 @@ UITableViewDataSource
 }
 
 - (void)updateCellWithData:(id)node {
-    
+    NSString *money = (NSString *)node;
     [self refreshPaymentWay];
     if (self.wayType == LLPaymentWayTypeNormal) {
-        [self.paymentButton setTitle:@"支付213.8元" forState:UIControlStateNormal];
+        [self.paymentButton setTitle:[NSString stringWithFormat:@"支付%@元",money] forState:UIControlStateNormal];
     } else if (self.wayType == LLPaymentWayTypeVIP) {
         CAGradientLayer *gradientLayer =  [CAGradientLayer layer];
         gradientLayer.frame = CGRectMake(0, 0, SCREEN_WIDTH, 44);

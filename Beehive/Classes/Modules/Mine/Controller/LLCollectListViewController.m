@@ -45,7 +45,7 @@ UITableViewDelegate
     self.title = @"我的收藏";
     self.view.backgroundColor = kAppSectionBackgroundColor;
     
-    self.currentPage = 0;
+    self.currentPage = 1;
     self.dataLists = [NSMutableArray array];
     
     [self.view addSubview:self.segmentedHeadView];
@@ -152,14 +152,14 @@ UITableViewDelegate
 - (LLSegmentedHeadView *)segmentedHeadView {
     if (!_segmentedHeadView) {
         _segmentedHeadView = [[LLSegmentedHeadView alloc] init];
-        [_segmentedHeadView setItems:@[@{kllSegmentedTitle:@"商品",kllSegmentedType:@(0)},@{kllSegmentedTitle:@"红包",kllSegmentedType:@(0)},@{kllSegmentedTitle:@"便民信息",kllSegmentedType:@(0)}]];
+        [_segmentedHeadView setItems:@[@{kllSegmentedTitle:@"红包",kllSegmentedType:@(0)},@{kllSegmentedTitle:@"商品",kllSegmentedType:@(0)},@{kllSegmentedTitle:@"信息",kllSegmentedType:@(0)}]];
         WEAKSELF
         _segmentedHeadView.clickBlock = ^(NSInteger index) {
             if (index == 0) {
-                weakSelf.currentPage = 0;
+                weakSelf.currentPage = 1;
                 [weakSelf refreshData];
             } else if (index == 1) {
-                weakSelf.currentPage = 1;
+                weakSelf.currentPage = 0;
                 [weakSelf refreshData];
             } else if (index == 2) {
                 weakSelf.currentPage = 2;

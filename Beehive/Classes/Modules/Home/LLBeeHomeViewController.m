@@ -474,6 +474,7 @@ GYRollingNoticeViewDataSource
 
 - (void)adsBtnAction {
     LLPartnerViewController *vc = [[LLPartnerViewController alloc] init];
+    vc.areaNode = self.homeNode;
     [self.navigationController pushViewController:vc animated:true];
 }
 

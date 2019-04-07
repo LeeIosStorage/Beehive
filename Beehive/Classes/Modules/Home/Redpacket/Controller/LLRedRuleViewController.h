@@ -15,6 +15,7 @@ typedef NS_ENUM(NSInteger, LLInfoDetailsVcType) {
     LLInfoDetailsVcTypeNotice, //公告
     LLInfoDetailsVcTypeAbout, //关于蜂巢
     LLInfoDetailsVcTypeAdsBuyRule, //广告位购买规则
+    LLInfoDetailsVcTypeQueenBeeExplain, //成为蜂王说明
 };
 
 @interface LLRedRuleViewController : LLBaseViewController

@@ -132,6 +132,9 @@
                                             <integer key="value" value="14"/>
                                         </userDefinedRuntimeAttribute>
                                     </userDefinedRuntimeAttributes>
+                                    <connections>
+                                        <action selector="beeKingAction:" destination="-1" eventType="touchUpInside" id="9f9-sn-Nlx"/>
+                                    </connections>
                                 </button>
                             </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -199,7 +202,7 @@
         </view>
     </objects>
     <resources>
-        <image name="1_7_8.1" width="320" height="630"/>
+        <image name="1_7_8.1" width="320" height="630.5"/>
         <image name="1_7_8.2" width="283" height="251"/>
         <image name="1_7_8.3" width="320" height="101"/>
         <image name="1_7_8.4" width="122" height="29"/>

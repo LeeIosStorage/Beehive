@@ -7,10 +7,13 @@
 //
 
 #import "LLBaseViewController.h"
+#import "LLAdvertNode.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface LLEditAdViewController : LLBaseViewController
+
+@property (nonatomic, strong) LLAdvertNode *advertNode;
 
 @end
 

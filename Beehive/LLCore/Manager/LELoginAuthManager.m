@@ -36,6 +36,7 @@ static LELoginAuthManager *_instance = nil;
     if (self) {
         self.taskList = [[NSMutableArray alloc] init];
         self.globalTaskConfig = [[NSDictionary alloc] init];
+        self.allAreaList = [[NSMutableArray alloc] init];
         
         NSUserDefaults *originalDefaults = [NSUserDefaults standardUserDefaults];
         id object = [originalDefaults objectForKey:kIsInReviewVersionKey];
@@ -126,6 +127,28 @@ static LELoginAuthManager *_instance = nil;
 //        [weakSelf updateUserTaskStateRequestWith:@"2" success:^(BOOL success) {
 //
 //        }];
+        
+    } failure:^(id responseObject, NSError *error) {
+        
+    }];
+}
+
+- (void)refreshAllAreaList {
+    WEAKSELF
+    NSString *requesUrl = [[WYAPIGenerate sharedInstance] API:@"GetAllAreaList"];
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    NSString *caCheKey = @"GetAllAreaList";
+    [self.netWorkManager POST:requesUrl needCache:YES caCheKey:caCheKey parameters:params responseClass:[LLAreaNode class] needHeaderAuth:NO success:^(WYRequestType requestType, NSString *message, BOOL isCache, id dataObject) {
+        
+        if (requestType != WYRequestTypeSuccess) {
+//            [SVProgressHUD showCustomErrorWithStatus:message];
+            return ;
+        }
+        
+        if ([dataObject isKindOfClass:[NSArray class]]) {
+            NSArray *data = (NSArray *)dataObject;
+            weakSelf.allAreaList = [NSMutableArray arrayWithArray:data];
+        }
         
     } failure:^(id responseObject, NSError *error) {
         

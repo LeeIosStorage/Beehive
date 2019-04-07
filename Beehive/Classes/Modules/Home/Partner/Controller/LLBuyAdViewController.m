@@ -11,6 +11,7 @@
 #import "LLPayPasswordResetViewController.h"
 #import "LLPaymentWayView.h"
 #import "LEAlertMarkView.h"
+#import "WYPayManager.h"
 
 @interface LLBuyAdViewController ()
 <
@@ -26,6 +27,8 @@ ZJPayPopupViewDelegate
 
 @property (nonatomic, assign) int dayCount;
 
+@property (nonatomic, assign) NSInteger paymentWay;
+
 @end
 
 @implementation LLBuyAdViewController
@@ -38,15 +41,20 @@ ZJPayPopupViewDelegate
 
 - (void)setup {
     self.title = @"租广告位";
+    
     self.dayCount = 1;
     self.textField.text = @"1";
+    
+    self.labUnitPrice.text = [NSString stringWithFormat:@"每天单价为%.2f元",self.advertNode.Price];
+    self.labMoney.text = [NSString stringWithFormat:@"%.2f",self.advertNode.Price];
 }
 
 - (void)paymentWayViewShow {
     [self.view endEditing:true];
     LLPaymentWayView *tipView = [[[NSBundle mainBundle] loadNibNamed:@"LLPaymentWayView" owner:self options:nil] firstObject];
     tipView.frame = CGRectMake(0, 0, SCREEN_WIDTH, 265);
-    [tipView updateCellWithData:nil];
+    NSString *moneyText = [NSString stringWithFormat:@"%.2f",self.dayCount*self.advertNode.Price];
+    [tipView updateCellWithData:moneyText];
     __weak UIView *weakView = tipView;
     WEAKSELF
     tipView.paymentBlock = ^(NSInteger type) {
@@ -56,6 +64,12 @@ ZJPayPopupViewDelegate
         }
         if (type == 0) {
             [weakSelf payPopupViewShow];
+        } else if (type == 1) {
+            weakSelf.paymentWay = 1;
+            [weakSelf buyAdvert];
+        } else if (type == 2) {
+            weakSelf.paymentWay = 2;
+            [weakSelf buyAdvert];
         }
     };
     LEAlertMarkView *alert = [[LEAlertMarkView alloc] initWithCustomView:tipView type:LEAlertMarkViewTypeBottom];
@@ -68,6 +82,46 @@ ZJPayPopupViewDelegate
     [self.payPopupView showPayPopView];
 }
 
+#pragma mark - Request
+- (void)buyAdvert {
+    [SVProgressHUD showCustomWithStatus:@"请求中..."];
+    WEAKSELF
+    NSString *requesUrl = [[WYAPIGenerate sharedInstance] API:@"BuyAdvert"];
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    [params setObject:[NSNumber numberWithInteger:self.paymentWay] forKey:@"payType"];
+    [params setValue:self.advertNode.Id forKey:@"id"];
+    [params setValue:[NSNumber numberWithInt:self.dayCount] forKey:@"days"];
+    [self.networkManager POST:requesUrl needCache:NO caCheKey:nil parameters:params responseClass:nil needHeaderAuth:NO success:^(WYRequestType requestType, NSString *message, BOOL isCache, id dataObject) {
+        
+        [SVProgressHUD dismiss];
+        if (requestType != WYRequestTypeSuccess) {
+            [SVProgressHUD showCustomErrorWithStatus:message];
+            return ;
+        }
+        [SVProgressHUD showCustomSuccessWithStatus:message];
+        NSDictionary *dic = nil;
+        if ([dataObject isKindOfClass:[NSArray class]]) {
+            NSArray *data = (NSArray *)dataObject;
+            if (data.count > 0) {
+                dic = data[0];
+            }
+        }
+        if (weakSelf.paymentWay == 0) {
+            return;
+        }
+        if (weakSelf.paymentWay == 1) {
+            [[WYPayManager shareInstance] payForWinxinWith:dic];
+        } else if (weakSelf.paymentWay == 2) {
+            [[WYPayManager shareInstance] payForAlipayWith:dic];
+        }
+        
+    } failure:^(id responseObject, NSError *error) {
+        [SVProgressHUD showCustomErrorWithStatus:HitoFaiNetwork];
+    }];
+    
+}
+
+#pragma mark - Action
 - (IBAction)minusAction:(id)sender {
     self.dayCount --;
     if (self.dayCount < 0) {
@@ -85,6 +139,14 @@ ZJPayPopupViewDelegate
 }
 
 - (IBAction)bugAction:(id)sender {
+    if (self.textField.text.length == 0 || self.dayCount <= 0) {
+        [SVProgressHUD showCustomInfoWithStatus:@"请输入购买天数"];
+        return;
+    }
+    if (self.dayCount > 123) {
+        [SVProgressHUD showCustomInfoWithStatus:@"超出购买天数"];
+        return;
+    }
     [self paymentWayViewShow];
 }
 
@@ -97,15 +159,18 @@ ZJPayPopupViewDelegate
 
 - (void)didPasswordInputFinished:(NSString *)password
 {
-    if ([password isEqualToString:@"147258"])
-    {
-        NSLog(@"输入的密码正确");
-    }
-    else
-    {
-        NSLog(@"输入错误:%@",password);
-        [self.payPopupView didInputPayPasswordError];
-    }
+    [self buyAdvert];
+    [self.payPopupView hidePayPopView];
+    
+//    if ([password isEqualToString:@"147258"])
+//    {
+//        NSLog(@"输入的密码正确");
+//    }
+//    else
+//    {
+//        NSLog(@"输入错误:%@",password);
+//        [self.payPopupView didInputPayPasswordError];
+//    }
 }
 
 #pragma mark - UITextFieldDelegate

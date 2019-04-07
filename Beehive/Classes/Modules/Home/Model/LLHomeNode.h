@@ -20,6 +20,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property (strong, nonatomic) NSArray *FirstRowRedList;
 @property (strong, nonatomic) NSArray *AdvertInfo;
 
+@property (strong, nonatomic) NSString *ProvinceId;
+@property (strong, nonatomic) NSString *CityId;
+@property (strong, nonatomic) NSString *CountyId;
 @property (strong, nonatomic) NSString *ProvinceName;
 @property (strong, nonatomic) NSString *CityName;
 @property (strong, nonatomic) NSString *CountyName;

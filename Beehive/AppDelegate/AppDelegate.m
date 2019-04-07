@@ -23,7 +23,7 @@
 #import "UMSocialWechatHandler.h"
 #import <AlipaySDK/AlipaySDK.h>
 #import "LLLocationManager.h"
-
+#import "LELoginAuthManager.h"
 
 
 @interface AppDelegate ()
@@ -52,6 +52,7 @@ UITabBarControllerDelegate
     
     [WYAPIGenerate sharedInstance].netWorkHost = defaultNetworkHost;
     [[LLLocationManager sharedInstance] login];
+    [[LELoginAuthManager sharedInstance] refreshAllAreaList];
     
     [self configPlatforms];
     
