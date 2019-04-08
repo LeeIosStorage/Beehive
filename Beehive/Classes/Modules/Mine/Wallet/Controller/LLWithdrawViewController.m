@@ -334,9 +334,9 @@ ZJPayPopupViewDelegate
             }
         }
         if (weakSelf.paymentWay == 1) {
-            [[WYPayManager shareInstance] payForWinxinWith:dic];
-        } else if (weakSelf.paymentWay == 2) {
             [[WYPayManager shareInstance] payForAlipayWith:dic];
+        } else if (weakSelf.paymentWay == 2) {
+            [[WYPayManager shareInstance] payForWinxinWith:dic];
         }
         
     } failure:^(id responseObject, NSError *error) {

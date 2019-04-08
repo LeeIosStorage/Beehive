@@ -64,6 +64,9 @@ UITabBarControllerDelegate
 }
 
 - (void)configPlatforms {
+    
+    [WXApi registerApp:WX_ID enableMTA:YES];
+    
     [AMapServices sharedServices].apiKey = AMapKey;
     
     [[UMSocialManager defaultManager] setUmSocialAppkey:UMS_APPKEY];

@@ -103,7 +103,12 @@ LEShareWindowDelegate
 
 - (void)shareToQQ{
     
-    [[WYShareManager shareInstance] shareToQQTitle:self.shareTitle description:self.shareDescription webpageUrl:self.shareWebpageUrl image:self.shareImage isVideo:_isVideo];
+    [[WYShareManager shareInstance] shareToQQTitle:self.shareTitle description:self.shareDescription webpageUrl:self.shareWebpageUrl image:self.shareImage isVideo:_isVideo isQZone:NO];
+}
+
+- (void)shareToQZone{
+    
+    [[WYShareManager shareInstance] shareToQQTitle:self.shareTitle description:self.shareDescription webpageUrl:self.shareWebpageUrl image:self.shareImage isVideo:_isVideo isQZone:YES];
 }
 
 - (void)shareToWeibo{

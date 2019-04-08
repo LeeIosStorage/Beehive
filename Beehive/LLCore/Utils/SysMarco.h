@@ -13,8 +13,8 @@
 
 #define QQ_ID                       @"1106905716"
 #define QQ_Key                      @"oRHhd5NAPbKZeX9o"
-#define WX_ID                       @"wx3c8bc97987792355"
-#define WX_Secret                   @"fe74286cd8742a075daf29ca1950ac85"
+#define WX_ID                       @"wxe0de70ea4dbdbcc9"
+#define WX_Secret                   @"b5983b99ec2361568c83ad5eddd1f45a"
 #define SINA_ID                     @"2752056969"
 #define SINA_Secret                 @"3a1c7b67d5bd8265605a0e773358afa7"
 #define Sina_RedirectURL            @"https://api.weibo.com/oauth2/default.html"
@@ -37,11 +37,11 @@
 #define AMapKey @"11c9b34acc16cd7a3aed4e4d0bf556d8"
 
 //支付宝
-#define AliPay_PID                      @"2088021765709193"
-#define AliPay_APPID                    @"2088021765709193"
-#define AliPay_Seller                   @"lincy@miqtech.com"
-#define AliPay_PublicKey                @"MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDxVyotGqfbG78IigJkHEHXIbc3vdTLkpxGedgUy6gY9c8CTYsla/FQuNJzMK5Kvn50iT0Sx3m+NYNoFckgg4XaVVEJcfkBii+vKskAOioNVWwQ1gqRtzAwWj+Uz2PDzQ9fqdBX3lMi33njSXCrdj/PPTAZEy9pwQtjjMSYf1bWiQIDAQAB"
-#define AliPay_PrivateKey @"MIICdwIBADANBgkqhkiG9w0BAQEFAASCAmEwggJdAgEAAoGBAPFXKi0ap9sbvwiKAmQcQdchtze91MuSnEZ52BTLqBj1zwJNiyVr8VC40nMwrkq+fnSJPRLHeb41g2gVySCDhdpVUQlx+QGKL68qyQA6Kg1VbBDWCpG3MDBaP5TPY8PND1+p0FfeUyLfeeNJcKt2P889MBkTL2nBC2OMxJh/VtaJAgMBAAECgYEAw6A3FNaNh4MHJ6HO7F0nVX4D6NAcZGNT/6CWcczfVlQx15kJmGzV7+vQ0wR70yR0lnwEIGvHGFKCUOWP4aYa4VvBmkwuoMRdgjuLvaJpbv4G0huphzQO54XQ8sghxChYoJvUzxUjRl35178KRK1agefSd3XMSbVGaHCJQJFVYwECQQD+bjM2C91WpVi4PnqaIyXHXYBiRdP+DbaZ4jdK9lUbKpYsMYcT8YVQFyqlyYyc3fWkHYsp7bPeqnpMtraCakKhAkEA8tRK90P4cd45WtYnx3D4B2QE30q6t9Z8mc46dC4SG1gdn53PD4+sT1NZlvvL7iuneowPMu+HkO1bivZbGyTy6QJAdRKoJdpXwqLarAyzxXEe1RnFFXMkFOaiezSIVMn8Zz+1UiiICzk7Kps+WILhXN0VRqsBeg2SkobHN71rRZ83gQJAfS9IfnTCDiHcO6IP29e3Zkf/4wVpgQDIN5qDtAVUPFiO3QzEBGezEyoLE7U3is9iheDSrRWjM+nJubgLe9DukQJBAI1hbOTxsEt2n6mbI4wtxEeh/K2CpEf6fArUqiGV+YuVqe4EDdqgN27oScnGWyYBKmivs8szDN79BthLlSl4imE="
+#define AliPay_PID                      @"2088431858827233"
+#define AliPay_APPID                    @"2019032563702101"
+#define AliPay_Seller                   @"nishizxf@126.com"
+#define AliPay_PublicKey                @"MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAnfq4+tKBampmCSzWmcEf0AZQEebkyx/Z20IcZejLph/xY2sFmMq5ZRxa9tyGO/7phjZo9WXwZ0tV2+GJRXjuERf2WufzA7QtzPeuvONvL5Y3LcsV4uSUYAsVTnLSOmH/sVLxy6xp16B6TWkDsmz1tedQLyeSbT0PsfqB/4TGdCx7gSfojL97c4wkSCZNGeF7qoy7MZqDZoHKCdHXHcq1oPxx4PINnXdVgs80rS1j6SY1V9thGJuHAHlFBdORxAw7BrhBzso+SxBnsup3XLvzzgvJwJP/Xjn2N/qzUsQ1cAKgTaDo8QgDeAv+Nsn9pbx0zJ3iSglx1fRZ2T5VJ4/TxwIDAQAB"
+#define AliPay_PrivateKey @"MIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCd+rj60oFqamYJLNaZwR/QBlAR5uTLH9nbQhxl6MumH/FjawWYyrllHFr23IY7/umGNmj1ZfBnS1Xb4YlFeO4RF/Za5/MDtC3M9668428vljctyxXi5JRgCxVOctI6Yf+xUvHLrGnXoHpNaQOybPW151AvJ5JtPQ+x+oH/hMZ0LHuBJ+iMv3tzjCRIJk0Z4XuqjLsxmoNmgcoJ0dcdyrWg/HHg8g2dd1WCzzStLWPpJjVX22EYm4cAeUUF05HEDDsGuEHOyj5LEGey6ndcu/POC8nAk/9eOfY3+rNSxDVwAqBNoOjxCAN4C/42yf2lvHTMneJKCXHV9FnZPlUnj9PHAgMBAAECggEAcT/cPYqMVcICdY9cJArLCHCOE9dGqsqhfUmuW+v/mY6Kl++PqpGhR/eEyjUaUYYS2DDHGyxBo3rhCOhsZI4lc8GOzGo8zqnqr2XbMPOFsEJqOfy9KtMb/qHTW1J6nHnGN9MzHQPzOC2Fn1qp2M29cvJoi/U9RewhBUCE0qzXK03bp+YPdyZyKDFW/OTMRjZNmh6I9OLcMoUwgA4XI9LZjy13cwNMunC4sLM3lQz5nep2jRoeBCPdqWM2WJKs13bqOypAueLDAo4jJGtHiwEq19FJHBCY/hQep0fu8OFag3UfU8GEEkQl6Zr/+d8vBgOwRLLH6oFjqcCRsdyE8LgQSQKBgQDOmKcjIqNaBJSdUASOfr/sVy6KDhQNpqVs7nLL/ZtpL0/pln9XPtxxOWcEeBB5YGQrEFSEyJtTo5zyWs8cJgakxor9siYizxFuNsSuBMEZ9orQ81j5OTU62KbncHF6/hsNE3P9C+1REnkHflh9LsukBxOBxprla/hT0jOg7LXp5QKBgQDDwdrPAlFOSqx851bRJ4QqizxkLWfBG3IXbdgiwjB6nQVMfwbntNEdOJ58daBPWjev7R/CW4J+NuSCP/5HK0y26sWWm/GSMd3pXoN6HQ5Mnq+uY1jTB3ksXcg1OE0vPBCc32a4Vmu00qtRUmeA4hNEoFyV6ugp/6a0uHBL5Xh8OwKBgCgq2eQk6emollR3qEskLaB/2taQoil9SxCA0+UBa+PphPn/fsaxvB5vcK4Xwew3Z4JP7H7cmgaK+wrLyRTJ9+S1jXSB3JRL+jGZiGflGL45hwfVKGlcTBMi6GB7JjUpjozeSWDbnspycwGX+RBttr4vegVzXc5ZTbDOX6dcHopZAoGAPawKKmOZh+fgta0QXe5sJhcdnJXtdRoXdKgnirPRIB/t9m6il0cRBnq6+4z3R2it2KAE/G9mCitzDFHq4zMSBSKrw0o37g4F0qrzEvqqcZsgz/j+l+Vn2IFnPNUTBAmRVkrPis23Ow2P6Zvjfeg7l8hJwvVx1SF0vMTKpC6UKdcCgYEApsBCiBsGeDt/zj3iOaNfvx8m/el2kPvqr3lZ9T97BrueyBtjQAhId4DtytcT7k1njyrPVH6iY0skMOk0w+nrP6ngK5GQ6UThAHltPOOtRhIcQNGYR1QPPKTNwK+cMm3BtQTKPqe73OpJw0w2aqKklmjdKnU0WIxn46UKM6zYgEI="
 
 #define MAX_WX_IMAGE_SIZE 32*1024
 #define WY_IMAGE_COMPRESSION_QUALITY 0.4

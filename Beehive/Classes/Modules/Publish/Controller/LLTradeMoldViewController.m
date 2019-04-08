@@ -28,7 +28,7 @@ UITableViewDataSource
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     [self setup];
-    [self refreshData];
+//    [self refreshData];
     [self getIndustryList];
 }
 
@@ -38,34 +38,34 @@ UITableViewDataSource
 }
 
 - (void)refreshData {
-    self.dataSoucre1 = [NSMutableArray array];
-    self.dataSoucre2 = [NSMutableArray array];
-    for (int i = 0; i < 7; i ++) {
-        LLTradeMoldNode *node = [[LLTradeMoldNode alloc] init];
-        node.tId = [NSNumber numberWithInt:i];
-        if (i == 0) node.title = @"生活服务";
-        else if (i == 1) node.title = @"琴棋书画";
-        else if (i == 2) node.title = @"互联网+";
-        else if (i == 3) node.title = @"聊天占卜";
-        else if (i == 4) node.title = @"教育学习";
-        else if (i == 5) node.title = @"娱乐兴趣";
-        else if (i == 6) node.title = @"其他";
-        node.secondArray = [NSMutableArray array];
-        for (int j = 0; j < 5; j ++) {
-            LLTradeMoldNode *node1 = [[LLTradeMoldNode alloc] init];
-            node1.tId = [NSNumber numberWithInt:j];
-            node1.title = [NSString stringWithFormat:@"%d",j];
-            if ([node.tId isEqualToNumber:[NSNumber numberWithInt:1]]) {
-                if (j == 0) node1.title = @"绘画";
-                else if (j == 1) node1.title = @"乐器";
-                else if (j == 2) node1.title = @"舞蹈";
-                else if (j == 3) node1.title = @"手工";
-                else if (j == 4) node1.title = @"其他";
-            }
-            [node.secondArray addObject:node1];
-        }
-        [self.dataSoucre1 addObject:node];
-    }
+//    self.dataSoucre1 = [NSMutableArray array];
+//    self.dataSoucre2 = [NSMutableArray array];
+//    for (int i = 0; i < 7; i ++) {
+//        LLTradeMoldNode *node = [[LLTradeMoldNode alloc] init];
+//        node.tId = [NSNumber numberWithInt:i];
+//        if (i == 0) node.title = @"生活服务";
+//        else if (i == 1) node.title = @"琴棋书画";
+//        else if (i == 2) node.title = @"互联网+";
+//        else if (i == 3) node.title = @"聊天占卜";
+//        else if (i == 4) node.title = @"教育学习";
+//        else if (i == 5) node.title = @"娱乐兴趣";
+//        else if (i == 6) node.title = @"其他";
+//        node.secondArray = [NSMutableArray array];
+//        for (int j = 0; j < 5; j ++) {
+//            LLTradeMoldNode *node1 = [[LLTradeMoldNode alloc] init];
+//            node1.tId = [NSNumber numberWithInt:j];
+//            node1.title = [NSString stringWithFormat:@"%d",j];
+//            if ([node.tId isEqualToNumber:[NSNumber numberWithInt:1]]) {
+//                if (j == 0) node1.title = @"绘画";
+//                else if (j == 1) node1.title = @"乐器";
+//                else if (j == 2) node1.title = @"舞蹈";
+//                else if (j == 3) node1.title = @"手工";
+//                else if (j == 4) node1.title = @"其他";
+//            }
+//            [node.secondArray addObject:node1];
+//        }
+//        [self.dataSoucre1 addObject:node];
+//    }
     
     for (LLTradeMoldNode *tmpNode in self.dataSoucre1) {
         if ([tmpNode.tId intValue] == [self.oneNode.tId intValue]) {
@@ -95,11 +95,9 @@ UITableViewDataSource
         
         if ([dataObject isKindOfClass:[NSArray class]]) {
             NSArray *data = (NSArray *)dataObject;
-            if (data.count > 0) {
-                
-            }
+            weakSelf.dataSoucre1 = [NSMutableArray arrayWithArray:data];
         }
-//        [weakSelf refreshData];
+        [weakSelf refreshData];
         
     } failure:^(id responseObject, NSError *error) {
         [SVProgressHUD showCustomErrorWithStatus:HitoFaiNetwork];

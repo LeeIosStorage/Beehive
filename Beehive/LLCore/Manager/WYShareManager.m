@@ -85,7 +85,7 @@ static WYShareManager* wy_shareManager = nil;
     return ret;
 }
 
-- (void)shareToQQWithImage:(UIImage *)qqImage{
+- (void)shareToQQWithImage:(UIImage *)qqImage isQZone:(BOOL)isQZone{
     if (!([QQApiInterface isQQInstalled])) {
         [SVProgressHUD showCustomInfoWithStatus:@"QQ分享失败！"];
         return;
@@ -99,7 +99,11 @@ static WYShareManager* wy_shareManager = nil;
     imageObj.previewImageData = data;
     imageObj.imageDataArray = array;
     SendMessageToQQReq* req = [SendMessageToQQReq reqWithContent:imageObj];
-    [QQApiInterface sendReq:req];
+    if (isQZone) {
+        [QQApiInterface SendReqToQZone:req];
+    } else {
+        [QQApiInterface sendReq:req];
+    }
 }
 
 - (BOOL)shareToWXWithScene:(int)scene title:(NSString *)title description:(NSString *)description webpageUrl:(NSString *)webpageUrl image:(UIImage*)image isVideo:(BOOL)isVideo{
@@ -242,7 +246,7 @@ static WYShareManager* wy_shareManager = nil;
     LELog(@"shareToWb send ret:%d", ret);
 }
 
-- (void)shareToQQTitle:(NSString *)title description:(NSString *)description webpageUrl:(NSString *)webpageUrl image:(UIImage*)image isVideo:(BOOL)isVideo{
+- (void)shareToQQTitle:(NSString *)title description:(NSString *)description webpageUrl:(NSString *)webpageUrl image:(UIImage*)image isVideo:(BOOL)isVideo isQZone:(BOOL)isQZone {
     if (!([QQApiInterface isQQInstalled])) {
         [SVProgressHUD showCustomInfoWithStatus:@"QQ分享失败！"];
         return;
@@ -274,8 +278,13 @@ static WYShareManager* wy_shareManager = nil;
     
     SendMessageToQQReq* req = [SendMessageToQQReq reqWithContent:contenObj];
     
-    QQApiSendResultCode sent = [QQApiInterface sendReq:req];
-    LELog(@"shareToQQ send ret:%d", sent);
+    if (isQZone) {
+        QQApiSendResultCode sent = [QQApiInterface SendReqToQZone:req];
+        LELog(@"shareToQZone send ret:%d", sent);
+    } else {
+        QQApiSendResultCode sent = [QQApiInterface sendReq:req];//分享到QQ好友
+        LELog(@"shareToQQ send ret:%d", sent);
+    }
 }
 
 #pragma mark - WeiboSDKDelegate

@@ -10,4 +10,17 @@
 
 @implementation LLTradeMoldNode
 
++ (NSDictionary *)modelCustomPropertyMapper {
+    return @{@"tId":@"Id",
+             @"title":@"Name",
+             @"secondArray":@"ChildrenList",
+             };
+}
+
++ (NSDictionary *)modelContainerPropertyGenericClass {
+    return @{
+             @"secondArray"   : [LLTradeMoldNode class]
+             };
+}
+
 @end

@@ -12,9 +12,9 @@
 #import "WYWeakArray.h"
 
 //商户号
-#define MCH_ID          @"1233963002"
+#define MCH_ID          @"1530691401"
 //商户API密钥
-#define PARTNER_ID      @"587F422AC365478BA6045CD122653B0E"
+#define PARTNER_ID      @"fengzhuanhongbaoyingshuiwangluo1"
 
 static WYPayManager* wy_payManager = nil;
 
@@ -101,7 +101,7 @@ static WYPayManager* wy_payManager = nil;
     /*============================================================================*/
     /*=======================需要填写商户app申请的===================================*/
     /*============================================================================*/
-    NSString *appID = [dictionary objectForKey:@"BillNumber"];
+    NSString *appID = AliPay_APPID;
     
     // 如下私钥，rsa2PrivateKey 或者 rsaPrivateKey 只需要填入一个
     // 如果商户两个都设置了，优先使用 rsa2PrivateKey

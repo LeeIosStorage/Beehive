@@ -40,12 +40,14 @@
     self.typeLabel.textColor = kAppThemeColor;
     self.areaNameLabel.text = someNode.AreaName;
     self.priceLabel.text = [NSString stringWithFormat:@"¥ %.2f/年",someNode.CostMoeny];
+    [self.buyButton setTitle:@"立即购买" forState:UIControlStateNormal];
     self.buyButton.backgroundColor = kAppThemeColor;
     if (someNode.IsBiddingPrice) {
         self.typeLabel.text = @"竞拍";
         self.typeLabel.layer.borderColor = [UIColor colorWithHexString:@"#FC5751"].CGColor;
         self.buyButton.backgroundColor = [UIColor colorWithHexString:@"#FC5751"];
         self.typeLabel.textColor = [UIColor colorWithHexString:@"#FC5751"];
+        [self.buyButton setTitle:@"立即竞价" forState:UIControlStateNormal];
     }
 }
 

@@ -7,6 +7,7 @@
 //
 
 #import "LLInvitationCodeViewController.h"
+#import "WYShareManager.h"
 
 @interface LLInvitationCodeViewController ()
 
@@ -77,7 +78,16 @@
 - (IBAction)shareAction:(id)sender {
     UIButton *btn = (UIButton *)sender;
     NSInteger index = btn.tag;
-    if (index == 4) {
+    UIImage *image = [WYCommonUtils cutImageWithView:self.viewQRContainer];
+    if (index == 0) {
+        [[WYShareManager shareInstance] shareToWXWithImage:image scene:WXSceneSession];
+    } else if (index == 1) {
+        [[WYShareManager shareInstance] shareToWXWithImage:image scene:WXSceneTimeline];
+    } else if (index == 2) {
+        [[WYShareManager shareInstance] shareToQQWithImage:image isQZone:NO];
+    } else if (index == 3) {
+        [[WYShareManager shareInstance] shareToQQWithImage:image isQZone:YES];
+    } else if (index == 4) {
         [self saveImage];
     }
 }

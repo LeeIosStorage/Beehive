@@ -149,6 +149,7 @@
         [_shareItemArray addObject:@{Share_Item_Name: @"微信", Share_Item_Icon:@"le_news_share_weixin", Share_Item_Action:@"shareToWXSession"}];
         [_shareItemArray addObject:@{Share_Item_Name: @"朋友圈", Share_Item_Icon:@"le_news_share_pengyouquan", Share_Item_Action:@"shareToWXTimeline"}];
         [_shareItemArray addObject:@{Share_Item_Name: @"QQ", Share_Item_Icon:@"le_news_share_qq", Share_Item_Action:@"shareToQQ"}];
+        [_shareItemArray addObject:@{Share_Item_Name: @"QQ空间", Share_Item_Icon:@"le_news_share_qq_zone", Share_Item_Action:@"shareToQZone"}];
 //        [_shareItemArray addObject:@{Share_Item_Name: @"微博", Share_Item_Icon:@"le_news_share_weibo", Share_Item_Action:@"shareToWeibo"}];
 //        [_shareItemArray addObject:@{Share_Item_Name: @"复制链接", Share_Item_Icon:@"le_news_fuzhilianjie", Share_Item_Action:@"copylink"}];
     }
