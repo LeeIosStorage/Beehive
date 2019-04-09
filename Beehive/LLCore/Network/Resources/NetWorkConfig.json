@@ -295,6 +295,11 @@
         "module"  : "MyService.asmx",
         "action"  : "GiveMoney"
     },
+    "GetRecommendCount": {
+        "protocol": "http",
+        "module"  : "MyService.asmx",
+        "action"  : "GetRecommendCount"
+    },
     "GetDataInfo": {
         "protocol": "http",
         "module"  : "BusinessService.asmx",
@@ -333,7 +338,7 @@
     "GetGoodHistoryList": {
         "protocol": "http",
         "module"  : "BusinessService.asmx",
-        "action"  : "GetGoodsList"
+        "action"  : "GetMySendGoodList"
     },
     "AdoptAnswer": {
         "protocol": "http",
@@ -459,5 +464,30 @@
         "protocol": "http",
         "module"  : "QueenBeeService.asmx",
         "action"  : "GetQueenWelfareExplain"
+    },
+    "GetBidAdvertList": {
+        "protocol": "http",
+        "module"  : "QueenBeeService.asmx",
+        "action"  : "GetBidAdvertList"
+    },
+    "GetBidAdvertRecord": {
+        "protocol": "http",
+        "module"  : "QueenBeeService.asmx",
+        "action"  : "GetBidAdvertRecord"
+    },
+    "AddAdvertInfo": {
+        "protocol": "http",
+        "module"  : "QueenBeeService.asmx",
+        "action"  : "AddAdvertInfo"
+    },
+    "GetBuyAdvertisingInfo": {
+        "protocol": "http",
+        "module"  : "QueenBeeService.asmx",
+        "action"  : "GetBuyAdvertisingInfo"
+    },
+    "GetOneAdvert": {
+        "protocol": "http",
+        "module"  : "QueenBeeService.asmx",
+        "action"  : "GetOneAdvert"
     },
 }

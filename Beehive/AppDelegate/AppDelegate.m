@@ -24,7 +24,7 @@
 #import <AlipaySDK/AlipaySDK.h>
 #import "LLLocationManager.h"
 #import "LELoginAuthManager.h"
-
+#import "WXApiManager.h"
 
 @interface AppDelegate ()
 <
@@ -45,7 +45,7 @@ UITabBarControllerDelegate
     //热重载
     [[NSBundle bundleWithPath:@"/Applications/InjectionX.app/Contents/Resources/iOSInjection.bundle"] load];
     //
-    [CocoaDebug enable];
+//    [CocoaDebug enable];
 #endif
     
     [SVProgressHUD setCurrentDefaultStyle];
@@ -76,6 +76,10 @@ UITabBarControllerDelegate
 - (BOOL)handleOpenURL:(NSURL *)url {
     LELog(@"query=%@,scheme=%@,host=%@", url.query, url.scheme, url.host);
     NSString *scheme = [url scheme];
+    
+    if ([[url absoluteString] hasPrefix:[NSString stringWithFormat:@"%@://pay",WX_ID]]) {
+        return [WXApi handleOpenURL:url delegate:[WXApiManager sharedManager]];
+    }
     
     //三方登录
     BOOL isUMSocial = ([[url absoluteString] hasPrefix:[NSString stringWithFormat:@"tencent%@://qzapp",QQ_ID]] || [[url absoluteString] hasPrefix:[NSString stringWithFormat:@"%@://oauth",WX_ID]]);

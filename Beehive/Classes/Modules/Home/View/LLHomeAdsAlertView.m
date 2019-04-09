@@ -30,7 +30,7 @@
 }
 
 - (void)updateCellWithData:(id)node {
-    [WYCommonUtils setImageWithURL:[NSURL URLWithString:kLLAppTestHttpURL] setImage:self.adsImageView setbitmapImage:nil];
+    [WYCommonUtils setImageWithURL:[NSURL URLWithString:node] setImage:self.adsImageView setbitmapImage:nil];
 }
 
 @end

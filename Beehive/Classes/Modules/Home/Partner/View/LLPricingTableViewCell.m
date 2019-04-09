@@ -47,7 +47,7 @@
         self.typeLabel.layer.borderColor = [UIColor colorWithHexString:@"#FC5751"].CGColor;
         self.buyButton.backgroundColor = [UIColor colorWithHexString:@"#FC5751"];
         self.typeLabel.textColor = [UIColor colorWithHexString:@"#FC5751"];
-        [self.buyButton setTitle:@"立即竞价" forState:UIControlStateNormal];
+        [self.buyButton setTitle:@"立即出价" forState:UIControlStateNormal];
     }
 }
 

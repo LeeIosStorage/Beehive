@@ -14,7 +14,7 @@
     return @{
              @"RedList"   : [LLRedpacketNode class],
              @"FacList"   : [LLMessageListNode class],
-             @"GoodList"  : [LLExchangeGoodsNode class],
+             @"GoodsList"  : [LLExchangeGoodsNode class],
              };
 }
 

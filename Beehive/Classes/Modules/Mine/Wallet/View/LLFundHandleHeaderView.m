@@ -15,7 +15,8 @@ static NSString *const kLLFundAmountViewCell = @"LLFundAmountCollectionViewCell"
 @interface LLFundHandleHeaderView ()
 <
 UICollectionViewDelegate,
-UICollectionViewDataSource
+UICollectionViewDataSource,
+UITextFieldDelegate
 >
 
 @property (nonatomic, strong) LLWalletDetailsNode *walletDetailsNode;
@@ -55,6 +56,7 @@ UICollectionViewDataSource
     [super setup];
     
     self.currentAmountId = 0;
+    self.textField.delegate = self;
     
     UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
     flowLayout.minimumLineSpacing = 10;
@@ -75,6 +77,14 @@ UICollectionViewDataSource
         self.amountArray = [NSMutableArray arrayWithArray:@[@"10",@"20",@"30",@"40",@"50",@"100",@"200",@"500"]];
     }
     if (self.chooseAmountBlock) {
+        if (self.vcType == LLFundHandleVCTypeDeposit) {
+            NSString *amount = self.amountArray[0];
+            if (self.textField.text.length > 0) {
+                amount = self.textField.text;
+            }
+            self.chooseAmountBlock(amount);
+            return;
+        }
         NSString *amount = [NSString stringWithFormat:@"%.0f",[self.amountArray[0] intValue]/[LELoginUserManager exchangeRate]];
         self.chooseAmountBlock(amount);
     }
@@ -145,6 +155,41 @@ UICollectionViewDataSource
     }
 }
 
+#pragma mark - UITextFieldDelegate
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
+    
+    if ([string isEqualToString:@"\n"]) {
+        return false;
+    }
+    //    if (!string.length && range.length > 0) {
+    //        return true;
+    //    }
+    NSString *oldString = [textField.text copy];
+    NSString *newString = [oldString stringByReplacingCharactersInRange:range withString:string];
+    
+    if (self.chooseAmountBlock) {
+        if (self.vcType == LLFundHandleVCTypeDeposit) {
+            self.chooseAmountBlock(newString);
+            if (newString.length > 0) {
+                self.currentAmountId = -1;
+                [self.amountCollectionView reloadData];
+            } else {
+                self.textField.text = newString;
+                [self collectionView:self.amountCollectionView didSelectItemAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
+            }
+        }
+    }
+    
+//    if (textField == self.tfDes && textField.markedTextRange == nil) {
+//        if (cellNode.inputMaxCount > 0) {
+//            if (newString.length > cellNode.inputMaxCount && textField.text.length >= cellNode.inputMaxCount) {
+//                return NO;
+//            }
+//        }
+//    }
+    return true;
+}
+
 - (CGSize)calculateGridImageViewSize {
     CGFloat viewWidth = (SCREEN_WIDTH-10*5)/4;
     return CGSizeMake(viewWidth, 48);
@@ -191,6 +236,14 @@ UICollectionViewDataSource
     NSString *money = self.amountArray[indexPath.row];
     [self refreshRateTipLabel:[money floatValue]];
     if (self.chooseAmountBlock) {
+        if (self.vcType == LLFundHandleVCTypeDeposit) {
+            NSString *amount = money;
+            if (self.textField.text.length > 0) {
+                amount = self.textField.text;
+            }
+            self.chooseAmountBlock(amount);
+            return;
+        }
         NSString *amount = [NSString stringWithFormat:@"%.0f",[money intValue]/[LELoginUserManager exchangeRate]];
         self.chooseAmountBlock(amount);
     }

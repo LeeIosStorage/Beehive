@@ -29,6 +29,8 @@
 #import "LLHomeNode.h"
 #import "GYRollingNoticeView.h"
 #import "LLHomeNoticeCell.h"
+#import "LLBeeTaskViewController.h"
+#import "LEShareSheetView.h"
 
 @interface LLBeeHomeViewController ()
 <
@@ -36,9 +38,13 @@ MAMapViewDelegate,
 AMapSearchDelegate,
 AMapGeoFenceManagerDelegate,
 GYRollingNoticeViewDelegate,
-GYRollingNoticeViewDataSource
+GYRollingNoticeViewDataSource,
+LEShareSheetViewDelegate
 >
-
+{
+    BOOL _havShowHomeAds;
+    LEShareSheetView *_shareSheetView;
+}
 @property (nonatomic, strong) LLHomeNode *homeNode;
 @property (nonatomic, strong) LLRedpacketNode *selRedpacketNode;
 
@@ -70,6 +76,8 @@ GYRollingNoticeViewDataSource
 
 @property (nonatomic, strong) UIButton *btnBottomAds;
 
+@property (nonatomic, strong)NSString *homeAdsUrl;
+
 @end
 
 @implementation LLBeeHomeViewController
@@ -85,11 +93,11 @@ GYRollingNoticeViewDataSource
     [self setup];
 //    [self refreshHomeInfo];
     
-    [self addBottomAds:kLLAppTestHttpURL];
+    [self getOneAdvert:0];
     
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [self showHomeAdsAlertView];
-    });
+//    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+//        [self showHomeAdsAlertView];
+//    });
 }
 
 - (void)injected {
@@ -98,6 +106,9 @@ GYRollingNoticeViewDataSource
 #pragma mark -
 #pragma mark - Methods
 - (void)setup {
+    
+    _havShowHomeAds = NO;
+    self.homeAdsUrl = nil;
     
     self.redCityList = [NSMutableArray array];
     self.mapRedpacketList = [NSMutableArray array];
@@ -225,9 +236,13 @@ GYRollingNoticeViewDataSource
 }
 
 - (void)showHomeAdsAlertView {
+    if (_havShowHomeAds) {
+        return;
+    }
+    _havShowHomeAds = YES;
     LLHomeAdsAlertView *tipView = [[[NSBundle mainBundle] loadNibNamed:@"LLHomeAdsAlertView" owner:self options:nil] firstObject];
     tipView.frame = CGRectMake(0, 0, 230, 345);
-    [tipView updateCellWithData:nil];
+    [tipView updateCellWithData:self.homeAdsUrl];
     __weak UIView *weakView = tipView;
     WEAKSELF
     tipView.actionBlock = ^(NSInteger index) {
@@ -236,7 +251,7 @@ GYRollingNoticeViewDataSource
             [alert dismiss];
         }
         if (index == 1) {
-            [LELinkerHandler handleDealWithHref:@"http://www.baidu.com" From:weakSelf.navigationController];
+//            [LELinkerHandler handleDealWithHref:@"http://www.baidu.com" From:weakSelf.navigationController];
         }
     };
     LEAlertMarkView *alert = [[LEAlertMarkView alloc] initWithCustomView:tipView type:LEAlertMarkViewTypeCenter];
@@ -255,6 +270,10 @@ GYRollingNoticeViewDataSource
 }
 
 - (void)addBottomAds:(NSString *)url {
+    if (self.btnBottomAds.superview) {
+        [self.btnBottomAds sd_setImageWithURL:[NSURL URLWithString:url] forState:UIControlStateNormal];
+        return;
+    }
     [self.mapView addSubview:self.btnBottomAds];
     [self.btnBottomAds mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.bottom.equalTo(self.mapView);
@@ -321,6 +340,46 @@ GYRollingNoticeViewDataSource
 
 #pragma mark -
 #pragma mark - Request
+//type：类别（0：启动页；1：首页底部；2：首页弹出；3：抽奖页）
+- (void)getOneAdvert:(int)type {
+    WEAKSELF
+    NSString *requesUrl = [[WYAPIGenerate sharedInstance] API:@"GetOneAdvert"];
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    [params setObject:[NSNumber numberWithDouble:self.currentCoordinate.latitude] forKey:@"latitude"];
+    [params setObject:[NSNumber numberWithDouble:self.currentCoordinate.longitude] forKey:@"longitude"];
+    [params setObject:[NSNumber numberWithInt:type] forKey:@"type"];
+    [self.networkManager POST:requesUrl needCache:NO caCheKey:nil parameters:params responseClass:nil needHeaderAuth:NO success:^(WYRequestType requestType, NSString *message, BOOL isCache, id dataObject) {
+        
+        if (requestType != WYRequestTypeSuccess) {
+            [SVProgressHUD showCustomErrorWithStatus:message];
+            return ;
+        }
+        NSString *urlStr = @"";
+        if ([dataObject isKindOfClass:[NSArray class]]) {
+            NSArray *data = (NSArray *)dataObject;
+            if (data.count > 0) {
+                urlStr = data[0];
+            }
+        }
+        
+        if (type == 0) {
+            
+        } else if (type == 1) {
+            if (urlStr.length > 0) {
+                [weakSelf addBottomAds:[NSString stringWithFormat:@"%@%@",[WYAPIGenerate sharedInstance].baseURL, urlStr]];
+            }
+        } else if (type == 2) {
+            if (urlStr.length > 0) {
+                weakSelf.homeAdsUrl = [NSString stringWithFormat:@"%@%@",[WYAPIGenerate sharedInstance].baseURL, urlStr];
+                [weakSelf showHomeAdsAlertView];
+            }
+        }
+        
+    } failure:^(id responseObject, NSError *error) {
+        [SVProgressHUD showCustomErrorWithStatus:HitoFaiNetwork];
+    }];
+}
+
 - (void)refreshHomeInfo {
     WEAKSELF
     NSString *requesUrl = [[WYAPIGenerate sharedInstance] API:@"GetIndexData"];
@@ -350,6 +409,11 @@ GYRollingNoticeViewDataSource
     }];
     
     [self getFirstRowsRedList];
+    
+    [self getOneAdvert:1];
+    if (!_havShowHomeAds) {
+        [self getOneAdvert:2];
+    }
 }
 
 - (void)getFirstRowsRedList {
@@ -449,6 +513,9 @@ GYRollingNoticeViewDataSource
 }
 
 - (void)singinAction:(id)sender {
+    if ([[LELoginManager sharedInstance] needUserLogin:self]) {
+        return;
+    }
     LEWebViewController *vc = [[LEWebViewController alloc] initWithURLString:@"http://www.baidu.com"];
     [self.navigationController pushViewController:vc animated:true];
 }
@@ -459,17 +526,33 @@ GYRollingNoticeViewDataSource
 }
 
 - (void)redTaskAction:(id)sender {
-    LLRedTaskViewController *vc = [[LLRedTaskViewController alloc] init];
+    if ([[LELoginManager sharedInstance] needUserLogin:self]) {
+        return;
+    }
+    LLBeeTaskViewController *vc = [[LLBeeTaskViewController alloc] init];
     [self.navigationController pushViewController:vc animated:true];
+//    LLRedTaskViewController *vc = [[LLRedTaskViewController alloc] init];
+//    [self.navigationController pushViewController:vc animated:true];
 }
 
 - (void)redHistoryAction:(id)sender {
+    if ([[LELoginManager sharedInstance] needUserLogin:self]) {
+        return;
+    }
     LLRedTaskHistoryViewController *vc = [[LLRedTaskHistoryViewController alloc] init];
     [self.navigationController pushViewController:vc animated:true];
 }
 
 - (void)shareAction:(id)sender {
-    
+    LEShareModel *shareModel = [[LEShareModel alloc] init];
+    shareModel.shareTitle = @"蜂巢红包";
+    shareModel.shareDescription = @"";
+    shareModel.shareWebpageUrl = [NSString stringWithFormat:@"%@/%@",[WYAPIGenerate sharedInstance].baseURL, kLLH5_DownLoad_Html_Url];
+    //    shareModel.shareImage = [];
+    _shareSheetView = [[LEShareSheetView alloc] init];
+    _shareSheetView.owner = self;
+    _shareSheetView.shareModel = shareModel;
+    [_shareSheetView showShareAction];
 }
 
 - (void)adsBtnAction {

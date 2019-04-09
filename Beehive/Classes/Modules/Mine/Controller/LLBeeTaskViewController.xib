@@ -26,7 +26,6 @@
                 </imageView>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="QhX-C3-yID">
                     <rect key="frame" x="67.5" y="48" width="240" height="125"/>
-                    <color key="backgroundColor" red="1" green="0.68627450980000004" blue="0.0078431372550000003" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="125" id="uMk-7L-WAV"/>
                         <constraint firstAttribute="width" constant="240" id="wRC-xW-7ij"/>

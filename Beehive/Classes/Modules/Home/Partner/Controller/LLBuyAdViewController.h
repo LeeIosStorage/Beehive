@@ -11,9 +11,15 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+typedef void(^LLBuyAdVcChooseDaysBlock)(int days);
+
 @interface LLBuyAdViewController : LLBaseViewController
 
 @property (nonatomic, strong) LLAdvertNode *advertNode;
+
+@property (nonatomic, assign) NSInteger vcType;//0租用， 1竞价购买
+
+@property (nonatomic, strong) LLBuyAdVcChooseDaysBlock chooseDaysBlock;
 
 @end
 

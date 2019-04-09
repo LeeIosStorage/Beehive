@@ -11,9 +11,13 @@
 #import "LEAlertMarkView.h"
 #import "WYPayManager.h"
 #import "LLPromotionExplainNode.h"
+#import "WXApiManager.h"
+#import "WXSendPayOrder.h"
 
 @interface LLBeeVIPViewController ()
-
+<
+WXApiManagerDelegate
+>
 @property (nonatomic, strong) LLPromotionExplainNode *promotionExplainNode;
 
 @property (nonatomic, weak) IBOutlet UITableView *tableView;
@@ -161,7 +165,9 @@
             [SVProgressHUD showCustomErrorWithStatus:message];
             return ;
         }
-        [SVProgressHUD showCustomSuccessWithStatus:message];
+        if (message.length > 0) {
+            [SVProgressHUD showCustomSuccessWithStatus:message];
+        }
         NSDictionary *dic = nil;
         if ([dataObject isKindOfClass:[NSArray class]]) {
             NSArray *data = (NSArray *)dataObject;
@@ -170,9 +176,15 @@
             }
         }
         if (weakSelf.paymentWay == 1) {
-            [[WYPayManager shareInstance] payForAlipayWith:dic];
+            NSMutableDictionary *mutDic = [NSMutableDictionary dictionaryWithDictionary:dic];
+            [mutDic setObject:@"勋章VIP购买" forKey:@"subject"];
+            [[WYPayManager shareInstance] payForAlipayWith:mutDic];
         } else if (weakSelf.paymentWay == 2) {
-            [[WYPayManager shareInstance] payForWinxinWith:dic];
+//            [[WYPayManager shareInstance] payForWinxinWith:dic];
+            NSString *orderPrice = [NSString stringWithFormat:@"%.2f",[dic[@"PayAmount"] floatValue]];
+            NSString *notifyURL = [NSString stringWithFormat:@"%@%@",[WYAPIGenerate sharedInstance].baseURL,dic[@"WxpayNotify"]];
+            [WXApiManager sharedManager].delegate = self;
+            [WXSendPayOrder wxSendPayOrderWidthName:@"勋章VIP购买" orderNumber:dic[@"BillNumber"] orderPrice:orderPrice notifyURL:notifyURL];
         }
         
     } failure:^(id responseObject, NSError *error) {
@@ -182,6 +194,21 @@
 
 - (IBAction)submitAction:(id)sender {
     [self paymentWayViewShow];
+}
+
+#pragma mark - WXApiManagerDelegate
+- (void)managerDidRecvSendPayResponse:(PayResp *)resp {
+    switch (resp.errCode) {
+        case WXSuccess: {
+            [SVProgressHUD showCustomSuccessWithStatus:@"支付成功"];
+        }
+            break;
+        default: {
+            [SVProgressHUD showCustomErrorWithStatus:@"支付失败"];
+        }
+            break;
+    }
+    
 }
 
 @end

@@ -22,7 +22,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSArray *FacList;
 
 //@property (nonatomic, strong) NSString *YearName;
-@property (nonatomic, strong) NSArray *GoodList;
+@property (nonatomic, strong) NSArray *GoodsList;
 
 @end
 

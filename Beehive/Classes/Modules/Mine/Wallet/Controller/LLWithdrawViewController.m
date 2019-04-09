@@ -18,10 +18,13 @@
 #import "LLPaymentWayView.h"
 #import "LEAlertMarkView.h"
 #import "WYPayManager.h"
+#import "WXApiManager.h"
+#import "WXSendPayOrder.h"
 
 @interface LLWithdrawViewController ()
 <
-ZJPayPopupViewDelegate
+ZJPayPopupViewDelegate,
+WXApiManagerDelegate
 >
 @property (nonatomic, strong) ZJPayPopupView *payPopupView;
 
@@ -325,7 +328,9 @@ ZJPayPopupViewDelegate
             [SVProgressHUD showCustomErrorWithStatus:message];
             return ;
         }
-        [SVProgressHUD showCustomSuccessWithStatus:message];
+        if (message.length > 0) {
+            [SVProgressHUD showCustomSuccessWithStatus:message];
+        }
         NSDictionary *dic = nil;
         if ([dataObject isKindOfClass:[NSArray class]]) {
             NSArray *data = (NSArray *)dataObject;
@@ -334,9 +339,15 @@ ZJPayPopupViewDelegate
             }
         }
         if (weakSelf.paymentWay == 1) {
-            [[WYPayManager shareInstance] payForAlipayWith:dic];
+            NSMutableDictionary *mutDic = [NSMutableDictionary dictionaryWithDictionary:dic];
+            [mutDic setObject:@"蜂蜜充值" forKey:@"subject"];
+            [[WYPayManager shareInstance] payForAlipayWith:mutDic];
         } else if (weakSelf.paymentWay == 2) {
-            [[WYPayManager shareInstance] payForWinxinWith:dic];
+//            [[WYPayManager shareInstance] payForWinxinWith:dic];
+            NSString *orderPrice = [NSString stringWithFormat:@"%.2f",[dic[@"PayAmount"] floatValue]];
+            NSString *notifyURL = [NSString stringWithFormat:@"%@%@",[WYAPIGenerate sharedInstance].baseURL,dic[@"WxpayNotify"]];
+            [WXApiManager sharedManager].delegate = self;
+            [WXSendPayOrder wxSendPayOrderWidthName:@"蜂蜜充值" orderNumber:dic[@"BillNumber"] orderPrice:orderPrice notifyURL:notifyURL];
         }
         
     } failure:^(id responseObject, NSError *error) {
@@ -350,6 +361,20 @@ ZJPayPopupViewDelegate
         _fundHandleHeaderView = [[[NSBundle mainBundle] loadNibNamed:@"LLFundHandleHeaderView" owner:self options:nil] firstObject];
     }
     return _fundHandleHeaderView;
+}
+
+#pragma mark - WXApiManagerDelegate
+- (void)managerDidRecvSendPayResponse:(PayResp *)resp {
+    switch (resp.errCode) {
+        case WXSuccess: {
+            [SVProgressHUD showCustomSuccessWithStatus:@"支付成功"];
+        }
+            break;
+        default: {
+            [SVProgressHUD showCustomErrorWithStatus:@"支付失败"];
+        }
+            break;
+    }
 }
 
 #pragma mark - ZJPayPopupViewDelegate

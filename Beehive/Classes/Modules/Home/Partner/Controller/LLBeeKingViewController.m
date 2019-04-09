@@ -20,11 +20,14 @@
 #import "LLPaymentWayView.h"
 #import "LEAlertMarkView.h"
 #import "WYPayManager.h"
+#import "WXApiManager.h"
+#import "WXSendPayOrder.h"
 
 @interface LLBeeKingViewController ()
 <
 UITableViewDelegate,
-UITableViewDataSource
+UITableViewDataSource,
+WXApiManagerDelegate
 >
 @property (nonatomic, strong) LLSegmentedHeadView *segmentedHeadView;
 
@@ -244,11 +247,26 @@ UITableViewDataSource
             return ;
         }
         
+        NSDictionary *dic = nil;
         if ([dataObject isKindOfClass:[NSArray class]]) {
             NSArray *data = (NSArray *)dataObject;
-            weakSelf.pricingDataLists = [NSMutableArray arrayWithArray:data];
+            if (data.count > 0) {
+                dic = data[0];
+            }
         }
         [weakSelf refreshData];
+        
+        if (weakSelf.paymentWay == 1) {
+            NSMutableDictionary *mutDic = [NSMutableDictionary dictionaryWithDictionary:dic];
+            [mutDic setObject:@"勋章VIP购买" forKey:@"subject"];
+            [[WYPayManager shareInstance] payForAlipayWith:mutDic];
+        } else if (weakSelf.paymentWay == 2) {
+            //            [[WYPayManager shareInstance] payForWinxinWith:dic];
+            NSString *orderPrice = [NSString stringWithFormat:@"%.2f",[dic[@"PayAmount"] floatValue]];
+            NSString *notifyURL = [NSString stringWithFormat:@"%@%@",[WYAPIGenerate sharedInstance].baseURL,dic[@"WxpayNotify"]];
+            [WXApiManager sharedManager].delegate = self;
+            [WXSendPayOrder wxSendPayOrderWidthName:@"勋章VIP购买" orderNumber:dic[@"BillNumber"] orderPrice:orderPrice notifyURL:notifyURL];
+        }
         
     } failure:^(id responseObject, NSError *error) {
         [SVProgressHUD showCustomErrorWithStatus:HitoFaiNetwork];
@@ -271,11 +289,26 @@ UITableViewDataSource
             return ;
         }
         
+        NSDictionary *dic = nil;
         if ([dataObject isKindOfClass:[NSArray class]]) {
             NSArray *data = (NSArray *)dataObject;
-            weakSelf.pricingDataLists = [NSMutableArray arrayWithArray:data];
+            if (data.count > 0) {
+                dic = data[0];
+            }
         }
         [weakSelf refreshData];
+        
+        if (weakSelf.paymentWay == 1) {
+            NSMutableDictionary *mutDic = [NSMutableDictionary dictionaryWithDictionary:dic];
+            [mutDic setObject:@"勋章VIP购买" forKey:@"subject"];
+            [[WYPayManager shareInstance] payForAlipayWith:mutDic];
+        } else if (weakSelf.paymentWay == 2) {
+            //            [[WYPayManager shareInstance] payForWinxinWith:dic];
+            NSString *orderPrice = [NSString stringWithFormat:@"%.2f",[dic[@"PayAmount"] floatValue]];
+            NSString *notifyURL = [NSString stringWithFormat:@"%@%@",[WYAPIGenerate sharedInstance].baseURL,dic[@"WxpayNotify"]];
+            [WXApiManager sharedManager].delegate = self;
+            [WXSendPayOrder wxSendPayOrderWidthName:@"勋章VIP购买" orderNumber:dic[@"BillNumber"] orderPrice:orderPrice notifyURL:notifyURL];
+        }
         
     } failure:^(id responseObject, NSError *error) {
         [SVProgressHUD showCustomErrorWithStatus:HitoFaiNetwork];
@@ -486,6 +519,26 @@ UITableViewDataSource
         };
     }
     return _beeAffirmBidView;
+}
+
+#pragma mark - WXApiManagerDelegate
+- (void)managerDidRecvSendPayResponse:(PayResp *)resp {
+    switch (resp.errCode) {
+        case WXSuccess: {
+            [SVProgressHUD showCustomSuccessWithStatus:@"支付成功"];
+            if (self.currentPage == 0) {
+                [self getBidQueenList];
+            } else if (self.currentPage == 1) {
+                
+            }
+        }
+            break;
+        default: {
+            [SVProgressHUD showCustomErrorWithStatus:@"支付失败"];
+        }
+            break;
+    }
+    
 }
 
 #pragma mark - Table view data source

@@ -10,6 +10,8 @@
 #import <CommonCrypto/CommonDigest.h>
 #import <AlipaySDK/AlipaySDK.h>
 #import "WYWeakArray.h"
+#import "APOrderInfo.h"
+#import "APRSASigner.h"
 
 //商户号
 #define MCH_ID          @"1530691401"
@@ -58,12 +60,12 @@ static WYPayManager* wy_payManager = nil;
 
 - (void)payForWinxinWith:(NSDictionary *)dictionary {
     NSString *partnerId = MCH_ID;
-    NSString *prepayId = [dictionary objectForKey:@"prepay_id"];
+    NSString *prepayId = [dictionary objectForKey:@"BillNumber"];
     NSString *package, *time_stamp, *nonce_str;
     time_t now;
     time(&now);
     time_stamp  = [NSString stringWithFormat:@"%ld", now];
-    nonce_str	= [dictionary objectForKey:@"nonce_str"];
+    nonce_str	= [self generateTradeNO];
     package         = @"Sign=WXPay";
     
     //第二次签名参数列表
@@ -108,8 +110,8 @@ static WYPayManager* wy_payManager = nil;
     // rsa2PrivateKey 可以保证商户交易在更加安全的环境下进行，建议使用 rsa2PrivateKey
     // 获取 rsa2PrivateKey，建议使用支付宝提供的公私钥生成工具生成，
     // 工具地址：https://doc.open.alipay.com/docs/doc.htm?treeId=291&articleId=106097&docType=1
-    NSString *rsa2PrivateKey = @"";
-    NSString *rsaPrivateKey = AliPay_PrivateKey;
+    NSString *rsa2PrivateKey = AliPay_PrivateKey;
+    NSString *rsaPrivateKey = @"";
     /*============================================================================*/
     /*============================================================================*/
     /*============================================================================*/
@@ -125,7 +127,7 @@ static WYPayManager* wy_payManager = nil;
     
     /*
      *生成订单信息及签名
-     
+     */
     //将商品信息赋予AlixPayOrder的成员变量
     APOrderInfo* order = [APOrderInfo new];
     
@@ -153,9 +155,9 @@ static WYPayManager* wy_payManager = nil;
     
     // NOTE: 商品数据
     order.biz_content = [APBizContent new];
-    order.biz_content.body = @"蜂巢付费";
-    order.biz_content.subject = @"VIP付费";
-    order.biz_content.out_trade_no = [self generateTradeNO]; //订单ID（由商家自行制定）
+    order.biz_content.body = @"蜂巢红包";
+    order.biz_content.subject = dictionary[@"subject"];
+    order.biz_content.out_trade_no = dictionary[@"BillNumber"]; //订单ID（由商家自行制定）
     order.biz_content.timeout_express = @"30m"; //超时时间设置
     order.biz_content.total_amount = [NSString stringWithFormat:@"%.2f", [[dictionary objectForKey:@"PayAmount"] floatValue]]; //商品价格
     
@@ -174,10 +176,10 @@ static WYPayManager* wy_payManager = nil;
         signedString = [signer signString:orderInfo withRSA2:NO];
     }
     
-     */
+     //*/
     // NOTE: 如果加签成功，则继续执行支付
-    NSString *signedString = [dictionary objectForKey:@"BillNumber"];
-    NSString *orderInfoEncoded = @"";
+//    NSString *signedString = [dictionary objectForKey:@"BillNumber"];
+//    NSString *orderInfoEncoded = @"";
     if (signedString != nil) {
         //应用注册scheme,在AliSDKDemo-Info.plist定义URL types
         NSString *appScheme = @"beehive";

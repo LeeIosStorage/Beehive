@@ -12,8 +12,8 @@
 // Include any system framework and library headers here that should be included in all compilation units.
 // You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
 
-#import "Beehive-Swift.h"
 #import <YYKit/YYKit.h>
+#import "Beehive-Swift.h"
 #import "SysMarco.h"
 #import "WYAPIGenerate.h"
 #import "WYCommonUtils.h"
@@ -23,8 +23,8 @@
 #import <Masonry/Masonry.h>
 #import "LELinkerHandler.h"
 
-#ifdef DEBUG
-@import CocoaDebug;
-#endif
+//#ifdef DEBUG
+//@import CocoaDebug;
+//#endif
 
 #endif /* PrefixHeader_pch */

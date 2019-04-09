@@ -11,8 +11,8 @@
 
 #define Itunes_APPID   @"1404835477"
 
-#define QQ_ID                       @"1106905716"
-#define QQ_Key                      @"oRHhd5NAPbKZeX9o"
+#define QQ_ID                       @"101569296"
+#define QQ_Key                      @"c7e2a20c7b5c8bcb2f0e78d8b0a677db"
 #define WX_ID                       @"wxe0de70ea4dbdbcc9"
 #define WX_Secret                   @"b5983b99ec2361568c83ad5eddd1f45a"
 #define SINA_ID                     @"2752056969"
@@ -118,11 +118,11 @@
 #   define LELog(fmt, ...) NSLog((@"%s [Line %d] " fmt), __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__);
 #endif
 
-#ifdef DEBUG
-#define NSLog(fmt, ...) [ObjcLog logWithFile:__FILE__ function:__FUNCTION__ line:__LINE__ color:[UIColor whiteColor] unicodeToChinese:NO message:(fmt), ##__VA_ARGS__]
-#else
-#define NSLog(fmt, ...) nil
-#endif
+//#ifdef DEBUG
+//#define NSLog(fmt, ...) [ObjcLog logWithFile:__FILE__ function:__FUNCTION__ line:__LINE__ color:[UIColor whiteColor] unicodeToChinese:NO message:(fmt), ##__VA_ARGS__]
+//#else
+//#define NSLog(fmt, ...) nil
+//#endif
 
 /***************************系统高度*****************************/
 
@@ -251,13 +251,13 @@
 //字号
 #define HitoSystemFontOfSize(FONTSIZE) [UIFont systemFontOfSize:FONTSIZE]
 
-#define HitoPFSCRegularOfSize(FONTSIZE) [UIFont fontWithName:@"PingFangSC-Regular"size:FONTSIZE]
+#define HitoPFSCRegularOfSize(FONTSIZE) [UIFont fontWithName:@"PingFangSC-Regular" size:FONTSIZE]
 
-#define HitoPFSCMediumOfSize(FONTSIZE) [UIFont fontWithName:@"PingFangSC-Medium"size:FONTSIZE]
+#define HitoPFSCMediumOfSize(FONTSIZE) [UIFont fontWithName:@"PingFangSC-Medium" size:FONTSIZE]
 
-#define HitoPFSCLightOfSize(FONTSIZE) [UIFont fontWithName:@"PingFangSC-Light"size:FONTSIZE]
+#define HitoPFSCLightOfSize(FONTSIZE) [UIFont fontWithName:@"PingFangSC-Light" size:FONTSIZE]
 
-#define HitoPFSCThinOfSize(FONTSIZE) [UIFont fontWithName:@"PingFangSC-Thin"size:FONTSIZE]
+#define HitoPFSCThinOfSize(FONTSIZE) [UIFont fontWithName:@"PingFangSC-Thin" size:FONTSIZE]
 
 
 /***************************通知和本地存储*****************************/

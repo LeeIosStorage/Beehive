@@ -12,6 +12,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface LLSetPayPasswordViewController : LLBaseViewController
 
+@property (nonatomic, strong) NSString *verifyCode;
+
 @end
 
 NS_ASSUME_NONNULL_END

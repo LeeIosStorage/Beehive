@@ -303,7 +303,7 @@ UITableViewDelegate
     } else if (self.publishVcType == LLPublishViewcTypeRedpacket || self.publishVcType == LLPublishViewcTypeAsk) {
         return node.RedList.count;
     } else if (self.publishVcType == LLPublishViewcTypeExchange) {
-        return node.GoodList.count;
+        return node.GoodsList.count;
     }
     return 0;
 }
@@ -342,7 +342,7 @@ UITableViewDelegate
     }
     UILabel *label = (UILabel *)[header viewWithTag:201];
     LLPublishHistoryTimeNode *node = self.dataLists[section];
-    if (self.publishVcType == LLPublishViewcTypeConvenience) {
+    if (self.publishVcType == LLPublishViewcTypeConvenience || self.publishVcType == LLPublishViewcTypeExchange) {
         label.text = node.TimeName;
     } else {
         label.text = node.YearName;
@@ -369,7 +369,7 @@ UITableViewDelegate
             cell = [cells objectAtIndex:0];
         }
         LLPublishHistoryTimeNode *node = self.dataLists[indexPath.section];
-        [cell updateCellWithData:node.GoodList[indexPath.row]];
+        [cell updateCellWithData:node.GoodsList[indexPath.row]];
         return cell;
     }
     static NSString *cellIdentifier = @"LLMineCollectTableViewCell";
@@ -403,7 +403,9 @@ UITableViewDelegate
         vc.vcType = 1;
         [self.navigationController pushViewController:vc animated:true];
     } else if (self.publishVcType == LLPublishViewcTypeExchange) {
+        LLExchangeGoodsNode *cellNode = node.GoodsList[indexPath.row];
         LLCommodityExchangeDetailsViewController *vc = [[LLCommodityExchangeDetailsViewController alloc] init];
+        vc.exchangeGoodsNode = cellNode;
         [self.navigationController pushViewController:vc animated:true];
     } else if (self.publishVcType == LLPublishViewcTypeAsk) {
         LLRedpacketNode *cellNode = node.RedList[indexPath.row];
