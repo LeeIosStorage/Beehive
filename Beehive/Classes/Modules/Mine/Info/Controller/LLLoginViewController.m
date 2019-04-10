@@ -132,12 +132,15 @@
             }
         }
         if ([LELoginUserManager hasAccoutLoggedin]) {
-            [SVProgressHUD showCustomSuccessWithStatus:message];
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-//                AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
-//                [appDelegate initRootVc];
-                [self backAction:nil];
-            });
+//            [SVProgressHUD showCustomSuccessWithStatus:message];
+            LLRegisterViewController *vc = [[LLRegisterViewController alloc] init];
+            vc.vcType = LLAmendPhoneVcTypeBind;
+            [self.navigationController pushViewController:vc animated:true];
+//            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+////                AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+////                [appDelegate initRootVc];
+//                [self backAction:nil];
+//            });
         }
         
     } failure:^(id responseObject, NSError *error) {

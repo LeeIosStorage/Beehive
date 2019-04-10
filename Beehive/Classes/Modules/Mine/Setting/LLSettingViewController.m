@@ -15,6 +15,7 @@
 #import "LLLoginPasswordResetViewController.h"
 #import "LLAmendPhoneViewController.h"
 #import "UIImageView+WebCache.h"
+#import "LLRegisterViewController.h"
 
 @interface LLSettingViewController ()
 <
@@ -297,6 +298,12 @@ UITableViewDataSource
         }
             break;
         case LLMineNodeTypeSetPayPwd: {
+            if ([LELoginUserManager mobile].length == 0) {
+                LLRegisterViewController *vc = [[LLRegisterViewController alloc] init];
+                vc.vcType = LLAmendPhoneVcTypeBind;
+                [self.navigationController pushViewController:vc animated:true];
+                return;
+            }
             LLPayPasswordResetViewController *vc = [[LLPayPasswordResetViewController alloc] init];
             [self.navigationController pushViewController:vc animated:true];
         }

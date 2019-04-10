@@ -55,6 +55,11 @@
         "module"  : "SessionService.asmx",
         "action"  : "UpdatePhone"
     },
+    "BindPhone": {
+        "protocol": "http",
+        "module"  : "SessionService.asmx",
+        "action"  : "BindPhone"
+    },
     "BindingWechat": {
         "protocol": "http",
         "module"  : "SessionService.asmx",

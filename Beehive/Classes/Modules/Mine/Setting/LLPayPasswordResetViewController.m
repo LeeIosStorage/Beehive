@@ -12,7 +12,10 @@
 #import "LLSetPayPasswordViewController.h"
 
 @interface LLPayPasswordResetViewController ()
-
+{
+    NSTimer *_waitTimer;
+    int _waitSecond;
+}
 @property (nonatomic, weak) IBOutlet UILabel *labPhone;
 @property (nonatomic, weak) IBOutlet UIView *passwordContView;
 @property (nonatomic, strong) ZJPayPasswordView *payPasswordView;
@@ -24,6 +27,16 @@
 @end
 
 @implementation LLPayPasswordResetViewController
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self resetTimer];
+}
+
+- (void)viewDidDisappear:(BOOL)animated {
+    [super viewDidDisappear:animated];
+    [self invalidateTimer];
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -57,22 +70,25 @@
 #pragma mark - Request
 - (void)smsCodeRequest {
     [SVProgressHUD showCustomWithStatus:@"请求中..."];
-    //    WEAKSELF
+        WEAKSELF
     NSString *requesUrl = [[WYAPIGenerate sharedInstance] API:@"SendSms"];
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     [params setObject:[LELoginUserManager mobile] forKey:@"Phone"];
     //Method：1：注册；2：重置密码；3：修改手机号(第二次)；4：修改支付密码；5：修改手机号（第一次）
     [params setObject:@"4" forKey:@"Method"];
+    [self addTimer];
     [self.networkManager POST:requesUrl needCache:NO caCheKey:nil parameters:params responseClass:nil needHeaderAuth:NO success:^(WYRequestType requestType, NSString *message, BOOL isCache, id dataObject) {
         
         if (requestType != WYRequestTypeSuccess) {
             [SVProgressHUD showCustomErrorWithStatus:message];
+            [weakSelf removeTimer];
             return ;
         }
         [SVProgressHUD showCustomSuccessWithStatus:message];
         
     } failure:^(id responseObject, NSError *error) {
         [SVProgressHUD showCustomErrorWithStatus:HitoLoginFaiTitle];
+        [weakSelf removeTimer];
     }];
 }
 
@@ -102,6 +118,56 @@
 
 - (IBAction)nextAction:(id)sender {
     [self gotoVerifyIdentity];
+}
+
+#pragma mark - Timer
+-(void)addTimer {
+    if(_waitTimer){
+        [_waitTimer invalidate];
+        _waitTimer = nil;
+    }
+    
+    _waitTimer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(waitTimerInterval:) userInfo:nil repeats:YES];
+    _waitSecond = 60;
+    [self waitTimerInterval:_waitTimer];
+}
+-(void)resetTimer {
+    if (_waitSecond <= 0) {
+        return;
+    }
+    [self addTimer];
+}
+-(void)invalidateTimer {
+    if(_waitTimer){
+        [_waitTimer invalidate];
+        _waitTimer = nil;
+    }
+}
+-(void)removeTimer{
+    if(_waitTimer){
+        [_waitTimer invalidate];
+        _waitTimer = nil;
+    }
+    _waitSecond = 0;
+    self.btnSendCode.enabled = true;
+    [self.btnSendCode setTitle:@"重新获取验证码" forState:UIControlStateNormal];
+    [self.btnSendCode setTitle:@"重新获取验证码" forState:UIControlStateDisabled];
+}
+- (void)waitTimerInterval:(NSTimer *)aTimer{
+    LELog(@"a Timer with WYSettingConfig waitRegisterTimerInterval = %d",_waitSecond);
+    if (_waitSecond <= 0) {
+        [aTimer invalidate];
+        _waitTimer = nil;
+        self.btnSendCode.enabled = true;
+        [self.btnSendCode setTitle:@"重新获取验证码" forState:UIControlStateNormal];
+        [self.btnSendCode setTitle:@"重新获取验证码" forState:UIControlStateDisabled];
+        return;
+    }
+    _waitSecond--;
+    
+    self.btnSendCode.enabled = false;
+    [self.btnSendCode setTitle:[NSString stringWithFormat:@"重新获取验证码(%d)",_waitSecond] forState:UIControlStateNormal];
+    [self.btnSendCode setTitle:[NSString stringWithFormat:@"重新获取验证码(%d)",_waitSecond] forState:UIControlStateDisabled];
 }
 
 #pragma mark - setget
