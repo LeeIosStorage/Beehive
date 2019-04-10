@@ -124,7 +124,9 @@
     }
     
     _waitTimer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(waitTimerInterval:) userInfo:nil repeats:YES];
-    _waitSecond = 60;
+    if (_waitSecond <= 0) {
+        _waitSecond = 60;
+    }
     [self waitTimerInterval:_waitTimer];
 }
 -(void)resetTimer {

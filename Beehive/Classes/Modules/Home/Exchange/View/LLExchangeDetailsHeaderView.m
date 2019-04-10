@@ -85,9 +85,11 @@ SDCycleScrollViewDelegate
     self.images = [NSMutableArray arrayWithArray:self.goodsNode.ImgUrls];
     if (self.images.count > 0) {
         self.gridImageViewConstraintH.constant = 225;
+        self.gridContentView.hidden = false;
         [self.imagePageView setHidden:false];
     } else {
         self.gridImageViewConstraintH.constant = 0;
+        self.gridContentView.hidden = true;
         [self.imagePageView setHidden:true];
     }
     self.gridImageView.showPageControl = false;
