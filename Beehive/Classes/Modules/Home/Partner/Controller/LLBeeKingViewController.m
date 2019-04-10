@@ -22,13 +22,19 @@
 #import "WYPayManager.h"
 #import "WXApiManager.h"
 #import "WXSendPayOrder.h"
+#import "ZJPayPopupView.h"
+#import "LLPayPasswordResetViewController.h"
 
 @interface LLBeeKingViewController ()
 <
 UITableViewDelegate,
 UITableViewDataSource,
-WXApiManagerDelegate
+WXApiManagerDelegate,
+ZJPayPopupViewDelegate
 >
+
+@property (nonatomic, strong) ZJPayPopupView *payPopupView;
+
 @property (nonatomic, strong) LLSegmentedHeadView *segmentedHeadView;
 
 @property (nonatomic, strong) LLBeeKingAuctionHeadView *beeKingAuctionHeadView;
@@ -162,12 +168,22 @@ WXApiManagerDelegate
     }
 }
 
+- (void)payPopupViewShow {
+    self.payPopupView = [[ZJPayPopupView alloc] init];
+    self.payPopupView.delegate = self;
+    [self.payPopupView showPayPopView];
+}
+
 - (void)paymentWayViewShow {
     [self.view endEditing:true];
     LLPaymentWayView *tipView = [[[NSBundle mainBundle] loadNibNamed:@"LLPaymentWayView" owner:self options:nil] firstObject];
     tipView.frame = CGRectMake(0, 0, SCREEN_WIDTH, 265);
     tipView.wayType = LLPaymentWayTypeVIP;
-    [tipView updateCellWithData:nil];
+    if (self.currentPage == 1) {
+        tipView.wayType = LLPaymentWayTypeNormal;
+    }
+    NSString *moneyText = [NSString stringWithFormat:@"%.2f",self.beeKingNode.CostMoeny];
+    [tipView updateCellWithData:moneyText];
     __weak UIView *weakView = tipView;
     WEAKSELF
     tipView.paymentBlock = ^(NSInteger type) {
@@ -179,7 +195,11 @@ WXApiManagerDelegate
         if (weakSelf.currentPage == 0) {
             [weakSelf bidPriceQueenBee];
         } else if (weakSelf.currentPage == 1) {
-            [weakSelf buyQueenBee];
+            if (type == 0) {
+                [weakSelf payPopupViewShow];
+                return;
+            }
+            [weakSelf buyQueenBeeWithPassword:nil];
         }
     };
     LEAlertMarkView *alert = [[LEAlertMarkView alloc] initWithCustomView:tipView type:LEAlertMarkViewTypeBottom];
@@ -232,13 +252,14 @@ WXApiManagerDelegate
     }];
 }
 
-- (void)buyQueenBee {
+- (void)buyQueenBeeWithPassword:(NSString *)password {
     [SVProgressHUD showCustomWithStatus:@"请求中..."];
     WEAKSELF
     NSString *requesUrl = [[WYAPIGenerate sharedInstance] API:@"BuyQueenBee"];
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     [params setValue:self.beeKingNode.Id forKey:@"id"];
     [params setValue:[NSNumber numberWithInteger:self.paymentWay] forKey:@"payType"];
+    [params setValue:password forKey:@"payPwd"];
     [self.networkManager POST:requesUrl needCache:NO caCheKey:nil parameters:params responseClass:[LLBeeKingNode class] needHeaderAuth:NO success:^(WYRequestType requestType, NSString *message, BOOL isCache, id dataObject) {
         
         [SVProgressHUD dismiss];
@@ -519,6 +540,19 @@ WXApiManagerDelegate
         };
     }
     return _beeAffirmBidView;
+}
+
+#pragma mark - ZJPayPopupViewDelegate
+- (void)didClickForgetPasswordButton
+{
+    LLPayPasswordResetViewController *vc = [[LLPayPasswordResetViewController alloc] init];
+    [self.navigationController pushViewController:vc animated:true];
+}
+
+- (void)didPasswordInputFinished:(NSString *)password
+{
+    [self buyQueenBeeWithPassword:password];
+    [self.payPopupView hidePayPopView];
 }
 
 #pragma mark - WXApiManagerDelegate

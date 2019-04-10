@@ -26,6 +26,7 @@
              @"readDuration" : @"read_duration",
              @"todayGolds" : @"today_golds",
              @"totalGolds" : @"total_golds",
+             @"balance" : @"Money"
              };
 }
 

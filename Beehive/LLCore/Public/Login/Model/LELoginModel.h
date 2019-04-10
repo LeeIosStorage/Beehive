@@ -23,7 +23,8 @@
 @property (strong, nonatomic) NSString *introduction;
 @property (strong, nonatomic) NSString *payPassWord;
 @property (strong, nonatomic) NSString *invitationCode;
-@property (assign, nonatomic) double income;
+@property (assign, nonatomic) double income; //总收益
+@property (assign, nonatomic) double balance; //账户余额
 
 @property (strong, nonatomic) NSString *Autograph;
 @property (strong, nonatomic) NSString *HobbyIds;
@@ -37,7 +38,6 @@
 @property (strong, nonatomic) NSString *wxNickname;
 
 @property (assign, nonatomic) double readDuration;
-@property (assign, nonatomic) double balance;
 @property (assign, nonatomic) NSInteger todayGolds;
 @property (assign, nonatomic) NSInteger totalGolds;
 

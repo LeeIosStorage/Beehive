@@ -24,7 +24,7 @@ UITableViewDataSource
 @property (nonatomic, weak) IBOutlet UILabel *labMoney;
 
 @property (nonatomic, strong) NSMutableArray *dataLists;
-@property (nonatomic, strong) NSString *userMoney;
+@property (nonatomic, assign) double userMoney;
 
 @end
 
@@ -44,7 +44,7 @@ UITableViewDataSource
     self.headerView.height = 232;
     self.tableView.tableHeaderView = self.headerView;
     
-    self.userMoney = @"0";
+    self.userMoney = 0;
     
     self.dataLists = [NSMutableArray array];
     LLMineNode *node = [[LLMineNode alloc] init];
@@ -71,7 +71,7 @@ UITableViewDataSource
 }
 
 - (void)refreshHeadViewUI {
-    NSString *money = [NSString stringWithFormat:@"%.2f",[self.userMoney floatValue]];
+    NSString *money = [NSString stringWithFormat:@"%.2f",self.userMoney];
     self.labMoney.attributedText = [WYCommonUtils stringToColorAndFontAttributeString:[NSString stringWithFormat:@"%@蜂蜜",money] range:NSMakeRange(0, money.length) font:[FontConst PingFangSCRegularWithSize:18] color:kAppTitleColor];
 }
 
@@ -94,7 +94,7 @@ UITableViewDataSource
             NSArray *data = (NSArray *)dataObject;
             if (data.count > 0) {
                 NSDictionary *dic = data[0];
-                weakSelf.userMoney = [dic[@"Money"] description];
+                weakSelf.userMoney = [dic[@"Money"] doubleValue];
             }
         }
         [weakSelf refreshHeadViewUI];

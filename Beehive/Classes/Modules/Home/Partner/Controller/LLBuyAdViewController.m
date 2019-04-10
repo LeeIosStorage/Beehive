@@ -81,10 +81,10 @@ WXApiManagerDelegate
             [weakSelf payPopupViewShow];
         } else if (type == 1) {
             weakSelf.paymentWay = 1;
-            [weakSelf buyAdvert];
+            [weakSelf buyAdvertWithPassword:nil];
         } else if (type == 2) {
             weakSelf.paymentWay = 2;
-            [weakSelf buyAdvert];
+            [weakSelf buyAdvertWithPassword:nil];
         }
     };
     LEAlertMarkView *alert = [[LEAlertMarkView alloc] initWithCustomView:tipView type:LEAlertMarkViewTypeBottom];
@@ -128,7 +128,7 @@ WXApiManagerDelegate
     
 }
 
-- (void)buyAdvert {
+- (void)buyAdvertWithPassword:(NSString *)password {
     [SVProgressHUD showCustomWithStatus:@"请求中..."];
     WEAKSELF
     NSString *requesUrl = [[WYAPIGenerate sharedInstance] API:@"BuyAdvert"];
@@ -136,6 +136,8 @@ WXApiManagerDelegate
     [params setObject:[NSNumber numberWithInteger:self.paymentWay] forKey:@"payType"];
     [params setValue:self.advertNode.Id forKey:@"id"];
     [params setValue:[NSNumber numberWithInt:self.dayCount] forKey:@"days"];
+    [params setValue:password forKey:@"payPwd"];
+    
     [self.networkManager POST:requesUrl needCache:NO caCheKey:nil parameters:params responseClass:nil needHeaderAuth:NO success:^(WYRequestType requestType, NSString *message, BOOL isCache, id dataObject) {
         
         [SVProgressHUD dismiss];
@@ -233,7 +235,7 @@ WXApiManagerDelegate
 
 - (void)didPasswordInputFinished:(NSString *)password
 {
-    [self buyAdvert];
+    [self buyAdvertWithPassword:password];
     [self.payPopupView hidePayPopView];
     
 //    if ([password isEqualToString:@"147258"])

@@ -9,6 +9,9 @@
 #import "LLPaymentWayView.h"
 #import "LLPaymentWayNode.h"
 #import "LLPaymentWayTableViewCell.h"
+#import "CYLTabBarController.h"
+#import "LLWithdrawViewController.h"
+#import "LEAlertMarkView.h"
 
 @interface LLPaymentWayView ()
 <
@@ -41,7 +44,7 @@ UITableViewDataSource
         LLPaymentWayNode *node = [[LLPaymentWayNode alloc] init];
         node.type = 0;
         node.name = @"钱包支付";
-        node.des = @"可用余额0元";
+        node.des = [NSString stringWithFormat:@"可用余额%.2f蜂蜜", [LELoginUserManager balance]];
         node.icon = @"1_7_4.1";
         [self.paymentWayLists addObject:node];
     }
@@ -86,6 +89,20 @@ UITableViewDataSource
     }
 }
 
+- (void)rechargeAction {
+    
+    if ([self.superview isKindOfClass:[LEAlertMarkView class]]) {
+        LEAlertMarkView *alert = (LEAlertMarkView *)self.superview;
+        [alert dismiss];
+    }
+    
+    CYLTabBarController *tabBarController = [self cyl_tabBarController];
+    UINavigationController *nav = tabBarController.selectedViewController;
+    LLWithdrawViewController *vc = [[LLWithdrawViewController alloc] init];
+    vc.vcType = LLFundHandleVCTypeDeposit;
+    [nav pushViewController:vc animated:true];
+}
+
 #pragma mark - Table view data source
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
@@ -108,6 +125,7 @@ UITableViewDataSource
     if (!cell) {
         NSArray* cells = [[NSBundle mainBundle] loadNibNamed:cellIdentifier owner:nil options:nil];
         cell = [cells objectAtIndex:0];
+        [cell.btnRecharge addTarget:self action:@selector(rechargeAction) forControlEvents:UIControlEventTouchUpInside];
     }
 //    cell.indexPath = indexPath;
     LLPaymentWayNode *node = self.paymentWayLists[indexPath.row];
