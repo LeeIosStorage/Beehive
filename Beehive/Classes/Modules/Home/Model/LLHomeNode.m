@@ -23,4 +23,12 @@
              };
 }
 
+- (NSString *)QueenHeadImg {
+    if (_QueenHeadImg.length == 0) {
+        return @"";
+    }
+    NSString *urlStr = [NSString stringWithFormat:@"%@%@",[WYAPIGenerate sharedInstance].baseURL, _QueenHeadImg];
+    return urlStr;
+}
+
 @end

@@ -24,15 +24,15 @@
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="5_9.1" translatesAutoresizingMaskIntoConstraints="NO" id="fz1-uL-1lg">
                     <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                 </imageView>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="QhX-C3-yID">
-                    <rect key="frame" x="67.5" y="48" width="240" height="125"/>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="5_8.2" translatesAutoresizingMaskIntoConstraints="NO" id="QhX-C3-yID">
+                    <rect key="frame" x="74.5" y="48" width="226" height="115"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="125" id="uMk-7L-WAV"/>
-                        <constraint firstAttribute="width" constant="240" id="wRC-xW-7ij"/>
+                        <constraint firstAttribute="height" constant="115" id="uMk-7L-WAV"/>
+                        <constraint firstAttribute="width" constant="226" id="wRC-xW-7ij"/>
                     </constraints>
                 </imageView>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="SG1-uG-eki">
-                    <rect key="frame" x="15" y="187" width="345" height="450"/>
+                    <rect key="frame" x="15" y="177" width="345" height="460"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <connections>
                         <outlet property="dataSource" destination="-1" id="Fh0-7F-8FN"/>
@@ -57,6 +57,7 @@
         </view>
     </objects>
     <resources>
+        <image name="5_8.2" width="226" height="115"/>
         <image name="5_9.1" width="320" height="568"/>
     </resources>
 </document>

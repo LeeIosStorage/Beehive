@@ -43,18 +43,26 @@
         NSString *urlStr = [NSString stringWithFormat:@"%@%@",[WYAPIGenerate sharedInstance].baseURL, dataObject];
         [imgUrls addObject:urlStr];
     } else {
-        NSString *urlStr = [NSString stringWithFormat:@"%@%@",[WYAPIGenerate sharedInstance].baseURL, _ImgList];
-        [imgUrls addObject:urlStr];
+        if (_ImgList) {
+            NSString *urlStr = [NSString stringWithFormat:@"%@%@",[WYAPIGenerate sharedInstance].baseURL, _ImgList];
+            [imgUrls addObject:urlStr];
+        }
     }
     return imgUrls;
 }
 
 - (NSString *)AdvertImg {
+    if (_AdvertImg.length == 0) {
+        return @"";
+    }
     NSString *urlStr = [NSString stringWithFormat:@"%@%@",[WYAPIGenerate sharedInstance].baseURL, _AdvertImg];
     return urlStr;
 }
 
 - (NSString *)HeadImg {
+    if (_HeadImg.length == 0) {
+        return @"";
+    }
     NSString *urlStr = [NSString stringWithFormat:@"%@%@",[WYAPIGenerate sharedInstance].baseURL, _HeadImg];
     return urlStr;
 }

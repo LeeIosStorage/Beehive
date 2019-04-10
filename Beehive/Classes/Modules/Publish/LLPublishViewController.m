@@ -17,6 +17,7 @@
 #import "LLChooseLocationViewController.h"
 #import "LLAddShopAddressViewController.h"
 #import "LLPubDataInfoNode.h"
+#import "LLPublishTipViewCell.h"
 
 @interface LLPublishViewController ()
 <
@@ -94,6 +95,10 @@ UITableViewDataSource
     self.currentPublishNode.isMore = true;
     
     [self refreshDataSource];
+    
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [self.tableView reloadData];
+    });
 }
 
 - (void)refreshDataSource {
@@ -206,6 +211,10 @@ UITableViewDataSource
     LLPublishCellNode *cellNode40 = [self nodeForCellTypeWithType:LLPublishCellTypeOldPrice];
     LLPublishCellNode *cellNode4 = [self nodeForCellTypeWithType:LLPublishCellTypeExchangeCount];
     [newMutArray addObject:[NSMutableArray arrayWithObjects:cellNode40, cellNode4, nil]];
+    
+    LLPublishCellNode *cellNodeTip = [[LLPublishCellNode alloc] init];
+    cellNodeTip.cellType = LLPublishCellTypeTip;
+    [newMutArray addObject:[NSMutableArray arrayWithObject:cellNodeTip]];
     
     LLPublishCellNode *cellNode6 = [self nodeForCellTypeWithType:LLPublishCellTypePubDate];
     LLPublishCellNode *cellNode7 = [self nodeForCellTypeWithType:LLPublishCellTypeVisible];
@@ -1091,6 +1100,14 @@ UITableViewDataSource
 
 - (nullable UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
     
+    NSArray *array = self.dataSource[section];
+    BOOL isTip = NO;
+    if (array.count > 1) {
+        LLPublishCellNode *node = array[1];
+        if (node.cellType == LLPublishCellTypeExchangeCount) {
+            isTip = YES;
+        }
+    }
     static NSString *headerIdentifier = @"UITableViewHeaderFooterView";
     UITableViewHeaderFooterView *header = [tableView dequeueReusableHeaderFooterViewWithIdentifier:headerIdentifier];
     if (!header) {
@@ -1099,6 +1116,7 @@ UITableViewDataSource
         header.contentView.backgroundColor = kAppSectionBackgroundColor;
         
         UIImageView *imgLine = [UIImageView new];
+        imgLine.tag = 220;
         imgLine.backgroundColor = LineColor;
         [header addSubview:imgLine];
         [imgLine mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -1106,6 +1124,8 @@ UITableViewDataSource
             make.height.mas_equalTo(0.5);
         }];
     }
+    UIImageView *imgLine = (UIImageView *)[header viewWithTag:220];
+    imgLine.hidden = isTip;
     return header;
 }
 
@@ -1152,6 +1172,14 @@ UITableViewDataSource
         }
         cell.vc = self;
         [cell updateCellWithData:cellNode];
+        return cell;
+    } else if (cellNode.cellType == LLPublishCellTypeTip) {
+        static NSString *cellIdentifier = @"LLPublishTipViewCell";
+        LLPublishTipViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+        if (!cell) {
+            NSArray* cells = [[NSBundle mainBundle] loadNibNamed:cellIdentifier owner:nil options:nil];
+            cell = [cells objectAtIndex:0];
+        }
         return cell;
     } else {
         

@@ -108,6 +108,15 @@
 		8D1A88092248E9C5005DD311 /* LLRedCityNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D1A88082248E9C5005DD311 /* LLRedCityNode.m */; };
 		8D1A880C2248E9E4005DD311 /* LLNoticeNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D1A880B2248E9E4005DD311 /* LLNoticeNode.m */; };
 		8D1A880F224A02F4005DD311 /* LLHomeNoticeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D1A880E224A02F4005DD311 /* LLHomeNoticeCell.m */; };
+		8D1ADF0B225D8DE0004FB101 /* WYLaunchBaseAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D1ADF04225D8DE0004FB101 /* WYLaunchBaseAnimation.m */; };
+		8D1ADF0C225D8DE0004FB101 /* WYLaunchFadeScaleAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D1ADF06225D8DE0004FB101 /* WYLaunchFadeScaleAnimation.m */; };
+		8D1ADF0D225D8DE0004FB101 /* UIView+WYLaunchAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D1ADF07225D8DE0004FB101 /* UIView+WYLaunchAnimation.m */; };
+		8D1ADF0E225D8DE0004FB101 /* WYLaunchImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D1ADF08225D8DE0004FB101 /* WYLaunchImageView.m */; };
+		8D1ADF0F225D8DE0004FB101 /* UIImage+WYLaunchImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D1ADF0A225D8DE0004FB101 /* UIImage+WYLaunchImage.m */; };
+		8D1ADF12225DBD60004FB101 /* LLBeeKingUserShowView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D1ADF11225DBD60004FB101 /* LLBeeKingUserShowView.m */; };
+		8D1ADF14225DBD80004FB101 /* LLBeeKingUserShowView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D1ADF13225DBD80004FB101 /* LLBeeKingUserShowView.xib */; };
+		8D1ADF18225DC7DC004FB101 /* LLPublishTipViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D1ADF16225DC7DC004FB101 /* LLPublishTipViewCell.m */; };
+		8D1ADF19225DC7DC004FB101 /* LLPublishTipViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D1ADF17225DC7DC004FB101 /* LLPublishTipViewCell.xib */; };
 		8D26040022566EAF0097B707 /* LLFundHistoryNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D2603FF22566EAF0097B707 /* LLFundHistoryNode.m */; };
 		8D26040322566FA50097B707 /* LLWithdrawHistoryNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D26040222566FA50097B707 /* LLWithdrawHistoryNode.m */; };
 		8D260407225720AE0097B707 /* LLSelectUserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D260405225720AE0097B707 /* LLSelectUserViewController.m */; };
@@ -553,6 +562,23 @@
 		8D1A880B2248E9E4005DD311 /* LLNoticeNode.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLNoticeNode.m; sourceTree = "<group>"; };
 		8D1A880D224A02F4005DD311 /* LLHomeNoticeCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLHomeNoticeCell.h; sourceTree = "<group>"; };
 		8D1A880E224A02F4005DD311 /* LLHomeNoticeCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLHomeNoticeCell.m; sourceTree = "<group>"; };
+		8D1ADF00225D8DE0004FB101 /* WYLaunchAnimationProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYLaunchAnimationProtocol.h; sourceTree = "<group>"; };
+		8D1ADF01225D8DE0004FB101 /* WYLaunchImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYLaunchImageView.h; sourceTree = "<group>"; };
+		8D1ADF02225D8DE0004FB101 /* WYLaunchFadeScaleAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYLaunchFadeScaleAnimation.h; sourceTree = "<group>"; };
+		8D1ADF03225D8DE0004FB101 /* UIView+WYLaunchAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+WYLaunchAnimation.h"; sourceTree = "<group>"; };
+		8D1ADF04225D8DE0004FB101 /* WYLaunchBaseAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYLaunchBaseAnimation.m; sourceTree = "<group>"; };
+		8D1ADF05225D8DE0004FB101 /* UIImage+WYLaunchImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+WYLaunchImage.h"; sourceTree = "<group>"; };
+		8D1ADF06225D8DE0004FB101 /* WYLaunchFadeScaleAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYLaunchFadeScaleAnimation.m; sourceTree = "<group>"; };
+		8D1ADF07225D8DE0004FB101 /* UIView+WYLaunchAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+WYLaunchAnimation.m"; sourceTree = "<group>"; };
+		8D1ADF08225D8DE0004FB101 /* WYLaunchImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYLaunchImageView.m; sourceTree = "<group>"; };
+		8D1ADF09225D8DE0004FB101 /* WYLaunchBaseAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYLaunchBaseAnimation.h; sourceTree = "<group>"; };
+		8D1ADF0A225D8DE0004FB101 /* UIImage+WYLaunchImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+WYLaunchImage.m"; sourceTree = "<group>"; };
+		8D1ADF10225DBD60004FB101 /* LLBeeKingUserShowView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLBeeKingUserShowView.h; sourceTree = "<group>"; };
+		8D1ADF11225DBD60004FB101 /* LLBeeKingUserShowView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLBeeKingUserShowView.m; sourceTree = "<group>"; };
+		8D1ADF13225DBD80004FB101 /* LLBeeKingUserShowView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LLBeeKingUserShowView.xib; sourceTree = "<group>"; };
+		8D1ADF15225DC7DC004FB101 /* LLPublishTipViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLPublishTipViewCell.h; sourceTree = "<group>"; };
+		8D1ADF16225DC7DC004FB101 /* LLPublishTipViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLPublishTipViewCell.m; sourceTree = "<group>"; };
+		8D1ADF17225DC7DC004FB101 /* LLPublishTipViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LLPublishTipViewCell.xib; sourceTree = "<group>"; };
 		8D2603FE22566EAF0097B707 /* LLFundHistoryNode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLFundHistoryNode.h; sourceTree = "<group>"; };
 		8D2603FF22566EAF0097B707 /* LLFundHistoryNode.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLFundHistoryNode.m; sourceTree = "<group>"; };
 		8D26040122566FA50097B707 /* LLWithdrawHistoryNode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLWithdrawHistoryNode.h; sourceTree = "<group>"; };
@@ -1369,6 +1395,24 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		8D1ADEFF225D8DE0004FB101 /* WYLaunchAnimation */ = {
+			isa = PBXGroup;
+			children = (
+				8D1ADF00225D8DE0004FB101 /* WYLaunchAnimationProtocol.h */,
+				8D1ADF01225D8DE0004FB101 /* WYLaunchImageView.h */,
+				8D1ADF02225D8DE0004FB101 /* WYLaunchFadeScaleAnimation.h */,
+				8D1ADF03225D8DE0004FB101 /* UIView+WYLaunchAnimation.h */,
+				8D1ADF04225D8DE0004FB101 /* WYLaunchBaseAnimation.m */,
+				8D1ADF05225D8DE0004FB101 /* UIImage+WYLaunchImage.h */,
+				8D1ADF06225D8DE0004FB101 /* WYLaunchFadeScaleAnimation.m */,
+				8D1ADF07225D8DE0004FB101 /* UIView+WYLaunchAnimation.m */,
+				8D1ADF08225D8DE0004FB101 /* WYLaunchImageView.m */,
+				8D1ADF09225D8DE0004FB101 /* WYLaunchBaseAnimation.h */,
+				8D1ADF0A225D8DE0004FB101 /* UIImage+WYLaunchImage.m */,
+			);
+			path = WYLaunchAnimation;
+			sourceTree = "<group>";
+		};
 		8D35B24522598811001EB059 /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -1500,6 +1544,7 @@
 		8D542A1D222A5BC2008B90B0 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				8D1ADEFF225D8DE0004FB101 /* WYLaunchAnimation */,
 				7E561B8B2239513F00DA3B20 /* LEAlertMarkView */,
 				8D4C612A222D77B000024840 /* LEPublishMenuView */,
 				8D542A1E222A5BC2008B90B0 /* LEButton */,
@@ -2048,6 +2093,9 @@
 				8D5CB6E122354C6800527DEB /* LLPublishChooseViewCell.h */,
 				8D5CB6E222354C6800527DEB /* LLPublishChooseViewCell.m */,
 				8D5CB6E322354C6800527DEB /* LLPublishChooseViewCell.xib */,
+				8D1ADF15225DC7DC004FB101 /* LLPublishTipViewCell.h */,
+				8D1ADF16225DC7DC004FB101 /* LLPublishTipViewCell.m */,
+				8D1ADF17225DC7DC004FB101 /* LLPublishTipViewCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -2369,11 +2417,14 @@
 				8DF0C288223A501E006175E7 /* LLReceiveRedAlertView.h */,
 				8DF0C289223A501E006175E7 /* LLReceiveRedAlertView.m */,
 				8DF0C28B223A502B006175E7 /* LLReceiveRedAlertView.xib */,
-				7E561BB8224282F100DA3B20 /* LLHomeAdsAlertView.h */,
 				8D1A880D224A02F4005DD311 /* LLHomeNoticeCell.h */,
 				8D1A880E224A02F4005DD311 /* LLHomeNoticeCell.m */,
+				7E561BB8224282F100DA3B20 /* LLHomeAdsAlertView.h */,
 				7E561BB9224282F100DA3B20 /* LLHomeAdsAlertView.m */,
 				7E561BBB2242830B00DA3B20 /* LLHomeAdsAlertView.xib */,
+				8D1ADF10225DBD60004FB101 /* LLBeeKingUserShowView.h */,
+				8D1ADF11225DBD60004FB101 /* LLBeeKingUserShowView.m */,
+				8D1ADF13225DBD80004FB101 /* LLBeeKingUserShowView.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -2678,6 +2729,7 @@
 				7E561BAC223FE5E700DA3B20 /* LLAdsBidViewController.xib in Resources */,
 				8D004EF0223BED150029EDE6 /* LLBuyAdViewController.xib in Resources */,
 				8DF0C291223B67FA006175E7 /* LLRedTaskShowAlertView.xib in Resources */,
+				8D1ADF19225DC7DC004FB101 /* LLPublishTipViewCell.xib in Resources */,
 				8D5CB6D322352A9800527DEB /* LLTradeMoldViewController.xib in Resources */,
 				8D004ECF223B7ADC0029EDE6 /* LLRedReceiveUserTableViewCell.xib in Resources */,
 				8D5CB6C12232D73300527DEB /* City.plist in Resources */,
@@ -2722,6 +2774,7 @@
 				8DBEAE6D223D026E0095D214 /* LLWithdrawViewController.xib in Resources */,
 				8DF0C27A223A29A2006175E7 /* LLRedTaskTableViewCell.xib in Resources */,
 				8D890B6D2232344500CA711A /* LLPublishInputViewCell.xib in Resources */,
+				8D1ADF14225DBD80004FB101 /* LLBeeKingUserShowView.xib in Resources */,
 				8DF28F92223E4A470074A4D8 /* LLExchangeOrderDetailsViewController.xib in Resources */,
 				8D01673B22391EC000CD21D8 /* LLCommodityExchangeDetailsViewController.xib in Resources */,
 				8D542A86222A66A5008B90B0 /* LLLoginViewController.xib in Resources */,
@@ -2997,6 +3050,7 @@
 				8D26040322566FA50097B707 /* LLWithdrawHistoryNode.m in Sources */,
 				8D5CB6D722352C0600527DEB /* LLChooseLocationViewController.m in Sources */,
 				8D36CF4D225B5892008AD059 /* WXSendPayOrder.m in Sources */,
+				8D1ADF0D225D8DE0004FB101 /* UIView+WYLaunchAnimation.m in Sources */,
 				8D65E1CD224D124C000A344D /* LLExchangeGoodsNode.m in Sources */,
 				8D79E4E1222676FC0019A1BE /* LLBeeMineViewController.m in Sources */,
 				8D1A880C2248E9E4005DD311 /* LLNoticeNode.m in Sources */,
@@ -3015,6 +3069,7 @@
 				8DF28FA5223E7EEE0074A4D8 /* LEFeedbackViewController.m in Sources */,
 				8D01673A22391EC000CD21D8 /* LLCommodityExchangeDetailsViewController.m in Sources */,
 				8DFCC841225A09E5001EB1B9 /* LLAreaNode.m in Sources */,
+				8D1ADF18225DC7DC004FB101 /* LLPublishTipViewCell.m in Sources */,
 				8DBEAE84223DFF5F0095D214 /* LLBeePresentAffirmView.m in Sources */,
 				8DD3993B22532F9700B8DAE2 /* LLCommentNode.m in Sources */,
 				8D542A6E222A5BC2008B90B0 /* LERefreshHeader.m in Sources */,
@@ -3039,6 +3094,7 @@
 				8D004ED3223B80C50029EDE6 /* LLPersonalHomeViewController.m in Sources */,
 				8DCC9AC2222B815E00AC3128 /* LLTableViewCell.m in Sources */,
 				8D542A64222A5BC2008B90B0 /* WYAPIGenerate.m in Sources */,
+				8D1ADF0F225D8DE0004FB101 /* UIImage+WYLaunchImage.m in Sources */,
 				8D36CF50225B5892008AD059 /* WXApiManager.m in Sources */,
 				8D004ECE223B7ADC0029EDE6 /* LLRedReceiveUserTableViewCell.m in Sources */,
 				8D72C1582251D8B500B032C2 /* LLUserInfoNode.m in Sources */,
@@ -3055,6 +3111,7 @@
 				8D542A7C222A5BC2008B90B0 /* LELoginAuthManager.m in Sources */,
 				8DBEAE4D223CB6BD0095D214 /* LLCollectListViewController.m in Sources */,
 				8D35B241225901BE001EB059 /* LLAdvertNode.m in Sources */,
+				8D1ADF12225DBD60004FB101 /* LLBeeKingUserShowView.m in Sources */,
 				8DBEAE7B223DF2A40095D214 /* LLFundDetailViewController.m in Sources */,
 				8DBC1BCC225BAAA400A18096 /* LLAdsBidDetailsViewController.m in Sources */,
 				8DF28F75223E27ED0074A4D8 /* LLBeeTaskViewController.m in Sources */,
@@ -3075,6 +3132,7 @@
 				8D0167362238FB9C00CD21D8 /* LLExchangeBaseViewController.m in Sources */,
 				8D0E4B52223F68F100DA2866 /* LLBeeLobbyTableViewCell.m in Sources */,
 				8D42DAE422559FB900914E0E /* LLCollectionListNode.m in Sources */,
+				8D1ADF0E225D8DE0004FB101 /* WYLaunchImageView.m in Sources */,
 				8D35B2482259883A001EB059 /* LLQueenBeeInfoNode.m in Sources */,
 				8D890B4C2232060100CA711A /* LLMessageViewController.m in Sources */,
 				8DF0C282223A3D40006175E7 /* LLRedTaskHistoryHeaderView.m in Sources */,
@@ -3116,6 +3174,7 @@
 				8DF28FAF223E84A00074A4D8 /* LLAmendPhoneViewController.m in Sources */,
 				7E1E8A6922301162002766AD /* LLMessageDetailsHeaderView.m in Sources */,
 				8DF0C28A223A501E006175E7 /* LLReceiveRedAlertView.m in Sources */,
+				8D1ADF0B225D8DE0004FB101 /* WYLaunchBaseAnimation.m in Sources */,
 				8D0E4B61223FB2C900DA2866 /* LLPricingTableViewCell.m in Sources */,
 				8D542A62222A5BC2008B90B0 /* WYNetWorkManager.m in Sources */,
 				8DBEAE6C223D026E0095D214 /* LLWithdrawViewController.m in Sources */,
@@ -3172,6 +3231,7 @@
 				8D65E1D1224E429C000A344D /* LLWalletDetailsNode.m in Sources */,
 				8DFCC844225A1D60001EB1B9 /* LLBeeKingNode.m in Sources */,
 				8DF28F8C223E4A0F0074A4D8 /* LLExchangeOrderViewController.m in Sources */,
+				8D1ADF0C225D8DE0004FB101 /* WYLaunchFadeScaleAnimation.m in Sources */,
 				8D3F2157222FCD8B0066F5EB /* LLFilterDistanceView.m in Sources */,
 				8D542A75222A5BC2008B90B0 /* WYCommonUtils.m in Sources */,
 				8DD290E22229442D00E4338D /* NSObject+LLRuntime.m in Sources */,

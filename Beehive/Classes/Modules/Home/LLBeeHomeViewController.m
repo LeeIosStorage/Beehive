@@ -31,6 +31,7 @@
 #import "LLHomeNoticeCell.h"
 #import "LLBeeTaskViewController.h"
 #import "LEShareSheetView.h"
+#import "LLBeeKingUserShowView.h"
 
 @interface LLBeeHomeViewController ()
 <
@@ -76,7 +77,9 @@ LEShareSheetViewDelegate
 
 @property (nonatomic, strong) UIButton *btnBottomAds;
 
-@property (nonatomic, strong)NSString *homeAdsUrl;
+@property (nonatomic, strong) NSString *homeAdsUrl;
+
+@property (nonatomic, strong) LLBeeKingUserShowView *beeKingUserShowView;//
 
 @end
 
@@ -181,6 +184,13 @@ LEShareSheetViewDelegate
         make.size.mas_equalTo(CGSizeMake(33, 33));
     }];
     
+    [self.view addSubview:self.beeKingUserShowView];
+    [self.beeKingUserShowView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.view).offset(-17);
+        make.size.mas_equalTo(CGSizeMake(130, 34));
+        make.bottom.equalTo(self.view).offset(-75);
+    }];
+    
     self.mapView.showsCompass = false;
     self.mapView.zoomLevel = 14.5;
     self.mapView.showsUserLocation = true;
@@ -189,13 +199,20 @@ LEShareSheetViewDelegate
 
 - (void)setData {
     
+    //通知
     [self.rollingNoticeView reloadDataAndStartRoll];
     
+    //红包列表
     self.cityOptionHeaderView.redCityArray = [NSMutableArray arrayWithArray:self.redCityList];
+    
+    self.beeKingUserShowView.hidden = true;
+    if (self.homeNode.isHaveQueen) {
+        self.beeKingUserShowView.hidden = false;
+        [self.beeKingUserShowView updateCellWithData:self.homeNode];
+    }
     
     //地图上红包
     self.mapRedpacketList = [NSMutableArray arrayWithArray:self.homeNode.RedEnvelopesList];
-    
     [self refreshMapRedpacketList];
 }
 
@@ -390,6 +407,7 @@ LEShareSheetViewDelegate
     [params setObject:[NSNumber numberWithDouble:self.currentCoordinate.longitude] forKey:@"longitude"];
     [self.networkManager POST:requesUrl needCache:NO caCheKey:nil parameters:params responseClass:[LLHomeNode class] needHeaderAuth:NO success:^(WYRequestType requestType, NSString *message, BOOL isCache, id dataObject) {
         
+        [SVProgressHUD dismiss];
         if (requestType != WYRequestTypeSuccess) {
             [SVProgressHUD showCustomErrorWithStatus:message];
             return ;
@@ -503,7 +521,7 @@ LEShareSheetViewDelegate
 #pragma mark - Action
 - (void)ruleClickAction:(id)sender {
     LLRedRuleViewController *vc = [[LLRedRuleViewController alloc] init];
-    vc.vcType = LLInfoDetailsVcTypeSignRule;
+    vc.vcType = LLInfoDetailsVcTypeRedRule;
     [self.navigationController pushViewController:vc animated:true];
 }
 
@@ -521,8 +539,10 @@ LEShareSheetViewDelegate
 }
 
 - (void)refreshAction:(id)sender {
-    LLAwardRecordViewController *vc = [[LLAwardRecordViewController alloc] init];
-    [self.navigationController pushViewController:vc animated:true];
+    [SVProgressHUD showCustomWithStatus:@"数据刷新中..."];
+    [self refreshHomeInfo];
+//    LLAwardRecordViewController *vc = [[LLAwardRecordViewController alloc] init];
+//    [self.navigationController pushViewController:vc animated:true];
 }
 
 - (void)redTaskAction:(id)sender {
@@ -670,9 +690,22 @@ LEShareSheetViewDelegate
 - (UIButton *)btnBottomAds {
     if (!_btnBottomAds) {
         _btnBottomAds = [UIButton buttonWithType:UIButtonTypeCustom];
-        [_btnBottomAds addTarget:self action:@selector(adsBtnAction) forControlEvents:UIControlEventTouchUpInside];
+//        [_btnBottomAds addTarget:self action:@selector(adsBtnAction) forControlEvents:UIControlEventTouchUpInside];
     }
     return _btnBottomAds;
+}
+
+- (LLBeeKingUserShowView *)beeKingUserShowView {
+    if (!_beeKingUserShowView) {
+        _beeKingUserShowView = [[[NSBundle mainBundle] loadNibNamed:@"LLBeeKingUserShowView" owner:self options:nil] firstObject];
+        _beeKingUserShowView.hidden = true;
+        
+        WEAKSELF
+        _beeKingUserShowView.clickBlock = ^{
+            [weakSelf adsBtnAction];
+        };
+    }
+    return _beeKingUserShowView;
 }
 
 #pragma mark - GYRollingNoticeViewDelegate

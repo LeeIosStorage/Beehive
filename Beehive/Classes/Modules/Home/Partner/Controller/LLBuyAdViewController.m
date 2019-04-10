@@ -54,6 +54,7 @@ WXApiManagerDelegate
     self.maxDayCount = 10;
     self.textField.text = @"1";
     
+    [self refreshData];
 }
 
 - (void)refreshData {
@@ -119,6 +120,7 @@ WXApiManagerDelegate
                 weakSelf.maxDayCount = [dic[@"MaxBuyDays"] intValue];
             }
         }
+        [self refreshData];
         
     } failure:^(id responseObject, NSError *error) {
         [SVProgressHUD showCustomErrorWithStatus:HitoFaiNetwork];

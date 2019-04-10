@@ -46,11 +46,15 @@ UITableViewDataSource
     
     self.dataLists = [NSMutableArray array];
     
+    CGFloat height = 235 + 10*2;
+    height += (7/30.0)*(SCREEN_WIDTH-10*2);
+    height += (14/29.0)*((SCREEN_WIDTH-10*3)/2);
+    self.beeLobbyHeaderView.height = height;
     self.tableView.tableHeaderView = self.beeLobbyHeaderView;
-    [self.beeLobbyHeaderView mas_makeConstraints:^(MASConstraintMaker *make) {
-        //top布局一定要加上 不然origin.y可能为负值
-        make.top.width.equalTo(self.tableView);
-    }];
+//    [self.beeLobbyHeaderView mas_makeConstraints:^(MASConstraintMaker *make) {
+//        //top布局一定要加上 不然origin.y可能为负值
+//        make.top.width.equalTo(self.tableView);
+//    }];
     
     self.tableView.estimatedRowHeight = 100;
     self.tableView.rowHeight = UITableViewAutomaticDimension;
@@ -78,9 +82,9 @@ UITableViewDataSource
     
     [self.beeLobbyHeaderView updateHeadViewWithData:self.queenBeeInfoNode];
     
-    LLBeeLobbyHeaderView *headView = (LLBeeLobbyHeaderView *)self.tableView.tableHeaderView;
-    [self.tableView layoutIfNeeded];
-    self.tableView.tableHeaderView = headView;
+//    LLBeeLobbyHeaderView *headView = (LLBeeLobbyHeaderView *)self.tableView.tableHeaderView;
+//    [self.tableView layoutIfNeeded];
+//    self.tableView.tableHeaderView = headView;
     
     self.dataLists = [NSMutableArray arrayWithArray:self.queenBeeInfoNode.AdvertList];
     

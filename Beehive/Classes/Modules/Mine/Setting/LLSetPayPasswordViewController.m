@@ -84,9 +84,9 @@
 - (void)setPwdRequest {
     [SVProgressHUD showCustomWithStatus:@"设置中..."];
     WEAKSELF
-    NSString *requesUrl = [[WYAPIGenerate sharedInstance] API:@"UpdatePwd"];
+    NSString *requesUrl = [[WYAPIGenerate sharedInstance] API:@"UpdatePayPwd"];
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
-    [params setObject:self.onePwd forKey:@"oldPwd"];
+    [params setObject:self.onePwd forKey:@"newPwd"];
     
     [self.networkManager POST:requesUrl needCache:NO caCheKey:nil parameters:params responseClass:nil needHeaderAuth:NO success:^(WYRequestType requestType, NSString *message, BOOL isCache, id dataObject) {
         

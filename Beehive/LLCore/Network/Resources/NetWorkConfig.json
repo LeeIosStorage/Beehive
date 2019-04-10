@@ -45,6 +45,11 @@
         "module"  : "SessionService.asmx",
         "action"  : "UpdatePwd"
     },
+    "UpdatePayPwd": {
+        "protocol": "http",
+        "module"  : "SessionService.asmx",
+        "action"  : "UpdatePayPwd"
+    },
     "UpdatePhone": {
         "protocol": "http",
         "module"  : "SessionService.asmx",
@@ -64,6 +69,11 @@
         "protocol": "http",
         "module"  : "SessionService.asmx",
         "action"  : "GetVipExplain"
+    },
+    "GetRedExplain": {
+        "protocol": "http",
+        "module"  : "SessionService.asmx",
+        "action"  : "GetRedExplain"
     },
     "GetIndexData": {
         "protocol": "http",

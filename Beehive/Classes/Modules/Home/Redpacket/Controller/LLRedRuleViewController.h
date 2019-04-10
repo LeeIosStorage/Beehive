@@ -11,6 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 typedef NS_ENUM(NSInteger, LLInfoDetailsVcType) {
+    LLInfoDetailsVcTypeRedRule, //红包领取规则
     LLInfoDetailsVcTypeSignRule, //签到抽奖规则
     LLInfoDetailsVcTypeNotice, //公告
     LLInfoDetailsVcTypeAbout, //关于蜂巢

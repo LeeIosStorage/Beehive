@@ -58,7 +58,7 @@
                         <constraint firstAttribute="height" constant="0.5" id="CHz-M3-iHJ"/>
                     </constraints>
                 </imageView>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Abr-3T-89G" customClass="SDCycleScrollView">
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Abr-3T-89G">
                     <rect key="frame" x="10" y="75" width="355" height="225"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
@@ -208,7 +208,7 @@
                 <outlet property="contentLabel" destination="DQc-Fq-nzM" id="UXz-Rq-jPb"/>
                 <outlet property="distanceLabel" destination="N8B-aN-c83" id="vva-a7-42d"/>
                 <outlet property="favourButton" destination="hQZ-os-gN5" id="peb-ob-eue"/>
-                <outlet property="gridImageView" destination="Abr-3T-89G" id="WKH-TF-pUH"/>
+                <outlet property="gridContentView" destination="Abr-3T-89G" id="V42-s9-JxN"/>
                 <outlet property="gridImageViewConstraintH" destination="NdA-cX-N60" id="wuc-Q3-e7s"/>
                 <outlet property="imagePageLabel" destination="8IN-wU-YkW" id="2Qa-Ie-JKZ"/>
                 <outlet property="imagePageView" destination="Ge5-Me-BxM" id="SEJ-XP-4hT"/>

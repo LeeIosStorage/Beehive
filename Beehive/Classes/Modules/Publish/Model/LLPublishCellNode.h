@@ -44,6 +44,7 @@ typedef NS_ENUM(NSInteger, LLPublishCellType) {
     LLPublishCellTypeShipAddress,    //收货地址
     LLPublishCellTypeHouseNumber,    //门牌号
     LLPublishCellTypeADImage,        //广告图
+    LLPublishCellTypeTip,            //汇率提示
     
     //UserSet
     LLPublishCellTypeAvatar,         //头像

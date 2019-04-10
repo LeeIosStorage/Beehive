@@ -29,7 +29,8 @@ SDCycleScrollViewDelegate
 @property (nonatomic, weak) IBOutlet UILabel *labPrice;
 @property (nonatomic, weak) IBOutlet UILabel *labBeeCoin;
 
-@property (nonatomic, weak) IBOutlet SDCycleScrollView *gridImageView;
+@property (nonatomic, weak) IBOutlet UIView *gridContentView;
+@property (nonatomic, strong) SDCycleScrollView *gridImageView;
 @property (nonatomic, strong) NSMutableArray *images;
 @property (nonatomic, weak) IBOutlet NSLayoutConstraint *gridImageViewConstraintH;
 @property (nonatomic, weak) IBOutlet UIView *imagePageView;
@@ -49,11 +50,12 @@ SDCycleScrollViewDelegate
     self.avatarImageView.layer.cornerRadius = 22.5;
     self.avatarImageView.layer.masksToBounds = true;
     
+    self.gridImageView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0, SCREEN_WIDTH - 10*2, 225) delegate:self placeholderImage:nil];
+    [self.gridContentView addSubview:self.gridImageView];
     self.gridImageView.layer.cornerRadius = 2;
     self.gridImageView.layer.masksToBounds = true;
-    
     self.gridImageView.backgroundColor = kAppThemeColor;
-    self.gridImageView.delegate = self;
+//    self.gridImageView.delegate = self;
     
     self.imagePageView.backgroundColor = kAppMaskOpaqueBlackColor;
     self.imagePageView.layer.cornerRadius = 15;

@@ -33,6 +33,10 @@
 - (void)updateCellWithData:(id)node {
     LLRedpacketNode *someNode = (LLRedpacketNode *)node;
     
+    self.avatarImageView.hidden = true;
+    if (someNode.HeadImg.length > 0) {
+        self.avatarImageView.hidden = false;
+    }
     [WYCommonUtils setImageWithURL:[NSURL URLWithString:someNode.HeadImg] setImage:self.avatarImageView setbitmapImage:nil];
     
     NSString *url = @"";
@@ -40,7 +44,15 @@
         url = someNode.ImgUrls[0];
     }
     [WYCommonUtils setImageWithURL:[NSURL URLWithString:url] setImage:self.imgIcon setbitmapImage:nil];
+    self.imgIcon.hidden = true;
+    if (url.length > 0) {
+        self.imgIcon.hidden = false;
+    }
     
+    self.nickNameLabel.hidden = true;
+    if (someNode.UserName.length > 0) {
+        self.nickNameLabel.hidden = false;
+    }
     self.nickNameLabel.text = someNode.UserName;
 }
 

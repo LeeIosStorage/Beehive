@@ -25,13 +25,27 @@
 #import "LLLocationManager.h"
 #import "LELoginAuthManager.h"
 #import "WXApiManager.h"
+#import "WYLaunchImageView.h"
+#import "WYNetWorkManager.h"
+#import "UIImage+WYLaunchImage.h"
+#import "UIView+WYLaunchAnimation.h"
+#import "WYLaunchFadeScaleAnimation.h"
 
 @interface AppDelegate ()
 <
 UITabBarControllerDelegate
 >
 
+@property (nonatomic, strong) WYNetWorkManager *networkManager;
+
 @property (nonatomic, strong) LLTabBarViewController *tabBarController;
+
+@property (nonatomic, strong) WYLaunchImageView *adLaunchImageView;
+@property (strong, nonatomic) UILabel *skipLabel;
+@property (nonatomic, strong) NSString *launchType;
+@property (nonatomic, strong) NSTimer *countDownTimer;
+@property (nonatomic, assign) NSInteger count;
+@property (nonatomic, strong) NSMutableDictionary *dic;
 
 @end
 
@@ -59,6 +73,11 @@ UITabBarControllerDelegate
     self.window = [[UIWindow alloc] initWithFrame:UIScreen.mainScreen.bounds];
     [self initRootVc];
 //    [self initLoginVc];
+    
+    //启动图
+    [self loadAppADView:nil];
+    [self getAdsStartdata];
+    
     [self.window makeKeyAndVisible];
     return YES;
 }
@@ -217,6 +236,105 @@ UITabBarControllerDelegate
         }
     }
     return YES;
+}
+
+- (WYNetWorkManager *)networkManager{
+    if (!_networkManager) {
+        _networkManager = [[WYNetWorkManager alloc] init];
+    }
+    return _networkManager;
+}
+
+#pragma mark - 启动图广告
+- (void)getAdsStartdata {
+    WEAKSELF
+    NSString *requesUrl = [[WYAPIGenerate sharedInstance] API:@"GetOneAdvert"];
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    [params setObject:[NSNumber numberWithDouble:[LLLocationManager sharedInstance].currentCoordinate.latitude] forKey:@"latitude"];
+    [params setObject:[NSNumber numberWithDouble:[LLLocationManager sharedInstance].currentCoordinate.longitude] forKey:@"longitude"];
+    [params setObject:[NSNumber numberWithInt:0] forKey:@"type"];
+    NSString *caCheKey = @"GetOneAdvert-0";
+    [self.networkManager POST:requesUrl needCache:NO caCheKey:caCheKey parameters:params responseClass:nil needHeaderAuth:NO success:^(WYRequestType requestType, NSString *message, BOOL isCache, id dataObject) {
+        
+        if (requestType != WYRequestTypeSuccess) {
+//            [SVProgressHUD showCustomErrorWithStatus:message];
+            [weakSelf.adLaunchImageView removeFromSuperview];
+            return ;
+        }
+        NSString *urlStr = @"";
+        if ([dataObject isKindOfClass:[NSArray class]]) {
+            NSArray *data = (NSArray *)dataObject;
+            if (data.count > 0) {
+                urlStr = data[0];
+            }
+        }
+        if (urlStr.length == 0) {
+            [weakSelf.adLaunchImageView removeFromSuperview];
+            return;
+        }
+        NSString *imgUrl = [NSString stringWithFormat:@"%@%@",[WYAPIGenerate sharedInstance].baseURL, urlStr];
+        weakSelf.adLaunchImageView.URLString = imgUrl;
+        weakSelf.count = 4;
+        if (!isCache) {
+            weakSelf.countDownTimer = [NSTimer scheduledTimerWithTimeInterval:1.0 block:^(NSTimer * _Nonnull timer) {
+                [weakSelf timeFireMethod];
+            } repeats:YES];
+            [weakSelf.countDownTimer fire];
+        }
+        
+    } failure:^(id responseObject, NSError *error) {
+        [weakSelf.adLaunchImageView removeFromSuperview];
+//        [SVProgressHUD showCustomErrorWithStatus:HitoFaiNetwork];
+    }];
+}
+
+- (void)loadAppADView:(NSDictionary *)dic{
+    self.adLaunchImageView = [[WYLaunchImageView alloc] initWithImage:[UIImage getLaunchImage]];
+    
+    WEAKSELF
+    self.skipLabel = [[UILabel alloc] initWithFrame:CGRectMake(SCREEN_WIDTH - 100, HitoStatusBarHeight, 70, 20)];
+    self.skipLabel.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.3];
+    self.skipLabel.textAlignment = NSTextAlignmentCenter;
+    self.skipLabel.textColor = [UIColor whiteColor];
+    [self.adLaunchImageView addSubview:self.skipLabel];
+    self.skipLabel.clipsToBounds = YES;
+    self.skipLabel.layer.cornerRadius = 10;
+    // 显示imageView
+    [self.adLaunchImageView showInWindowWithAnimation:[WYLaunchFadeScaleAnimation fadeAnimationWithDelay:4.0] completion:^(BOOL finished) {
+        LELog(@"finished");
+//        [[UIApplication sharedApplication] setStatusBarHidden:NO];
+//        [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
+//        NSLog(@"finished");
+//        [[NSNotificationCenter defaultCenter] postNotificationName:WY_LAUNCHIMAGE_FINISH_NOTIFICATION object:[NSNumber numberWithBool:YES]];
+    }];
+    
+    // 点击广告block
+    [self.adLaunchImageView setClickedImageURLHandle:^(NSString *URLString) {
+        [weakSelf removeAppADView];
+//        [[UIApplication sharedApplication] setStatusBarHidden:NO];
+//        [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
+//        [weakSelf pushAdViewCntroller:dic];
+        LELog(@"clickedImageURLHandle");
+    }];
+    
+}
+
+- (void)timeFireMethod{
+    LELog(@"secondsCountDown = %ld",(long)self.count);
+    self.skipLabel.text = [NSString stringWithFormat:@"%ld跳过",(long)self.count];
+    self.count--;
+    if(self.count <= 0){
+        [self.countDownTimer invalidate];
+        self.countDownTimer = nil;
+        [self removeAppADView];
+    }
+    
+}
+
+- (void)removeAppADView{
+    [self.countDownTimer invalidate];
+    self.countDownTimer = nil;
+//    [self.appADView removeFromSuperview];
 }
 
 @end

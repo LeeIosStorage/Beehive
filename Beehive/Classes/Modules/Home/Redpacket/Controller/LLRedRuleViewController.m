@@ -35,6 +35,9 @@
     } else if (self.vcType == LLInfoDetailsVcTypeQueenBeeExplain) {
         self.title = @"成为蜂王说明";
         [self getQueenBeeeExplain];
+    } else if (self.vcType == LLInfoDetailsVcTypeRedRule) {
+        self.title = @"红包规则";
+        [self getRedExplain];
     }
     
     self.view.backgroundColor = kAppBackgroundColor;
@@ -114,6 +117,33 @@
     NSString *requesUrl = [[WYAPIGenerate sharedInstance] API:@"GetQueenBeeeExplain"];
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     NSString *caCheKey = @"GetQueenBeeeExplain";
+    [self.networkManager POST:requesUrl needCache:YES caCheKey:caCheKey parameters:params responseClass:nil needHeaderAuth:NO success:^(WYRequestType requestType, NSString *message, BOOL isCache, id dataObject) {
+        
+        [SVProgressHUD dismiss];
+        if (requestType != WYRequestTypeSuccess) {
+            [SVProgressHUD showCustomErrorWithStatus:message];
+            return ;
+        }
+        
+        if ([dataObject isKindOfClass:[NSArray class]]) {
+            NSArray *data = (NSArray *)dataObject;
+            if (data.count > 0) {
+                weakSelf.text = data[0];
+            }
+        }
+        [weakSelf refreshData];
+        
+    } failure:^(id responseObject, NSError *error) {
+        [SVProgressHUD showCustomErrorWithStatus:HitoFaiNetwork];
+    }];
+}
+
+- (void)getRedExplain {
+    [SVProgressHUD showCustomWithStatus:@"请求中..."];
+    WEAKSELF
+    NSString *requesUrl = [[WYAPIGenerate sharedInstance] API:@"GetRedExplain"];
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    NSString *caCheKey = @"GetRedExplain";
     [self.networkManager POST:requesUrl needCache:YES caCheKey:caCheKey parameters:params responseClass:nil needHeaderAuth:NO success:^(WYRequestType requestType, NSString *message, BOOL isCache, id dataObject) {
         
         [SVProgressHUD dismiss];
