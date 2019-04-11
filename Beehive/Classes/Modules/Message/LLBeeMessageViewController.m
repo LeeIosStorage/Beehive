@@ -18,6 +18,8 @@
 #import <AMapLocationKit/AMapLocationKit.h>
 #import "LLLocationManager.h"
 #import "LLPersonalHomeViewController.h"
+#import "LLTradeMoldViewController.h"
+#import "LLTradeMoldNode.h"
 
 @interface LLBeeMessageViewController ()
 <
@@ -38,10 +40,13 @@ UISearchBarDelegate
 @property (nonatomic, strong) LLFilterDistanceView *filterDistanceView;
 
 @property (nonatomic, strong) UITableView *tableView;
-
 @property (nonatomic, strong) NSMutableArray *messageLists;
-
 @property (assign, nonatomic) int nextCursor;
+
+@property (nonatomic, strong) UIView *classifyChooseView;
+@property (nonatomic, strong) LLTradeMoldViewController *tradeMoldViewController;
+@property (assign, nonatomic) int oneType;
+@property (assign, nonatomic) int twoType;
 
 @end
 
@@ -61,6 +66,8 @@ UISearchBarDelegate
     self.currentCoordinate = [LLLocationManager sharedInstance].currentCoordinate;
     [self.locationManager startUpdatingLocation];
     
+    self.oneType = 0;
+    self.twoType = 0;
     self.messageLists = [NSMutableArray array];
     
     [self createBarButtonItemAtPosition:LLNavigationBarPositionRight normalImage:nil highlightImage:nil text:@"搜索" action:@selector(searchAction:)];
@@ -84,6 +91,19 @@ UISearchBarDelegate
 
     [self.tableView reloadData];
     
+    CYLTabBarController *tabBarController = [self cyl_tabBarController];
+    [tabBarController.view addSubview:self.classifyChooseView];
+    [self.classifyChooseView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.bottom.equalTo(tabBarController.view);
+        make.top.mas_equalTo(HitoTopHeight+1);
+    }];
+    self.classifyChooseView.hidden = true;
+    [self.classifyChooseView addSubview:self.tradeMoldViewController.view];
+    [self.tradeMoldViewController.view mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.top.right.equalTo(self.classifyChooseView);
+        make.height.mas_equalTo(240);
+    }];
+    
     self.nextCursor = 1;
     [self addMJ];
 }
@@ -100,6 +120,10 @@ UISearchBarDelegate
         make.top.mas_equalTo(40 + HitoTopHeight);
     }];
     [self.filterDistanceView show];
+}
+
+- (void)showIndustryView {
+    self.classifyChooseView.hidden = !self.classifyChooseView.hidden;
 }
 
 - (void)avatarWithCell:(LLMessageTimeLineViewCell *)cell {
@@ -145,6 +169,8 @@ UISearchBarDelegate
     [params setValue:searchName forKey:@"searchName"];
     [params setValue:[NSNumber numberWithDouble:self.currentCoordinate.latitude] forKey:@"latitude"];
     [params setValue:[NSNumber numberWithDouble:self.currentCoordinate.longitude] forKey:@"longitude"];
+    [params setObject:[NSNumber numberWithInt:self.oneType] forKey:@"oneType"];
+    [params setObject:[NSNumber numberWithInt:self.twoType] forKey:@"twoType"];
     
     [self.networkManager POST:requesUrl needCache:NO caCheKey:nil parameters:params responseClass:[LLMessageListNode class] needHeaderAuth:NO success:^(WYRequestType requestType, NSString *message, BOOL isCache, id dataObject) {
         
@@ -226,13 +252,14 @@ UISearchBarDelegate
 - (LLSegmentedHeadView *)segmentedHeadView {
     if (!_segmentedHeadView) {
         _segmentedHeadView = [[LLSegmentedHeadView alloc] init];
-        [_segmentedHeadView setItems:@[@{kllSegmentedTitle:@"分类选择",kllSegmentedType:@(0)},@{kllSegmentedTitle:@"附近距离",kllSegmentedType:@(1)}]];
+        [_segmentedHeadView setItems:@[@{kllSegmentedTitle:@"分类选择",kllSegmentedType:@(1)},@{kllSegmentedTitle:@"附近距离",kllSegmentedType:@(1)}]];
         WEAKSELF
         _segmentedHeadView.clickBlock = ^(NSInteger index) {
             if (index == 0) {
                 if (weakSelf.filterDistanceView.superview) {
                     [weakSelf.filterDistanceView dismiss];
                 }
+                [weakSelf showIndustryView];
             } else if (index == 1) {
                 [weakSelf showFilterDistanceView];
             }
@@ -264,6 +291,42 @@ UISearchBarDelegate
         };
     }
     return _filterDistanceView;
+}
+
+- (UIView *)classifyChooseView {
+    if (!_classifyChooseView) {
+        _classifyChooseView = [[UIView alloc] init];
+        _classifyChooseView.backgroundColor = [UIColor clearColor];
+        
+        UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
+        btn.backgroundColor = kAppMaskOpaqueBlackColor;
+        [btn addTarget:self action:@selector(showIndustryView) forControlEvents:UIControlEventTouchUpInside];
+        [_classifyChooseView addSubview:btn];
+        [btn mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.edges.equalTo(self->_classifyChooseView);
+        }];
+    }
+    return _classifyChooseView;
+}
+
+- (LLTradeMoldViewController *)tradeMoldViewController {
+    if (!_tradeMoldViewController) {
+        _tradeMoldViewController = [[LLTradeMoldViewController alloc] init];
+        _tradeMoldViewController.vcType = 1;
+        WEAKSELF
+        _tradeMoldViewController.chooseBlock = ^(LLTradeMoldNode * _Nonnull node1, LLTradeMoldNode * _Nonnull node2) {
+            [weakSelf showIndustryView];
+            weakSelf.oneType = [node1.tId intValue];
+            weakSelf.twoType = [node2.tId intValue];
+            NSString *title = [NSString stringWithFormat:@"%@/%@",node1.title, node2.title];
+            if ([node1.tId intValue] == 0) {
+                title = node2.title;
+            }
+            [weakSelf.segmentedHeadView updateLabelWithIndex:0 title:title];
+            [weakSelf searchAction:nil];
+        };
+    }
+    return _tradeMoldViewController;
 }
 
 #pragma mark - UISearchBarDelegate

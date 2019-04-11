@@ -26,6 +26,7 @@
 #import "LLBeeVIPViewController.h"
 #import "LLTuiSpecialistViewController.h"
 #import "LLPersonalInfoViewController.h"
+#import "LLEditAdViewController.h"
 
 static NSString *const kLLMineCollectionViewCell = @"LLMineCollectionViewCell";
 static NSString *const kLLMineCollectionHeaderView = @"LLMineCollectionHeaderView";
@@ -47,6 +48,7 @@ UICollectionViewDataSource
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:true animated:true];
+    [self.collectionView reloadData];
 }
 
 - (void)viewDidLoad {
@@ -82,7 +84,7 @@ UICollectionViewDataSource
     
     
     self.dataSource = [NSMutableArray array];
-    for (int i = 0; i < 11; i ++) {
+    for (int i = 0; i < 12; i ++) {
         LLMineNode *node = [[LLMineNode alloc] init];
         if (i == 0) { node.title = @"钱包"; node.icon = @"5_0.7"; node.vcType = i;}
         if (i == 1) {node.title = @"蜂群"; node.icon = @"5_0.8"; node.vcType = i;}
@@ -95,6 +97,7 @@ UICollectionViewDataSource
         if (i == 8) {node.title = @"更多设置"; node.icon = @"5_0.15"; node.vcType = i;}
         if (i == 9) {node.title = @"徽章VIP"; node.icon = @"5_0.16"; node.vcType = i;}
         if (i == 10) {node.title = @"推广专员"; node.icon = @"5_0.17"; node.vcType = i;}
+        if (i == 11) {node.title = @"广告图"; node.icon = @"5_0.12"; node.vcType = i;}
         [self.dataSource addObject:node];
     }
     
@@ -236,6 +239,11 @@ UICollectionViewDataSource
             break;
         case LLMineNodeTypeTui: {
             LLTuiSpecialistViewController *vc = [[LLTuiSpecialistViewController alloc] init];
+            [self.navigationController pushViewController:vc animated:true];
+        }
+            break;
+        case LLMineNodeTypeAdvert: {
+            LLEditAdViewController *vc = [[LLEditAdViewController alloc] init];
             [self.navigationController pushViewController:vc animated:true];
         }
             break;

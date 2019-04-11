@@ -19,15 +19,21 @@
 #import "WXSendPayOrder.h"
 #import "LLPublishIDCardViewCell.h"
 #import "LLPublishCellNode.h"
+#import "LLPublishInputViewCell.h"
 #import "LLAreaChooseView.h"
 #import "LLBuyAdViewController.h"
+#import "ZJPayPopupView.h"
+#import "LLPayPasswordResetViewController.h"
 
 @interface LLAdsBidDetailsViewController ()
 <
 UITableViewDataSource,
 UITableViewDelegate,
-WXApiManagerDelegate
+WXApiManagerDelegate,
+ZJPayPopupViewDelegate
 >
+
+@property (nonatomic, strong) ZJPayPopupView *payPopupView;
 
 @property (nonatomic, weak) IBOutlet UIView *headerView;
 @property (nonatomic, weak) IBOutlet UILabel *labCity;
@@ -39,6 +45,9 @@ WXApiManagerDelegate
 
 @property (nonatomic, strong) LLPublishIDCardViewCell *publishImageViewCell;
 @property (nonatomic, strong) LLPublishCellNode *publishImageNode;
+
+@property (nonatomic, strong) LLPublishInputViewCell *publishInputViewCell;
+@property (nonatomic, strong) LLPublishCellNode *publishUrlAddressNode;
 
 @property (nonatomic, strong) UITableView *tableView;
 
@@ -106,6 +115,14 @@ WXApiManagerDelegate
     self.publishImageNode.uploadImageDatas = [NSMutableArray array];
     [self.publishImageViewCell updateCellWithData:self.publishImageNode];
     
+    self.publishInputViewCell.frame = CGRectMake(0, 105, SCREEN_WIDTH, 120);
+    [self.imageUploadView addSubview:self.publishInputViewCell];
+    self.publishUrlAddressNode = [[LLPublishCellNode alloc] init];
+    self.publishUrlAddressNode.cellType = LLPublishCellTypeLinkAddress;
+    self.publishUrlAddressNode.title = @"链接地址";
+    self.publishUrlAddressNode.placeholder = @"输入链接地址...";
+    [self.publishInputViewCell updateCellWithData:self.publishUrlAddressNode];
+    
     self.tableView.tableHeaderView = self.headerView;
     [self.headerView mas_makeConstraints:^(MASConstraintMaker *make) {
         //top布局一定要加上 不然origin.y可能为负值
@@ -152,8 +169,8 @@ WXApiManagerDelegate
     [self.view endEditing:true];
     LLPaymentWayView *tipView = [[[NSBundle mainBundle] loadNibNamed:@"LLPaymentWayView" owner:self options:nil] firstObject];
     tipView.frame = CGRectMake(0, 0, SCREEN_WIDTH, 265);
-    tipView.wayType = LLPaymentWayTypeVIP;
-    [tipView updateCellWithData:nil];
+//    tipView.wayType = LLPaymentWayTypeVIP;
+    [tipView updateCellWithData:self.bidPrice];
     __weak UIView *weakView = tipView;
     WEAKSELF
     tipView.paymentBlock = ^(NSInteger type) {
@@ -162,10 +179,20 @@ WXApiManagerDelegate
             [alert dismiss];
         }
         weakSelf.paymentWay = type;
-        [weakSelf addAdvertInfo];
+        if (type == 0) {
+            [weakSelf payPopupViewShow];
+        } else {
+            [weakSelf addAdvertInfoWithPassword:nil];
+        }
     };
     LEAlertMarkView *alert = [[LEAlertMarkView alloc] initWithCustomView:tipView type:LEAlertMarkViewTypeBottom];
     [alert show];
+}
+
+- (void)payPopupViewShow {
+    self.payPopupView = [[ZJPayPopupView alloc] init];
+    self.payPopupView.delegate = self;
+    [self.payPopupView showPayPopView];
 }
 
 #pragma mark - mj
@@ -240,7 +267,7 @@ WXApiManagerDelegate
     }];
 }
 
-- (void)addAdvertInfo {
+- (void)addAdvertInfoWithPassword:(NSString *)password {
     NSArray *uploadImages = self.publishImageNode.uploadImageDatas;
     if (uploadImages.count == 0) {
         [SVProgressHUD showCustomInfoWithStatus:@"请上传图片"];
@@ -257,6 +284,11 @@ WXApiManagerDelegate
     [params setValue:self.bidPrice forKey:@"money"];
     [params setValue:[NSNumber numberWithInteger:self.paymentWay] forKey:@"payType"];
     [params setObject:[NSNumber numberWithInt:self.buyDays] forKey:@"days"];
+    if (password.length == 0) password = @"";
+    [params setValue:password forKey:@"payPwd"];
+    NSString *linkAddress = self.publishUrlAddressNode.inputText;
+    if (linkAddress.length == 0) linkAddress = @"";
+    [params setValue:linkAddress forKey:@"urlAddress"];
     
     NSMutableArray *imageDatas = [NSMutableArray array];
     
@@ -276,7 +308,9 @@ WXApiManagerDelegate
             [SVProgressHUD showCustomErrorWithStatus:message];
             return ;
         }
-        
+        if (message.length > 0) {
+            [SVProgressHUD showCustomSuccessWithStatus:message];
+        }
         NSDictionary *dic = nil;
         if ([dataObject isKindOfClass:[NSArray class]]) {
             NSArray *data = (NSArray *)dataObject;
@@ -284,7 +318,9 @@ WXApiManagerDelegate
                 dic = data[0];
             }
         }
-        
+        if (weakSelf.paymentWay == 0) {
+            return;
+        }
         if (weakSelf.paymentWay == 1) {
             NSMutableDictionary *mutDic = [NSMutableDictionary dictionaryWithDictionary:dic];
             [mutDic setObject:@"广告位购买" forKey:@"subject"];
@@ -362,6 +398,15 @@ WXApiManagerDelegate
     return _publishImageViewCell;
 }
 
+- (LLPublishInputViewCell *)publishInputViewCell {
+    if (!_publishInputViewCell) {
+        static NSString *cellIdentifier = @"LLPublishInputViewCell";
+        NSArray* cells = [[NSBundle mainBundle] loadNibNamed:cellIdentifier owner:nil options:nil];
+        _publishInputViewCell = [cells objectAtIndex:0];
+    }
+    return _publishInputViewCell;
+}
+
 - (LLAreaChooseView *)areaChooseView {
     if (!_areaChooseView) {
         _areaChooseView = [[[NSBundle mainBundle] loadNibNamed:@"LLAreaChooseView" owner:self options:nil] firstObject];
@@ -411,6 +456,19 @@ WXApiManagerDelegate
         };
     }
     return _beeAffirmBidView;
+}
+
+#pragma mark - ZJPayPopupViewDelegate
+- (void)didClickForgetPasswordButton
+{
+    LLPayPasswordResetViewController *vc = [[LLPayPasswordResetViewController alloc] init];
+    [self.navigationController pushViewController:vc animated:true];
+}
+
+- (void)didPasswordInputFinished:(NSString *)password
+{
+    [self addAdvertInfoWithPassword:password];
+    [self.payPopupView hidePayPopView];
 }
 
 #pragma mark - WXApiManagerDelegate
@@ -466,6 +524,16 @@ WXApiManagerDelegate
     NSIndexPath* selIndexPath = [tableView indexPathForSelectedRow];
     [tableView deselectRowAtIndexPath:selIndexPath animated:YES];
     
+}
+
+#pragma mark -
+#pragma mark - UIScrollViewDelegate
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
+    
+}
+
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView{
+    [self.view endEditing:true];
 }
 
 @end

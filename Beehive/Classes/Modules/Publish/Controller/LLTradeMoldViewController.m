@@ -28,13 +28,15 @@ UITableViewDataSource
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     [self setup];
-//    [self refreshData];
     [self getIndustryList];
 }
 
 - (void)setup {
     self.title = @"选择行业";
     self.tableView1.backgroundColor = kAppSectionBackgroundColor;
+    if (self.vcType == 1) {
+        self.tableView1.backgroundColor = UIColor.whiteColor;
+    }
 }
 
 - (void)refreshData {
@@ -66,6 +68,17 @@ UITableViewDataSource
 //        }
 //        [self.dataSoucre1 addObject:node];
 //    }
+    
+    LLTradeMoldNode *oneNode = [[LLTradeMoldNode alloc] init];
+    oneNode.tId = [NSNumber numberWithInt:0];
+    oneNode.title = @"全部";
+    NSMutableArray *secondArray = [NSMutableArray array];
+    LLTradeMoldNode *twoNode = [[LLTradeMoldNode alloc] init];
+    twoNode.tId = [NSNumber numberWithInt:0];
+    twoNode.title = @"全部";
+    [secondArray addObject:twoNode];
+    oneNode.secondArray = secondArray;
+    [self.dataSoucre1 insertObject:oneNode atIndex:0];
     
     for (LLTradeMoldNode *tmpNode in self.dataSoucre1) {
         if ([tmpNode.tId intValue] == [self.oneNode.tId intValue]) {

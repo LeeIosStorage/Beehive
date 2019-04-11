@@ -103,6 +103,12 @@
     
 }
 
+- (void)updateLabelWithIndex:(NSInteger)index title:(NSString *)title {
+    UIView *itemView = (UIView *)[self viewWithTag:10 + self.selectIndex];
+    UIButton *btn = (UIButton *)[itemView viewWithTag:20];
+    [btn setTitle:title forState:UIControlStateNormal];
+}
+
 - (void)refreshStateUI {
     UIView *itemView = (UIView *)[self viewWithTag:10 + self.selectIndex];
     [self.selImageView mas_remakeConstraints:^(MASConstraintMaker *make) {

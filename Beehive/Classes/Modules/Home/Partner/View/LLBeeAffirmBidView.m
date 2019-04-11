@@ -36,14 +36,14 @@
     if ([node isKindOfClass:[LLBeeKingNode class]]) {
         self.beeKingNode = (LLBeeKingNode *)node;
         
-        NSString *price = [NSString stringWithFormat:@"%.0f",self.beeKingNode.StartPrice];
+        NSString *price = [NSString stringWithFormat:@"%.2f",self.beeKingNode.StartPrice];
         NSString *priceText = [NSString stringWithFormat:@"¥ %@ (%d天)",price, self.beeKingNode.Days];
         self.labPrice.attributedText = [WYCommonUtils stringToColorAndFontAttributeString:priceText range:NSMakeRange(2, price.length) font:[FontConst PingFangSCRegularWithSize:20] color:kAppThemeColor];
         self.textField.placeholder = [NSString stringWithFormat:@"¥ %@起",price];
         self.labTipDes.text = [NSString stringWithFormat:@"竞拍价格不能低于%@元低价，价高者得！", price];
     } else if ([node isKindOfClass:[LLBidAdvertNode class]]){
         LLBidAdvertNode *someNode = (LLBidAdvertNode *)node;
-        NSString *price = [NSString stringWithFormat:@"%.0f",someNode.Money];
+        NSString *price = [NSString stringWithFormat:@"%.2f",someNode.Money];
         NSString *priceText = [NSString stringWithFormat:@"¥ %@ (%d天)",price, someNode.Days];
         self.labPrice.attributedText = [WYCommonUtils stringToColorAndFontAttributeString:priceText range:NSMakeRange(2, price.length) font:[FontConst PingFangSCRegularWithSize:20] color:kAppThemeColor];
         self.textField.placeholder = [NSString stringWithFormat:@"¥ %@起",price];

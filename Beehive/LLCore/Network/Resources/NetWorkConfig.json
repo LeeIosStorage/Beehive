@@ -315,6 +315,11 @@
         "module"  : "MyService.asmx",
         "action"  : "GetRecommendCount"
     },
+    "GetMyAdvertisementList": {
+        "protocol": "http",
+        "module"  : "MyService.asmx",
+        "action"  : "GetMyAdvertisementList"
+    },
     "GetDataInfo": {
         "protocol": "http",
         "module"  : "BusinessService.asmx",

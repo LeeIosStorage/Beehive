@@ -9,6 +9,9 @@
 #import "LLRegisterViewController.h"
 #import "LLUserInputView.h"
 #import "LELinkerHandler.h"
+#import "ZJUsefulPickerView.h"
+#import "LELoginAuthManager.h"
+#import "LLHomeNode.h"
 
 @interface LLRegisterViewController ()
 {
@@ -19,12 +22,17 @@
 @property (nonatomic, weak) IBOutlet LLUserInputView *smsCodeInputView;
 @property (nonatomic, weak) IBOutlet LLUserInputView *passwordInputView;
 @property (nonatomic, weak) IBOutlet LLUserInputView *passwordConfirmInputView;
+@property (nonatomic, weak) IBOutlet UIView *areaView;
+@property (nonatomic, weak) IBOutlet UIButton *areaButton;
 @property (nonatomic, weak) IBOutlet LLUserInputView *inviteCodeInputView;
 
 @property (nonatomic, weak) IBOutlet UIButton *registerButton;
 @property (nonatomic, weak) IBOutlet UIButton *agreementButton;
 
 @property (nonatomic, strong) NSString *agreementContentHtmlText;
+
+@property (nonatomic, strong) LLHomeNode *areaNode;
+@property (nonatomic, strong) NSMutableArray *allAreaNameList;
 
 @end
 
@@ -70,6 +78,10 @@
     self.passwordConfirmInputView.inputViewType = LLUserInputViewTypeSetPassword;
     [self.passwordConfirmInputView setAttributedPlaceholder:@"确认登录密码"];
     self.passwordConfirmInputView.typeImageView.image = [UIImage imageNamed:@"user_password"];
+    
+    self.areaView.backgroundColor = kAppMaskBackgroundColor;
+    self.areaView.layer.cornerRadius = 5;
+    self.areaView.layer.masksToBounds = true;
     
     self.inviteCodeInputView.inputViewType = LLUserInputViewTypeInviteCode;
     [self.inviteCodeInputView setAttributedPlaceholder:@"邀请码"];
@@ -117,6 +129,9 @@
     [params setObject:self.phoneInputView.textField.text forKey:@"Phone"];
     [params setObject:self.smsCodeInputView.textField.text forKey:@"smsCode"];
     [params setObject:self.passwordInputView.textField.text forKey:@"Password"];
+    [params setValue:self.areaNode.ProvinceId forKey:@"provinceId"];
+    [params setValue:self.areaNode.CityId forKey:@"cityId"];
+    [params setValue:self.areaNode.CountyId forKey:@"countyId"];
     
     NSString *inviteCode = @"";
     if (self.inviteCodeInputView.textField.text.length > 0) {
@@ -150,6 +165,9 @@
     [params setObject:self.phoneInputView.textField.text forKey:@"Phone"];
     [params setObject:self.smsCodeInputView.textField.text forKey:@"smsCode"];
     [params setObject:self.passwordInputView.textField.text forKey:@"Password"];
+    [params setValue:self.areaNode.ProvinceId forKey:@"provinceId"];
+    [params setValue:self.areaNode.CityId forKey:@"cityId"];
+    [params setValue:self.areaNode.CountyId forKey:@"countyId"];
     NSString *inviteCode = @"";
     if (self.inviteCodeInputView.textField.text.length > 0) {
         inviteCode = self.inviteCodeInputView.textField.text;
@@ -228,6 +246,32 @@
     }];
 }
 
+- (NSMutableArray *)allAreaNameList {
+    if (!_allAreaNameList) {
+        _allAreaNameList = [NSMutableArray array];
+        
+        NSMutableArray *provinceArray = [NSMutableArray array];
+        NSMutableDictionary *cityDic = [NSMutableDictionary dictionary];
+        NSMutableDictionary *areaDic = [NSMutableDictionary dictionary];
+        for (LLAreaNode *provinceNode in [LELoginAuthManager sharedInstance].allAreaList) {
+            NSMutableArray *cityArray = [NSMutableArray array];
+            for (LLAreaNode *cityNode in provinceNode.Children) {
+                NSMutableArray *areaArray = [NSMutableArray array];
+                for (LLAreaNode *areaNode in cityNode.Children) {
+                    [areaArray addObject:areaNode.FullName];
+                }
+                [cityArray addObject:cityNode.FullName];
+                [areaDic setObject:areaArray forKey:cityNode.FullName];
+            }
+            [provinceArray addObject:provinceNode.FullName];
+            [cityDic setObject:cityArray forKey:provinceNode.FullName];
+        }
+        
+        _allAreaNameList = [NSMutableArray arrayWithArray:@[provinceArray, cityDic, areaDic]];
+    }
+    return _allAreaNameList;
+}
+
 #pragma mark - Action
 - (IBAction)registerAction:(id)sender {
     if (self.vcType == LLAmendPhoneVcTypeBind) {
@@ -240,6 +284,45 @@
 - (IBAction)agreementAction:(id)sender {
     NSString *url = [NSString stringWithFormat:@"%@/Agreement.html",[WYAPIGenerate sharedInstance].baseURL];
     [LELinkerHandler handleDealWithHref:url From:self.navigationController];
+}
+
+- (IBAction)areaAction:(id)sender {
+    WEAKSELF
+    [ZJUsefulPickerView showMultipleAssociatedColPickerWithToolBarText:@"选择地址" withDefaultValues:nil withData:self.allAreaNameList withCancelHandler:^{
+        
+    } withDoneHandler:^(NSArray *selectedValues) {
+        NSString *provinceName = selectedValues[0];
+        NSString *cityName = selectedValues[1];
+        NSString *countyName = selectedValues[2];
+        NSString *provinceId = @"";
+        NSString *cityId = @"";
+        NSString *countyId = @"";
+        for (LLAreaNode *provinceNode in [LELoginAuthManager sharedInstance].allAreaList) {
+            if ([provinceNode.FullName isEqualToString:provinceName]) {
+                provinceId = provinceNode.Id;
+                for (LLAreaNode *cityNode in provinceNode.Children) {
+                    if ([cityNode.FullName isEqualToString:cityName]) {
+                        cityId = cityNode.Id;
+                        for (LLAreaNode *areaNode in cityNode.Children) {
+                            if ([areaNode.FullName isEqualToString:countyName]) {
+                                countyId = areaNode.Id;
+                                break;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        weakSelf.areaNode = [[LLHomeNode alloc] init];
+        weakSelf.areaNode.ProvinceName = provinceName;
+        weakSelf.areaNode.ProvinceId = provinceId;
+        weakSelf.areaNode.CityName = cityName;
+        weakSelf.areaNode.CityId = cityId;
+        weakSelf.areaNode.CountyName = countyName;
+        weakSelf.areaNode.CountyId = countyId;
+        NSString *title = [NSString stringWithFormat:@"%@ %@ %@", provinceName, cityName, countyName];
+        [weakSelf.areaButton setTitle:title forState:UIControlStateNormal];
+    }];
 }
 
 #pragma mark - Timer

@@ -30,6 +30,7 @@
 #import "UIImage+WYLaunchImage.h"
 #import "UIView+WYLaunchAnimation.h"
 #import "WYLaunchFadeScaleAnimation.h"
+#import "LLAdvertNode.h"
 
 @interface AppDelegate ()
 <
@@ -45,7 +46,7 @@ UITabBarControllerDelegate
 @property (nonatomic, strong) NSString *launchType;
 @property (nonatomic, strong) NSTimer *countDownTimer;
 @property (nonatomic, assign) NSInteger count;
-@property (nonatomic, strong) NSMutableDictionary *dic;
+@property (nonatomic, strong) LLAdvertNode *launchAdsNode;
 
 @end
 
@@ -254,26 +255,24 @@ UITabBarControllerDelegate
     [params setObject:[NSNumber numberWithDouble:[LLLocationManager sharedInstance].currentCoordinate.longitude] forKey:@"longitude"];
     [params setObject:[NSNumber numberWithInt:0] forKey:@"type"];
     NSString *caCheKey = @"GetOneAdvert-0";
-    [self.networkManager POST:requesUrl needCache:NO caCheKey:caCheKey parameters:params responseClass:nil needHeaderAuth:NO success:^(WYRequestType requestType, NSString *message, BOOL isCache, id dataObject) {
+    [self.networkManager POST:requesUrl needCache:NO caCheKey:caCheKey parameters:params responseClass:[LLAdvertNode class] needHeaderAuth:NO success:^(WYRequestType requestType, NSString *message, BOOL isCache, id dataObject) {
         
         if (requestType != WYRequestTypeSuccess) {
 //            [SVProgressHUD showCustomErrorWithStatus:message];
             [weakSelf.adLaunchImageView removeFromSuperview];
             return ;
         }
-        NSString *urlStr = @"";
         if ([dataObject isKindOfClass:[NSArray class]]) {
             NSArray *data = (NSArray *)dataObject;
             if (data.count > 0) {
-                urlStr = data[0];
+                weakSelf.launchAdsNode = data[0];
             }
         }
-        if (urlStr.length == 0) {
+        if (weakSelf.launchAdsNode.DataImg.length == 0) {
             [weakSelf.adLaunchImageView removeFromSuperview];
             return;
         }
-        NSString *imgUrl = [NSString stringWithFormat:@"%@%@",[WYAPIGenerate sharedInstance].baseURL, urlStr];
-        weakSelf.adLaunchImageView.URLString = imgUrl;
+        weakSelf.adLaunchImageView.URLString = weakSelf.launchAdsNode.DataImg;
         weakSelf.count = 4;
         if (!isCache) {
             weakSelf.countDownTimer = [NSTimer scheduledTimerWithTimeInterval:1.0 block:^(NSTimer * _Nonnull timer) {
@@ -313,8 +312,8 @@ UITabBarControllerDelegate
         [weakSelf removeAppADView];
 //        [[UIApplication sharedApplication] setStatusBarHidden:NO];
 //        [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
-//        [weakSelf pushAdViewCntroller:dic];
-        LELog(@"clickedImageURLHandle");
+        [weakSelf pushAdViewCntroller];
+//        LELog(@"clickedImageURLHandle");
     }];
     
 }
@@ -335,6 +334,14 @@ UITabBarControllerDelegate
     [self.countDownTimer invalidate];
     self.countDownTimer = nil;
 //    [self.appADView removeFromSuperview];
+}
+
+- (void)pushAdViewCntroller {
+    if (self.launchAdsNode.UrlAddress.length > 0) {
+        CYLTabBarController *tabBarController = [self cyl_tabBarController];
+        UINavigationController *nav = tabBarController.selectedViewController;
+        [LELinkerHandler handleDealWithHref:self.launchAdsNode.UrlAddress From:nav];
+    }
 }
 
 @end

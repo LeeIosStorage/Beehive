@@ -13,6 +13,8 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LLRegisterViewController">
             <connections>
                 <outlet property="agreementButton" destination="g8g-eG-qJc" id="tV0-Hf-kV9"/>
+                <outlet property="areaButton" destination="P78-uy-maX" id="wZP-Az-Xdv"/>
+                <outlet property="areaView" destination="X7z-RF-6PT" id="qt5-Qs-afu"/>
                 <outlet property="inviteCodeInputView" destination="AOA-6V-FOo" id="jEH-jb-sfp"/>
                 <outlet property="passwordConfirmInputView" destination="8ik-6g-P0f" id="Ci8-uR-HQv"/>
                 <outlet property="passwordInputView" destination="BUl-3Q-nHf" id="7Lw-eI-Da0"/>
@@ -55,15 +57,47 @@
                         <constraint firstAttribute="height" constant="40" id="OEP-Iz-Qrm"/>
                     </constraints>
                 </view>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AOA-6V-FOo" customClass="LLUserInputView">
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="X7z-RF-6PT">
                     <rect key="frame" x="25" y="259" width="325" height="40"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="P78-uy-maX">
+                            <rect key="frame" x="10" y="0.0" width="305" height="40"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <state key="normal" title="请选择注册地址">
+                                <color key="titleColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </state>
+                            <connections>
+                                <action selector="areaAction:" destination="-1" eventType="touchUpInside" id="b4e-Tq-meE"/>
+                            </connections>
+                        </button>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="app_cell_right_icon" translatesAutoresizingMaskIntoConstraints="NO" id="cfb-ac-xF9">
+                            <rect key="frame" x="304" y="14.5" width="11" height="11"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="11" id="Toi-bo-0NM"/>
+                                <constraint firstAttribute="height" constant="11" id="pez-am-evC"/>
+                            </constraints>
+                        </imageView>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="bottom" secondItem="P78-uy-maX" secondAttribute="bottom" id="1FI-td-oYB"/>
+                        <constraint firstItem="P78-uy-maX" firstAttribute="leading" secondItem="X7z-RF-6PT" secondAttribute="leading" constant="10" id="FkH-SN-qVr"/>
+                        <constraint firstAttribute="trailing" secondItem="cfb-ac-xF9" secondAttribute="trailing" constant="10" id="HiP-Es-GSV"/>
+                        <constraint firstItem="P78-uy-maX" firstAttribute="top" secondItem="X7z-RF-6PT" secondAttribute="top" id="iB5-T4-6vL"/>
+                        <constraint firstAttribute="trailing" secondItem="P78-uy-maX" secondAttribute="trailing" constant="10" id="r4F-8g-IjE"/>
+                        <constraint firstItem="cfb-ac-xF9" firstAttribute="centerY" secondItem="P78-uy-maX" secondAttribute="centerY" id="rpL-Qc-dkP"/>
+                        <constraint firstAttribute="height" constant="40" id="zb8-v8-P1m"/>
+                    </constraints>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AOA-6V-FOo" customClass="LLUserInputView">
+                    <rect key="frame" x="25" y="314" width="325" height="40"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="40" id="OBA-Pu-5AT"/>
                     </constraints>
                 </view>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LDq-M4-nrh">
-                    <rect key="frame" x="25" y="318" width="325" height="40"/>
+                    <rect key="frame" x="25" y="373" width="325" height="40"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="40" id="lMo-O4-0s6"/>
                     </constraints>
@@ -96,9 +130,10 @@
                 <constraint firstItem="N86-2M-Btx" firstAttribute="leading" secondItem="uRp-WD-YIf" secondAttribute="leading" id="Afu-cQ-ap3"/>
                 <constraint firstItem="uRp-WD-YIf" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" constant="25" id="BVe-3A-Vq2"/>
                 <constraint firstItem="BUl-3Q-nHf" firstAttribute="leading" secondItem="uRp-WD-YIf" secondAttribute="leading" id="D9J-FQ-fVI"/>
-                <constraint firstItem="AOA-6V-FOo" firstAttribute="top" secondItem="8ik-6g-P0f" secondAttribute="bottom" constant="15" id="DDc-74-H7N"/>
                 <constraint firstItem="LDq-M4-nrh" firstAttribute="leading" secondItem="uRp-WD-YIf" secondAttribute="leading" id="Dea-v1-jmr"/>
                 <constraint firstItem="g8g-eG-qJc" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="HQB-Wk-Tkq"/>
+                <constraint firstItem="X7z-RF-6PT" firstAttribute="trailing" secondItem="8ik-6g-P0f" secondAttribute="trailing" id="Mnj-C8-UeZ"/>
+                <constraint firstItem="X7z-RF-6PT" firstAttribute="leading" secondItem="8ik-6g-P0f" secondAttribute="leading" id="Oat-5f-AE1"/>
                 <constraint firstItem="Q5M-cg-NOt" firstAttribute="bottom" secondItem="g8g-eG-qJc" secondAttribute="bottom" constant="30" id="Pru-K0-7lb"/>
                 <constraint firstItem="Q5M-cg-NOt" firstAttribute="trailing" secondItem="g8g-eG-qJc" secondAttribute="trailing" constant="20" id="S4k-Rv-r2Y"/>
                 <constraint firstItem="LDq-M4-nrh" firstAttribute="trailing" secondItem="uRp-WD-YIf" secondAttribute="trailing" id="UCz-MQ-bfg"/>
@@ -108,6 +143,8 @@
                 <constraint firstItem="uRp-WD-YIf" firstAttribute="top" secondItem="Q5M-cg-NOt" secondAttribute="top" constant="19" id="hG7-Oa-Nso"/>
                 <constraint firstItem="LDq-M4-nrh" firstAttribute="top" secondItem="AOA-6V-FOo" secondAttribute="bottom" constant="19" id="hHm-JH-Eek"/>
                 <constraint firstItem="N86-2M-Btx" firstAttribute="trailing" secondItem="uRp-WD-YIf" secondAttribute="trailing" id="mui-a6-HD4"/>
+                <constraint firstItem="AOA-6V-FOo" firstAttribute="top" secondItem="X7z-RF-6PT" secondAttribute="bottom" constant="15" id="n2V-Vx-jRJ"/>
+                <constraint firstItem="X7z-RF-6PT" firstAttribute="top" secondItem="8ik-6g-P0f" secondAttribute="bottom" constant="15" id="nyJ-f5-rkO"/>
                 <constraint firstItem="8ik-6g-P0f" firstAttribute="leading" secondItem="uRp-WD-YIf" secondAttribute="leading" id="pik-WM-CA4"/>
                 <constraint firstItem="g8g-eG-qJc" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" constant="20" id="r4a-cI-Cxb"/>
                 <constraint firstItem="BUl-3Q-nHf" firstAttribute="trailing" secondItem="uRp-WD-YIf" secondAttribute="trailing" id="tKX-iA-WgI"/>
@@ -116,4 +153,7 @@
             <viewLayoutGuide key="safeArea" id="Q5M-cg-NOt"/>
         </view>
     </objects>
+    <resources>
+        <image name="app_cell_right_icon" width="11" height="11"/>
+    </resources>
 </document>

@@ -22,6 +22,7 @@ typedef void (^LLSegmentedHeadViewBlcok) (NSInteger index);
 @property (nonatomic, assign) NSInteger selectIndex;
 
 - (void)setItems:(NSArray *)items;
+- (void)updateLabelWithIndex:(NSInteger)index title:(NSString *)title;
 
 @end
 

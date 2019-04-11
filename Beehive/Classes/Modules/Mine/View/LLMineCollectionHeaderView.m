@@ -7,11 +7,14 @@
 //
 
 #import "LLMineCollectionHeaderView.h"
+#import "LELoginModel.h"
 
 @interface LLMineCollectionHeaderView ()
 
 @property (nonatomic, weak) IBOutlet UIImageView *avatarImageView;
 @property (nonatomic, weak) IBOutlet UIImageView *sexImageView;
+
+@property (nonatomic, weak) IBOutlet UIView *viewRank;
 
 @property (nonatomic, weak) IBOutlet UILabel *nickNameLabel;
 @property (nonatomic, weak) IBOutlet UILabel *desLabel;
@@ -47,6 +50,45 @@
     self.sexImageView.image = sexImage;
     
     self.incomeLabel.text = [NSString stringWithFormat:@"我的总收益：¥ %.2f",[LELoginUserManager income]];
+    
+    [self updateUserRankMark];
+}
+
+- (void)updateUserRankMark {
+    [self.viewRank removeAllSubviews];
+    NSMutableArray *rankImages = [NSMutableArray array];
+    
+    if ([LELoginUserManager loginModel].IsBigQueen) {
+        [rankImages addObject:@"bee_rank8"];
+    } else {
+        if ([LELoginUserManager loginModel].IsQueen) {
+            [rankImages addObject:@"bee_rank7"];
+        }
+    }
+    if ([LELoginUserManager loginModel].IsVip) {
+        [rankImages addObject:@"bee_rank9"];
+    }
+    if ([LELoginUserManager loginModel].IsPromotion) {
+        [rankImages addObject:@"bee_rank10"];
+    }
+    if ([LELoginUserManager loginModel].Rank > 0) {
+        NSString *str = [NSString stringWithFormat:@"bee_rank%d", [LELoginUserManager loginModel].Rank];
+        [rankImages addObject:str];
+    }
+    
+    CGFloat left = 0;
+    for (int i = 0; i < rankImages.count; i ++) {
+        UIImageView *img = [[UIImageView alloc] init];
+        img.image = [UIImage imageNamed:rankImages[i]];
+        [self.viewRank addSubview:img];
+        [img mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.equalTo(self.viewRank).offset(left);
+            make.centerY.equalTo(self.viewRank);
+            make.size.mas_equalTo(CGSizeMake(19, 19));
+        }];
+        left += 19;
+        left += 4;
+    }
 }
 
 - (IBAction)messageAction:(id)sender {

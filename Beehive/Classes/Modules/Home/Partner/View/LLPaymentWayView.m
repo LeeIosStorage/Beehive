@@ -69,7 +69,7 @@ UITableViewDataSource
 - (void)updateCellWithData:(id)node {
     NSString *money = (NSString *)node;
     [self refreshPaymentWay];
-    if (self.wayType == LLPaymentWayTypeNormal) {
+    if (self.wayType == LLPaymentWayTypeNormal && money.length > 0) {
         [self.paymentButton setTitle:[NSString stringWithFormat:@"支付%@元",money] forState:UIControlStateNormal];
     } else if (self.wayType == LLPaymentWayTypeVIP) {
         CAGradientLayer *gradientLayer =  [CAGradientLayer layer];

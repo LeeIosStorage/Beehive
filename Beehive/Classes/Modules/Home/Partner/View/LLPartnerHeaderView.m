@@ -118,7 +118,7 @@
             self.adsMiddle2TipLabel.hidden = false;
             [self.adsMiddle2UploadButton setImage:[UIImage imageNamed:@"1_7_2.3"] forState:UIControlStateNormal];
             if (adNode.DataImg.length > 0) {
-                self.adsMiddle1TipLabel.hidden = true;
+                self.adsMiddle2TipLabel.hidden = true;
                 [self.adsMiddle2UploadButton sd_setImageWithURL:[NSURL URLWithString:adNode.DataImg] forState:UIControlStateNormal];
             }
         }

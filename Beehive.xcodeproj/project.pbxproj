@@ -117,6 +117,8 @@
 		8D1ADF14225DBD80004FB101 /* LLBeeKingUserShowView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D1ADF13225DBD80004FB101 /* LLBeeKingUserShowView.xib */; };
 		8D1ADF18225DC7DC004FB101 /* LLPublishTipViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D1ADF16225DC7DC004FB101 /* LLPublishTipViewCell.m */; };
 		8D1ADF19225DC7DC004FB101 /* LLPublishTipViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D1ADF17225DC7DC004FB101 /* LLPublishTipViewCell.xib */; };
+		8D1ADF1D225F3CF5004FB101 /* LLEditAdTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D1ADF1B225F3CF5004FB101 /* LLEditAdTableViewCell.m */; };
+		8D1ADF1E225F3CF5004FB101 /* LLEditAdTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D1ADF1C225F3CF5004FB101 /* LLEditAdTableViewCell.xib */; };
 		8D26040022566EAF0097B707 /* LLFundHistoryNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D2603FF22566EAF0097B707 /* LLFundHistoryNode.m */; };
 		8D26040322566FA50097B707 /* LLWithdrawHistoryNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D26040222566FA50097B707 /* LLWithdrawHistoryNode.m */; };
 		8D260407225720AE0097B707 /* LLSelectUserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D260405225720AE0097B707 /* LLSelectUserViewController.m */; };
@@ -579,6 +581,9 @@
 		8D1ADF15225DC7DC004FB101 /* LLPublishTipViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLPublishTipViewCell.h; sourceTree = "<group>"; };
 		8D1ADF16225DC7DC004FB101 /* LLPublishTipViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLPublishTipViewCell.m; sourceTree = "<group>"; };
 		8D1ADF17225DC7DC004FB101 /* LLPublishTipViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LLPublishTipViewCell.xib; sourceTree = "<group>"; };
+		8D1ADF1A225F3CF5004FB101 /* LLEditAdTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLEditAdTableViewCell.h; sourceTree = "<group>"; };
+		8D1ADF1B225F3CF5004FB101 /* LLEditAdTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLEditAdTableViewCell.m; sourceTree = "<group>"; };
+		8D1ADF1C225F3CF5004FB101 /* LLEditAdTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LLEditAdTableViewCell.xib; sourceTree = "<group>"; };
 		8D2603FE22566EAF0097B707 /* LLFundHistoryNode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLFundHistoryNode.h; sourceTree = "<group>"; };
 		8D2603FF22566EAF0097B707 /* LLFundHistoryNode.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLFundHistoryNode.m; sourceTree = "<group>"; };
 		8D26040122566FA50097B707 /* LLWithdrawHistoryNode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLWithdrawHistoryNode.h; sourceTree = "<group>"; };
@@ -1328,6 +1333,9 @@
 				7E561B9E223FD68800DA3B20 /* LLBeeAffirmBidView.h */,
 				7E561B9F223FD68800DA3B20 /* LLBeeAffirmBidView.m */,
 				7E561BA1223FD69B00DA3B20 /* LLBeeAffirmBidView.xib */,
+				8D1ADF1A225F3CF5004FB101 /* LLEditAdTableViewCell.h */,
+				8D1ADF1B225F3CF5004FB101 /* LLEditAdTableViewCell.m */,
+				8D1ADF1C225F3CF5004FB101 /* LLEditAdTableViewCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -2834,6 +2842,7 @@
 				8DF0C28C223A502B006175E7 /* LLReceiveRedAlertView.xib in Resources */,
 				8DBEAE49223CAEDE0095D214 /* LLBeeKingViewController.xib in Resources */,
 				8D5CB6CA2233AF2400527DEB /* LLPublishIDCardViewCell.xib in Resources */,
+				8D1ADF1E225F3CF5004FB101 /* LLEditAdTableViewCell.xib in Resources */,
 				7E2E7017223802D800F185A7 /* LLRedTaskHistoryViewController.xib in Resources */,
 				7E1E8A7022301AF2002766AD /* LLMessageCommentViewCell.xib in Resources */,
 				8DF0C274223A25D4006175E7 /* LLRedTaskViewController.xib in Resources */,
@@ -3054,6 +3063,7 @@
 				8D65E1CD224D124C000A344D /* LLExchangeGoodsNode.m in Sources */,
 				8D79E4E1222676FC0019A1BE /* LLBeeMineViewController.m in Sources */,
 				8D1A880C2248E9E4005DD311 /* LLNoticeNode.m in Sources */,
+				8D1ADF1D225F3CF5004FB101 /* LLEditAdTableViewCell.m in Sources */,
 				8D542A6A222A5BC2008B90B0 /* LEWebViewController.m in Sources */,
 				8DBEAE29223C93E50095D214 /* ZJPayPopupView.m in Sources */,
 				8DF28F96223E4B080074A4D8 /* LLExchangeOrderTableViewCell.m in Sources */,

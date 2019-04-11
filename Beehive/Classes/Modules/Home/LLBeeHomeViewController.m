@@ -32,6 +32,7 @@
 #import "LLBeeTaskViewController.h"
 #import "LEShareSheetView.h"
 #import "LLBeeKingUserShowView.h"
+#import "LLAdvertNode.h"
 
 @interface LLBeeHomeViewController ()
 <
@@ -77,7 +78,9 @@ LEShareSheetViewDelegate
 
 @property (nonatomic, strong) UIButton *btnBottomAds;
 
-@property (nonatomic, strong) NSString *homeAdsUrl;
+@property (nonatomic, strong) LLAdvertNode *homePopAdsNode;
+@property (nonatomic, strong) LLAdvertNode *homeBottomAdsNode;
+//@property (nonatomic, strong) NSString *homeAdsUrl;
 
 @property (nonatomic, strong) LLBeeKingUserShowView *beeKingUserShowView;//
 
@@ -111,7 +114,6 @@ LEShareSheetViewDelegate
 - (void)setup {
     
     _havShowHomeAds = NO;
-    self.homeAdsUrl = nil;
     
     self.redCityList = [NSMutableArray array];
     self.mapRedpacketList = [NSMutableArray array];
@@ -130,11 +132,12 @@ LEShareSheetViewDelegate
     WEAKSELF
     self.cityOptionHeaderView.selectBlock = ^(id  _Nonnull node) {
         weakSelf.selRedpacketNode = (LLRedpacketNode *)node;
-        if (weakSelf.selRedpacketNode.RedType == 3) {
-            [weakSelf gotoRedpacketDetailsVc];
-        } else {
-            [weakSelf receiveRedAlertViewShow];
-        }
+        [weakSelf receiveRedAlertViewShow];
+//        if (weakSelf.selRedpacketNode.RedType == 3) {
+//            [weakSelf gotoRedpacketDetailsVc];
+//        } else {
+//            [weakSelf receiveRedAlertViewShow];
+//        }
         
 //        LLRedCityNode *cityNode = (LLRedCityNode *)node;
 //        if (cityNode.RedList.count > 0) {
@@ -195,6 +198,7 @@ LEShareSheetViewDelegate
     }];
     
     self.mapView.showsCompass = false;
+    self.mapView.scrollEnabled = false;
     self.mapView.zoomLevel = 14.5;
     self.mapView.showsUserLocation = true;
     self.mapView.userTrackingMode = MAUserTrackingModeFollow;
@@ -262,7 +266,7 @@ LEShareSheetViewDelegate
     _havShowHomeAds = YES;
     LLHomeAdsAlertView *tipView = [[[NSBundle mainBundle] loadNibNamed:@"LLHomeAdsAlertView" owner:self options:nil] firstObject];
     tipView.frame = CGRectMake(0, 0, 230, 345);
-    [tipView updateCellWithData:self.homeAdsUrl];
+    [tipView updateCellWithData:self.homePopAdsNode.DataImg];
     __weak UIView *weakView = tipView;
     WEAKSELF
     tipView.actionBlock = ^(NSInteger index) {
@@ -271,7 +275,9 @@ LEShareSheetViewDelegate
             [alert dismiss];
         }
         if (index == 1) {
-//            [LELinkerHandler handleDealWithHref:@"http://www.baidu.com" From:weakSelf.navigationController];
+            if (weakSelf.homePopAdsNode.UrlAddress.length > 0) {
+                [LELinkerHandler handleDealWithHref:weakSelf.homePopAdsNode.UrlAddress From:weakSelf.navigationController];
+            }
         }
     };
     LEAlertMarkView *alert = [[LEAlertMarkView alloc] initWithCustomView:tipView type:LEAlertMarkViewTypeCenter];
@@ -368,29 +374,32 @@ LEShareSheetViewDelegate
     [params setObject:[NSNumber numberWithDouble:self.currentCoordinate.latitude] forKey:@"latitude"];
     [params setObject:[NSNumber numberWithDouble:self.currentCoordinate.longitude] forKey:@"longitude"];
     [params setObject:[NSNumber numberWithInt:type] forKey:@"type"];
-    [self.networkManager POST:requesUrl needCache:NO caCheKey:nil parameters:params responseClass:nil needHeaderAuth:NO success:^(WYRequestType requestType, NSString *message, BOOL isCache, id dataObject) {
+    [self.networkManager POST:requesUrl needCache:NO caCheKey:nil parameters:params responseClass:[LLAdvertNode class] needHeaderAuth:NO success:^(WYRequestType requestType, NSString *message, BOOL isCache, id dataObject) {
         
         if (requestType != WYRequestTypeSuccess) {
             [SVProgressHUD showCustomErrorWithStatus:message];
             return ;
         }
-        NSString *urlStr = @"";
+        LLAdvertNode *node;
         if ([dataObject isKindOfClass:[NSArray class]]) {
             NSArray *data = (NSArray *)dataObject;
             if (data.count > 0) {
-                urlStr = data[0];
+                node = data[0];
             }
         }
         
         if (type == 0) {
             
         } else if (type == 1) {
-            if (urlStr.length > 0) {
-                [weakSelf addBottomAds:[NSString stringWithFormat:@"%@%@",[WYAPIGenerate sharedInstance].baseURL, urlStr]];
+            weakSelf.homeBottomAdsNode = [[LLAdvertNode alloc] init];
+            weakSelf.homeBottomAdsNode = node;
+            if (weakSelf.homeBottomAdsNode.DataImg.length > 0) {
+                [weakSelf addBottomAds:weakSelf.homeBottomAdsNode.DataImg];
             }
         } else if (type == 2) {
-            if (urlStr.length > 0) {
-                weakSelf.homeAdsUrl = [NSString stringWithFormat:@"%@%@",[WYAPIGenerate sharedInstance].baseURL, urlStr];
+            weakSelf.homePopAdsNode = [[LLAdvertNode alloc] init];
+            weakSelf.homePopAdsNode = node;
+            if (weakSelf.homePopAdsNode.DataImg.length > 0) {
                 [weakSelf showHomeAdsAlertView];
             }
         }
@@ -579,6 +588,12 @@ LEShareSheetViewDelegate
 }
 
 - (void)adsBtnAction {
+    if (self.homeBottomAdsNode.UrlAddress.length > 0) {
+        [LELinkerHandler handleDealWithHref:self.homeBottomAdsNode.UrlAddress From:self.navigationController];
+    }
+}
+
+- (void)beeKingAction {
     LLPartnerViewController *vc = [[LLPartnerViewController alloc] init];
     vc.areaNode = self.homeNode;
     [self.navigationController pushViewController:vc animated:true];
@@ -693,7 +708,7 @@ LEShareSheetViewDelegate
 - (UIButton *)btnBottomAds {
     if (!_btnBottomAds) {
         _btnBottomAds = [UIButton buttonWithType:UIButtonTypeCustom];
-//        [_btnBottomAds addTarget:self action:@selector(adsBtnAction) forControlEvents:UIControlEventTouchUpInside];
+        [_btnBottomAds addTarget:self action:@selector(adsBtnAction) forControlEvents:UIControlEventTouchUpInside];
     }
     return _btnBottomAds;
 }
@@ -705,7 +720,7 @@ LEShareSheetViewDelegate
         
         WEAKSELF
         _beeKingUserShowView.clickBlock = ^{
-            [weakSelf adsBtnAction];
+            [weakSelf beeKingAction];
         };
     }
     return _beeKingUserShowView;
@@ -802,11 +817,12 @@ LEShareSheetViewDelegate
         return;
     }
     self.selRedpacketNode = redNode;
-    if (self.selRedpacketNode.RedType == 3) {
-        [self gotoRedpacketDetailsVc];
-    } else {
-        [self receiveRedAlertViewShow];
-    }
+    [self receiveRedAlertViewShow];
+//    if (self.selRedpacketNode.RedType == 3) {
+//        [self gotoRedpacketDetailsVc];
+//    } else {
+//        [self receiveRedAlertViewShow];
+//    }
     
     [self.mapView deselectAnnotation:view.annotation animated:false];
 }

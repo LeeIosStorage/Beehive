@@ -29,6 +29,11 @@
 @property (strong, nonatomic) NSString *Autograph;
 @property (strong, nonatomic) NSString *HobbyIds;
 
+@property (assign, nonatomic) BOOL IsVip;
+@property (assign, nonatomic) BOOL IsPromotion;
+@property (assign, nonatomic) BOOL IsBigQueen;
+@property (assign, nonatomic) BOOL IsQueen;
+@property (assign, nonatomic) int Rank;
 
 @property (assign, nonatomic) int announcementNum;
 @property (assign, nonatomic) int noticeNum;

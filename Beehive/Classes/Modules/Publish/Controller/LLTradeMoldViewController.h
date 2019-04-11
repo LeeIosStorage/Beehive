@@ -16,6 +16,8 @@ typedef void (^LLTradeMoldViewControllerChooseBlock)(LLTradeMoldNode *node1, LLT
 
 @interface LLTradeMoldViewController : LLBaseViewController
 
+@property (nonatomic, assign) NSInteger vcType;
+
 @property (nonatomic, strong) LLTradeMoldNode *oneNode;
 @property (nonatomic, strong) LLTradeMoldNode *twoNode;
 

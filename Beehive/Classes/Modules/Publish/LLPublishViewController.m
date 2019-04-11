@@ -744,7 +744,7 @@ UITableViewDataSource
     [params setValue:linkAddress forKey:@"urlAddress"];
     
     self.payType = 0;
-    self.payPwd = @"123456";
+    self.payPwd = [LELoginUserManager payPassWord];
     [params setObject:[NSNumber numberWithInteger:self.payType] forKey:@"payType"];
     [params setObject:self.payPwd forKey:@"payPwd"];
     

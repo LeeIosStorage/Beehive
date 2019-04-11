@@ -22,6 +22,7 @@ typedef NS_ENUM(NSInteger, LLMineNodeType) {
     LLMineNodeTypeSet, //
     LLMineNodeTypeVIP, //
     LLMineNodeTypeTui,  //
+    LLMineNodeTypeAdvert, //广告图
     //设置相关
     LLMineNodeTypeSetLoginPwd, //修改登录密码
     LLMineNodeTypeSetPayPwd, //修改支付密码

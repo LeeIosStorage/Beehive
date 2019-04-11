@@ -13,11 +13,17 @@
 #import "LLPromotionExplainNode.h"
 #import "WXApiManager.h"
 #import "WXSendPayOrder.h"
+#import "ZJPayPopupView.h"
+#import "LLPayPasswordResetViewController.h"
 
 @interface LLBeeVIPViewController ()
 <
-WXApiManagerDelegate
+WXApiManagerDelegate,
+ZJPayPopupViewDelegate
 >
+
+@property (nonatomic, strong) ZJPayPopupView *payPopupView;
+
 @property (nonatomic, strong) LLPromotionExplainNode *promotionExplainNode;
 
 @property (nonatomic, weak) IBOutlet UITableView *tableView;
@@ -82,7 +88,7 @@ WXApiManagerDelegate
     [self.view endEditing:true];
     LLPaymentWayView *tipView = [[[NSBundle mainBundle] loadNibNamed:@"LLPaymentWayView" owner:self options:nil] firstObject];
     tipView.frame = CGRectMake(0, 0, SCREEN_WIDTH, 265);
-    tipView.wayType = LLPaymentWayTypeVIP;
+//    tipView.wayType = LLPaymentWayTypeVIP;
     [tipView updateCellWithData:nil];
     __weak UIView *weakView = tipView;
     WEAKSELF
@@ -92,10 +98,20 @@ WXApiManagerDelegate
             [alert dismiss];
         }
         weakSelf.paymentWay = type;
-        [weakSelf buyVIPReqeust];
+        if (type == 0) {
+            [weakSelf payPopupViewShow];
+        } else {
+            [weakSelf buyVIPReqeustWithPassword:nil];
+        }
     };
     LEAlertMarkView *alert = [[LEAlertMarkView alloc] initWithCustomView:tipView type:LEAlertMarkViewTypeBottom];
     [alert show];
+}
+
+- (void)payPopupViewShow {
+    self.payPopupView = [[ZJPayPopupView alloc] init];
+    self.payPopupView.delegate = self;
+    [self.payPopupView showPayPopView];
 }
 
 #pragma mark - Reqeust
@@ -152,12 +168,15 @@ WXApiManagerDelegate
     }];
 }
 
-- (void)buyVIPReqeust {
+- (void)buyVIPReqeustWithPassword:(NSString *)password {
     [SVProgressHUD showCustomWithStatus:@"请求中..."];
     WEAKSELF
     NSString *requesUrl = [[WYAPIGenerate sharedInstance] API:@"BuyVIP"];
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     [params setObject:[NSNumber numberWithInteger:self.paymentWay] forKey:@"payType"];
+    if (password.length == 0) password = @"";
+    [params setObject:password forKey:@"payPwd"];
+    
     [self.networkManager POST:requesUrl needCache:NO caCheKey:nil parameters:params responseClass:nil needHeaderAuth:NO success:^(WYRequestType requestType, NSString *message, BOOL isCache, id dataObject) {
         
         [SVProgressHUD dismiss];
@@ -194,6 +213,19 @@ WXApiManagerDelegate
 
 - (IBAction)submitAction:(id)sender {
     [self paymentWayViewShow];
+}
+
+#pragma mark - ZJPayPopupViewDelegate
+- (void)didClickForgetPasswordButton
+{
+    LLPayPasswordResetViewController *vc = [[LLPayPasswordResetViewController alloc] init];
+    [self.navigationController pushViewController:vc animated:true];
+}
+
+- (void)didPasswordInputFinished:(NSString *)password
+{
+    [self buyVIPReqeustWithPassword:password];
+    [self.payPopupView hidePayPopView];
 }
 
 #pragma mark - WXApiManagerDelegate

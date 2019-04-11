@@ -18,6 +18,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSString *DataTitle;
 @property (nonatomic, strong) NSString *DataUrl;
 @property (nonatomic, strong) NSString *DataImg;
+@property (nonatomic, strong) NSString *UrlAddress;
 @property (nonatomic, assign) int SortNum;
 @property (nonatomic, strong) NSString *UserId;
 @property (nonatomic, strong) NSString *ProvinceId;
