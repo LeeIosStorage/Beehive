@@ -13,6 +13,8 @@
 #import "LLLocationManager.h"
 #import "LLCommentNode.h"
 #import "LEShareSheetView.h"
+#import "LEMenuView.h"
+#import "LLReportViewController.h"
 
 @interface LLMessageDetailsViewController ()
 <
@@ -304,7 +306,18 @@ LEShareSheetViewDelegate
 
 #pragma mark - Action
 - (void)moreAction:(id)sender {
+    LEMenuView *menuView = [[LEMenuView alloc] initWithFrame:CGRectMake(SCREEN_WIDTH-90, HitoTopHeight, 80, 67)];
+    [menuView show];
     
+    WEAKSELF
+    menuView.menuViewClickBlock = ^(NSInteger index) {
+        if (index == 0) {
+            LLReportViewController *vc = [[LLReportViewController alloc] init];
+            vc.dataId = self.messageListNode.Id;
+            vc.type = 3;
+            [weakSelf.navigationController pushViewController:vc animated:true];
+        }
+    };
 }
 
 - (void)shareAction {

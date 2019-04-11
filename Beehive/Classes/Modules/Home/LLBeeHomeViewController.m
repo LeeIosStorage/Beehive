@@ -130,8 +130,11 @@ LEShareSheetViewDelegate
     WEAKSELF
     self.cityOptionHeaderView.selectBlock = ^(id  _Nonnull node) {
         weakSelf.selRedpacketNode = (LLRedpacketNode *)node;
-        [weakSelf receiveRedAlertViewShow];
-//        [weakSelf gotoRedpacketDetailsVc];
+        if (weakSelf.selRedpacketNode.RedType == 3) {
+            [weakSelf gotoRedpacketDetailsVc];
+        } else {
+            [weakSelf receiveRedAlertViewShow];
+        }
         
 //        LLRedCityNode *cityNode = (LLRedCityNode *)node;
 //        if (cityNode.RedList.count > 0) {
@@ -799,7 +802,11 @@ LEShareSheetViewDelegate
         return;
     }
     self.selRedpacketNode = redNode;
-    [self receiveRedAlertViewShow];
+    if (self.selRedpacketNode.RedType == 3) {
+        [self gotoRedpacketDetailsVc];
+    } else {
+        [self receiveRedAlertViewShow];
+    }
     
     [self.mapView deselectAnnotation:view.annotation animated:false];
 }

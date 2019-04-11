@@ -55,6 +55,7 @@ SDCycleScrollViewDelegate
     self.gridImageView.layer.cornerRadius = 2;
     self.gridImageView.layer.masksToBounds = true;
     self.gridImageView.backgroundColor = kAppThemeColor;
+    self.gridImageView.bannerImageViewContentMode = UIViewContentModeScaleAspectFill;
 //    self.gridImageView.delegate = self;
     
     self.imagePageView.backgroundColor = kAppMaskOpaqueBlackColor;

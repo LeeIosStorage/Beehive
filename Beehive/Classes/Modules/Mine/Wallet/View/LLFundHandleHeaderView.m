@@ -72,7 +72,7 @@ UITextFieldDelegate
 
 - (void)setVcType:(LLFundHandleVCType)vcType {
     _vcType = vcType;
-    self.amountArray = [NSMutableArray arrayWithArray:@[@"1",@"5",@"10",@"20",@"50",@"100",@"200",@"500"]];
+    self.amountArray = [NSMutableArray arrayWithArray:@[@"10",@"20",@"50",@"100",@"200",@"500"]];
     if (_vcType == LLFundHandleVCTypeDeposit) {
         self.amountArray = [NSMutableArray arrayWithArray:@[@"10",@"20",@"30",@"40",@"50",@"100",@"200",@"500"]];
     }
@@ -192,6 +192,9 @@ UITextFieldDelegate
 
 - (CGSize)calculateGridImageViewSize {
     CGFloat viewWidth = (SCREEN_WIDTH-10*5)/4;
+    if (self.vcType == LLFundHandleVCTypeWithdraw) {
+        viewWidth = (SCREEN_WIDTH-10*4)/3;
+    }
     return CGSizeMake(viewWidth, 48);
 }
 

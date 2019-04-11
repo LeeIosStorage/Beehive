@@ -226,7 +226,7 @@ UISearchBarDelegate
 - (LLSegmentedHeadView *)segmentedHeadView {
     if (!_segmentedHeadView) {
         _segmentedHeadView = [[LLSegmentedHeadView alloc] init];
-        [_segmentedHeadView setItems:@[@{kllSegmentedTitle:@"附近信息",kllSegmentedType:@(0)},@{kllSegmentedTitle:@"附近距离",kllSegmentedType:@(1)}]];
+        [_segmentedHeadView setItems:@[@{kllSegmentedTitle:@"分类选择",kllSegmentedType:@(0)},@{kllSegmentedTitle:@"附近距离",kllSegmentedType:@(1)}]];
         WEAKSELF
         _segmentedHeadView.clickBlock = ^(NSInteger index) {
             if (index == 0) {
@@ -269,6 +269,15 @@ UISearchBarDelegate
 #pragma mark - UISearchBarDelegate
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
     [self searchAction:nil];
+}
+
+- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
+    [self.messageLists removeAllObjects];
+    [self.tableView reloadData];
+    [self searchAction:nil];
+//    if (searchText.length == 0) {
+//
+//    }
 }
 
 #pragma mark - AMapLocationManagerDelegate
